@@ -61,7 +61,7 @@
                             <use xlink:href="#swap"></use>
                         </svg>
                         </span>
-                        <span class="pc-mtext" data-i18n="Peraturan">Peraturan</span>
+                        <span class="pc-mtext" data-i18n="Peraturan"><span class="fa-solid fa-arrow-right"></span> Peraturan</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
@@ -75,7 +75,50 @@
                                 <span class="fa-solid fa-file-alt"></span> Tarif Pelayanan
                             </a>
                         </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenkes-no2-2023'); ?>" data-i18n="Permenkes No.02 Tahun 2023">
+                                <span class="fa-solid fa-file-alt"></span> Permenkes No.02 Tahun 2023
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/menlhk-no68-2016'); ?>" data-i18n="MenLHK No. 68 Tahun 2016">
+                                <span class="fa-solid fa-file-alt"></span> MenLHK No. 68 Tahun 2016
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenlh-no11-2025'); ?>" data-i18n="PermenLH No. 11 Tahun 2025">
+                                <span class="fa-solid fa-file-alt"></span> PermenLH No. 11 Tahun 2025
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenlh-no12-2025'); ?>" data-i18n="PermenLH No. 12 Tahun 2025">
+                                <span class="fa-solid fa-file-alt"></span> PermenLH No. 12 Tahun 2025
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/pertek-baku-mutu-limbah-domestik'); ?>" data-i18n="Pertek Baku Mutu Limbah Domestik">
+                                <span class="fa-solid fa-file-alt"></span> Pertek Baku Mutu Limbah Domestik
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenkes-no1096-2011'); ?>" data-i18n="Permenkes No.1096 Tahun 2011">
+                                <span class="fa-solid fa-file-alt"></span> Permenkes No.1096 Tahun 2011
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenkes-no7-aami-2019'); ?>" data-i18n="Permenkes No.7 Tahun 2019 AAMI">
+                                <span class="fa-solid fa-file-alt"></span> Permenkes No.7 Tahun 2019 AAMI
+                            </a>
+                        </li>
                     </ul>
+                </li>
+                <li class="pc-item pc-caption">
+                    <label data-i18n="Widget">Pengaturan Coolbox</label>
+                    <i class="pc-micon">
+                        <svg class="pc-icon">
+                            <use xlink:href="#pengaturan-coolbox"></use>
+                        </svg>
+                    </i>
                 </li>
             </ul>
         </div>
