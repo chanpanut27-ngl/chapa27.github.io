@@ -22,7 +22,7 @@ $routes->group('pelayanan-pemeriksaan/pengantar-lhu', function ($routes) {
 });
 
 
-
+/** File Peraturan **/
 $routes->group('file-peraturan/reader', function ($routes) {
     $routes->get('standar-pelayanan', 'FileReader::standar_pelayanan');
     $routes->get('tarif-pelayanan', 'FileReader::tarif_pelayanan');
@@ -33,4 +33,16 @@ $routes->group('file-peraturan/reader', function ($routes) {
     $routes->get('pertek-baku-mutu-limbah-domestik', 'FileReader::pertek_bml_domestik');
     $routes->get('permenkes-no1096-2011', 'FileReader::permenkes_no1096_2011');
     $routes->get('permenkes-no7-aami-2019', 'FileReader::permenkes_no7_aami_2019');
+});
+
+$routes->group('pengaturan-coolbox/posisi-coolbox', function ($routes) {
+    $routes->get('', 'PosisiCoolbox::index');
+    $routes->get('list-data', 'PosisiCoolbox::list');
+    $routes->get('add-data', 'PosisiCoolbox::new');
+    $routes->post('create-data', 'PosisiCoolbox::create');
+    $routes->get('edit-data/(:num)', 'PosisiCoolbox::edit/$1');
+    $routes->post('update-data', 'PosisiCoolbox::update');
+    $routes->delete('delete-data/(:num)', 'PosisiCoolbox::delete/$1');
+    $routes->get('add-foto/(:num)', 'PosisiCoolbox::add_foto/$1');
+    $routes->post('upload-foto', 'PosisiCoolbox::upload_foto');
 });

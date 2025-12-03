@@ -120,6 +120,16 @@
                         </svg>
                     </i>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('pengaturan-coolbox/posisi-coolbox'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#posisi-coolbox"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Posisi Coolbox</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgMasterInstansi extends Migration
+class MgPosisiCoolbox extends Migration
 {
     public function up()
     {
@@ -15,20 +15,25 @@ class MgMasterInstansi extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'nama_instansi' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
+            'id_coolbox' => [
+                'type'       => 'INT',
             ],
-            'alamat' => [
+            'status' => [
+                'type'       => 'INT',
+                'constraint'     => 1,
+            ],
+            'tanggal' => [
+                'type'       => 'DATE'
+            ],
+            'jam' => [
+                'type'       => 'TIME'
+            ],
+            'keterangan' => [
                 'type'       => 'TEXT',
             ],
-            'no_telp' => [
+            'foto' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255',
-            ],
-            'wilayah' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
+                'constraint'  => '255',
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -56,11 +61,11 @@ class MgMasterInstansi extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('master_instansi');
+        $this->forge->createTable('posisi_coolbox');
     }
 
     public function down()
     {
-        $this->forge->dropTable('master_instansi');
+        $this->forge->dropTable('posisi_coolbox');
     }
 }
