@@ -17,7 +17,6 @@
       </div>
       <!-- [ breadcrumb ] end -->
 
-
       <!-- [ Main Content ] start -->
       <div class="row">
         <!-- [ sample-page ] start -->

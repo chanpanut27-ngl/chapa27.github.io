@@ -130,6 +130,44 @@
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Posisi Coolbox</span>
                     </a>
                 </li>
+                <li class="pc-item pc-caption">
+                    <label data-i18n="Widget">Master Data</label>
+                    <i class="pc-micon">
+                        <svg class="pc-icon">
+                            <use xlink:href="#master-data"></use>
+                        </svg>
+                    </i>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/pelanggan'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#pelanggan"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Pelanggan</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/laboratorium'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#laboratorium"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Laboratorium</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/jenis-sampel'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#jenis-sampel"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Jenis sampel</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
