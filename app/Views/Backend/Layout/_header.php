@@ -34,7 +34,7 @@
       </div>
     </li>
     <li class="pc-h-item d-none d-md-inline-flex">
-      <form class="header-search d-one">
+      <form class="header-search d-none">
         <i data-feather="search" class="icon-search"></i>
         <input type="search" class="form-control" placeholder="Search here. . .">
       </form>

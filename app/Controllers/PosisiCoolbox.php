@@ -93,7 +93,67 @@ class PosisiCoolbox extends ResourceController
      */
     public function create()
     {
-        //
+         if ($this->request->isAJAX()) {
+
+            $idCoolbox = $this->request->getVar('id_coolbox');
+            $status = $this->request->getVar('status');
+            $tanggal = $this->request->getVar('tanggal');
+            
+            $cek_data = $this->model->cek_data($idCoolbox, $status, $tanggal);
+           
+            $valid = $this->validate([
+                'id_coolbox' => [
+                    'label' => 'Kode coolbox',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'status' => [
+                    'label' => 'Status',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tanggal' => [
+                    'label' => 'Tanggal',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_coolbox' => $this->validation->getError('id_coolbox'),
+                        'status' => $this->validation->getError('status'),
+                        'tanggal' => $this->validation->getError('tanggal')
+                    ]
+                ];
+            } else if ($cek_data) {
+                $msg = [
+                    'error' => 'Data gagal disimpan'
+                ];
+            } else {
+                $simpandata = [
+                    'id_coolbox' => $idCoolbox,
+                    'status' => $status,
+                    'tanggal' => $tanggal,
+                    'jam' => $this->request->getVar('jam'),
+                    'keterangan' => $this->request->getVar('keterangan')
+                ];
+                $this->model->insert($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
