@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class InstansiModel extends Model
 {
-    protected $table            = 'instansis';
+    protected $table            = 'master_instansi';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
