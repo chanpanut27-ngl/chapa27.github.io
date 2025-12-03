@@ -286,7 +286,7 @@ class PosisiCoolbox extends ResourceController
             $data = [
                 'items' => $this->model->find($id),
                 'coolbox' => $coolbox,
-                'title' => 'Tambah Foto'
+                'title' => 'Upload Foto'
             ];
             $msg = [
                 'sukses' => view('Backend/Modul/Pengaturan-coolbox/Posisi/_add_foto', $data)
@@ -313,7 +313,7 @@ class PosisiCoolbox extends ResourceController
             if (! is_dir($uploadPath)) {
                 mkdir($uploadPath, 0777, true);
             }
-
+            $msg = '';
                 $fileName = $status.'_'.str_replace(" ", "_", $fileDocument->getName());
 
                 if ($fileOld == '') {
@@ -327,7 +327,7 @@ class PosisiCoolbox extends ResourceController
                     ];
                 } else {
                     $expd = explode("_", $fileOld);
-                   if ($expd[0] == 1) {
+                   if ($expd[0] == 1 || $expd[0] == 2 || $expd[0] == 3) {
                         unlink($uploadPath . $fileOld);
                         $fileDocument->move($uploadPath, $fileName);
                         $simpandata = [
@@ -340,7 +340,6 @@ class PosisiCoolbox extends ResourceController
                    }
                 }
                     echo json_encode($msg);              
-
         } else {
             exit('Not Process');
         }

@@ -11,6 +11,22 @@
 
 <?= $this->renderSection('bottomAssets'); ?>
 
+<script>
+    $(document).ready(function() {
+        $("#refBtn").click(function() {
+            $.ajax({
+                cache: false,
+                beforeSend: function() {
+                    $('#refBtn').html('<span class="fa fa-spin fa-spinner"></span>');
+                },
+                success: function() {
+                    listData();
+                    $('#refBtn').html('<span class="fa-solid fa-refresh"></span>');
+                }
+            })
+        })
+    })
+</script>
    
 <script>
   layout_change('light');
