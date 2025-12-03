@@ -51,7 +51,7 @@
      function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pengaturan-coolbox/cool-box/edit-data/'); ?>' + id,
+            url: '<?= site_url('pengaturan-coolbox/posisi-coolbox/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -65,7 +65,7 @@
         })
     }
 
-     function addFoto(id) {
+    function addFoto(id) {
         $.ajax({
             type: 'get',
             url: '<?= site_url('pengaturan-coolbox/posisi-coolbox/add-foto/'); ?>' + id,
