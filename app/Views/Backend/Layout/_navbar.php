@@ -46,6 +46,37 @@
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Pengantar LHU</span>
                     </a>
                 </li>
+                <li class="pc-item pc-caption">
+                    <label data-i18n="Widget">Files Peraturan</label>
+                    <i class="pc-micon">
+                        <svg class="pc-icon">
+                        <use xlink:href="#files-peraturan"></use>
+                        </svg>
+                    </i>
+                </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon">
+                        <svg class="pc-icon">
+                            <use xlink:href="#swap"></use>
+                        </svg>
+                        </span>
+                        <span class="pc-mtext" data-i18n="Peraturan">Peraturan</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/standar-pelayanan'); ?>" data-i18n="Standar Pelayanan">
+                                <span class="fa-solid fa-file-alt"></span> Standar Pelayanan
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/tarif-pelayanan'); ?>" data-i18n="Tarif Pelayanan">
+                                <span class="fa-solid fa-file-alt"></span> Tarif Pelayanan
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
