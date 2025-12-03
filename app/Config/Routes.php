@@ -83,3 +83,25 @@ $routes->group('master-data/instansi', function ($routes) {
     $routes->post('update-data', 'InstansiMaster::update');
     $routes->delete('delete-data/(:num)', 'InstansiMaster::delete/$1');
 });
+
+/** Peraturan / baku mutu **/
+$routes->group('master-data/peraturan-baku-mutu', function ($routes) {
+    $routes->get('', 'PeraturanMaster::index');
+    $routes->get('list-data', 'PeraturanMaster::list');
+    $routes->get('add-data', 'PeraturanMaster::new');
+    $routes->post('create-data', 'PeraturanMaster::create');
+    $routes->get('edit-data/(:num)', 'PeraturanMaster::edit/$1');
+    $routes->post('update-data', 'PeraturanMaster::update');
+    $routes->delete('delete-data/(:num)', 'PeraturanMaster::delete/$1');
+});
+
+/** Instalasi **/
+$routes->group('master-data/instalasi', function ($routes) {
+    $routes->get('', 'InstalasiMaster::index');
+    $routes->get('list-data', 'InstalasiMaster::list');
+    $routes->get('add-data', 'InstalasiMaster::new');
+    $routes->post('create-data', 'InstalasiMaster::create');
+    $routes->get('edit-data/(:num)', 'InstalasiMaster::edit/$1');
+    $routes->post('update-data', 'InstalasiMaster::update');
+    $routes->delete('delete-data/(:num)', 'InstalasiMaster::delete/$1');
+});
