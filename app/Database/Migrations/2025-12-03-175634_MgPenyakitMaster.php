@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgMasterCoolbox extends Migration
+class MgPenyakitMaster extends Migration
 {
     public function up()
     {
@@ -15,16 +15,10 @@ class MgMasterCoolbox extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'kode_coolbox' => [
-                'type'       => 'CHAR',
-                'constraint' => '20',
+            'penyakit' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '150',
             ],
-            'id_instansi' => [
-                'type'       => 'INT'
-            ],
-            'keterangan' => [
-                'type'       => 'TEXT'
-            ], 
             'is_active' => [
                 'type'  => 'BOOLEAN',
                 'default' => 1
@@ -51,11 +45,11 @@ class MgMasterCoolbox extends Migration
         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('master_coolbox');
+        $this->forge->createTable('master_penyakit');
     }
 
     public function down()
     {
-        $this->forge->dropTable('master_coolbox');
+        $this->forge->dropTable('master_penyakit');
     }
 }
