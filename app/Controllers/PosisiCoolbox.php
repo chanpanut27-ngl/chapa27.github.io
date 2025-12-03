@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\InstansiModel;
+use App\Models\PosisiCoolboxModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -12,9 +14,41 @@ class PosisiCoolbox extends ResourceController
      *
      * @return ResponseInterface
      */
+    protected $title;
+    protected $model;
+    protected $masterInstansi;
+    protected $validation;
+
+    public function __construct()
+    {
+        $this->title = 'Posisi Coolbox';
+        $this->model = new PosisiCoolboxModel();
+        $this->masterInstansi = new InstansiModel();
+        $this->validation = \Config\Services::validation();
+    }
+
     public function index()
     {
-        //
+        $data = [
+            'title' => 'Data ' . $this->title,
+        ];
+        return view('Backend/Modul/Pengaturan-coolbox/Posisi/index', $data);
+    }
+
+    public function list()
+    {
+        if ($this->request->isAJAX()) {
+            $data = [
+                'items' => $this->model->get_data_all()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pengaturan-coolbox/Posisi/_data', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
