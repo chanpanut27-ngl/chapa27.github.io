@@ -4,24 +4,30 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
-                <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/coolbox/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/instansi/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
-                   <div class="mb-3">
-                        <label for="id-instansi" class="form-label h4" style="font-family: calibri;">Instansi</label>
-                        <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example">
-                            <option value="">-- Pilih --</option>
-                            <?php
-                            foreach ($masterInstansi as $row) :
-                            ?>
-                                <option value="<?= $row['id']; ?>"><?= $row['nama_instansi']; ?></option>
-                            <?php
-                            endforeach;
-                            ?>
-                        </select>
-                        <div class="invalid-feedback errorAsalInstansi"></div>
+                    <div class="mb-3">
+                        <label for="nama-instansi" class="form-label h4">Instansi</label>
+                        <input type="text" name="nama_instansi" class="form-control" id="nama-instansi" autocomplete="off">
+                        <div class="invalid-feedback errorNamaInstansi"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="alamat" class="form-label h4">Alamat</label>
+                        <textarea name="alamat" class="form-control" id="alamat"></textarea>
+                        <div class="invalid-feedback errorAlamat"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="no-telp" class="form-label h4">No.Telp</label>
+                        <input type="text" name="no_telp" class="form-control" id="no-telp">
+                        <div class="invalid-feedback errorNoTelp"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="wilayah" class="form-label h4">Wilayah</label>
+                        <input type="text" name="wilayah" class="form-control" id="wilayah">
+                        <div class="invalid-feedback errorWilayah"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -55,12 +61,19 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.id_instansi) {
-                            $("#id-instansi").addClass('is-invalid');
-                            $('.errorAsalInstansi').html(err.id_instansi);
+                        if (err.nama_instansi) {
+                            $('#nama-instansi').addClass('is-invalid');
+                            $('.errorNamaInstansi').html(err.nama_instansi);
                         } else {
-                            $('#id-instansi').removeClass('is-invalid');
-                            $('.errorAsalInstansi').html('');
+                            $('#nama-instansi').removeClass('is-invalid');
+                            $('.errorNamaInstansi').html('');
+                        }
+                        if (err.wilayah) {
+                            $('#wilayah').addClass('is-invalid');
+                            $('.errorWilayah').html(err.wilayah);
+                        } else {
+                            $('#wilayah').removeClass('is-invalid');
+                            $('.errorWilayah').html('');
                         }
                     } else {
                         Swal.fire({
