@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/fonts/feather.css'); ?>" >
     <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/fontawesome.css'); ?>" >
-    <link rel="stylesheet" href="<?= base_url('assets/fontawesome.css'); ?>" >
     <!-- [Material Icons] https://fonts.google.com/icons -->
     <link rel="stylesheet" href="<?= base_url('assets/fonts/material.css'); ?>" >
     <!-- [Template CSS Files] -->
