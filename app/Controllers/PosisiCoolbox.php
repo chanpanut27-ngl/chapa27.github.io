@@ -70,7 +70,20 @@ class PosisiCoolbox extends ResourceController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+                'coolbox' => $this->model->get_data()
+            ];
+
+            $msg = [
+                'data' => view('Backend/Modul/Pengaturan-coolbox/Posisi/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
