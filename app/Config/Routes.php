@@ -20,6 +20,7 @@ $routes->group('pelayanan-pemeriksaan/pengantar-lhu', function ($routes) {
     $routes->get('setting-lab/(:num)', 'PengantarLhu::setting_lab/$1');
     $routes->post('create-setting-lab', 'PengantarLhu::create_setting_lab');
 });
+/** **/
 
 
 /** File Peraturan **/
@@ -35,6 +36,8 @@ $routes->group('file-peraturan/reader', function ($routes) {
     $routes->get('permenkes-no7-aami-2019', 'FileReader::permenkes_no7_aami_2019');
 });
 
+/** Modul pengaturan coolbox **/
+/** posisi coolbox **/
 $routes->group('pengaturan-coolbox/posisi-coolbox', function ($routes) {
     $routes->get('', 'PosisiCoolbox::index');
     $routes->get('list-data', 'PosisiCoolbox::list');
@@ -45,4 +48,16 @@ $routes->group('pengaturan-coolbox/posisi-coolbox', function ($routes) {
     $routes->delete('delete-data/(:num)', 'PosisiCoolbox::delete/$1');
     $routes->get('add-foto/(:num)', 'PosisiCoolbox::add_foto/$1');
     $routes->post('upload-foto', 'PosisiCoolbox::upload_foto');
+});
+
+/** Master data **/
+/** Coolbox **/
+$routes->group('master-data/coolbox', function ($routes) {
+    $routes->get('', 'CoolboxMaster::index');
+    $routes->get('list-data', 'CoolboxMaster::list');
+    $routes->get('add-data', 'CoolboxMaster::new');
+    $routes->post('create-data', 'CoolboxMaster::create');
+    $routes->get('edit-data/(:num)', 'CoolboxMaster::edit/$1');
+    $routes->post('update-data', 'CoolboxMaster::update');
+    $routes->delete('delete-data/(:num)', 'CoolboxMaster::delete/$1');
 });

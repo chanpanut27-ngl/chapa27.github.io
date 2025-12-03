@@ -168,6 +168,56 @@
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Jenis sampel</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/biaya-akomodasi'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#biaya-akomodasi"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Biaya Akomodasi</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/instansi'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#instansi"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Instansi</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/peraturan-baku-mutu'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#peraturan-baku-mutu"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Peraturan/Baku Mutu</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/penyakit'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#penyakit"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Penyakit</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('master-data/coolbox'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#coolbox"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Coolbox</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
