@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgLaboratoriumMasterRev extends Migration
+class MgLaboratoriumMasterRev1 extends Migration
 {
     public function up()
     {

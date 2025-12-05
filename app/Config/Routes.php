@@ -106,7 +106,7 @@ $routes->group('master-data/instalasi', function ($routes) {
     $routes->delete('delete-data/(:num)', 'InstalasiMaster::delete/$1');
 });
 
-/** :aboratorim **/
+/** Laboratorium **/
 $routes->group('master-data/laboratorium', function ($routes) {
     $routes->get('', 'LaboratoriumMaster::index');
     $routes->get('list-data', 'LaboratoriumMaster::list');
@@ -116,3 +116,4 @@ $routes->group('master-data/laboratorium', function ($routes) {
     $routes->post('update-data', 'LaboratoriumMaster::update');
     $routes->delete('delete-data/(:num)', 'LaboratoriumMaster::delete/$1');
 });
+
