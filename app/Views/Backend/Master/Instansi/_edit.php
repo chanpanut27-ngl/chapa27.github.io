@@ -17,7 +17,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label h4">Alamat</label>
-                        <textarea name="no_telp" class="form-control" id="alamat"><?= $items['alamat']; ?></textarea>
+                        <textarea name="alamat" class="form-control" id="alamat"><?= $items['alamat']; ?></textarea>
                         <div class="invalid-feedback errorAlamat"></div>
                     </div>
                     <div class="mb-3">
@@ -77,30 +77,20 @@
                 success: function(response) {
                     if (response.error) {
 
-                        if (response.error.jenis_sampel) {
-                            $('#jenis-sampel').addClass('is-invalid');
-                            $('.errorJenisSampel').html(response.error.jenis_sampel);
+                        if (response.nama_instansi) {
+                            $('#nama-instansi').addClass('is-invalid');
+                            $('.errorNamaInstansi').html(response.nama_instansi);
                         } else {
-                            $('#jenis-sampel').removeClass('is-invalid');
-                            $('.errorJenisSampel').html('');
+                            $('#nama-instansi').removeClass('is-invalid');
+                            $('.errorNamaInstansi').html('');
                         }
-
-                        if (response.error.pnbp) {
-                            $('#pnbp').addClass('is-invalid');
-                            $('.errorPnbp').html(response.error.pnbp);
+                        if (response.wilayah) {
+                            $('#wilayah').addClass('is-invalid');
+                            $('.errorWilayah').html(response.wilayah);
                         } else {
-                            $('#pnbp').removeClass('is-invalid');
-                            $('.errorPnbp').html('');
+                            $('#wilayah').removeClass('is-invalid');
+                            $('.errorWilayah').html('');
                         }
-
-                        if (response.error.id_lab) {
-                            $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(response.error.id_lab);
-                        } else {
-                            $('#id-lab').removeClass('is-invalid');
-                            $('.errorIdLab').html('');
-                        }
-
                     } else {
                         Swal.fire({
                             title: "Berhasil",

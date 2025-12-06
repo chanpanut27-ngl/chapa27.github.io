@@ -117,6 +117,8 @@ class InstansiMaster extends ResourceController
             } else {
                 $simpandata = [
                     'nama_instansi' => $this->request->getVar('nama_instansi'),
+                    'alamat' => $this->request->getVar('alamat'),
+                    'no_telp' => $this->request->getVar('no_telp'),
                     'wilayah' => $this->request->getVar('wilayah')
                 ];
                 $this->model->insert($simpandata);
@@ -191,7 +193,10 @@ class InstansiMaster extends ResourceController
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
                     'nama_instansi' => $this->request->getVar('nama_instansi'),
-                    'wilayah' => $this->request->getVar('wilayah')
+                    'alamat' => $this->request->getVar('alamat'),
+                    'no_telp' => $this->request->getVar('no_telp'),
+                    'wilayah' => $this->request->getVar('wilayah'),
+                    'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
                 $msg = [

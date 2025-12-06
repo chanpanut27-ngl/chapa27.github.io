@@ -54,7 +54,7 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script>
     function listData() {
         $.ajax({

@@ -12,7 +12,7 @@ class InstansiModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_instansi', 'alamat', 'no_telp', 'wilayah'];
+    protected $allowedFields    = ['nama_instansi', 'alamat', 'no_telp', 'wilayah', 'is_active'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
