@@ -30,10 +30,26 @@
                         <input type="text" name="wilayah" value="<?=  $items['wilayah']; ?>" class="form-control" id="wilayah">
                         <div class="invalid-feedback errorWilayah"></div>
                     </div>
+                    <div class="mb-3">
+                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
+                            <?php
+                            $_isActive = [
+                                '1' => 'Aktif', '0' => 'Tidak aktif'
+                            ];
+                            foreach ($_isActive as $r => $s) :
+                            ?>
+                                <option value="<?= $r; ?>" <?= $items['is_active'] == $r ? 'selected' : ''; ?>><?= $s; ?></option>
+                            <?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorAsalInstansi"></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
         </div>
