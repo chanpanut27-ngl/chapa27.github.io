@@ -319,7 +319,7 @@ class PosisiCoolbox extends ResourceController
                 if ($fileOld == '') {
                     $fileDocument->move($uploadPath, $fileName);
                     $simpandata = [
-                        'foto' => $fileName,
+                        'foto' => $fileName
                     ];
                     $this->model->update($id, $simpandata);
                     $msg = [
@@ -331,11 +331,11 @@ class PosisiCoolbox extends ResourceController
                         unlink($uploadPath . $fileOld);
                         $fileDocument->move($uploadPath, $fileName);
                         $simpandata = [
-                            'foto' => $fileName,
+                            'foto' => $fileName
                         ];
                         $this->model->update($id, $simpandata);
                         $msg = [
-                            'sukses' => 'File berhasil di ubah'
+                            'sukses' => 'File berhasil di simpan'
                         ];
                    }
                 }

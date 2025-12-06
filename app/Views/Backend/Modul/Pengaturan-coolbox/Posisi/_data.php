@@ -14,11 +14,11 @@
         $no = 1;
         foreach ($items as $row) :
             if ($row['status'] == 1) {
-                $status = '<span class="badge bg-primary">Masuk</span>';
+                $status = '<span class="badge bg-primary rounded">Masuk</span>';
             }else if ($row['status'] == 2) {
-                $status = '<span class="badge bg-success">Dititip</span>';
+                $status = '<span class="badge bg-success rounded">Dititip</span>';
             }else{
-                $status = '<span class="badge bg-danger">Keluar</span>';
+                $status = '<span class="badge bg-danger rounded">Keluar</span>';
             }
         ?>
             <tr id="myId-<?= $row['idx']; ?>" data-urut=<?= $no; ?>>
@@ -29,17 +29,20 @@
                 <td><?= date('d/m/Y', strtotime($row['tanggal'])).' '. date('H:i', strtotime($row['jam'])); ?></td>
                 <td><?= $row['keterangan']; ?></td>
                 <td>
-                    <button type="button" class="btn btn-default btn-sm" onclick="addFoto(<?= $row['idx']; ?>)" title="Input Foto">
-                        <i class="fa-solid fa-image"></i>
+                    <a href="<?= base_url('uploads/coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" target="_blank" rel="noopener noreferrer">
+                        <img src="<?= base_url('uploads/coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" class="img-fluid" style="width: 100px; height:50px;">
+                    </a>
+                    <button type="button" class="btn btn-secondary rounded btn-sm" onclick="addFoto(<?= $row['idx']; ?>)" title="Input Foto">
+                        <span class="fa-solid fa-image"></span>
                     </button>
                 </td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
-                            <i class="fa-solid fa-edit"></i>
+                            <span class="fa-solid fa-edit"></span>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['idx']; ?>)" title="Hapus data">
-                            <i class="fa-solid fa-trash-alt"></i>
+                            <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
                 </td>

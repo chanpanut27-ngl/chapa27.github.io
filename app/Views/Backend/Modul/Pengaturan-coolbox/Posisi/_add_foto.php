@@ -20,10 +20,6 @@
                         <div class="invalid-feedback errorFile"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="ket-coolbox" class="form-label h4">Keterangan</label>
-                        <textarea name="keterangan" class="form-control" id="ket-coolbox"><?= $items['keterangan']; ?></textarea>
-                    </div>
-                    <div class="mb-3">
                         <label for="upload-foto" class="form-label h4">Upload Foto</label>
                         <input type="file" name="upload_foto" class="form-control" id="upload-foto">
                         <div class="invalid-feedback errorFile"></div>
@@ -44,6 +40,7 @@
             e.preventDefault();
             let form = $('.form-upload')[0];
             let data = new FormData(form);
+
             $.ajax({
                 type: "post",
                 url: $('.form-upload').attr('action'),
@@ -59,7 +56,7 @@
                 },
                 complete: function() {
                     $('.btn-upload').removeAttr('disable');
-                    $('.btn-upload').html('Upload');
+                    $('.btn-upload').html('<span class="fa-solid fa-upload"></span>');
                 },
                 success: function(response) {
                     if (response.error) {

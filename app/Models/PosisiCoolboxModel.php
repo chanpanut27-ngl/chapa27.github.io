@@ -60,7 +60,7 @@ class PosisiCoolboxModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('posisi_coolbox');
-        $builder->select('posisi_coolbox.id as idx, master_coolbox.id AS id_coolbox, master_coolbox.kode_coolbox, posisi_coolbox.status,tanggal,jam,keterangan, master_instansi.nama_instansi');
+        $builder->select('posisi_coolbox.id as idx, master_coolbox.id AS id_coolbox, master_coolbox.kode_coolbox, posisi_coolbox.status,tanggal,jam,keterangan,foto, master_instansi.nama_instansi');
         $builder->join("master_coolbox", "master_coolbox.id = posisi_coolbox.id_coolbox");
         $builder->join("master_instansi", "master_instansi.id = master_coolbox.id_instansi");
         $builder->orderBy('kode_coolbox', 'ASC');
