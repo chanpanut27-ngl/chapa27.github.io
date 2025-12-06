@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
-                <button type="button" class="btn-close bg-secondary" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/coolbox/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
@@ -24,10 +24,26 @@
                         </select>
                         <div class="invalid-feedback errorAsalInstansi"></div>
                     </div>
+                    <div class="mb-3">
+                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
+                            <?php
+                            $_isActive = [
+                                '1' => 'Aktif', '0' => 'Tidak aktif'
+                            ];
+                            foreach ($_isActive as $r => $s) :
+                            ?>
+                                <option value="<?= $r; ?>" <?= $items['is_active'] == $r ? 'selected' : ''; ?>><?= $s; ?></option>
+                            <?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorAsalInstansi"></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm btn-ubah rounded"><span class="fa-solid fa-edit"></span> Ubah</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
         </div>

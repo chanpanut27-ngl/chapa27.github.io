@@ -197,7 +197,8 @@ class CoolboxMaster extends ResourceController
             } else {
                 $simpandata = [
                    'id' => $this->request->getVar('id'),
-                   'id_instansi' => $this->request->getVar('id_instansi')
+                   'id_instansi' => $this->request->getVar('id_instansi'),
+                   'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
                 $msg = [
