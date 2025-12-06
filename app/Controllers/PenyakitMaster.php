@@ -76,7 +76,7 @@ class PenyakitMaster extends ResourceController
      */
     public function new()
     {
-          if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
                 'masterLab' => $this->model->findAll()
