@@ -150,3 +150,23 @@ $routes->group('master-data/pelanggan', function ($routes) {
     $routes->post('update-data', 'PelangganMaster::update');
     $routes->delete('delete-data/(:num)', 'PelangganMaster::delete/$1');
 });
+
+
+/** Laboratorium tujuan **/
+$routes->group('laboratorium-tujuan', function ($routes) {
+    $routes->get('index/(:any)', 'LaboratoriumTujuan::index/$1');
+    $routes->get('list-data', 'LaboratoriumTujuan::list');
+    $routes->get('add-data/(:any)', 'LaboratoriumTujuan::new/$1');
+    $routes->post('create-data', 'LaboratoriumTujuan::create');
+    $routes->get('edit-data/(:num)', 'LaboratoriumTujuan::edit/$1');
+    $routes->post('update-data', 'LaboratoriumTujuan::update');
+    $routes->delete('delete-data/(:num)', 'LaboratoriumTujuan::delete/$1');
+});
+
+
+/** Setting LHU **/
+$routes->group('pelayanan-pemeriksaan/proses-lhu', function ($routes) {
+    $routes->get('index/(:any)', 'ProsesLhu::index/$1');
+    $routes->get('list-menu/(:any)', 'ProsesLhu::list_menu/$1');
+    $routes->get('keterangan/(:any)', 'KeteranganPemeriksaan::index/$1');
+});
