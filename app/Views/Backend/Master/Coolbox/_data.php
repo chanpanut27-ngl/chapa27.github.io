@@ -22,11 +22,11 @@
                 <td><?= $row['aktif_coolbox'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id_coolbox']; ?>)" title="Edit data">
-                            <i class="fa-solid fa-edit"></i>
+                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id_coolbox']; ?>)" title="Edit data">
+                            <span class="fa-solid fa-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id_coolbox']; ?>)" title="Hapus data">
-                            <i class="fa-solid fa-trash-alt"></i>
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_coolbox']; ?>)" title="Hapus data">
+                            <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
                 </td>
