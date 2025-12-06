@@ -6,30 +6,24 @@
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/penyakit/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/biaya-akomodasi/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="penyakit" class="form-label h4" style="font-family: calibri;">Penyakit</label>
-                        <input type="text" name="penyakit" value="<?= $items['penyakit']; ?>" class="form-control" id="penyakit" autocomplete="off">
-                        <div class="invalid-feedback errorPenyakit"></div>
+                        <label for="uraian" class="form-label h4" style="font-family: calibri;">Uraian</label>
+                        <input type="text" name="uraian" value="<?= $items['uraian']; ?>" class="form-control" id="uraian" autocomplete="off">
+                        <div class="invalid-feedback errorUraian"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
-                        <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
-                            <?php
-                            $_isActive = [
-                                '1' => 'Aktif', '0' => 'Tidak aktif'
-                            ];
-                            foreach ($_isActive as $r => $s) :
-                            ?>
-                                <option value="<?= $r; ?>" <?= $items['is_active'] == $r ? 'selected' : ''; ?>><?= $s; ?></option>
-                            <?php
-                            endforeach;
-                            ?>
-                        </select>
-                        <div class="invalid-feedback errorAsalInstansi"></div>
+                        <label for="transport" class="form-label h4" style="font-family: calibri;">Transport</label>
+                        <input type="text" name="transport" value="<?= $items['transport']; ?>" class="form-control" id="transport" autocomplete="off">
+                        <div class="invalid-feedback errorTransport"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="uang-harian" class="form-label h4" style="font-family: calibri;">Uang harian</label>
+                        <input type="text" name="uang_harian" value="<?= $items['uang_harian']; ?>" class="form-control" id="uang-harian" autocomplete="off">
+                        <div class="invalid-feedback errorUangHarian"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -62,28 +56,12 @@
                 success: function(response) {
                     if (response.error) {
 
-                        if (response.error.jenis_sampel) {
-                            $('#jenis-sampel').addClass('is-invalid');
-                            $('.errorJenisSampel').html(response.error.jenis_sampel);
+                        if (response.uraian) {
+                            $("#uraian").addClass('is-invalid');
+                            $('.errorUraian').html(response.uraian);
                         } else {
-                            $('#jenis-sampel').removeClass('is-invalid');
-                            $('.errorJenisSampel').html('');
-                        }
-
-                        if (response.error.pnbp) {
-                            $('#pnbp').addClass('is-invalid');
-                            $('.errorPnbp').html(response.error.pnbp);
-                        } else {
-                            $('#pnbp').removeClass('is-invalid');
-                            $('.errorPnbp').html('');
-                        }
-
-                        if (response.error.id_lab) {
-                            $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(response.error.id_lab);
-                        } else {
-                            $('#id-lab').removeClass('is-invalid');
-                            $('.errorIdLab').html('');
+                            $('#uraian').removeClass('is-invalid');
+                            $('.errorUraian').html('');
                         }
 
                     } else {

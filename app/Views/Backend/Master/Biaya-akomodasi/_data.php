@@ -18,7 +18,7 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['uraian']; ?></td>
                 <td><?= $row['transport']; ?></td>
-                <td><?= $row['uang_harian']; ?></td>
+                <td style="text-align: right;"><?= number_to_currency($row['uang_harian'], 'IDR', 'ID', 0); ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
@@ -38,7 +38,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/penyakit/edit-data/'); ?>' + id,
+            url: '<?= site_url('master-data/biaya-akomodasi/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -71,7 +71,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/penyakit/delete-data/'); ?>' + id,
+                    url: '<?= site_url('master-data/biaya-akomodasi/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

@@ -98,7 +98,38 @@ class BiayaAkomodasi extends ResourceController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'uraian' => [
+                    'label' => 'Uraian',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'uraian' => $this->validation->getError('uraian')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'uraian' => $this->request->getVar('uraian'),
+                    'transport' => $this->request->getVar('transport'),
+                    'uang_harian' => $this->request->getVar('uang_harian')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -110,7 +141,19 @@ class BiayaAkomodasi extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id)
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Biaya-akomodasi/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -122,7 +165,39 @@ class BiayaAkomodasi extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'uraian' => [
+                    'label' => 'Uraian',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'uraian' => $this->validation->getError('uraian')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'uraian' => $this->request->getVar('uraian'),
+                    'transport' => $this->request->getVar('transport'),
+                    'uang_harian' => $this->request->getVar('uang_harian')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -134,6 +209,15 @@ class BiayaAkomodasi extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil dihapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }
