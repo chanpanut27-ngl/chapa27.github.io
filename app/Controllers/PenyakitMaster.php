@@ -182,7 +182,8 @@ class PenyakitMaster extends ResourceController
             } else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
-                    'penyakit' => $this->request->getVar('penyakit')
+                    'penyakit' => $this->request->getVar('penyakit'),
+                    'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
                 $msg = [
