@@ -58,7 +58,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('master-data/jenis-sampel/list-data'); ?>",
+            url: "<?= site_url('master-data/laboratorium/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -76,7 +76,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('master-data/jenis-sampel/add-data'); ?>",
+                url: "<?= site_url('master-data/laboratorium/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 success: function(response) {

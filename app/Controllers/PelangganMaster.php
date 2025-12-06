@@ -2,12 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\JenisSampelModel;
-use App\Models\LaboratoriumModel;
+use App\Models\PelangganModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
-class JenisSampelMaster extends ResourceController
+class PelangganMaster extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -16,35 +15,31 @@ class JenisSampelMaster extends ResourceController
      */
     protected $title;
     protected $model;
-    protected $modelLab;
     protected $validation;
 
     public function __construct()
     {
-        $this->title = 'Jenis sampel';
-        $this->model = new JenisSampelModel();
-        $this->modelLab = new LaboratoriumModel();
+        $this->title = 'Pelanggan';
+        $this->model = new PelangganModel();
         $this->validation = \Config\Services::validation();
     }
 
     public function index()
     {
-
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => 'Data ' . $this->title,
         ];
-        return view('Backend/Master/Jenis-sampel/index', $data);
+        return view('Backend/Master/Pelanggan/index', $data);
     }
 
     public function list()
     {
-
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->get_data()
+                'items' => $this->model->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Master/Jenis-sampel/_data', $data)
+                'data' => view('Backend/Master/Pelanggan/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -60,6 +55,10 @@ class JenisSampelMaster extends ResourceController
      *
      * @return ResponseInterface
      */
+    public function show($id = null)
+    {
+        //
+    }
 
     /**
      * Return a new resource object, with default properties.
@@ -68,19 +67,32 @@ class JenisSampelMaster extends ResourceController
      */
     public function new()
     {
-        if ($this->request->isAJAX()) {
+         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterLab' => $this->modelLab->get_data()
             ];
             $msg = [
-                'data' => view('Backend/Master/Jenis-sampel/_add', $data)
+                'data' => view('Backend/Master/Pelanggan/_add', $data)
             ];
 
             echo json_encode($msg);
         } else {
             exit('Not Process');
         }
+    }
+
+    public function generate_kode_pelanggan() 
+    {
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $this->model->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = 'P' . sprintf('%04d', $nomorUrut);
+        
+        return $nomorAntrian;
     }
 
     /**
@@ -92,23 +104,30 @@ class JenisSampelMaster extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'jenis_sampel' => [
-                    'label' => 'Jenis sampel',
+                'nama' => [
+                    'label' => 'Nama pelanggan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'pnbp' => [
-                    'label' => 'PNBP',
+                'alamat' => [
+                    'label' => 'Alamat',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'no_telp' => [
+                    'label' => 'No.Telepon',
                     'rules' => 'required|numeric',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong',
-                        'numeric' => '{field} harus berisi angka'
+                        'numeric' => '{field} harus angka'
                     ]
                 ],
-                'id_lab' => [
-                    'label' => 'Laboratorium',
+                'nama_pjb' => [
+                    'label' => 'Nama penanggung jawab',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -119,16 +138,19 @@ class JenisSampelMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'jenis_sampel' => $this->validation->getError('jenis_sampel'),
-                        'pnbp' => $this->validation->getError('pnbp'),
-                        'id_lab' => $this->validation->getError('id_lab')
+                        'nama' => $this->validation->getError('nama'),
+                        'alamat' => $this->validation->getError('alamat'),
+                        'no_telp' => $this->validation->getError('no_telp'),
+                        'nama_pjb' => $this->validation->getError('nama_pjb')
                     ]
                 ];
             } else {
                 $simpandata = [
-                    'jenis_sampel' => $this->request->getVar('jenis_sampel'),
-                    'pnbp' => $this->request->getVar('pnbp'),
-                    'id_lab' => $this->request->getVar('id_lab')
+                    'kode_pelanggan' => $this->generate_kode_pelanggan(),
+                    'nama' => $this->request->getVar('nama'),
+                    'alamat' => $this->request->getVar('alamat'),
+                    'no_telp' => $this->request->getVar('no_telp'),
+                    'nama_pjb' => $this->request->getVar('nama_pjb')
                 ];
                 $this->model->insert($simpandata);
                 $msg = [
@@ -150,15 +172,14 @@ class JenisSampelMaster extends ResourceController
      */
     public function edit($id = null)
     {
-        if ($this->request->isAJAX()) {
+         if ($this->request->isAJAX()) {
 
             $data = [
-                'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
-                'masterLab' => $this->modelLab->get_data()
+                'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Master/Jenis-sampel/_edit', $data)
+                'sukses' => view('Backend/Master/Pelanggan/_edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -177,23 +198,30 @@ class JenisSampelMaster extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'jenis_sampel' => [
-                    'label' => 'Jenis sampel',
+                'nama' => [
+                    'label' => 'Nama pelanggan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'pnbp' => [
-                    'label' => 'PNBP',
+                'alamat' => [
+                    'label' => 'Alamat',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'no_telp' => [
+                    'label' => 'No.Telepon',
                     'rules' => 'required|numeric',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong',
-                        'numeric' => '{field} harus berisi angka'
+                        'numeric' => '{field} harus angka'
                     ]
                 ],
-                'id_lab' => [
-                    'label' => 'Laboratorium',
+                'nama_pjb' => [
+                    'label' => 'Nama penanggung jawab',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -204,17 +232,19 @@ class JenisSampelMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'jenis_sampel' => $this->validation->getError('jenis_sampel'),
-                        'pnbp' => $this->validation->getError('pnbp'),
-                        'id_lab' => $this->validation->getError('id_lab')
+                        'nama' => $this->validation->getError('nama'),
+                        'alamat' => $this->validation->getError('alamat'),
+                        'no_telp' => $this->validation->getError('no_telp'),
+                        'nama_pjb' => $this->validation->getError('nama_pjb')
                     ]
                 ];
             } else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
-                    'jenis_sampel' => $this->request->getVar('jenis_sampel'),
-                    'pnbp' => $this->request->getVar('pnbp'),
-                    'id_lab' => $this->request->getVar('id_lab'),
+                    'nama' => $this->request->getVar('nama'),
+                    'alamat' => $this->request->getVar('alamat'),
+                    'no_telp' => $this->request->getVar('no_telp'),
+                    'nama_pjb' => $this->request->getVar('nama_pjb'),
                     'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
@@ -241,7 +271,7 @@ class JenisSampelMaster extends ResourceController
 
             $this->model->delete($id);
             $msg = [
-                'sukses' => 'Data berhasil dihapus'
+                'sukses' => 'Data berhasil di hapus'
             ];
             echo json_encode($msg);
         } else {

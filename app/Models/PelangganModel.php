@@ -4,19 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class LaboratoriumModel extends Model
+class PelangganModel extends Model
 {
-    protected $table            = 'master_laboratorium';
+    protected $table            = 'master_pelanggan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'kode_lab',
-        'nama_lab', 
-        'lantai',
-        'kode_instalasi',
+        'kode_pelanggan', 
+        'nama', 
+        'alamat', 
+        'no_telp',
+        'nama_pjb',
         'is_active'
     ];
 
@@ -49,14 +50,4 @@ class LaboratoriumModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function get_data()
-    {
-        $db = \Config\Database::connect();
-        $builder = $db->table('master_laboratorium');
-        $builder->select('*');
-        $builder->where("is_active", 1);
-        $query = $builder->get()->getResultArray();
-        return $query;
-    }
 }
