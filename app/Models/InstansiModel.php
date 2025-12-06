@@ -43,4 +43,15 @@ class InstansiModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+     public function get_data()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('master_instansi');
+        $builder->select('*');
+        $builder->where("is_active", 1);
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
 }

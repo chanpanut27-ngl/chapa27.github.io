@@ -187,7 +187,8 @@ class BiayaAkomodasi extends ResourceController
                     'id' => $this->request->getVar('id'),
                     'uraian' => $this->request->getVar('uraian'),
                     'transport' => $this->request->getVar('transport'),
-                    'uang_harian' => $this->request->getVar('uang_harian')
+                    'uang_harian' => $this->request->getVar('uang_harian'),
+                    'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
                 $msg = [

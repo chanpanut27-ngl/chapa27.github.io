@@ -89,7 +89,7 @@ class CoolboxMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterInstansi' => $this->masterInstansi->findAll(),
+                'masterInstansi' => $this->masterInstansi->get_data(),
                 'counter' => $this->generate_kode_coolbox()
             ];
             $msg = [
@@ -157,7 +157,7 @@ class CoolboxMaster extends ResourceController
             $data = [
                 'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
-                'masterInstansi' => $this->masterInstansi->findAll()
+                'masterInstansi' => $this->masterInstansi->get_data()
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Coolbox/_edit', $data)

@@ -25,6 +25,22 @@
                         <input type="text" name="uang_harian" value="<?= $items['uang_harian']; ?>" class="form-control" id="uang-harian" autocomplete="off">
                         <div class="invalid-feedback errorUangHarian"></div>
                     </div>
+                    <div class="mb-3">
+                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
+                            <?php
+                            $_isActive = [
+                                '1' => 'Aktif', '0' => 'Tidak aktif'
+                            ];
+                            foreach ($_isActive as $r => $s) :
+                            ?>
+                                <option value="<?= $r; ?>" <?= $items['is_active'] == $r ? 'selected' : ''; ?>><?= $s; ?></option>
+                            <?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorIsActive"></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fa-solid fa-edit"></span> Ubah</button>
