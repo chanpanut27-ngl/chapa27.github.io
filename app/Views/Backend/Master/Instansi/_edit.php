@@ -44,7 +44,7 @@
                             endforeach;
                             ?>
                         </select>
-                        <div class="invalid-feedback errorAsalInstansi"></div>
+                        <div class="invalid-feedback errorIsActive"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
