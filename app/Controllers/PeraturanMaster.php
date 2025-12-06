@@ -191,7 +191,9 @@ class PeraturanMaster extends ResourceController
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
                     'peraturan' => $this->request->getVar('peraturan'),
-                    'keterangan' => $this->request->getVar('keterangan')
+                    'keterangan' => $this->request->getVar('keterangan'),
+                    'is_active' => $this->request->getVar('is_active')
+
                 ];
                 $this->model->save($simpandata);
                 $msg = [

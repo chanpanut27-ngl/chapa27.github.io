@@ -15,7 +15,7 @@
                         <input type="text" name="penyakit" value="<?= $items['penyakit']; ?>" class="form-control" id="penyakit" autocomplete="off">
                         <div class="invalid-feedback errorPenyakit"></div>
                     </div>
-                     <div class="mb-3">
+                    <div class="mb-3">
                         <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
