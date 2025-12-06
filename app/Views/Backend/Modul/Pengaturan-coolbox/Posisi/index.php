@@ -26,15 +26,15 @@
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header p-6">
+                    <div class="card-header">
                         <h4 style="font-family: calibri;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-dark btn-sm" id="refBtn">
-                                <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
+                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
+                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span>
                             </button>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm btn-tambah">
-                                <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
+                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span> Tambah Data
                             </button>
                         </div>
                     </div>

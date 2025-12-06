@@ -50,6 +50,7 @@ class PosisiCoolboxModel extends Model
         $builder = $db->table('master_coolbox');
         $builder->select('master_coolbox.id AS id_coolbox, master_coolbox.kode_coolbox, master_instansi.nama_instansi');
         $builder->join("master_instansi", "master_instansi.id = master_coolbox.id_instansi");
+        $builder->where("master_coolbox.is_active", 1);
         $builder->orderBy('kode_coolbox', 'ASC');
         $query = $builder->get()->getResultArray();
         return $query;

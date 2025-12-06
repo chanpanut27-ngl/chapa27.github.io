@@ -13,7 +13,7 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="id-coolbox" class="form-label h5" style="font-family: calibri;">Kode coolbox</label>
+                        <label for="id-coolbox" class="form-label h4" style="font-family: calibri;">Kode coolbox</label>
                         <select name="id_coolbox" class="form-select" id="id-coolbox" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
@@ -27,7 +27,7 @@
                         <div class="invalid-feedback errorIdCoolbox"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="status-coolbox" class="form-label h5">Status</label>
+                        <label for="status-coolbox" class="form-label h4">Status</label>
                         <select name="status" class="form-select" id="status-coolbox" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <option value="1" <?= $items['status'] == 1 ? 'selected' : '' ?>>1.Masuk</option>
@@ -37,22 +37,22 @@
                         <div class="invalid-feedback errorStatusCoolbox"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="tanggal" class="form-label h5">Tanggal</label>
+                        <label for="tanggal" class="form-label h4">Tanggal</label>
                         <input type="date" name="tanggal" value="<?= $items['tanggal']; ?>" class="form-control" id="tanggal" autocomplete="off">
                         <div class="invalid-feedback errorTanggal"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam" class="form-label h5">Jam</label>
+                        <label for="jam" class="form-label h4">Jam</label>
                         <input type="time" name="jam" value="<?= $items['jam']; ?>" class="form-control" id="jam" autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <label for="ket-coolbox" class="form-label h5">Keterangan</label>
+                        <label for="ket-coolbox" class="form-label h4">Keterangan</label>
                         <textarea name="keterangan" class="form-control" id="ket-coolbox"><?= $items['keterangan']; ?></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-ubah"><i class="fas fa-edit"></i> Ubah</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm btn-ubah rounded"><span class="fa-solid fa-edit"></span> Ubah</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
         </div>

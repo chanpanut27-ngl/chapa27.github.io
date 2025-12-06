@@ -35,10 +35,10 @@
                 </td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
                             <i class="fa-solid fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['idx']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['idx']; ?>)" title="Hapus data">
                             <i class="fa-solid fa-trash-alt"></i>
                         </button>
                     </div>
