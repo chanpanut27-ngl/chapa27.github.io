@@ -47,10 +47,10 @@
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
-                    <label data-i18n="Widget">Files Peraturan</label>
+                    <label data-i18n="Widget">Kumpulan file</label>
                     <i class="pc-micon">
                         <svg class="pc-icon">
-                        <use xlink:href="#files-peraturan"></use>
+                        <use xlink:href="#kumpulan-file"></use>
                         </svg>
                     </i>
                 </li>
@@ -108,6 +108,39 @@
                         <li class="pc-item">
                             <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenkes-no7-aami-2019'); ?>" data-i18n="Permenkes No.7 Tahun 2019 AAMI">
                                 <span class="fa-solid fa-file-alt"></span> Permenkes No.7 Tahun 2019 AAMI
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon">
+                        <svg class="pc-icon">
+                            <use xlink:href="#swap"></use>
+                        </svg>
+                        </span>
+                        <span class="pc-mtext" data-i18n="formulir"><span class="fa-solid fa-arrow-right"></span> Formulir</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-formulir/reader/prosedur-permintaan-pemeriksaan-pengujian'); ?>" data-i18n="Prosedur permintaan pemeriksaan pengujian">
+                                <span class="fa-solid fa-file-alt"></span> Prosedur permintaan pemeriksaan pengujian
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-formulir/reader/permintaan-pemeriksaan-rujukan-atau-kiriman'); ?>" data-i18n="Permintaan pemeriksaan rujukan atau kiriman">
+                                <span class="fa-solid fa-file-alt"></span> Permintaan pemeriksaan rujukan atau kiriman
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-formulir/reader/permintaan-pengujian-sampel-lingkungan'); ?>" data-i18n="Permintaan pengujian sampel lingkungan">
+                                <span class="fa-solid fa-file-alt"></span> Permintaan pengujian sampel lingkungan
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-formulir/reader/permintaan-pengujian-spesimen-klinis'); ?>" data-i18n="Permintaan pengujian spesimen klinis">
+                                <span class="fa-solid fa-file-alt"></span> Permintaan pengujian spesimen klinis
                             </a>
                         </li>
                     </ul>

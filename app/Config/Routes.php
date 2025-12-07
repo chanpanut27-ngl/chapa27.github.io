@@ -36,6 +36,14 @@ $routes->group('file-peraturan/reader', function ($routes) {
     $routes->get('permenkes-no7-aami-2019', 'FileReader::permenkes_no7_aami_2019');
 });
 
+/** File Formulir **/
+$routes->group('file-formulir/reader', function ($routes) {
+    $routes->get('prosedur-permintaan-pemeriksaan-pengujian', 'FormulirReader::prosedur_permintaan_pemeriksaan_pengujian');
+    $routes->get('permintaan-pemeriksaan-rujukan-atau-kiriman', 'FormulirReader::permintaan_pemeriksaan_rujukan_atau_kiriman');
+    $routes->get('permintaan-pengujian-sampel-lingkungan', 'FormulirReader::permintaan_pengujian_sampel_lingkungan');
+    $routes->get('permintaan-pengujian-spesimen-klinis', 'FormulirReader::permintaan_pengujian_spesimen_klinis');
+});
+
 /** Modul pengaturan coolbox **/
 /** posisi coolbox **/
 $routes->group('pengaturan-coolbox/posisi-coolbox', function ($routes) {

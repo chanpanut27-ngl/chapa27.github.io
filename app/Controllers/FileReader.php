@@ -7,7 +7,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class FileReader extends BaseController
 {
-     public function standar_pelayanan()
+    public function standar_pelayanan()
     {
         $data = [
             'title' => 'Standar Pelayanan'
