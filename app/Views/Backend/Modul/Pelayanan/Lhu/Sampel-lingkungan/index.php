@@ -37,7 +37,7 @@
         var id_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan-pemeriksaan/lhu/sampel-lingkungan/list-data'); ?>",
+            url: "<?= site_url('pelayanan/lhu/sampel-lingkungan/list-data'); ?>",
             dataType: 'json',
             data:{
                  id_lab:id_lab,
@@ -61,7 +61,7 @@
             var id_lab = $(this).data("id");
             var kode_pengantar = $(this).data('kode');
             $.ajax({
-                url: "<?= site_url('pelayanan-pemeriksaan/lhu/sampel-lingkungan/add-data'); ?>",
+                url: "<?= site_url('pelayanan/lhu/sampel-lingkungan/add-data'); ?>",
                 dataType: 'json',
                 data:{
                     id_lab:id_lab,

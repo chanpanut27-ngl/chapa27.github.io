@@ -165,8 +165,18 @@ $routes->group('laboratorium-tujuan', function ($routes) {
 
 
 /** Setting LHU **/
-$routes->group('pelayanan-pemeriksaan/proses-lhu', function ($routes) {
+$routes->group('pelayanan/proses-lhu', function ($routes) {
     $routes->get('index/(:any)', 'ProsesLhu::index/$1');
     $routes->get('list-menu/(:any)', 'ProsesLhu::list_menu/$1');
     $routes->get('keterangan/(:any)', 'KeteranganPemeriksaan::index/$1');
+});
+
+$routes->group('pelayanan/lhu/sampel-lingkungan', function ($routes) {
+    $routes->get('index/(:any)/(:any)', 'SampelLingkungan::index/$1/$1');
+    $routes->get('list-data', 'SampelLingkungan::list');
+    $routes->get('add-data', 'SampelLingkungan::new');
+    $routes->post('create-data', 'SampelLingkungan::create');
+    $routes->get('edit-data/(:any)', 'SampelLingkungan::edit/$1');
+    $routes->post('update-data', 'SampelLingkungan::update');
+    $routes->delete('delete-data/(:num)', 'SampelLingkungan::delete/$1');
 });

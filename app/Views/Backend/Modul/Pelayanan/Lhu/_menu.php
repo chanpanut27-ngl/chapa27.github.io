@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index'); ?>
+<?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
 <?= $this->section('content_menu'); ?>
 <?php 
     use App\Models\KeteranganLhuModel;
