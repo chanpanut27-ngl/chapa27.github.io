@@ -18,6 +18,7 @@
 
     // keterangan 
     foreach ($keterangan as $ket) {
+        $ket_lhu = $ket['keterangan'];
         $paramater_tidak_dapat_di_uji = $ket['paramater_tidak_dapat_di_uji'];
         $sub_kontrak = $ket['sub_kontrak'];
         $kontrak_diulang = $ket['kontrak_diulang'];
@@ -120,7 +121,7 @@
                 <table class="table-bordered" style="border: 1px solid black; width:100%;">
                     <tr>
                         <td style="border: 1px solid black;">
-                            Keterangan : <br>
+                            Keterangan : <?= @$ket_lhu; ?><br>
                             Parameter yang tidak dapat di uji : <?= @$paramater_tidak_dapat_di_uji; ?><br>
                             Sub kontrak : <?= @$sub_kontrak; ?><br>
                             Kontrak diulang : <?= @$kontrak_diulang; ?><br>

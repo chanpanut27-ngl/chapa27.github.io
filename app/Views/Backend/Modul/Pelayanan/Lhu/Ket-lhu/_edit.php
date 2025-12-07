@@ -11,6 +11,11 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label for="nama-lab" class="form-label h5">Keterangan</label>
+                        <input type="text" name="keterangan" value="<?= $items['keterangan']; ?>" class="form-control" id="nama-lab" autocomplete="off">
+                        <div class="invalid-feedback errorNamaLab"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Parameter tidak dapat di uji</label>
                         <input type="text" name="paramater_tidak_dapat_di_uji" value="<?= $items['paramater_tidak_dapat_di_uji']; ?>" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>

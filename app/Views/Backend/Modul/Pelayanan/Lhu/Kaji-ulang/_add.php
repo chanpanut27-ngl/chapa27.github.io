@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <?php
@@ -20,33 +20,33 @@
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h4">Alat utama</label>
-                        <input type="text" name="alat_utama" class="form-control" id="nama-lab" autocomplete="off">
+                        <label for="nama-lab" class="form-label h5h5">Alat utama</label>
+                        <input type="text" name="alat_utama" value="Semua alat bagus" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h4">Alat pendukung</label>
-                        <input type="text" name="alat_pendukung" class="form-control" id="nama-lab" autocomplete="off">
+                        <label for="nama-lab" class="form-label h5">Alat pendukung</label>
+                        <input type="text" name="alat_pendukung" value="Lengkap" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h4">Personil laboratorium</label>
-                        <input type="text" name="personil_lab" class="form-control" id="nama-lab">
+                        <label for="nama-lab" class="form-label h5">Personel laboratorium</label>
+                        <input type="text" name="personil_lab" value="Tersedia" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="permintaan-khusus" class="form-label h4">Metode pemeriksaan</label>
-                        <input type="text" name="metode_pemeriksaan" class="form-control" id="permintaan-khusus">
+                        <label for="permintaan-khusus" class="form-label h5">Metode pemeriksaan</label>
+                        <input type="text" name="metode_pemeriksaan" value="SNI, APHA, dan EPA" class="form-control" id="permintaan-khusus">
                         <div class="invalid-feedback errorPermintaan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="permintaan-khusus" class="form-label h4">Uji mutu (Quality control)</label>
-                        <input type="text" name="uji_mutu" class="form-control" id="permintaan-khusus">
+                        <label for="permintaan-khusus" class="form-label h5">Uji mutu (Quality control)</label>
+                        <input type="text" name="uji_mutu" value="Baik" class="form-control" id="permintaan-khusus">
                         <div class="invalid-feedback errorPermintaan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="permintaan-khusus" class="form-label h4">Reagensa & media</label>
-                        <input type="text" name="reagensa_dan_media" class="form-control" id="permintaan-khusus">
+                        <label for="permintaan-khusus" class="form-label h5">Reagensa & media</label>
+                        <input type="text" name="reagensa_dan_media" value="Tersedia" class="form-control" id="permintaan-khusus">
                         <div class="invalid-feedback errorPermintaan"></div>
                     </div>
                 </div>

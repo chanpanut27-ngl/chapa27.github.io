@@ -3,6 +3,10 @@
        ?>
        <tbody style="font-family: arial;">
         <tr>
+            <td style="width: 25%;"><b>Keterangan</b></td>
+            <td>: </td>
+        </tr>
+        <tr>
             <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
             <td>: </td>
         </tr>
@@ -29,10 +33,14 @@
     </button>
     <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
         <tr>
+            <td><b>Keterangan</b></td>
+            <td>: <?= $row['keterangan'] ?></td>
+        </tr>
+        <tr>
             <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
             <td>: <?= $row['paramater_tidak_dapat_di_uji'] ?></td>
         </tr>
-         <tr>
+        <tr>
             <td><b>Sub kontrak</b></td>
             <td>: <?= $row['sub_kontrak'] ?></td>
         </tr>

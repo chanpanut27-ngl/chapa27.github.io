@@ -76,7 +76,7 @@ class PenanggungJawabLhu extends ResourceController
                 $tgl_terima_sampel = $r['tgl_terima_sampel'];
             }
             $data = [
-                'konversi_tanggal' => $this->konversi_tanggal($tgl_terima_sampel),
+                'konversi_tanggal' => $this->konversi_tanggal(@$tgl_terima_sampel),
                 'items' => $q
             ];
             $msg = [

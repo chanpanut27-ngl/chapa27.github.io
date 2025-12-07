@@ -46,7 +46,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="jam-terima-sampel" class="form-label h5" style="font-family: calibri;">Jam terima sampel</label>
-                        <input type="text" name="jam_terima_sampel" class="form-control" id="jam-terima-sampel">
+                        <input type="time" name="jam_terima_sampel" class="form-control" id="jam-terima-sampel">
                         <div class="invalid-feedback errorJamTerimaSampel"></div>
                     </div>
                 </div>

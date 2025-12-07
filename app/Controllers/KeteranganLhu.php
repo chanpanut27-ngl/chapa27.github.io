@@ -95,7 +95,8 @@ class KeteranganLhu extends ResourceController
                 'paramater_tidak_dapat_di_uji' => $this->request->getVar('paramater_tidak_dapat_di_uji'),
                 'sub_kontrak' => $this->request->getVar('sub_kontrak'),
                 'kontrak_diulang' => $this->request->getVar('kontrak_diulang'),
-                'permintaan_khusus' => $this->request->getVar('permintaan_khusus')
+                'permintaan_khusus' => $this->request->getVar('permintaan_khusus'),
+                'keterangan' => $this->request->getVar('keterangan')
                 
             ];
                 $this->model->save($simpandata);
@@ -147,7 +148,8 @@ class KeteranganLhu extends ResourceController
                 'paramater_tidak_dapat_di_uji' => $this->request->getVar('paramater_tidak_dapat_di_uji'),
                 'sub_kontrak' => $this->request->getVar('sub_kontrak'),
                 'kontrak_diulang' => $this->request->getVar('kontrak_diulang'),
-                'permintaan_khusus' => $this->request->getVar('permintaan_khusus')  
+                'permintaan_khusus' => $this->request->getVar('permintaan_khusus'),
+                'keterangan' => $this->request->getVar('keterangan')
             ];
                 $this->model->save($simpandata);
                 $msg = [

@@ -18,6 +18,7 @@ class KeteranganLhuModel extends Model
         'kontrak_diulang',
         'permintaan_khusus',
         'kode_pengantar',
+        'keterangan'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -50,9 +51,5 @@ class KeteranganLhuModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function get_data() 
-    {
-            
-    }
 
 }
