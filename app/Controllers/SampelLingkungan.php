@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
-use App\Models\SampelLingkungan as ModelsSampelLingkungan;
 use App\Models\SampelLingkunganModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
@@ -26,7 +25,6 @@ class SampelLingkungan extends ResourceController
 
     public function __construct()
     {
-        $this->title = 'Fisika kimia air';
         $this->model = new SampelLingkunganModel();
         $this->masterJenisSampel = new JenisSampelModel();
         $this->masterLab = new LaboratoriumModel();
@@ -120,7 +118,8 @@ class SampelLingkungan extends ResourceController
             $data = [
                 'title' => 'Tambah ' . $nama_lab,
                 'masterLab' => $this->model->findAll(),
-                'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)->find(),
+                'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)
+                ->where('is_active', 1)->find(),
                 'id_lab' => $id_lab,
                 'kode_pengantar' => $kode_pengantar
             ];
@@ -180,8 +179,8 @@ class SampelLingkungan extends ResourceController
                     'error' => [
                         'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel'),
                         'lokasi_pengambilan_sampel' => $this->validation->getError('lokasi_pengambilan_sampel'),
-                        'tgl_pengambilan_sampel' => $this->validation->getError('tgl_pengambilan_sampel'),
-                        'jam_pengambilan_sampel' => $this->validation->getError('jam_pengambilan_sampel')
+                        'tgl_ambil_sampel' => $this->validation->getError('tgl_pengambilan_sampel'),
+                        'jam_ambil_sampel' => $this->validation->getError('jam_pengambilan_sampel')
                     ]
                 ];
             } else {
@@ -231,7 +230,8 @@ class SampelLingkungan extends ResourceController
             $data = [
                 'title' => 'Edit ' . $nama_lab,
                 'items' => $this->model->find($id),
-                'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)->find()
+                'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)
+                ->where('is_active', 1)->find()
             ];
             $msg = [
                 'sukses' => view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/_edit', $data)

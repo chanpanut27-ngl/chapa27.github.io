@@ -16,11 +16,10 @@
             </div>
         </div>
 
-        <div class="row p-0">
-            <!-- [ sample-page ] start -->
+            <!-- [ content ] start -->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header p-10">
                         <h4 style="font-family: calibri;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
                     </div>
                     <div class="card-body p-2">
@@ -32,25 +31,25 @@
                                 <h5 class="card-title">Kode pengantar</h5>
                             </div>
                             <div class="col-md-4">
-                                <h5 class="card-title">: <?= $row['kode_pengantar']; ?></h5>
+                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['kode_pengantar']; ?></h5>
                             </div>
                             <div class="col-md-2">
                                 <h5 class="card-title">Alamat</h5>
                             </div>
                              <div class="col-md-4">
-                                <h5 class="card-title">: <?= $row['alamat']; ?></h5>
+                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['alamat']; ?></h5>
                             </div>
                             <div class="col-md-2">
                                 <h5 class="card-title">Pelanggan</h5>
                             </div>
                              <div class="col-md-4">
-                                <h5 class="card-title">: <?= $row['nama']; ?></h5>
+                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['nama']; ?></h5>
                             </div>
                             <div class="col-md-2">
                                 <h5 class="card-title">No.Telepon</h5>
                             </div>
                             <div class="col-md-4">
-                                <h5 class="card-title">: <?= $row['no_telp']; ?></h5>
+                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['no_telp']; ?></h5>
                             </div>
                         </div>
                         <?php endforeach;?>
@@ -71,33 +70,31 @@
                                 <?php
                                     foreach ($menu_lab as $m) :
                                         if (@$id_lab == $m['id_lab']) {
-                                            $active = 'active bg-success text-light';
-                                            $bg = 'style="background-color:#effeff; color:#497e89; font-weight:bold;"';
+                                            $active = 'active bg-success text-light bg-success fw-bold rounded';
                                         }else{
                                             $active = '';
-                                            $bg = '';
                                         }
                                         ?>
                                         <li class="nav-item">
-                                            <a class="nav-link navtabs <?= $active ?>" <?= $bg ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
+                                            <a class="nav-link navtabs <?= $active ?>" aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
                                         </li>
                                         <?php
                                     endforeach;
                                     ?>
                                     <li class="nav-item">
-                                        <a class="nav-link navtabs <?= @$id_lab == 'keterangan' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'keterangan' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan') ?>">Keterangan</a>
+                                        <a class="nav-link navtabs <?= @$id_lab == 'keterangan' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'keterangan' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan') ?>">Keterangan</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link navtabs <?= @$id_lab == 'kondisi_lingkungan_sekitar_sampel' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'kondisi_lingkungan_sekitar_sampel' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi_lingkungan_sekitar_sampel') ?>">Kondisi lingkungan sekitar sampel</a>
+                                        <a class="nav-link navtabs <?= @$id_lab == 'kondisi_lingkungan_sekitar_sampel' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'kondisi_lingkungan_sekitar_sampel' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi_lingkungan_sekitar_sampel') ?>">Kondisi lingkungan sekitar sampel</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link navtabs <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kaji_ulang_permintaan_kontrak') ?>">Kaji ulang permintaan & kontrak</a>
+                                        <a class="nav-link navtabs <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kaji_ulang_permintaan_kontrak') ?>">Kaji ulang permintaan & kontrak</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link navtabs <?= @$id_lab == 'penanggung_jawab' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'penanggung_jawab' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/penanggung_jawab') ?>">Penanggung jawab</a>
+                                        <a class="nav-link navtabs <?= @$id_lab == 'penanggung_jawab' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'penanggung_jawab' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/penanggung_jawab') ?>">Penanggung jawab</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link navtabs <?= @$id_lab == 'resume' ? 'active bg-success text-light' : ''; ?>" <?= @$id_lab == 'resume' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/resume') ?>">Resume</a>
+                                        <a class="nav-link navtabs <?= @$id_lab == 'resume' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'resume' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/resume') ?>">Resume</a>
                                     </li>
                             </ul>
                         <?php } ?>
@@ -105,10 +102,11 @@
                     </div>
                 </div>
             </div>
-            <!-- [ sample-page ] end -->
-        </div>
+            <!-- [ content ] end -->
     </div>
 </div>
 <div class="view-modal" style="display: none;"></div>
 
 <?= $this->endSection(); ?>
+
+

@@ -171,12 +171,60 @@ $routes->group('pelayanan/proses-lhu', function ($routes) {
     $routes->get('keterangan/(:any)', 'KeteranganPemeriksaan::index/$1');
 });
 
+/** Pelayanan sampel lingkungan **/
 $routes->group('pelayanan/lhu/sampel-lingkungan', function ($routes) {
     $routes->get('index/(:any)/(:any)', 'SampelLingkungan::index/$1/$1');
     $routes->get('list-data', 'SampelLingkungan::list');
     $routes->get('add-data', 'SampelLingkungan::new');
-    $routes->post('create-data', 'SampelLingkungan::create');
+    $routes->post('create-data-sampel', 'SampelLingkungan::create');
     $routes->get('edit-data/(:any)', 'SampelLingkungan::edit/$1');
     $routes->post('update-data', 'SampelLingkungan::update');
     $routes->delete('delete-data/(:num)', 'SampelLingkungan::delete/$1');
+});
+
+
+/** Pelayanan keterangan LHU **/
+$routes->group('pelayanan/keterangan-lhu', function ($routes) {
+    $routes->get('', 'KeteranganLhu::index');
+    $routes->get('list-data', 'KeteranganLhu::list');
+    $routes->get('add-data', 'KeteranganLhu::new');
+    $routes->post('create-data', 'KeteranganLhu::create');
+    $routes->get('edit-data/(:num)', 'KeteranganLhu::edit/$1');
+    $routes->post('update-data', 'KeteranganLhu::update');
+    $routes->delete('delete-data/(:num)', 'KeteranganLhu::delete/$1');
+});
+
+
+/** Pelayanan kondisi lingkungan LHU **/
+$routes->group('pelayanan/kondisi-lingkungan-sekitar-sampel', function ($routes) {
+    $routes->get('', 'KondisiLingkunganSekitarSampel::index');
+    $routes->get('list-data', 'KondisiLingkunganSekitarSampel::list');
+    $routes->get('add-data', 'KondisiLingkunganSekitarSampel::new');
+    $routes->post('create-data', 'KondisiLingkunganSekitarSampel::create');
+    $routes->get('edit-data/(:num)', 'KondisiLingkunganSekitarSampel::edit/$1');
+    $routes->post('update-data', 'KondisiLingkunganSekitarSampel::update');
+    $routes->delete('delete-data/(:num)', 'KondisiLingkunganSekitarSampel::delete/$1');
+});
+
+
+/** Pelayanan kaji ulang LHU **/
+$routes->group('pelayanan/kaji-ulang-permintaan-kontrak', function ($routes) {
+    $routes->get('', 'KajiUlangPermintaanKontrak::index');
+    $routes->get('list-data', 'KajiUlangPermintaanKontrak::list');
+    $routes->get('add-data', 'KajiUlangPermintaanKontrak::new');
+    $routes->post('create-data', 'KajiUlangPermintaanKontrak::create');
+    $routes->get('edit-data/(:num)', 'KajiUlangPermintaanKontrak::edit/$1');
+    $routes->post('update-data', 'KajiUlangPermintaanKontrak::update');
+    $routes->delete('delete-data/(:num)', 'KajiUlangPermintaanKontrak::delete/$1');
+});
+
+/** Pelayanan penanggung jawab LHU **/
+$routes->group('pelayanan/penanggung-jawab-lhu', function ($routes) {
+    $routes->get('', 'PenanggungJawabLhu::index');
+    $routes->get('list-data', 'PenanggungJawabLhu::list');
+    $routes->get('add-data', 'PenanggungJawabLhu::new');
+    $routes->post('create-data', 'PenanggungJawabLhu::create');
+    $routes->get('edit-data/(:num)', 'PenanggungJawabLhu::edit/$1');
+    $routes->post('update-data', 'PenanggungJawabLhu::update');
+    $routes->delete('delete-data/(:num)', 'PenanggungJawabLhu::delete/$1');
 });

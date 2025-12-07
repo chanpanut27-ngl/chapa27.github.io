@@ -3,22 +3,22 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/lhu/sampel-lingkungan/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/lhu/sampel-lingkungan/create-data-sampel'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id_laboratorium" value="<?= $id_lab; ?>">
-                <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
+                <input type="text" name="id_laboratorium" value="<?= $id_lab; ?>">
+                <input type="text" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="jenis-sampel" class="form-label h5" style="font-family: calibri;">Jenis sampel</label>
+                        <label for="jenis-sampel" class="form-label h4" style="font-family: calibri;">Jenis sampel</label>
                         <select name="id_jenis_sampel" class="form-select" id="jenis-sampel" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($masterJenisSampel as $row) :
                             ?>
-                                <option value="<?= $row['id']; ?>" style="font-size: 12px;"><?= $row['jenis_sampel']; ?></option>
+                                <option value="<?= $row['id']; ?>"><?= $row['jenis_sampel']; ?></option>
                             <?php
                             endforeach;
                             ?>
@@ -26,44 +26,44 @@
                         <div class="invalid-feedback errorJenisSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="lokasi-ambil-sampel" class="form-label h5" style="font-family: calibri;">Lokasi pengambilan sampel</label>
+                        <label for="lokasi-ambil-sampel" class="form-label h4" style="font-family: calibri;">Lokasi pengambilan sampel</label>
                         <input type="text" name="lokasi_pengambilan_sampel" class="form-control" id="lokasi-ambil-sampel">
                         <div class="invalid-feedback errorLokasiAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="tgl-ambil-sampel" class="form-label h5" style="font-family: calibri;">Tanggal pengambilan sampel</label>
+                        <label for="tgl-ambil-sampel" class="form-label h4" style="font-family: calibri;">Tanggal pengambilan sampel</label>
                         <input type="text" name="tgl_pengambilan_sampel" class="form-control" id="tgl-ambil-sampel" autocomplete="off">
                         <div class="invalid-feedback errorTglAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam-ambil-sampel" class="form-label h5" style="font-family: calibri;">Jam pengambilan sampel</label>
+                        <label for="jam-ambil-sampel" class="form-label h4" style="font-family: calibri;">Jam pengambilan sampel</label>
                         <input type="time" name="jam_pengambilan_sampel" class="form-control" id="jam-ambil-sampel">
                         <div class="invalid-feedback errorJamAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="metode-pemeriksaan" class="form-label h5" style="font-family: calibri;">Metode pemeriksaan</label>
+                        <label for="metode-pemeriksaan" class="form-label h4" style="font-family: calibri;">Metode pemeriksaan</label>
                         <input type="text" name="metode_pemeriksaan" class="form-control" id="metode-pemeriksaan">
                         <div class="invalid-feedback errorMetodePemeriksaan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="volume-berat" class="form-label h5" style="font-family: calibri;">Volume/Berat</label>
+                        <label for="volume-berat" class="form-label h4" style="font-family: calibri;">Volume/Berat</label>
                         <input type="text" name="volume_berat" class="form-control" id="volume-berat">
                         <div class="invalid-feedback errorVolumeBerat"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jenis-wadah" class="form-label h5" style="font-family: calibri;">Jenis wadah</label>
+                        <label for="jenis-wadah" class="form-label h4" style="font-family: calibri;">Jenis wadah</label>
                         <input type="text" name="jenis_wadah" class="form-control" id="jenis-wadah">
                         <div class="invalid-feedback errorJenisWadah"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jenis-pengawet" class="form-label h5" style="font-family: calibri;">Jenis pengawet</label>
+                        <label for="jenis-pengawet" class="form-label h4" style="font-family: calibri;">Jenis pengawet</label>
                         <input type="text" name="jenis_pengawet" class="form-control" id="jenis-pengawet">
                         <div class="invalid-feedback errorJenisPengawet"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-simpan"><i class="fas fa-save"></i> Simpan</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
         </div>
@@ -71,17 +71,16 @@
 </div>
 <script>
     $(document).ready(function() { 
-        $( "#tgl-ambil-sampel" ).datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#tgl-ambil-sampel").datepicker({ dateFormat: 'dd-mm-yy' });
 
         $('.js-example-basic-single').select2();
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
-                type: "post",
+                type: 'post',
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 dataType: 'json',
-                cache: false,
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
                     $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');

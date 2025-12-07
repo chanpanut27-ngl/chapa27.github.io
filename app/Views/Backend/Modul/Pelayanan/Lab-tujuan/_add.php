@@ -31,13 +31,11 @@
                              <div class="row">
                                 <div class="col-md-12">
                                     <p><b>Laboratorim</b></p>
-                                    <?php foreach ($masterLab as $l) : ?>
-                                        <?php foreach ($lab_tujuan as $lt) : ?>
                                     <?php 
-                                    endforeach;
+                                     foreach ($masterLab as $l) : 
                                     ?>
                                     <label for="<?= $l['id']; ?>">
-                                        <input type="checkbox" name="id_laboratorium[]" value="<?= $l['id']; ?>" id="<?= $l['id']; ?>" <?= $l['id'] == $lt['id_laboratorium'] ? 'checked' : ''; ?>> <?=  $l['nama_lab'] ?>
+                                        <input type="checkbox" name="id_laboratorium[]" value="<?= $l['id']; ?>" id="<?= $l['id']; ?>"> <?=  $l['nama_lab'] ?>
                                     </label><br>
                                     <?php
                                  endforeach;
