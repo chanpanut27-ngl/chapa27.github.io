@@ -5,14 +5,14 @@
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header p-6" style="padding:0px;">
+                    <div class="card-header p-2">
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-dark btn-sm" id="refBtn">
-                                <span class="pc-micon"><i class="fa-solid fa-refresh"></i></span>
+                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
+                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                             </button>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
-                                <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
+                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span> Tambah Data
                             </button>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
-<script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script>
     function listData() {
         var id_lab = $('.btn-tambah').data("id");
@@ -51,6 +51,7 @@
 
     $(document).ready(function() {
         listData();
+
         var id_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $(".btn-tambah").click(function(e) {
@@ -69,6 +70,19 @@
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                }
+            })
+        })
+
+        $(".btn-refresh-data").click(function() {
+            $.ajax({
+                cache: false,
+                beforeSend: function() {
+                    $('.btn-refresh-data').html('<span class="fa fa-spin fa-spinner"></span>');
+                },
+                success: function() {
+                    listData();
+                    $('.btn-refresh-data').html('<span class="fa-solid fa-refresh"></span>');
                 }
             })
         })

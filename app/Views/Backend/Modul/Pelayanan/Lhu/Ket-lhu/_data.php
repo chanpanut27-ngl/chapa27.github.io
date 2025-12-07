@@ -21,10 +21,10 @@
     </tbody>
        <?php
     } else { foreach ($items as $row) : ?>
-    <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+    <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <span class="fa-solid fa-edit"></span>
     </button>&nbsp;
-    <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+    <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
        <span class="fa-solid fa-trash-alt"></span>
     </button>
     <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
