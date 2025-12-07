@@ -8,8 +8,8 @@
             </div>
             <form action="<?= base_url('pelayanan/lhu/sampel-lingkungan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="text" name="id_laboratorium" value="<?= $id_lab; ?>">
-                <input type="text" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
+                <input type="hidden" name="id_laboratorium" value="<?= $id_lab; ?>">
+                <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="jenis-sampel" class="form-label h4" style="font-family: calibri;">Jenis sampel</label>
@@ -32,12 +32,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl-ambil-sampel" class="form-label h4" style="font-family: calibri;">Tanggal pengambilan sampel</label>
-                        <input type="date" name="tgl_pengambilan_sampel" class="form-control" id="tgl-ambil-sampel">
+                        <input type="date" name="tgl_ambil_sampel" class="form-control" id="tgl-ambil-sampel">
                         <div class="invalid-feedback errorTglAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
                         <label for="jam-ambil-sampel" class="form-label h4" style="font-family: calibri;">Jam pengambilan sampel</label>
-                        <input type="time" name="jam_pengambilan_sampel" class="form-control" id="jam-ambil-sampel">
+                        <input type="time" name="jam_ambil_sampel" class="form-control" id="jam-ambil-sampel">
                         <div class="invalid-feedback errorJamAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
@@ -100,6 +100,27 @@
                         } else {
                             $('#jenis-sampel').removeClass('is-invalid');
                             $('.errorJenisSampel').html('');
+                        }
+                        if (err.lokasi_pengambilan_sampel) {
+                            $('#lokasi-ambil-sampel').addClass('is-invalid');
+                            $('.errorLokasiAmbilSampel').html(err.lokasi_pengambilan_sampel);
+                        } else {
+                            $('#lokasi-ambil-sampel').removeClass('is-invalid');
+                            $('.errorLokasiAmbilSampel').html('');
+                        }
+                        if (err.tgl_ambil_sampel) {
+                            $('#tgl-ambil-sampel').addClass('is-invalid');
+                            $('.errorTglAmbilSampel').html(err.tgl_ambil_sampel);
+                        } else {
+                            $('#tgl-ambil-sampel').removeClass('is-invalid');
+                            $('.errorTglAmbilSampel').html('');
+                        }
+                        if (err.jam_ambil_sampel) {
+                            $('#jam-ambil-sampel').addClass('is-invalid');
+                            $('.errorJamAmbilSampel').html(err.jam_ambil_sampel);
+                        } else {
+                            $('#jam-ambil-sampel').removeClass('is-invalid');
+                            $('.errorJamAmbilSampel').html('');
                         }
                     } else {
                         Swal.fire({

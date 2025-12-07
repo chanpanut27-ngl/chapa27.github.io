@@ -2,8 +2,9 @@
     <thead style="font-family: calibri;">
         <?php
         $arrth = [
-            'No', 'Kode sampel', 'Jenis sampel', 'Lokasi pengambilan sampel', 
-            'Tanggal/Jam pengambilan sampel', 'Peraturan/Baku mutu', 'Metode pemeriksaan', 'Volume/Berat', 'Jenis wadah', 'Jenis pengawet', ' '];
+            'No', 'Kd.sampel', 'Jns.sampel', 'Lokasi pengambilan sampel', 
+            'Tgl/Jam pengambilan sampel', 'Peraturan', 'Metode pemeriksaan', 
+            'Volume/Berat', 'Jns.wadah', 'Jns.pengawet', 'Status', '#'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . ucwords($th) . '</th>';
@@ -15,25 +16,31 @@
         <?php
         $no = 1;
         foreach ($items as $row) :
+            if ($row['sts_psl'] == 1) {
+                $status = '<span class="badge bg-success rounded">Aktif</span>';
+            }else {
+                $status = '<span class="badge bg-secondary rounded">Tidak aktif</span>';
+            }
         ?>
             <tr id="myId-<?= $row['id_psl']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_sampel']; ?></td>
-                <td><?= explode(', ', $row['jenis_sampel'])[0]; ?></td>
+                <td><?= $row['jenis_sampel']; ?></td>
                 <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
                 <td><?= date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
-                <td><?= explode(', ', $row['jenis_sampel'])[0]; ?></td>
+                <td><?= $row['peraturan']; ?></td>
                 <td><?= $row['metode_pemeriksaan']; ?></td>
                 <td><?= $row['volume_atau_berat']; ?></td>
                 <td><?= $row['jenis_wadah']; ?></td>
                 <td><?= $row['jenis_pengawet']; ?></td>
+                <td><?= $status; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id_psl']; ?>)" title="Edit data">
-                            <i class="fa-solid fa-edit"></i>
+                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id_psl']; ?>)" title="Edit data">
+                            <span class="fa-solid fa-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id_psl']; ?>)" title="Hapus data">
-                            <i class="fa-solid fa-trash-alt"></i>
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_psl']; ?>)" title="Hapus data">
+                            <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
                 </td>

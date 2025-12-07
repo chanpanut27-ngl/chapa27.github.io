@@ -70,7 +70,9 @@ class SampelLingkunganModel extends Model
         pelayanan_sampel_lingkungan.metode_pemeriksaan,
         pelayanan_sampel_lingkungan.volume_atau_berat,
         pelayanan_sampel_lingkungan.jenis_wadah,
-        pelayanan_sampel_lingkungan.jenis_pengawet');
+        pelayanan_sampel_lingkungan.jenis_pengawet,
+        pelayanan_sampel_lingkungan.is_active AS sts_psl,
+        master_jenis_sampel.peraturan');
         $builder->join("master_jenis_sampel", "master_jenis_sampel.id = pelayanan_sampel_lingkungan.id_jenis_sampel");
         $builder->where('kode_pengantar', $param1);
         $builder->where('id_laboratorium', $param2);
