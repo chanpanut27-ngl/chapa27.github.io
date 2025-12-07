@@ -60,8 +60,7 @@
                     <tr>
                         <td width="10%"><b>Asal sampel</b></td>
                         <td width="50%" style="vertical-align: top;"><?= $dp['nama']; ?></td>
-                        <td width="20%" rowspan="3" style="vertical-align: top;"><b>Kondisi lingkungan sampel</b></td>
-                        <td style="vertical-align: top;" rowspan="3"><?= @$kondisi_ling_sampel; ?></td>
+                        <td rowspan="3" style="vertical-align: top;"><b>Kondisi lingkungan sampel : </b><?= @$kondisi_ling_sampel; ?></td>
                     </tr>
                     <tr>
                         <td><b>Alamat</b></td>

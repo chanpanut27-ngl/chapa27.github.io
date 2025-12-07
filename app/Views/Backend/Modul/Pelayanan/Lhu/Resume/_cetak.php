@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" id="main-style-link" >
+    
     <title><?= $kode_pengantar ?>_Pengantar_LHU</title>
+    
     <style media="print">
         /* Sembunyikan elemen dengan ID ci-logo dan kelas no-print saat mencetak */
         #toolbarContainer, .no-print, button {
@@ -24,7 +26,9 @@
     </div>
     <?php
     use App\Models\SampelLingkunganModel;
+    use App\Models\PenanggungJawabLhuModel;
     $sampel_lingkungan = new SampelLingkunganModel();
+    $konversi_tanggal = new PenanggungJawabLhuModel();
 
     foreach ($data_pelanggan as $dp) {
         $nama = $dp['nama'];
@@ -64,72 +68,77 @@
         $tgl_terima_sampel = $pj['tgl_terima_sampel'];
         $jam_terima_sampel = $pj['jam_terima_sampel'];
     }
+    
+   
 ?>
     <div class="card-body">
-        <h4 style="text-align: center;"><b>PENERIMAAN SAMPEL</b></h4><hr style="border: 1px solid;">
+       <?= $this->include('Backend/Modul/Pelayanan/Lhu/Resume/_header'); ?>
+        <h4 style="text-align: center;"><b>PENERIMAAN SAMPEL</b></h4>
         <div class="row">
-                <div class="col-md-12 mb-2">
-                    <table class="table-bordered" style="border: 1px solid black; width:100%;">
+            <div class="col-md-12 mb-2">
+                <table class="table-bordered" style="width:100%;">
+                    <tr>
+                        <td width="10%"><b>Asal sampel</b></td>
+                        <td width="50%" style="vertical-align: top;"><?= $dp['nama']; ?></td>
+                        <td rowspan="3" style="vertical-align: top;"><b>Kondisi lingkungan sampel : </b><?= @$kondisi_ling_sampel; ?></td>
+                    </tr>
+                    <tr>
+                        <td><b>Alamat</b></td>
+                        <td style="vertical-align: top;"><?= $dp['alamat'] ?></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="vertical-align: top;"><b>Catatan abnormalitas : </b> <?= @$catatan_abnoramalitas; ?></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-12 mb-2">
+                <table class="table-bordered" style="border: 1px solid black; width:100%;">
+                        <?php
+                    // lab tujuan 
+                    foreach ($menu_lab as $lab) :
+                    ?>
                         <tr>
-                            <td width="10%"><b>Asal sampel</b></td>
-                            <td width="50%" style="vertical-align: top;"><?= $dp['nama']; ?></td>
-                            <td width="20%" rowspan="3" style="vertical-align: top;"><b>Kondisi lingkungan sampel</b></td>
-                            <td style="vertical-align: top;" rowspan="3"><?= @$kondisi_ling_sampel; ?></td>
+                            <td colspan="10" style="font-weight: bold; font-family:Arial;">
+                                <?= strtoupper($lab['nama_lab']);?>
+                            </td>
                         </tr>
-                        <tr>
-                            <td><b>Alamat</b></td>
-                            <td style="vertical-align: top;"><?= $dp['alamat'] ?></td>
+                        <tr style="font-weight:bold; text-align:center; font-size:12px;">
+                            <td>No.</td>
+                            <td width="10%">Kode sampel</td>
+                            <td>Jenis sampel</td>
+                            <td>Lokasi pengambilan sampel</td>
+                            <td>Tgl dan jam pengambilan sampel</td>
+                            <td>Peraturan baku mutu</td>
+                            <td>Metode pemeriksaan</td>
+                            <td>Volume/berat</td>
+                            <td>Jenis wadah</td>
+                            <td>jenis pengawet</td>
                         </tr>
-                        <tr>
-                            <td colspan="2" style="vertical-align: top;"><b>Catatan abnormalitas : </b> <?= @$catatan_abnoramalitas; ?></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-12 mb-2">
-                    <table class="table-bordered" style="border: 1px solid black; width:100%;">
-                            <?php
-                        // lab tujuan 
-                        foreach ($menu_lab as $lab) :
+                        <?php
+                        $index = 1;
+                        $r = $sampel_lingkungan->get_data($kode_pengantar, $lab['id_lab']);
+                        foreach ($r as $row) {
+                        $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel']));
                         ?>
-                            <tr>
-                                <td colspan="10" style="font-weight: bold; font-family:Arial;">
-                                    <?= strtoupper($lab['nama_lab']);?>
-                                </td>
-                            </tr>
-                            <tr style="font-weight:bold; text-align:center; font-size:12px;">
-                                <td>No.</td>
-                                <td width="10%">Kode sampel</td>
-                                <td>Jenis sampel</td>
-                                <td>Lokasi pengambilan sampel</td>
-                                <td>Tgl dan jam pengambilan sampel</td>
-                                <td>Peraturan baku mutu</td>
-                                <td>Metode pemeriksaan</td>
-                                <td>Volume/berat</td>
-                                <td>Jenis wadah</td>
-                                <td>jenis pengawet</td>
-                            </tr>
-                            <?php
-                            $index = 1;
-                            $r = $sampel_lingkungan->get_data($kode_pengantar, $lab['id_lab']);
-                            foreach ($r as $row) {
-                            $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel']));
-                            ?>
-                            <tr>
-                                <td><?= $index++ ?></td>
-                                <td><b><?= $row['kode_sampel']; ?></b></td>
-                                <td><?= $row['jenis_sampel']; ?></td>
-                                <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
-                                <td style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
-                                <td><?= $row['peraturan']; ?></td>
-                                <td><?= $row['metode_pemeriksaan']; ?></td>
-                                <td style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
-                                <td><?= $row['jenis_wadah']; ?></td>
-                                <td><?= $row['jenis_pengawet']; ?></td>
-                            </tr>
-                            <?php  }?>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
+                        <tr>
+                            <td><?= $index++ ?></td>
+                            <td><b><?= $row['kode_sampel']; ?></b></td>
+                            <td><?= $row['jenis_sampel']; ?></td>
+                            <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
+                            <td style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
+                            <td><?= $row['peraturan']; ?></td>
+                            <td><?= $row['metode_pemeriksaan']; ?></td>
+                            <td style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
+                            <td><?= $row['jenis_wadah']; ?></td>
+                            <td><?= $row['jenis_pengawet']; ?></td>
+                        </tr>
+                        <?php  }?>
+                    <?php endforeach; ?>
+                </table>
+            </div>
+                <div style="page-break-before:always;"></div>
+       <?= $this->include('Backend/Modul/Pelayanan/Lhu/Resume/_header'); ?>
+
                 <div class="col-md-12 mb-2">
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <tr>
@@ -185,7 +194,7 @@
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <tr>
                             <th colspan="3" class="text-center">
-                                <?= @$tgl_terima_sampel != null ? 'Jakarta, '. date('d F Y', strtotime(@$tgl_terima_sampel)) : '';?>
+                               <?= $konversi_tanggal->konversi_tanggal($tgl_terima_sampel); ?>
                             </th>
                         </tr>
                         <tr>
@@ -208,6 +217,7 @@
         </div>
     </div>
 <script src="<?= base_url('assets/js/plugins/bootstrap.min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/fontawesome.v6.3.0.all.js'); ?>"></script>
 
 </body>
 </html>
