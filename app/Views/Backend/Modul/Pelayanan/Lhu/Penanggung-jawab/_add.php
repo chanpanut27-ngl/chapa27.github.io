@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <?php
@@ -20,22 +20,22 @@
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Nama</label>
+                        <label for="nama-lab" class="form-label h5">Nama petugas sampling</label>
                         <input type="text" name="nama_pjb" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">No.Telepon Petugas</label>
+                        <label for="nama-lab" class="form-label h5">No.Telepon petugas sampling</label>
                         <input type="text" name="no_telp_pjb" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Penerima</label>
+                        <label for="nama-lab" class="form-label h5">Penerima sampel</label>
                         <input type="text" name="penerima_sampel" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">No.Telepon Penerima</label>
+                        <label for="nama-lab" class="form-label h5">No.Telepon penerima sampel</label>
                         <input type="text" name="no_telp_penerima" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
@@ -45,14 +45,14 @@
                         <div class="invalid-feedback errorTglTerimaSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam-terima-sampel" class="form-label h5" style="font-family: calibri;">Tanggal terima sampel</label>
+                        <label for="jam-terima-sampel" class="form-label h5" style="font-family: calibri;">Jam terima sampel</label>
                         <input type="text" name="jam_terima_sampel" class="form-control" id="jam-terima-sampel">
                         <div class="invalid-feedback errorJamTerimaSampel"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-simpan"><i class="fas fa-save"></i> Simpan</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><i class="fas fa-save"></i> Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
                 </div>
             </form>
             <?php } ?>

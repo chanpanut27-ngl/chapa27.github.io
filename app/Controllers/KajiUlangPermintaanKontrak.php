@@ -130,7 +130,7 @@ class KajiUlangPermintaanKontrak extends ResourceController
                 'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Kaji-ulang/_edit', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang/_edit', $data)
             ];
             echo json_encode($msg);
         } else {

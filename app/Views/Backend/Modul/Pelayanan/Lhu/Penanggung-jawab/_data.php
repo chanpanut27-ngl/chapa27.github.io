@@ -28,15 +28,16 @@
         <?php
     } else { ?>
     <?php foreach ($items as $row) : ?>
-    <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+    <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <span class="fa-solid fa-edit"></span>
     </button>&nbsp;
-    <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+    <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
        <span class="fa-solid fa-trash-alt"></span>
     </button>
     <thead>
         <tr>
-            <th colspan="3" class="text-center"><?= 'Jakarta, '.date('d F Y', strtotime($row['tgl_terima_sampel'])).' '.date('H:i', strtotime($row['jam_terima_sampel'])); ?></th>
+            <th colspan="3" class="text-center">
+            <?= 'Jakarta, '.$konversi_tanggal.' '.date('H:i', strtotime($row['jam_terima_sampel'])); ?></th>
         </tr>
         <tr>
             <th>Penanggung jawab</th>

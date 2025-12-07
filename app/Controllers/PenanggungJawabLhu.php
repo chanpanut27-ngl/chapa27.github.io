@@ -32,6 +32,34 @@ class PenanggungJawabLhu extends ResourceController
         return view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/index', $data);
     }
 
+    public function konversi_tanggal($param = null) 
+    {
+       $date = date('m', strtotime($param));
+       $month = [
+            '1' => 'Januari',
+            '2' => 'Februari',
+            '3' => 'Maret',
+            '4' => 'April',
+            '5' => 'Mei',
+            '6' => 'Juni',
+            '7' => 'Juli',
+            '8' => 'Agustus',
+            '9' => 'September',
+            '10' => 'Oktober',
+            '11' => 'November',
+            '12' => 'Desember'
+       ];
+       foreach ($month as $key => $val) {
+            if ($date == $key) {
+                $r_date = date('d', strtotime($param));
+                $r_year = date('Y', strtotime($param));
+                $result = $r_date.' '.$val.' '.$r_year;
+                return $result;
+            }
+       }
+
+    }
+
     /**
      * Return the properties of a resource object.
      *
@@ -43,8 +71,13 @@ class PenanggungJawabLhu extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $q = $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray();
+            foreach ($q as $r) {
+                $tgl_terima_sampel = $r['tgl_terima_sampel'];
+            }
             $data = [
-                'items' => $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
+                'konversi_tanggal' => $this->konversi_tanggal($tgl_terima_sampel),
+                'items' => $q
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/_data', $data)

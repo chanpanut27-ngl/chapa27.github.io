@@ -228,3 +228,9 @@ $routes->group('pelayanan/penanggung-jawab-lhu', function ($routes) {
     $routes->post('update-data', 'PenanggungJawabLhu::update');
     $routes->delete('delete-data/(:num)', 'PenanggungJawabLhu::delete/$1');
 });
+
+/** Resume **/
+$routes->group('pelayanan/resume', function ($routes) {
+    $routes->get('', 'ResumeLayananPemeriksaan::index');
+    $routes->get('cetak-resume/(:any)', 'ResumeLayananPemeriksaan::cetak/$1');
+});

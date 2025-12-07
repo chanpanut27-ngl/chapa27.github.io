@@ -11,22 +11,22 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Nama</label>
+                        <label for="nama-lab" class="form-label h5">Nama petugas sampling</label>
                         <input type="text" name="nama_pjb" value="<?= $items['nama_pjb'] ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">No.Telepon Petugas</label>
+                        <label for="nama-lab" class="form-label h5">No.Telepon petugas sampling</label>
                         <input type="text" name="no_telp_pjb" value="<?= $items['no_telp_pjb'] ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Penerima</label>
+                        <label for="nama-lab" class="form-label h5">Penerima sampel</label>
                         <input type="text" name="penerima_sampel" value="<?= $items['penerima_sampel'] ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">No.Telepon Penerima</label>
+                        <label for="nama-lab" class="form-label h5">No.Telepon penerima sampel</label>
                         <input type="text" name="no_telp_penerima" value="<?= $items['no_telp_penerima'] ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
@@ -36,14 +36,14 @@
                         <div class="invalid-feedback errorTglTerimaSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam-terima-sampel" class="form-label h5" style="font-family: calibri;">Tanggal terima sampel</label>
+                        <label for="jam-terima-sampel" class="form-label h5" style="font-family: calibri;">Jam terima sampel</label>
                         <input type="time" name="jam_terima_sampel" value="<?= $items['jam_terima_sampel']; ?>" class="form-control" id="jam-terima-sampel">
                         <div class="invalid-feedback errorJamTerimaSampel"></div>
                     </div>
                 </div> 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-ubah"><i class="fas fa-edit"></i> Ubah</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><i class="fas fa-edit"></i> Ubah</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
                 </div>
             </form>
         </div>
@@ -68,7 +68,7 @@
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');
-                    $('.btn-ubah').html('Ubah');
+                    $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
                 },
                 success: function(response) {
                     var err = response.error
