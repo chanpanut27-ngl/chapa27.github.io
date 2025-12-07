@@ -9,7 +9,7 @@ $routes->get('/', 'Home::index');
 
 /** Modul Pelayanan Pemeriksaan **/
 /** Pengantar LHU **/
-$routes->group('pelayanan-pemeriksaan/pengantar-lhu', function ($routes) {
+$routes->group('pelayanan/pengantar-lhu', function ($routes) {
     $routes->get('', 'PengantarLhu::index');
     $routes->get('list-data', 'PengantarLhu::list');
     $routes->get('add-data', 'PengantarLhu::new');

@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index'); ?>
+<?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/jquery-ui.css'); ?>">
 <?= $this->endSection(); ?>
@@ -38,7 +38,7 @@
         var id_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan-pemeriksaan/penanggung-jawab-lhu/list-data'); ?>",
+            url: "<?= site_url('pelayanan/penanggung-jawab-lhu/list-data'); ?>",
             dataType: 'json',
             data:{
                  id_lab:id_lab,
@@ -61,7 +61,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan-pemeriksaan/penanggung-jawab-lhu/add-data'); ?>",
+                url: "<?= site_url('pelayanan/penanggung-jawab-lhu/add-data'); ?>",
                 dataType: 'json',
                 data:{
                  id_lab:id_lab,

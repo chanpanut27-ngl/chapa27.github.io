@@ -34,7 +34,7 @@ use App\Models\MappSettingLabModel;
                         <button type="button" class="btn btn-primary btn-sm rounded" onclick="addLabTujuan(<?= $row['id_pengantar']; ?>)" title="Tambah laboratorium tujuan">
                             <i class="fa-solid fa-circle-plus"></i>
                         </button>
-                         <a href="<?= base_url('pelayanan-pemeriksaan/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary btn-sm" title="Proses LHU">
+                         <a href="<?= base_url('pelayanan/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary btn-sm" title="Proses LHU">
                             <i class="fa-solid fa-arrow-circle-right"></i>
                         </a>
                     </div>
@@ -79,7 +79,7 @@ use App\Models\MappSettingLabModel;
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan-pemeriksaan/pengantar-lhu/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/pengantar-lhu/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.error) {

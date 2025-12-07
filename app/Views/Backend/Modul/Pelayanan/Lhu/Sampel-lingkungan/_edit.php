@@ -6,7 +6,7 @@
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan-pemeriksaan/lhu/sampel-lingkungan/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/lhu/sampel-lingkungan/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">

@@ -36,7 +36,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan-pemeriksaan/kondisi-lingkungan-sekitar-sampel/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/kondisi-lingkungan-sekitar-sampel/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -69,7 +69,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan-pemeriksaan/kondisi-lingkungan-sekitar-sampel/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/kondisi-lingkungan-sekitar-sampel/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

@@ -29,7 +29,7 @@ class PenanggungJawabLhu extends ResourceController
          $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Penanggung-jawab/index', $data);
+        return view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/index', $data);
     }
 
     /**
@@ -47,7 +47,7 @@ class PenanggungJawabLhu extends ResourceController
                 'items' => $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Penanggung-jawab/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -73,7 +73,7 @@ class PenanggungJawabLhu extends ResourceController
                 'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Penanggung-jawab/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -124,7 +124,7 @@ class PenanggungJawabLhu extends ResourceController
                 'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan-pemeriksaan/Lhu/Penanggung-jawab/_edit', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/_edit', $data)
             ];
             echo json_encode($msg);
         } else {

@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-pemeriksaan/pengantar-lhu'); ?>" class="pc-link">
+                    <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">
                                 <use xlink:href="#pengantar-lhu" for="pengantar-lhu"></use>

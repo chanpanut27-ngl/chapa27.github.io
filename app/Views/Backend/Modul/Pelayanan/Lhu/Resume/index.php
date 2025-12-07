@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Modul/Pelayanan-pemeriksaan/Lhu/index'); ?>
+<?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
 
 <?= $this->section('content_menu'); ?>
 <div class="d-flex justify-content-end align-items-center gap-1">
@@ -214,7 +214,7 @@
 <script>
     function openWin() {
         var prtContent = document.getElementById("#kodePengantar");
-        var WinPrint = window.open('<?= base_url('pelayanan-pemeriksaan/resume/cetak-resume/'.strtoupper($kode_pengantar)) ?>', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        var WinPrint = window.open('<?= base_url('pelayanan/resume/cetak-resume/'.strtoupper($kode_pengantar)) ?>', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
         WinPrint.document.close();
         WinPrint.focus();

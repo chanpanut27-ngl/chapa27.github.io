@@ -15,7 +15,7 @@
                         <?php
                     }else{
             ?>
-            <form action="<?= base_url('pelayanan-pemeriksaan/kondisi-lingkungan-sekitar-sampel/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/kondisi-lingkungan-sekitar-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
                 <div class="modal-body">

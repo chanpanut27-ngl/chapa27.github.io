@@ -15,7 +15,7 @@
                         <?php
                     }else{
             ?>
-            <form action="<?= base_url('pelayanan-pemeriksaan/kaji-ulang-permintaan-kontrak/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/kaji-ulang-permintaan-kontrak/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
                 <div class="modal-body">

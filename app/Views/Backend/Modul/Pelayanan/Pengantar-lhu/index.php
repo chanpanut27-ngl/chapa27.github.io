@@ -61,7 +61,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelayanan-pemeriksaan/pengantar-lhu/list-data'); ?>",
+            url: "<?= site_url('pelayanan/pengantar-lhu/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -79,7 +79,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan-pemeriksaan/pengantar-lhu/add-data'); ?>",
+                url: "<?= site_url('pelayanan/pengantar-lhu/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 success: function(response) {
