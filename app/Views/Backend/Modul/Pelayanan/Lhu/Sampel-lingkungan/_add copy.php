@@ -71,17 +71,16 @@
 </div>
 <script>
     $(document).ready(function() { 
-        // $("#tgl-ambil-sampel").datepicker({ dateFormat: 'dd-mm-yy' });
+        $("#tgl-ambil-sampel").datepicker({ dateFormat: 'dd-mm-yy' });
 
-        // $('.js-example-basic-single').select2();
+        $('.js-example-basic-single').select2();
         $(".form-data").submit(function(e) {
-           e.preventDefault();
+            e.preventDefault();
             $.ajax({
                 type: 'post',
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 dataType: 'json',
-                cache: 'false',
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
                     $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
@@ -100,6 +99,55 @@
                         } else {
                             $('#jenis-sampel').removeClass('is-invalid');
                             $('.errorJenisSampel').html('');
+                        }
+                        if (err.lokasi_pengambilan_sampel) {
+                            $('#lokasi-ambil-sampel').addClass('is-invalid');
+                            $('.errorLokasiAmbilSampel').html(err.lokasi_pengambilan_sampel);
+                        } else {
+                            $('#lokasi-ambil-sampel').removeClass('is-invalid');
+                            $('.errorLokasiAmbilSampel').html('');
+                        }
+                        if (err.metode_pemeriksaan) {
+                            $('#metode-pemeriksaan').addClass('is-invalid');
+                            $('.errorMetodePemeriksaan').html(err.metode_pemeriksaan);
+                        } else {
+                            $('#metode-pemeriksaan').removeClass('is-invalid');
+                            $('.errorMetodePemeriksaan').html('');
+                        }
+                        if (err.volume_berat) {
+                            $('#volume-berat').addClass('is-invalid');
+                            $('.errorVolumeBerat').html(err.volume_berat);
+                        } else {
+                            $('#volume-berat').removeClass('is-invalid');
+                            $('.errorVolumeBerat').html('');
+                        }
+                        if (err.jenis_wadah) {
+                            $('#jenis-wadah').addClass('is-invalid');
+                            $('.errorJenisWadah').html(err.jenis_wadah);
+                        } else {
+                            $('#jenis-wadah').removeClass('is-invalid');
+                            $('.errorJenisWadah').html('');
+                        }
+                        if (err.jenis_pengawet) {
+                            $('#jenis-pengawet').addClass('is-invalid');
+                            $('.errorJenisPengawet').html(err.jenis_pengawet);
+                        } else {
+                            $('#jenis-pengawet').removeClass('is-invalid');
+                            $('.errorJenisPengawet').html('');
+                        }
+                        if (err.tgl_pengambilan_sampel) {
+                            $('#tgl-ambil-sampel').addClass('is-invalid');
+                            $('.errorTglAmbilSampel').html(err.tgl_pengambilan_sampel);
+                        } else {
+                            $('#tgl-ambil-sampel').removeClass('is-invalid');
+                            $('.errorTglAmbilSampel').html('');
+                        }
+                        if (err.jam_pengambilan_sampel) {
+                            $('#jam-ambil-sampel').addClass('is-invalid');
+                            $('.errorJamAmbilSampel').html(err.jam_pengambilan_sampel);
+                        } else {
+                            $('#jam-ambil-sampel').removeClass('is-invalid');
+                            $('.errorJamAmbilSampel').html('');
                         }
                     } else {
                         Swal.fire({

@@ -5,7 +5,8 @@ $(document).ready(function () {
   preset_change('preset-1');
   font_change('Public-Sans');
 
-    $(".btn-refresh").click(function() {
+    $(".btn-refresh").click(function(e) {
+        e.preventDefault();
         let currentUrl = document.URL;
         $.ajax({
             cache: false,

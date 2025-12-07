@@ -150,6 +150,56 @@ class SampelLingkungan extends ResourceController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel')
+                    ]
+                ];
+            } else {
+                $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+                $tgl_ambil_sampel = date('Y-m-d', strtotime($this->request->getVar('tgl_pengambilan_sampel')));
+                $jam_ambil_sampel = date('H:i:s', strtotime($this->request->getVar('jam_pengambilan_sampel')));
+
+                $simpandata = [
+                    'kode_sampel' => $this->generate_kode_sampel($id_laboratorium, $id_jenis_sampel),
+                    'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                    'lokasi_pengambilan_sampel' => $this->request->getVar('lokasi_pengambilan_sampel'),
+                    'tgl_ambil_sampel' => $tgl_ambil_sampel,
+                    'jam_ambil_sampel' => $jam_ambil_sampel,
+                    'metode_pemeriksaan' => $this->request->getVar('metode_pemeriksaan'),
+                    'volume_atau_berat' => $this->request->getVar('volume_berat'),
+                    'jenis_wadah' => $this->request->getVar('jenis_wadah'),
+                    'jenis_pengawet' => $this->request->getVar('jenis_pengawet'),
+                    'kode_pengantar' => $this->request->getVar('kode_pengantar'),
+                    'id_laboratorium' => $this->request->getVar('id_laboratorium'),
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }   
+    }
+
+    public function create1()
+    {
+        if ($this->request->isAJAX()) {
+            $id_laboratorium = $this->request->getVar('id_laboratorium');
+
+            $valid = $this->validate([
+                'id_jenis_sampel' => [
+                    'label' => 'Jenis sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ],
                 'lokasi_pengambilan_sampel' => [
                     'label' => 'Lokasi pengambilan sampel',
@@ -179,8 +229,8 @@ class SampelLingkungan extends ResourceController
                     'error' => [
                         'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel'),
                         'lokasi_pengambilan_sampel' => $this->validation->getError('lokasi_pengambilan_sampel'),
-                        'tgl_ambil_sampel' => $this->validation->getError('tgl_pengambilan_sampel'),
-                        'jam_ambil_sampel' => $this->validation->getError('jam_pengambilan_sampel')
+                        'tgl_pengambilan_sampel' => $this->validation->getError('tgl_pengambilan_sampel'),
+                        'jam_pengambilan_sampel' => $this->validation->getError('jam_pengambilan_sampel')
                     ]
                 ];
             } else {

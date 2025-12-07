@@ -1,7 +1,7 @@
 <?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
-<link rel="stylesheet" href="<?= base_url('assets/css/plugins/select2.min.css'); ?>" id="main-style-link">
+<link rel="stylesheet" href="<?= base_url('assets/css/plugins/select2.min.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/jquery-ui.css'); ?>">
 <?= $this->endSection(); ?>
 
@@ -29,9 +29,10 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
-<script src="<?= base_url('js/jquery-3.7.1.min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/jquery-3.7.1.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/select2.min.js'); ?>"></script>
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+
 <script>
     function listData() {
         var id_lab = $('.btn-tambah').data("id");
@@ -79,25 +80,5 @@
 
     })
 </script>
-<!-- <script>
-     $(document).ready(function () {
-        $(".btn-refresh-data").click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-refresh-data').html('<span class="fa fa-spin fa-spinner"></span>');
-                },
-                success: function() {
-                    listData();
-                    $('.btn-refresh-data').html('<span class="fa-solid fa-refresh"></span>');
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-     })
-</script> -->
 
 <?= $this->endSection(); ?>
