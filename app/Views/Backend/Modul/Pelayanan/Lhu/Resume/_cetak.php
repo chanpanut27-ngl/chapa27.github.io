@@ -8,12 +8,20 @@
     <title><?= $kode_pengantar ?>_Pengantar_LHU</title>
     <style media="print">
         /* Sembunyikan elemen dengan ID ci-logo dan kelas no-print saat mencetak */
-        #toolbarContainer, .no-print {
+        #toolbarContainer, .no-print, button {
             display: none !important;
         }
     </style>
+    <script>
+        window.print();
+    </script>
 </head>
 <body>
+    <div class="d-flex justify-content-end align-items-center mr-2">
+        <button class="btn btn-info rounded btn-sm" onclick="window.print()" title="Cetak" style="text-align: right;">
+            <span class="fa-solid fa-print"></span> Cetak
+        </button>
+    </div>
     <?php
     use App\Models\SampelLingkunganModel;
     $sampel_lingkungan = new SampelLingkunganModel();

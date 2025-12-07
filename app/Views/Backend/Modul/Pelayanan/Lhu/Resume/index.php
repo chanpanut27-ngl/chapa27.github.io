@@ -47,13 +47,9 @@
 <div class="card">
     <div class="card-header p-2">
         <div class="d-flex justify-content-end align-items-center gap-1">
-            <button type="button" class="btn btn-dark btn-sm" id="refBtn">
-                <span class="pc-micon"><i class="fa-solid fa-refresh"></i></span>
+            <button class="btn btn-info rounded btn-sm" onclick="openWin();" title="Cetak">
+                <span class="pc-micon"><span class="fa-solid fa-print"></span></span>
             </button>
-            <button class="btn btn-info btn-sm" onclick="openWin();">
-                <span class="pc-micon"><i class="fa-solid fa-print"></i></span>
-            </button>
-            <a href="<?= base_url('pelayanan/resume/cetak-resume/'.strtoupper($kode_pengantar)) ?>">print</a>
         </div>
     </div>
     <div class="card-body">
