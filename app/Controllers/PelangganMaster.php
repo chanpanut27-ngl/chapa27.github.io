@@ -118,14 +118,6 @@ class PelangganMaster extends ResourceController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'no_telp' => [
-                    'label' => 'No.Telepon',
-                    'rules' => 'required|numeric',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong',
-                        'numeric' => '{field} harus angka'
-                    ]
-                ],
                 'nama_pjb' => [
                     'label' => 'Nama penanggung jawab',
                     'rules' => 'required',
@@ -140,7 +132,6 @@ class PelangganMaster extends ResourceController
                     'error' => [
                         'nama' => $this->validation->getError('nama'),
                         'alamat' => $this->validation->getError('alamat'),
-                        'no_telp' => $this->validation->getError('no_telp'),
                         'nama_pjb' => $this->validation->getError('nama_pjb')
                     ]
                 ];
