@@ -16,22 +16,22 @@
                         <div class="invalid-feedback errorNamaPelanggan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="alamat-pelanggan" class="form-label h4">Alamat</label>
+                        <label for="alamat-pelanggan" class="form-label h5">Alamat</label>
                         <textarea name="alamat" id="alamat-pelanggan" class="form-control"><?= $items['alamat']; ?></textarea>
                         <div class="invalid-feedback errorAlamatPelanggan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp" class="form-label h4">No.Telepon</label>
+                        <label for="no-telp" class="form-label h5">No.Telepon</label>
                         <input type="text" name="no_telp" value="<?= $items['no_telp'];?>" class="form-control" id="no-telp" autocomplete="off">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-pjb" class="form-label h4">Nama PJ</label>
+                        <label for="nama-pjb" class="form-label h5">Nama PJ</label>
                         <input type="text" name="nama_pjb" value="<?= $items['nama_pjb'];?>" class="form-control" id="nama-pjb">
                         <div class="invalid-feedback errorNamaPjb"></div>
                     </div>
                      <div class="mb-3">
-                        <label for="status" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <label for="status" class="form-label h5" style="font-family: calibri;">Status</label>
                         <select name="is_active" class="form-select" id="status" aria-label="Default select example">
                             <?php
                             $status = [
@@ -70,7 +70,7 @@
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');
-                    $('.btn-ubah').html('Ubah');
+                    $('.btn-ubah').html('<span class="fa-solid fa-save"></span> Ubah');
                 },
                 success: function(response) {
                     if (response.error) {

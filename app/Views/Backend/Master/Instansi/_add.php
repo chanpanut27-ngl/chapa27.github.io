@@ -10,22 +10,22 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instansi" class="form-label h4">Instansi</label>
+                        <label for="nama-instansi" class="form-label h5">Instansi</label>
                         <input type="text" name="nama_instansi" class="form-control" id="nama-instansi" autocomplete="off">
                         <div class="invalid-feedback errorNamaInstansi"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="alamat" class="form-label h4">Alamat</label>
+                        <label for="alamat" class="form-label h5">Alamat</label>
                         <textarea name="alamat" class="form-control" id="alamat"></textarea>
                         <div class="invalid-feedback errorAlamat"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp" class="form-label h4">No.Telp</label>
+                        <label for="no-telp" class="form-label h5">No.Telp</label>
                         <input type="text" name="no_telp" class="form-control" id="no-telp">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="wilayah" class="form-label h4">Wilayah</label>
+                        <label for="wilayah" class="form-label h5">Wilayah</label>
                         <input type="text" name="wilayah" class="form-control" id="wilayah">
                         <div class="invalid-feedback errorWilayah"></div>
                     </div>
