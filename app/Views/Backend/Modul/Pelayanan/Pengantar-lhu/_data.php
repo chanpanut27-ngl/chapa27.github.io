@@ -1,9 +1,6 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: calibri;">
+    <thead style="font-family: arial;">
         <?php
-
-use App\Models\MappSettingLabModel;
-
         $arrth = ['No', 'Kode Pengantar', 'Pelanggan', 'Alamat', 'No.Telp', 'Tanggal', 'Tahun', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
@@ -29,13 +26,13 @@ use App\Models\MappSettingLabModel;
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
-                            <i class="fa-solid fa-trash-alt"></i>
+                            <span class="fa-solid fa-trash-alt"></span>
                         </button>
                         <button type="button" class="btn btn-primary btn-sm rounded" onclick="addLabTujuan(<?= $row['id_pengantar']; ?>)" title="Tambah laboratorium tujuan">
-                            <i class="fa-solid fa-circle-plus"></i>
+                            <span class="fa-solid fa-circle-plus"></span>
                         </button>
-                         <a href="<?= base_url('pelayanan/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary btn-sm" title="Proses LHU">
-                            <i class="fa-solid fa-arrow-circle-right"></i>
+                         <a href="<?= base_url('pelayanan/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary rounded btn-sm" title="Proses LHU">
+                            <span class="fa-solid fa-arrow-circle-right"></span>
                         </a>
                     </div>
                 </td>

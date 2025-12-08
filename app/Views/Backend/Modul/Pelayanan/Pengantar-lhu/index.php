@@ -1,7 +1,6 @@
 <?= $this->extend('Backend/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
-<link rel="stylesheet" href="<?= base_url('assets/css/plugins/jquery-ui.css'); ?>">
 <?= $this->endSection(); ?>
 <?= $this->section('content'); ?>
 <div class="pc-container">
@@ -26,15 +25,15 @@
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header p-6">
-                        <h4 style="font-family: calibri;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
+                    <div class="card-header p-2">
+                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span>
+                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                             </button>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
-                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span> Tambah Data
+                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
                             </button>
                         </div>
                     </div>
@@ -56,7 +55,7 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
-<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+<script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 
 <script>
     function listData() {
