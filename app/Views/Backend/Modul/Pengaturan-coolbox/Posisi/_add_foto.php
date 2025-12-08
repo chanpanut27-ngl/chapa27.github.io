@@ -11,13 +11,16 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <input type="hidden" name="status" value="<?= $items['status']; ?>">
                 <div class="modal-body">
-                    <input type="hidden" name="kode_coolbox" readonly value="<?= str_replace("/", "_", $coolbox['kode_coolbox']); ?>" class="form-control" id="kode-coolbox">
                     <input type="hidden" name="id" readonly value="<?= $items['id']; ?>" class="form-control" id="id">
                     <input type="hidden" name="file_old" readonly value="<?= $items['foto']; ?>" class="form-control" id="file-old">
                     <div class="mb-3">
-                        <label for="" class="form-label h4">Kode Coolbox</label>
-                            <input type="text" class="form-control" value="<?= $coolbox['kode_coolbox']; ?>" readonly>
+                        <label for="" class="form-label h5">Kode Coolbox</label>
+                            <input type="text" name="kode_coolbox" class="form-control" value="<?= $coolbox['kode_coolbox']; ?>" readonly>
                         <div class="invalid-feedback errorFile"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label h5">Keterangan</label>
+                        <textarea name="keterangan" class="form-control" id="keterangan"><?= $items['keterangan']; ?></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="upload-foto" class="form-label h4">Upload Foto</label>
@@ -38,14 +41,15 @@
     $(document).ready(function() {
         $(".btn-upload").click(function(e) {
             e.preventDefault();
+            
             let form = $('.form-upload')[0];
             let data = new FormData(form);
-
+    
+            // let keteranganInput = document.getElementById('keterangan');
             $.ajax({
                 type: "post",
                 url: $('.form-upload').attr('action'),
                 data: data,
-                enctype: 'multipart/form-data',
                 dataType: 'json',
                 processData: false,
                 contentType: false,
@@ -60,15 +64,13 @@
                 },
                 success: function(response) {
                     if (response.error) {
-
-                        Swal.fire({
+                         Swal.fire({
                             title: "Gagal",
                             text: response.error,
                             icon: "error"
                         });
-
                         $("#exampleModal").modal('hide');
-                    } else {
+                    }else{
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,

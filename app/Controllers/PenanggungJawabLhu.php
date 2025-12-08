@@ -129,7 +129,8 @@ class PenanggungJawabLhu extends ResourceController
                 'no_telp_pjb' => $this->request->getVar('no_telp_pjb'),
                 'penerima_sampel' => $this->request->getVar('penerima_sampel'),
                 'no_telp_penerima' => $this->request->getVar('no_telp_penerima'),
-                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel')))
+                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel'))),
+                'jam_terima_sampel' => $this->request->getVar('jam_terima_sampel')
             ];
                 $this->model->save($simpandata);
                 $msg = [

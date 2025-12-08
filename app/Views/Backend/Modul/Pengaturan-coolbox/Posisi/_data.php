@@ -29,15 +29,15 @@
                 <td><?= date('d/m/Y', strtotime($row['tanggal'])).' '. date('H:i', strtotime($row['jam'])); ?></td>
                 <td><?= $row['keterangan']; ?></td>
                 <td>
-                    <a href="<?= base_url('uploads/coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" target="_blank" rel="noopener noreferrer">
-                        <img src="<?= base_url('uploads/coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" class="img-fluid" style="width: 100px; height:50px;">
+                    <a href="<?= base_url('Uploads/Coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" target="_blank" rel="noopener noreferrer">
+                        <img src="<?= base_url('Uploads/Coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" class="img-fluid" style="width: 100px; height:50px;">
                     </a>
-                    <button type="button" class="btn btn-secondary rounded btn-sm" onclick="addFoto(<?= $row['idx']; ?>)" title="Input Foto">
-                        <span class="fa-solid fa-image"></span>
-                    </button>
                 </td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
+                        <button type="button" class="btn btn-secondary rounded btn-sm" onclick="addFoto(<?= $row['idx']; ?>)" title="Input Foto">
+                            <span class="fa-solid fa-image"></span>
+                        </button>
                         <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>

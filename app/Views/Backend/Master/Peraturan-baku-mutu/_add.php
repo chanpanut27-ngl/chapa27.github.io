@@ -69,7 +69,15 @@
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
+                            timer: 8000,
+                            onOpen: () => {
+                                Swal.showLoading(); // Show a loading spinner while the timer runs
+                            },
                             icon: "success"
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log("I was closed by the timer");
+                            }
                         });
 
                         $("#exampleModal").modal('hide');

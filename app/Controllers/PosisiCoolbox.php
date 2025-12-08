@@ -298,7 +298,7 @@ class PosisiCoolbox extends ResourceController
 
     }
 
-    Public function upload_foto()
+    Public function upload_foto1()
     {
         if ($this->request->isAJAX()) {
 
@@ -308,7 +308,7 @@ class PosisiCoolbox extends ResourceController
             $fileDocument = $this->request->getFile('upload_foto');
             $id = $this->request->getVar('id');
 
-            $uploadPath = FCPATH . 'uploads/coolbox/'.$kodeCoolbox.'/';
+            $uploadPath = FCPATH . 'Uploads/coolbox/'.$kodeCoolbox.'/';
 
             if (! is_dir($uploadPath)) {
                 mkdir($uploadPath, 0777, true);
@@ -319,7 +319,8 @@ class PosisiCoolbox extends ResourceController
                 if ($fileOld == '') {
                     $fileDocument->move($uploadPath, $fileName);
                     $simpandata = [
-                        'foto' => $fileName
+                        'foto' => $fileName,
+                        'keterangan' => $this->request->getVar('keterangan')
                     ];
                     $this->model->update($id, $simpandata);
                     $msg = [
@@ -331,7 +332,8 @@ class PosisiCoolbox extends ResourceController
                         unlink($uploadPath . $fileOld);
                         $fileDocument->move($uploadPath, $fileName);
                         $simpandata = [
-                            'foto' => $fileName
+                            'foto' => $fileName,
+                            'keterangan' => $this->request->getVar('keterangan')
                         ];
                         $this->model->update($id, $simpandata);
                         $msg = [
@@ -340,6 +342,68 @@ class PosisiCoolbox extends ResourceController
                    }
                 }
                     echo json_encode($msg);              
+        } else {
+            exit('Not Process');
+        }
+    }
+
+
+    Public function upload_foto()
+    {
+        if ($this->request->isAJAX()) {
+
+            $msg = '';
+
+            $kodeCoolbox = $this->request->getVar('kode_coolbox');
+            $status = $this->request->getVar('status');
+            $fileOld = $this->request->getVar('file_old');
+            $fileDocument = $this->request->getFile('upload_foto');
+            $fileName = $status.'_'.str_replace(" ", "_", $fileDocument->getRandomName());
+            $id = $this->request->getVar('id');
+            $str_replace = str_replace('/', '_', $kodeCoolbox);
+            $uploadPath = FCPATH . 'Uploads/Coolbox/'.$str_replace.'/';
+            
+            if (empty($fileOld) && empty($fileDocument)) {
+                $msg = [
+                    'error' => 'Foto masih kosong'
+                ];
+
+            } else if ($fileOld == $fileName) {
+                $msg = [
+                    'error' => 'Foto yang sama'
+                ];
+            } else if (empty($fileOld && !empty($fileDocument))) {
+                $fileDocument->move($uploadPath, $fileName);
+
+                $simpandata = [
+                    'id' => $id,
+                    'foto' => $fileName,
+                    'keterangan' => $this->request->getVar('keterangan')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Foto berhasil di simpan'
+                ];
+            } else {
+                if (! is_dir($uploadPath)) {
+                    mkdir($uploadPath, 0777, true);
+                }
+
+                $fileDocument->move($uploadPath, $fileName);
+
+                $simpandata = [
+                    'id' => $id,
+                    'foto' => $fileName,
+                    'keterangan' => $this->request->getVar('keterangan')
+                ];
+                $this->model->save($simpandata);
+                @unlink($uploadPath . $fileOld);
+
+                $msg = [
+                    'sukses' => 'Foto berhasil di simpan'
+                ];
+            }
+            echo json_encode($msg);              
         } else {
             exit('Not Process');
         }
