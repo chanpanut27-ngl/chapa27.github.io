@@ -1,16 +1,16 @@
 <header class="pc-header">
-    <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
+    <div class="header-wrapper" style="background-color: #00A69A;"> <!-- [Mobile Media Block] start -->
         <div class="me-auto pc-mob-drp">
             <ul class="list-unstyled">
                 <!-- ======= Menu collapse Icon ===== -->
                 <li class="pc-h-item pc-sidebar-collapse">
                     <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
-                    <i class="ti ti-menu-2"></i>
+                        <i class="ti ti-menu-2 text-white"></i>
                     </a>
                 </li>
                 <li class="pc-h-item pc-sidebar-popup">
                     <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
-                    <i class="ti ti-menu-2"></i>
+                        <i class="ti ti-menu-2 text-white"></i>
                     </a>
                 </li>
                 <li class="dropdown pc-h-item d-inline-flex d-md-none">
@@ -129,7 +129,7 @@
                         aria-expanded="false"
                         >
                         <img src="<?= base_url('assets/images/avatar-2.jpg'); ?>" alt="user-image" class="user-avtar">
-                        <span>Prola</span>
+                        <span class="text-white">Prola</span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header">
