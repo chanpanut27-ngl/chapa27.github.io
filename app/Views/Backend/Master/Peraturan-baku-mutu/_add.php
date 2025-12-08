@@ -10,12 +10,12 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="peraturan" class="form-label h4">Peraturan</label>
+                        <label for="peraturan" class="form-label h5">Peraturan</label>
                         <input type="text" name="peraturan" class="form-control" id="peraturan" autocomplete="off">
                         <div class="invalid-feedback errorPeraturan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="keterangan" class="form-label h4">Keterangan</label>
+                        <label for="keterangan" class="form-label h5">Keterangan</label>
                         <textarea name="keterangan" class="form-control" id="keterangan"></textarea>
                         <div class="invalid-feedback errorKeterangan"></div>
                     </div>

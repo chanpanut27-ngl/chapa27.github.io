@@ -11,17 +11,17 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="peraturan" class="form-label h4">Peraturan</label>
+                        <label for="peraturan" class="form-label h5">Peraturan</label>
                         <input type="text" name="peraturan" value="<?= $items['peraturan']; ?>" class="form-control" id="peraturan" autocomplete="off">
                         <div class="invalid-feedback errorPeraturan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="keterangan" class="form-label h4">Keterangan</label>
+                        <label for="keterangan" class="form-label h5">Keterangan</label>
                         <textarea name="keterangan" class="form-control" id="keterangan"><?= $items['keterangan']; ?></textarea>
                         <div class="invalid-feedback errorKeterangan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <label for="is-active" class="form-label h5" style="font-family: calibri;">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
@@ -62,7 +62,7 @@
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');
-                    $('.btn-ubah').html('Ubah');
+                    $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
                 },
                 success: function(response) {
                     if (response.error) {
