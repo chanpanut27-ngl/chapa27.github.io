@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\InstalasiModel;
 use App\Models\LaboratoriumModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
@@ -15,12 +16,14 @@ class LaboratoriumMaster extends ResourceController
      */
     protected $title;
     protected $model;
+    protected $masterInstalasi;
     protected $validation;
 
     public function __construct()
     {
         $this->title = 'Laboratorium';
         $this->model = new LaboratoriumModel();
+        $this->masterInstalasi = new InstalasiModel(); 
         $this->validation = \Config\Services::validation();
     }
 
@@ -36,7 +39,7 @@ class LaboratoriumMaster extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->findAll()
+                'items' => $this->model->get_data_all()
             ];
             $msg = [
                 'data' => view('Backend/Master/Laboratorium/_data', $data)
@@ -66,6 +69,7 @@ class LaboratoriumMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
+                'masterInstalasi' => $this->masterInstalasi->where('is_active', 1)->findAll()
             ];
             $msg = [
                 'data' => view('Backend/Master/Laboratorium/_add', $data)
@@ -112,7 +116,8 @@ class LaboratoriumMaster extends ResourceController
             } else {
                 $simpandata = [
                     'nama_lab' => $this->request->getVar('nama_lab'),
-                    'lantai' => $this->request->getVar('lantai')
+                    'lantai' => $this->request->getVar('lantai'),
+                    'kode_instalasi' => $this->request->getVar('kode_instalasi')
                 ];
                 $this->model->insert($simpandata);
                 $msg = [
@@ -137,8 +142,9 @@ class LaboratoriumMaster extends ResourceController
         if ($this->request->isAJAX()) {
 
             $data = [
+                'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
-                'title' => 'Edit ' . $this->title
+                'masterInstalasi' => $this->masterInstalasi->where('is_active', 1)->findAll()
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Laboratorium/_edit', $data)
@@ -188,6 +194,7 @@ class LaboratoriumMaster extends ResourceController
                     'id' => $this->request->getVar('id'),
                     'nama_lab' => $this->request->getVar('nama_lab'),
                     'lantai' => $this->request->getVar('lantai'),
+                    'kode_instalasi' => $this->request->getVar('kode_instalasi'),
                     'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);

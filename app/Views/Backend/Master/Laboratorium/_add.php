@@ -10,7 +10,7 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Nama laboratorium</label>
+                        <label for="nama-lab" class="form-label h5">Laboratorium</label>
                         <input type="text" name="nama_lab" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
@@ -25,10 +25,19 @@
                         </select>
                         <div class="invalid-feedback errorLantai"></div>
                     </div>
+                    <div class="mb-3">
+                        <label for="instalasi" class="form-label h5">Instalasi</label>
+                        <select name="kode_instalasi" class="form-select" id="instalasi" aria-label="Default select example">
+                            <?php foreach ($masterInstalasi as $key) : ?>
+                                <option value="<?= $key['kode_instalasi'] ?>"><?= $key['nama_instalasi'] ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorKodeInstalasi"></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-simpan"><i class="fas fa-save"></i> Simpan</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><i class="fas fa-save"></i> Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
                 </div>
             </form>
         </div>

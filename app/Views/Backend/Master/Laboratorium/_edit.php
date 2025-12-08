@@ -11,12 +11,12 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h4">Nama laboratorium</label>
+                        <label for="nama-lab" class="form-label h5">Laboratorium</label>
                         <input type="text" name="nama_lab" value="<?= $items['nama_lab']; ?>" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="lantai" class="form-label h4">Lantai</label>
+                        <label for="lantai" class="form-label h5">Lantai</label>
                         <select name="lantai" class="form-select" id="lantai" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <option value="1" <?= $items['lantai'] == 1 ? 'selected' : ''; ?>>1</option>
@@ -25,6 +25,15 @@
                             <option value="4" <?= $items['lantai'] == 4 ? 'selected' : ''; ?>>4</option>
                         </select>
                         <div class="invalid-feedback errorLantai"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="instalasi" class="form-label h5">Instalasi</label>
+                        <select name="kode_instalasi" class="form-select" id="instalasi" aria-label="Default select example">
+                            <?php foreach ($masterInstalasi as $key) : ?>
+                                <option value="<?= $key['kode_instalasi'] ?>" <?= $items['kode_instalasi'] == $key['kode_instalasi'] ? 'selected' : ''; ?>><?= $key['nama_instalasi'] ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorKodeInstalasi"></div>
                     </div>
                     <div class="mb-3">
                         <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>

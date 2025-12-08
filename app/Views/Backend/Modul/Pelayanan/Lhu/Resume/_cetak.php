@@ -166,7 +166,7 @@
                             <td style="text-align: center;"><b>KONDISI</b></td>
                         </tr>
                         <tr>
-                            <td>Alat utama</td>
+                            <td><b>Alat utama</b></td>
                             <td>: <?= @$alat_utama; ?></td>
                         </tr>
                         <tr>
@@ -195,7 +195,7 @@
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <tr>
                             <th colspan="3" class="text-center">
-                               <?= $konversi_tanggal->konversi_tanggal(@$tgl_terima_sampel); ?>
+                               Jakarta, <?= $konversi_tanggal->konversi_tanggal(@$tgl_terima_sampel); ?>
                             </th>
                         </tr>
                         <tr>
