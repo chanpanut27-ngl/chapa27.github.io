@@ -1,5 +1,5 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: calibri;">
+    <thead style="font-family: arial;">
         <?php
         $arrth = ['No', 'Peraturan', 'Keterangan', 'Status', ''];
         echo '<tr>';
