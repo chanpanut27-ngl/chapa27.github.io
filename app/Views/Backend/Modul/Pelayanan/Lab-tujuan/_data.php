@@ -67,10 +67,17 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/laboratorium/delete-data/'); ?>' + id,
+                    url: '<?= site_url('laboratorium-tujuan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
-                        if (response.sukses) {
+                        if (response.error) {
+                            Swal.fire({
+                                title: "Gagal!",
+                                text: response.error,
+                                icon: "error"
+                            });
+                            myElement.removeClass('bg bg-danger');
+                        } else {
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,

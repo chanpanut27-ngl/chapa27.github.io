@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\LaboratoriumModel;
 use App\Models\LaboratoriumTujuanModel;
 use App\Models\PengantarLhuModel;
+use App\Models\SampelLingkunganModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\RESTful\ResourceController;
@@ -164,6 +165,27 @@ class LaboratoriumTujuan extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $q = $this->model->find($id);
+            $kode_pengantar = $q['kode_pengantar'];
+            $id_lab = $q['id_laboratorium'];
+            $sampel = new SampelLingkunganModel();
+            $cek_data = $sampel->where('kode_pengantar', $kode_pengantar)->where('id_laboratorium', $id_lab)
+            ->get()->getResultArray();
+            
+            if ($cek_data) {
+                $msg = [
+                    'error' => 'Data gagal di hapus'
+                ];
+            }else{
+                $this->model->delete($id);
+                $msg = [
+                    'sukses' => 'Data berhasil di hapus'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }
