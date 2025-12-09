@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: calibri;">
+    <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Laboratorium tujuan', ''];
+        $arrth = ['No', 'Kode Pengantar', 'Pelanggan', 'Alamat', 'No.Telp', 'Tanggal', 'Tahun', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -14,17 +14,26 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_pengantar']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['nama_lab']; ?></td>
+                <td><?= $row['kode_pengantar']; ?></td>
+                <td><?= $row['nama']; ?></td>
+                <td><?= $row['alamat']; ?></td>
+                <td><?= $row['no_telp']; ?></td>
+                <td><?= date('d/m/Y', strtotime($row['tanggal'])); ?></td>
+                <td><?= $row['tahun']; ?></td>
+                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
-                            <i class="fa-solid fa-edit"></i>
+                       <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
+                            <span class="fa-solid fa-trash-alt"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
-                            <i class="fa-solid fa-trash-alt"></i>
+                        <button type="button" class="btn btn-primary btn-sm rounded" onclick="addLabTujuan(<?= $row['id_pengantar']; ?>)" title="Tambah laboratorium tujuan">
+                            <span class="fa-solid fa-flask"></span>
                         </button>
+                         <a href="<?= base_url('pelayanan/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary rounded btn-sm" title="Proses LHU">
+                            <span class="fa-solid fa-arrow-circle-right"></span>
+                        </a>
                     </div>
                 </td>
             </tr>
@@ -32,10 +41,10 @@
     </tbody>
 </table>
 <script>
-    function editData(id) {
-        $.ajax({
+    function addLabTujuan(id) {
+       $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/laboratorium/edit-data/'); ?>' + id,
+            url: '<?= site_url('laboratorium-tujuan/index'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -67,10 +76,17 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/laboratorium/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/pengantar-lhu/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
-                        if (response.sukses) {
+                        if (response.error) {
+                            Swal.fire({
+                                title: "Gagal!",
+                                text: response.error,
+                                icon: "error"
+                            });
+                            myElement.removeClass('bg bg-danger');
+                        } else {
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,

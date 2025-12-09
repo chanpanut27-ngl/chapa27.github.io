@@ -11,7 +11,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Modul Pelayanan Pemeriksaan</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
@@ -25,7 +25,46 @@
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header p-6">
+                    <div class="card-header p-2">
+                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
+                    </div>
+                    <div class="card-body p-2">
+                        <?php foreach ($items as $row) :  
+                            $kode_pengantar = $row['kode_pengantar'];
+                        ?>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5 class="card-title">Kode pengantar</h5>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['kode_pengantar']; ?></h5>
+                            </div>
+                            <div class="col-md-2">
+                                <h5 class="card-title">Alamat</h5>
+                            </div>
+                                <div class="col-md-4">
+                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['alamat']; ?></h5>
+                            </div>
+                            <div class="col-md-2">
+                                <h5 class="card-title">Pelanggan</h5>
+                            </div>
+                                <div class="col-md-4">
+                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['nama']; ?></h5>
+                            </div>
+                            <div class="col-md-2">
+                                <h5 class="card-title">No.Telepon</h5>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['no_telp']; ?></h5>
+                            </div>
+                        </div>
+                        <?php endforeach;?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header p-2">
                         <h4 style="font-family: calibri;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-dark btn-sm" id="refBtn">
@@ -54,11 +93,11 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2@11.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('master-data/laboratorium/list-data'); ?>",
+            url: "<?= site_url('laboratorium-tujuan/list-data'); ?>" + <?= $kode_pengantar ?>,
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);

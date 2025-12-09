@@ -28,10 +28,10 @@
                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
-                        <button type="button" class="btn btn-primary btn-sm rounded" onclick="addLabTujuan(<?= $row['id_pengantar']; ?>)" title="Tambah laboratorium tujuan">
-                            <span class="fa-solid fa-circle-plus"></span>
-                        </button>
-                         <a href="<?= base_url('pelayanan/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary rounded btn-sm" title="Proses LHU">
+                        <a href="<?= base_url('laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Lab tujuan">
+                            <span class="fa-solid fa-flask"></span>
+                        </a>
+                        <a href="<?= base_url('pelayanan/proses-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-secondary rounded btn-sm" title="Proses LHU">
                             <span class="fa-solid fa-arrow-circle-right"></span>
                         </a>
                     </div>
@@ -44,7 +44,7 @@
     function addLabTujuan(id) {
        $.ajax({
             type: 'get',
-            url: '<?= site_url('laboratorium-tujuan/add-data/'); ?>' + id,
+            url: '<?= site_url('laboratorium-tujuan/index'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {

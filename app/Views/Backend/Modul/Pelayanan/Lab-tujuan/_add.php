@@ -32,12 +32,18 @@
                                 <div class="col-md-12">
                                     <p><b>Laboratorim</b></p>
                                     <?php 
-                                     foreach ($masterLab as $l) : 
-                                    ?>
-                                    <label for="<?= $l['id']; ?>">
-                                        <input type="checkbox" name="id_laboratorium[]" value="<?= $l['id']; ?>" id="<?= $l['id']; ?>"> <?=  $l['nama_lab'] ?>
-                                    </label><br>
-                                    <?php
+                                     foreach ($masterLab as $lb) : 
+                                        foreach ($lab_tujuan as $key => $value) {
+                                           if ($lb['id'] == $value['id_laboratorium']) {
+                                             $checked = 'checked';
+                                           }else{
+                                            $checked = '';
+                                           }
+                                        }
+                                        ?>
+                                        <br>
+                                        <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" <?= $checked ?>> <?= $lb['nama_lab']; ?>
+                                        <?php
                                  endforeach;
                                  ?>
                                 </div>

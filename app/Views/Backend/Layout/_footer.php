@@ -7,7 +7,7 @@
             <div class="col-auto my-1">
                 <ul class="list-inline footer-link mb-0">
                     <li class="list-inline-item">
-                        <a href="../index.html"><p>{elapsed_time} sec using {memory_usage} MB of memory.</p></a>
+                        <a href="#"><p>{elapsed_time} sec using {memory_usage} MB of memory.</p></a>
                     </li>
                 </ul>
             </div>          

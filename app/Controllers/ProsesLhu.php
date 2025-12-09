@@ -20,7 +20,7 @@ class ProsesLhu extends ResourceController
 
     public function __construct()
     {
-        $this->title = 'Pengantar LHU';
+        $this->title = 'Proses Pengantar LHU';
         $this->modelPengantarLhu = new PengantarLhuModel();
         $this->modelLabTujuan = new LaboratoriumTujuanModel();
     }

@@ -35,9 +35,15 @@ class LaboratoriumTujuan extends ResourceController
         $this->validation = \Config\Services::validation();
     }
 
-    public function index()
+    public function index($id = null)
     {
-        //
+        $data = [
+            'title' => $this->title,
+            'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($id),
+            'kode_pengantar' => $id
+        ];
+
+        return view('Backend/Modul/Pelayanan/Lab-tujuan/index', $data);
     }
 
     /**
@@ -47,6 +53,23 @@ class LaboratoriumTujuan extends ResourceController
      *
      * @return ResponseInterface
      */
+    
+    public function list($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $data = [
+                'items' => $this->modelLabTujuan->where('kode_pengantar', $id)->findAll(),
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Lab-tujuan/_data', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
     public function show($id = null)
     {
         //
@@ -59,12 +82,12 @@ class LaboratoriumTujuan extends ResourceController
      */
     public function new($id = null)
     {
-        if ($this->request->isAJAX()) {
+       if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah '.$this->title,
-                'items' => $this->modelPengantarLhu->get_data_by_id_lhu($id),
+                // 'items' => $this->modelPengantarLhu->get_data_by_id_lhu($id),
                 'masterLab' => $this->model->findAll(),
-                'lab_tujuan' => $this->modelLabTujuan->where('id_pengantar_lhu', $id)->get()->getResultArray(),
+                'lab_tujuan' => $this->modelLabTujuan->where('id_pengantar_lhu', $id)->findAll(),
                 'id_pengantar' => $id
             ];
             $msg = [
