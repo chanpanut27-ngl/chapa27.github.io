@@ -8,46 +8,23 @@
             </div>
             <form action="<?= base_url('laboratorium-tujuan/create-data'); ?>" class="form-data">
                 <?= csrf_field();?>
+                <?php foreach ($pengantar_lhu as $lhu) : ?>
+                <input type="text" name="id_pelanggan" value="<?= $lhu['id_pelanggan']; ?>">
+                <input type="text" name="id_pengantar_lhu" value="<?= $lhu['id_pengantar']; ?>">
+                <input type="text" name="kode_pengantar" value="<?= $lhu['kode_pengantar']; ?>">
+                <?php endforeach;?>
                 <div class="modal-body">
                     <div class="card">
-                        <div class="card-header">
-                            <?php foreach ($items as $row) :  ?>
-                            <div class="row mb-3">
-                                <div class="col-md-12">
-                                        <input type="hidden" name="id_pelanggan" value="<?= $row['id_pelanggan']; ?>">
-                                        <input type="hidden" name="id_pengantar_lhu" value="<?= $row['id_pengantar']; ?>">  
-                                        <input type="hidden" name="kode_pengantar" value="<?= $row['kode_pengantar']; ?>">
-                                    <div class="row">
-                                        <div class="col-md-4 fw-bold">Kode pengantar</div>
-                                        <div class="col-md-8">: <?= $row['kode_pengantar']; ?></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 fw-bold">Pelanggan</div>
-                                        <div class="col-md-8">: <?= $row['nama']; ?></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php endforeach; ?>
-                             <div class="row">
-                                <div class="col-md-12">
-                                    <p><b>Laboratorim</b></p>
-                                    <?php 
-                                     foreach ($masterLab as $lb) : 
-                                        foreach ($lab_tujuan as $key => $value) {
-                                           if ($lb['id'] == $value['id_laboratorium']) {
-                                             $checked = 'checked';
-                                           }else{
-                                            $checked = '';
-                                           }
-                                        }
-                                        ?>
-                                        <br>
-                                        <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" <?= $checked ?>> <?= $lb['nama_lab']; ?>
-                                        <?php
-                                 endforeach;
-                                 ?>
-                                </div>
-                             </div>
+                        <div class="card-body">
+                            <?php 
+                            foreach ($masterLab as $lb) : 
+                                ?>
+                                <label for="<?= $lb['id'] ?>">
+                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>"> <?= $lb['nama_lab']; ?>
+                                </label> <br>
+                                <?php
+                            endforeach;
+                            ?>
                         </div>
                     </div>
                 </div>

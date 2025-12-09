@@ -6,7 +6,6 @@ $(document).ready(function () {
   font_change('Public-Sans');
 
     $(".btn-refresh").click(function() {
-        
         let currentUrl = document.URL;
         $.ajax({
             cache: false,

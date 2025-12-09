@@ -22,14 +22,14 @@ class LaboratoriumTujuan extends ResourceController
     protected $validation;
     protected $today;
     protected $modelPengantarLhu;
-    protected $modelLabTujuan;
+    protected $masterLab;
 
     public function __construct()
     {
         $this->title = 'Laboratorium Tujuan';
-        $this->model = new LaboratoriumModel();
+        $this->model = new LaboratoriumTujuanModel();
+        $this->masterLab = new LaboratoriumModel();
         $this->modelPengantarLhu = new PengantarLhuModel();
-        $this->modelLabTujuan = new LaboratoriumTujuanModel();
         $this->time = Time::now('Asia/Jakarta'); 
         $this->today = $this->time->toDateTimeString();
         $this->validation = \Config\Services::validation();
@@ -37,9 +37,10 @@ class LaboratoriumTujuan extends ResourceController
 
     public function index($id = null)
     {
+        $kode_pengantar = $id;
         $data = [
             'title' => $this->title,
-            'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($id),
+            'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
             'kode_pengantar' => $id
         ];
 
@@ -56,9 +57,10 @@ class LaboratoriumTujuan extends ResourceController
     
     public function list($id = null)
     {
+        $kode_pengantar = $id;
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->modelLabTujuan->where('kode_pengantar', $id)->findAll(),
+                'items' => $this->model->get_data($kode_pengantar),
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Lab-tujuan/_data', $data)
@@ -82,13 +84,12 @@ class LaboratoriumTujuan extends ResourceController
      */
     public function new($id = null)
     {
+        
        if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah '.$this->title,
-                // 'items' => $this->modelPengantarLhu->get_data_by_id_lhu($id),
-                'masterLab' => $this->model->findAll(),
-                'lab_tujuan' => $this->modelLabTujuan->where('id_pengantar_lhu', $id)->findAll(),
-                'id_pengantar' => $id
+                'masterLab' => $this->masterLab->findAll(),
+                'pengantar_lhu' => $this->modelPengantarLhu->get_data_by_id_lhu($id)
             ];
             $msg = [
                 'sukses' => view('Backend/Modul/Pelayanan/Lab-tujuan/_add', $data)
@@ -119,8 +120,7 @@ class LaboratoriumTujuan extends ResourceController
                         'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                         'id_laboratorium' => $idLab[$i]    
                     ];
-
-                    $this->modelLabTujuan->save($simpandata);
+                    $this->model->save($simpandata);
                     $msg = [
                         'sukses' => 'Data berhasil disimpan'
                     ];

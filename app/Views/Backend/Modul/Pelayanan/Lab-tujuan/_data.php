@@ -1,5 +1,5 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: calibri;">
+    <thead style="font-family: arial;">
         <?php
         $arrth = ['No', 'Laboratorium tujuan', ''];
         echo '<tr>';
@@ -14,15 +14,15 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_lt']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['nama_lab']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning rounded btn-sm" onclick="editData(<?= $row['id_lt']; ?>)" title="Edit data">
                             <i class="fa-solid fa-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger rounded btn-sm" onclick="deleteData(<?= $row['id_lt']; ?>)" title="Hapus data">
                             <i class="fa-solid fa-trash-alt"></i>
                         </button>
                     </div>
@@ -35,7 +35,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/laboratorium/edit-data/'); ?>' + id,
+            url: '<?= site_url('laboratorium-tujuan/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
