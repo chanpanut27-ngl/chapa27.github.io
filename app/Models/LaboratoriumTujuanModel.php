@@ -53,8 +53,8 @@ class LaboratoriumTujuanModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('master_laboratorium');
-        $builder->select('master_laboratorium.id AS id_lab,nama_lab, laboratorium_tujuan.id AS id_lt, laboratorium_tujuan.kode_pengantar,id_kat_lab');
-        $builder->join("laboratorium_tujuan", "laboratorium_tujuan.id_laboratorium = master_laboratorium.id");
+        $builder->select('master_laboratorium.id AS id_lab,nama_lab, laboratorium_tujuan.id AS id_lt, laboratorium_tujuan.kode_pengantar, master_laboratorium.id_kat_lab');
+        $builder->join("laboratorium_tujuan", "laboratorium_tujuan.id_laboratorium = master_laboratorium.id", "left");
         $builder->orderBy('master_laboratorium.id', 'ASC');
         $builder->where("laboratorium_tujuan.kode_pengantar", $params);
         $query = $builder->get()->getResultArray();
@@ -65,8 +65,8 @@ class LaboratoriumTujuanModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('laboratorium_tujuan');
-        $builder->select('laboratorium_tujuan.kode_pengantar,laboratorium_tujuan.id_laboratorium,laboratorium_tujuan.id_kat_lab,master_laboratorium.nama_lab');
-        $builder->join("master_laboratorium", "master_laboratorium.id = laboratorium_tujuan.id_laboratorium");
+        $builder->select('laboratorium_tujuan.kode_pengantar,laboratorium_tujuan.id_laboratorium,master_laboratorium.nama_lab,master_laboratorium.id_kat_lab');
+        $builder->join("master_laboratorium", "master_laboratorium.id = laboratorium_tujuan.id_laboratorium", "left");
         $builder->where("laboratorium_tujuan.kode_pengantar", $param1);
         $builder->where("laboratorium_tujuan.id_laboratorium", $param2);
         $query = $builder->get()->getResultArray();

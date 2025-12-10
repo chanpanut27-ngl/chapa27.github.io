@@ -2,8 +2,12 @@
 
 <?= $this->section('content_menu'); ?>
 <?php
+
+    use App\Models\PenanggungJawabLhuModel;
     use App\Models\SampelLingkunganModel;
     $sampel_lingkungan = new SampelLingkunganModel();
+    $konversi_tanggal = new PenanggungJawabLhuModel();
+
 
     foreach ($data_pelanggan as $dp) {
         $nama = $dp['nama'];
@@ -159,7 +163,7 @@
                         <td>: <?= @$metode_pemeriksaan; ?></td>
                     </tr>
                     <tr>
-                        <td><b>Uji mutu (Quality control)</b></td>
+                        <td><b>Uji mutu (<i>quality control</i>)</b></td>
                         <td>: <?= @$uji_mutu; ?></td>
                     </tr>
                     <tr>
@@ -172,7 +176,7 @@
                 <table class="table-bordered" style="border: 1px solid black; width:100%;">
                     <tr>
                         <th colspan="3" class="text-center">
-                            <?= @$tgl_terima_sampel != null ? 'Jakarta, '. date('d F Y', strtotime(@$tgl_terima_sampel)) : '';?>
+                            Jakarta, <?= $konversi_tanggal->konversi_tanggal(@$tgl_terima_sampel); ?>
                         </th>
                     </tr>
                     <tr>

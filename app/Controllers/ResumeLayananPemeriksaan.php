@@ -31,7 +31,7 @@ class ResumeLayananPemeriksaan extends BaseController
         $keterangan = new KeteranganLhuModel();
         $kaji_ulang = new KajiUlangPermintaanKontrakModel();
         $penanggung_jawab = new PenanggungJawabLhuModel();
-
+        
          $data = [
                 'title' => 'Cetak',
                 'kode_pengantar' => $kode_pengantar,

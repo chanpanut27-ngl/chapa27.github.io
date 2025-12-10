@@ -16,6 +16,7 @@
     $penanggung_jawab = new PenanggungJawabLhuModel();
 
     $result = $labTujuan->get_data_by_id_kode_pengantar($kode_pengantar, $id_lab);
+
     foreach ($result as $row) {
         $id_kat_lab = $row['id_kat_lab'];
         $id_lab = $row['id_laboratorium'];
@@ -28,10 +29,32 @@
             $data = [
                 'title' => $nama_lab,
                 'id_lab' => $id_lab,
-                'kode_pengantar' => $kode_pengantar
+                'kode_pengantar' => $kode_pengantar,
+                'id_kat_lab' => $id_kat_lab,
             ];
             echo view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/index', $data);
             break;
+        
+        case 2:
+            $data = [
+                'title' => $nama_lab,
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar,
+                'id_kat_lab' => $id_kat_lab,
+            ];
+            echo view('Backend/Modul/Pelayanan/Lhu/Spesimen-penyakit/index', $data);
+            break;
+
+        case 3:
+            $data = [
+                'title' => $nama_lab,
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar,
+                'id_kat_lab' => $id_kat_lab,
+            ];
+            echo view('Backend/Modul/Pelayanan/Lhu/Kalibrasi-alat/index', $data);
+        break;
+
         case 'keterangan':
             $data = [
                 'title' => 'Keterangan',

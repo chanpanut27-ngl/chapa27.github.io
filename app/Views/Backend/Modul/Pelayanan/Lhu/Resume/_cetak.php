@@ -15,7 +15,7 @@
         }
     </style>
     <script>
-        window.print();
+        // window.print();
     </script>
 </head>
 <body>
@@ -69,15 +69,16 @@
         $tgl_terima_sampel = $pj['tgl_terima_sampel'];
         $jam_terima_sampel = $pj['jam_terima_sampel'];
     }
-    
-   
 ?>
     <div class="card-body">
+        <!-- HEADER --> <!-- start -->
        <?= $this->include('Backend/Modul/Pelayanan/Lhu/Resume/_header'); ?>
-        <h4 style="text-align: center;"><b>PENERIMAAN SAMPEL</b></h4>
+        <!-- HEADER --> <!-- end -->
+
+        <h5 style="text-align: center; font-weight:bold;">PENERIMAAN SAMPEL</h5>
         <div class="row">
             <div class="col-md-12 mb-2">
-                <table class="table-bordered" style="width:100%;">
+                <table class="table-bordered" style="border: 1px solid black; font-size:11px; width:100%;">
                     <tr>
                         <td width="10%"><b>Asal sampel</b></td>
                         <td width="50%" style="vertical-align: top;"><?= $dp['nama']; ?></td>
@@ -94,7 +95,7 @@
             </div>
             <div class="col-md-12 mb-2">
                 <table class="table-bordered" style="border: 1px solid black; width:100%;">
-                        <?php
+                    <?php
                     // lab tujuan 
                     foreach ($menu_lab as $lab) :
                     ?>
@@ -103,17 +104,17 @@
                                 <?= strtoupper($lab['nama_lab']);?>
                             </td>
                         </tr>
-                        <tr style="font-weight:bold; text-align:center; font-size:12px;">
+                        <tr style="font-weight:bold; text-align:center; font-size:11px;">
                             <td>No.</td>
-                            <td width="10%">Kode sampel</td>
-                            <td>Jenis sampel</td>
-                            <td>Lokasi pengambilan sampel</td>
-                            <td>Tgl dan jam pengambilan sampel</td>
-                            <td>Peraturan baku mutu</td>
-                            <td>Metode pemeriksaan</td>
-                            <td>Volume/berat</td>
-                            <td>Jenis wadah</td>
-                            <td>jenis pengawet</td>
+                            <td width="10%">Kode Sampel</td>
+                            <td>Jenis Sampel</td>
+                            <td>Lokasi Pengambilan Sampel</td>
+                            <td>Tgl & Jam Pengambilan sampel</td>
+                            <td>Peraturan/Baku Mutu</td>
+                            <td>Metode Pemeriksaan</td>
+                            <td>Volume/Berat</td>
+                            <td>Jenis Wadah</td>
+                            <td>jenis Pengawet</td>
                         </tr>
                         <?php
                         $index = 1;
@@ -121,13 +122,13 @@
                         foreach ($r as $row) {
                         $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel']));
                         ?>
-                        <tr>
-                            <td><?= $index++ ?></td>
-                            <td><b><?= $row['kode_sampel']; ?></b></td>
-                            <td><?= $row['jenis_sampel']; ?></td>
-                            <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
+                        <tr style="font-family:arial; font-size:10px;">
+                            <td style="text-align: center;"><?= $index++ ?></td>
+                            <td style="text-align: center; font-weight:bold;"><?= $row['kode_sampel']; ?></td>
+                            <td>&nbsp;<?= $row['jenis_sampel']; ?></td>
+                            <td>&nbsp;<?= $row['lokasi_pengambilan_sampel']; ?></td>
                             <td style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
-                            <td><?= $row['peraturan']; ?></td>
+                            <td>&nbsp;<?= $row['peraturan']; ?></td>
                             <td><?= $row['metode_pemeriksaan']; ?></td>
                             <td style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
                             <td><?= $row['jenis_wadah']; ?></td>
@@ -138,22 +139,24 @@
                 </table>
             </div>
                 <div style="page-break-before:always;"></div>
-       <?= $this->include('Backend/Modul/Pelayanan/Lhu/Resume/_header'); ?>
-
+                <!-- HEADER --> <!-- start -->
+                <?= $this->include('Backend/Modul/Pelayanan/Lhu/Resume/_header'); ?>
+                <!-- HEADER --> <!-- end -->
                 <div class="col-md-12 mb-2">
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <tr>
                             <td style="border: 1px solid black;">
                                 Keterangan : <?= @$ket_lhu; ?><br>
                                 Parameter yang tidak dapat di uji : <?= @$paramater_tidak_dapat_di_uji; ?><br>
-                                Sub kontrak : <?= @$sub_kontrak; ?><br>
-                                Kontrak diulang : <?= @$kontrak_diulang; ?><br>
-                                Permintaan khusus : <?= @$permintaan_khusus; ?><br>
-                                Kami tidak menjamin kualitas sampel yang tidak sesuai SOP/kriteria penerimaan sampel
+                                Sub Kontrak : <?= @$sub_kontrak; ?><br>
+                                Kontrak Diulang : <?= @$kontrak_diulang; ?><br>
+                                Permintaan Khusus : <?= @$permintaan_khusus; ?><br>
+                                <i>Kami tidak menjamin kualitas sampel yang tidak sesuai SOP/kriteria penerimaan sampel</i>
                             </td>
                             <td>
                                 <div class="text-center ml-2">
-                                    <p><h5 class="text-dark"><b>&nbsp;&nbsp;&nbsp;Tidak Menerima Gratifikasi Dalam Bentuk Apapun</b></h5></p>
+                                    <p><h5><b>&nbsp;&nbsp;&nbsp;Tidak Menerima Gratifikasi Dalam Bentuk Apapun</b></h5></p><br>
+                                    <label for="">Waktu Pemeriksaan Sampai ___ Hari Kerja</label>
                                 </div>
                             </td>
                         </tr>
@@ -162,32 +165,32 @@
                 <div class="col-md-6">
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <tr>
-                            <td style="text-align: center;"><b>SUMBER DAYA</b></td>
-                            <td style="text-align: center;"><b>KONDISI</b></td>
+                            <td style="text-align: center; font-size:11px;"><b>SUMBER DAYA</b></td>
+                            <td style="text-align: center; font-size:11px;"><b>KONDISI</b></td>
                         </tr>
                         <tr>
-                            <td><b>Alat utama</b></td>
-                            <td>: <?= @$alat_utama; ?></td>
+                            <td style="font-size: 11px;"><b>Alat Utama</b></td>
+                            <td style="font-size: 10px;">&nbsp;<?= @$alat_utama; ?></td>
                         </tr>
                         <tr>
-                            <td><b>Alat pendukung</b></td>
-                            <td>: <?= @$alat_dukung; ?> </td>
+                            <td style="font-size: 11px;"><b>Alat Pendukung</b></td>
+                            <td style="font-size: 10px;">&nbsp;<?= @$alat_dukung; ?> </td>
                         </tr>
                         <tr>
-                            <td><b>Personil laboratorium</b></td>
-                            <td>: <?= @$personil_lab; ?></td>
+                            <td style="font-size: 11px;"><b>Personel Laboratorium</b></td>
+                            <td style="font-size: 10px;">&nbsp;<?= @$personil_lab; ?></td>
                         </tr>
                         <tr>
-                            <td><b>Metode pemeriksaan</b></td>
-                            <td>: <?= @$metode_pemeriksaan; ?></td>
+                            <td style="font-size: 11px;"><b>Metode Pemeriksaan</b></td>
+                            <td style="font-size: 10px;">&nbsp;<?= @$metode_pemeriksaan; ?></td>
                         </tr>
                         <tr>
-                            <td><b>Uji mutu (Quality control)</b></td>
-                            <td>: <?= @$uji_mutu; ?></td>
+                            <td style="font-size: 11px;"><b>Uji Mutu (<i>quality control</i>)</b></td>
+                            <td style="font-size: 10px;">&nbsp;<?= @$uji_mutu; ?></td>
                         </tr>
                         <tr>
-                            <td><b>Reagensa dan media</b></td>
-                            <td>: <?= @$reagensa_dan_media; ?></td>
+                            <td style="font-size: 11px;"><b>Reagensa & Media</b></td>
+                            <td style="font-size: 10px;">&nbsp;<?= @$reagensa_dan_media; ?></td>
                         </tr> 
                     </table>
                 </div>
@@ -195,30 +198,29 @@
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <tr>
                             <th colspan="3" class="text-center">
-                               Jakarta, <?= $konversi_tanggal->konversi_tanggal(@$tgl_terima_sampel); ?>
+                               Jakarta, <?= $konversi_tanggal->konversi_tanggal(@$tgl_terima_sampel).', '. date('H:i', strtotime(@$jam_terima_sampel)); ?>
                             </th>
                         </tr>
                         <tr>
                             <th>Penanggung jawab</th>
-                            <th style="text-align: center;">Nama & Tanda tangan</th>
+                            <th style="text-align: center;">Nama & Tanda Tangan</th>
                             <th style="text-align: center;">No.Telepon</th>
                         </tr>
                         <tr>
-                            <td style="width: 25%;"><b>Petugas sampling/pengambil/pembawa sampel</b></td>
-                            <td>: <?= @$nama_pjb; ?></td>
-                            <td>: <?= @$no_telp_pjb; ?></td>
+                            <td style="width: 25%; font-size:11px;"><b>Petugas Sampling/Pengambil/Pembawa Sampel</b></td>
+                            <td style="font-size: 10px;"><?= @$nama_pjb; ?></td>
+                            <td style="font-size: 10px;"><?= @$no_telp_pjb; ?></td>
                         </tr>
                         <tr>
-                            <td><b>Penerima sampel</b></td>
-                            <td>: <?= @$penerima_sampel; ?></td>
-                            <td>: <?= @$no_telp_ps; ?></td>
+                            <td style="font-size: 11px;"><b>Penerima Sampel</b></td>
+                            <td style="font-size: 10px;"><?= @$penerima_sampel; ?></td>
+                            <td style="font-size: 10px;"><?= @$no_telp_ps; ?></td>
                         </tr>
                     </table>
                 </div>
         </div>
     </div>
-<script src="<?= base_url('assets/js/plugins/bootstrap.min.js'); ?>"></script>
-<script src="<?= base_url('assets/js/fontawesome.v6.3.0.all.js'); ?>"></script>
-
+    <script src="<?= base_url('assets/js/plugins/bootstrap.min.js'); ?>"></script>
+    <script src="<?= base_url('assets/js/fontawesome.v6.3.0.all.js'); ?>"></script>
 </body>
 </html>
