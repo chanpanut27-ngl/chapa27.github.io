@@ -129,10 +129,10 @@
                             <td>&nbsp;<?= $row['lokasi_pengambilan_sampel']; ?></td>
                             <td style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
                             <td>&nbsp;<?= $row['peraturan']; ?></td>
-                            <td><?= $row['metode_pemeriksaan']; ?></td>
+                            <td>&nbsp;<?= $row['metode_pemeriksaan']; ?></td>
                             <td style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
-                            <td><?= $row['jenis_wadah']; ?></td>
-                            <td><?= $row['jenis_pengawet']; ?></td>
+                            <td>&nbsp;<?= $row['jenis_wadah']; ?></td>
+                            <td>&nbsp;<?= $row['jenis_pengawet']; ?></td>
                         </tr>
                         <?php  }?>
                     <?php endforeach; ?>
@@ -145,7 +145,7 @@
                 <div class="col-md-12 mb-2">
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <tr>
-                            <td style="border: 1px solid black;">
+                            <td style="border: 1px solid black; font-size:11px;">
                                 Keterangan : <?= @$ket_lhu; ?><br>
                                 Parameter yang tidak dapat di uji : <?= @$paramater_tidak_dapat_di_uji; ?><br>
                                 Sub Kontrak : <?= @$sub_kontrak; ?><br>
@@ -155,8 +155,8 @@
                             </td>
                             <td>
                                 <div class="text-center ml-2">
-                                    <p><h5><b>&nbsp;&nbsp;&nbsp;Tidak Menerima Gratifikasi Dalam Bentuk Apapun</b></h5></p><br>
-                                    <label for="">Waktu Pemeriksaan Sampai ___ Hari Kerja</label>
+                                    <p><h5><b>&nbsp;&nbsp;&nbsp;Tidak Menerima Gratifikasi Dalam Bentuk Apapun</b></h5></p>
+                                    <h5 style="font-weight: bold;">Waktu Pemeriksaan Sampai ___ Hari Kerja</h5>
                                 </div>
                             </td>
                         </tr>
@@ -197,14 +197,14 @@
                 <div class="col-md-6">
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <tr>
-                            <th colspan="3" class="text-center">
+                            <th colspan="3" class="text-center" style="font-size: 11px;">
                                Jakarta, <?= $konversi_tanggal->konversi_tanggal(@$tgl_terima_sampel).', '. date('H:i', strtotime(@$jam_terima_sampel)); ?>
                             </th>
                         </tr>
-                        <tr>
+                        <tr style="text-align:center; font-size:11px; font-weight:bold;">
                             <th>Penanggung jawab</th>
-                            <th style="text-align: center;">Nama & Tanda Tangan</th>
-                            <th style="text-align: center;">No.Telepon</th>
+                            <th>Nama & Tanda Tangan</th>
+                            <th>No.Telepon</th>
                         </tr>
                         <tr>
                             <td style="width: 25%; font-size:11px;"><b>Petugas Sampling/Pengambil/Pembawa Sampel</b></td>

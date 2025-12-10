@@ -8,7 +8,6 @@
     $sampel_lingkungan = new SampelLingkunganModel();
     $konversi_tanggal = new PenanggungJawabLhuModel();
 
-
     foreach ($data_pelanggan as $dp) {
         $nama = $dp['nama'];
         $alamat = $dp['alamat'];
