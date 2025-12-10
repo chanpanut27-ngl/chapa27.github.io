@@ -54,8 +54,8 @@
             ];
             echo view('Backend/Modul/Pelayanan/Lhu/Kalibrasi-alat/index', $data);
         break;
-
-        case 'keterangan':
+        
+        case 'keterangan-1':
             $data = [
                 'title' => 'Keterangan',
                 'id_lab' => $id_lab,
@@ -63,6 +63,22 @@
             ];
             echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/index', $data);
             break;
+        case 'keterangan-2':
+            $data = [
+                'title' => 'Keterangan',
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar
+            ];
+            echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-penyakit/index', $data);
+        break; 
+        case 'keterangan-3':
+            $data = [
+                'title' => 'Keterangan',
+                'id_lab' => $id_lab,
+                'kode_pengantar' => $kode_pengantar
+            ];
+            echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-kalibrasi/index', $data);
+        break; 
         case 'kondisi_lingkungan_sekitar_sampel':
            $data = [
                 'title' => 'Kondisi lingkungan sekitar sampel',
