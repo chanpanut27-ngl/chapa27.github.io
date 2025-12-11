@@ -26,7 +26,7 @@
                     <div class="card-body p-2">
                         <?php
                         use App\Models\LaboratoriumModel;
-                                                                    use App\Models\LaboratoriumTujuanModel;
+                        use App\Models\LaboratoriumTujuanModel;
 
                         foreach ($items as $row) :  
                             $kode_pengantar = $row['kode_pengantar'];
@@ -87,32 +87,26 @@
                                     endforeach;
                                     $lab_tujuan = new LaboratoriumTujuanModel();
                                     $group_kat_lab = $lab_tujuan->get_data_by_group_kat_lab($kode_pengantar);
-                                    
+                                    $i = 1;
                                     foreach ($group_kat_lab  as $rs) : 
                                         $id_kat_lab = $rs['idkatlab'];
-                                        $ket_kat_lab = 'Lab. '.$rs['kategori'];
+                                        $kat_lab = 'Lab. '.$rs['kategori'];
                                     ?>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><?= $ket_kat_lab ?></a>
+                                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><?= $kat_lab ?></a>
                                             <ul class="dropdown-menu">
-                                                <?php if ($id_kat_lab == 1 || $id_kat_lab == 2) : ?>
                                                 <li>
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'keterangan' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'keterangan' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan-'.$id_kat_lab) ?>">Keterangan</a>
+                                                    <a class="nav-link <?= $id_lab == 'keterangan-'.$id_kat_lab ? 'active bg-success text-light bg-success fw-bold rounded' : ''; ?>" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan-'.$id_kat_lab) ?>">Keterangan</a>
                                                 </li>
                                                 <li>
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'kondisi_lingkungan_sekitar_sampel' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'kondisi_lingkungan_sekitar_sampel' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi_lingkungan_sekitar_sampel') ?>">Kondisi lingkungan sekitar sampel</a>
+                                                    <a class="nav-link <?= $id_lab == 'kondisi-lingkungan-'.$id_kat_lab ? 'active bg-success text-light bg-success fw-bold rounded' : ''; ?>" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi-lingkungan-'.$id_kat_lab) ?>">Kondisi lingkungan sekitar sampel</a>
                                                 </li>
                                                 <li>
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'kaji_ulang_permintaan_kontrak' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kaji_ulang_permintaan_kontrak') ?>">Kaji ulang permintaan & kontrak</a>
+                                                    <a class="nav-link <?= $id_lab == 'kaji-ulang-permintaan-kontrak-'.$id_kat_lab ? 'active bg-success text-light bg-success fw-bold rounded' : ''; ?>" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kaji-ulang-permintaan-kontrak-'.$id_kat_lab) ?>">Kaji ulang permintaan & kontrak</a>
                                                 </li>
                                                 <li>
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'penanggung_jawab' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'penanggung_jawab' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/penanggung_jawab') ?>">Penanggung jawab</a>
+                                                    <a class="nav-link" aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/penanggung_jawab') ?>">Penanggung jawab</a>
                                                 </li>
-                                                <?php else : ?>
-                                                <li>
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'keterangan' ? 'active bg-success text-light fw-bold rounded' : ''; ?>" <?= @$id_lab == 'keterangan' ? $bg : ''; ?> aria-current="page" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan-'.$id_kat_lab) ?>">Keterangan</a>
-                                                </li>
-                                                <?php endif;?>
                                             </ul>
                                         </li>
                                     <?php endforeach;?>

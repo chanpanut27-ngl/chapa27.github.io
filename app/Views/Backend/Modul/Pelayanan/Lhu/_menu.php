@@ -55,46 +55,46 @@
             echo view('Backend/Modul/Pelayanan/Lhu/Kalibrasi-alat/index', $data);
         break;
         
-        case 'keterangan-1':
+        case $id_lab:
             $data = [
                 'title' => 'Keterangan',
                 'id_lab' => $id_lab,
                 'kode_pengantar' => $kode_pengantar
             ];
-            echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/index', $data);
+
+            if ($id_lab == 'keterangan-1') {
+                echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/index', $data);
+            } else if ($id_lab == 'keterangan-2') {
+                echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-penyakit/index', $data);
+            } else {
+                echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-kalibrasi/index', $data);
+            }
+
+            if ($id_lab == 'kondisi-lingkungan-1') {
+                echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/index', $data);
+            } else if ($id_lab == 'kondisi-lingkungan-2') {
+                echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-penyakit/index', $data);
+            } else {
+                echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-kalibrasi/index', $data);
+            }
+
+            if ($id_lab == 'kaji-ulang-permintaan-kontrak-1') {
+                echo view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang/index', $data);
+            } else if ($id_lab == 'kaji-ulang-permintaan-kontrak-2') {
+                echo view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-penyakit/index', $data);
+            } else {
+                echo view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-kalibrasi/index', $data);
+            }
+
+            if ($id_lab == 'penanggung-jawab-1') {
+                echo view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/index', $data);
+            } else if ($id_lab == 'penanggung-jawab-2') {
+                echo view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab-penyakit/index', $data);
+            } else {
+                echo view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab-kalibrasi/index', $data);
+            }
             break;
-        case 'keterangan-2':
-            $data = [
-                'title' => 'Keterangan',
-                'id_lab' => $id_lab,
-                'kode_pengantar' => $kode_pengantar
-            ];
-            echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-penyakit/index', $data);
-        break; 
-        case 'keterangan-3':
-            $data = [
-                'title' => 'Keterangan',
-                'id_lab' => $id_lab,
-                'kode_pengantar' => $kode_pengantar
-            ];
-            echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-kalibrasi/index', $data);
-        break; 
-        case 'kondisi_lingkungan_sekitar_sampel':
-           $data = [
-                'title' => 'Kondisi lingkungan sekitar sampel',
-                'id_lab' => $id_lab,
-                'kode_pengantar' => $kode_pengantar
-            ];
-            echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/index', $data);
-            break;
-        case 'kaji_ulang_permintaan_kontrak':
-           $data = [
-                'title' => 'Kaji ulang permintaan & kontrak',
-                'id_lab' => $id_lab,
-                'kode_pengantar' => $kode_pengantar
-            ];
-            echo view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang/index', $data);
-            break;
+
         case 'penanggung_jawab':
            $data = [
                 'title' => 'Penanggung jawab',
