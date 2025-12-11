@@ -17,7 +17,7 @@
                 </button>
             </div>
         </div>
-        <div class="card-body p-4">
+        <div class="card-body p-2">
             <div class="view-data"></div>
         </div>
     </div>

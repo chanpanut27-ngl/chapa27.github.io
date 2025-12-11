@@ -71,6 +71,25 @@ class ProsesLhu extends ResourceController
      *
      * @return ResponseInterface
      */
+    public function pilih_menu($param1, $param2, $param3, $param4) 
+    {
+
+     $nama_lab = str_replace('_', ' ', $param1);
+     $kode_pengantar = $param2;
+     $id_lab = $param3;   
+     $id_kat_lab = $param4;   
+
+      $data = [
+            'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
+            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
+            'title' => ucwords($nama_lab),
+            'id_lab' => $id_lab,
+            'nama_lab' => $nama_lab,
+            'id_kat_lab' => $id_kat_lab,
+            'kode_pengantar' => $kode_pengantar
+        ];
+       return view('Backend/Modul/Pelayanan/Lhu/_pilih_menu', $data);
+    }
     public function keterangan($id = null)
     {
         $kode_pengantar = $id;

@@ -19,7 +19,7 @@
         </div>
         <div class="card-body p-4">
             Spesimen Penyakit
-            <div class="view-data"></div>
+            <div class="view-data-sp"></div>
         </div>
     </div>
 <?= $this->endSection(); ?>
@@ -37,14 +37,14 @@
         var id_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan/lhu/sampel-lingkungan/list-data'); ?>",
+            url: "<?= site_url('pelayanan/lhu/spesimen-penyakit/list-data'); ?>",
             dataType: 'json',
             data:{
                  id_lab:id_lab,
                  kode_pengantar:kode_pengantar
             },
             success: function(response) {
-                $(".view-data").html(response.data);
+                $(".view-data-sp").html(response.data);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);

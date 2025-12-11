@@ -2,7 +2,7 @@
     <thead style="font-family: arial;">
         <?php
         $arrth = [
-            'No', 'Kd.sampel', 'Jns.sampel', 'Lokasi pengambilan sampel', 
+            'No', 'Kd.sampel', 'Jns.sampel', 'Identitas sampel', 
             'Tgl/Jam pengambilan sampel', 'Peraturan', 'Metode pemeriksaan', 
             'Volume/Berat', 'Jns.wadah', 'Jns.pengawet', 'Status', '#'];
         echo '<tr>';

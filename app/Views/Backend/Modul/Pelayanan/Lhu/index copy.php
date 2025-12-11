@@ -77,7 +77,7 @@
                                     foreach ($menu_lab as $m) :
                                         $namaLab = strtolower($m['nama_lab']);
                                         echo '<br>';
-                                        $urlNamaLab = str_replace(' ', '_', $namaLab);
+                                        $urlNamaLab = str_replace(' ', '-', $namaLab);
                                         if (@$id_lab == $m['id_lab']) {
                                             $active = 'active bg-success text-light bg-success fw-bold rounded';
                                         }else{
@@ -85,7 +85,7 @@
                                         }
                                         ?>
                                         <li class="nav-item">
-                                            <a class="nav-link navtabs <?= $active ?>" aria-current="page" href="<?= base_url('pelayanan/proses-lhu/pilih-menu/'.$urlNamaLab.'/'.strtolower($kode_pengantar).'/'.$m['id_lab'].'/'.$m['id_kat_lab']) ?>"><?= $namaLab ?></a>
+                                            <a class="nav-link navtabs <?= $active ?>" aria-current="page" href="<?= base_url('pelayanan/proses-lhu/pilih-menu/'.$urlNamaLab.'/'.strtolower($kode_pengantar).'/'.'-'.$m['id_lab']) ?>"><?= $m['nama_lab'] ?></a>
                                         </li>
                                     <?php
                                     endforeach;
