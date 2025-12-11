@@ -1,10 +1,10 @@
-<table id="example" class="table table-responsive table-hover table-bordered">
-    <thead style="font-family: arial;">
+<table id="example" class="table table-hover table-bordered" style="width: 100%;">
+    <thead style="font-family: arial; font-size:12px;">
         <?php
         $arrth = [
-            'No', 'Kd.sampel', 'Jns.sampel', 'Lokasi pengambilan sampel', 
-            'Tgl/Jam pengambilan sampel', 'Peraturan', 'Metode pemeriksaan', 
-            'Volume/Berat', 'Jns.wadah', 'Jns.pengawet', 'Status', '#'];
+            'No', 'Kode sampel', 'Jenis sampel', 'Lokasi pengambilan sampel', 
+            'Tgl & jam pengambilan sampel', 'Peraturan', 'Metode pemeriksaan', 
+            'Volume/berat', 'Jenis wadah', 'Jenis pengawet', 'Status', '#'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . ucwords($th) . '</th>';
@@ -12,7 +12,7 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial;">
+    <tbody style="font-family: arial; font-size:12px;">
         <?php
         $no = 1;
         foreach ($items as $row) :

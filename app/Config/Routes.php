@@ -214,6 +214,7 @@ $routes->group('pelayanan/keterangan-lhu', function ($routes) {
 });
 
 
+
 /** Pelayanan kondisi lingkungan LHU **/
 $routes->group('pelayanan/kondisi-lingkungan-sekitar-sampel', function ($routes) {
     $routes->get('', 'KondisiLingkunganSekitarSampel::index');
