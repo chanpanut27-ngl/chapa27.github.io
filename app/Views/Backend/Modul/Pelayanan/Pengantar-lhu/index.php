@@ -26,10 +26,10 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
+                        <h4 style="font-family: verdana;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh" title="refresh">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh" style="color:lightgreen;"></span></span>
+                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                             </button>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">

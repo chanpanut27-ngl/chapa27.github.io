@@ -30,7 +30,7 @@
                         foreach ($items as $row) :  
                             $kode_pengantar = $row['kode_pengantar'];
                         ?>
-                        <div class="row">
+                        <div class="row" style="font-family: arial;">
                             <div class="col-md-2">
                                 <h5 class="card-title">Kode pengantar</h5>
                             </div>
@@ -74,8 +74,6 @@
                             <ul class="nav nav-tabs mb-1">
                                 <?php
                                     foreach ($menu_lab as $m) :
-                                        $nama_lab = $m['nama_lab'];
-                                        $urlNamaLab = str_replace(' ', '_', strtolower($nama_lab));
                                         if (@$id_lab == $m['id_lab']) {
                                             $active = 'active bg-success text-light bg-success fw-bold rounded';
                                         }else{
@@ -83,7 +81,7 @@
                                         }
                                         ?>
                                         <li class="nav-item">
-                                            <a class="nav-link navtabs <?= $active ?>" aria-current="page" href="<?= base_url('pelayanan/proses-lhu/pilih-menu/'.$urlNamaLab.'/'.strtolower($kode_pengantar).'/'.$m['id_lab'].'/'.$m['id_kat_lab']) ?>"><?= $nama_lab ?></a>
+                                            <a class="nav-link navtabs <?= $active ?>" aria-current="page" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab'].'/'.$m['id_kat_lab']) ?>"><?= $nama_lab ?></a>
                                         </li>
                                     <?php
                                     endforeach;

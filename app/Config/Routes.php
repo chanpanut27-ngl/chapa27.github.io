@@ -184,11 +184,11 @@ $routes->group('laboratorium-tujuan', function ($routes) {
 
 
 /** Setting LHU **/
-$routes->group('pelayanan/proses-lhu', function ($routes) {
-    $routes->get('index/(:any)', 'ProsesLhu::index/$1');
-    $routes->get('list-menu/(:any)', 'ProsesLhu::list_menu/$1');
-    $routes->get('pilih-menu/(:any)', 'ProsesLhu::pilih_menu/$1');
-    $routes->get('pilih-menu/keterangan(:any)', 'ProsesLhu::keterangan/$1');
+$routes->group('pelayanan/proses-pengantar-lhu', function ($routes) {
+    $routes->get('index/(:any)', 'ProsesPengantarLhu::index/$1');
+    $routes->get('list-menu/(:any)', 'ProsesPengantarLhu::list_menu/$1');
+    $routes->get('pilih-menu/(:any)', 'ProsesPengantarLhu::pilih_menu/$1');
+    $routes->get('pilih-menu/keterangan(:any)', 'ProsesPengantarLhu::keterangan/$1');
 });
 
 /** Pelayanan sampel lingkungan **/

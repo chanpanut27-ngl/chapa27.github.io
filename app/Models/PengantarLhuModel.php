@@ -54,7 +54,7 @@ class PengantarLhuModel extends Model
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lhu');
         $builder->select('pengantar_lhu.id as id_pengantar,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,master_pelanggan.nama,alamat,no_telp');
-        $builder->join("master_pelanggan", "master_pelanggan.id = pengantar_lhu.id_pelanggan");
+        $builder->join("master_pelanggan", "master_pelanggan.id = pengantar_lhu.id_pelanggan", "left");
         $query = $builder->get()->getResultArray();
         return $query;
     }
@@ -70,7 +70,7 @@ class PengantarLhuModel extends Model
         return $query;
     }
 
-     public function get_data_by_kode_pengantar($params)
+    public function get_data_by_kode_pengantar($params)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lhu');
@@ -80,4 +80,6 @@ class PengantarLhuModel extends Model
         $query = $builder->get()->getResultArray();
         return $query;
     }
+
+    
 }

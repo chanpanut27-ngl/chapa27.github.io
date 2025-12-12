@@ -19,11 +19,8 @@
                 <td><?= $row['nama_lab']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning rounded btn-sm" onclick="editData(<?= $row['id_lt']; ?>)" title="Edit data">
-                            <i class="fa-solid fa-edit"></i>
-                        </button>
                         <button type="button" class="btn btn-danger rounded btn-sm" onclick="deleteData(<?= $row['id_lt']; ?>)" title="Hapus data">
-                            <i class="fa-solid fa-trash-alt"></i>
+                            <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
                 </td>

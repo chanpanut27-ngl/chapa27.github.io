@@ -1,10 +1,13 @@
-<table id="example" class="table table-hover table-bordered">
+<table id="example" class="table table-responsive table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Kode Pengantar', 'Pelanggan', 'Alamat', 'No.Telp', 'Tanggal', 'Tahun', 'Status', ''];
+        $arrth = [
+            'No', 'Kode sampel', 'Jenis sampel', 'Identitas sampel', 
+            'Tgl/Jam pengambilan sampel', 'Peraturan', 'Metode pemeriksaan', 
+            'Volume/Berat', 'Jns.wadah', 'Jns.pengawet', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
-            echo '<th>' . $th . '</th>';
+            echo '<th>' . ucwords($th) . '</th>';
         endforeach;
         echo '</tr>';
         ?>
@@ -13,27 +16,32 @@
         <?php
         $no = 1;
         foreach ($items as $row) :
+            if ($row['sts_psl'] == 1) {
+                $status = '<span class="badge bg-success rounded">Aktif</span>';
+            }else {
+                $status = '<span class="badge bg-secondary rounded">Tidak aktif</span>';
+            }
         ?>
-            <tr id="myId-<?= $row['id_pengantar']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_psl']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['kode_pengantar']; ?></td>
-                <td><?= $row['nama']; ?></td>
-                <td><?= $row['alamat']; ?></td>
-                <td><?= $row['no_telp']; ?></td>
-                <td><?= date('d/m/Y', strtotime($row['tanggal'])); ?></td>
-                <td><?= $row['tahun']; ?></td>
-                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
+                <td><?= $row['kode_sampel']; ?></td>
+                <td><?= $row['jenis_sampel']; ?></td>
+                <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
+                <td><?= date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
+                <td><?= $row['peraturan']; ?></td>
+                <td><?= $row['metode_pemeriksaan']; ?></td>
+                <td><?= $row['volume_atau_berat']; ?></td>
+                <td><?= $row['jenis_wadah']; ?></td>
+                <td><?= $row['jenis_pengawet']; ?></td>
+                <td><?= $status; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                       <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id_psl']; ?>)" title="Edit data">
+                            <span class="fa-solid fa-edit"></span>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_psl']; ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
-                        <a href="<?= base_url('laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Lab tujuan">
-                            <span class="fa-solid fa-flask"></span>
-                        </a>
-                        <a href="<?= base_url('pelayanan/proses-pengantar-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-success rounded btn-sm" title="Proses pengantar LHU">
-                            <span class="fa-solid fa-arrow-circle-right"></span>
-                        </a>
                     </div>
                 </td>
             </tr>
@@ -41,10 +49,10 @@
     </tbody>
 </table>
 <script>
-    function addLabTujuan(id) {
-       $.ajax({
+    function editData(id) {
+        $.ajax({
             type: 'get',
-            url: '<?= site_url('laboratorium-tujuan/index'); ?>' + id,
+            url: '<?= site_url('pelayanan/lhu/sampel-lingkungan/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -57,6 +65,7 @@
             }
         })
     }
+
 
     function deleteData(id) {
         var myElement = $('#myId-' + id);
@@ -76,17 +85,10 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lhu/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/lhu/sampel-lingkungan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
-                        if (response.error) {
-                            Swal.fire({
-                                title: "Gagal!",
-                                text: response.error,
-                                icon: "error"
-                            });
-                            myElement.removeClass('bg bg-danger');
-                        } else {
+                        if (response.sukses) {
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,

@@ -85,4 +85,17 @@ class LaboratoriumTujuanModel extends Model
         $query = $builder->get()->getResultArray();
         return $query;
     }
+
+    public function get_data_kategori_lab($params1, $params2)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('laboratorium_tujuan');
+        $builder->select('laboratorium_tujuan.kode_pengantar,laboratorium_tujuan.id_laboratorium,master_laboratorium.nama_lab, master_kategori_lab.id AS id_kat_lab, master_kategori_lab.kategori');
+        $builder->join('master_laboratorium', 'master_laboratorium.id = laboratorium_tujuan.id_laboratorium', 'left');
+        $builder->join('master_kategori_lab', 'master_kategori_lab.id = master_laboratorium.id_kat_lab', 'left');
+        $builder->where('kode_pengantar', $params1);
+        $builder->where('id_laboratorium', $params2);
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
 }
