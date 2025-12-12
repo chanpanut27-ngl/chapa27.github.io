@@ -71,7 +71,7 @@ class ProsesLhu extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function pilih_menu($param1, $param2, $param3, $param4) 
+    public function pilih_menu($param1 = null, $param2 = null, $param3 = null, $param4 = null) 
     {
 
      $nama_lab = str_replace('_', ' ', $param1);
@@ -90,9 +90,9 @@ class ProsesLhu extends ResourceController
         ];
        return view('Backend/Modul/Pelayanan/Lhu/_pilih_menu', $data);
     }
-    public function keterangan($id = null)
+    public function keterangan($param1 = null, $param2 = null)
     {
-        $kode_pengantar = $id;
+        $kode_pengantar = $param1;
         $data = [
             'title' => 'Keterangan',
             'kode_pengantar' => $kode_pengantar

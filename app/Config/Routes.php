@@ -22,7 +22,7 @@ $routes->group('pelayanan/pengantar-lhu', function ($routes) {
 });
 /** **/
 
-
+/** Kumpulan file **/
 /** File Peraturan **/
 $routes->group('file-peraturan/reader', function ($routes) {
     $routes->get('standar-pelayanan', 'FileReader::standar_pelayanan');
@@ -188,7 +188,7 @@ $routes->group('pelayanan/proses-lhu', function ($routes) {
     $routes->get('index/(:any)', 'ProsesLhu::index/$1');
     $routes->get('list-menu/(:any)', 'ProsesLhu::list_menu/$1');
     $routes->get('pilih-menu/(:any)', 'ProsesLhu::pilih_menu/$1');
-
+    $routes->get('pilih-menu/keterangan(:any)', 'ProsesLhu::keterangan/$1');
 });
 
 /** Pelayanan sampel lingkungan **/

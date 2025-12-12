@@ -25,7 +25,6 @@
                     </div>
                     <div class="card-body p-2">
                         <?php
-                        use App\Models\LaboratoriumModel;
                         use App\Models\LaboratoriumTujuanModel;
 
                         foreach ($items as $row) :  
@@ -75,9 +74,8 @@
                             <ul class="nav nav-tabs mb-1">
                                 <?php
                                     foreach ($menu_lab as $m) :
-                                        $namaLab = strtolower($m['nama_lab']);
-                                        echo '<br>';
-                                        $urlNamaLab = str_replace(' ', '_', $namaLab);
+                                        $nama_lab = $m['nama_lab'];
+                                        $urlNamaLab = str_replace(' ', '_', strtolower($nama_lab));
                                         if (@$id_lab == $m['id_lab']) {
                                             $active = 'active bg-success text-light bg-success fw-bold rounded';
                                         }else{
@@ -85,7 +83,7 @@
                                         }
                                         ?>
                                         <li class="nav-item">
-                                            <a class="nav-link navtabs <?= $active ?>" aria-current="page" href="<?= base_url('pelayanan/proses-lhu/pilih-menu/'.$urlNamaLab.'/'.strtolower($kode_pengantar).'/'.$m['id_lab'].'/'.$m['id_kat_lab']) ?>"><?= $namaLab ?></a>
+                                            <a class="nav-link navtabs <?= $active ?>" aria-current="page" href="<?= base_url('pelayanan/proses-lhu/pilih-menu/'.$urlNamaLab.'/'.strtolower($kode_pengantar).'/'.$m['id_lab'].'/'.$m['id_kat_lab']) ?>"><?= $nama_lab ?></a>
                                         </li>
                                     <?php
                                     endforeach;
@@ -94,13 +92,13 @@
 
                                     foreach ($group_kat_lab  as $rs) : 
                                         $id_kat_lab = $rs['idkatlab'];
-                                        $kat_lab = 'Lab. '.$rs['kategori'];
+                                        $kat_lab = 'Catatan Lab. '.$rs['kategori'];
                                     ?>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><?= $kat_lab ?></a>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a class="nav-link <?= $id_lab == 'keterangan-'.$id_kat_lab ? 'active bg-success text-light bg-success fw-bold rounded' : ''; ?>" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/keterangan-'.$id_kat_lab) ?>">Keterangan</a>
+                                                    <a class="nav-link" href="<?= base_url('pelayanan/proses-lhu/pilih-menu/keterangan/'.strtolower($kode_pengantar).'/'.$m['id_kat_lab']) ?>">Keterangan</a>
                                                 </li>
                                                 <li>
                                                     <a class="nav-link <?= $id_lab == 'kondisi-lingkungan-'.$id_kat_lab ? 'active bg-success text-light bg-success fw-bold rounded' : ''; ?>" href="<?= base_url('pelayanan/proses-lhu/list-menu/'.strtolower($kode_pengantar).'/kondisi-lingkungan-'.$id_kat_lab) ?>">Kondisi lingkungan sekitar sampel</a>

@@ -31,6 +31,8 @@
         // 'id_kat_lab' => $id_kat_lab,
     ];
 
+    var_dump($id_lab);
+
     if ($id_kat_lab == 1) {
         echo view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/index', $data);
     } else if ($id_kat_lab == 2) {
@@ -38,6 +40,8 @@
     } else {
         echo view('Backend/Modul/Pelayanan/Lhu/Kalibrasi-alat/index', $data);
     }
+
+   
    
 ?>
 
