@@ -19,7 +19,7 @@
                 <td><?= $row['kode_coolbox']; ?></td>
                 <td><?= $row['nama_instansi']; ?></td>
                 <td><?= $row['wilayah']; ?></td>
-                <td><?= $row['aktif_coolbox'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
+                <td><?= $row['aktif_coolbox'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id_coolbox']; ?>)" title="Edit data">

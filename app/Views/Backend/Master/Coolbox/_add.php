@@ -3,14 +3,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/coolbox/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                    <div class="mb-3">
-                        <label for="id-instansi" class="form-label h4" style="font-family: calibri;">Instansi</label>
+                        <label for="id-instansi" class="form-label h4" style="font-family: arial;">Instansi</label>
                         <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php

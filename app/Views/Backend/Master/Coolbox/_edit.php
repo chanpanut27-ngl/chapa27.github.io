@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/coolbox/update-data'); ?>" class="form-data">
@@ -11,7 +11,7 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                    <div class="mb-3">
-                        <label for="id-instansi" class="form-label h4" style="font-family: calibri;">Instansi</label>
+                        <label for="id-instansi" class="form-label h4" style="font-family: arial;">Instansi</label>
                         <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
@@ -25,7 +25,7 @@
                         <div class="invalid-feedback errorAsalInstansi"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <label for="is-active" class="form-label h4" style="font-family: arial;">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
