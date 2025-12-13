@@ -106,13 +106,22 @@ class BiayaAkomodasi extends ResourceController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'uang_harian' => [
+                    'label' => 'Uang harian',
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong',
+                        'numeric' => '{field} harus angka'
+                    ]
                 ]
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'uraian' => $this->validation->getError('uraian')
+                        'uraian' => $this->validation->getError('uraian'),
+                        'uang_harian' => $this->validation->getError('uang_harian')
                     ]
                 ];
             } else {
@@ -173,13 +182,22 @@ class BiayaAkomodasi extends ResourceController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'uang_harian' => [
+                    'label' => 'Uang harian',
+                    'rules' => 'required|numeric',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong',
+                        'numeric' => '{field} harus angka'
+                    ]
                 ]
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'uraian' => $this->validation->getError('uraian')
+                        'uraian' => $this->validation->getError('uraian'),
+                        'uang_harian' => $this->validation->getError('uang_harian')
                     ]
                 ];
             } else {

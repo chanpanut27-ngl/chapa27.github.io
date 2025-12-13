@@ -3,24 +3,24 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/biaya-akomodasi/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="uraian" class="form-label h4" style="font-family: calibri;">Uraian</label>
+                        <label for="uraian" class="form-label h4" style="font-family: arial;">Uraian</label>
                         <input type="text" name="uraian" class="form-control" id="uraian" autocomplete="off">
                         <div class="invalid-feedback errorUraian"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="transport" class="form-label h4" style="font-family: calibri;">Transport</label>
+                        <label for="transport" class="form-label h4" style="font-family: arial;">Transport</label>
                         <input type="text" name="transport" class="form-control" id="transport" autocomplete="off">
                         <div class="invalid-feedback errorTransport"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="uang-harian" class="form-label h4" style="font-family: calibri;">Uang harian</label>
+                        <label for="uang-harian" class="form-label h4" style="font-family: arial;">Uang harian</label>
                         <input type="text" name="uang_harian" class="form-control" id="uang-harian" autocomplete="off">
                         <div class="invalid-feedback errorUangHarian"></div>
                     </div>
@@ -62,6 +62,13 @@
                         } else {
                             $('#uraian').removeClass('is-invalid');
                             $('.errorUraian').html('');
+                        }
+                        if (err.uang_harian) {
+                            $("#uang-harian").addClass('is-invalid');
+                            $('.errorUangHarian').html(err.uang_harian);
+                        } else {
+                            $('#uang-harian').removeClass('is-invalid');
+                            $('.errorUangHarian').html('');
                         }
                     } else {
                         Swal.fire({

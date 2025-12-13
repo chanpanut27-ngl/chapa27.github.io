@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/biaya-akomodasi/update-data'); ?>" class="form-data">
@@ -11,22 +11,22 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="uraian" class="form-label h4" style="font-family: calibri;">Uraian</label>
+                        <label for="uraian" class="form-label h4" style="font-family: arial;">Uraian</label>
                         <input type="text" name="uraian" value="<?= $items['uraian']; ?>" class="form-control" id="uraian" autocomplete="off">
                         <div class="invalid-feedback errorUraian"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="transport" class="form-label h4" style="font-family: calibri;">Transport</label>
+                        <label for="transport" class="form-label h4" style="font-family: arial;">Transport</label>
                         <input type="text" name="transport" value="<?= $items['transport']; ?>" class="form-control" id="transport" autocomplete="off">
                         <div class="invalid-feedback errorTransport"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="uang-harian" class="form-label h4" style="font-family: calibri;">Uang harian</label>
+                        <label for="uang-harian" class="form-label h4" style="font-family: arial;">Uang harian</label>
                         <input type="text" name="uang_harian" value="<?= $items['uang_harian']; ?>" class="form-control" id="uang-harian" autocomplete="off">
                         <div class="invalid-feedback errorUangHarian"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <label for="is-active" class="form-label h4" style="font-family: arial;">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
