@@ -17,7 +17,7 @@
             <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['penyakit']; ?></td>
-                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
+                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">

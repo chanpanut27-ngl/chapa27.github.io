@@ -16,7 +16,7 @@
                         <div class="invalid-feedback errorNamaInstalasi"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <label for="is-active" class="form-label h4" style="font-family: arial;">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [

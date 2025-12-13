@@ -3,14 +3,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/penyakit/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="penyakit" class="form-label h4" style="font-family: calibri;">Penyakit</label>
+                        <label for="penyakit" class="form-label h4" style="font-family: arial;">Penyakit</label>
                         <input type="text" name="penyakit" class="form-control" id="penyakit" autocomplete="off">
                         <div class="invalid-feedback errorPenyakit"></div>
                     </div>
