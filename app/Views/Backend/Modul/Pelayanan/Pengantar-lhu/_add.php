@@ -9,9 +9,11 @@
             <form action="<?= base_url('pelayanan/pengantar-lhu/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
-                    <div class="mb-3">
+                    <div class="mb-1">
                         <label for="pelanggan" class="form-label h5">Pelanggan</label>
-                        <select name="id_pelanggan" class="form-select" id="pelanggan" aria-label="Default select example">
+                    </div>
+                    <div class="mb-3">
+                        <select name="id_pelanggan" class="form-control" id="pelanggan" style="width: 100%;" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php 
                             foreach ($masterPelanggan as $row) :
@@ -37,11 +39,18 @@
 </div>
 <script>
     $(document).ready(function() {
+        // In your Javascript (external .js resource or <script> tag)
+        $('#pelanggan').select2({
+            dropdownParent: $('#exampleModal') // Ganti '#myModal' dengan ID modal Anda
+        });
+
         var dateToday = new Date();
-        $( "#tanggal" ).datepicker(
+        $("#tanggal").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "+1w",  inDate: dateToday});
+                defaultDate: "+1w",  inDate: dateToday
+            }
+        );
        
         $(".form-data").submit(function(e) {
             e.preventDefault();
