@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Kode instalasi', 'Nama instalasi', 'status', ''];
+        $arrth = ['No', 'Kode instalasi', 'Nama instalasi', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -18,7 +18,7 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_instalasi']; ?></td>
                 <td><?= $row['nama_instalasi']; ?></td>
-                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
+                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning rounded btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">

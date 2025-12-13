@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Kategori', 'status', ''];
+        $arrth = ['No', 'Kategori', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -17,7 +17,7 @@
             <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kategori']; ?></td>
-                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success">Aktif</span>' : '<span class="badge bg-secondary">Tidak aktif</span>'; ?></td>
+                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning rounded btn-sm" onclick="editData(<?= $row['id']; ?>)" title="Edit data">

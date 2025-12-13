@@ -12,7 +12,7 @@ class InstalasiModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode_instalasi', 'nama_instalasi'];
+    protected $allowedFields    = ['kode_instalasi', 'nama_instalasi', 'is_active'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

@@ -188,7 +188,8 @@ class InstalasiMaster extends ResourceController
             } else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
-                    'nama_instalasi' => $this->request->getVar('nama_instalasi')
+                    'nama_instalasi' => $this->request->getVar('nama_instalasi'),
+                    'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
                 $msg = [

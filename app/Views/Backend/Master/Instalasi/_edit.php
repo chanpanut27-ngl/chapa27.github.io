@@ -15,6 +15,22 @@
                         <input type="text" name="nama_instalasi" value="<?= $items['nama_instalasi'] ?>" class="form-control" id="nama-instalasi">
                         <div class="invalid-feedback errorNamaInstalasi"></div>
                     </div>
+                    <div class="mb-3">
+                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
+                            <?php
+                            $_isActive = [
+                                '1' => 'Aktif', '0' => 'Tidak aktif'
+                            ];
+                            foreach ($_isActive as $r => $s) :
+                            ?>
+                                <option value="<?= $r; ?>" <?= $items['is_active'] == $r ? 'selected' : ''; ?>><?= $s; ?></option>
+                            <?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorIsActive"></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><i class="fas fa-edit"></i> Ubah</button>

@@ -173,7 +173,8 @@ class KategoriLabMaster extends ResourceController
             } else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
-                    'kategori' => $this->request->getVar('kategori')
+                    'kategori' => $this->request->getVar('kategori'),
+                    'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
                 $msg = [
