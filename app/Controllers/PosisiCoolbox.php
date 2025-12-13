@@ -143,8 +143,7 @@ class PosisiCoolbox extends ResourceController
                     'id_coolbox' => $idCoolbox,
                     'status' => $status,
                     'tanggal' => $tanggal,
-                    'jam' => $this->request->getVar('jam'),
-                    'keterangan' => $this->request->getVar('keterangan')
+                    'jam' => $this->request->getVar('jam')
                 ];
                 $this->model->insert($simpandata);
                 $msg = [
@@ -232,16 +231,17 @@ class PosisiCoolbox extends ResourceController
                 ];
             } else if ($cek_data) {
                 $msg = [
-                    'error' => 'Data gagal disimpan'
+                    'error' => 'Data gagal diubah'
                 ];
-            } else {
+
+            }else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
                     'id_coolbox' => $idCoolbox,
                     'status' => $status,
                     'tanggal' => $tanggal,
                     'jam' => $this->request->getVar('jam'),
-                    'keterangan' => $this->request->getVar('keterangan')
+                    'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
                 $msg = [

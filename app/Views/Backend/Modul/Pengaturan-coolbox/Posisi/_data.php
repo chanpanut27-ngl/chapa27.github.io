@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
-        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Status', 'Tgl & Jam', 'Keterangan', 'foto', ''];
+        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Status', 'Tgl & Jam', 'Keterangan', 'foto', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -27,12 +27,13 @@
                 <td><?= $row['nama_instansi']; ?></td>
                 <td><?= $status; ?></td>
                 <td><?= date('d/m/Y', strtotime($row['tanggal'])).' '. date('H:i', strtotime($row['jam'])); ?></td>
-                <td><?= $row['keterangan']; ?></td>
+                <td><?= $row['ket_coolbox']; ?></td>
                 <td>
                     <a href="<?= base_url('Uploads/Coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" target="_blank" rel="noopener noreferrer">
                         <img src="<?= base_url('Uploads/Coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" class="img-fluid" style="width: 100px; height:50px;">
                     </a>
                 </td>
+                <td><?= $row['active_posisi'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-secondary rounded btn-sm" onclick="addFoto(<?= $row['idx']; ?>)" title="Input Foto">

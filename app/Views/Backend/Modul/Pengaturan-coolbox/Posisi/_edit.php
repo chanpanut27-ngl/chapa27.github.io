@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;">
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;">
                     <span class="fa-solid fa-edit"></span> <?= $title; ?>
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -46,8 +46,20 @@
                         <input type="time" name="jam" value="<?= $items['jam']; ?>" class="form-control" id="jam" autocomplete="off">
                     </div>
                     <div class="mb-3">
-                        <label for="ket-coolbox" class="form-label h4">Keterangan</label>
-                        <textarea name="keterangan" class="form-control" id="ket-coolbox"><?= $items['keterangan']; ?></textarea>
+                        <label for="is-active" class="form-label h5" style="font-family: arial;">Status</label>
+                        <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
+                            <?php
+                            $_isActive = [
+                                '1' => 'Aktif', '0' => 'Tidak aktif'
+                            ];
+                            foreach ($_isActive as $r => $s) :
+                            ?>
+                                <option value="<?= $r; ?>" <?= $items['is_active'] == $r ? 'selected' : ''; ?>><?= $s; ?></option>
+                            <?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorIsActive"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

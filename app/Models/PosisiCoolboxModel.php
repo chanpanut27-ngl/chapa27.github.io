@@ -12,7 +12,7 @@ class PosisiCoolboxModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id_coolbox', 'status', 'tanggal', 'jam', 'keterangan', 'foto'];
+    protected $allowedFields    = ['id_coolbox', 'status', 'tanggal', 'jam', 'keterangan', 'foto', 'is_active'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -60,7 +60,8 @@ class PosisiCoolboxModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('posisi_coolbox');
-        $builder->select('posisi_coolbox.id as idx, master_coolbox.id AS id_coolbox, master_coolbox.kode_coolbox, posisi_coolbox.status,tanggal,jam,keterangan,foto, master_instansi.nama_instansi');
+        $builder->select('posisi_coolbox.id as idx, master_coolbox.id AS id_coolbox, master_coolbox.kode_coolbox, posisi_coolbox.status,tanggal,jam,foto,posisi_coolbox.keterangan AS ket_coolbox,
+        posisi_coolbox.is_active AS active_posisi, master_instansi.nama_instansi');
         $builder->join("master_coolbox", "master_coolbox.id = posisi_coolbox.id_coolbox");
         $builder->join("master_instansi", "master_instansi.id = master_coolbox.id_instansi");
         $builder->orderBy('kode_coolbox', 'ASC');

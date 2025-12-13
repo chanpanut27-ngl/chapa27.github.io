@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;">
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;">
                     <span class="fa-solid fa-plus-square"></span> <?= $title; ?>
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -12,7 +12,7 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="id-coolbox" class="form-label h4" style="font-family: calibri;">Kode coolbox</label>
+                        <label for="id-coolbox" class="form-label h4" style="font-family: arial;">Kode coolbox</label>
                         <select name="id_coolbox" class="form-select" id="id-coolbox" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
@@ -43,10 +43,6 @@
                     <div class="mb-3">
                         <label for="jam" class="form-label h4">Jam</label>
                         <input type="time" name="jam" class="form-control" id="jam" autocomplete="off">
-                    </div>
-                    <div class="mb-3">
-                        <label for="ket-coolbox" class="form-label h4">Keterangan</label>
-                        <textarea name="keterangan" class="form-control" id="ket-coolbox"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
