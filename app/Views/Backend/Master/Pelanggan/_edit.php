@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/pelanggan/update-data'); ?>" class="form-data">
@@ -88,6 +88,13 @@
                         } else {
                             $('#alamat-pelanggan').removeClass('is-invalid');
                             $('.errorAlamatPelanggan').html('');
+                        }
+                        if (response.error.no_telp) {
+                            $('#no-telp').addClass('is-invalid');
+                            $('.errorNoTelp').html(response.error.no_telp);
+                        } else {
+                            $('#no-telp').removeClass('is-invalid');
+                            $('.errorNoTelp').html('');
                         }
                     } else {
                         Swal.fire({

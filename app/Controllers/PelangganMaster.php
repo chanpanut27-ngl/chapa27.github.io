@@ -205,10 +205,9 @@ class PelangganMaster extends ResourceController
                 ],
                 'no_telp' => [
                     'label' => 'No.Telepon',
-                    'rules' => 'required|numeric',
+                    'rules' => 'required',
                     'errors' => [
-                        'required' => '{field} tidak boleh kosong',
-                        'numeric' => '{field} harus angka'
+                        'required' => '{field} tidak boleh kosong'
                     ]
                 ],
                 'nama_pjb' => [
