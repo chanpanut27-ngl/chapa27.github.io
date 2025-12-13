@@ -82,6 +82,13 @@
                             $('#no-telp').removeClass('is-invalid');
                             $('.errorNoTelp').html('');
                         }
+                        if (err.nama_pjb) {
+                            $('#nama-pjb').addClass('is-invalid');
+                            $('.errorNamaPjb').html(err.nama_pjb);
+                        } else {
+                            $('#nama-pjb').removeClass('is-invalid');
+                            $('.errorNamaPjb').html('');
+                        }
                     } else {
                         Swal.fire({
                             title: "Berhasil",

@@ -70,21 +70,21 @@
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');
-                    $('.btn-ubah').html('<span class="fa-solid fa-save"></span> Ubah');
+                    $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
                 },
                 success: function(response) {
                     if (response.error) {
 
                         if (response.error.nama) {
                             $('#nama-pelanggan').addClass('is-invalid');
-                            $('.errorNamaPelanggan').html(response.error.nama);
+                            $('.errorNamaPelanggan').html(err.nama);
                         } else {
                             $('#nama-pelanggan').removeClass('is-invalid');
                             $('.errorNamaPelanggan').html('');
                         }
                         if (response.error.alamat) {
                             $('#alamat-pelanggan').addClass('is-invalid');
-                            $('.errorAlamatPelanggan').html(err.alamat);
+                            $('.errorAlamatPelanggan').html(response.error.alamat);
                         } else {
                             $('#alamat-pelanggan').removeClass('is-invalid');
                             $('.errorAlamatPelanggan').html('');
@@ -95,6 +95,13 @@
                         } else {
                             $('#no-telp').removeClass('is-invalid');
                             $('.errorNoTelp').html('');
+                        }
+                        if (response.error.nama_pjb) {
+                            $('#nama-pjb').addClass('is-invalid');
+                            $('.errorNamaPjb').html(response.error.nama_pjb);
+                        } else {
+                            $('#nama-pjb').removeClass('is-invalid');
+                            $('.errorNamaPjb').html('');
                         }
                     } else {
                         Swal.fire({
