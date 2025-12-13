@@ -238,7 +238,7 @@
                                 <use xlink:href="#biaya-akomodasi"></use>
                             </svg>
                         </span>
-                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Biaya Akomodasi</span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Biaya akomodasi</span>
                     </a>
                 </li>
                 <li class="pc-item">
@@ -258,7 +258,7 @@
                                 <use xlink:href="#peraturan-baku-mutu"></use>
                             </svg>
                         </span>
-                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Peraturan/Baku Mutu</span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Peraturan/baku mutu</span>
                     </a>
                 </li>
                 <li class="pc-item">
