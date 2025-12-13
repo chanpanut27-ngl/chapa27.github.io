@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
 use App\Models\SampelLingkunganModel;
+use App\Models\SpesimenPenyakitModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\RESTful\ResourceController;
@@ -25,7 +26,7 @@ class SpesimenPenyakit extends ResourceController
 
     public function __construct()
     {
-        $this->model = new SampelLingkunganModel();
+        $this->model = new SpesimenPenyakitModel();
         $this->masterJenisSampel = new JenisSampelModel();
         $this->masterLab = new LaboratoriumModel();
         $this->validation = \Config\Services::validation();
@@ -115,6 +116,7 @@ class SpesimenPenyakit extends ResourceController
             $kode_pengantar = $this->request->getVar('kode_pengantar');
             $lab = $this->masterLab->find($id_lab);
             $nama_lab = $lab['nama_lab'];
+
             $data = [
                 'title' => 'Tambah ' . $nama_lab,
                 'masterLab' => $this->model->findAll(),
@@ -124,7 +126,7 @@ class SpesimenPenyakit extends ResourceController
                 'kode_pengantar' => $kode_pengantar
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Spesimen-penyakit/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -151,22 +153,22 @@ class SpesimenPenyakit extends ResourceController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'lokasi_pengambilan_sampel' => [
-                    'label' => 'Lokasi pengambilan sampel',
+                'identitas_sampel' => [
+                    'label' => 'Identitas sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'tgl_ambil_sampel' => [
-                    'label' => 'Tanggal pengambilan sampel',
+                'tgl_periksa_sampel' => [
+                    'label' => 'Tanggal periksa sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'jam_ambil_sampel' => [
-                    'label' => 'Jam pengambilan sampel',
+                'jam_periksa_sampel' => [
+                    'label' => 'Jam periksa sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -178,22 +180,22 @@ class SpesimenPenyakit extends ResourceController
                 $msg = [
                     'error' => [
                         'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel'),
-                        'lokasi_pengambilan_sampel' => $this->validation->getError('lokasi_pengambilan_sampel'),
-                        'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
-                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel'),
+                        'identitas_sampel' => $this->validation->getError('identitas_sampel'),
+                        'tgl_periksa_sampel' => $this->validation->getError('tgl_periksa_sampel'),
+                        'jam_periksa_sampel' => $this->validation->getError('jam_periksa_sampel'),
                     ]
                 ];
             } else {
                 $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
-                $tgl_ambil_sampel = date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel')));
-                $jam_ambil_sampel = date('H:i:s', strtotime($this->request->getVar('jam_ambil_sampel')));
+                $tgl_periksa_sampel = date('Y-m-d', strtotime($this->request->getVar('tgl_periksa_sampel')));
+                $jam_periksa_sampel = date('H:i:s', strtotime($this->request->getVar('jam_periksa_sampel')));
 
                 $simpandata = [
                     'kode_sampel' => $this->generate_kode_sampel($id_laboratorium, $id_jenis_sampel),
                     'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
-                    'lokasi_pengambilan_sampel' => $this->request->getVar('lokasi_pengambilan_sampel'),
-                    'tgl_ambil_sampel' => $tgl_ambil_sampel,
-                    'jam_ambil_sampel' => $jam_ambil_sampel,
+                    'identitas_sampel' => $this->request->getVar('identitas_sampel'),
+                    'tgl_periksa_sampel' => $tgl_periksa_sampel,
+                    'jam_periksa_sampel' => $jam_periksa_sampel,
                     'metode_pemeriksaan' => $this->request->getVar('metode_pemeriksaan'),
                     'volume_atau_berat' => $this->request->getVar('volume_berat'),
                     'jenis_wadah' => $this->request->getVar('jenis_wadah'),
@@ -234,7 +236,7 @@ class SpesimenPenyakit extends ResourceController
                 ->where('is_active', 1)->find()
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/_edit', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Spesimen-penyakit/_edit', $data)
             ];
             echo json_encode($msg);
         }else{

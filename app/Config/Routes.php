@@ -44,6 +44,10 @@ $routes->group('file-formulir/reader', function ($routes) {
     $routes->get('permintaan-pengujian-spesimen-klinis', 'FormulirReader::permintaan_pengujian_spesimen_klinis');
 });
 
+$routes->group('file-booklet/reader', function ($routes) {
+    $routes->get('booklet-3', 'BookletReader::booklet_3');
+});
+
 /** Modul pengaturan coolbox **/
 /** posisi coolbox **/
 $routes->group('pengaturan-coolbox/posisi-coolbox', function ($routes) {

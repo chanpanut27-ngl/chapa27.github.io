@@ -6,6 +6,7 @@
 
 <?= $this->section('content_menu'); ?>
     <div class="card">
+        <?= $id_lab ?>
         <div class="card-header p-2">
             <div class="d-flex justify-content-end align-items-center gap-1">    
                 <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
@@ -17,9 +18,8 @@
                 </button>
             </div>
         </div>
-        <div class="card-body p-4">
-            Spesimen Penyakit
-            <div class="view-data-sp"></div>
+        <div class="card-body p-2">
+            <div class="view-data"></div>
         </div>
     </div>
 <?= $this->endSection(); ?>
@@ -44,7 +44,7 @@
                  kode_pengantar:kode_pengantar
             },
             success: function(response) {
-                $(".view-data-sp").html(response.data);
+                $(".view-data").html(response.data);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
@@ -60,7 +60,7 @@
             var id_lab = $(this).data("id");
             var kode_pengantar = $(this).data('kode');
             $.ajax({
-                url: "<?= site_url('pelayanan/lhu/sampel-lingkungan/add-data'); ?>",
+                url: "<?= site_url('pelayanan/lhu/spesimen-penyakit/add-data'); ?>",
                 dataType: 'json',
                 data:{
                     id_lab:id_lab,

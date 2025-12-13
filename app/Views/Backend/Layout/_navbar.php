@@ -145,6 +145,16 @@
                         </li>
                     </ul>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('file-booklet/reader/booklet-3'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#booklet"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-book"></span> Booklet</span>
+                    </a>
+                </li>
                 <li class="pc-item pc-caption">
                     <label data-i18n="Widget">Pengaturan Coolbox</label>
                     <i class="pc-micon">
