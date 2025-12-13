@@ -31,13 +31,24 @@
                         <div class="invalid-feedback errorLantai"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="instalasi" class="form-label h5">Instalasi</label>
-                        <select name="kode_instalasi" class="form-select" id="instalasi" aria-label="Default select example">
+                        <label for="kode-instalasi" class="form-label h5">Instalasi</label>
+                        <select name="kode_instalasi" class="form-select" id="kode-instalasi" aria-label="Default select example">
                             <?php foreach ($masterInstalasi as $key) : ?>
+                                <option value="">-- pilih --</option>
                                 <option value="<?= $key['kode_instalasi'] ?>"><?= $key['nama_instalasi'] ?></option>
                             <?php endforeach;?>
                         </select>
                         <div class="invalid-feedback errorKodeInstalasi"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kategori" class="form-label h5">Kategori</label>
+                        <select name="id_kat_lab" class="form-select" id="kategori" aria-label="Default select example">
+                            <option value="">-- pilih --</option>
+                            <?php foreach ($masterKategoriLab as $key) : ?>
+                                <option value="<?= $key['id'] ?>"><?= $key['kategori'] ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorKategori"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -91,6 +102,20 @@
                         } else {
                             $('#lantai').removeClass('is-invalid');
                             $('.errorLantai').html('');
+                        }
+                        if (err.id_kat_lab) {
+                            $('#kategori').addClass('is-invalid');
+                            $('.errorKategori').html(err.id_kat_lab);
+                        } else {
+                            $('#kategori').removeClass('is-invalid');
+                            $('.errorKategori').html('');
+                        }
+                        if (err.kode_instalasi) {
+                            $('#kode-instalasi').addClass('is-invalid');
+                            $('.errorKodeInstalasi').html(err.kode_instalasi);
+                        } else {
+                            $('#kode-instalasi').removeClass('is-invalid');
+                            $('.errorKodeInstalasi').html('');
                         }
                     } else {
                         Swal.fire({

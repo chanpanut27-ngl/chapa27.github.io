@@ -16,6 +16,7 @@ class LaboratoriumModel extends Model
         'kode_lab',
         'nama_lab', 
         'lantai',
+        'id_kat_lab',
         'kode_instalasi',
         'is_active'
     ];
@@ -64,8 +65,10 @@ class LaboratoriumModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('master_laboratorium');
-        $builder->select('master_laboratorium.id, master_laboratorium.kode_lab, master_laboratorium.nama_lab, master_laboratorium.lantai, master_laboratorium.is_active, nama_instalasi');
+        $builder->select('master_laboratorium.id, master_laboratorium.kode_lab, master_laboratorium.nama_lab, master_laboratorium.lantai, master_laboratorium.is_active,nama_instalasi,
+        master_kategori_lab.kategori');
         $builder->join('master_instalasi', 'master_instalasi.kode_instalasi = master_laboratorium.kode_instalasi', 'left');
+        $builder->join('master_kategori_lab', 'master_kategori_lab.id = master_laboratorium.id_kat_lab', 'left');
         $builder->where("master_instalasi.is_active", 1);
         $query = $builder->get()->getResultArray();
         return $query;

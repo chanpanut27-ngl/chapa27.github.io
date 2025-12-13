@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/laboratorium/update-data'); ?>" class="form-data">
@@ -32,8 +32,8 @@
                         <div class="invalid-feedback errorLantai"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="instalasi" class="form-label h5">Instalasi</label>
-                        <select name="kode_instalasi" class="form-select" id="instalasi" aria-label="Default select example">
+                        <label for="kode-instalasi" class="form-label h5">Instalasi</label>
+                        <select name="kode_instalasi" class="form-select" id="kode-instalasi" aria-label="Default select example">
                             <?php foreach ($masterInstalasi as $key) : ?>
                                 <option value="<?= $key['kode_instalasi'] ?>" <?= $items['kode_instalasi'] == $key['kode_instalasi'] ? 'selected' : ''; ?>><?= $key['nama_instalasi'] ?></option>
                             <?php endforeach;?>
@@ -41,7 +41,17 @@
                         <div class="invalid-feedback errorKodeInstalasi"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <label for="kategori" class="form-label h5">Kategori</label>
+                        <select name="id_kat_lab" class="form-select" id="kategori" aria-label="Default select example">
+                            <option value="">-- pilih --</option>
+                            <?php foreach ($masterKategoriLab as $key) : ?>
+                                <option value="<?= $key['id'] ?>" <?= $items['id_kat_lab'] == $key['id'] ? 'selected' : ''; ?>><?= $key['kategori'] ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorKategori"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="is-active" class="form-label h5" style="font-family: arial;">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
@@ -94,29 +104,33 @@
                             $('#kode-lab').removeClass('is-invalid');
                             $('.errorKodeLab').html('');
                         }
-
-                        if (response.error.jenis_sampel) {
-                            $('#jenis-sampel').addClass('is-invalid');
-                            $('.errorJenisSampel').html(response.error.jenis_sampel);
+                        if (response.error.nama_lab) {
+                            $('#nama-lab').addClass('is-invalid');
+                            $('.errorNamaLab').html(response.error.nama_lab);
                         } else {
-                            $('#jenis-sampel').removeClass('is-invalid');
-                            $('.errorJenisSampel').html('');
+                            $('#nama-lab').removeClass('is-invalid');
+                            $('.errorNamaLab').html('');
                         }
-
-                        if (response.error.pnbp) {
-                            $('#pnbp').addClass('is-invalid');
-                            $('.errorPnbp').html(response.error.pnbp);
+                        if (response.error.lantai) {
+                            $('#lantai').addClass('is-invalid');
+                            $('.errorLantai').html(response.error.lantai);
                         } else {
-                            $('#pnbp').removeClass('is-invalid');
-                            $('.errorPnbp').html('');
+                            $('#lantai').removeClass('is-invalid');
+                            $('.errorLantai').html('');
                         }
-
-                        if (response.error.id_lab) {
-                            $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(response.error.id_lab);
+                        if (response.error.id_kat_lab) {
+                            $('#kategori').addClass('is-invalid');
+                            $('.errorKategori').html(response.error.id_kat_lab);
                         } else {
-                            $('#id-lab').removeClass('is-invalid');
-                            $('.errorIdLab').html('');
+                            $('#kategori').removeClass('is-invalid');
+                            $('.errorKategori').html('');
+                        }
+                        if (response.error.kode_instalasi) {
+                            $('#kode-instalasi').addClass('is-invalid');
+                            $('.errorKodeInstalasi').html(response.error.kode_instalasi);
+                        } else {
+                            $('#kode-instalasi').removeClass('is-invalid');
+                            $('.errorKodeInstalasi').html('');
                         }
 
                     } else {

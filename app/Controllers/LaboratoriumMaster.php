@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\InstalasiModel;
+use App\Models\KategoriLabModel;
 use App\Models\LaboratoriumModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
@@ -17,6 +18,7 @@ class LaboratoriumMaster extends ResourceController
     protected $title;
     protected $model;
     protected $masterInstalasi;
+    protected $masterKategoriLab;
     protected $validation;
 
     public function __construct()
@@ -24,6 +26,7 @@ class LaboratoriumMaster extends ResourceController
         $this->title = 'Laboratorium';
         $this->model = new LaboratoriumModel();
         $this->masterInstalasi = new InstalasiModel(); 
+        $this->masterKategoriLab = new KategoriLabModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -69,7 +72,8 @@ class LaboratoriumMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterInstalasi' => $this->masterInstalasi->where('is_active', 1)->findAll()
+                'masterInstalasi' => $this->masterInstalasi->where('is_active', 1)->findAll(),
+                'masterKategoriLab' => $this->masterKategoriLab->where('is_active', 1)->findAll()
             ];
             $msg = [
                 'data' => view('Backend/Master/Laboratorium/_add', $data)
@@ -110,6 +114,20 @@ class LaboratoriumMaster extends ResourceController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'kode_instalasi' => [
+                    'label' => 'Instalasi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'id_kat_lab' => [
+                    'label' => 'Kategori lab',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -118,7 +136,9 @@ class LaboratoriumMaster extends ResourceController
                     'error' => [
                         'kode_lab' => $this->validation->getError('kode_lab'),
                         'nama_lab' => $this->validation->getError('nama_lab'),
-                        'lantai' => $this->validation->getError('lantai')
+                        'lantai' => $this->validation->getError('lantai'),
+                        'id_kat_lab' => $this->validation->getError('id_kat_lab'),
+                        'kode_instalasi' => $this->validation->getError('kode_instalasi')
                     ]
                 ];
             } else {
@@ -127,7 +147,7 @@ class LaboratoriumMaster extends ResourceController
                     'nama_lab' => $this->request->getVar('nama_lab'),
                     'lantai' => $this->request->getVar('lantai'),
                     'kode_instalasi' => $this->request->getVar('kode_instalasi'),
-                    'is_active' => $this->request->getVar('is_active')
+                    'id_kat_lab' => $this->request->getVar('id_kat_lab')
                 ];
                 $this->model->insert($simpandata);
                 $msg = [
@@ -154,7 +174,8 @@ class LaboratoriumMaster extends ResourceController
             $data = [
                 'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
-                'masterInstalasi' => $this->masterInstalasi->where('is_active', 1)->findAll()
+                'masterInstalasi' => $this->masterInstalasi->where('is_active', 1)->findAll(),
+                'masterKategoriLab' => $this->masterKategoriLab->where('is_active', 1)->findAll()
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Laboratorium/_edit', $data)
@@ -196,6 +217,20 @@ class LaboratoriumMaster extends ResourceController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'kode_instalasi' => [
+                    'label' => 'Instalasi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'id_kat_lab' => [
+                    'label' => 'Kategori lab',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -204,7 +239,9 @@ class LaboratoriumMaster extends ResourceController
                     'error' => [
                         'kode_lab' => $this->validation->getError('kode_lab'),
                         'nama_lab' => $this->validation->getError('nama_lab'),
-                        'lantai' => $this->validation->getError('lantai')
+                        'lantai' => $this->validation->getError('lantai'),
+                        'id_kat_lab' => $this->validation->getError('id_kat_lab'),
+                        'kode_instalasi' => $this->validation->getError('kode_instalasi')
                     ]
                 ];
             } else {
@@ -214,6 +251,7 @@ class LaboratoriumMaster extends ResourceController
                     'nama_lab' => $this->request->getVar('nama_lab'),
                     'lantai' => $this->request->getVar('lantai'),
                     'kode_instalasi' => $this->request->getVar('kode_instalasi'),
+                    'id_kat_lab' => $this->request->getVar('id_kat_lab'),
                     'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
