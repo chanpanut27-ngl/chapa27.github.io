@@ -31,14 +31,8 @@ class MgdbMasterInstalasi extends Migration
                 'type'  => 'INT',
                 'default' => 0
             ],
-            'created_at' => [
-                'type' => 'DATETIME',
-                'default' => 'current_timestamp'
-            ],
-            'updated_at' => [
-                'type' => 'DATETIME',
-                'default' => 'current_timestamp on update current_timestamp'
-            ],
+            'created_at datetime default current_timestamp',
+            'updated_at datetime default current_timestamp on update current_timestamp',
             'created_by'     => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100'
@@ -51,11 +45,15 @@ class MgdbMasterInstalasi extends Migration
                 'type' => 'DATETIME',
                 'default' => 'current_timestamp'
             ],
+            'deleted_at datetime default current_timestamp',
             'deleted_by'     => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100'
             ]
          ]);
+
+        $this->forge->addKey('id', true);
+        $this->forge->createTable('master_instalasi');
     }
 
     public function down()
