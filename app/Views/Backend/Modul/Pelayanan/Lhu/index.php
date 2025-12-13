@@ -25,6 +25,9 @@
                     </div>
                     <div class="card-body p-2">
                         <?php
+
+                        use App\Models\LaboratoriumTujuanModel;
+
                         foreach ($items as $row) :  
                             $kode_pengantar = $row['kode_pengantar'];
                         ?>
@@ -78,6 +81,27 @@
                                             <a class="nav-link navtabs <?= @$id_lab == $m['id_lab'] ? 'active text-light fw-bold bg-success' : '' ; ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $nama_lab ?></a>
                                         </li>
                                     <?php
+                                    endforeach;
+                                    $lab_tujuan = new LaboratoriumTujuanModel();
+                                    $group_kat_lab = $lab_tujuan->get_data_by_group_kat_lab($kode_pengantar);
+                                    
+                                    foreach ($group_kat_lab  as $rs) : 
+                                        $kode_pengantar = $rs['kode_pengantar'];
+                                        $id_kategori_lab = $rs['idkatlab'];
+                                        $kategori_lab = 'Catatan Lab. '.$rs['kategori'];
+                                        ?>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><?= $kategori_lab ?></a>
+                                            <ul class="dropdown-menu">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/keterangan-'.$id_kategori_lab);?>">Keterangan</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/kondisi-lingkungan-'.$id_kategori_lab);?>">Kondisi lingkungan</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <?php
                                     endforeach;
                                 ?>
                             </ul>

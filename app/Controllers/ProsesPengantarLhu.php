@@ -65,16 +65,18 @@ class ProsesPengantarLhu extends ResourceController
 
      $kode_pengantar = $param1;
      $id_lab = $param2;  
+    //  $id_kat_lab = $param3;
 
      $kategori_lab = $this->modelLabTujuan->get_data_kategori_lab($kode_pengantar, $id_lab);
      foreach ($kategori_lab as $row) {
         $nama_lab = $row['nama_lab'];
         $kode_pengantar = $row['kode_pengantar'];
         $id_lab = $row['id_laboratorium'];
+        $id_kat_lab = $row['id_kat_lab'];
      }
     
      $data = [
-        'title' => $nama_lab,
+        'title' => @$nama_lab,
         'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
         'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
         'kategori_lab' => $kategori_lab,
@@ -83,6 +85,17 @@ class ProsesPengantarLhu extends ResourceController
     ];
 
        return view('Backend/Modul/Pelayanan/Lhu/_pilih_menu', $data);
+    }
+
+    public function keterangan($param)
+    {
+        $kode_pengantar = $param;
+        // var_dump($kode_pengantar);
+        $data = [
+            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
+        ];
+        return view('Backend/Modul/Pelayanan/Lhu/_pilih_menu', $data);
+
     }
 
     public function show($id = null)

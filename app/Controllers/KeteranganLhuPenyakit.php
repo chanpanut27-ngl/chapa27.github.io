@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\KeteranganLhuModel;
+use App\Models\KeteranganLhuPenyakitModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
-class KeteranganLhu extends ResourceController
+class KeteranganLhuPenyakit extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -19,8 +19,8 @@ class KeteranganLhu extends ResourceController
 
     public function __construct()
     {
-        $this->title = 'Keterangan Lab.lingkungan';
-        $this->model = new KeteranganLhuModel();
+        $this->title = 'Keterangan Lab.Penyakit';
+        $this->model = new KeteranganLhuPenyakitModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -29,7 +29,7 @@ class KeteranganLhu extends ResourceController
          $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/index', $data);
+        return view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-penyakit/index', $data);
     }
 
     /**
@@ -47,7 +47,7 @@ class KeteranganLhu extends ResourceController
                 'items' => $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-penyakit/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -73,7 +73,7 @@ class KeteranganLhu extends ResourceController
                 'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-penyakit/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -125,7 +125,7 @@ class KeteranganLhu extends ResourceController
                 'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/_edit', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-penyakit/_edit', $data)
             ];
             echo json_encode($msg);
         } else {

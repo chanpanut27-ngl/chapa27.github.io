@@ -16,20 +16,39 @@ foreach ($result as $row) {
 }
 
 $data = [
-    'title' => $nama_lab,
+    'title' => @$nama_lab,
     'id_lab' => $id_lab,
     'kode_pengantar' => $kode_pengantar,
-    'id_kat_lab' => $id_kat_lab,
+    'id_kat_lab' => @$id_kat_lab,
 ];
 
-switch ($id_kat_lab ?? $id_lab) {
+switch (@$id_kat_lab ?? $id_lab) {
     case 1:
         echo view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/index', $data);
         break;
     case 2:
         echo view('Backend/Modul/Pelayanan/Lhu/Spesimen-penyakit/index', $data);
         break;
-    
+    case 'keterangan-1':
+        $str_exp = explode('-', $id_lab);
+        $data['title'] = ucfirst($str_exp[0]).' Lab.Lingkungan';
+        echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/index', $data);
+        break;
+    case 'kondisi-lingkungan-1':
+        $str_exp = explode('-', $id_lab);
+        $data['title'] = ucfirst($str_exp[0]).' Lab.Lingkungan';
+        echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/index', $data);
+        break;
+    case 'keterangan-2':
+        $str_exp = explode('-', $id_lab);
+        $data['title'] = ucfirst($str_exp[0]).' Lab.Penyakit';
+        echo view('Backend/Modul/Pelayanan/Lhu/Ket-lhu-penyakit/index', $data);
+        break;
+    case 'kondisi-lingkungan-2':
+        $str_exp = explode('-', $id_lab);
+        $data['title'] = ucfirst($str_exp[0]).' Lab.Penyakit';
+        echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-penyakit/index', $data);
+        break;
     default:
         # code...
         break;

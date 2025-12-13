@@ -192,7 +192,7 @@ $routes->group('pelayanan/proses-pengantar-lhu', function ($routes) {
     $routes->get('index/(:any)', 'ProsesPengantarLhu::index/$1');
     $routes->get('list-menu/(:any)', 'ProsesPengantarLhu::list_menu/$1');
     $routes->get('pilih-menu/(:any)', 'ProsesPengantarLhu::pilih_menu/$1');
-    $routes->get('pilih-menu/keterangan(:any)', 'ProsesPengantarLhu::keterangan/$1');
+    $routes->get('pilih-menu/keterangan/(:any)', 'ProsesPengantarLhu::keterangan/$1');
 });
 
 /** Pelayanan sampel lingkungan **/
@@ -219,7 +219,7 @@ $routes->group('pelayanan/lhu/spesimen-penyakit', function ($routes) {
 });
 
 
-/** Pelayanan keterangan LHU **/
+/** Pelayanan keterangan LHU sampel lingkungan **/
 $routes->group('pelayanan/keterangan-lhu', function ($routes) {
     $routes->get('', 'KeteranganLhu::index');
     $routes->get('list-data', 'KeteranganLhu::list');
@@ -228,6 +228,17 @@ $routes->group('pelayanan/keterangan-lhu', function ($routes) {
     $routes->get('edit-data/(:num)', 'KeteranganLhu::edit/$1');
     $routes->post('update-data', 'KeteranganLhu::update');
     $routes->delete('delete-data/(:num)', 'KeteranganLhu::delete/$1');
+});
+
+/** Pelayanan keterangan LHU sampel penyakit **/
+$routes->group('pelayanan/keterangan-lhu-penyakit', function ($routes) {
+    $routes->get('', 'KeteranganLhuPenyakit::index');
+    $routes->get('list-data', 'KeteranganLhuPenyakit::list');
+    $routes->get('add-data', 'KeteranganLhuPenyakit::new');
+    $routes->post('create-data', 'KeteranganLhuPenyakit::create');
+    $routes->get('edit-data/(:num)', 'KeteranganLhuPenyakit::edit/$1');
+    $routes->post('update-data', 'KeteranganLhuPenyakit::update');
+    $routes->delete('delete-data/(:num)', 'KeteranganLhuPenyakit::delete/$1');
 });
 
 
