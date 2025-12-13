@@ -4,31 +4,35 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbPengantarLhu extends Migration
+class MgdbLaboratoriumTujuan extends Migration
 {
     public function up()
     {
-        $this->forge->addField([
+         $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'kode_pengantar' => [
-                'type'       => 'CHAR',
-                'constraint' => '20'
-            ],
             'id_pelanggan' => [
                 'type'       => 'INT',
                 'constraint' => 5,
                 'unsigned'   => true,
             ],
-            'tanggal' => [
-                'type'       => 'DATE'
+            'id_pengantar_lhu' => [
+                'type'       => 'INT',
+                'constraint' => 5,
+                'unsigned'   => true,
             ],
-            'tahun' => [
-                'type'       => 'YEAR'
+            'kode_pengantar' => [
+                'type'       => 'CHAR',
+                'constraint' => '20'
+            ],
+            'id_laboratorium' => [
+                'type'       => 'INT',
+                'constraint' => 5,
+                'unsigned'   => true,
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -61,11 +65,13 @@ class MgdbPengantarLhu extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('id_pelanggan', 'master_pelanggan', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('pengantar_lhu');
+        $this->forge->addForeignKey('id_pengantar_lhu', 'pengantar_lhu', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_laboratorium', 'master_laboratorium', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('laboratorium_tujuan');
     }
 
     public function down()
     {
-        $this->forge->dropTable('pengantar_lhu');
+        $this->forge->dropTable('laboratorium_tujuan');
     }
 }
