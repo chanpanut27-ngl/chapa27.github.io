@@ -13,7 +13,7 @@ class InstalasiMaster extends ResourceController
      *
      * @return ResponseInterface
      */
-     protected $title;
+    protected $title;
     protected $model;
     protected $validation;
 
@@ -24,7 +24,7 @@ class InstalasiMaster extends ResourceController
         $this->validation = \Config\Services::validation();
     }
 
-     public function generate_kode_instalasi() 
+    public function generate_kode_instalasi() 
     {
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
         $count = $this->model->countAllResults();

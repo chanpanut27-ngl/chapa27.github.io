@@ -3,21 +3,20 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/instalasi/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/kategori-lab/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id" value="<?= $items['id']; ?>">
-                 <div class="modal-body">
+                <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instalasi" class="form-label h4">Nama Instalasi</label>
-                        <input type="text" name="nama_instalasi" value="<?= $items['nama_instalasi'] ?>" class="form-control" id="nama-instalasi">
-                        <div class="invalid-feedback errorNamaInstalasi"></div>
+                        <label for="kategori" class="form-label h4">Kategori</label>
+                        <input type="text" name="kategori" class="form-control" id="kategori">
+                        <div class="invalid-feedback errorKategori"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><i class="fas fa-edit"></i> Ubah</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><i class="fas fa-save"></i> Simpan</button>
                     <button type="button" class="btn btn-secondary rounded btn-sm" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
                 </div>
             </form>
@@ -36,21 +35,23 @@
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {
-                    $('.btn-ubah').attr('disable', 'disabled');
-                    $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-simpan').attr('disable', 'disabled');
+                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 complete: function() {
-                    $('.btn-ubah').removeAttr('disable');
-                    $('.btn-ubah').html('Ubah');
+                    $('.btn-simpan').removeAttr('disable');
+                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
                 },
                 success: function(response) {
-                    if (response.error) {
-                        if (response.error.nama_instalasi) {
-                            $('#nama-instalasi').addClass('is-invalid');
-                            $('.errorNamaInstalasi').html(response.error.nama_instalasi);
+                    var err = response.error
+                    if (err) {
+                        if (err.kategori) {
+                            $('#kategori').addClass('is-invalid');
+                            $('.errorKategori').html(err.kategori);
                         } else {
-                            $('#nama-instalasi').removeClass('is-invalid');
-                            $('.errorNamaInstalasi').html('');
+                            $('#kategori').removeClass('is-invalid');
+                            $('.errorKategori').html('');
                         }
                     } else {
                         Swal.fire({

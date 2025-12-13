@@ -202,6 +202,16 @@
                     </a>
                 </li>
                 <li class="pc-item">
+                    <a href="<?= base_url('master-data/kategori-lab'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#kategori-lab"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Kategori lab</span>
+                    </a>
+                </li>
+                <li class="pc-item">
                     <a href="<?= base_url('master-data/laboratorium'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">

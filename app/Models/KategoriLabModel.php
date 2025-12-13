@@ -12,7 +12,7 @@ class KategoriLabModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kategori', 'keterangan', 'is_active'];
+    protected $allowedFields    = ['kategori', 'is_active'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
