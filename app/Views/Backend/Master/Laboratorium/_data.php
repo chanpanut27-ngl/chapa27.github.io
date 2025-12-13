@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Laboratorium', 'Lantai', 'Instalasi', 'Status', ''];
+        $arrth = ['No', 'Kode Lab', 'Laboratorium', 'Lantai', 'Instalasi', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -16,6 +16,7 @@
         ?>
             <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
+                <td><?= $row['kode_lab']; ?></td>
                 <td><?= $row['nama_lab']; ?></td>
                 <td><?= $row['lantai']; ?></td>
                 <td><?= $row['nama_instalasi']; ?></td>

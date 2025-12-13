@@ -11,6 +11,11 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label for="kode-lab" class="form-label h5">Kode Lab</label>
+                        <input type="text" name="kode_lab" value="<?= $items['kode_lab']; ?>" class="form-control" id="kode-lab" autocomplete="off">
+                        <div class="invalid-feedback errorKodeLab"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Laboratorium</label>
                         <input type="text" name="nama_lab" value="<?= $items['nama_lab']; ?>" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
@@ -81,6 +86,14 @@
                 },
                 success: function(response) {
                     if (response.error) {
+
+                        if (response.error.kode_lab) {
+                            $('#kode-lab').addClass('is-invalid');
+                            $('.errorKodeLab').html(response.error.kode_lab);
+                        } else {
+                            $('#kode-lab').removeClass('is-invalid');
+                            $('.errorKodeLab').html('');
+                        }
 
                         if (response.error.jenis_sampel) {
                             $('#jenis-sampel').addClass('is-invalid');

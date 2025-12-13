@@ -64,7 +64,7 @@ class LaboratoriumModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('master_laboratorium');
-        $builder->select('master_laboratorium.id, master_laboratorium.nama_lab, master_laboratorium.lantai, master_laboratorium.is_active, nama_instalasi');
+        $builder->select('master_laboratorium.id, master_laboratorium.kode_lab, master_laboratorium.nama_lab, master_laboratorium.lantai, master_laboratorium.is_active, nama_instalasi');
         $builder->join('master_instalasi', 'master_instalasi.kode_instalasi = master_laboratorium.kode_instalasi', 'left');
         $builder->where("master_instalasi.is_active", 1);
         $query = $builder->get()->getResultArray();

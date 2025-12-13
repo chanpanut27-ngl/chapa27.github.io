@@ -12,13 +12,13 @@ class JenisSampelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['jenis_sampel', 'pnbp', 'id_lab', 'is_active'];
+    protected $allowedFields    = ['kode_sampel', 'jenis_sampel', 'pnbp', 'id_lab', 'is_active'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
     protected array $casts = [];
-protected array $castHandlers = [];
+    protected array $castHandlers = [];
 
     // Dates
     protected $useTimestamps = true;

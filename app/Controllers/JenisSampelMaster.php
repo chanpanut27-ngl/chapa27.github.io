@@ -125,10 +125,13 @@ class JenisSampelMaster extends ResourceController
                     ]
                 ];
             } else {
+                $id_lab = $this->request->getVar('id_lab');
+                $kode_sampel = $this->modelLab->find($id_lab);
                 $simpandata = [
+                    'kode_sampel' => $kode_sampel['kode_lab'],
                     'jenis_sampel' => $this->request->getVar('jenis_sampel'),
                     'pnbp' => $this->request->getVar('pnbp'),
-                    'id_lab' => $this->request->getVar('id_lab')
+                    'id_lab' => $id_lab
                 ];
                 $this->model->insert($simpandata);
                 $msg = [
@@ -210,8 +213,11 @@ class JenisSampelMaster extends ResourceController
                     ]
                 ];
             } else {
+                $id_lab = $this->request->getVar('id_lab');
+                $kode_sampel = $this->modelLab->find($id_lab);
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
+                    'kode_sampel' => $kode_sampel['kode_lab'],
                     'jenis_sampel' => $this->request->getVar('jenis_sampel'),
                     'pnbp' => $this->request->getVar('pnbp'),
                     'id_lab' => $this->request->getVar('id_lab'),

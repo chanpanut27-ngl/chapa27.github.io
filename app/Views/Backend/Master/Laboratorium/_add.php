@@ -10,6 +10,11 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label for="kode-lab" class="form-label h5">Kode Lab</label>
+                        <input type="text" name="kode_lab" class="form-control" id="kode-lab" autocomplete="off">
+                        <div class="invalid-feedback errorKodeLab"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Laboratorium</label>
                         <input type="text" name="nama_lab" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
@@ -66,6 +71,13 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
+                        if (err.kode_lab) {
+                            $('#kode-lab').addClass('is-invalid');
+                            $('.errorKodeLab').html(err.kode_lab);
+                        } else {
+                            $('#kode-lab').removeClass('is-invalid');
+                            $('.errorKodeLab').html('');
+                        }
                         if (err.nama_lab) {
                             $('#nama-lab').addClass('is-invalid');
                             $('.errorNamaLab').html(err.nama_lab);

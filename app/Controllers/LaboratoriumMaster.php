@@ -90,6 +90,13 @@ class LaboratoriumMaster extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
+                'kode_lab' => [
+                    'label' => 'Kode laboratorium',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
                 'nama_lab' => [
                     'label' => 'Nama laboratorium',
                     'rules' => 'required',
@@ -109,15 +116,18 @@ class LaboratoriumMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
+                        'kode_lab' => $this->validation->getError('kode_lab'),
                         'nama_lab' => $this->validation->getError('nama_lab'),
                         'lantai' => $this->validation->getError('lantai')
                     ]
                 ];
             } else {
                 $simpandata = [
+                    'kode_lab' => $this->request->getVar('kode_lab'),
                     'nama_lab' => $this->request->getVar('nama_lab'),
                     'lantai' => $this->request->getVar('lantai'),
-                    'kode_instalasi' => $this->request->getVar('kode_instalasi')
+                    'kode_instalasi' => $this->request->getVar('kode_instalasi'),
+                    'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->insert($simpandata);
                 $msg = [
@@ -166,6 +176,13 @@ class LaboratoriumMaster extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
+                'kode_lab' => [
+                    'label' => 'Kode laboratorium',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
                 'nama_lab' => [
                     'label' => 'Nama laboratorium',
                     'rules' => 'required',
@@ -185,6 +202,7 @@ class LaboratoriumMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
+                        'kode_lab' => $this->validation->getError('kode_lab'),
                         'nama_lab' => $this->validation->getError('nama_lab'),
                         'lantai' => $this->validation->getError('lantai')
                     ]
@@ -192,6 +210,7 @@ class LaboratoriumMaster extends ResourceController
             } else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
+                    'kode_lab' => $this->request->getVar('kode_lab'),
                     'nama_lab' => $this->request->getVar('nama_lab'),
                     'lantai' => $this->request->getVar('lantai'),
                     'kode_instalasi' => $this->request->getVar('kode_instalasi'),
