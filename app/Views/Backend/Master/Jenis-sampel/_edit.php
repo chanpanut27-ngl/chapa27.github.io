@@ -3,25 +3,44 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/jenis-sampel/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
+                    <div class="mb-1">
+                        <label for="id-peraturan" class="form-label h5">Peraturan</label>
+                    </div>
                     <div class="mb-3">
-                        <label for="jenis-sampel" class="form-label h4">Jenis sampel</label>
+                        <select name="id_peraturan" class="form-control" id="id-peraturan" style="width: 100%;" aria-label="Default select example">
+                            <option value="">-- Pilih --</option>
+                            <?php 
+                            foreach ($masterPeraturan as $p) :
+                                 if ($items['id_peraturan'] == $p['id']) {
+                                    $selected = 'selected';
+                                } else {
+                                    $selected = '';
+                                }
+                            ?>
+                            <option value="<?= $p['id'] ?>" <?= $selected; ?>><?= $p['peraturan']; ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorPelanggan"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jenis-sampel" class="form-label h5">Jenis sampel</label>
                         <input type="text" name="jenis_sampel" value="<?= $items['jenis_sampel']; ?>" class="form-control" id="jenis-sampel" autocomplete="off">
                         <div class="invalid-feedback errorJenisSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="pnbp" class="form-label h4">PNBP (Rp)</label>
+                        <label for="pnbp" class="form-label h5">PNBP (Rp)</label>
                         <input type="text" name="pnbp" value="<?= $items['pnbp']; ?>" class="form-control" id="pnbp" autocomplete="off">
                         <div class="invalid-feedback errorPnbp"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="id-lab" class="form-label h4">Laboratorium</label>
+                        <label for="id-lab" class="form-label h5">Laboratorium</label>
                         <select name="id_lab" class="form-select" id="id-lab" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
@@ -40,7 +59,7 @@
                         <div class="invalid-feedback errorIdLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4" style="font-family: calibri;">Status</label>
+                        <label for="is-active" class="form-label h4" style="font-family: arial;">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
@@ -67,6 +86,10 @@
 
 <script>
     $(document).ready(function() {
+        $('#id-peraturan').select2({
+            dropdownParent: $('#exampleModal')
+        });
+
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({

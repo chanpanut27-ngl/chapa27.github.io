@@ -2,8 +2,8 @@
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <link rel="stylesheet" href="<?= base_url('assets/css/jquery-ui.css'); ?>">
- <!-- select2 -->
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<!-- select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <?= $this->endSection(); ?>
 <?= $this->section('content'); ?>
 <div class="pc-container">

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\PeraturanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -17,6 +18,7 @@ class JenisSampelMaster extends ResourceController
     protected $title;
     protected $model;
     protected $modelLab;
+    protected $modelPeraturan;
     protected $validation;
 
     public function __construct()
@@ -24,6 +26,7 @@ class JenisSampelMaster extends ResourceController
         $this->title = 'Jenis sampel';
         $this->model = new JenisSampelModel();
         $this->modelLab = new LaboratoriumModel();
+        $this->modelPeraturan = new PeraturanModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -71,7 +74,8 @@ class JenisSampelMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterLab' => $this->modelLab->get_data()
+                'masterLab' => $this->modelLab->get_data(),
+                'masterPeraturan' => $this->modelPeraturan->findAll()
             ];
             $msg = [
                 'data' => view('Backend/Master/Jenis-sampel/_add', $data)
@@ -129,6 +133,7 @@ class JenisSampelMaster extends ResourceController
                 $kode_sampel = $this->modelLab->find($id_lab);
                 $simpandata = [
                     'kode_sampel' => $kode_sampel['kode_lab'],
+                    'id_peraturan' => $this->request->getVar('id_peraturan'),
                     'jenis_sampel' => $this->request->getVar('jenis_sampel'),
                     'pnbp' => $this->request->getVar('pnbp'),
                     'id_lab' => $id_lab
@@ -158,7 +163,8 @@ class JenisSampelMaster extends ResourceController
             $data = [
                 'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
-                'masterLab' => $this->modelLab->get_data()
+                'masterLab' => $this->modelLab->get_data(),
+                'masterPeraturan' => $this->modelPeraturan->findAll()
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Jenis-sampel/_edit', $data)
@@ -218,6 +224,7 @@ class JenisSampelMaster extends ResourceController
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
                     'kode_sampel' => $kode_sampel['kode_lab'],
+                    'id_peraturan' => $this->request->getVar('id_peraturan'),
                     'jenis_sampel' => $this->request->getVar('jenis_sampel'),
                     'pnbp' => $this->request->getVar('pnbp'),
                     'id_lab' => $this->request->getVar('id_lab'),

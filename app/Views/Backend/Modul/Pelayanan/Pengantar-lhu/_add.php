@@ -41,7 +41,7 @@
     $(document).ready(function() {
         // In your Javascript (external .js resource or <script> tag)
         $('#pelanggan').select2({
-            dropdownParent: $('#exampleModal') // Ganti '#myModal' dengan ID modal Anda
+            dropdownParent: $('#exampleModal')
         });
 
         var dateToday = new Date();

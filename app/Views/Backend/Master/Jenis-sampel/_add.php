@@ -9,6 +9,20 @@
             <form action="<?= base_url('master-data/jenis-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
+                    <div class="mb-1">
+                        <label for="id-peraturan" class="form-label h5">Peraturan</label>
+                    </div>
+                    <div class="mb-3">
+                        <select name="id_peraturan" class="form-control" id="id-peraturan" style="width: 100%;" aria-label="Default select example">
+                            <option value="">-- Pilih --</option>
+                            <?php 
+                            foreach ($masterPeraturan as $row) :
+                            ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['peraturan']; ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorPelanggan"></div>
+                    </div>
                     <div class="mb-3">
                         <label for="jenis-sampel" class="form-label h4" style="font-family: calibri;">Jenis sampel</label>
                         <input type="text" name="jenis_sampel" class="form-control" id="jenis-sampel" autocomplete="off">
@@ -45,6 +59,10 @@
 
 <script>
     $(document).ready(function() {
+        $('#id-peraturan').select2({
+            dropdownParent: $('#exampleModal')
+        });
+
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
