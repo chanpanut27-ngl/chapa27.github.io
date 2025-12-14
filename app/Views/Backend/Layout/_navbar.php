@@ -182,6 +182,16 @@
                     </i>
                 </li>
                 <li class="pc-item">
+                    <a href="<?= base_url('wa/send-message'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#wa"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> WA</span>
+                    </a>
+                </li>
+                <li class="pc-item">
                     <a href="<?= base_url('master-data/pelanggan'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">

@@ -6,7 +6,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-
+$routes->get('wa/send-message', 'WhatsAppController::sendWhatsAppMessage');
 
 /** User pelanggan **/
 $routes->get('/user-pelanggan', 'UserPelanggan::index');
