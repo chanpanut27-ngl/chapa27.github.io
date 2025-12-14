@@ -65,7 +65,7 @@
                                 <a class="list-group-item list-group-item-action">
                                     <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
+                                        <img src="<?= base_url('assets/images/avatar-5.jpg') ?>" alt="user-image" class="user-avtar">
                                     </div>
                                     <div class="flex-grow-1 ms-1">
                                         <span class="float-end text-muted">3:00 AM</span>
@@ -128,7 +128,7 @@
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                         >
-                        <img src="<?= base_url('assets/images/avatar-2.jpg'); ?>" alt="user-image" class="user-avtar">
+                        <img src="<?= base_url('assets/images/avatar-5.jpg'); ?>" alt="user-image" class="user-avtar">
                         <span class="text-white">User pelanggan</span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
