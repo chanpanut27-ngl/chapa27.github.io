@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Layout/_main'); ?>
+<?= $this->extend('Frontend/Layout/_main'); ?>
 <?= $this->section('content'); ?>
  <div class="pc-container">
     <div class="pc-content">
@@ -8,7 +8,7 @@
           <div class="row align-items-center">
             <div class="col-md-12">
               <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="../dashboard/index.html">Home</a></li>
                 <li class="breadcrumb-item"><a href="javascript: void(0)">Dashboard</a></li>
               </ul>
             </div>

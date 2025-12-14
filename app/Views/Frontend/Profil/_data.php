@@ -1,45 +1,32 @@
-<table id="example" class="table table-hover table-bordered" style="width: 100%;">
+<table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = [
-            'No', 'Kode sampel', 'Jenis sampel', 'Identitas sampel', 
-            'Tgl & jam pengambilan sampel', 'Peraturan', 'Metode pemeriksaan', 
-            'Volume/berat', 'Jenis wadah', 'Jenis pengawet', 'Status', ''];
+        $arrth = ['No', 'Instansi', 'Alamat', 'No.Telp', 'Wilayah', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
-            echo '<th>' . ucwords($th) . '</th>';
+            echo '<th>' . $th . '</th>';
         endforeach;
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial; font-size:13px;">
+    <tbody style="font-family: arial;">
         <?php
         $no = 1;
         foreach ($items as $row) :
-            if ($row['sts_psl'] == 1) {
-                $status = '<span class="badge bg-success rounded">Aktif</span>';
-            }else {
-                $status = '<span class="badge bg-secondary rounded">Tidak aktif</span>';
-            }
         ?>
-            <tr id="myId-<?= $row['id_psp']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td class="text-center"><?= $row['kode_sampel']; ?></td>
-                <td><?= $row['jenis_sampel']; ?></td>
-                <td><?= $row['identitas_sampel']; ?></td>
-                <td><?= date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
-                <td><?= $row['peraturan']; ?></td>
-                <td><?= $row['metode_pemeriksaan']; ?></td>
-                <td class="text-center"><?= $row['volume_atau_berat']; ?></td>
-                <td><?= $row['jenis_wadah']; ?></td>
-                <td><?= $row['jenis_pengawet']; ?></td>
-                <td><?= $status; ?></td>
+                <td><?= $row['nama_instansi']; ?></td>
+                <td><?= $row['alamat']; ?></td>
+                <td><?= $row['no_telp']; ?></td>
+                <td><?= $row['wilayah']; ?></td>
+                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id_psp']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_psp']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
@@ -52,7 +39,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/lhu/spesimen-penyakit/edit-data/'); ?>' + id,
+            url: '<?= site_url('master-data/instansi/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -85,7 +72,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/lhu/sampel-lingkungan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('master-data/instansi/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

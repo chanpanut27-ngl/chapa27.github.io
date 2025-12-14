@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-     protected $title;
+    protected $title;
 
     public function __construct()
     {

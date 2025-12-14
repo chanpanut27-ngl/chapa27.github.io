@@ -173,7 +173,7 @@ class SpesimenPenyakit extends ResourceController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
-                ],
+                ]
             ]);
 
             if (!$valid) {
@@ -262,48 +262,48 @@ class SpesimenPenyakit extends ResourceController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'lokasi_pengambilan_sampel' => [
-                    'label' => 'Lokasi pengambilan sampel',
+                'identitas_sampel' => [
+                    'label' => 'Identitas sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'tgl_ambil_sampel' => [
-                    'label' => 'Tanggal pengambilan sampel',
+                'tgl_periksa_sampel' => [
+                    'label' => 'Tanggal periksa sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'jam_ambil_sampel' => [
-                    'label' => 'Jam pengambilan sampel',
+                'jam_periksa_sampel' => [
+                    'label' => 'Jam periksa sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
-                ],
+                ]
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
                         'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel'),
-                        'lokasi_pengambilan_sampel' => $this->validation->getError('lokasi_pengambilan_sampel'),
-                        'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
-                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel'),
+                        'identitas_sampel' => $this->validation->getError('identitas_sampel'),
+                        'tgl_periksa_sampel' => $this->validation->getError('tgl_periksa_sampel'),
+                        'jam_periksa_sampel' => $this->validation->getError('jam_periksa_sampel'),
                     ]
                 ];
             } else {
-                $tgl_ambil_sampel = date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel')));
-                $jam_ambil_sampel = date('H:i:s', strtotime($this->request->getVar('jam_ambil_sampel')));
+                $tgl_periksa_sampel = date('Y-m-d', strtotime($this->request->getVar('tgl_periksa_sampel')));
+                $jam_periksa_sampel = date('H:i:s', strtotime($this->request->getVar('jam_periksa_sampel')));
 
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
                     'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
-                    'lokasi_pengambilan_sampel' => $this->request->getVar('lokasi_pengambilan_sampel'),
-                    'tgl_ambil_sampel' => $tgl_ambil_sampel,
-                    'jam_ambil_sampel' => $jam_ambil_sampel,
+                    'identitas_sampel' => $this->request->getVar('identitas_sampel'),
+                    'tgl_periksa_sampel' => $tgl_periksa_sampel,
+                    'jam_periksa_sampel' => $jam_periksa_sampel,
                     'metode_pemeriksaan' => $this->request->getVar('metode_pemeriksaan'),
                     'volume_atau_berat' => $this->request->getVar('volume_berat'),
                     'jenis_wadah' => $this->request->getVar('jenis_wadah'),

@@ -7,6 +7,34 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
+
+/** User pelanggan **/
+$routes->get('/user-pelanggan', 'UserPelanggan::index');
+
+// Booklet 
+$routes->group('user-pelanggan/booklet/reader', function ($routes) {
+    $routes->get('booklet-3', 'UserBookletReader::booklet_3');
+});
+
+// File peraturan
+$routes->group('user-pelanggan/file-peraturan/reader', function ($routes) {
+    $routes->get('standar-pelayanan', 'UserFileReader::standar_pelayanan');
+    $routes->get('tarif-pelayanan', 'UserFileReader::tarif_pelayanan');
+});
+
+// Profil pelanggan
+$routes->group('user-pelanggan/profil', function ($routes) {
+    $routes->get('', 'ProfilPelanggan::index');
+    $routes->get('list-data', 'ProfilPelanggan::list');
+    $routes->get('add-data', 'ProfilPelanggan::new');
+    $routes->post('create-data', 'ProfilPelanggan::create');
+    $routes->get('edit-data/(:num)', 'ProfilPelanggan::edit/$1');
+    $routes->post('update-data', 'ProfilPelanggan::update');
+    $routes->delete('delete-data/(:num)', 'ProfilPelanggan::delete/$1');
+});
+
+/****** *********************************/
+
 /** Modul Pelayanan Pemeriksaan **/
 /** Pengantar LHU **/
 $routes->group('pelayanan/pengantar-lhu', function ($routes) {
@@ -47,6 +75,7 @@ $routes->group('file-formulir/reader', function ($routes) {
 $routes->group('file-booklet/reader', function ($routes) {
     $routes->get('booklet-3', 'BookletReader::booklet_3');
 });
+
 
 /** Modul pengaturan coolbox **/
 /** posisi coolbox **/
