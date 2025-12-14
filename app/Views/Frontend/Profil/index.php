@@ -27,43 +27,36 @@
                 <div class="card">
                     <div class="card-header bg-light p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title; ?></h4>
-                        <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
-                            </button>
-                        </div>
                     </div>
                     <div class="card-body">
-                        <form action="<?= base_url('master-data/instansi/create-data'); ?>" class="form-data">
+                        <?php
+                        if (!$cek_data) :
+                        ?>
+                        <form action="<?= base_url('user-pelanggan/profil/create-data'); ?>" class="form-data">
                             <?= csrf_field(); ?>
-                            <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="nama-instansi" class="form-label h5">Instansi</label>
-                                    <input type="text" name="nama_instansi" class="form-control" id="nama-instansi" autocomplete="off">
-                                    <div class="invalid-feedback errorNamaInstansi"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="alamat" class="form-label h5">Alamat</label>
-                                    <textarea name="alamat" class="form-control" id="alamat"></textarea>
-                                    <div class="invalid-feedback errorAlamat"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="no-telp" class="form-label h5">No.Telp</label>
-                                    <input type="text" name="no_telp" class="form-control" id="no-telp">
-                                    <div class="invalid-feedback errorNoTelp"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="wilayah" class="form-label h5">Wilayah</label>
-                                    <input type="text" name="wilayah" class="form-control" id="wilayah">
-                                    <div class="invalid-feedback errorWilayah"></div>
-                                </div>
+                            <div class="mb-3">
+                                <label for="nama-instansi" class="form-label h5">Instansi</label>
+                                <input type="text" name="instansi" value="<?= set_value('instansi') ?>" class="form-control" id="nama-instansi" placeholder="Isi nama instansi ..." autocomplete="off">
+                                <div class="invalid-feedback errorNamaInstansi"></div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="mb-3">
+                                <label for="alamat" class="form-label h5">Alamat</label>
+                                <textarea name="alamat" class="form-control" id="alamat" placeholder="Isi alamat instansi ..."><?= set_value('instansi') ?></textarea>
+                                <div class="invalid-feedback errorAlamat"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="no-telp" class="form-label h5">No.Telp</label>
+                                <input type="text" name="no_telp" value="<?= set_value('no_telp') ?>" class="form-control" id="no-telp" placeholder="Isi nomor telepon instansi ...">
+                                <div class="invalid-feedback errorNoTelp"></div>
+                            </div>
+                            <div class="card-footer bg-light">
                                 <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
-                                <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
+                                <button type="reset" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-refresh"></span> Batal</button>
                             </div>
                         </form>
+                        <?php else : ?>
                         <div class="view-data"></div>
+                        <?php endif;?>
                     </div>
                 </div>
             </div>
@@ -81,4 +74,79 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 
+
+<script>
+    function listData() {
+        $.ajax({
+            url: "<?= site_url('user-pelanggan/profil/list-data'); ?>",
+            dataType: 'json',
+            success: function(response) {
+                $(".view-data").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+    $(document).ready(function() {
+        listData();
+
+        $(".form-data").submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType: 'json',
+                cache: false,
+                beforeSend: function() {
+                    $('.btn-simpan').attr('disable', 'disabled');
+                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                },
+                complete: function() {
+                    $('.btn-simpan').removeAttr('disable');
+                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+                },
+                success: function(response) {
+                    var err = response.error
+                    if (err) {
+                        if (err.instansi) {
+                            $('#nama-instansi').addClass('is-invalid');
+                            $('.errorNamaInstansi').html(err.instansi);
+                        } else {
+                            $('#nama-instansi').removeClass('is-invalid');
+                            $('.errorNamaInstansi').html('');
+                        }
+                        if (err.alamat) {
+                            $('#alamat').addClass('is-invalid');
+                            $('.errorAlamat').html(err.alamat);
+                        } else {
+                            $('#alamat').removeClass('is-invalid');
+                            $('.errorAlamat').html('');
+                        }
+                        if (err.no_telp) {
+                            $('#no-telp').addClass('is-invalid');
+                            $('.errorNoTelp').html(err.no_telp);
+                        } else {
+                            $('#no-telp').removeClass('is-invalid');
+                            $('.errorNoTelp').html('');
+                        }
+                    } else {
+                        Swal.fire({
+                            title: "Berhasil",
+                            text: response.sukses,
+                            icon: "success"
+                        });
+                        listData();
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+            })
+        })
+    })
+</script>
 <?= $this->endSection(); ?>

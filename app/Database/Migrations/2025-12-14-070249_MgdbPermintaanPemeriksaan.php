@@ -19,6 +19,10 @@ class MgdbPermintaanPemeriksaan extends Migration
                 'type'       => 'CHAR',
                 'constraint' => '20',
             ],
+            'nama_pengirim' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '150',
+            ],
             'spesimen_atau_sampel' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
@@ -28,17 +32,6 @@ class MgdbPermintaanPemeriksaan extends Migration
             ],
             'jam_ambil_sampel' => [
                 'type'       => 'TIME'
-            ],
-            'nama_pengirim' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
-            ],
-            'instansi' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '100',
-            ],
-            'alamat' => [
-                'type'       => 'TEXT'
             ],
             'petugas_pengambil' => [
                 'type'       => 'VARCHAR',

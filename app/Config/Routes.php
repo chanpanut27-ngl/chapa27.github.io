@@ -33,6 +33,17 @@ $routes->group('user-pelanggan/profil', function ($routes) {
     $routes->delete('delete-data/(:num)', 'ProfilPelanggan::delete/$1');
 });
 
+// Permintaan pemeriksaan
+$routes->group('user-pelanggan/permintaan-pemeriksaan', function ($routes) {
+    $routes->get('', 'ProfilPelanggan::index');
+    $routes->get('list-data', 'ProfilPelanggan::list');
+    $routes->get('add-data', 'ProfilPelanggan::new');
+    $routes->post('create-data', 'ProfilPelanggan::create');
+    $routes->get('edit-data/(:num)', 'ProfilPelanggan::edit/$1');
+    $routes->post('update-data', 'ProfilPelanggan::update');
+    $routes->delete('delete-data/(:num)', 'ProfilPelanggan::delete/$1');
+});
+
 /****** *********************************/
 
 /** Modul Pelayanan Pemeriksaan **/
