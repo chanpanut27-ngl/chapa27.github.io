@@ -46,6 +46,16 @@
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Permintaan</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('cetak-pdf/contoh-1'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#cetakpdf"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Cetak pdf</span>
+                    </a>
+                </li>
                 <li class="pc-item pc-caption">
                     <label data-i18n="Widget">Kumpulan file</label>
                     <i class="pc-micon">
