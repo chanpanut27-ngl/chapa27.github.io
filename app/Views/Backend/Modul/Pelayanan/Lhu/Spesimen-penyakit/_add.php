@@ -6,14 +6,16 @@
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/lhu/spesimen-penyakit/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/lhu/sampel-lingkungan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_laboratorium" value="<?= $id_lab; ?>">
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
                 <div class="modal-body">
+                    <div class="mb-1">
+                        <label for="jenis-sampel" class="form-label h5" style="font-family: arial;">Jenis sampel</label>
+                    </div>
                     <div class="mb-3">
-                        <label for="jenis-sampel" class="form-label h4" style="font-family: calibri;">Jenis sampel</label>
-                        <select name="id_jenis_sampel" class="form-select" id="jenis-sampel" aria-label="Default select example">
+                        <select name="id_jenis_sampel" class="form-select" id="jenis-sampel" style="width: 100%;" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($masterJenisSampel as $row) :
@@ -26,37 +28,37 @@
                         <div class="invalid-feedback errorJenisSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="identitas-sampel" class="form-label h4" style="font-family: calibri;">Identitas sampel</label>
-                        <input type="text" name="identitas_sampel" class="form-control" id="identitas-sampel">
-                        <div class="invalid-feedback errorIdentitasSampel"></div>
+                        <label for="lokasi-ambil-sampel" class="form-label h5" style="font-family: arial;">Lokasi pengambilan sampel</label>
+                        <input type="text" name="lokasi_pengambilan_sampel" class="form-control" id="lokasi-ambil-sampel">
+                        <div class="invalid-feedback errorLokasiAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="tgl-periksa-sampel" class="form-label h4" style="font-family: calibri;">Tanggal pemeriksaan sampel</label>
-                        <input type="date" name="tgl_periksa_sampel" class="form-control" id="tgl-periksa-sampel">
-                        <div class="invalid-feedback errorTglPeriksaSampel"></div>
+                        <label for="tgl-ambil-sampel" class="form-label h5" style="font-family: arial;">Tanggal pengambilan sampel</label>
+                        <input type="text" name="tgl_ambil_sampel" class="form-control" id="tgl-ambil-sampel">
+                        <div class="invalid-feedback errorTglAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam-periksa-sampel" class="form-label h4" style="font-family: calibri;">Jam pemeriksaan sampel</label>
-                        <input type="time" name="jam_periksa_sampel" class="form-control" id="jam-periksa-sampel">
-                        <div class="invalid-feedback errorJamPeriksaSampel"></div>
+                        <label for="jam-ambil-sampel" class="form-label h5" style="font-family: arial;">Jam pengambilan sampel</label>
+                        <input type="time" name="jam_ambil_sampel" class="form-control" id="jam-ambil-sampel">
+                        <div class="invalid-feedback errorJamAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="metode-pemeriksaan" class="form-label h4" style="font-family: calibri;">Metode pemeriksaan</label>
+                        <label for="metode-pemeriksaan" class="form-label h5" style="font-family: arial;">Metode pemeriksaan</label>
                         <input type="text" name="metode_pemeriksaan" class="form-control" id="metode-pemeriksaan">
                         <div class="invalid-feedback errorMetodePemeriksaan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="volume-berat" class="form-label h4" style="font-family: calibri;">Volume/Berat</label>
+                        <label for="volume-berat" class="form-label h5" style="font-family: arial;">Volume/Berat</label>
                         <input type="text" name="volume_berat" class="form-control" id="volume-berat">
                         <div class="invalid-feedback errorVolumeBerat"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jenis-wadah" class="form-label h4" style="font-family: calibri;">Jenis wadah</label>
+                        <label for="jenis-wadah" class="form-label h5" style="font-family: arial;">Jenis wadah</label>
                         <input type="text" name="jenis_wadah" class="form-control" id="jenis-wadah">
                         <div class="invalid-feedback errorJenisWadah"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jenis-pengawet" class="form-label h4" style="font-family: calibri;">Jenis pengawet</label>
+                        <label for="jenis-pengawet" class="form-label h5" style="font-family: arial;">Jenis pengawet</label>
                         <input type="text" name="jenis_pengawet" class="form-control" id="jenis-pengawet">
                         <div class="invalid-feedback errorJenisPengawet"></div>
                     </div>
@@ -71,9 +73,18 @@
 </div>
 <script>
     $(document).ready(function() { 
-        // $("#tgl-ambil-sampel").datepicker({ dateFormat: 'dd-mm-yy' });
+        var dateToday = new Date();
+        $("#tgl-ambil-sampel").datepicker(
+            { 
+                dateFormat: 'dd-mm-yy', 
+                defaultDate: "+1w",  inDate: dateToday
+            }
+        );
+        
+        $('#jenis-sampel').select2({
+            dropdownParent: $('#exampleModal')
+        });
 
-        // $('.js-example-basic-single').select2();
         $(".form-data").submit(function(e) {
            e.preventDefault();
             $.ajax({
@@ -101,26 +112,26 @@
                             $('#jenis-sampel').removeClass('is-invalid');
                             $('.errorJenisSampel').html('');
                         }
-                        if (err.identitas_sampel) {
-                            $('#identitas-sampel').addClass('is-invalid');
-                            $('.errorIdentitasSampel').html(err.identitas_sampel);
+                        if (err.lokasi_pengambilan_sampel) {
+                            $('#lokasi-ambil-sampel').addClass('is-invalid');
+                            $('.errorLokasiAmbilSampel').html(err.lokasi_pengambilan_sampel);
                         } else {
-                            $('#identitas-sampel').removeClass('is-invalid');
-                            $('.errorIdentitasSampel').html('');
+                            $('#lokasi-ambil-sampel').removeClass('is-invalid');
+                            $('.errorLokasiAmbilSampel').html('');
                         }
-                        if (err.tgl_periksa) {
-                            $('#tgl-periksa-sampel').addClass('is-invalid');
-                            $('.errorTglPeriksaSampel').html(err.tgl_periksa);
+                        if (err.tgl_ambil_sampel) {
+                            $('#tgl-ambil-sampel').addClass('is-invalid');
+                            $('.errorTglAmbilSampel').html(err.tgl_ambil_sampel);
                         } else {
-                            $('#tgl-periksa-sampel').removeClass('is-invalid');
-                            $('.errorTglPeriksaSampel').html('');
+                            $('#tgl-ambil-sampel').removeClass('is-invalid');
+                            $('.errorTglAmbilSampel').html('');
                         }
-                        if (err.jam_periksa_sampel) {
-                            $('#jam-periksa-sampel').addClass('is-invalid');
-                            $('.errorJamPeriksaSampel').html(err.jam_periksa_sampel);
+                        if (err.jam_ambil_sampel) {
+                            $('#jam-ambil-sampel').addClass('is-invalid');
+                            $('.errorJamAmbilSampel').html(err.jam_ambil_sampel);
                         } else {
-                            $('#jam-periksa-sampel').removeClass('is-invalid');
-                            $('.errorJamPeriksaSampel').html('');
+                            $('#jam-ambil-sampel').removeClass('is-invalid');
+                            $('.errorJamAmbilSampel').html('');
                         }
                     } else {
                         Swal.fire({

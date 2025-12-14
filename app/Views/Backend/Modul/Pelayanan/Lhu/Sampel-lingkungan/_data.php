@@ -12,7 +12,7 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial; font-size:12px;">
+    <tbody style="font-family: arial; font-size:13px;">
         <?php
         $no = 1;
         foreach ($items as $row) :
@@ -24,13 +24,13 @@
         ?>
             <tr id="myId-<?= $row['id_psl']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['kode_sampel']; ?></td>
+                <td class="text-center"><?= $row['kode_sampel']; ?></td>
                 <td><?= $row['jenis_sampel']; ?></td>
                 <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
                 <td><?= date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
                 <td><?= $row['peraturan']; ?></td>
                 <td><?= $row['metode_pemeriksaan']; ?></td>
-                <td><?= $row['volume_atau_berat']; ?></td>
+                <td class="text-center"><?= $row['volume_atau_berat']; ?></td>
                 <td><?= $row['jenis_wadah']; ?></td>
                 <td><?= $row['jenis_pengawet']; ?></td>
                 <td><?= $status; ?></td>

@@ -73,6 +73,14 @@
 
 <script>
     $(document).ready(function() {
+        var dateToday = new Date();
+        $("#tgl-ambil-sampel").datepicker(
+            { 
+                dateFormat: 'dd-mm-yy', 
+                defaultDate: "+1w",  inDate: dateToday
+            }
+        );
+        
         $('#jenis-sampel').select2({
             dropdownParent: $('#exampleModal')
         });

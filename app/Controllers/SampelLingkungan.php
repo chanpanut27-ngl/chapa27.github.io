@@ -55,22 +55,14 @@ class SampelLingkungan extends ResourceController
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
-         $getLab = $this->masterLab->find($idlab);
-        // if ($getLab['id'] == 1) {
-        //     $ks = 'K';
-        // }else{
-        //     $ks = 'B';
-        // }
+        $getLab = $this->masterLab->find($idlab);
+
         $js = new JenisSampelModel();
         $r = $js->where('id_lab', $getLab['id'])
             ->where('id', $param)
             ->get()->getResultArray();
 
-        // if ($getLab['id'] == 1) {
-        //     $ks = 'K';
-        // }else{
-        //     $ks = 'B';
-        // }
+      
         $ks = null;
         foreach ($r as $g) {
             $ks = $g['kode_sampel'];
@@ -187,7 +179,6 @@ class SampelLingkungan extends ResourceController
                 $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
                 $tgl_ambil_sampel = date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel')));
                 $jam_ambil_sampel = date('H:i:s', strtotime($this->request->getVar('jam_ambil_sampel')));
-
                 $simpandata = [
                     'kode_sampel' => $this->generate_kode_sampel($id_laboratorium, $id_jenis_sampel),
                     'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
