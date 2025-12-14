@@ -145,15 +145,28 @@
                         </li>
                     </ul>
                 </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('file-booklet/reader/booklet-3'); ?>" class="pc-link">
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
                         <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#booklet"></use>
-                            </svg>
+                        <svg class="pc-icon">
+                            <use xlink:href="#swap"></use>
+                        </svg>
                         </span>
-                        <span class="pc-mtext"><span class="fa-solid fa-book"></span> Booklet</span>
+                        <span class="pc-mtext" data-i18n="booklet"><span class="fa-solid fa-arrow-right"></span> Booklet</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-booklet/reader/booklet-3'); ?>" data-i18n="Booklet 3">
+                                <span class="fa-solid fa-file-alt"></span> Booklet 3
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-booklet/reader/harga-pnbp'); ?>" data-i18n="Harga Pnbp">
+                                <span class="fa-solid fa-file-alt"></span> Harga Pnbp
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="pc-item pc-caption">
                     <label data-i18n="Widget">Pengaturan Coolbox</label>

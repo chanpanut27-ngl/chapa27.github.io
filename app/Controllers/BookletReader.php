@@ -14,4 +14,14 @@ class BookletReader extends BaseController
         ];
         return view('Backend/File/Booklet/_booklet_3', $data);
     }
+
+    public function harga_pnbp()
+    {
+        $data = [
+            'title' => 'Harga PNBP (Paket)'
+        ];
+        return view('Backend/File/Booklet/_harga_pnbp', $data);
+    }
+
+    
 }

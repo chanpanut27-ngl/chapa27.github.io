@@ -14,6 +14,7 @@ $routes->get('/user-pelanggan', 'UserPelanggan::index');
 // Booklet 
 $routes->group('user-pelanggan/booklet/reader', function ($routes) {
     $routes->get('booklet-3', 'UserBookletReader::booklet_3');
+    $routes->get('harga-pnbp', 'UserBookletReader::harga_pnbp');
 });
 
 // File peraturan
@@ -83,8 +84,10 @@ $routes->group('file-formulir/reader', function ($routes) {
     $routes->get('permintaan-pengujian-spesimen-klinis', 'FormulirReader::permintaan_pengujian_spesimen_klinis');
 });
 
+// Booklet
 $routes->group('file-booklet/reader', function ($routes) {
     $routes->get('booklet-3', 'BookletReader::booklet_3');
+    $routes->get('harga-pnbp', 'BookletReader::harga_pnbp');
 });
 
 
