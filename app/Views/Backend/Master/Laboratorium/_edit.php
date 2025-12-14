@@ -34,6 +34,7 @@
                     <div class="mb-3">
                         <label for="kode-instalasi" class="form-label h5">Instalasi</label>
                         <select name="kode_instalasi" class="form-select" id="kode-instalasi" aria-label="Default select example">
+                            <option value="">-- pilih --</option>
                             <?php foreach ($masterInstalasi as $key) : ?>
                                 <option value="<?= $key['kode_instalasi'] ?>" <?= $items['kode_instalasi'] == $key['kode_instalasi'] ? 'selected' : ''; ?>><?= $key['nama_instalasi'] ?></option>
                             <?php endforeach;?>

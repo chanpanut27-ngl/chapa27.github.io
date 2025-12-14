@@ -43,7 +43,7 @@
         var id_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan/lhu/sampel-lingkungan/list-data'); ?>",
+            url: "<?= site_url('pelayanan/lhu/spesimen-penyakit/list-data'); ?>",
             dataType: 'json',
             data:{
                  id_lab:id_lab,
@@ -66,7 +66,7 @@
             var id_lab = $(this).data("id");
             var kode_pengantar = $(this).data('kode');
             $.ajax({
-                url: "<?= site_url('pelayanan/lhu/sampel-lingkungan/add-data'); ?>",
+                url: "<?= site_url('pelayanan/lhu/spesimen-penyakit/add-data'); ?>",
                 dataType: 'json',
                 data:{
                     id_lab:id_lab,

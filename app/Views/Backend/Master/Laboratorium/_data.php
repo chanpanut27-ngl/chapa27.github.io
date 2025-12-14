@@ -16,9 +16,9 @@
         ?>
             <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['kode_lab']; ?></td>
+                <td class="text-center"><?= $row['kode_lab']; ?></td>
                 <td><?= $row['nama_lab']; ?></td>
-                <td><?= $row['lantai']; ?></td>
+                <td class="text-center"><?= $row['lantai']; ?></td>
                 <td><?= $row['nama_instalasi']; ?></td>
                 <td><?= $row['kategori']; ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>

@@ -61,7 +61,7 @@ class SpesimenPenyakitModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pelayanan_spesimen_penyakit');
-        $builder->select('pelayanan_spesimen_penyakit.id AS id_psl,
+        $builder->select('pelayanan_spesimen_penyakit.id AS id_psp,
         pelayanan_spesimen_penyakit.kode_sampel,
         master_jenis_sampel.jenis_sampel,
         pelayanan_spesimen_penyakit.identitas_sampel,
@@ -71,9 +71,10 @@ class SpesimenPenyakitModel extends Model
         pelayanan_spesimen_penyakit.volume_atau_berat,
         pelayanan_spesimen_penyakit.jenis_wadah,
         pelayanan_spesimen_penyakit.jenis_pengawet,
-        pelayanan_spesimen_penyakit.is_active AS sts_psl,
-        master_jenis_sampel.peraturan');
+        pelayanan_spesimen_penyakit.is_active AS sts_psp,
+        master_peraturan.peraturan');
         $builder->join("master_jenis_sampel", "master_jenis_sampel.id = pelayanan_spesimen_penyakit.id_jenis_sampel");
+        $builder->join("master_peraturan", "master_peraturan.id = master_jenis_sampel.id_peraturan", "left");
         $builder->where('kode_pengantar', $param1);
         $builder->where('id_laboratorium', $param2);
         $query = $builder->get()->getResultArray();
