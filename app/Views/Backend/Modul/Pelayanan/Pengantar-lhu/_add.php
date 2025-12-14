@@ -39,11 +39,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        // In your Javascript (external .js resource or <script> tag)
-        $('#pelanggan').select2({
-            dropdownParent: $('#exampleModal')
-        });
-
+       
         var dateToday = new Date();
         $("#tanggal").datepicker(
             { 
@@ -51,7 +47,7 @@
                 defaultDate: "+1w",  inDate: dateToday
             }
         );
-       
+        
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({

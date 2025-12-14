@@ -6,7 +6,8 @@
 <script src="<?= base_url('assets/js/pcoded.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/feather.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/fontawesome.v6.3.0.all.js'); ?>"></script>
-<script src="<?= base_url('assets/js/jquery-3.7.1.min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/jquery-3.7.1.js'); ?>"></script>
+
 <!-- [bottomAssets] start -->
 <?= $this->renderSection('bottomAssets'); ?>
 <!-- [bottomAssets] end -->

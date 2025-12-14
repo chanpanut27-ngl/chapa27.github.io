@@ -72,8 +72,9 @@ class SampelLingkunganModel extends Model
         pelayanan_sampel_lingkungan.jenis_wadah,
         pelayanan_sampel_lingkungan.jenis_pengawet,
         pelayanan_sampel_lingkungan.is_active AS sts_psl,
-        master_jenis_sampel.peraturan');
-        $builder->join("master_jenis_sampel", "master_jenis_sampel.id = pelayanan_sampel_lingkungan.id_jenis_sampel");
+        master_peraturan.peraturan');
+        $builder->join("master_jenis_sampel", "master_jenis_sampel.id = pelayanan_sampel_lingkungan.id_jenis_sampel", "left");
+        $builder->join("master_peraturan", "master_peraturan.id = master_jenis_sampel.id_peraturan", "left");
         $builder->where('kode_pengantar', $param1);
         $builder->where('id_laboratorium', $param2);
         $query = $builder->get()->getResultArray();
