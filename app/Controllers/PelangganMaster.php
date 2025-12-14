@@ -15,6 +15,8 @@ class PelangganMaster extends ResourceController
      */
     protected $title;
     protected $model;
+    protected $modelLab;
+    protected $modelSampel;
     protected $validation;
 
     public function __construct()
@@ -69,7 +71,7 @@ class PelangganMaster extends ResourceController
     {
          if ($this->request->isAJAX()) {
             $data = [
-                'title' => 'Tambah ' . $this->title,
+                'title' => 'Tambah ' . $this->title
             ];
             $msg = [
                 'data' => view('Backend/Master/Pelanggan/_add', $data)

@@ -33,11 +33,11 @@ class MgdbPermintaanPemeriksaan extends Migration
             'jam_ambil_sampel' => [
                 'type'       => 'TIME'
             ],
-            'petugas_pengambil' => [
+            'petugas_ambil_sampel' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '150',
             ],
-            'lokasi_pengambilan' => [
+            'lokasi_ambil_sampel' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '150',
             ],

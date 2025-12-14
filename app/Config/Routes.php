@@ -35,13 +35,13 @@ $routes->group('user-pelanggan/profil', function ($routes) {
 
 // Permintaan pemeriksaan
 $routes->group('user-pelanggan/permintaan-pemeriksaan', function ($routes) {
-    $routes->get('', 'ProfilPelanggan::index');
-    $routes->get('list-data', 'ProfilPelanggan::list');
-    $routes->get('add-data', 'ProfilPelanggan::new');
-    $routes->post('create-data', 'ProfilPelanggan::create');
-    $routes->get('edit-data/(:num)', 'ProfilPelanggan::edit/$1');
-    $routes->post('update-data', 'ProfilPelanggan::update');
-    $routes->delete('delete-data/(:num)', 'ProfilPelanggan::delete/$1');
+    $routes->get('', 'PermintaanPelanggan::index');
+    $routes->get('list-data', 'PermintaanPelanggan::list');
+    $routes->get('add-data', 'PermintaanPelanggan::new');
+    $routes->post('create-data', 'PermintaanPelanggan::create');
+    $routes->get('edit-data/(:num)', 'PermintaanPelanggan::edit/$1');
+    $routes->post('update-data', 'PermintaanPelanggan::update');
+    $routes->delete('delete-data/(:num)', 'PermintaanPelanggan::delete/$1');
 });
 
 /****** *********************************/

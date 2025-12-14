@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('user-pelanggan/pelayanan-sampel/permintaan'); ?>" class="pc-link">
+                    <a href="<?= base_url('user-pelanggan/permintaan-pemeriksaan'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">
                                 <use xlink:href="#permintaan"></use>
