@@ -18,11 +18,11 @@
       <!-- [ breadcrumb ] end -->
 
       <!-- [ Main Content ] start -->
-      <div class="row">
+      <div class="row p-0">
         <!-- [ sample-page ] start -->
         <div class="col-sm-12">
           <div class="card">
-            <div class="card-header">
+            <div class="card-header p-2">
               <h5>
                 <span class="fa-solid fa-home"></span> BB LABKESMAS JAKARTA Balai Besar Laboratorium Kesehatan Masyarakat Jakarta
               </h5>
