@@ -22,11 +22,12 @@
         <!-- [ sample-page ] start -->
         <div class="col-sm-12">
           <div class="card">
-            <div class="card-header p-2">
+            <div class="card-header">
               <h5>
                 <span class="fa-solid fa-home"></span> BB LABKESMAS JAKARTA Balai Besar Laboratorium Kesehatan Masyarakat Jakarta
               </h5>
             </div>
+            <img src="<?= base_url('assets/images/kantor-bblkm-jakarta.jpg');?>" style="height:220px;">
             <div class="card-body">
               Jl. Bambu Apus Raya No.6, RT.12/RW.3, Bambu Apus, Kec. Cipayung, Kota Jakarta Timur, <br> 
                         Daerah Khusus Ibukota Jakarta 13890 <br>

@@ -28,22 +28,26 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan-sampel/permintaan'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#permintaan"></use>
-                            </svg>
-                        </span>
+                        <svg class="pc-icon">
+                            <use xlink:href="#permintaan"></use>
+                        </svg>
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Permintaan</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#pengantar-lhu" for="pengantar-lhu"></use>
-                            </svg>
-                        </span>
+                        <svg class="pc-icon">
+                            <use xlink:href="#pengantar-lhu" for="pengantar-lhu"></use>
+                        </svg>
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Pengantar LHU</span>
+                    </a>
+                </li>
+                 <li class="pc-item">
+                    <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="pc-link">
+                       <svg class="pc-icon">
+                            <use xlink:href="#pengantar-lhu" for="pengantar-lhu"></use>
+                        </svg>
+                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Surat perintah uji sampel</span>
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
