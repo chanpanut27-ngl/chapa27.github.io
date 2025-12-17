@@ -16,7 +16,7 @@
         <?php
         $no = 1;
         foreach ($items as $row) :
-            if ($row['sts_psl'] == 1) {
+            if ($row['id_psp'] == 1) {
                 $status = '<span class="badge bg-success rounded">Aktif</span>';
             }else {
                 $status = '<span class="badge bg-secondary rounded">Tidak aktif</span>';
@@ -27,7 +27,7 @@
                 <td class="text-center"><?= $row['kode_sampel']; ?></td>
                 <td><?= $row['jenis_sampel']; ?></td>
                 <td><?= $row['identitas_sampel']; ?></td>
-                <td><?= date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
+                <td><?= date('d/m/Y', strtotime($row['tgl_periksa_sampel'])).' '. date('H:i', strtotime($row['jam_periksa_sampel'])); ?></td>
                 <td><?= $row['peraturan']; ?></td>
                 <td><?= $row['metode_pemeriksaan']; ?></td>
                 <td class="text-center"><?= $row['volume_atau_berat']; ?></td>

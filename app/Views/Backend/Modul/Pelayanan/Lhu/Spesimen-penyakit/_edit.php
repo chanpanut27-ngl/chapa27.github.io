@@ -33,7 +33,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl-periksa-sampel" class="form-label h5" style="font-family: arial;">Tanggal pengambilan sampel</label>
-                        <input type="date" name="tgl_periksa_sampel" value="<?= date('d-m-Y', strtotime($items['tgl_periksa_sampel'])); ?>" class="form-control" id="tgl-periksa-sampel" autocomplete="off">
+                        <input type="text" name="tgl_periksa_sampel" value="<?= date('d-m-Y', strtotime($items['tgl_periksa_sampel'])); ?>" class="form-control" id="tgl-periksa-sampel" autocomplete="off">
                         <div class="invalid-feedback errorTglPeriksaSampel"></div>
                     </div>
                     <div class="mb-3">

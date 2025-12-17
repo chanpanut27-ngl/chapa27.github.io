@@ -54,4 +54,17 @@ class JenisSampelModel extends Model
         $query = $builder->get()->getResultArray();
         return $query;
     }
+
+    public function get_data_jenis_sampel($idlab)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('master_jenis_sampel');
+        $builder->select('master_jenis_sampel.id, master_jenis_sampel.jenis_sampel, master_jenis_sampel.pnbp, master_jenis_sampel.is_active, master_peraturan.peraturan');
+        $builder->join("master_peraturan", "master_peraturan.id = master_jenis_sampel.id_peraturan", "left");
+        $builder->where("master_jenis_sampel.id_lab", $idlab);
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
+
 }

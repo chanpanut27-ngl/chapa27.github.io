@@ -20,7 +20,7 @@
                             <?php
                             foreach ($masterJenisSampel as $row) :
                             ?>
-                                <option value="<?= $row['id']; ?>"><?= $row['jenis_sampel']; ?></option>
+                                <option value="<?= $row['id']; ?>"><?= $row['jenis_sampel'] . ' : ' .$row['peraturan']; ?></option>
                             <?php
                             endforeach;
                             ?>

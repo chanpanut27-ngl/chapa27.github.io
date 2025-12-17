@@ -110,8 +110,9 @@ class SampelLingkungan extends ResourceController
             $data = [
                 'title' => 'Tambah ' . $nama_lab,
                 'masterLab' => $this->model->findAll(),
-                'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)
-                ->where('is_active', 1)->find(),
+                // 'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)
+                // ->where('is_active', 1)->find(),
+                'masterJenisSampel' => $this->masterJenisSampel->get_data_jenis_sampel($id_lab),
                 'id_lab' => $id_lab,
                 'kode_pengantar' => $kode_pengantar
             ];

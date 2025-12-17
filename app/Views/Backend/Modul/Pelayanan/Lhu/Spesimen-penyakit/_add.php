@@ -33,12 +33,12 @@
                         <div class="invalid-feedback errorIdentitasSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="tgl-periksa-sampel" class="form-label h5" style="font-family: arial;">Tanggal pengambilan sampel</label>
-                        <input type="date" name="tgl_periksa_sampel" class="form-control" id="tgl-periksa-sampel">
+                        <label for="tgl-periksa-sampel" class="form-label h5" style="font-family: arial;">Tanggal periksa sampel</label>
+                        <input type="text" name="tgl_periksa_sampel" class="form-control" id="tgl-periksa-sampel">
                         <div class="invalid-feedback errorTglPeriksaSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam-periksa-sampel" class="form-label h5" style="font-family: arial;">Jam pengambilan sampel</label>
+                        <label for="jam-periksa-sampel" class="form-label h5" style="font-family: arial;">Jam periksa sampel</label>
                         <input type="time" name="jam_periksa_sampel" class="form-control" id="jam-periksa-sampel">
                         <div class="invalid-feedback errorJamPeriksaSampel"></div>
                     </div>
