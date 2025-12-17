@@ -337,3 +337,9 @@ $routes->group('pelayanan/resume', function ($routes) {
     $routes->get('', 'ResumeLayananPemeriksaan::index');
     $routes->get('cetak-resume/(:any)', 'ResumeLayananPemeriksaan::cetak/$1');
 });
+
+$routes->group('pelayanan/perintah-uji-sampel', function ($routes) {
+    $routes->get('', 'SuratPerintahUjiSampel::index');
+    $routes->get('list-data', 'SuratPerintahUjiSampel::list');
+    $routes->get('add-data', 'SuratPerintahUjiSampel::new');
+});

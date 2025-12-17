@@ -81,5 +81,4 @@ class PengantarLhuModel extends Model
         return $query;
     }
 
-    
 }

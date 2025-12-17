@@ -71,7 +71,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelayanan/pengantar-lhu/list-data'); ?>",
+            url: "<?= site_url('pelayanan/perintah-uji-sampel/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);

@@ -43,9 +43,9 @@
                     </a>
                 </li>
                  <li class="pc-item">
-                    <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="pc-link">
+                    <a href="<?= base_url('pelayanan/perintah-uji-sampel'); ?>" class="pc-link">
                        <svg class="pc-icon">
-                            <use xlink:href="#pengantar-lhu" for="pengantar-lhu"></use>
+                            <use xlink:href="#surat-perintah-uji-sampel" for="pengantar-lhu"></use>
                         </svg>
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Surat perintah uji sampel</span>
                     </a>
