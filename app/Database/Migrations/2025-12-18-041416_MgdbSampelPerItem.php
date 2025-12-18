@@ -4,43 +4,37 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgKeteranganLhu extends Migration
+class MgdbSampelPerItem extends Migration
 {
     public function up()
     {
-          $this->forge->addField([
+        $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'keterangan' => [
+            'id_jenis_sampel' => [
+                'type'       => 'INT',
+                'constraint' => 5,
+                'unsigned'   => true,
+            ],
+            'id_peraturan' => [
+                'type'       => 'INT',
+                'constraint' => 5,
+                'unsigned'   => true,
+            ],
+            'parameter' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '150'
             ],
-            'paramater_tidak_dapat_di_uji' => [
+            'metode' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '150'
             ],
-            'sub_kontrak' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
-            ],
-            'kontrak_diulang' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
-            ],
-            'permintaan_khusus' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
-            ],
-            'kode_pengantar' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
-            ],
-            'id_kat_lab' => [
-                'type'       => 'INT'
+            'harga_per_titik' => [
+                'type'       => 'DECIMAL'
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -72,11 +66,13 @@ class MgKeteranganLhu extends Migration
          ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('keterangan_lhu');
+        $this->forge->addForeignKey('id_jenis_sampel', 'master_jenis_sampel', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_peraturan', 'master_peraturan', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->createTable('per_item_sampel');
     }
 
     public function down()
     {
-        $this->forge->dropTable('keterangan_lhu');
+        $this->forge->dropTable('per_item_sampel');
     }
 }
