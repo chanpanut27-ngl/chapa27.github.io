@@ -17,9 +17,9 @@
                     <?php 
                         foreach ($masterLab as $lb) : 
                             ?>
-                            <label for="<?= $lb['id'] ?>">
-                                <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>"> <?= $lb['nama_lab']; ?>
-                            </label> <br>
+                                <label for="<?= $lb['id'] ?>">
+                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>"> <?= $lb['nama_lab']; ?>
+                                </label><br>
                             <?php
                         endforeach;
                     ?>
@@ -68,6 +68,14 @@
                         } else {
                             $('#lantai').removeClass('is-invalid');
                             $('.errorLantai').html('');
+                        }
+
+                        if (err) {
+                            Swal.fire({
+                                title: "Gagal",
+                                text: response.error,
+                                icon: "error"
+                            });
                         }
                     } else {
                         Swal.fire({

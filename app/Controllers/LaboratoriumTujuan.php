@@ -61,7 +61,7 @@ class LaboratoriumTujuan extends ResourceController
         $kode_pengantar = $id;
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->get_data($kode_pengantar),
+                'items' => $this->model->get_data($kode_pengantar)
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Lab-tujuan/_data', $data)
@@ -85,12 +85,14 @@ class LaboratoriumTujuan extends ResourceController
      */
     public function new($id = null)
     {
-        
+        $pengantar = $this->modelPengantarLhu->find($id);
+        $kode_pengantar = $pengantar['kode_pengantar'];
        if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah '.$this->title,
                 'masterLab' => $this->masterLab->findAll(),
-                'pengantar_lhu' => $this->modelPengantarLhu->get_data_by_id_lhu($id)
+                'pengantar_lhu' => $this->modelPengantarLhu->get_data_by_id_lhu($id),
+                'cek_lab' => $this->model->get_data($kode_pengantar)
             ];
             $msg = [
                 'sukses' => view('Backend/Modul/Pelayanan/Lab-tujuan/_add', $data)
@@ -121,10 +123,20 @@ class LaboratoriumTujuan extends ResourceController
                         'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                         'id_laboratorium' => $idLab[$i]    
                     ];
-                    $this->model->save($simpandata);
-                    $msg = [
-                        'sukses' => 'Data berhasil disimpan'
-                    ];
+                    $kode_pengantar = $this->request->getVar('kode_pengantar');
+                    $cek_lab = $this->model->where('kode_pengantar', $kode_pengantar)
+                    ->where('id_laboratorium', $idLab[$i])->first();
+                    if ($cek_lab) {
+                        $msg = [
+                            'error' => 'Data gagal disimpan, (Lab sudah di simpan sebelumnya)'
+                        ];
+                    }else{
+                        $this->model->save($simpandata);
+
+                        $msg = [
+                            'sukses' => 'Data berhasil disimpan'
+                        ];
+                    }
                 }
                 echo json_encode($msg);
         } else {
