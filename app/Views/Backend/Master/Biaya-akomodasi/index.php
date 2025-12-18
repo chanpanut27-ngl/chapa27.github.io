@@ -81,6 +81,14 @@
                 url: "<?= site_url('master-data/biaya-akomodasi/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
+                beforeSend: function() {
+                    $('.btn-tambah').attr('disable', 'disabled');
+                    $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                },
+                complete: function() {
+                    $('.btn-tambah').removeAttr('disable');
+                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                },
                 success: function(response) {
                     $(".view-modal").html(response.data).show();
                     $("#exampleModal").modal('show');
