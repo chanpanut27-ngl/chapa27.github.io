@@ -96,8 +96,8 @@ class KeteranganLhu extends ResourceController
                 'sub_kontrak' => $this->request->getVar('sub_kontrak'),
                 'kontrak_diulang' => $this->request->getVar('kontrak_diulang'),
                 'permintaan_khusus' => $this->request->getVar('permintaan_khusus'),
-                'keterangan' => $this->request->getVar('keterangan')
-                
+                'keterangan' => $this->request->getVar('keterangan'),
+                'id_kat_lab' => $this->request->getVar('id_kat_lab')
             ];
                 $this->model->save($simpandata);
                 $msg = [

@@ -35,9 +35,19 @@
         $.ajax({
             url: "<?= site_url('pelayanan/keterangan-lhu/list-data'); ?>",
             dataType: 'json',
+            cache:false,
             data:{
                  id_lab:id_lab,
                  kode_pengantar:kode_pengantar
+            },
+            beforeSend: function() {
+                $('.btn-tambah').attr('disable', 'disabled');
+                $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-tambah').removeAttr('disable');
+                $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
             },
             success: function(response) {
                 $(".view-data").html(response.data);

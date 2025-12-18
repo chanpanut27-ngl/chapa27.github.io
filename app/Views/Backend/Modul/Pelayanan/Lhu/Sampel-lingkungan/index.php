@@ -46,6 +46,7 @@
         $.ajax({
             url: "<?= site_url('pelayanan/lhu/sampel-lingkungan/list-data'); ?>",
             dataType: 'json',
+            cache: false,
             data:{
                  id_lab:id_lab,
                  kode_pengantar:kode_pengantar
@@ -69,11 +70,20 @@
             $.ajax({
                 url: "<?= site_url('pelayanan/lhu/sampel-lingkungan/add-data'); ?>",
                 dataType: 'json',
+                cache: false,
                 data:{
                     id_lab:id_lab,
                     kode_pengantar:kode_pengantar
                 },
-                cache: false,
+                beforeSend: function() {
+                    $('.btn-tambah').attr('disable', 'disabled');
+                    $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                },
+                complete: function() {
+                    $('.btn-tambah').removeAttr('disable');
+                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                },
                 success: function(response) {
                     $(".view-modal").html(response.data).show();
                     $("#exampleModal").modal('show');

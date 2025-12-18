@@ -13,12 +13,13 @@ class KeteranganLhuModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'keterangan',
         'paramater_tidak_dapat_di_uji',
         'sub_kontrak',
         'kontrak_diulang',
         'permintaan_khusus',
         'kode_pengantar',
-        'keterangan'
+        'id_kat_lab'
     ];
 
     protected bool $allowEmptyInserts = false;
