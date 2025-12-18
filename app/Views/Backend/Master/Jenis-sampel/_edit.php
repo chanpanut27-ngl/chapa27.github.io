@@ -39,6 +39,11 @@
                         <input type="text" name="pnbp" value="<?= $items['pnbp']; ?>" class="form-control" id="pnbp" autocomplete="off">
                         <div class="invalid-feedback errorPnbp"></div>
                     </div>
+                     <div class="mb-3">
+                        <label for="keterangan" class="form-label h5" style="font-family: arial;">Keterangan</label>
+                        <input type="text" name="keterangan" class="form-control" id="keterangan" autocomplete="off">
+                        <div class="invalid-feedback errorPnbp"></div>
+                    </div>
                     <div class="mb-3">
                         <label for="id-lab" class="form-label h5">Laboratorium</label>
                         <select name="id_lab" class="form-select" id="id-lab" aria-label="Default select example">

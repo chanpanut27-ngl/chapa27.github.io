@@ -12,7 +12,15 @@ class JenisSampelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode_sampel', 'jenis_sampel', 'id_peraturan', 'pnbp', 'id_lab', 'is_active'];
+    protected $allowedFields    = [
+        'kode_sampel', 
+        'jenis_sampel', 
+        'id_peraturan', 
+        'pnbp', 
+        'keterangan', 
+        'id_lab', 
+        'is_active'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

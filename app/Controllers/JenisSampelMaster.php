@@ -136,6 +136,7 @@ class JenisSampelMaster extends ResourceController
                     'id_peraturan' => $this->request->getVar('id_peraturan'),
                     'jenis_sampel' => $this->request->getVar('jenis_sampel'),
                     'pnbp' => $this->request->getVar('pnbp'),
+                    'keterangan' => $this->request->getVar('keterangan'),
                     'id_lab' => $id_lab
                 ];
                 $this->model->insert($simpandata);
@@ -227,6 +228,7 @@ class JenisSampelMaster extends ResourceController
                     'id_peraturan' => $this->request->getVar('id_peraturan'),
                     'jenis_sampel' => $this->request->getVar('jenis_sampel'),
                     'pnbp' => $this->request->getVar('pnbp'),
+                    'keterangan' => $this->request->getVar('keterangan'),
                     'id_lab' => $this->request->getVar('id_lab'),
                     'is_active' => $this->request->getVar('is_active')
                 ];
