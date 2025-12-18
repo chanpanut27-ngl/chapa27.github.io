@@ -21,17 +21,14 @@
     <!-- [Template CSS Files] -->
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" id="main-style-link" >
     <link rel="stylesheet" href="<?= base_url('assets/css/style-preset.css'); ?>">
- 
+    <!-- [Custom CSS] -->
+    <link rel="stylesheet" href="<?= base_url('assets/css/custom.css'); ?>">
+
     <!-- [topAssets] start -->
     <?= $this->renderSection('topAssets'); ?>
     <!-- [topAssets] end -->
 
     <title><?= $title; ?></title>
-    <style>
-      #dt-search-0 {
-        width: 350px;
-      }
-    </style>
 </head>
 <!-- [Head] end -->
 <!-- [Body] Start -->
