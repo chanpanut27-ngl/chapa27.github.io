@@ -90,19 +90,22 @@
                                     foreach ($group_kat_lab  as $rs) : 
                                         $kode_pengantar = $rs['kode_pengantar'];
                                         $id_kategori_lab = $rs['idkatlab'];
-                                        $kategori_lab = 'Catatan Lab. '.$rs['kategori'];
+                                        $kategori_lab = 'Catatan '.$rs['kategori'];
                                         ?>
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><?= $kategori_lab ?></a>
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/keterangan-'.$id_kategori_lab);?>">Keterangan</a>
+                                                    <a class="nav-link navtabs <?= $id_lab == 'keterangan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/keterangan-'.$id_kategori_lab);?>">Keterangan</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/kondisi-lingkungan-'.$id_kategori_lab);?>">Kondisi lingkungan</a>
+                                                    <a class="nav-link navtabs <?= $id_lab == 'kondisi-lingkungan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/kondisi-lingkungan-'.$id_kategori_lab);?>">Kondisi lingkungan</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/kaji-ulang-permintaan-kontrak-'.$id_kategori_lab);?>">Kaji ulang permintaan kontrak</a>
+                                                    <a class="nav-link navtabs <?= $id_lab == 'kaji-ulang-permintaan-kontrak-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/kaji-ulang-permintaan-kontrak-'.$id_kategori_lab);?>">Kaji ulang permintaan kontrak</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link navtabs <?= $id_lab == 'penanggung-jawab-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/penanggung-jawab-'.$id_kategori_lab);?>">Penanggung jawab</a>
                                                 </li>
                                             </ul>
                                         </li>

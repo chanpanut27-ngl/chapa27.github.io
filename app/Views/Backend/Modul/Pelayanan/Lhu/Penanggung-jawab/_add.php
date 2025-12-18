@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <?php
@@ -11,50 +11,50 @@
                         ?>
                         <div class="modal-body">
                             <div class="alert alert-danger fw-bold" role="alert">
-                                Kaji ulang permintaan & kontrak sudah di isi !
+                                Penanggung jawab sudah di isi !
                             </div>
                         </div>
                         <?php
                     }else{
             ?>
-            <form action="<?= base_url('pelayanan/kaji-ulang-permintaan-kontrak/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/penanggung-jawab-lhu/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5h5">Alat utama</label>
-                        <input type="text" name="alat_utama" value="Semua alat bagus" class="form-control" id="nama-lab" autocomplete="off">
+                        <label for="nama-lab" class="form-label h5">Nama petugas sampling</label>
+                        <input type="text" name="nama_pjb" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Alat pendukung</label>
-                        <input type="text" name="alat_pendukung" value="Lengkap" class="form-control" id="nama-lab" autocomplete="off">
+                        <label for="nama-lab" class="form-label h5">No.Telepon petugas sampling</label>
+                        <input type="text" name="no_telp_pjb" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Personel laboratorium</label>
-                        <input type="text" name="personil_lab" value="Tersedia" class="form-control" id="nama-lab">
+                        <label for="nama-lab" class="form-label h5">Penerima sampel</label>
+                        <input type="text" name="penerima_sampel" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="permintaan-khusus" class="form-label h5">Metode pemeriksaan</label>
-                        <input type="text" name="metode_pemeriksaan" value="SNI, APHA, dan EPA" class="form-control" id="permintaan-khusus">
-                        <div class="invalid-feedback errorPermintaan"></div>
+                        <label for="nama-lab" class="form-label h5">No.Telepon penerima sampel</label>
+                        <input type="text" name="no_telp_penerima" class="form-control" id="nama-lab">
+                        <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="permintaan-khusus" class="form-label h5">Uji mutu (Quality control)</label>
-                        <input type="text" name="uji_mutu" value="Baik" class="form-control" id="permintaan-khusus">
-                        <div class="invalid-feedback errorPermintaan"></div>
+                        <label for="tgl-terima-sampel" class="form-label h5" style="font-family: arial;">Tanggal terima sampel</label>
+                        <input type="text" name="tgl_terima_sampel" class="form-control" id="tgl-terima-sampel" autocomplete="off">
+                        <div class="invalid-feedback errorTglTerimaSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="permintaan-khusus" class="form-label h5">Reagensa & media</label>
-                        <input type="text" name="reagensa_dan_media" value="Tersedia" class="form-control" id="permintaan-khusus">
-                        <div class="invalid-feedback errorPermintaan"></div>
+                        <label for="jam-terima-sampel" class="form-label h5" style="font-family: arial;">Jam terima sampel</label>
+                        <input type="time" name="jam_terima_sampel" class="form-control" id="jam-terima-sampel">
+                        <div class="invalid-feedback errorJamTerimaSampel"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><i class="fas fa-save"></i> Simpan</button>
-                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
             <?php } ?>
@@ -64,6 +64,8 @@
 
 <script>
     $(document).ready(function() {
+        $( "#tgl-terima-sampel" ).datepicker({ dateFormat: 'dd-mm-yy' });
+
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({

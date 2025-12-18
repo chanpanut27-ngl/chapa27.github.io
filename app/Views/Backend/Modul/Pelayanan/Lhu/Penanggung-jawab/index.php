@@ -1,6 +1,7 @@
 <?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
 <?= $this->section('topAssets'); ?>
-<link rel="stylesheet" href="<?= base_url('assets/css/plugins/jquery-ui.css'); ?>">
+<!-- [Datepicker css] --> 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
 <?= $this->endSection(); ?>
 
 <?= $this->section('content_menu'); ?>
@@ -31,6 +32,7 @@
 
 <?= $this->section('bottomAssets'); ?>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
+<!-- [Datepicker js] -->
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 
 <script>
@@ -64,11 +66,20 @@
             $.ajax({
                 url: "<?= site_url('pelayanan/penanggung-jawab-lhu/add-data'); ?>",
                 dataType: 'json',
+                cache: false,
                 data:{
                  id_lab:id_lab,
                  kode_pengantar:kode_pengantar
                 },
-                cache: false,
+                beforeSend: function() {
+                    $('.btn-tambah').attr('disable', 'disabled');
+                    $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                },
+                complete: function() {
+                    $('.btn-tambah').removeAttr('disable');
+                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                },
                 success: function(response) {
                     $(".view-modal").html(response.data).show();
                     $("#exampleModal").modal('show');

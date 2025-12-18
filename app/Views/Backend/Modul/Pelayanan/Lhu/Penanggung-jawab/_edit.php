@@ -3,59 +3,49 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <?php
-            if ($jumlah > 0) {
-                        ?>
-                        <div class="alert alert-danger fw-bold" role="alert">
-                            Penanggung jawab sudah di isi !
-                        </div>
-                        <?php
-                    }else{
-            ?>
-            <form action="<?= base_url('pelayanan/penanggung-jawab-lhu/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/penanggung-jawab-lhu/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
+                <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Nama petugas sampling</label>
-                        <input type="text" name="nama_pjb" class="form-control" id="nama-lab">
+                        <input type="text" name="nama_pjb" value="<?= $items['nama_pjb'] ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">No.Telepon petugas sampling</label>
-                        <input type="text" name="no_telp_pjb" class="form-control" id="nama-lab">
+                        <input type="text" name="no_telp_pjb" value="<?= $items['no_telp_pjb'] ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">Penerima sampel</label>
-                        <input type="text" name="penerima_sampel" class="form-control" id="nama-lab">
+                        <input type="text" name="penerima_sampel" value="<?= $items['penerima_sampel'] ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
                         <label for="nama-lab" class="form-label h5">No.Telepon penerima sampel</label>
-                        <input type="text" name="no_telp_penerima" class="form-control" id="nama-lab">
+                        <input type="text" name="no_telp_penerima" value="<?= $items['no_telp_penerima'] ?>" class="form-control" id="nama-lab">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
                         <label for="tgl-terima-sampel" class="form-label h5" style="font-family: calibri;">Tanggal terima sampel</label>
-                        <input type="text" name="tgl_terima_sampel" class="form-control" id="tgl-terima-sampel">
+                        <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($items['tgl_terima_sampel'])); ?>" class="form-control" id="tgl-terima-sampel" autocomplete="off">
                         <div class="invalid-feedback errorTglTerimaSampel"></div>
                     </div>
                     <div class="mb-3">
                         <label for="jam-terima-sampel" class="form-label h5" style="font-family: calibri;">Jam terima sampel</label>
-                        <input type="time" name="jam_terima_sampel" class="form-control" id="jam-terima-sampel">
+                        <input type="time" name="jam_terima_sampel" value="<?= $items['jam_terima_sampel']; ?>" class="form-control" id="jam-terima-sampel">
                         <div class="invalid-feedback errorJamTerimaSampel"></div>
                     </div>
-                </div>
+                </div> 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><i class="fas fa-save"></i> Simpan</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><i class="fas fa-edit"></i> Ubah</button>
                     <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="fa-solid fa-close"></i> Tutup</button>
                 </div>
             </form>
-            <?php } ?>
         </div>
     </div>
 </div>
@@ -73,23 +63,22 @@
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-ubah').attr('disable', 'disabled');
+                    $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+                    $('.btn-ubah').removeAttr('disable');
+                    $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
                 },
                 success: function(response) {
                     var err = response.error
                     Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success"
-                        });
-                        $("#exampleModal").modal('hide');
-                        listData();
+                        title: "Berhasil",
+                        text: response.sukses,
+                        icon: "success"
+                    });
+                    $("#exampleModal").modal('hide');
+                    listData();
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
