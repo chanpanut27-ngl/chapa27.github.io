@@ -39,6 +39,11 @@ switch (@$id_kat_lab ?? $id_lab) {
         $data['title'] = ucfirst($str_exp[0]).' Lab.Lingkungan';
         echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/index', $data);
         break;
+    case 'kaji-ulang-permintaan-kontrak-1':
+         $str_exp = explode('-', $id_lab);
+        $data['title'] = ucfirst($str_exp[0]).' Lab.Lingkungan';
+        echo view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang/index', $data);
+        break;
     case 'keterangan-2':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0]).' Lab.Penyakit';
@@ -50,7 +55,7 @@ switch (@$id_kat_lab ?? $id_lab) {
         echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-penyakit/index', $data);
         break;
     default:
-        # code...
+       
         break;
 }
 ?>

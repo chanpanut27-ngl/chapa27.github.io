@@ -63,9 +63,11 @@
                         <?php 
                         if (!$menu_lab) {
                             ?>
-                            <div class="alert alert-danger fw-bold" role="alert">
-                                Laboratorim tujuan belum di pilih !
-                                <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="href"> [Kembali]</a>
+                            <div class="modal-body">
+                                <div class="alert alert-danger fw-bold" role="alert">
+                                    Laboratorim tujuan belum di pilih !
+                                    <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="href"> [Kembali]</a>
+                                </div>
                             </div>
                             <?php
                         }else{
@@ -98,6 +100,9 @@
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/kondisi-lingkungan-'.$id_kategori_lab);?>">Kondisi lingkungan</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.$kode_pengantar.'/kaji-ulang-permintaan-kontrak-'.$id_kategori_lab);?>">Kaji ulang permintaan kontrak</a>
                                                 </li>
                                             </ul>
                                         </li>
