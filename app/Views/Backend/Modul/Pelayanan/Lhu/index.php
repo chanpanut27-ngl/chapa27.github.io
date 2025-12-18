@@ -59,7 +59,7 @@
                         </div>
                         <?php endforeach;?>
                     </div>
-                    <div class="card-body p-2">
+                    <div class="card-body">
                         <?php 
                         if (!$menu_lab) {
                             ?>
