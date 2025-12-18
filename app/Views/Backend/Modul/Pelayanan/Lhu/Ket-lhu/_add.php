@@ -9,8 +9,10 @@
             <?php
             if ($jumlah > 0) {
                         ?>
-                        <div class="alert alert-danger fw-bold" role="alert">
-                            Keterangan sudah di isi !
+                        <div class="modal-body">
+                            <div class="alert alert-danger fw-bold" role="alert">
+                                Keterangan sudah di isi !
+                            </div>
                         </div>
                         <?php
                     }else{

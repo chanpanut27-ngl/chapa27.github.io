@@ -4,11 +4,11 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgKeteranganLhu extends Migration
+class MgdbKeteranganLhuSpesimenPenyakit extends Migration
 {
     public function up()
     {
-          $this->forge->addField([
+        $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
@@ -39,9 +39,6 @@ class MgKeteranganLhu extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '150'
             ],
-            'id_kat_lab' => [
-                'type'       => 'INT'
-            ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
                 'default' => 1
@@ -69,14 +66,14 @@ class MgKeteranganLhu extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100'
             ]
-         ]);
+        ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('keterangan_lhu');
+        $this->forge->createTable('keterangan_lhu_spes_penyakit');
     }
 
     public function down()
     {
-        $this->forge->dropTable('keterangan_lhu');
+        $this->forge->dropTable('keterangan_lhu_spes_penyakit');
     }
 }

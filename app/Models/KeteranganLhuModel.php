@@ -18,8 +18,7 @@ class KeteranganLhuModel extends Model
         'sub_kontrak',
         'kontrak_diulang',
         'permintaan_khusus',
-        'kode_pengantar',
-        'id_kat_lab'
+        'kode_pengantar'
     ];
 
     protected bool $allowEmptyInserts = false;
