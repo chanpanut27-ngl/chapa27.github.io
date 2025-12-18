@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbMasterJenisSampel extends Migration
+class MgKeteranganLhu extends Migration
 {
     public function up()
     {
@@ -15,30 +15,28 @@ class MgdbMasterJenisSampel extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'kode_sampel' => [
-                'type'       => 'CHAR',
-                'constraint' => '20'
-            ],
-            'jenis_sampel' => [
+            'paramater_tidak_dapat_di_uji' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255'
+                'constraint' => '150'
             ],
-            'id_peraturan' => [
-                'type'       => 'INT',
-                'constraint' => 5,
-                'unsigned'   => true
-            ],
-            'pnbp' => [
-                'type'       => 'DECIMAL'
-            ],
-            'keterangan' => [
+            'sub_kontrak' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '225'
+                'constraint' => '150'
             ],
-            'id_lab' => [
-                'type'       => 'INT',
-                'constraint' => 5,
-                'unsigned'   => true,
+            'kontrak_diulang' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '150'
+            ],
+            'permintaan_khusus' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '150'
+            ],
+            'kode_pengantar' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '150'
+            ],
+            'id_kat_lab' => [
+                'type'       => 'INT'
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -70,13 +68,11 @@ class MgdbMasterJenisSampel extends Migration
          ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('id_lab', 'master_laboratorium', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_peraturan', 'master_peraturan', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('master_jenis_sampel');
+        $this->forge->createTable('keterangan_lhu');
     }
 
     public function down()
     {
-        $this->forge->dropTable('master_jenis_sampel');
+        $this->forge->dropTable('keterangan_lhu');
     }
 }

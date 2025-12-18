@@ -48,7 +48,8 @@ class JenisSampelModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('master_jenis_sampel');
-        $builder->select('master_jenis_sampel.id, master_jenis_sampel.jenis_sampel, master_jenis_sampel.pnbp, master_jenis_sampel.is_active, master_peraturan.peraturan, master_laboratorium.id AS id_lab, master_laboratorium.nama_lab');
+        $builder->select('master_jenis_sampel.id, master_jenis_sampel.jenis_sampel, master_jenis_sampel.pnbp, master_jenis_sampel.is_active, 
+        master_jenis_sampel.keterangan AS ket_sampel, master_peraturan.peraturan, master_laboratorium.id AS id_lab, master_laboratorium.nama_lab');
         $builder->join("master_laboratorium", "master_jenis_sampel.id_lab = master_laboratorium.id", "left");
         $builder->join("master_peraturan", "master_peraturan.id = master_jenis_sampel.id_peraturan", "left");
         $query = $builder->get()->getResultArray();

@@ -11,8 +11,8 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                  <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instalasi" class="form-label h4">Nama Instalasi</label>
-                        <input type="text" name="nama_instalasi" value="<?= $items['nama_instalasi'] ?>" class="form-control" id="nama-instalasi">
+                        <label for="nama-instalasi" class="form-label h4">Nama instalasi</label>
+                        <input type="text" name="nama_instalasi" value="<?= $items['nama_instalasi'] ?>" class="form-control" id="nama-instalasi" autocomplete="off">
                         <div class="invalid-feedback errorNamaInstalasi"></div>
                     </div>
                     <div class="mb-3">

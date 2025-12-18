@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Jenis sampel', 'PNBP (Rp)', 'Peraturan', 'Laboratorium', 'Status', ''];
+        $arrth = ['No', 'Jenis sampel', 'PNBP (Rp)', 'Peraturan', 'keterangan', 'Laboratorium', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -19,6 +19,7 @@
                 <td><?= $row['jenis_sampel']; ?></td>
                 <td style="text-align: right;"><?= number_to_currency($row['pnbp'], 'IDR', 'ID', 0); ?></td>
                 <td><?= $row['peraturan'] ?></td>
+                <td><?= $row['ket_sampel'] ?></td>
                 <td><?= $row['nama_lab']; ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>
