@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\InstansiModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
-
+use TCPDF;
 class InstansiMaster extends ResourceController
 {
     /**
