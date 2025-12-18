@@ -343,3 +343,7 @@ $routes->group('pelayanan/perintah-uji-sampel', function ($routes) {
     $routes->get('list-data', 'SuratPerintahUjiSampel::list');
     $routes->get('add-data', 'SuratPerintahUjiSampel::new');
 });
+
+$routes->group('cetak-pdf/print', function ($routes) {
+    $routes->get('', 'Cetak::index');
+});
