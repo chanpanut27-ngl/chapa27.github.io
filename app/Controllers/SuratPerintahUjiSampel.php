@@ -48,4 +48,21 @@ class SuratPerintahUjiSampel extends BaseController
             exit('Not Process');
         }    
     }
+
+    public function new($id = null) 
+    {
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+            ];
+
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/_add', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }    
+    }
+
 }

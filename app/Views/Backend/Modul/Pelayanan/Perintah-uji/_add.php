@@ -9,18 +9,7 @@
             <form action="<?= base_url('pelayanan/pengantar-lhu/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
-                    <div class="mb-1">
-                        <label for="pelanggan" class="form-label h5">Pelanggan</label>
-                    </div>
                     <div class="mb-3">
-                        <select name="id_pelanggan" class="form-control" id="pelanggan" style="width: 100%;" aria-label="Default select example">
-                            <option value="">-- Pilih --</option>
-                            <?php 
-                            foreach ($masterPelanggan as $row) :
-                            ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['nama']; ?></option>
-                            <?php endforeach;?>
-                        </select>
                         <div class="invalid-feedback errorPelanggan"></div>
                     </div>
                     <div class="mb-3">

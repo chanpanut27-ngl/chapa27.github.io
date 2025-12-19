@@ -38,10 +38,6 @@
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh" title="refresh">
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                             </button>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
-                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
-                            </button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -82,25 +78,8 @@
         })
     }
 
-
     $(document).ready(function() {
         listData();
-
-        $(".btn-tambah").click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "<?= site_url('pelayanan/pengantar-lhu/add-data'); ?>",
-                dataType: 'json',
-                cache: false,
-                success: function(response) {
-                    $(".view-modal").html(response.data).show();
-                    $("#exampleModal").modal('show');
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                }
-            })
-        })
     })
 </script>
 <?= $this->endSection(); ?>

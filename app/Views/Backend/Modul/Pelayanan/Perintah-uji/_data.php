@@ -21,9 +21,10 @@
                 <td><?= $row['nama_instalasi']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start">
-                        <a href="<?= base_url('pelayanan/proses-perintah-uji/create-data/'.strtolower($row['kode_pengantar'])).'/'.$row['id_instalasi']; ?>" class="btn btn-primary rounded btn-sm btn-tambah" title="Proses pengantar LHU">
-                            <span class="fa-solid fa-plus-circle"></span>
-                        </a>
+                       <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $row['id_instalasi']; ?>" data-kode="<?= $row['kode_pengantar'];?>">
+                            <span class="pc-micon"><span class="fa-solid fa-plus-circle"></span></span>
+                        </button>
                     </div>
                 </td>
             </tr>
@@ -31,23 +32,6 @@
     </tbody>
 </table>
 <script>
-    function addLabTujuan(id) {
-       $.ajax({
-            type: 'get',
-            url: '<?= site_url('laboratorium-tujuan/index'); ?>' + id,
-            dataType: 'json',
-            success: function(response) {
-                if (response.sukses) {
-                    $(".view-modal").html(response.sukses).show();
-                    $("#exampleModal").modal('show');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        })
-    }
-
     function deleteData(id) {
         var myElement = $('#myId-' + id);
         if (myElement.data('urut')) {
@@ -94,6 +78,29 @@
             }
         });
     }
+
+    $(".btn-tambah").click(function(e) {
+        e.preventDefault();
+        var id_instalasi = $('.btn-tambah').data("id");
+        var kode_pengantar = $('.btn-tambah').data('kode');
+        $.ajax({
+            url: "<?= site_url('pelayanan/perintah-uji-sampel/add-data'); ?>",
+            dataType: 'json',
+            cache: false,
+            data:{
+                 id_instalasi:id_instalasi,
+                 kode_pengantar:kode_pengantar
+            },
+            success: function(response) {
+                $(".view-modal").html(response.data).show();
+                $("#exampleModal").modal('show');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        })
+    })
+    
 
     $(document).ready(function() {
         new DataTable('#example', {

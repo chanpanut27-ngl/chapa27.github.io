@@ -113,31 +113,31 @@
     }
 
     function addData(id) {
-            $.ajax({
-                type: 'get',
-                url: '<?= site_url('laboratorium-tujuan/add-data/'); ?>' + id,
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-tambah').attr('disable', 'disabled');
-                    $('.btn-tambah').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.btn-tambah').removeAttr('disable');
-                    $('.btn-tambah').html('<i class="fa-solid fa-plus-square"></i> Tambah Data');
-                },
-                success: function(response) {
-                    if (response.sukses) {
-                        $(".view-modal").html(response.sukses).show();
-                        $("#exampleModal").modal('show');
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('laboratorium-tujuan/add-data/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-tambah').attr('disable', 'disabled');
+                $('.btn-tambah').html('<i class="fa fa-spin fa-spinner"></i>');
+                $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+            },
+            complete: function() {
+                $('.btn-tambah').removeAttr('disable');
+                $('.btn-tambah').html('<i class="fa-solid fa-plus-square"></i> Tambah Data');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
                 }
-            })
-        }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
         
 
     $(document).ready(function() {
