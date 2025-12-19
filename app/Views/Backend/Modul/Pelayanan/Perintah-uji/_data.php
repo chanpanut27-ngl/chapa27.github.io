@@ -20,20 +20,14 @@
                 <td><?= $row['nama_lab']; ?></td>
                 <td><?= $row['nama_instalasi']; ?></td>
                 <td>
-                    <div class="d-flex justify-content-start gap-1">
-                       <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
-                        </button>
-                        <a href="<?= base_url('laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Lab tujuan">
-                            <span class="fa-solid fa-flask"></span>
-                        </a>
-                        <a href="<?= base_url('pelayanan/proses-pengantar-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-success rounded btn-sm" title="Proses pengantar LHU">
-                            <span class="fa-solid fa-arrow-circle-right"></span>
+                    <div class="d-flex justify-content-start">
+                        <a href="<?= base_url('pelayanan/proses-perintah-uji/create-data/'.strtolower($row['kode_pengantar'])).'/'.$row['id_instalasi']; ?>" class="btn btn-primary rounded btn-sm btn-tambah" title="Proses pengantar LHU">
+                            <span class="fa-solid fa-plus-circle"></span>
                         </a>
                     </div>
                 </td>
             </tr>
-        <?php endforeach; ?>
+        <?php endforeach;?>
     </tbody>
 </table>
 <script>

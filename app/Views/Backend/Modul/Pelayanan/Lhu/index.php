@@ -76,11 +76,12 @@
                                 <?php
                                 $bg = '';
                                 $active = '';
+                                $id_lab = null;
                                     foreach ($menu_lab as $m) :
                                         $nama_lab = $m['nama_lab'];
                                         ?>
                                         <li class="nav-item">
-                                            <a class="nav-link navtabs <?= @$id_lab == $m['id_lab'] ? 'active text-light fw-bold bg-success' : '' ; ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $nama_lab ?></a>
+                                            <a class="nav-link navtabs <?= $id_lab == $m['id_lab'] ? 'active text-light fw-bold bg-success' : '' ; ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $nama_lab ?></a>
                                         </li>
                                     <?php
                                     endforeach;
