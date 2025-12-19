@@ -49,13 +49,20 @@ class SuratPerintahUjiSampel extends BaseController
         }    
     }
 
-    public function new($id = null) 
+    public function new() 
     {
+         $id_instalasi = $this->request->getVar('id_instalasi');
+            $kode_pengantar = $this->request->getVar('kode_pengantar');
+        
+       var_dump($id_instalasi);die;
         if ($this->request->isAJAX()) {
+            
+           
             $data = [
                 'title' => 'Tambah ' . $this->title,
+                'id_instalasi' => $id_instalasi,
+                'kode_pengantar' => $kode_pengantar
             ];
-
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Perintah-uji/_add', $data)
             ];

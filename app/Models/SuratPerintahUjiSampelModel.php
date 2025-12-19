@@ -55,7 +55,6 @@ class SuratPerintahUjiSampelModel extends Model
         master_pelanggan.nama, 
         master_pelanggan.alamat,
         master_laboratorium.nama_lab,
-        master_instalasi.id AS id_instalasi,
         master_instalasi.nama_instalasi
         FROM pengantar_lhu
         LEFT JOIN master_pelanggan ON master_pelanggan.id = pengantar_lhu.id_pelanggan
@@ -64,7 +63,7 @@ class SuratPerintahUjiSampelModel extends Model
         LEFT JOIN master_kategori_lab ON master_kategori_lab.id = master_laboratorium.id_kat_lab
         LEFT JOIN master_instalasi ON master_instalasi.kode_instalasi = master_laboratorium.kode_instalasi
         WHERE pengantar_lhu.kode_pengantar IN (SELECT laboratorium_tujuan.kode_pengantar FROM laboratorium_tujuan) 
-        GROUP BY master_instalasi.id";    
+        GROUP BY master_laboratorium.id";    
         $query = $db->query($sql)->getResultArray();
         return $query;
     }

@@ -22,7 +22,7 @@
                 <td>
                     <div class="d-flex justify-content-start">
                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $row['id_instalasi']; ?>" data-kode="<?= $row['kode_pengantar'];?>">
+                        <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $row['kode_pengantar']; ?>" data-kode="<?= $row['kode_pengantar'];?>">
                             <span class="pc-micon"><span class="fa-solid fa-plus-circle"></span></span>
                         </button>
                     </div>
@@ -81,14 +81,14 @@
 
     $(".btn-tambah").click(function(e) {
         e.preventDefault();
-        var id_instalasi = $('.btn-tambah').data("id");
+        // var id_instalasi = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
             url: "<?= site_url('pelayanan/perintah-uji-sampel/add-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{
-                 id_instalasi:id_instalasi,
+                //  id_instalasi:id_instalasi,
                  kode_pengantar:kode_pengantar
             },
             success: function(response) {
