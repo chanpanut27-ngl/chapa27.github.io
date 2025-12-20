@@ -41,7 +41,7 @@
                     </div>
                      <div class="mb-3">
                         <label for="keterangan" class="form-label h5" style="font-family: arial;">Keterangan</label>
-                        <input type="text" name="keterangan" class="form-control" id="keterangan" autocomplete="off">
+                        <input type="text" name="keterangan" value="<?= $items['keterangan']; ?>" class="form-control" id="keterangan" autocomplete="off">
                         <div class="invalid-feedback errorPnbp"></div>
                     </div>
                     <div class="mb-3">

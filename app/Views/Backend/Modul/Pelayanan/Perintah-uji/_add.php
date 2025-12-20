@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
@@ -8,6 +8,12 @@
             </div>
             <form action="<?= base_url('pelayanan/pengantar-lhu/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
+                <?= $id_instalasi ?><br>
+                <?php
+                foreach ($list_lab as $row) {
+                    echo 'Id Lab : ' . $row['id_laboratorium'].'<br>';
+                }
+                ?>
                 <div class="modal-body">
                     <div class="mb-3">
                         <div class="invalid-feedback errorPelanggan"></div>

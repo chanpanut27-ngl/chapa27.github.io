@@ -55,7 +55,8 @@ class SuratPerintahUjiSampelModel extends Model
         master_pelanggan.nama, 
         master_pelanggan.alamat,
         master_laboratorium.nama_lab,
-        master_instalasi.nama_instalasi
+        master_instalasi.nama_instalasi,
+        master_instalasi.id AS id_instalasi
         FROM pengantar_lhu
         LEFT JOIN master_pelanggan ON master_pelanggan.id = pengantar_lhu.id_pelanggan
         LEFT JOIN laboratorium_tujuan ON laboratorium_tujuan.id_pengantar_lhu = pengantar_lhu.id
@@ -63,9 +64,26 @@ class SuratPerintahUjiSampelModel extends Model
         LEFT JOIN master_kategori_lab ON master_kategori_lab.id = master_laboratorium.id_kat_lab
         LEFT JOIN master_instalasi ON master_instalasi.kode_instalasi = master_laboratorium.kode_instalasi
         WHERE pengantar_lhu.kode_pengantar IN (SELECT laboratorium_tujuan.kode_pengantar FROM laboratorium_tujuan) 
-        GROUP BY master_laboratorium.id";    
+        GROUP BY id_instalasi";    
         $query = $db->query($sql)->getResultArray();
         return $query;
+    }
+
+    public function get_data_lab($param = null)
+    {
+        // SELECT 
+        // laboratorium_tujuan.kode_pengantar,
+        // pelayanan_sampel_lingkungan.id_jenis_sampel,
+        // pelayanan_sampel_lingkungan.kode_sampel,
+        // pelayanan_sampel_lingkungan.lokasi_pengambilan_sampel,
+        // jenis_sampel
+        // FROM 
+        // laboratorium_tujuan,
+        // pelayanan_sampel_lingkungan
+        // JOIN master_jenis_sampel C ON C.id = pelayanan_sampel_lingkungan.id_jenis_sampel
+        // WHERE laboratorium_tujuan.kode_pengantar IN (SELECT pelayanan_sampel_lingkungan.kode_pengantar FROM pelayanan_sampel_lingkungan) 
+        // AND pelayanan_sampel_lingkungan.kode_pengantar = 'PL0001'
+        // GROUP BY id_jenis_sampel;    
     }
 
     
