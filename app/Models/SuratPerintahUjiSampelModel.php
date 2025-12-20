@@ -69,21 +69,25 @@ class SuratPerintahUjiSampelModel extends Model
         return $query;
     }
 
-    public function get_data_lab($param = null)
+    public function get_data_sampel_lingkungan($param = null)
     {
-        // SELECT 
-        // laboratorium_tujuan.kode_pengantar,
-        // pelayanan_sampel_lingkungan.id_jenis_sampel,
-        // pelayanan_sampel_lingkungan.kode_sampel,
-        // pelayanan_sampel_lingkungan.lokasi_pengambilan_sampel,
-        // jenis_sampel
-        // FROM 
-        // laboratorium_tujuan,
-        // pelayanan_sampel_lingkungan
-        // JOIN master_jenis_sampel C ON C.id = pelayanan_sampel_lingkungan.id_jenis_sampel
-        // WHERE laboratorium_tujuan.kode_pengantar IN (SELECT pelayanan_sampel_lingkungan.kode_pengantar FROM pelayanan_sampel_lingkungan) 
-        // AND pelayanan_sampel_lingkungan.kode_pengantar = 'PL0001'
-        // GROUP BY id_jenis_sampel;    
+        $db = \Config\Database::connect();
+
+        $sql = "SELECT 
+        laboratorium_tujuan.kode_pengantar,
+        pelayanan_sampel_lingkungan.id_jenis_sampel,
+        pelayanan_sampel_lingkungan.kode_sampel,
+        pelayanan_sampel_lingkungan.lokasi_pengambilan_sampel,
+        jenis_sampel
+        FROM 
+        laboratorium_tujuan,
+        pelayanan_sampel_lingkungan
+        JOIN master_jenis_sampel C ON C.id = pelayanan_sampel_lingkungan.id_jenis_sampel
+        WHERE laboratorium_tujuan.kode_pengantar IN (SELECT pelayanan_sampel_lingkungan.kode_pengantar FROM pelayanan_sampel_lingkungan) 
+        AND pelayanan_sampel_lingkungan.kode_pengantar = '".$param."'
+        GROUP BY id_jenis_sampel";
+        $query = $db->query($sql)->getResultArray();
+        return $query;
     }
 
     

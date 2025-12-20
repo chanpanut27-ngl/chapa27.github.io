@@ -3,25 +3,83 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('pelayanan/pengantar-lhu/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <?= $id_instalasi ?><br>
-                <?php
-                foreach ($list_lab as $row) {
-                    echo 'Id Lab : ' . $row['id_laboratorium'].'<br>';
-                }
-                ?>
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="invalid-feedback errorPelanggan"></div>
+                    <div class="mb-2">
+                        <label for="" class="form-label h5">Sifat Pemeriksaan Sampel</label><br>
                     </div>
                     <div class="mb-3">
-                        <label for="tanggal" class="form-label h5">Tanggal</label>
-                        <input type="text" name="tanggal" id="tanggal" class="form-control" autocomplete="off">
-                        <div class="invalid-feedback errorTanggal"></div>
+                        <label for="biasa">
+                            <input type="radio" name="sifat_pemeriksaan" value="Biasa" id="biasa" checked> Biasa
+                        </label>
+                        <label for="kasus">
+                            <input type="radio" name="sifat_pemeriksaan" value="Kasus" id="kasus"> Kasus
+                        </label>
+                        <label for="rutin/proyek">
+                            <input type="radio" name="sifat_pemeriksaan" value="Rutin/Proyek" id="rutin/proyek"> Rutin/Proyek
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <table class="table table-hover table-bordered ti">
+                            <thead style="font-family: arial; font-size:12px;">
+                                <tr>
+                                    <th><label for="">No</label></th>
+                                    <th><label for="">Kode Sampel</label></th>
+                                    <th><label for="">Jenis Sampel</label></th>
+                                    <th><label for="">Peraturan</label></th>
+                                    <th><label for="">Parameter Uji</label></th>
+                                    <th><label for="">Metode Uji</label></th>
+                                    <th><label for="">Keterangan</label></th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-family: arial; font-size:12px;">
+                                <?php $no=1; foreach ($items as $row) : ?>
+                                    <tr>
+                                        <td><?= $no++; ?></td>
+                                        <td><?= $row['kode_sampel']; ?></td>
+                                        <td><?= $row['jenis_sampel']; ?></td>
+                                        <td><?= $row['jenis_sampel']; ?></td>
+                                        <td><textarea name="parameter_uji" class="form-control"></textarea></td>
+                                        <td><textarea name="metode_uji" class="form-control"></textarea></td>
+                                        <td><textarea name="keterangan" class="form-control"></textarea></td>
+                                    </tr>
+                                <?php endforeach;?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label h5">Tim Kerja Program Layanan</label>
+                            <div class="mb-3">
+                                <label for="tgl-terima" class="form-label h5">Tanggal Penerimaan Sampel</label>
+                                <input type="text" value="<?= date('d/m/Y', strtotime($tgl_terima['tgl_terima_sampel'])) ?>" class="form-control" disabled id="tgl-terima">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tgl-kirim-sampel" class="form-label h5">Tanggal Kirim Sampel</label>
+                                <input type="text" name="tgl_kirim_sampel" id="tgl-kirim-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
+                                <div class="invalid-feedback errorTanggal"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="kepala_instalasi" class="form-label h5">Kepala <?= $instalasi['nama_instalasi']; ?> </label>
+                                <input type="text" name="kepala_instalasi" id="kepala_instalasi" class="form-control" autocomplete="off">
+                                <div class="invalid-feedback errorTanggal"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tgl-terima-sampel" class="form-label h5">Tanggal Terima Sampel</label>
+                                <input type="text" name="tgl_terima_sampel" class="form-control" id="tgl-terima-sampel" autocomplete="off" placeholder="tgl-bln-thn">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tgl-selesai-sampel" class="form-label h5">Tanggal Selesai Sampel</label>
+                                <input type="text" name="tgl_kirim_sampel" id="tgl-selesai-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
+                                <div class="invalid-feedback errorTanggal"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -40,7 +98,21 @@
         });
 
         var dateToday = new Date();
-        $("#tanggal").datepicker(
+        $("#tgl-kirim-sampel").datepicker(
+            { 
+                dateFormat: 'dd-mm-yy', 
+                defaultDate: "+1w",  inDate: dateToday
+            }
+        );
+
+        $("#tgl-terima-sampel").datepicker(
+            { 
+                dateFormat: 'dd-mm-yy', 
+                defaultDate: "+1w",  inDate: dateToday
+            }
+        );
+
+        $("#tgl-selesai-sampel").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
                 defaultDate: "+1w",  inDate: dateToday
