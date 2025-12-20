@@ -128,7 +128,7 @@
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                         >
-                        <img src="<?= base_url('assets/images/avatar-2.jpg'); ?>" alt="user-image" class="user-avtar">
+                        <img src="<?= base_url('assets/images/user-1.jpg'); ?>" alt="user-image" class="user-avtar">
                         <span class="text-white">Prola</span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">

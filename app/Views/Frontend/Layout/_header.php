@@ -1,5 +1,5 @@
 <header class="pc-header">
-    <div class="header-wrapper" style="background-color: #00A69A;"> <!-- [Mobile Media Block] start -->
+    <div class="header-wrapper" style="background-color: #462b8b;"> <!-- [Mobile Media Block] start -->
         <div class="me-auto pc-mob-drp">
             <ul class="list-unstyled">
                 <!-- ======= Menu collapse Icon ===== -->
@@ -128,7 +128,7 @@
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                         >
-                        <img src="<?= base_url('assets/images/avatar-5.jpg'); ?>" alt="user-image" class="user-avtar">
+                        <img src="<?= base_url('assets/images/user-2.jpg'); ?>" alt="user-image" class="user-avtar">
                         <span class="text-white">User pelanggan</span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
