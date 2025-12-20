@@ -4,17 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SuratPerintahUjiSampelModel extends Model
+class PerintahUjiSampelModel extends Model
 {
-    protected $table            = 'surat_perintah_uji_sampel';
+    protected $table            = 'perintah_uji_sampel';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'id_pengantar_lhu'
-    ];
+    protected $allowedFields    = [];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -46,7 +44,7 @@ class SuratPerintahUjiSampelModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function get_data_perintah_uji() 
+    public function get_data() 
     {
         $db = \Config\Database::connect();
         $sql = "SELECT 
@@ -89,7 +87,5 @@ class SuratPerintahUjiSampelModel extends Model
         $query = $db->query($sql)->getResultArray();
         return $query;
     }
-
-    
 
 }

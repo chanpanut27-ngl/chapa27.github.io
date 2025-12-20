@@ -2,18 +2,20 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
 use App\Models\InstalasiModel;
-use App\Models\LaboratoriumModel;
-use App\Models\LaboratoriumTujuanModel;
 use App\Models\PenanggungJawabLhuModel;
-use App\Models\SuratPerintahUjiSampelModel;
+use App\Models\PerintahUjiSampelModel;
+use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\I18n\Time;
 
-class SuratPerintahUjiSampel extends BaseController
+class PerintahUjiSampel extends ResourceController
 {
-    
+    /**
+     * Return an array of resource objects, themselves in array format.
+     *
+     * @return ResponseInterface
+     */
     protected $title;
     protected $model;
     protected $modelPj;
@@ -25,7 +27,7 @@ class SuratPerintahUjiSampel extends BaseController
     public function __construct()
     {
         $this->title = 'Surat Perintah Uji Sampel';
-        $this->model = new SuratPerintahUjiSampelModel();
+        $this->model = new PerintahUjiSampelModel();
         $this->modelPj = new PenanggungJawabLhuModel();
         $this->modelInstalasi = new InstalasiModel();
         $this->time = Time::now('Asia/Jakarta'); 
@@ -36,17 +38,33 @@ class SuratPerintahUjiSampel extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title,
-            'test' => $this->model->get_data_perintah_uji()
+            'title' => 'Data ' . $this->title
         ];
         return view('Backend/Modul/Pelayanan/Perintah-uji/index', $data);
     }
 
+    /**
+     * Return the properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function show($id = null)
+    {
+        //
+    }
+
+    /**
+     * Return a new resource object, with default properties.
+     *
+     * @return ResponseInterface
+     */
     public function list()
     {
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->get_data_perintah_uji()
+                'items' => $this->model->get_data()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Perintah-uji/_data', $data)
@@ -58,10 +76,9 @@ class SuratPerintahUjiSampel extends BaseController
         }    
     }
 
-    public function new() 
+    public function new()
     {
-         
-        if ($this->request->isAJAX()) {
+         if ($this->request->isAJAX()) {
 
             $_data = '';
             $id_instalasi = $this->request->getVar('id_instalasi');
@@ -93,4 +110,49 @@ class SuratPerintahUjiSampel extends BaseController
         }    
     }
 
+    /**
+     * Create a new resource object, from "posted" parameters.
+     *
+     * @return ResponseInterface
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Return the editable properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function edit($id = null)
+    {
+        //
+    }
+
+    /**
+     * Add or update a model resource, from "posted" properties.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function update($id = null)
+    {
+        //
+    }
+
+    /**
+     * Delete the designated resource object from the model.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function delete($id = null)
+    {
+        //
+    }
 }
