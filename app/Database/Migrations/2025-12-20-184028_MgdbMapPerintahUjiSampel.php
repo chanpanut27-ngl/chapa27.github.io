@@ -4,60 +4,32 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbPerintahUjiSampel extends Migration
+class MgdbMapPerintahUjiSampel extends Migration
 {
-   public function up()
+    public function up()
     {
-        $this->forge->addField([
+         $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'kode_pengantar' => [
-                'type'           => 'CHAR',
-                'constraint'     => '10'
-            ],
-            'id_pengantar_lhu' => [
+            'id_map' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => true,
             ],
-            'id_instalasi' => [
+            'id_jenis_sampel' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
-                'unsigned'       => true,
             ],
-            'sifat_pemeriksaan' => [
-                'type'           => 'CHAR',
-                'constraint'     => '15'
-            ],
-            'tgl_terima_sampel' => [
-                'type'           => 'DATE'
-            ],
-            'tgl_kirim_sampel' => [
-                'type'           => 'DATE'
-            ],
-            'tgl_terima_sampel_lab' => [
-                'type'           => 'DATE'
-            ],
-            'tgl_selesai_sampel' => [
-                'type'           => 'DATE'
-            ],
-            'analisis_lab' => [
+            'parameter_uji' => [
                 'type'       => 'TEXT'
             ],
-            'kepala_instalasi' => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '255'
+            'metode_uji' => [
+                'type'       => 'TEXT'
             ],
-            'verificator' => [
-                'type'           => 'VARCHAR',
-                'constraint'     => '150',
-                'default'        => 'user-1'
-            ],
-            'analisis_lab' => [
+            'keterangan' => [
                 'type'       => 'TEXT'
             ],
             'is_active' => [
@@ -90,13 +62,11 @@ class MgdbPerintahUjiSampel extends Migration
          ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('id_pengantar_lhu', 'pengantar_lhu', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_instalasi', 'master_instalasi', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('perintah_uji_sampel');
+        $this->forge->createTable('map_perintah_uji_sampel');
     }
 
     public function down()
     {
-        $this->forge->dropTable('perintah_uji_sampel');
+        $this->forge->dropTable('map_perintah_uji_sampel');
     }
 }

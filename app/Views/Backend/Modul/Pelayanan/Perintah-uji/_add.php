@@ -6,8 +6,11 @@
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/pengantar-lhu/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/perintah-uji-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
+                <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
+                <input type="hidden" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
+                <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
                 <div class="modal-body">
                     <div class="mb-2">
                         <label for="" class="form-label h5">Sifat Pemeriksaan Sampel</label><br>
@@ -51,33 +54,38 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="mb-3">
+                        <label for="analisis-lab" class="form-label h5">Analisis Laboratorium</label>
+                        <textarea name="analisis_lab" class="form-control" id="analisis-lab"></textarea>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label h5">Tim Kerja Program Layanan</label>
                             <div class="mb-3">
                                 <label for="tgl-terima" class="form-label h5">Tanggal Penerimaan Sampel</label>
-                                <input type="text" value="<?= date('d/m/Y', strtotime($tgl_terima['tgl_terima_sampel'])) ?>" class="form-control" disabled id="tgl-terima">
+                                <input type="text" name="tgl_terima_sampel" value="<?= date('d/m/Y', strtotime($tgl_terima['tgl_terima_sampel'])) ?>" class="form-control" disabled id="tgl-terima">
                             </div>
                             <div class="mb-3">
                                 <label for="tgl-kirim-sampel" class="form-label h5">Tanggal Kirim Sampel</label>
                                 <input type="text" name="tgl_kirim_sampel" id="tgl-kirim-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
-                                <div class="invalid-feedback errorTanggal"></div>
+                                <div class="invalid-feedback errorTglKirimSampel"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="kepala_instalasi" class="form-label h5">Kepala <?= $instalasi['nama_instalasi']; ?> </label>
-                                <input type="text" name="kepala_instalasi" id="kepala_instalasi" class="form-control" autocomplete="off">
-                                <div class="invalid-feedback errorTanggal"></div>
+                                <label for="kepala-instalasi" class="form-label h5">Kepala <?= $instalasi['nama_instalasi']; ?> </label>
+                                <input type="text" name="kepala_instalasi" id="kepala-instalasi" class="form-control" autocomplete="off">
+                                <div class="invalid-feedback errorKepalaInstalasi"></div>
                             </div>
                             <div class="mb-3">
-                                <label for="tgl-terima-sampel" class="form-label h5">Tanggal Terima Sampel</label>
-                                <input type="text" name="tgl_terima_sampel" class="form-control" id="tgl-terima-sampel" autocomplete="off" placeholder="tgl-bln-thn">
+                                <label for="tgl-terima-sampel-lab" class="form-label h5">Tanggal Terima Sampel</label>
+                                <input type="text" name="tgl_terima_sampel_lab" class="form-control" id="tgl-terima-sampel-lab" autocomplete="off" placeholder="tgl-bln-thn">
+                                <div class="invalid-feedback errorTglTerimaSampelLab"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="tgl-selesai-sampel" class="form-label h5">Tanggal Selesai Sampel</label>
-                                <input type="text" name="tgl_kirim_sampel" id="tgl-selesai-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
-                                <div class="invalid-feedback errorTanggal"></div>
+                                <input type="text" name="tgl_selesai_sampel" id="tgl-selesai-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
+                                <div class="invalid-feedback errorTglSelesaiSampel"></div>
                             </div>
                         </div>
                     </div>
@@ -105,7 +113,7 @@
             }
         );
 
-        $("#tgl-terima-sampel").datepicker(
+        $("#tgl-terima-sampel-lab").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
                 defaultDate: "+1w",  inDate: dateToday
@@ -129,30 +137,46 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
                     $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+                    $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
                 },
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.id_pelanggan) {
-                            $('#pelanggan').addClass('is-invalid');
-                            $('.errorPelanggan').html(err.id_pelanggan);
+                        if (err.tgl_kirim_sampel) {
+                            $('#tgl-kirim-sampel').addClass('is-invalid');
+                            $('.errorTglKirimSampel').html(err.tgl_kirim_sampel);
                         } else {
-                            $('#pelanggan').removeClass('is-invalid');
-                            $('.errorPelanggan').html('');
+                            $('#tgl-kirim-sampel').removeClass('is-invalid');
+                            $('.errorTglKirimSampel').html('');
                         }
-                        if (err.tanggal) {
-                            $('#tanggal').addClass('is-invalid');
-                            $('.errorTanggal').html(err.tanggal);
+                        if (err.kepala_instalasi) {
+                            $('#kepala-instalasi').addClass('is-invalid');
+                            $('.errorKepalaInstalasi').html(err.kepala_instalasi);
                         } else {
-                            $('#tanggal').removeClass('is-invalid');
-                            $('.errorTanggal').html('');
+                            $('#kepala-instalasi').removeClass('is-invalid');
+                            $('.errorKepalaInstalasi').html('');
                         }
+                        if (err.tgl_terima_sampel_lab) {
+                            $('#tgl-terima-sampel-lab').addClass('is-invalid');
+                            $('.errorTglTerimaSampelLab').html(err.tgl_terima_sampel_lab);
+                        } else {
+                            $('#tgl-terima-sampel-lab').removeClass('is-invalid');
+                            $('.errorTglTerimaSampelLab').html('');
+                        }
+
+                        if (err.tgl_selesai_sampel) {
+                            $('#tgl-selesai-sampel').addClass('is-invalid');
+                            $('.errorTglSelesaiSampel').html(err.tgl_selesai_sampel);
+                        } else {
+                            $('#tgl-selesai-sampel').removeClass('is-invalid');
+                            $('.errorTglSelesaiSampel').html('');
+                        }
+                        
                     } else {
                         Swal.fire({
                             title: "Berhasil",

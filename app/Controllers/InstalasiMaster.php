@@ -102,7 +102,7 @@ class InstalasiMaster extends ResourceController
      */
     public function create()
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
             $valid = $this->validate([
                 'nama_instalasi' => [
                     'label' => 'Nama instalasi',

@@ -12,7 +12,19 @@ class PerintahUjiSampelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'kode_pengantar',
+        'id_pengantar_lhu',
+        'id_instalasi',
+        'sifat_pemeriksaan',
+        'tgl_terima_sampel',
+        'tgl_kirim_sampel',
+        'tgl_terima_sampel_lab',
+        'tgl_selesai_sampel',
+        'analisis_lab',
+        'kepala_instalasi',
+        'verificator'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
