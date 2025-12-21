@@ -6,10 +6,9 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 /** Login **/
-$routes->get('/', 'Login::index');
+$routes->get('/', 'User::index');
 
 
-$routes->get('/', 'Home::index');
 $routes->get('wa/send-message', 'WhatsAppController::sendWhatsAppMessage');
 $routes->get('cetak-pdf/contoh-1', 'CetakPdf::index');
 

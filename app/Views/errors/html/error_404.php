@@ -1,6 +1,10 @@
-<?= $this->extend('Backend/Layout/_main'); ?>
-<?= $this->section('topAssets'); ?>
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title><?= lang('Errors.pageNotFound') ?></title>
+
+    <style>
         div.logo {
             height: 200px;
             width: 155px;
@@ -15,6 +19,7 @@
             height: 100%;
             background: #fafafa;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #777;
             font-weight: 300;
         }
         h1 {
@@ -46,43 +51,34 @@
             border-radius: 5px;
             display: block;
         }
-</style>
-<?= $this->endSection(); ?>
+        p {
+            margin-top: 1.5rem;
+        }
+        .footer {
+            margin-top: 2rem;
+            border-top: 1px solid #efefef;
+            padding: 1em 2em 0 2em;
+            font-size: 85%;
+            color: #999;
+        }
+        a:active,
+        a:link,
+        a:visited {
+            color: #dd4814;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h1>404</h1>
 
-<?= $this->section('content'); ?>
-<div class="pc-container">
-    <div class="pc-content">
-        <!-- [ breadcrumb ] start -->
-        <div class="page-header">
-            <div class="page-block">
-                <div class="row align-items-center">
-                    <div class="col-md-12">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Error</a></li>
-                            <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- [ breadcrumb ] end -->
-
-        <!-- [ Main Content ] start -->
-        <div class="row p-0">
-            <!-- [ sample-page ] start -->
-            <div class="col-sm-12">
-                <div class="wrap">
-                    <h1>404</h1>
-                    <p>
-                        <?php if (ENVIRONMENT !== 'production') : ?>
-                            <?= nl2br(esc($message)) ?>
-                        <?php else : ?>
-                            <?= lang('Errors.sorryCannotFind') ?>
-                        <?php endif; ?>
-                    </p>
-                </div>
-            </div>
-        </div>
+        <p>
+            <?php if (ENVIRONMENT !== 'production') : ?>
+                <?= nl2br(esc($message)) ?>
+            <?php else : ?>
+                <?= lang('Errors.sorryCannotFind') ?>
+            <?php endif; ?>
+        </p>
     </div>
-</div>
-<?= $this->endSection(); ?>
+</body>
+</html>
