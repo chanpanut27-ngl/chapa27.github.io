@@ -135,13 +135,13 @@
                         <div class="dropdown-header">
                             <div class="d-flex mb-1">
                                 <div class="flex-shrink-0">
-                                    <img src="<?= base_url('assets/images/avatar-2.jpg'); ?>" alt="user-image" class="user-avtar wid-35">
+                                    <img src="<?= base_url('assets/images/default.svg'); ?>" alt="user-image" class="user-avtar wid-35">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h6 class="mb-1">Prola</h6>
+                                    <h6 class="mb-1">Prola <?= user()->username; ?></h6>
                                     <span>BBLabkesmas Jakarta</span>
                                 </div>
-                                <a href="#!" class="pc-head-link bg-transparent"><i class="ti ti-power text-danger"></i></a>
+                                <a href="#!" class="pc-head-link bg-transparent d-none"><i class="ti ti-power text-danger"></i></a>
                             </div>
                         </div>
                         <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
@@ -168,10 +168,6 @@
                                 <a href="#!" class="dropdown-item">
                                     <i class="ti ti-user"></i>
                                     <span>View Profile</span>
-                                </a>
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ti ti-wallet"></i>
-                                    <span>Billing</span>
                                 </a>
                                 <a href="<?= base_url('logout'); ?>" class="dropdown-item">
                                     <i class="ti ti-power"></i>

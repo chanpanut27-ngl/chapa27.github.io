@@ -35,14 +35,6 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-sampel/permintaanxxx'); ?>" class="pc-link">
-                        <svg class="pc-icon">
-                            <use xlink:href="#permintaan"></use>
-                        </svg>
-                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> test</span>
-                    </a>
-                </li>
-                <li class="pc-item">
                     <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="pc-link">
                         <svg class="pc-icon">
                             <use xlink:href="#pengantar-lhu" for="pengantar-lhu"></use>
@@ -198,6 +190,7 @@
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Posisi Coolbox</span>
                     </a>
                 </li>
+                <?php if (in_groups('admin')) : ?>
                 <li class="pc-item pc-caption">
                     <label data-i18n="Widget">Master Data</label>
                     <i class="pc-micon">
@@ -316,6 +309,7 @@
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Coolbox</span>
                     </a>
                 </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>

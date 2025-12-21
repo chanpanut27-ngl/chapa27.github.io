@@ -12,6 +12,9 @@ $routes->group('/', function ($routes) {
     $routes->get('dashboard', 'User::dashboard');
 });
 
+$routes->get('/admin', 'Admin::index');
+
+
 $routes->get('wa/send-message', 'WhatsAppController::sendWhatsAppMessage');
 $routes->get('cetak-pdf/contoh-1', 'CetakPdf::index');
 
