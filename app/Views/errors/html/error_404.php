@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title><?= lang('Errors.pageNotFound') ?></title>
-
-    <style>
+<?= $this->extend('Backend/Layout/_main'); ?>
+<?= $this->section('topAssets'); ?>
+ <style>
         div.logo {
             height: 200px;
             width: 155px;
@@ -67,7 +63,31 @@
             color: #dd4814;
         }
     </style>
-</head>
+<?= $this->endSection(); ?>
+
+<?= $this->section('content'); ?>
+<div class="pc-container">
+    <div class="pc-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Error</a></li>
+                            <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+
+        <!-- [ Main Content ] start -->
+        <div class="row p-0">
+            <!-- [ sample-page ] start -->
+            <div class="col-sm-12">
+                
 <body>
     <div class="wrap">
         <h1>404</h1>
@@ -81,4 +101,9 @@
         </p>
     </div>
 </body>
-</html>
+            </div>
+        </div>
+    </div>
+</div>
+<?= $this->endSection(); ?>
+

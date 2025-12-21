@@ -9,8 +9,9 @@ $routes->get('/', 'Home::index');
 $routes->get('wa/send-message', 'WhatsAppController::sendWhatsAppMessage');
 $routes->get('cetak-pdf/contoh-1', 'CetakPdf::index');
 
-$routes->set404Override('App\Controllers\ErrorController::show404_');
-$routes->set404Override('App\Controllers\ErrorController::show404');
+$routes->set404Override('App\Controllers\ErrorPage::show404');
+$routes->set404Override('App\Controllers\ErrorPage::show404_');
+
 
 
 /** User pelanggan **/
