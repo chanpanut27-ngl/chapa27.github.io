@@ -15,7 +15,7 @@
                 </li>
                 <li class="dropdown pc-h-item d-inline-flex d-md-none">
                     <a
-                        class="pc-head-link dropdown-toggle arrow-none m-0"
+                        class="pc-head-link dropdown-toggle arrow-none m-0 d-none"
                         data-bs-toggle="dropdown"
                         href="#"
                         role="button"
