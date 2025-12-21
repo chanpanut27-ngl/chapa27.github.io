@@ -6,8 +6,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 /** Login **/
-$routes->get('/', 'User::index');
-
+// $routes->get('/', 'User::index');
+$routes->group('/', function ($routes) {
+    $routes->get('', 'User::index');
+    $routes->get('dashboard', 'User::dashboard');
+});
 
 $routes->get('wa/send-message', 'WhatsAppController::sendWhatsAppMessage');
 $routes->get('cetak-pdf/contoh-1', 'CetakPdf::index');

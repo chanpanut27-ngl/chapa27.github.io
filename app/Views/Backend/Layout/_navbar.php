@@ -9,7 +9,7 @@
         <div class="navbar-content">
             <ul class="pc-navbar">
                 <li class="pc-item">
-                    <a href="<?= base_url('/'); ?>" class="pc-link">
+                    <a href="<?= base_url('/dashboard'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">
                                 <use xlink:href="#home"></use>
