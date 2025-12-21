@@ -4,22 +4,20 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
-    protected $title;
-
+   
     public function __construct()
     {
-        $this->title = 'Home';
     }
 
-    public function index(): string
+    public function index()
     {
-        $data['title'] = $this->title;
-        return view('Backend/Layout/_home', $data);
+        $data['title'] = lang('Auth.loginTitle');
+        return view('Auth/login', $data);
     }
 
-    public function dashboard(): string
+    public function register()
     {
-        $data['title'] = $this->title;
-        return view('Backend/Layout/_dashboard', $data);
+        $data['title'] = lang('Auth.register');
+        return view('Auth/register', $data);
     }
 }

@@ -27,7 +27,7 @@
     <?= link_tag('assets/css/style-preset.css'); ?>
 
 
-    <title>Document</title>
+    <title><?= @$title; ?></title>
 </head>
 <body>
     <!-- [ Pre-loader ] start -->

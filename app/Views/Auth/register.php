@@ -1,21 +1,21 @@
-
-
-
 <?= $this->extend('Auth/Layout/index'); ?>
 <?= $this->section('content'); ?>
 <div class="auth-main">
     <div class="auth-wrapper v3">
         <div class="auth-form">
         <div class="auth-header">
-            <a href="#"><img src="../assets/images/logo-dark.svg" alt="img"></a>
+            <a href="#"><img src="<?= base_url('assets/images/logo.webp') ?>" alt="img" class="img-fluid" style="height: 50px;"></a>
         </div>
         <div class="card my-5">
             <div class="card-body">
             <div class="d-flex justify-content-between align-items-end mb-4">
-                <h3 class="mb-0"><b>Sign up</b></h3>
-                <a href="#" class="link-primary">Already have an account?</a>
+                <h3 class="mb-0"><b><span class="fa-solid fa-user-plus"></span> <?=lang('Auth.register')?></b></h3>
+                <a href="<?= base_url('login') ?>" class="link-primary">Sudah punya akun ?</a>
             </div>
-            <div class="row">
+            <?= view('Myth\Auth\Views\_message_block') ?>
+            <form action="<?= url_to('register') ?>" method="post">
+            <?= csrf_field() ?>
+            <!-- <div class="row">
                 <div class="col-md-6">
                 <div class="form-group mb-3">
                     <label class="form-label">First Name*</label>
@@ -28,48 +28,34 @@
                     <input type="text" class="form-control" placeholder="Last Name">
                 </div>
                 </div>
+            </div> -->
+            <div class="form-group mb-3">
+                <label for="email" class="form-label"><?=lang('Auth.email')?></label>
+                <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>"
+                name="email" aria-describedby="emailHelp" placeholder="<?=lang('Auth.email')?>" value="<?= old('email') ?>">
+                <small id="emailHelp" class="form-text text-muted"><?=lang('Auth.weNeverShare')?></small>
             </div>
             <div class="form-group mb-3">
-                <label class="form-label">Company</label>
-                <input type="text" class="form-control" placeholder="Company">
+                <label for="username" class="form-label"><?=lang('Auth.username')?></label>
+                <input type="text" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?=lang('Auth.username')?>" value="<?= old('username') ?>">
             </div>
             <div class="form-group mb-3">
-                <label class="form-label">Email Address*</label>
-                <input type="email" class="form-control" placeholder="Email Address">
+                <label for="password" class="form-label"><?=lang('Auth.password')?></label>
+                <input type="password" name="password" class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.password')?>" autocomplete="off">
             </div>
             <div class="form-group mb-3">
-                <label class="form-label">Password</label>
-                <input type="password" class="form-control" placeholder="Password">
+                <label for="pass_confirm" class="form-label"><?=lang('Auth.repeatPassword')?></label>
+                <input type="password" name="pass_confirm" class="form-control <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.repeatPassword')?>" autocomplete="off">
             </div>
-            <p class="mt-4 text-sm text-muted">By Signing up, you agree to our <a href="#" class="text-primary"> Terms of Service </a> and <a href="#" class="text-primary"> Privacy Policy</a></p>
             <div class="d-grid mt-3">
-                <button type="button" class="btn btn-primary">Create Account</button>
+                <button type="submit" class="btn btn-primary"><?=lang('Auth.register')?></button>
             </div>
+            </form>
             <div class="saprator mt-3">
-                <span>Sign up with</span>
+                
             </div>
             <div class="row">
-                <div class="col-4">
-                <div class="d-grid">
-                    <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
-                    <img src="../assets/images/authentication/google.svg" alt="img"> <span class="d-none d-sm-inline-block"> Google</span>
-                    </button>
-                </div>
-                </div>
-                <div class="col-4">
-                <div class="d-grid">
-                    <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
-                    <img src="../assets/images/authentication/twitter.svg" alt="img"> <span class="d-none d-sm-inline-block"> Twitter</span>
-                    </button>
-                </div>
-                </div>
-                <div class="col-4">
-                <div class="d-grid">
-                    <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
-                    <img src="../assets/images/authentication/facebook.svg" alt="img"> <span class="d-none d-sm-inline-block"> Facebook</span>
-                    </button>
-                </div>
-                </div>
+                
             </div>
             
             </div>
