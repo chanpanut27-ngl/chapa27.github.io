@@ -8,7 +8,7 @@
     <meta name="keywords" content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
     <meta name="author" content="CodedThemes">
     <!-- [Favicon] icon -->
-    <?= link_tag(base_url('assets/images/favicon.ico'), 'shortcut icon', 'image/x-icon'); ?>
+    <?= link_tag('assets/images/favicon.ico', 'shortcut icon', 'image/x-icon'); ?>
     <!-- [Google Font] Family -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" id="main-font-link">
     <!-- [Tabler Icons] https://tablericons.com -->
@@ -27,7 +27,7 @@
     <?= link_tag('assets/css/style-preset.css'); ?>
 
 
-    <title><?= @$title; ?></title>
+    <title><?= lang('Auth') == 'loginTitle' ? lang('Auth.loginTitle') : lang('Auth.register'); ?></title>
 </head>
 <body>
     <!-- [ Pre-loader ] start -->
