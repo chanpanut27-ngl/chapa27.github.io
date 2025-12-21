@@ -1,13 +1,13 @@
 <!-- [ Top ] start -->
-<?= $this->include('Admin/Layout/_top'); ?>
+<?= $this->include('Frontend/Layout/_top'); ?>
 <!-- [ Top ] end -->
 
 <!-- [ Sidebar Menu ] start -->
-<?= $this->include('Admin/Layout/_navbar'); ?>
+<?= $this->include('Frontend/Layout/_navbar'); ?>
 <!-- [ Sidebar Menu ] end -->
 
 <!-- [ Header Topbar ] start -->
-<?= $this->include('Admin/Layout/_header'); ?>
+<?= $this->include('Frontend/Layout/_header'); ?>
 <!-- [ Header ] end -->
 
 <!-- [ Main Content ] start -->
@@ -15,9 +15,9 @@
 <!-- [ Main Content ] end -->
 
 <!-- [ Footer ] start -->
-<?= $this->include('Admin/Layout/_footer'); ?>
+<?= $this->include('Frontend/Layout/_footer'); ?>
 <!-- [ Footer ] end -->
 
 <!-- [ Bottom ] start -->
-<?= $this->include('Admin/Layout/_bottom'); ?>
+<?= $this->include('Frontend/Layout/_bottom'); ?>
 <!-- [ Bottom ] end -->

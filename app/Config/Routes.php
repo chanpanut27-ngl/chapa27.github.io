@@ -13,6 +13,8 @@ $routes->group('/', function ($routes) {
 });
 
 $routes->get('/admin', 'Admin::index');
+$routes->get('/admin/das', 'Admin::dashboard');
+
 
 
 $routes->get('wa/send-message', 'WhatsAppController::sendWhatsAppMessage');
