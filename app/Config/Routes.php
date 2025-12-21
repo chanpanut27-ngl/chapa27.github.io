@@ -10,7 +10,6 @@ $routes->get('wa/send-message', 'WhatsAppController::sendWhatsAppMessage');
 $routes->get('cetak-pdf/contoh-1', 'CetakPdf::index');
 
 $routes->set404Override('App\Controllers\ErrorPage::show404');
-$routes->set404Override('App\Controllers\ErrorPage::show404_');
 
 
 

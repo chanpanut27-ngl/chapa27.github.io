@@ -1,6 +1,6 @@
 <?= $this->extend('Backend/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
- <style>
+<style>
         div.logo {
             height: 200px;
             width: 155px;
@@ -15,7 +15,6 @@
             height: 100%;
             background: #fafafa;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            color: #777;
             font-weight: 300;
         }
         h1 {
@@ -47,22 +46,7 @@
             border-radius: 5px;
             display: block;
         }
-        p {
-            margin-top: 1.5rem;
-        }
-        .footer {
-            margin-top: 2rem;
-            border-top: 1px solid #efefef;
-            padding: 1em 2em 0 2em;
-            font-size: 85%;
-            color: #999;
-        }
-        a:active,
-        a:link,
-        a:visited {
-            color: #dd4814;
-        }
-    </style>
+</style>
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -87,23 +71,18 @@
         <div class="row p-0">
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
-                
-<body>
-    <div class="wrap">
-        <h1>404</h1>
-
-        <p>
-            <?php if (ENVIRONMENT !== 'production') : ?>
-                <?= nl2br(esc($message)) ?>
-            <?php else : ?>
-                <?= lang('Errors.sorryCannotFind') ?>
-            <?php endif; ?>
-        </p>
-    </div>
-</body>
+                <div class="wrap">
+                    <h1>404</h1>
+                    <p>
+                        <?php if (ENVIRONMENT !== 'production') : ?>
+                            <?= nl2br(esc($message)) ?>
+                        <?php else : ?>
+                            <?= lang('Errors.sorryCannotFind') ?>
+                        <?php endif; ?>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <?= $this->endSection(); ?>
-
