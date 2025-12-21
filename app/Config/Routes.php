@@ -12,8 +12,9 @@ $routes->group('/', function ($routes) {
     $routes->get('dashboard', 'User::dashboard');
 });
 
-$routes->get('admin', 'Admin::index');
-$routes->get('dashboard', 'Admin::dashboard');
+$routes->get('admin', 'Admin::index', ['filter' => 'role:admin']);
+$routes->get('admin/index', 'Admin::index', ['filter' => 'role:admin']);
+$routes->get('admin/dashboard', 'Admin::dashboard', ['filter' => 'role:admin']);
 
 $routes->get('pelanggan', 'Pelanggan::index');
 $routes->get('dashboard', 'Pelanggan::dashboard');
