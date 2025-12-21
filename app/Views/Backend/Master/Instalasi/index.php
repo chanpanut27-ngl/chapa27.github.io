@@ -2,6 +2,7 @@
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 <div class="pc-container">
     <div class="pc-content">

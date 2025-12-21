@@ -35,6 +35,14 @@
                     </a>
                 </li>
                 <li class="pc-item">
+                    <a href="<?= base_url('pelayanan-sampel/permintaanxxx'); ?>" class="pc-link">
+                        <svg class="pc-icon">
+                            <use xlink:href="#permintaan"></use>
+                        </svg>
+                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> test</span>
+                    </a>
+                </li>
+                <li class="pc-item">
                     <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="pc-link">
                         <svg class="pc-icon">
                             <use xlink:href="#pengantar-lhu" for="pengantar-lhu"></use>
