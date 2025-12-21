@@ -5,10 +5,10 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class Admin extends BaseController
+class Pelanggan extends BaseController
 {
     protected $title;
-    
+
     public function __construct()
     {
         $this->title = 'Home';
@@ -17,12 +17,12 @@ class Admin extends BaseController
     public function index()
     {
         $data['title'] = $this->title;
-        return view('Backend/Layout/_home', $data);
+        return view('Pelanggan/Layout/_home', $data);
     }
 
     public function dashboard()
     {
         $data['title'] = $this->title;
-        return view('Backend/Layout/_dashboard', $data);
+        return view('Pelanggan/Layout/_dashboard', $data);
     }
 }

@@ -30,7 +30,7 @@ class ProfilPelanggan extends ResourceController
             'title' => $this->title,
             'cek_data' => $this->model->where('instansi', 'PKM Tangerang Selatan')->first()
         ];
-        return view('Frontend/Profil/index', $data);
+        return view('Pelanggan/Profil/index', $data);
     }
 
     /**
@@ -51,7 +51,7 @@ class ProfilPelanggan extends ResourceController
             ];
             
             $msg = [
-                'data' => view('Frontend/Profil/_data', $data)
+                'data' => view('Pelanggan/Profil/_data', $data)
             ];
 
             echo json_encode($msg);

@@ -1,13 +1,13 @@
 <!-- [ Top ] start -->
-<?= $this->include('Frontend/Layout/_top'); ?>
+<?= $this->include('Pelanggan/Layout/_top'); ?>
 <!-- [ Top ] end -->
 
 <!-- [ Sidebar Menu ] start -->
-<?= $this->include('Frontend/Layout/_navbar'); ?>
+<?= $this->include('Pelanggan/Layout/_navbar'); ?>
 <!-- [ Sidebar Menu ] end -->
 
 <!-- [ Header Topbar ] start -->
-<?= $this->include('Frontend/Layout/_header'); ?>
+<?= $this->include('Pelanggan/Layout/_header'); ?>
 <!-- [ Header ] end -->
 
 <!-- [ Main Content ] start -->
@@ -15,9 +15,9 @@
 <!-- [ Main Content ] end -->
 
 <!-- [ Footer ] start -->
-<?= $this->include('Frontend/Layout/_footer'); ?>
+<?= $this->include('Pelanggan/Layout/_footer'); ?>
 <!-- [ Footer ] end -->
 
 <!-- [ Bottom ] start -->
-<?= $this->include('Frontend/Layout/_bottom'); ?>
+<?= $this->include('Pelanggan/Layout/_bottom'); ?>
 <!-- [ Bottom ] end -->

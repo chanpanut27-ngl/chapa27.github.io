@@ -1,14 +1,26 @@
-<?php if (in_groups('admin')) : ?>
+<?php 
+$page = '';
+
+if (in_groups('admin')) {
+    $page = 'Backend';
+} else if (in_groups('user')) {
+    $page = 'Backend';
+} else if (in_groups('pelanggan')) {
+    $page = 'Pelanggan';
+} else {
+    $page = '';
+}
+?>
 <!-- [ Top ] start -->
-<?= $this->include('Backend/Layout/_top'); ?>
+<?= $this->include($page.'/Layout/_top'); ?>
 <!-- [ Top ] end -->
 
 <!-- [ Sidebar Menu ] start -->
-<?= $this->include('Backend/Layout/_navbar'); ?>
+<?= $this->include($page.'/Layout/_navbar'); ?>
 <!-- [ Sidebar Menu ] end -->
 
 <!-- [ Header Topbar ] start -->
-<?= $this->include('Backend/Layout/_header'); ?>
+<?= $this->include($page.'/Layout/_header'); ?>
 <!-- [ Header ] end -->
 
 <!-- [ Main Content ] start -->
@@ -16,36 +28,9 @@
 <!-- [ Main Content ] end -->
 
 <!-- [ Footer ] start -->
-<?= $this->include('Backend/Layout/_footer'); ?>
+<?= $this->include($page.'/Layout/_footer'); ?>
 <!-- [ Footer ] end -->
 
 <!-- [ Bottom ] start -->
-<?= $this->include('Backend/Layout/_bottom'); ?>
+<?= $this->include($page.'/Layout/_bottom'); ?>
 <!-- [ Bottom ] end -->
-
-<?php else : ?>
-
-    <!-- [ Top ] start -->
-<?= $this->include('Frontend/Layout/_top'); ?>
-<!-- [ Top ] end -->
-
-<!-- [ Sidebar Menu ] start -->
-<?= $this->include('Frontend/Layout/_navbar'); ?>
-<!-- [ Sidebar Menu ] end -->
-
-<!-- [ Header Topbar ] start -->
-<?= $this->include('Frontend/Layout/_header'); ?>
-<!-- [ Header ] end -->
-
-<!-- [ Main Content ] start -->
-<?= $this->renderSection('content', true); ?>
-<!-- [ Main Content ] end -->
-
-<!-- [ Footer ] start -->
-<?= $this->include('Frontend/Layout/_footer'); ?>
-<!-- [ Footer ] end -->
-
-<!-- [ Bottom ] start -->
-<?= $this->include('Frontend/Layout/_bottom'); ?>
-<!-- [ Bottom ] end -->
- <?php endif;?>

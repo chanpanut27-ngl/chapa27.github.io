@@ -1,5 +1,5 @@
 <header class="pc-header">
-    <div class="header-wrapper" style="background-color: #462b8b;"> <!-- [Mobile Media Block] start -->
+    <div class="header-wrapper bg-blue-300"> <!-- [Mobile Media Block] start -->
         <div class="me-auto pc-mob-drp">
             <ul class="list-unstyled">
                 <!-- ======= Menu collapse Icon ===== -->
@@ -15,7 +15,7 @@
                 </li>
                 <li class="dropdown pc-h-item d-inline-flex d-md-none">
                     <a
-                        class="pc-head-link dropdown-toggle arrow-none m-0"
+                        class="pc-head-link dropdown-toggle arrow-none m-0 d-none"
                         data-bs-toggle="dropdown"
                         href="#"
                         role="button"
@@ -65,7 +65,7 @@
                                 <a class="list-group-item list-group-item-action">
                                     <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img src="<?= base_url('assets/images/default.svg') ?>" alt="user-image" class="user-avtar">
+                                        <img src="../assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
                                     </div>
                                     <div class="flex-grow-1 ms-1">
                                         <span class="float-end text-muted">3:00 AM</span>
@@ -77,7 +77,7 @@
                                 <a class="list-group-item list-group-item-action">
                                     <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img src="<?= base_url('assets/images/default.svg'); ?>" alt="user-image" class="user-avtar wid-35">
+                                        <img src="../assets/images/user/avatar-1.jpg" alt="user-image" class="user-avtar">
                                     </div>
                                     <div class="flex-grow-1 ms-1">
                                         <span class="float-end text-muted">6:00 PM</span>
@@ -89,7 +89,7 @@
                                 <a class="list-group-item list-group-item-action">
                                     <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img src="<?= base_url('assets/images/default.svg'); ?>" alt="user-image" class="user-avtar wid-35">
+                                        <img src="../assets/images/user/avatar-3.jpg" alt="user-image" class="user-avtar">
                                     </div>
                                     <div class="flex-grow-1 ms-1">
                                         <span class="float-end text-muted">2:45 PM</span>
@@ -101,7 +101,7 @@
                                 <a class="list-group-item list-group-item-action">
                                     <div class="d-flex">
                                         <div class="flex-shrink-0">
-                                            <img src="<?= base_url('assets/images/default.svg'); ?>" alt="user-image" class="user-avtar wid-35">
+                                            <img src="../assets/images/user/avatar-4.jpg" alt="user-image" class="user-avtar">
                                         </div>
                                         <div class="flex-grow-1 ms-1">
                                             <span class="float-end text-muted">9:10 PM</span>
@@ -128,8 +128,8 @@
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                         >
-                        <img src="<?= base_url('assets/images/user-2.jpg'); ?>" alt="user-image" class="user-avtar">
-                        <span class="text-white">User pelanggan</span>
+                        <img src="<?= base_url('assets/images/user-1.jpg'); ?>" alt="user-image" class="user-avtar">
+                        <span class="text-white">Prola</span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header">
@@ -138,7 +138,7 @@
                                     <img src="<?= base_url('assets/images/default.svg'); ?>" alt="user-image" class="user-avtar wid-35">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h6 class="mb-1">Prola</h6>
+                                    <h6 class="mb-1">Prola <?= user()->username; ?></h6>
                                     <span>BBLabkesmas Jakarta</span>
                                 </div>
                                 <a href="#!" class="pc-head-link bg-transparent d-none"><i class="ti ti-power text-danger"></i></a>

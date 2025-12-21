@@ -1,5 +1,5 @@
 <header class="pc-header">
-    <div class="header-wrapper" style="background-color: #00A69A;"> <!-- [Mobile Media Block] start -->
+    <div class="header-wrapper kemkes-color1"> <!-- [Mobile Media Block] start -->
         <div class="me-auto pc-mob-drp">
             <ul class="list-unstyled">
                 <!-- ======= Menu collapse Icon ===== -->

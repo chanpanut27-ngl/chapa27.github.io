@@ -21,6 +21,8 @@
     <?= link_tag('assets/fonts/material.css'); ?>
     <!-- [Template CSS Files] -->
     <?= link_tag('assets/css/style.css'); ?>
+     <!-- [Custom CSS Files] -->
+    <?= link_tag('assets/css/custom.css'); ?>
     <!-- [Style Preset CSS Files] -->
     <?= link_tag('assets/css/style-preset.css'); ?>
     <!-- [Custom CSS] -->

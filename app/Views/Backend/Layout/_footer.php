@@ -1,4 +1,4 @@
-<footer class="pc-footer bg-teal-100">
+<footer class="pc-footer kemkes-color2">
     <div class="footer-wrapper container-fluid">
         <div class="row">
             <div class="col-sm my-1">

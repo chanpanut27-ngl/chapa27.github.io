@@ -12,9 +12,11 @@ $routes->group('/', function ($routes) {
     $routes->get('dashboard', 'User::dashboard');
 });
 
-$routes->get('/admin', 'Admin::index');
-$routes->get('/admin/das', 'Admin::dashboard');
+$routes->get('admin', 'Admin::index');
+$routes->get('dashboard', 'Admin::dashboard');
 
+$routes->get('pelanggan', 'Pelanggan::index');
+$routes->get('dashboard', 'Pelanggan::dashboard');
 
 
 $routes->get('wa/send-message', 'WhatsAppController::sendWhatsAppMessage');
