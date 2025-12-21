@@ -1,6 +1,7 @@
 
-<form action="<?= base_url('user-pelanggan/profil/update-data'); ?>" class="form-data">
+<form action="<?= base_url('pelanggan/profil/update-data'); ?>" class="form-data">
     <?= csrf_field(); ?>
+    <input type="hidden" name="id" value="<?= @$cek_data['id']; ?>">
     <div class="mb-3">
         <label for="nama-instansi" class="form-label h5">Instansi</label>
         <input type="text" name="instansi" value="<?= set_value('instansi', @$cek_data['instansi']) ?>" class="form-control" id="nama-instansi" placeholder="Isi nama instansi ..." autocomplete="off">
@@ -21,3 +22,61 @@
         <button type="reset" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-refresh"></span> Batal</button>
     </div>
 </form>
+
+<script>
+    $(".form-data").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-ubah').attr('disable', 'disabled');
+                $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
+                $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+            },
+            complete: function() {
+                $('.btn-ubah').removeAttr('disable');
+                $('.btn-ubah').html('<i class="fas fa-edit"></i> Ubah');
+            },
+            success: function(response) {
+                var err = response.error
+                if (err) {
+                    if (err.instansi) {
+                        $('#nama-instansi').addClass('is-invalid');
+                        $('.errorNamaInstansi').html(err.instansi);
+                    } else {
+                        $('#nama-instansi').removeClass('is-invalid');
+                        $('.errorNamaInstansi').html('');
+                    }
+                    if (err.alamat) {
+                        $('#alamat').addClass('is-invalid');
+                        $('.errorAlamat').html(err.alamat);
+                    } else {
+                        $('#alamat').removeClass('is-invalid');
+                        $('.errorAlamat').html('');
+                    }
+                    if (err.no_telp) {
+                        $('#no-telp').addClass('is-invalid');
+                        $('.errorNoTelp').html(err.no_telp);
+                    } else {
+                        $('#no-telp').removeClass('is-invalid');
+                        $('.errorNoTelp').html('');
+                    }
+                } else {
+                    Swal.fire({
+                        title: "Berhasil",
+                        text: response.sukses,
+                        icon: "success"
+                    });
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    })
+
+</script>

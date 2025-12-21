@@ -11,36 +11,34 @@ $routes->get('cetak-pdf/contoh-1', 'CetakPdf::index');
 
 $routes->set404Override('App\Controllers\ErrorPage::show404');
 
-
-
 /** User pelanggan **/
-$routes->get('/user-pelanggan', 'UserPelanggan::index');
+$routes->get('/pelanggan', 'Frontend\UserPelanggan::index');
 
 // Booklet 
-$routes->group('user-pelanggan/booklet/reader', function ($routes) {
-    $routes->get('booklet-3', 'UserBookletReader::booklet_3');
-    $routes->get('harga-pnbp', 'UserBookletReader::harga_pnbp');
+$routes->group('pelanggan/booklet/reader', function ($routes) {
+    $routes->get('booklet-3', 'Frontend\BookletReader::booklet_3');
+    $routes->get('harga-pnbp', 'Frontend\BookletReader::harga_pnbp');
 });
 
 // File peraturan
-$routes->group('user-pelanggan/file-peraturan/reader', function ($routes) {
-    $routes->get('standar-pelayanan', 'UserFileReader::standar_pelayanan');
-    $routes->get('tarif-pelayanan', 'UserFileReader::tarif_pelayanan');
+$routes->group('pelanggan/file-peraturan/reader', function ($routes) {
+    $routes->get('standar-pelayanan', 'Frontend\FileReader::standar_pelayanan');
+    $routes->get('tarif-pelayanan', 'Frontend\FileReader::tarif_pelayanan');
 });
 
 // Profil pelanggan
-$routes->group('user-pelanggan/profil', function ($routes) {
-    $routes->get('', 'ProfilPelanggan::index');
-    $routes->get('list-data', 'ProfilPelanggan::list');
-    $routes->get('add-data', 'ProfilPelanggan::new');
-    $routes->post('create-data', 'ProfilPelanggan::create');
-    $routes->get('edit-data/(:num)', 'ProfilPelanggan::edit/$1');
-    $routes->post('update-data', 'ProfilPelanggan::update');
-    $routes->delete('delete-data/(:num)', 'ProfilPelanggan::delete/$1');
+$routes->group('pelanggan/profil', function ($routes) {
+    $routes->get('', 'Frontend\ProfilPelanggan::index');
+    $routes->get('list-data', 'Frontend\ProfilPelanggan::list');
+    $routes->get('add-data', 'Frontend\ProfilPelanggan::new');
+    $routes->post('create-data', 'Frontend\ProfilPelanggan::create');
+    $routes->get('edit-data/(:num)', 'Frontend\ProfilPelanggan::edit/$1');
+    $routes->post('update-data', 'Frontend\ProfilPelanggan::update');
+    $routes->delete('delete-data/(:num)', 'Frontend\ProfilPelanggan::delete/$1');
 });
 
 // Permintaan pemeriksaan
-$routes->group('user-pelanggan/permintaan-pemeriksaan', function ($routes) {
+$routes->group('pelanggan/permintaan-pemeriksaan', function ($routes) {
     $routes->get('', 'PermintaanPelanggan::index');
     $routes->get('list-data', 'PermintaanPelanggan::list');
     $routes->get('add-data', 'PermintaanPelanggan::new');

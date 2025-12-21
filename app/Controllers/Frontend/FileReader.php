@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Frontend;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class UserFileReader extends BaseController
+class FileReader extends BaseController
 {
     public function standar_pelayanan()
     {

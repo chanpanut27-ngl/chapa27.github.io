@@ -2,6 +2,7 @@
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 <div class="pc-container">
     <div class="pc-content">
@@ -32,7 +33,7 @@
                         <?php
                         if (!$cek_data) :
                         ?>
-                        <form action="<?= base_url('user-pelanggan/profil/create-data'); ?>" class="form-data">
+                        <form action="<?= base_url('pelanggan/profil/create-data'); ?>" class="form-data">
                             <?= csrf_field(); ?>
                             <div class="mb-3">
                                 <label for="nama-instansi" class="form-label h5">Instansi</label>
@@ -78,7 +79,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('user-pelanggan/profil/list-data'); ?>",
+            url: "<?= site_url('pelanggan/profil/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -133,13 +134,19 @@
                             $('#no-telp').removeClass('is-invalid');
                             $('.errorNoTelp').html('');
                         }
+                        if (err) {
+                            Swal.fire({
+                                title: "Gagal",
+                                text: response.error,
+                                icon: "error"
+                            });
+                        }
                     } else {
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success"
                         });
-                        listData();
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
@@ -147,6 +154,7 @@
                 }
             })
         })
+
     })
 </script>
 <?= $this->endSection(); ?>
