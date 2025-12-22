@@ -2,28 +2,28 @@
 
 <?= $this->section('content_menu'); ?>
 <div class="row p-0">
-            <!-- [ sample-page ] start -->
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header p-2">
-                        <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"><span></span>
-                            </button>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_kat_lab; ?>" data-kode="<?= $kode_pengantar;?>">
-                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <h4><?= $title; ?></h4>
-                        <div class="view-data"></div>
-                    </div>
+    <!-- [ sample-page ] start -->
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header p-2">
+                <div class="d-flex justify-content-end align-items-center gap-1">
+                    <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
+                        <span class="pc-micon"><span class="fa-solid fa-refresh"><span></span>
+                    </button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_kat_lab; ?>" data-kode="<?= $kode_pengantar;?>">
+                        <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
+                    </button>
                 </div>
             </div>
-            <!-- [ sample-page ] end -->
+            <div class="card-body">
+                <h4><?= $title; ?></h4>
+                <div class="view-data"></div>
+            </div>
         </div>
+    </div>
+    <!-- [ sample-page ] end -->
+</div>
 <div class="view-modal" style="display: none;"></div>
 <?= $this->endSection(); ?>
 

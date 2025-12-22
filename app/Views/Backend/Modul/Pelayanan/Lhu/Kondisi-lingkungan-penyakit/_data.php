@@ -3,7 +3,7 @@
         ?>
         <tbody style="font-family: arial;">
             <tr>
-                <td style="width: 30%;"><b>Kondisi linkungan sekitar sampel</b></td>
+                <td style="width: 30%;"><b>Kondisi lingkungan sekitar sampel</b></td>
                 <td>: </td>
             </tr>
             <tr>
@@ -14,7 +14,7 @@
         <?php
     } else {?>
     <?php foreach ($items as $row) : ?>
-    <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+    <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <span class="fa-solid fa-edit"></span>
     </button>&nbsp;
     <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
@@ -22,7 +22,7 @@
     </button>
     <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
         <tr>
-            <td style="width: 30%;"><b>Kondisi linkungan sekitar sampel</b></td>
+            <td style="width: 30%;"><b>Kondisi lingkungan sekitar sampel</b></td>
             <td>: <?= $row['kondisi_lingkungan_sekitar_sampel'] ?></td>
         </tr>
         <tr>
@@ -36,8 +36,18 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/kondisi-lingkungan-sekitar-sampel/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/kondisi-lingkungan-sampel/edit-data/'); ?>' + id,
             dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit').attr('disable', 'disabled');
+                $('.btn-edit').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit').removeAttr('disable');
+                $('.btn-edit').html('<span class="fa-solid fa-edit"></span>');
+            },
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();
@@ -69,7 +79,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/kondisi-lingkungan-sekitar-sampel/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/kondisi-lingkungan-sampel/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
