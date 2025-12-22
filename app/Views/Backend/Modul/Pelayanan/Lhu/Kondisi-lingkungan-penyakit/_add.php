@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <?php
@@ -17,7 +17,7 @@
                         <?php
                     }else{
             ?>
-            <form action="<?= base_url('pelayanan/kondisi-lingkungan-sampel/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/kondisi-lingkungan-penyakit/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
                 <input type="hidden" name="id_kat_lab" value="<?= $id_kat_lab ?>">

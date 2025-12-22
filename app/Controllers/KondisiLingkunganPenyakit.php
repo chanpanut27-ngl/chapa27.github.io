@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\KondisiLingkunganPenyakitModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -12,9 +13,23 @@ class KondisiLingkunganPenyakit extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function index()
+    protected $title;
+    protected $model;
+    protected $validation;
+
+    public function __construct()
     {
-        //
+        $this->title = 'Kondisi lingkungan sekitar sampel & Catatan Abnormalitas';
+        $this->model = new KondisiLingkunganPenyakitModel();
+        $this->validation = \Config\Services::validation();
+    }
+
+    public function index()
+    {   
+         $data = [
+            'title' => 'Data ' . $this->title
+        ];
+        return view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-sampel/index', $data);
     }
 
     /**
@@ -24,6 +39,23 @@ class KondisiLingkunganPenyakit extends ResourceController
      *
      * @return ResponseInterface
      */
+    public function list()
+    {
+        if ($this->request->isAJAX()) {
+            $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $data = [
+                'items' => $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-penyakit/_data', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
     public function show($id = null)
     {
         //
@@ -36,7 +68,24 @@ class KondisiLingkunganPenyakit extends ResourceController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
+
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+                'id_kat_lab' => $id_kat_lab,
+                'kode_pengantar' => $kode_pengantar,
+                'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-penyakit/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -46,7 +95,21 @@ class KondisiLingkunganPenyakit extends ResourceController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $simpandata = [
+                'kode_pengantar' => $this->request->getVar('kode_pengantar'),
+                'kondisi_lingkungan_sekitar_sampel' => $this->request->getVar('kondisi_lingkungan_sekitar_sampel'),
+                'catatan_abnormalitas' => $this->request->getVar('catatan_abnormalitas'),
+                'id_kat_lab' => $this->request->getVar('id_kat_lab'),
+            ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            echo json_encode($msg);
+        }else{
+            exit('Not Process');
+        }
     }
 
     /**
@@ -58,7 +121,19 @@ class KondisiLingkunganPenyakit extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-penyakit/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -70,7 +145,20 @@ class KondisiLingkunganPenyakit extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $simpandata = [
+                'id' => $this->request->getVar('id'),
+                'kondisi_lingkungan_sekitar_sampel' => $this->request->getVar('kondisi_lingkungan_sekitar_sampel'),
+                'catatan_abnormalitas' => $this->request->getVar('catatan_abnormalitas')
+            ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            echo json_encode($msg);
+        }else{
+            exit('Not Process');
+        }
     }
 
     /**
@@ -82,6 +170,15 @@ class KondisiLingkunganPenyakit extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil di hapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }

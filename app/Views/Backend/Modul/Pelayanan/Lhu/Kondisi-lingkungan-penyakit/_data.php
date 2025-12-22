@@ -36,7 +36,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/kondisi-lingkungan-sampel/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/kondisi-lingkungan-penyakit/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -79,7 +79,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/kondisi-lingkungan-sampel/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/kondisi-lingkungan-penyakit/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

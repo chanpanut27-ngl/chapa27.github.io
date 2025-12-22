@@ -3,10 +3,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/kondisi-lingkungan-sampel/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/kondisi-lingkungan-penyakit/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">

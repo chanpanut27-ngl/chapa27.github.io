@@ -170,7 +170,7 @@ class KondisiLingkunganSampel extends ResourceController
      */
     public function delete($id = null)
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
 
             $this->model->delete($id);
             $msg = [
