@@ -17,6 +17,7 @@
                 </div>
             </div>
             <div class="card-body">
+                <h4><?= $title; ?></h4>
                 <div class="view-data"></div>
             </div>
         </div>

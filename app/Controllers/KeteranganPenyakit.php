@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\KeteranganLhuModel;
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\KeteranganPenyakitModel;
 use CodeIgniter\RESTful\ResourceController;
+use CodeIgniter\HTTP\ResponseInterface;
 
-class KeteranganLhu extends ResourceController
+class KeteranganPenyakit extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -19,8 +19,8 @@ class KeteranganLhu extends ResourceController
 
     public function __construct()
     {
-        $this->title = 'Keterangan Lab.lingkungan';
-        $this->model = new KeteranganLhuModel();
+        $this->title = 'Keterangan Lab.Penyakit';
+        $this->model = new KeteranganPenyakitModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -29,16 +29,9 @@ class KeteranganLhu extends ResourceController
          $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/index', $data);
+        return view('Backend/Modul/Pelayanan/Lhu/Keterangan-penyakit/index', $data);
     }
 
-    /**
-     * Return the properties of a resource object.
-     *
-     * @param int|string|null $id
-     *
-     * @return ResponseInterface
-     */
     public function list()
     {
         if ($this->request->isAJAX()) {
@@ -47,13 +40,26 @@ class KeteranganLhu extends ResourceController
                 'items' => $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Keterangan-penyakit/_data', $data)
             ];
 
             echo json_encode($msg);
         } else {
             exit('Not Process');
         }
+    }
+
+
+    /**
+     * Return the properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function show($id = null)
+    {
+        //
     }
 
     /**
@@ -64,16 +70,16 @@ class KeteranganLhu extends ResourceController
     public function new()
     {
         if ($this->request->isAJAX()) {
-            $id_lab = $this->request->getVar('id_lab');
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'id_lab' => $id_lab,
+                'id_kat_lab' => $id_kat_lab,
                 'kode_pengantar' => $kode_pengantar,
                 'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Keterangan-penyakit/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -89,7 +95,8 @@ class KeteranganLhu extends ResourceController
      */
     public function create()
     {
-        if ($this->request->isAJAX()) {
+         if ($this->request->isAJAX()) {
+
             $simpandata = [
                 'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                 'paramater_tidak_dapat_di_uji' => $this->request->getVar('paramater_tidak_dapat_di_uji'),
@@ -99,10 +106,10 @@ class KeteranganLhu extends ResourceController
                 'keterangan' => $this->request->getVar('keterangan'),
                 'id_kat_lab' => $this->request->getVar('id_kat_lab')
             ];
-                $this->model->save($simpandata);
-                $msg = [
-                    'sukses' => 'Data berhasil disimpan'
-                ];
+            $this->model->save($simpandata);
+            $msg = [
+                'sukses' => 'Data berhasil disimpan'
+            ];
             echo json_encode($msg);
         }else{
             exit('Not Process');
@@ -125,7 +132,7 @@ class KeteranganLhu extends ResourceController
                 'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Ket-lhu/_edit', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Keterangan-penyakit/_edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -142,7 +149,7 @@ class KeteranganLhu extends ResourceController
      */
     public function update($id = null)
     {
-        if ($this->request->isAJAX()) {
+         if ($this->request->isAJAX()) {
             $simpandata = [
                 'id' => $this->request->getVar('id'),
                 'paramater_tidak_dapat_di_uji' => $this->request->getVar('paramater_tidak_dapat_di_uji'),

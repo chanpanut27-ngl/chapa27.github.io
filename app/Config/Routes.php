@@ -301,15 +301,15 @@ $routes->group('pelayanan/keterangan-sampel', function ($routes) {
     $routes->delete('delete-data/(:num)', 'KeteranganSampel::delete/$1');
 });
 
-/** Pelayanan keterangan LHU sampel penyakit **/
-$routes->group('pelayanan/keterangan-lhu-penyakit', function ($routes) {
-    $routes->get('', 'KeteranganLhuPenyakit::index');
-    $routes->get('list-data', 'KeteranganLhuPenyakit::list');
-    $routes->get('add-data', 'KeteranganLhuPenyakit::new');
-    $routes->post('create-data', 'KeteranganLhuPenyakit::create');
-    $routes->get('edit-data/(:num)', 'KeteranganLhuPenyakit::edit/$1');
-    $routes->post('update-data', 'KeteranganLhuPenyakit::update');
-    $routes->delete('delete-data/(:num)', 'KeteranganLhuPenyakit::delete/$1');
+/** Pelayanan keterangan LHU penyakit **/
+$routes->group('pelayanan/keterangan-penyakit', function ($routes) {
+    $routes->get('', 'KeteranganPenyakit::index');
+    $routes->get('list-data', 'KeteranganPenyakit::list');
+    $routes->get('add-data', 'KeteranganPenyakit::new');
+    $routes->post('create-data', 'KeteranganPenyakit::create');
+    $routes->get('edit-data/(:num)', 'KeteranganPenyakit::edit/$1');
+    $routes->post('update-data', 'KeteranganPenyakit::update');
+    $routes->delete('delete-data/(:num)', 'KeteranganPenyakit::delete/$1');
 });
 
 

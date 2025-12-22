@@ -3,37 +3,37 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/keterangan-lhu/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/keterangan-penyakit/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Keterangan</label>
-                        <input type="text" name="keterangan" value="<?= $items['keterangan']; ?>" class="form-control" id="nama-lab" autocomplete="off">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="keterangan" class="form-label h5">Keterangan</label>
+                        <textarea name="keterangan" class="form-control" id="keterangan"><?= $items['keterangan'] ?></textarea>
+                        <div class="invalid-feedback errorKeterangan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Parameter tidak dapat di uji</label>
-                        <input type="text" name="paramater_tidak_dapat_di_uji" value="<?= $items['paramater_tidak_dapat_di_uji']; ?>" class="form-control" id="nama-lab" autocomplete="off">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="parameter" class="form-label h5">Parameter tidak dapat di uji</label>
+                        <textarea name="paramater_tidak_dapat_di_uji" class="form-control" id="parameter"><?= $items['paramater_tidak_dapat_di_uji'] ?></textarea>
+                        <div class="invalid-feedback errorParameter"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Sub kontrak</label>
-                        <input type="text" name="sub_kontrak" value="<?= $items['sub_kontrak']; ?>" class="form-control" id="nama-lab" autocomplete="off">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="sub-kontrak" class="form-label h5">Sub kontrak</label>
+                        <textarea name="sub_kontrak" class="form-control" id="sub-kontrak"><?= $items['sub_kontrak'] ?></textarea>
+                        <div class="invalid-feedback errorSubKontrak"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Kontrak di ulang</label>
-                        <input type="text" name="kontrak_diulang" value="<?= $items['kontrak_diulang']; ?>" class="form-control" id="nama-lab" autocomplete="off">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="kontrak-diulang" class="form-label h5">Kontrak di ulang</label>
+                        <textarea name="kontrak_diulang" class="form-control" id="kontrak-diulang"><?= $items['kontrak_diulang'] ?></textarea>
+                        <div class="invalid-feedback errorKontrakDiulang"></div>
                     </div>
                     <div class="mb-3">
                         <label for="permintaan-khusus" class="form-label h5">Permintaan khusus</label>
-                        <input type="text" name="permintaan_khusus" value="<?= $items['permintaan_khusus']; ?>" class="form-control" id="permintaan-khusus" autocomplete="off">
-                        <div class="invalid-feedback errorPermintaan"></div>
+                        <textarea name="permintaan_khusus" class="form-control" id="permintaan-khusus"><?= $items['permintaan_khusus'] ?></textarea>
+                        <div class="invalid-feedback errorPermintaanKhusus"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -57,14 +57,14 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-ubah').attr('disable', 'disabled');
-                    $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-ubah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');
                     $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
                 },
                 success: function(response) {
-                    var err = response.error
                     Swal.fire({
                         title: "Berhasil",
                         text: response.sukses,
