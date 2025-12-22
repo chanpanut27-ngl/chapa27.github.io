@@ -59,7 +59,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/keterangan-lhu-penyakit/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/keterangan-sampel/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -92,7 +92,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/keterangan-lhu-penyakit/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/keterangan-sampel/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

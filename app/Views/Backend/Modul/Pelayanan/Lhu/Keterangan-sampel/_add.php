@@ -17,38 +17,39 @@
                         <?php
                     }else{
             ?>
-            <form action="<?= base_url('pelayanan/keterangan-lhu-penyakit/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/keterangan-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
+                <input type="hidden" name="id_kat_lab" value="<?= $id_kat_lab ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Keterangan</label>
-                        <input type="text" name="keterangan" class="form-control" id="nama-lab" autocomplete="off">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="keterangan" class="form-label h5">Keterangan</label>
+                        <textarea name="keterangan" class="form-control" id="keterangan"></textarea>
+                        <div class="invalid-feedback errorKeterangan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Parameter tidak dapat di uji</label>
-                        <input type="text" name="paramater_tidak_dapat_di_uji" class="form-control" id="nama-lab" autocomplete="off">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="parameter" class="form-label h5">Parameter tidak dapat di uji</label>
+                        <textarea name="paramater_tidak_dapat_di_uji" class="form-control" id="parameter"></textarea>
+                        <div class="invalid-feedback errorParameter"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Sub kontrak</label>
-                        <input type="text" name="sub_kontrak" class="form-control" id="nama-lab" autocomplete="off">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="sub-kontrak" class="form-label h5">Sub kontrak</label>
+                        <textarea name="sub_kontrak" class="form-control" id="sub-kontrak"></textarea>
+                        <div class="invalid-feedback errorSubKontrak"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Kontrak di ulang</label>
-                        <input type="text" name="kontrak_diulang" class="form-control" id="nama-lab" autocomplete="off">
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="kontrak-diulang" class="form-label h5">Kontrak di ulang</label>
+                        <textarea name="kontrak_diulang" class="form-control" id="kontrak-diulang"></textarea>
+                        <div class="invalid-feedback errorKontrakDiulang"></div>
                     </div>
                     <div class="mb-3">
                         <label for="permintaan-khusus" class="form-label h5">Permintaan khusus</label>
-                        <input type="text" name="permintaan_khusus" class="form-control" id="permintaan-khusus" autocomplete="off">
-                        <div class="invalid-feedback errorPermintaan"></div>
+                        <textarea name="permintaan_khusus" class="form-control" id="permintaan-khusus"></textarea>
+                        <div class="invalid-feedback errorPermintaanKhusus"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fas fa-save"></span> Simpan</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
                     <button type="button" class="btn btn-secondary btn-sm rounded " data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
@@ -69,22 +70,21 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
                     $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+                    $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
                 },
                 success: function(response) {
-                    var err = response.error
                     Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success"
-                        });
-                        $("#exampleModal").modal('hide');
-                        listData();
+                        title: "Berhasil",
+                        text: response.sukses,
+                        icon: "success"
+                    });
+                    $("#exampleModal").modal('hide');
+                    listData();
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class KeteranganLhuPenyakitModel extends Model
+class KeteranganSampelModel extends Model
 {
-    protected $table            = 'keterangan_lhu_spes_penyakit';
+    protected $table            = 'keterangan_sampel';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -18,6 +18,7 @@ class KeteranganLhuPenyakitModel extends Model
         'sub_kontrak',
         'kontrak_diulang',
         'permintaan_khusus',
+        'id_kat_lab',
         'kode_pengantar'
     ];
 

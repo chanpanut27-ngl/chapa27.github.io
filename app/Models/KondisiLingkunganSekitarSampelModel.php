@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class KondisiLingkunganSekitarSampelModel extends Model
 {
-    protected $table            = 'kondisi_lingkungan_sekitar_sampel';
+    protected $table            = 'kondisi_lingkungan_sampel';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
