@@ -1,20 +1,9 @@
-<?php 
-$page = '';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title><?= lang('Errors.pageNotFound') ?></title>
 
-if (in_groups('admin')) {
-    $page = 'Backend';
-} else if (in_groups('user')) {
-    $page = 'Backend';
-} else if (in_groups('pelanggan')) {
-    $page = 'Pelanggan';
-} else {
-    $page = '';
-}
-?>
-<?= $this->extend($page.'/Layout/_main'); ?>
-<?= $this->section('content'); ?>
-<div class="pc-container">
-    <div class="pc-content">
     <style>
         div.logo {
             height: 200px;
@@ -72,17 +61,24 @@ if (in_groups('admin')) {
             font-size: 85%;
             color: #999;
         }
+        a:active,
+        a:link,
+        a:visited {
+            color: #dd4814;
+        }
     </style>
-        <div class="wrap">
-            <h1>404</h1>
-            <p>
-                <?php if (ENVIRONMENT !== 'production') : ?>
-                    <?= nl2br(esc($message)) ?>
-                <?php else : ?>
-                    <?= lang('Errors.sorryCannotFind') ?>
-                <?php endif; ?>
-            </p>
-        </div>
+</head>
+<body>
+    <div class="wrap">
+        <h1>404</h1>
+
+        <p>
+            <?php if (ENVIRONMENT !== 'production') : ?>
+                <?= nl2br(esc($message)) ?>
+            <?php else : ?>
+                <?= lang('Errors.sorryCannotFind') ?>
+            <?php endif; ?>
+        </p>
     </div>
-</div>
-<?= $this->endSection(); ?>
+</body>
+</html>
