@@ -1,4 +1,7 @@
 <?= $this->extend('Auth/Layout/index'); ?>
+<?= $this->section('title'); ?>
+<title><?= lang('Auth.loginTitle') ?></title>
+<?= $this->endSection(); ?>
 <?= $this->section('content'); ?>
 <!-- [ Main Content ] start -->
   <div class="auth-main">

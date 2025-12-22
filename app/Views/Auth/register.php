@@ -1,4 +1,8 @@
 <?= $this->extend('Auth/Layout/index'); ?>
+<?= $this->section('title'); ?>
+<title><?= lang('Auth.register'); ?></title>
+<?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 <div class="auth-main">
     <div class="auth-wrapper v3">

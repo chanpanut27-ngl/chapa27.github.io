@@ -26,8 +26,7 @@
     <!-- [Style Preset CSS Files] -->
     <?= link_tag('assets/css/style-preset.css'); ?>
 
-
-    <title><?= lang('Auth') == 'loginTitle' ? lang('Auth.loginTitle') : lang('Auth.register'); ?></title>
+    <?= $this->renderSection('title'); ?>
 </head>
 <body>
     <!-- [ Pre-loader ] start -->
