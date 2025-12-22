@@ -17,6 +17,7 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <?= $id_kat_lab; ?>
                         <div class="view-data"></div>
                     </div>
                 </div>

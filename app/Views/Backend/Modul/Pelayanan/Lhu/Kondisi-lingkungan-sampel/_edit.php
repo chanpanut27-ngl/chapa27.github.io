@@ -3,10 +3,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-edit"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/kondisi-lingkungan-sekitar-sampel/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/kondisi-lingkungan-sampel/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
@@ -20,8 +20,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
         </div>
@@ -40,14 +40,13 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-ubah').attr('disable', 'disabled');
-                    $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-ubah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');
                     $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
                 },
                 success: function(response) {
-                    var err = response.error
                     Swal.fire({
                         title: "Berhasil",
                         text: response.sukses,

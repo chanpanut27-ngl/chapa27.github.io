@@ -69,8 +69,9 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/kondisi-lingkungan-sekitar-sampel/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/kondisi-lingkungan-sampel/delete-data/'); ?>' + id,
                     dataType: 'json',
+                    cache: false,
                     success: function(response) {
                         if (response.sukses) {
                             Swal.fire({

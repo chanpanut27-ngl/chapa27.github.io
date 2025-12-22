@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class KondisiLingkunganSekitarSampelModel extends Model
+class KondisiLingkunganSampelModel extends Model
 {
     protected $table            = 'kondisi_lingkungan_sampel';
     protected $primaryKey       = 'id';
@@ -12,7 +12,12 @@ class KondisiLingkunganSekitarSampelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kondisi_lingkungan_sekitar_sampel', 'catatan_abnormalitas', 'kode_pengantar'];
+    protected $allowedFields    = [
+        'kondisi_lingkungan_sekitar_sampel',
+        'catatan_abnormalitas',
+        'kode_pengantar',
+        'id_kat_lab'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

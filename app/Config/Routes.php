@@ -314,14 +314,14 @@ $routes->group('pelayanan/keterangan-penyakit', function ($routes) {
 
 
 /** Pelayanan kondisi lingkungan LHU **/
-$routes->group('pelayanan/kondisi-lingkungan-sekitar-sampel', function ($routes) {
-    $routes->get('', 'KondisiLingkunganSekitarSampel::index');
-    $routes->get('list-data', 'KondisiLingkunganSekitarSampel::list');
-    $routes->get('add-data', 'KondisiLingkunganSekitarSampel::new');
-    $routes->post('create-data', 'KondisiLingkunganSekitarSampel::create');
-    $routes->get('edit-data/(:num)', 'KondisiLingkunganSekitarSampel::edit/$1');
-    $routes->post('update-data', 'KondisiLingkunganSekitarSampel::update');
-    $routes->delete('delete-data/(:num)', 'KondisiLingkunganSekitarSampel::delete/$1');
+$routes->group('pelayanan/kondisi-lingkungan-sampel', function ($routes) {
+    $routes->get('', 'KondisiLingkunganSampel::index');
+    $routes->get('list-data', 'KondisiLingkunganSampel::list');
+    $routes->get('add-data', 'KondisiLingkunganSampel::new');
+    $routes->post('create-data', 'KondisiLingkunganSampel::create');
+    $routes->get('edit-data/(:num)', 'KondisiLingkunganSampel::edit/$1');
+    $routes->post('update-data', 'KondisiLingkunganSampel::update');
+    $routes->delete('delete-data/(:num)', 'KondisiLingkunganSampel::delete/$1');
 });
 
 

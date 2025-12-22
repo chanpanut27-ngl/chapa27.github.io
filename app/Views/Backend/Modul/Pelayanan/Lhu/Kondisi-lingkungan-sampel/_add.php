@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel" style="font-family: calibri;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <?php
@@ -17,18 +17,20 @@
                         <?php
                     }else{
             ?>
-            <form action="<?= base_url('pelayanan/kondisi-lingkungan-sekitar-sampel/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/kondisi-lingkungan-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
+                <input type="hidden" name="id_kat_lab" value="<?= $id_kat_lab ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Kondisi Lingkungan Sekitar Sampel</label>
-                        <textarea name="kondisi_lingkungan_sekitar_sampel" class="form-control"></textarea>
-                        <div class="invalid-feedback errorNamaLab"></div>
+                        <label for="kondisi-lingkungan" class="form-label h5">Kondisi Lingkungan Sekitar Sampel</label>
+                        <textarea name="kondisi_lingkungan_sekitar_sampel" class="form-control" id="kondisi-lingkungan"></textarea>
+                        <div class="invalid-feedback errorKondisiLingkungan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Catatan Abnormalitas</label>
-                        <textarea name="catatan_abnormalitas" class="form-control"></textarea>
+                        <label for="catatan-abnormalitas" class="form-label h5">Catatan Abnormalitas</label>
+                        <textarea name="catatan_abnormalitas" class="form-control" id="catatan-abnormalitas"></textarea>
+                        <div class="invalid-feedback errorCatatanAbnormalitas"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -53,22 +55,21 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
                     $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+                    $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
                 },
                 success: function(response) {
-                    var err = response.error
                     Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success"
-                        });
-                        $("#exampleModal").modal('hide');
-                        listData();
+                        title: "Berhasil",
+                        text: response.sukses,
+                        icon: "success"
+                    });
+                    $("#exampleModal").modal('hide');
+                    listData();
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);

@@ -11,12 +11,13 @@
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"><span></span>
                             </button>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_kat_lab; ?>" data-kode="<?= $kode_pengantar;?>">
                                 <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
+                        <h4><?= $title; ?></h4>
                         <div class="view-data"></div>
                     </div>
                 </div>
@@ -30,13 +31,13 @@
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script>
     function listData() {
-        var id_lab = $('.btn-tambah').data("id");
+        var id_kat_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan/kondisi-lingkungan-sekitar-sampel/list-data'); ?>",
+            url: "<?= site_url('pelayanan/kondisi-lingkungan-sampel/list-data'); ?>",
             dataType: 'json',
             data:{
-                 id_lab:id_lab,
+                 id_kat_lab:id_kat_lab,
                  kode_pengantar:kode_pengantar
             },
             success: function(response) {
@@ -52,16 +53,16 @@
     $(document).ready(function() {
         listData();
 
-        var id_lab = $('.btn-tambah').data("id");
+        var id_kat_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan/kondisi-lingkungan-sekitar-sampel/add-data'); ?>",
+                url: "<?= site_url('pelayanan/kondisi-lingkungan-sampel/add-data'); ?>",
                 dataType: 'json',
                 cache:false,
                 data:{
-                 id_lab:id_lab,
+                 id_kat_lab:id_kat_lab,
                  kode_pengantar:kode_pengantar
                 },
                 beforeSend: function() {

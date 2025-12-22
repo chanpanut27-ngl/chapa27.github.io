@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\KondisiLingkunganSekitarSampelModel;
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\KondisiLingkunganSampelModel;
 use CodeIgniter\RESTful\ResourceController;
+use CodeIgniter\HTTP\ResponseInterface;
 
-class KondisiLingkunganSekitarSampel extends ResourceController
+class KondisiLingkunganSampel extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -20,7 +20,7 @@ class KondisiLingkunganSekitarSampel extends ResourceController
     public function __construct()
     {
         $this->title = 'Kondisi lingkungan sekitar sampel & Catatan Abnormalitas';
-        $this->model = new KondisiLingkunganSekitarSampelModel();
+        $this->model = new KondisiLingkunganSampelModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -29,7 +29,7 @@ class KondisiLingkunganSekitarSampel extends ResourceController
          $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/index', $data);
+        return view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-sampel/index', $data);
     }
 
     public function list()
@@ -40,7 +40,7 @@ class KondisiLingkunganSekitarSampel extends ResourceController
                 'items' => $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-sampel/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -69,16 +69,17 @@ class KondisiLingkunganSekitarSampel extends ResourceController
     public function new()
     {
         if ($this->request->isAJAX()) {
-            $id_lab = $this->request->getVar('id_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
+
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'id_lab' => $id_lab,
+                'id_kat_lab' => $id_kat_lab,
                 'kode_pengantar' => $kode_pengantar,
                 'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-sampel/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -99,6 +100,7 @@ class KondisiLingkunganSekitarSampel extends ResourceController
                 'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                 'kondisi_lingkungan_sekitar_sampel' => $this->request->getVar('kondisi_lingkungan_sekitar_sampel'),
                 'catatan_abnormalitas' => $this->request->getVar('catatan_abnormalitas'),
+                'id_kat_lab' => $this->request->getVar('id_kat_lab'),
             ];
                 $this->model->save($simpandata);
                 $msg = [
@@ -126,7 +128,7 @@ class KondisiLingkunganSekitarSampel extends ResourceController
                 'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/_edit', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan-sampel/_edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -168,7 +170,7 @@ class KondisiLingkunganSekitarSampel extends ResourceController
      */
     public function delete($id = null)
     {
-        if ($this->request->isAJAX()) {
+         if ($this->request->isAJAX()) {
 
             $this->model->delete($id);
             $msg = [
