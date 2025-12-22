@@ -335,15 +335,26 @@ $routes->group('pelayanan/kondisi-lingkungan-penyakit', function ($routes) {
     $routes->delete('delete-data/(:num)', 'KondisiLingkunganPenyakit::delete/$1');
 });
 
-/** Pelayanan kaji ulang LHU **/
-$routes->group('pelayanan/kaji-ulang-permintaan-kontrak', function ($routes) {
-    $routes->get('', 'KajiUlangPermintaanKontrak::index');
-    $routes->get('list-data', 'KajiUlangPermintaanKontrak::list');
-    $routes->get('add-data', 'KajiUlangPermintaanKontrak::new');
-    $routes->post('create-data', 'KajiUlangPermintaanKontrak::create');
-    $routes->get('edit-data/(:num)', 'KajiUlangPermintaanKontrak::edit/$1');
-    $routes->post('update-data', 'KajiUlangPermintaanKontrak::update');
-    $routes->delete('delete-data/(:num)', 'KajiUlangPermintaanKontrak::delete/$1');
+/** Pelayanan kaji ulang LHU penyakit **/
+$routes->group('pelayanan/kaji-ulang-penyakit', function ($routes) {
+    $routes->get('', 'KajiUlangPenyakit::index');
+    $routes->get('list-data', 'KajiUlangPenyakit::list');
+    $routes->get('add-data', 'KajiUlangPenyakit::new');
+    $routes->post('create-data', 'KajiUlangPenyakit::create');
+    $routes->get('edit-data/(:num)', 'KajiUlangPenyakit::edit/$1');
+    $routes->post('update-data', 'KajiUlangPenyakit::update');
+    $routes->delete('delete-data/(:num)', 'KajiUlangPenyakit::delete/$1');
+});
+
+/** Pelayanan kaji ulang LHU sampel **/
+$routes->group('pelayanan/kaji-ulang-sampel', function ($routes) {
+    $routes->get('', 'KajiUlangSampel::index');
+    $routes->get('list-data', 'KajiUlangSampel::list');
+    $routes->get('add-data', 'KajiUlangSampel::new');
+    $routes->post('create-data', 'KajiUlangSampel::create');
+    $routes->get('edit-data/(:num)', 'KajiUlangSampel::edit/$1');
+    $routes->post('update-data', 'KajiUlangSampel::update');
+    $routes->delete('delete-data/(:num)', 'KajiUlangSampel::delete/$1');
 });
 
 /** Pelayanan penanggung jawab LHU **/

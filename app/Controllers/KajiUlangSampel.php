@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\KajiUlangPermintaanKontrakModel;
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\KajiUlangSampelModel;
 use CodeIgniter\RESTful\ResourceController;
+use CodeIgniter\HTTP\ResponseInterface;
 
-class KajiUlangPermintaanKontrak extends ResourceController
+class KajiUlangSampel extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -20,7 +20,7 @@ class KajiUlangPermintaanKontrak extends ResourceController
     public function __construct()
     {
         $this->title = 'Kaji ulang permintaan & kontrak';
-        $this->model = new KajiUlangPermintaanKontrakModel();
+        $this->model = new KajiUlangSampelModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -29,7 +29,7 @@ class KajiUlangPermintaanKontrak extends ResourceController
          $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang/index', $data);
+        return view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-sampel/index', $data);
     }
 
      public function list()
@@ -40,7 +40,7 @@ class KajiUlangPermintaanKontrak extends ResourceController
                 'items' => $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-sampel/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -68,17 +68,17 @@ class KajiUlangPermintaanKontrak extends ResourceController
      */
     public function new()
     {
-         if ($this->request->isAJAX()) {
-            $id_lab = $this->request->getVar('id_lab');
+        if ($this->request->isAJAX()) {
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'id_lab' => $id_lab,
+                'id_kat_lab' => $id_kat_lab,
                 'kode_pengantar' => $kode_pengantar,
                 'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-sampel/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -102,7 +102,8 @@ class KajiUlangPermintaanKontrak extends ResourceController
                 'personil_lab' => $this->request->getVar('personil_lab'),
                 'metode_pemeriksaan' => $this->request->getVar('metode_pemeriksaan'),
                 'uji_mutu' => $this->request->getVar('uji_mutu'),
-                'reagensa_dan_media' => $this->request->getVar('reagensa_dan_media')
+                'reagensa_dan_media' => $this->request->getVar('reagensa_dan_media'),
+                'id_kat_lab' => $this->request->getVar('id_kat_lab')
             ];
                 $this->model->save($simpandata);
                 $msg = [
@@ -126,11 +127,11 @@ class KajiUlangPermintaanKontrak extends ResourceController
         if ($this->request->isAJAX()) {
 
             $data = [
-                'items' => $this->model->find($id),
-                'title' => 'Edit ' . $this->title
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id)
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang/_edit', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-sampel/_edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -156,7 +157,6 @@ class KajiUlangPermintaanKontrak extends ResourceController
                 'metode_pemeriksaan' => $this->request->getVar('metode_pemeriksaan'),
                 'uji_mutu' => $this->request->getVar('uji_mutu'),  
                 'reagensa_dan_media' => $this->request->getVar('reagensa_dan_media'),  
-
             ];
                 $this->model->save($simpandata);
                 $msg = [

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class KajiUlangPermintaanKontrakModel extends Model
+class KajiUlangPenyakitModel extends Model
 {
-    protected $table            = 'kaji_ulang_permintaan_kontrak';
+    protected $table            = 'kaji_ulang_penyakit';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -14,12 +14,11 @@ class KajiUlangPermintaanKontrakModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'alat_utama',
-        'alat_pendukung',
-        'personil_lab',
         'metode_pemeriksaan',
         'uji_mutu',
         'reagensa_dan_media',
-        'kode_pengantar'
+        'kode_pengantar',
+        'id_kat_lab'
     ];
 
     protected bool $allowEmptyInserts = false;

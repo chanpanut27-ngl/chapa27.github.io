@@ -1,30 +1,35 @@
 <table id="example" class="table table-hover table-bordered">
     <?php if (!$items) {
-       ?>
-       <tbody style="font-family: arial;">
-        <tr>
-            <td style="width: 25%;"><b>Keterangan</b></td>
-            <td>: </td>
-        </tr>
-        <tr>
-            <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
-            <td>: </td>
-        </tr>
-         <tr>
-            <td><b>Sub kontrak</b></td>
-            <td>: </td>
-        </tr>
-        <tr>
-            <td><b>Kontrak di ulang</b></td>
-            <td>: </td>
-        </tr>
-        <tr>
-            <td><b>Permintaan khusus</b></td>
-            <td>: </td>
-        </tr>
-    </tbody>
-       <?php
-    } else { foreach ($items as $row) : ?>
+        ?>
+        <tbody style="font-family: arial;">
+            <tr>
+                <td style="width: 25%;"><b>Alat utama</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Alat pendukung</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Personil laboratorium</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Metode pemeriksaan</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Uji mutu (Quality control)</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Reagensa dan media</b></td>
+                <td>: </td>
+            </tr>
+        </tbody>
+        <?php
+    } else {
+    foreach ($items as $row) : ?>
     <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <span class="fa-solid fa-edit"></span>
     </button>&nbsp;
@@ -33,24 +38,28 @@
     </button>
     <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
         <tr>
-            <td><b>Keterangan</b></td>
-            <td>: <?= $row['keterangan'] ?></td>
+            <td style="width: 25%;"><b>Alat utama</b></td>
+            <td>: <?= $row['alat_utama'] ?></td>
+        </tr>
+         <tr>
+            <td><b>Alat pendukung</b></td>
+            <td>: <?= $row['alat_pendukung'] ?></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
-            <td>: <?= $row['paramater_tidak_dapat_di_uji'] ?></td>
+            <td><b>Personil laboratorium</b></td>
+            <td>: <?= $row['personil_lab'] ?></td>
         </tr>
         <tr>
-            <td><b>Sub kontrak</b></td>
-            <td>: <?= $row['sub_kontrak'] ?></td>
+            <td><b>Metode pemeriksaan</b></td>
+            <td>: <?= $row['metode_pemeriksaan'] ?></td>
         </tr>
         <tr>
-            <td><b>Kontrak di ulang</b></td>
-            <td>: <?= $row['kontrak_diulang'] ?></td>
+            <td><b>Uji mutu (Quality control)</b></td>
+            <td>: <?= $row['uji_mutu'] ?></td>
         </tr>
         <tr>
-            <td><b>Permintaan khusus</b></td>
-            <td>: <?= $row['permintaan_khusus'] ?></td>
+            <td><b>Reagensa dan media</b></td>
+            <td>: <?= $row['reagensa_dan_media'] ?></td>
         </tr>
     </tbody>
     <?php endforeach; } ?>
@@ -59,7 +68,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/keterangan-lhu-penyakit/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/kaji-ulang-sampel/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -92,7 +101,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/keterangan-lhu-penyakit/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/kaji-ulang-sampel/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbKajiUlangPermintaanKontrak extends Migration
+class MgdbKajiUlangSampel extends Migration
 {
     public function up()
     {
@@ -16,32 +16,30 @@ class MgdbKajiUlangPermintaanKontrak extends Migration
                 'auto_increment' => true,
             ],
             'alat_utama' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
+                'type'           => 'TEXT',
             ],
             'alat_pendukung' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
+                'type'           => 'TEXT',
             ],
             'personil_lab' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '225'
+                'type'           => 'TEXT',
             ],
             'metode_pemeriksaan' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
+                'type'           => 'TEXT',
             ],
             'uji_mutu' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
+                'type'           => 'TEXT',
             ],
             'reagensa_dan_media' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
+                'type'           => 'TEXT',
             ],
             'kode_pengantar' => [
-                'type'       => 'CHAR',
-                'constraint' => '10'
+                'type'           => 'CHAR',
+                'constraint'    => '10'
+            ],
+            'id_kat_lab' => [
+                'type'           => 'INT',
+                'constraint'       => 5
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -70,14 +68,14 @@ class MgdbKajiUlangPermintaanKontrak extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100'
             ]
-        ]);
+         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('kaji_ulang_permintaan_kontrak');
+        $this->forge->createTable('kaji_ulang_sampel');
     }
 
     public function down()
     {
-        $this->forge->dropTable('kaji_ulang_permintaan_kontrak');
+        $this->forge->dropTable('kaji_ulang_sampel');
     }
 }

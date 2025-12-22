@@ -56,7 +56,8 @@ switch (@$id_kat_lab ?? $id_lab) {
     case 'kaji-ulang-permintaan-kontrak-1':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0].' '.$str_exp[1].' '.$str_exp[2].' '.$str_exp[3]).' Lab.Lingkungan';
-        echo view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang/index', $data);
+        $data['id_kat_lab'] = intval($str_exp[4]);
+        echo view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-sampel/index', $data);
         break;
     case 'penanggung-jawab-1':
         $str_exp = explode('-', $id_lab);
