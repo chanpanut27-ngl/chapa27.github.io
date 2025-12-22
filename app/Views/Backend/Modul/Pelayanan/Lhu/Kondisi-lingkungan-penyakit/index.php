@@ -58,7 +58,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan/kondisi-lingkungan-sampel/add-data'); ?>",
+                url: "<?= site_url('pelayanan/kondisi-lingkungan-penyakit/add-data'); ?>",
                 dataType: 'json',
                 cache:false,
                 data:{
