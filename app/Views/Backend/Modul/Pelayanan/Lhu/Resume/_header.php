@@ -1,7 +1,7 @@
 
 <div class="row">
     <div class="col-md-9">
-        <img src="<?= base_url('assets/images/logo-bblkm-jkt.png'); ?>" class="img-fluid" alt="logo" style="height: 55px;">
+        <img src="<?= base_url('assets/images/logo.webp'); ?>" class="img-fluid" alt="logo" style="height: 55px;">
     </div>
     <div class="col-md-3">
         <label for="" style="font-weight:bold; color: #00A69A; line-height: 1">Kementerian Kesehatan </label><br>

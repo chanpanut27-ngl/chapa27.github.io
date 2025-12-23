@@ -10,16 +10,33 @@ use App\Models\LaboratoriumTujuanModel;
 use App\Models\PengantarLhuModel;
 use App\Models\KajiUlangPermintaanKontrakModel;
 use App\Models\PenanggungJawabLhuModel;
+use App\Models\PenanggungJawabSampelModel;
 
 class ResumeLayananPemeriksaan extends BaseController
 {
     protected $title;
     protected $modelPengantarLhu;
+    protected $modelLabTujuan;
 
     public function __construct()
     {
         $this->title = 'Resume';
         $this->modelPengantarLhu = new PengantarLhuModel();
+        $this->modelLabTujuan = new LaboratoriumTujuanModel();
+    }
+
+    public function index($id = null)
+    {
+        $kode_pengantar = $id;
+        $data = [
+            'title' => 'Resume',
+            'kode_pengantar' => $kode_pengantar,
+            'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
+            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
+            'data_pelanggan' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
+            'group_lab_tujuan' => $this->modelLabTujuan->get_data_by_group_kat_lab($kode_pengantar)
+        ];
+        return view('Backend/Modul/Pelayanan/Lhu/Resume/index', $data);
     }
 
     public function cetak($id = null)
@@ -27,10 +44,10 @@ class ResumeLayananPemeriksaan extends BaseController
         $kode_pengantar = $id;
         $labTujuan = new LaboratoriumTujuanModel();
         $pengantar_lhu = new PengantarLhuModel();
-        $kondisi_lingkungan = new KondisiLingkunganSekitarSampelModel();
-        $keterangan = new KeteranganLhuModel();
-        $kaji_ulang = new KajiUlangPermintaanKontrakModel();
-        $penanggung_jawab = new PenanggungJawabLhuModel();
+        $kondisi_lingkungan = new KondisiLingkunganSampel();
+        $keterangan = new KondisiLingkunganSampel();
+        $kaji_ulang = new KajiUlangSampel();
+        $penanggung_jawab = new PenanggungJawabSampelModel();
         
          $data = [
                 'title' => 'Cetak',

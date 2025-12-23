@@ -4,9 +4,10 @@
 <?php
 
     use App\Models\PenanggungJawabLhuModel;
-    use App\Models\SampelLingkunganModel;
+use App\Models\PenanggungJawabSampelModel;
+use App\Models\SampelLingkunganModel;
     $sampel_lingkungan = new SampelLingkunganModel();
-    $konversi_tanggal = new PenanggungJawabLhuModel();
+    $konversi_tanggal = new PenanggungJawabSampelModel();
 
     foreach ($data_pelanggan as $dp) {
         $nama = $dp['nama'];

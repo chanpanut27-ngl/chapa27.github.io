@@ -32,7 +32,8 @@ class ProsesPengantarLhu extends ResourceController
         $data = [
             'title' => 'Data pelanggan',
             'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
-            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar)
+            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
+            'data_pelanggan' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
         ];
 
        return view('Backend/Modul/Pelayanan/Lhu/index', $data);
@@ -85,17 +86,6 @@ class ProsesPengantarLhu extends ResourceController
     ];
 
        return view('Backend/Modul/Pelayanan/Lhu/_pilih_menu', $data);
-    }
-
-    public function keterangan($param)
-    {
-        $kode_pengantar = $param;
-        // var_dump($kode_pengantar);
-        $data = [
-            'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
-        ];
-        return view('Backend/Modul/Pelayanan/Lhu/_pilih_menu', $data);
-
     }
 
     public function show($id = null)

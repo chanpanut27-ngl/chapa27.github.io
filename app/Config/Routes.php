@@ -263,7 +263,6 @@ $routes->group('pelayanan/proses-pengantar-lhu', function ($routes) {
     $routes->get('index/(:any)', 'ProsesPengantarLhu::index/$1');
     $routes->get('list-menu/(:any)', 'ProsesPengantarLhu::list_menu/$1');
     $routes->get('pilih-menu/(:any)', 'ProsesPengantarLhu::pilih_menu/$1');
-    $routes->get('pilih-menu/keterangan/(:any)', 'ProsesPengantarLhu::keterangan/$1');
 });
 
 /** Pelayanan sampel lingkungan **/
@@ -369,9 +368,11 @@ $routes->group('pelayanan/penanggung-jawab-sampel', function ($routes) {
 });
 
 /** Resume **/
+    // $routes->get('resume/(:any)', 'ProsesPengantarLhu::resume/$1');
+
 $routes->group('pelayanan/resume', function ($routes) {
-    $routes->get('', 'ResumeLayananPemeriksaan::index');
-    $routes->get('cetak-resume/(:any)', 'ResumeLayananPemeriksaan::cetak/$1');
+    $routes->get('(:any)', 'ResumeLayananPemeriksaan::index/$1');
+    $routes->get('cetak/(:any)', 'ResumeLayananPemeriksaan::cetak/$1');
 });
 
 /** Perintah uji sampel **/
