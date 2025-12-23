@@ -8,14 +8,14 @@
             </div>
             <?php
             if ($jumlah > 0) {
-                        ?>
-                        <div class="modal-body">
-                            <div class="alert alert-danger fw-bold" role="alert">
-                                Kondisi lingkungan sekitar sampel & Catatan Abnormalitas sudah di isi !
-                            </div>
-                        </div>
-                        <?php
-                    }else{
+                ?>
+                <div class="modal-body">
+                    <div class="alert alert-danger fw-bold" role="alert">
+                        Kondisi lingkungan sekitar sampel & Catatan Abnormalitas sudah di isi !
+                    </div>
+                </div>
+                <?php
+            }else{
             ?>
             <form action="<?= base_url('pelayanan/kondisi-lingkungan-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>

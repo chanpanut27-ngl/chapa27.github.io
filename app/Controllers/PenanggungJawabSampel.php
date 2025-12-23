@@ -2,11 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\PenanggungJawabLhuModel;
-use CodeIgniter\HTTP\ResponseInterface;
+use App\Models\PenanggungJawabSampelModel;
 use CodeIgniter\RESTful\ResourceController;
+use CodeIgniter\HTTP\ResponseInterface;
 
-class PenanggungJawabLhu extends ResourceController
+class PenanggungJawabSampel extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -20,7 +20,7 @@ class PenanggungJawabLhu extends ResourceController
     public function __construct()
     {
         $this->title = 'Penanggung jawab';
-        $this->model = new PenanggungJawabLhuModel();
+        $this->model = new PenanggungJawabSampelModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -29,35 +29,7 @@ class PenanggungJawabLhu extends ResourceController
          $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/index', $data);
-    }
-
-    public function konversi_tanggal($param = null) 
-    {
-       $date = date('m', strtotime($param));
-       $month = [
-            '1' => 'Januari',
-            '2' => 'Februari',
-            '3' => 'Maret',
-            '4' => 'April',
-            '5' => 'Mei',
-            '6' => 'Juni',
-            '7' => 'Juli',
-            '8' => 'Agustus',
-            '9' => 'September',
-            '10' => 'Oktober',
-            '11' => 'November',
-            '12' => 'Desember'
-       ];
-       foreach ($month as $key => $val) {
-            if ($date == $key) {
-                $r_date = date('d', strtotime($param));
-                $r_year = date('Y', strtotime($param));
-                $result = $r_date.' '.$val.' '.$r_year;
-                return $result;
-            }
-       }
-
+        return view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab-sampel/index', $data);
     }
 
     /**
@@ -76,17 +48,22 @@ class PenanggungJawabLhu extends ResourceController
                 $tgl_terima_sampel = $r['tgl_terima_sampel'];
             }
             $data = [
-                'konversi_tanggal' => $this->konversi_tanggal(@$tgl_terima_sampel),
+                'konversi_tanggal' => $this->model->konversi_tanggal(@$tgl_terima_sampel),
                 'items' => $q
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab-sampel/_data', $data)
             ];
 
             echo json_encode($msg);
         } else {
             exit('Not Process');
         }
+    }
+
+    public function show($id = null)
+    {
+        //
     }
 
     /**
@@ -97,11 +74,11 @@ class PenanggungJawabLhu extends ResourceController
     public function new()
     {
         if ($this->request->isAJAX()) {
-            $id_lab = $this->request->getVar('id_lab');
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'id_lab' => $id_lab,
+                'id_kat_lab' => $id_kat_lab,
                 'kode_pengantar' => $kode_pengantar,
                 'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
             ];
@@ -122,20 +99,40 @@ class PenanggungJawabLhu extends ResourceController
      */
     public function create()
     {
-        if ($this->request->isAJAX()) {
-            $simpandata = [
-                'kode_pengantar' => $this->request->getVar('kode_pengantar'),
-                'nama_pjb' => $this->request->getVar('nama_pjb'),
-                'no_telp_pjb' => $this->request->getVar('no_telp_pjb'),
-                'penerima_sampel' => $this->request->getVar('penerima_sampel'),
-                'no_telp_penerima' => $this->request->getVar('no_telp_penerima'),
-                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel'))),
-                'jam_terima_sampel' => $this->request->getVar('jam_terima_sampel')
-            ];
+         if ($this->request->isAJAX()) {
+            
+            $valid = $this->validate([
+                'nama_pjb' => [
+                    'label' => 'Nama penanggungjawab',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_pjb' => $this->validation->getError('nama_pjb')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'kode_pengantar' => $this->request->getVar('kode_pengantar'),
+                    'nama_pjb' => $this->request->getVar('nama_pjb'),
+                    'no_telp_pjb' => $this->request->getVar('no_telp_pjb'),
+                    'penerima_sampel' => $this->request->getVar('penerima_sampel'),
+                    'no_telp_penerima' => $this->request->getVar('no_telp_penerima'),
+                    'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel'))),
+                    'jam_terima_sampel' => $this->request->getVar('jam_terima_sampel'),
+                    'id_kat_lab' => $this->request->getVar('id_kat_lab'),
+                ];
                 $this->model->save($simpandata);
                 $msg = [
                     'sukses' => 'Data berhasil disimpan'
                 ];
+            }
             echo json_encode($msg);
         }else{
             exit('Not Process');
@@ -158,7 +155,7 @@ class PenanggungJawabLhu extends ResourceController
                 'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/_edit', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab-sampel/_edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -176,19 +173,36 @@ class PenanggungJawabLhu extends ResourceController
     public function update($id = null)
     {
         if ($this->request->isAJAX()) {
-            $simpandata = [
-                'id' => $this->request->getVar('id'),
-                'nama_pjb' => $this->request->getVar('nama_pjb'),
-                'no_telp_pjb' => $this->request->getVar('no_telp_pjb'),
-                'penerima_sampel' => $this->request->getVar('penerima_sampel'),
-                'no_telp_penerima' => $this->request->getVar('no_telp_penerima'),
-                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel'))),
-                'jam_terima_sampel' => date('H:i', strtotime($this->request->getVar('jam_terima_sampel')))
-            ];
+            $valid = $this->validate([
+                'nama_pjb' => [
+                    'label' => 'Nama penanggungjawab',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_pjb' => $this->validation->getError('nama_pjb')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'nama_pjb' => $this->request->getVar('nama_pjb'),
+                    'no_telp_pjb' => $this->request->getVar('no_telp_pjb'),
+                    'penerima_sampel' => $this->request->getVar('penerima_sampel'),
+                    'no_telp_penerima' => $this->request->getVar('no_telp_penerima'),
+                    'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel'))),
+                    'jam_terima_sampel' => date('H:i', strtotime($this->request->getVar('jam_terima_sampel')))
+                ];
                 $this->model->save($simpandata);
                 $msg = [
-                    'sukses' => 'Data berhasil disimpan'
+                    'sukses' => 'Data berhasil diubah'
                 ];
+            }
             echo json_encode($msg);
         }else{
             exit('Not Process');

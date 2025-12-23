@@ -357,15 +357,15 @@ $routes->group('pelayanan/kaji-ulang-sampel', function ($routes) {
     $routes->delete('delete-data/(:num)', 'KajiUlangSampel::delete/$1');
 });
 
-/** Pelayanan penanggung jawab LHU **/
-$routes->group('pelayanan/penanggung-jawab-lhu', function ($routes) {
-    $routes->get('', 'PenanggungJawabLhu::index');
-    $routes->get('list-data', 'PenanggungJawabLhu::list');
-    $routes->get('add-data', 'PenanggungJawabLhu::new');
-    $routes->post('create-data', 'PenanggungJawabLhu::create');
-    $routes->get('edit-data/(:num)', 'PenanggungJawabLhu::edit/$1');
-    $routes->post('update-data', 'PenanggungJawabLhu::update');
-    $routes->delete('delete-data/(:num)', 'PenanggungJawabLhu::delete/$1');
+/** Pelayanan penanggung jawab LHU sampel **/
+$routes->group('pelayanan/penanggung-jawab-sampel', function ($routes) {
+    $routes->get('', 'PenanggungJawabSampel::index');
+    $routes->get('list-data', 'PenanggungJawabSampel::list');
+    $routes->get('add-data', 'PenanggungJawabSampel::new');
+    $routes->post('create-data', 'PenanggungJawabSampel::create');
+    $routes->get('edit-data/(:num)', 'PenanggungJawabSampel::edit/$1');
+    $routes->post('update-data', 'PenanggungJawabSampel::update');
+    $routes->delete('delete-data/(:num)', 'PenanggungJawabSampel::delete/$1');
 });
 
 /** Resume **/

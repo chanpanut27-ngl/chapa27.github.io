@@ -4,23 +4,23 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PenanggungJawabLhuModel extends Model
+class PenanggungJawabSampelModel extends Model
 {
-    protected $table            = 'penanggung_jawab_lhu';
+    protected $table            = 'penanggung_jawab_sampel';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'alat_utama',
         'nama_pjb',
         'no_telp_pjb',
         'penerima_sampel',
         'no_telp_penerima',
         'tgl_terima_sampel',
         'jam_terima_sampel',
-        'kode_pengantar'
+        'kode_pengantar',
+        'id_kat_lab'
     ];
 
     protected bool $allowEmptyInserts = false;

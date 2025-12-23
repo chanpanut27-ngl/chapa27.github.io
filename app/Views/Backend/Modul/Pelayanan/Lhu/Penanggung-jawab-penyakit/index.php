@@ -15,12 +15,13 @@
                         <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
                     </button>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
+                    <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_kat_lab; ?>" data-kode="<?= $kode_pengantar;?>">
                         <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
                     </button>
                 </div>
             </div>
             <div class="card-body">
+                <h4><?= $title; ?></h4>
                 <div class="view-data"></div>
             </div>
         </div>
@@ -37,13 +38,13 @@
 
 <script>
     function listData() {
-        var id_lab = $('.btn-tambah').data("id");
+        var id_kat_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan/penanggung-jawab-lhu/list-data'); ?>",
+            url: "<?= site_url('pelayanan/penanggung-jawab-sampel/list-data'); ?>",
             dataType: 'json',
             data:{
-                 id_lab:id_lab,
+                 id_kat_lab:id_kat_lab,
                  kode_pengantar:kode_pengantar
             },
             success: function(response) {
@@ -59,16 +60,16 @@
     $(document).ready(function() {
         listData();
 
-        var id_lab = $('.btn-tambah').data("id");
+        var id_kat_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan/penanggung-jawab-lhu/add-data'); ?>",
+                url: "<?= site_url('pelayanan/penanggung-jawab-sampel/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 data:{
-                 id_lab:id_lab,
+                 id_kat_lab:id_kat_lab,
                  kode_pengantar:kode_pengantar
                 },
                 beforeSend: function() {
@@ -89,20 +90,7 @@
                 }
             })
         })
-
-        $(".btn-refresh-data").click(function() {
-            $.ajax({
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-refresh-data').html('<span class="fa fa-spin fa-spinner"></span>');
-                },
-                success: function() {
-                    listData();
-                    $('.btn-refresh-data').html('<span class="fa-solid fa-refresh"></span>');
-                }
-            })
-        })
-
     })
 </script>
+<script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <?= $this->endSection(); ?>

@@ -23,4 +23,17 @@ $(document).ready(function () {
         })
     })
 
+    $(".btn-refresh-data").click(function() {
+        $.ajax({
+            cache: false,
+            beforeSend: function() {
+                $('.btn-refresh-data').html('<span class="fa fa-spin fa-spinner"></span>');
+            },
+            success: function() {
+                listData();
+                $('.btn-refresh-data').html('<span class="fa-solid fa-refresh"></span>');
+            }
+        })
+    })
+
 })

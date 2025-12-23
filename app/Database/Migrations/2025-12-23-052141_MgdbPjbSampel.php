@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbPenanggungJawabLhu extends Migration
+class MgdbPjbSampel extends Migration
 {
     public function up()
     {
@@ -16,30 +16,34 @@ class MgdbPenanggungJawabLhu extends Migration
                 'auto_increment' => true,
             ],
             'nama_pjb' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
+                'type'           => 'VARCHAR',
+                'constraint'     => '150',
             ],
             'no_telp_pjb' => [
-                'type'       => 'CHAR',
-                'constraint' => '20'
+                'type'           => 'CHAR',
+                'constraint'     => '20',
             ],
             'penerima_sampel' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '225'
+                'type'           => 'VARCHAR',
+                'constraint'     => '150',
             ],
             'no_telp_penerima' => [
-                'type'       => 'CHAR',
-                'constraint' => '20'
+                'type'           => 'CHAR',
+                'constraint'     => '20',
             ],
             'tgl_terima_sampel' => [
-                'type'       => 'DATE'
+                'type'           => 'DATE'
             ],
             'jam_terima_sampel' => [
-                'type'       => 'TIME'
+                'type'           => 'TIME'
             ],
             'kode_pengantar' => [
-                'type'       => 'CHAR',
-                'constraint' => '10'
+                'type'           => 'CHAR',
+                'constraint'    => '10'
+            ],
+            'id_kat_lab' => [
+                'type'           => 'INT',
+                'constraint'       => 5
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -68,14 +72,14 @@ class MgdbPenanggungJawabLhu extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '100'
             ]
-        ]);
+         ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('penanggung_jawab_lhu');
+        $this->forge->createTable('penanggung_jawab_sampel');
     }
 
     public function down()
     {
-        $this->forge->dropTable('penanggung_jawab_lhu');
+        $this->forge->dropTable('penanggung_jawab_sampel');
     }
 }
