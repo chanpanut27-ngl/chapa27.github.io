@@ -11,7 +11,7 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="alat-utama" class="form-label h5h5">Alat utama</label>
+                        <label for="alat-utama" class="form-label h5">Alat utama</label>
                         <textarea name="alat_utama" class="form-control" id="alat-utama"><?= $items['alat_utama'] ?></textarea>
                         <div class="invalid-feedback errorAlatUtama"></div>
                     </div>

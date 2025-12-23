@@ -62,7 +62,7 @@
             url: '<?= site_url('pelayanan/keterangan-penyakit/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
-             beforeSend: function() {
+            beforeSend: function() {
                 $('.btn-edit').attr('disable', 'disabled');
                 $('.btn-edit').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');

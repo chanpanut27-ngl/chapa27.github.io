@@ -14,6 +14,8 @@ class KajiUlangPenyakitModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'alat_utama',
+        'alat_pendukung',
+        'personil_lab',
         'metode_pemeriksaan',
         'uji_mutu',
         'reagensa_dan_media',
