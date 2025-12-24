@@ -23,6 +23,6 @@ class Admin extends BaseController
     public function dashboard()
     {
         $data['title'] = $this->title;
-        return view('Backend/Layout/_dashboard', $data);
+        return view('Backend/Layout/_home', $data);
     }
 }
