@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Frontend;
+namespace App\Controllers\Pelanggan;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -12,7 +12,7 @@ class FileReader extends BaseController
         $data = [
             'title' => 'Standar Pelayanan'
         ];
-        return view('Frontend/File/_standar_pelayanan', $data);
+        return view('Pelanggan/File/_standar_pelayanan', $data);
     }
 
     public function tarif_pelayanan()
@@ -20,7 +20,7 @@ class FileReader extends BaseController
         $data = [
             'title' => 'Tarif Pelayanan'
         ];
-        return view('Frontend/File/_tarif_pelayanan', $data);
+        return view('Pelanggan/File/_tarif_pelayanan', $data);
     }
     
 }

@@ -23,6 +23,6 @@ class Pelanggan extends BaseController
     public function dashboard()
     {
         $data['title'] = $this->title;
-        return view('Pelanggan/Layout/_dashboard', $data);
+        return view('Pelanggan/Layout/_home', $data);
     }
 }

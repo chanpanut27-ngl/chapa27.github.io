@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Controllers\Frontend;
+namespace App\Controllers\Pelanggan;
 
 use App\Models\ProfilPelangganModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class ProfilPelanggan extends ResourceController
+class Profil extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -26,20 +26,13 @@ class ProfilPelanggan extends ResourceController
 
     public function index()
     {
-         $data = [
+        $data = [
             'title' => $this->title,
             'cek_data' => $this->model->where('instansi', 'PKM Tangerang Selatan')->first()
         ];
         return view('Pelanggan/Profil/index', $data);
     }
 
-    /**
-     * Return the properties of a resource object.
-     *
-     * @param int|string|null $id
-     *
-     * @return ResponseInterface
-     */
     public function list()
     {
 
@@ -60,6 +53,13 @@ class ProfilPelanggan extends ResourceController
         }
     }
 
+    /**
+     * Return the properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
     public function show($id = null)
     {
         //

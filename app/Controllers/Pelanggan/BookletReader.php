@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Frontend;
+namespace App\Controllers\Pelanggan;
 
 use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -12,7 +12,7 @@ class BookletReader extends BaseController
         $data = [
             'title' => 'Booklet 3'
         ];
-        return view('Frontend/File/Booklet/_booklet_3', $data);
+        return view('Pelanggan/File/Booklet/_booklet_3', $data);
     }
 
     public function harga_pnbp()
@@ -20,7 +20,7 @@ class BookletReader extends BaseController
         $data = [
             'title' => 'Harga PNBP'
         ];
-        return view('Frontend/File/Booklet/_harga_pnbp', $data);
+        return view('Pelanggan/File/Booklet/_harga_pnbp', $data);
     }
 
 }
