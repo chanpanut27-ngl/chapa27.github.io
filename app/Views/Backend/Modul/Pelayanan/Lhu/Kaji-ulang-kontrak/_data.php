@@ -3,17 +3,33 @@
         ?>
         <tbody style="font-family: arial;">
             <tr>
-                <td style="width: 30%;"><b>Kondisi lingkungan sekitar sampel</b></td>
+                <td style="width: 25%;"><b>Alat utama</b></td>
                 <td>: </td>
             </tr>
             <tr>
-                <td style="width: 30%;"><b>Catatan abnormalitas</b></td>
+                <td><b>Alat pendukung</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Personil laboratorium</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Metode pemeriksaan</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Uji mutu (Quality control)</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td><b>Reagensa dan media</b></td>
                 <td>: </td>
             </tr>
         </tbody>
         <?php
-    } else {?>
-    <?php foreach ($items as $row) : ?>
+    } else {
+    foreach ($items as $row) : ?>
     <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <span class="fa-solid fa-edit"></span>
     </button>&nbsp;
@@ -22,12 +38,28 @@
     </button>
     <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
         <tr>
-            <td style="width: 30%;"><b>Kondisi lingkungan sekitar sampel</b></td>
-            <td>: <?= $row['kondisi_lingkungan_sekitar_sampel'] ?></td>
+            <td style="width: 25%;"><b>Alat utama</b></td>
+            <td>: <?= $row['alat_utama'] ?></td>
+        </tr>
+         <tr>
+            <td><b>Alat pendukung</b></td>
+            <td>: <?= $row['alat_pendukung'] ?></td>
         </tr>
         <tr>
-            <td style="width: 30%;"><b>Catatan abnormalitas</b></td>
-            <td>: <?= $row['catatan_abnormalitas'] ?></td>
+            <td><b>Personil laboratorium</b></td>
+            <td>: <?= $row['personil_lab'] ?></td>
+        </tr>
+        <tr>
+            <td><b>Metode pemeriksaan</b></td>
+            <td>: <?= $row['metode_pemeriksaan'] ?></td>
+        </tr>
+        <tr>
+            <td><b>Uji mutu (Quality control)</b></td>
+            <td>: <?= $row['uji_mutu'] ?></td>
+        </tr>
+        <tr>
+            <td><b>Reagensa dan media</b></td>
+            <td>: <?= $row['reagensa_dan_media'] ?></td>
         </tr>
     </tbody>
     <?php endforeach; } ?>
@@ -36,9 +68,9 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/pengantar-lhu/kondisi-lingkungan/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/kaji-ulang-sampel/edit-data/'); ?>' + id,
             dataType: 'json',
-            cache: false,
+            cache:false,
             beforeSend: function() {
                 $('.btn-edit').attr('disable', 'disabled');
                 $('.btn-edit').html('<span class="fa-solid fa-spin fa-spinner"></span>');
@@ -79,7 +111,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lhu/kondisi-lingkungan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/kaji-ulang-sampel/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

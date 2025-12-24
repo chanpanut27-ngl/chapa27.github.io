@@ -140,3 +140,14 @@ $routes->group('pelayanan/pengantar-lhu/keterangan', function ($routes) {
     $routes->post('update-data', 'KeteranganPengantar::update');
     $routes->delete('delete-data/(:num)', 'KeteranganPengantar::delete/$1');
 });
+
+/* Pelayanan Kondisi Lingkungan Pengantar LHU lab lingkungan */
+$routes->group('pelayanan/pengantar-lhu/kondisi-lingkungan', function ($routes) {
+    $routes->get('', 'KondisiLingkunganPengantar::index');
+    $routes->get('list-data', 'KondisiLingkunganPengantar::list');
+    $routes->get('add-data', 'KondisiLingkunganPengantar::new');
+    $routes->post('create-data', 'KondisiLingkunganPengantar::create');
+    $routes->get('edit-data/(:num)', 'KondisiLingkunganPengantar::edit/$1');
+    $routes->post('update-data', 'KondisiLingkunganPengantar::update');
+    $routes->delete('delete-data/(:num)', 'KondisiLingkunganPengantar::delete/$1');
+});
