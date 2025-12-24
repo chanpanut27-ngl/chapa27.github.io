@@ -16,7 +16,7 @@
         <?php
         $no = 1;
         foreach ($items as $row) :
-            if ($row['id_psp'] == 1) {
+            if ($row['sts_psp'] == 1) {
                 $status = '<span class="badge bg-success rounded">Aktif</span>';
             }else {
                 $status = '<span class="badge bg-secondary rounded">Tidak aktif</span>';

@@ -34,7 +34,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl-ambil-sampel" class="form-label h5" style="font-family: arial;">Tanggal pengambilan sampel</label>
-                        <input type="text" name="tgl_ambil_sampel" class="form-control" id="tgl-ambil-sampel">
+                        <input type="text" name="tgl_ambil_sampel" class="form-control" id="tgl-ambil-sampel" autocomplete="off">
                         <div class="invalid-feedback errorTglAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
@@ -77,7 +77,7 @@
         $("#tgl-ambil-sampel").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "+1w",  inDate: dateToday
+                defaultDate: "",  inDate: dateToday
             }
         );
         
