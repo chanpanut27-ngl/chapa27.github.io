@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\InstalasiModel;
 use App\Models\PenanggungJawabLhuModel;
+use App\Models\PenanggungJawabSampelModel;
 use App\Models\PengantarLhuModel;
 use App\Models\PerintahUjiSampelModel;
 use CodeIgniter\RESTful\ResourceController;
@@ -30,7 +31,7 @@ class PerintahUjiSampel extends ResourceController
     {
         $this->title = 'Surat Perintah Uji Sampel';
         $this->model = new PerintahUjiSampelModel();
-        $this->modelPj = new PenanggungJawabLhuModel();
+        $this->modelPj = new PenanggungJawabSampelModel();
         $this->modelInstalasi = new InstalasiModel();
         $this->modelPengantarLhu = new PengantarLhuModel();
         $this->time = Time::now('Asia/Jakarta'); 

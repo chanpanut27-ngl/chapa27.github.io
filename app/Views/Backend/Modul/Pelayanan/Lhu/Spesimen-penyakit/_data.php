@@ -85,7 +85,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/lhu/sampel-lingkungan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/lhu/spesimen-penyakit/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

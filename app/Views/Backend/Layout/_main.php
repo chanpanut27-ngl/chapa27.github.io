@@ -5,10 +5,8 @@ if (in_groups('admin')) {
     $page = 'Backend';
 } else if (in_groups('user')) {
     $page = 'Backend';
-} else if (in_groups('pelanggan')) {
-    $page = 'Pelanggan';
 } else {
-    $page = '';
+    $page = 'Pelanggan';
 }
 ?>
 <!-- [ Top ] start -->
