@@ -69,13 +69,10 @@
                     <div class="card-header p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <a href="" class="btn btn-info">Kembali</a>
-                        
-                        </div>
-                        <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span>
                             </button>
+                            <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-info btn-sm" title="Kembali"><span class="fa-solid fa-arrow-left"></span></a>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" onclick="addData(<?= $row['id_pengantar']; ?>)" title="Tambah laboratorium tujuan">
                                 <span class="fa-solid fa-plus-square"></span> Tambah Data
@@ -146,20 +143,6 @@
 
     $(document).ready(function() {
         listData();
-
-        $(".btn-refresh-data").click(function() {
-            $.ajax({
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-refresh-data').html('<span class="fa fa-spin fa-spinner"></span>');
-                },
-                success: function() {
-                    listData();
-                    $('.btn-refresh-data').html('<span class="fa-solid fa-refresh"></span>');
-                }
-            })
-        })
-
     })
 </script>
 <?= $this->endSection(); ?>
