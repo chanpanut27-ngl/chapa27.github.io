@@ -22,48 +22,53 @@
         <!-- [ breadcrumb ] end -->
 
         <!-- [ Main Content ] start -->
-        <div class="row p-0">
-            <!-- [ sample-page ] start -->
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
-                    </div>
-                    <div class="card-body p-2">
-                        <?php foreach ($items as $row) :  
-                            $kode_pengantar = $row['kode_pengantar'];
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                    <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
+                </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                        <?php
+                            foreach ($items as $row) :  
+                                $kode_pengantar = $row['kode_pengantar'];
                         ?>
-                        <input type="hidden" id="kode-pengantar" value="<?= $kode_pengantar ?>">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <h5 class="card-title">Kode pengantar</h5>
+                        <input type="hidden" id="kode-pengantar" value="<?= $kode_pengantar; ?>">
+                        <div class="row" style="font-family: arial;">
+                            <div class="col-sm-2">
+                                <label class="card-title fw-bold">Kode pengantar</label>
                             </div>
-                            <div class="col-md-4">
-                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['kode_pengantar']; ?></h5>
+                            <div class="col-sm-4">
+                                <label class="card-title" style="font-weight: initial;">: <?= $kode_pengantar; ?></label>
                             </div>
-                            <div class="col-md-2">
-                                <h5 class="card-title">Alamat</h5>
+                            <div class="col-sm-2">
+                                <label class="card-title fw-bold">Alamat</label>
                             </div>
-                                <div class="col-md-4">
-                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['alamat']; ?></h5>
+                                <div class="col-sm-4">
+                                <label class="card-title">: <?= $row['alamat']; ?></label>
                             </div>
-                            <div class="col-md-2">
-                                <h5 class="card-title">Pelanggan</h5>
+                            <div class="col-sm-2">
+                                <label class="card-title fw-bold">Pelanggan</label>
                             </div>
-                                <div class="col-md-4">
-                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['nama']; ?></h5>
+                                <div class="col-sm-4">
+                                <label class="card-title">: <?= $row['nama']; ?></label>
                             </div>
-                            <div class="col-md-2">
-                                <h5 class="card-title">No.Telepon</h5>
+                            <div class="col-sm-2">
+                                <label class="card-title fw-bold">No.Telepon</label>
                             </div>
-                            <div class="col-md-4">
-                                <h5 class="card-title" style="font-weight: initial;">: <?= $row['no_telp']; ?></h5>
+                            <div class="col-sm-4">
+                                <label class="card-title">: <?= $row['no_telp']; ?></label>
                             </div>
                         </div>
                         <?php endforeach;?>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row p-0">
+            <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-2">
@@ -139,7 +144,6 @@
             }
         })
     }
-        
 
     $(document).ready(function() {
         listData();
