@@ -31,7 +31,7 @@
                         <a href="<?= base_url('laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Lab tujuan">
                             <span class="fa-solid fa-flask"></span>
                         </a>
-                        <a href="<?= base_url('pelayanan/proses-pengantar-lhu/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-success rounded btn-sm" title="Proses pengantar LHU">
+                        <a href="<?= base_url('pelayanan/pengantar-lhu/proses/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-success rounded btn-sm" title="Proses">
                             <span class="fa-solid fa-arrow-circle-right"></span>
                         </a>
                     </div>

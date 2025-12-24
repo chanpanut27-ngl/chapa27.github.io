@@ -88,3 +88,10 @@ $routes->group('laboratorium-tujuan', function ($routes) {
     $routes->post('update-data', 'LaboratoriumTujuan::update');
     $routes->delete('delete-data/(:num)', 'LaboratoriumTujuan::delete/$1');
 });
+
+/* Proses Pengantar LHU */
+$routes->group('pelayanan/pengantar-lhu/proses', function ($routes) {
+    $routes->get('index/(:any)', 'ProsesPengantarLhu::index/$1');
+    $routes->get('list-menu/(:any)', 'ProsesPengantarLhu::list_menu/$1');
+    $routes->get('pilih-menu/(:any)', 'ProsesPengantarLhu::pilih_menu/$1');
+});
