@@ -372,6 +372,7 @@ $routes->group('pelayanan/penanggung-jawab-sampel', function ($routes) {
 
 $routes->group('pelayanan/resume', function ($routes) {
     $routes->get('(:any)', 'ResumeLayananPemeriksaan::index/$1');
+    $routes->get('list-data', 'ResumeLayananPemeriksaan::list');
     $routes->get('cetak/(:any)', 'ResumeLayananPemeriksaan::cetak/$1');
 });
 
