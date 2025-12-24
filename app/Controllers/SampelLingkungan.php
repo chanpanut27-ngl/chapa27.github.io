@@ -83,7 +83,6 @@ class SampelLingkungan extends ResourceController
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/_data', $data)
             ];
-
             echo json_encode($msg);
         } else {
             exit('Not Process');

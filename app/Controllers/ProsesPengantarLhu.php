@@ -66,14 +66,12 @@ class ProsesPengantarLhu extends ResourceController
 
      $kode_pengantar = $param1;
      $id_lab = $param2;  
-    //  $id_kat_lab = $param3;
 
      $kategori_lab = $this->modelLabTujuan->get_data_kategori_lab($kode_pengantar, $id_lab);
      foreach ($kategori_lab as $row) {
         $nama_lab = $row['nama_lab'];
         $kode_pengantar = $row['kode_pengantar'];
         $id_lab = $row['id_laboratorium'];
-        $id_kat_lab = $row['id_kat_lab'];
      }
     
      $data = [

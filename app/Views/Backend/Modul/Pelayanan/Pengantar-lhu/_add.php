@@ -48,7 +48,7 @@
         $("#tanggal").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "+1w",  inDate: dateToday
+                defaultDate: "",  inDate: dateToday
             }
         );
         

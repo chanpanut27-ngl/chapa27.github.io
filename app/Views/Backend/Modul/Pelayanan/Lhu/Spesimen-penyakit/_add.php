@@ -6,7 +6,7 @@
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/lhu/spesimen-penyakit/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/pengantar-lhu/spesimen-penyakit/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_laboratorium" value="<?= $id_lab; ?>">
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl-periksa-sampel" class="form-label h5" style="font-family: arial;">Tanggal periksa sampel</label>
-                        <input type="text" name="tgl_periksa_sampel" class="form-control" id="tgl-periksa-sampel">
+                        <input type="text" name="tgl_periksa_sampel" class="form-control" id="tgl-periksa-sampel" autocomplete="off">
                         <div class="invalid-feedback errorTglPeriksaSampel"></div>
                     </div>
                     <div class="mb-3">
@@ -77,7 +77,7 @@
         $("#tgl-periksa-sampel").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "+1w",  inDate: dateToday
+                defaultDate: "",inDate: dateToday
             }
         );
         

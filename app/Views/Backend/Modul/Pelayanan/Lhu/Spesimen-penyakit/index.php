@@ -33,6 +33,7 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/jquery-3.7.1.js'); ?>"></script>
+<script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <!-- [Datepicker js] -->
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 <!-- [Select2 js] -->
@@ -43,7 +44,7 @@
         var id_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan/lhu/spesimen-penyakit/list-data'); ?>",
+            url: "<?= site_url('pelayanan/pengantar-lhu/spesimen-penyakit/list-data'); ?>",
             dataType: 'json',
             data:{
                  id_lab:id_lab,
@@ -66,7 +67,7 @@
             var id_lab = $(this).data("id");
             var kode_pengantar = $(this).data('kode');
             $.ajax({
-                url: "<?= site_url('pelayanan/lhu/spesimen-penyakit/add-data'); ?>",
+                url: "<?= site_url('pelayanan/pengantar-lhu/spesimen-penyakit/add-data'); ?>",
                 dataType: 'json',
                 data:{
                     id_lab:id_lab,
@@ -82,20 +83,6 @@
                 }
             })
         })
-
-        $(".btn-refresh-data").click(function() {
-            $.ajax({
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-refresh-data').html('<span class="fa fa-spin fa-spinner"></span>');
-                },
-                success: function() {
-                    listData();
-                    $('.btn-refresh-data').html('<span class="fa-solid fa-refresh"></span>');
-                }
-            })
-        })
-
     })
 </script>
 

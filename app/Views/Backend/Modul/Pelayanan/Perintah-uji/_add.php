@@ -109,21 +109,21 @@
         $("#tgl-kirim-sampel").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "+1w",  inDate: dateToday
+                defaultDate: "",  inDate: dateToday
             }
         );
 
         $("#tgl-terima-sampel-lab").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "+1w",  inDate: dateToday
+                defaultDate: "",  inDate: dateToday
             }
         );
 
         $("#tgl-selesai-sampel").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "+1w",  inDate: dateToday
+                defaultDate: "",  inDate: dateToday
             }
         );
         

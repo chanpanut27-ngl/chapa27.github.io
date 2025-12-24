@@ -6,7 +6,7 @@
                 <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/lhu/sampel-lingkungan/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/pengantar-lhu/sampel-lingkungan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_laboratorium" value="<?= $id_lab; ?>">
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">

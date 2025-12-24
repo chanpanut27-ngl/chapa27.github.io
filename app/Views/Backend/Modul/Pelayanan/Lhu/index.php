@@ -63,7 +63,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row p-0">
            <div class="col-sm-12">
                 <div class="card">
@@ -85,7 +84,7 @@
                                         $nama_lab = $m['nama_lab'];
                                         ?>
                                         <li class="nav-item">
-                                            <a class="nav-link navtabs <?= @$id_lab == $m['id_lab'] ? 'active text-light fw-bold bg-success' : '' ; ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $nama_lab ?></a>
+                                            <a class="nav-link navtabs <?= @$id_lab == $m['id_lab'] ? 'active text-light fw-bold bg-success' : '' ; ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $nama_lab ?></a>
                                         </li>
                                     <?php
                                     endforeach;
@@ -101,13 +100,13 @@
                                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><?= $kategori_lab ?></a>
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item">
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'keterangan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.strtolower($kode_pengantar).'/keterangan-'.$id_kategori_lab);?>">Keterangan</a>
+                                                    <a class="nav-link navtabs <?= @$id_lab == 'keterangan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/keterangan-'.$id_kategori_lab);?>">Keterangan</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'kondisi-lingkungan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.strtolower($kode_pengantar).'/kondisi-lingkungan-'.$id_kategori_lab);?>">Kondisi lingkungan</a>
+                                                    <a class="nav-link navtabs <?= @$id_lab == 'kondisi-lingkungan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/kondisi-lingkungan-'.$id_kategori_lab);?>">Kondisi lingkungan</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'kaji-ulang-permintaan-kontrak-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/proses-pengantar-lhu/pilih-menu/'.strtolower($kode_pengantar).'/kaji-ulang-permintaan-kontrak-'.$id_kategori_lab);?>">Kaji ulang permintaan kontrak</a>
+                                                    <a class="nav-link navtabs <?= @$id_lab == 'kaji-ulang-permintaan-kontrak-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/kaji-ulang-permintaan-kontrak-'.$id_kategori_lab);?>">Kaji ulang permintaan kontrak</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -117,10 +116,14 @@
                                 <li class="nav-item">
                                     <a class="nav-link navtabs <?= @$kode_pengantar == strtolower($kode_pengantar) ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/resume/'.strtolower($kode_pengantar));?>">Resume</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-info btn-sm" title="Kembali"><span class="fa-solid fa-arrow-left"></span></a>
+                                </li>
                             </ul>
                         <?php } ?>
                     </div>
                 </div>
+                <?= $this->renderSection('content_menu'); ?>
            </div>
         </div>
         <!-- [ content ] end -->
