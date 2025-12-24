@@ -63,7 +63,6 @@ class SpesimenPenyakitModel extends Model
         $builder = $db->table('pelayanan_spesimen_penyakit');
         $builder->select('pelayanan_spesimen_penyakit.id AS id_psp,
         pelayanan_spesimen_penyakit.kode_sampel,
-        master_jenis_sampel.jenis_sampel,
         pelayanan_spesimen_penyakit.identitas_sampel,
         pelayanan_spesimen_penyakit.tgl_periksa_sampel,
         pelayanan_spesimen_penyakit.jam_periksa_sampel,
@@ -72,6 +71,7 @@ class SpesimenPenyakitModel extends Model
         pelayanan_spesimen_penyakit.jenis_wadah,
         pelayanan_spesimen_penyakit.jenis_pengawet,
         pelayanan_spesimen_penyakit.is_active AS sts_psp,
+        master_jenis_sampel.jenis_sampel,
         master_peraturan.peraturan');
         $builder->join("master_jenis_sampel", "master_jenis_sampel.id = pelayanan_spesimen_penyakit.id_jenis_sampel");
         $builder->join("master_peraturan", "master_peraturan.id = master_jenis_sampel.id_peraturan", "left");

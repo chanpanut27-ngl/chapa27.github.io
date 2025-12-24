@@ -63,7 +63,6 @@ class SampelLingkunganModel extends Model
         $builder = $db->table('pelayanan_sampel_lingkungan');
         $builder->select('pelayanan_sampel_lingkungan.id AS id_psl,
         pelayanan_sampel_lingkungan.kode_sampel,
-        master_jenis_sampel.jenis_sampel,
         pelayanan_sampel_lingkungan.lokasi_pengambilan_sampel,
         pelayanan_sampel_lingkungan.tgl_ambil_sampel,
         pelayanan_sampel_lingkungan.jam_ambil_sampel,
@@ -72,6 +71,8 @@ class SampelLingkunganModel extends Model
         pelayanan_sampel_lingkungan.jenis_wadah,
         pelayanan_sampel_lingkungan.jenis_pengawet,
         pelayanan_sampel_lingkungan.is_active AS sts_psl,
+        master_jenis_sampel.jenis_sampel,
+        master_jenis_sampel.keterangan,
         master_peraturan.peraturan');
         $builder->join("master_jenis_sampel", "master_jenis_sampel.id = pelayanan_sampel_lingkungan.id_jenis_sampel", "left");
         $builder->join("master_peraturan", "master_peraturan.id = master_jenis_sampel.id_peraturan", "left");

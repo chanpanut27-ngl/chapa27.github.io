@@ -92,7 +92,7 @@
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 dataType: 'json',
-                cache: 'false',
+                cache: false,
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
                     $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');

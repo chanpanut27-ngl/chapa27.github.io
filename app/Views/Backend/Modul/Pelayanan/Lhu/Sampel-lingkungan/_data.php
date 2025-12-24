@@ -25,7 +25,7 @@
             <tr id="myId-<?= $row['id_psl']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td class="text-center"><?= $row['kode_sampel']; ?></td>
-                <td><?= $row['jenis_sampel']; ?></td>
+                <td><?= $row['jenis_sampel'].','.$row['keterangan']; ?></td>
                 <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
                 <td><?= date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
                 <td><?= $row['peraturan']; ?></td>
@@ -36,7 +36,7 @@
                 <td><?= $status; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id_psl']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id_psl']; ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_psl']; ?>)" title="Hapus data">
@@ -54,6 +54,15 @@
             type: 'get',
             url: '<?= site_url('pelayanan/pengantar-lhu/sampel-lingkungan/edit-data/'); ?>' + id,
             dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit').attr('disable', 'disabled');
+                $('.btn-edit').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit').removeAttr('disable');
+                $('.btn-edit').html('<span class="fa-solid fa-edit"></span>');
+            },
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();

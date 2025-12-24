@@ -3,7 +3,7 @@
         <?php
         $arrth = [
             'No', 'Kode sampel', 'Jenis sampel', 'Identitas sampel', 
-            'Tgl & jam pengambilan sampel', 'Peraturan', 'Metode pemeriksaan', 
+            'Tgl & jam periksa sampel', 'Peraturan', 'Metode pemeriksaan', 
             'Volume/berat', 'Jenis wadah', 'Jenis pengawet', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
@@ -36,7 +36,7 @@
                 <td><?= $status; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id_psp']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id_psp']; ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_psp']; ?>)" title="Hapus data">
@@ -54,6 +54,15 @@
             type: 'get',
             url: '<?= site_url('pelayanan/pengantar-lhu/spesimen-penyakit/edit-data/'); ?>' + id,
             dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit').attr('disable', 'disabled');
+                $('.btn-edit').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit').removeAttr('disable');
+                $('.btn-edit').html('<span class="fa-solid fa-edit"></span>');
+            },
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();

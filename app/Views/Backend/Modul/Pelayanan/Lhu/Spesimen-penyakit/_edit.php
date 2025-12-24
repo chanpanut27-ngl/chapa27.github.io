@@ -32,13 +32,13 @@
                         <div class="invalid-feedback errorIdentitasSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="tgl-periksa-sampel" class="form-label h5" style="font-family: arial;">Tanggal pengambilan sampel</label>
+                        <label for="tgl-periksa-sampel" class="form-label h5" style="font-family: arial;">Tanggal periksa sampel</label>
                         <input type="text" name="tgl_periksa_sampel" value="<?= date('d-m-Y', strtotime($items['tgl_periksa_sampel'])); ?>" class="form-control" id="tgl-periksa-sampel" autocomplete="off">
                         <div class="invalid-feedback errorTglPeriksaSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam-periksa-sampel" class="form-label h5" style="font-family: arial;">Jam pengambilan sampel</label>
-                        <input type="time" name="jam_ambil_sampel" value="<?= $items['jam_ambil_sampel']; ?>" class="form-control" id="jam-ambil-sampel" autocomplete="off">
+                        <label for="jam-periksa-sampel" class="form-label h5" style="font-family: arial;">Jam periksa sampel</label>
+                        <input type="time" name="jam_periksa_sampel" value="<?= $items['jam_periksa_sampel']; ?>" class="form-control" id="jam-periksa-sampel" autocomplete="off">
                         <div class="invalid-feedback errorJamPeriksaSampel"></div>
                     </div>
                     <div class="mb-3">
@@ -95,7 +95,7 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-ubah').attr('disable', 'disabled');
-                    $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-ubah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');
