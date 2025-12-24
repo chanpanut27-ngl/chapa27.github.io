@@ -2,6 +2,9 @@
 
 namespace App\Controllers\Pelanggan;
 
+use App\Models\JenisSampelModel;
+use App\Models\LaboratoriumModel;
+use App\Models\PermintaanPelangganModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -12,9 +15,41 @@ class Permintaan extends ResourceController
      *
      * @return ResponseInterface
      */
+    protected $title;
+    protected $model;
+    protected $modelLab;
+    protected $modelSampel;
+    protected $validation;
+
+    public function __construct()
+    {
+        $this->title = 'Permintaan pemeriksaan';
+        $this->model = new PermintaanPelangganModel();
+        $this->modelLab = new LaboratoriumModel();
+        $this->modelSampel = new JenisSampelModel();
+        $this->validation = \Config\Services::validation();
+    }
+
     public function index()
     {
-        //
+        $data = [
+            'title' => 'Data ' . $this->title
+        ];
+        return view('Pelanggan/Permintaan/index', $data);
+    }
+
+    public function generate_kode_permintaan() 
+    {
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $this->model->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = 'Reg.' . sprintf('%04d', $nomorUrut) . '.' . date('dmY');
+        
+        return $nomorAntrian;
     }
 
     /**
@@ -24,6 +59,24 @@ class Permintaan extends ResourceController
      *
      * @return ResponseInterface
      */
+
+    public function list()
+    {
+
+        if ($this->request->isAJAX()) {
+            $data = [
+                'items' => $this->model->findAll()
+            ];
+            $msg = [
+                'data' => view('Pelanggan/Permintaan/_data', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
     public function show($id = null)
     {
         //
@@ -36,7 +89,20 @@ class Permintaan extends ResourceController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+                'masterLab' => $this->modelLab->findAll(),
+                'masterSampel' => $this->modelSampel->findAll()
+            ];
+            $msg = [
+                'data' => view('Pelanggan/Permintaan/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -46,7 +112,38 @@ class Permintaan extends ResourceController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'nama_pengirim' => [
+                    'label' => 'Instansi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_pengirim' => $this->validation->getError('nama_pengirim')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'no_reg' => $this->generate_kode_permintaan(),
+                    'nama_pengirim' => $this->request->getVar('nama_pengirim'),
+                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
+                ];
+                $this->model->insert($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

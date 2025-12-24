@@ -53,11 +53,11 @@ $routes->group('pelanggan/file-peraturan/reader', function ($routes) {
 
 /* Permintaan Pemeriksaan */
 $routes->group('pelanggan/permintaan-pemeriksaan', function ($routes) {
-    $routes->get('', 'PermintaanPelanggan::index');
-    $routes->get('list-data', 'PermintaanPelanggan::list');
-    $routes->get('add-data', 'PermintaanPelanggan::new');
-    $routes->post('create-data', 'PermintaanPelanggan::create');
-    $routes->get('edit-data/(:num)', 'PermintaanPelanggan::edit/$1');
-    $routes->post('update-data', 'PermintaanPelanggan::update');
-    $routes->delete('delete-data/(:num)', 'PermintaanPelanggan::delete/$1');
+    $routes->get('', 'Pelanggan\Permintaan::index');
+    $routes->get('list-data', 'Pelanggan\Permintaan::list');
+    $routes->get('add-data', 'Pelanggan\Permintaan::new');
+    $routes->post('create-data', 'Pelanggan\Permintaan::create');
+    $routes->get('edit-data/(:num)', 'Pelanggan\Permintaan::edit/$1');
+    $routes->post('update-data', 'Pelanggan\Permintaan::update');
+    $routes->delete('delete-data/(:num)', 'Pelanggan\Permintaan::delete/$1');
 });

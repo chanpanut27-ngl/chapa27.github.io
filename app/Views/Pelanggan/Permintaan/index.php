@@ -1,4 +1,4 @@
-<?= $this->extend('Frontend/Layout/_main'); ?>
+<?= $this->extend('Pelanggan/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
@@ -60,7 +60,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('user-pelanggan/permintaan-pemeriksaan/list-data'); ?>",
+            url: "<?= site_url('pelanggan/permintaan-pemeriksaan/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -78,7 +78,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('user-pelanggan/permintaan-pemeriksaan/add-data'); ?>",
+                url: "<?= site_url('pelanggan/permintaan-pemeriksaan/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 success: function(response) {
