@@ -128,3 +128,15 @@ $routes->group('pelayanan/keterangan-penyakit', function ($routes) {
     $routes->post('update-data', 'KeteranganPenyakit::update');
     $routes->delete('delete-data/(:num)', 'KeteranganPenyakit::delete/$1');
 });
+
+
+/* Pelayanan Keterangan Pengantar LHU **/
+$routes->group('pelayanan/pengantar-lhu/keterangan', function ($routes) {
+    $routes->get('', 'KeteranganPengantar::index');
+    $routes->get('list-data', 'KeteranganPengantar::list');
+    $routes->get('add-data', 'KeteranganPengantar::new');
+    $routes->post('create-data', 'KeteranganPengantar::create');
+    $routes->get('edit-data/(:num)', 'KeteranganPengantar::edit/$1');
+    $routes->post('update-data', 'KeteranganPengantar::update');
+    $routes->delete('delete-data/(:num)', 'KeteranganPengantar::delete/$1');
+});
