@@ -17,62 +17,68 @@
             </div>
         </div>
 
-            <!-- [ content ] start -->
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
-                    </div>
-                    <div class="card-body p-2">
+        <!-- [ content ] start -->
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                    <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title ?></h4>
+                </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
                         <?php
-
-                        use App\Models\LaboratoriumTujuanModel;
-
-                        foreach ($items as $row) :  
-                            $kode_pengantar = $row['kode_pengantar'];
+                            use App\Models\LaboratoriumTujuanModel;
+                            foreach ($items as $row) :  
+                                $kode_pengantar = $row['kode_pengantar'];
                         ?>
                         <div class="row" style="font-family: arial;">
-                            <div class="col-md-2">
+                            <div class="col-sm-2">
                                 <label class="card-title fw-bold">Kode pengantar</label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-sm-4">
                                 <label class="card-title" style="font-weight: initial;">: <?= $row['kode_pengantar']; ?></label>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-sm-2">
                                 <label class="card-title fw-bold">Alamat</label>
                             </div>
-                             <div class="col-md-4">
+                                <div class="col-sm-4">
                                 <label class="card-title">: <?= $row['alamat']; ?></label>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-sm-2">
                                 <label class="card-title fw-bold">Pelanggan</label>
                             </div>
-                             <div class="col-md-4">
+                                <div class="col-sm-4">
                                 <label class="card-title">: <?= $row['nama']; ?></label>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-sm-2">
                                 <label class="card-title fw-bold">No.Telepon</label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-sm-4">
                                 <label class="card-title">: <?= $row['no_telp']; ?></label>
                             </div>
                         </div>
                         <?php endforeach;?>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+           <div class="col-sm-12">
+                <div class="card">
                     <div class="card-body">
                         <?php 
                         if (!$menu_lab) {
                             ?>
-                            <div class="modal-body">
                                 <div class="alert alert-danger fw-bold" role="alert">
                                     Laboratorim tujuan belum di pilih !
                                     <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="href"> [Kembali]</a>
                                 </div>
-                            </div>
                             <?php
                         }else{
                         ?>
-                            <ul class="nav nav-tabs mb-1">
+                            <ul class="nav nav-tabs">
                                 <?php
                                     foreach ($menu_lab as $m) :
 
@@ -113,15 +119,14 @@
                                 </li>
                             </ul>
                         <?php } ?>
-                        <?= $this->renderSection('content_menu'); ?> 
                     </div>
                 </div>
-            </div>
-            <!-- [ content ] end -->
+           </div>
+        </div>
+        <!-- [ content ] end -->
     </div>
 </div>
 <div class="view-modal" style="display: none;"></div>
-
 <?= $this->endSection(); ?>
 
 
