@@ -44,11 +44,11 @@
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $row['kode_sampel']; ?></td>
+                                        <td><?= $row['jenis_sampel']; ?><input type="hidden" name="id_jenis_sampel[]" value="<?= $row['id_jenis_sampel'] ?>"></td>
                                         <td><?= $row['jenis_sampel']; ?></td>
-                                        <td><?= $row['jenis_sampel']; ?></td>
-                                        <td><textarea name="parameter_uji" class="form-control"></textarea></td>
-                                        <td><textarea name="metode_uji" class="form-control"></textarea></td>
-                                        <td><textarea name="keterangan" class="form-control"></textarea></td>
+                                        <td><textarea name="parameter_uji[]" class="form-control"></textarea></td>
+                                        <td><textarea name="metode_uji[]" class="form-control"></textarea></td>
+                                        <td><textarea name="keterangan[]" class="form-control"></textarea></td>
                                     </tr>
                                 <?php endforeach;?>
                             </tbody>
@@ -63,7 +63,7 @@
                             <label class="form-label h5">Tim Kerja Program Layanan</label>
                             <div class="mb-3">
                                 <label for="tgl-terima" class="form-label h5">Tanggal Penerimaan Sampel</label>
-                                <input type="text" name="tgl_terima_sampel" value="<?= date('d/m/Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" disabled id="tgl-terima">
+                                <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" readonly id="tgl-terima">
                             </div>
                             <div class="mb-3">
                                 <label for="tgl-kirim-sampel" class="form-label h5">Tanggal Kirim Sampel</label>
@@ -175,6 +175,14 @@
                         } else {
                             $('#tgl-selesai-sampel').removeClass('is-invalid');
                             $('.errorTglSelesaiSampel').html('');
+                        }
+
+                        if (err) {
+                            Swal.fire({
+                                title: "Gagal",
+                                text: response.error,
+                                icon: "error"
+                            });
                         }
                         
                     } else {

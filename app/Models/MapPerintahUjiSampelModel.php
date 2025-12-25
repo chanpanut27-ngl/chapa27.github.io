@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class MapPerintahUjiSampelModel extends Model
 {
-    protected $table            = 'mapperintahujisampels';
+    protected $table            = 'map_perintah_uji_sampel';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';

@@ -1,6 +1,9 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
+
+use App\Models\PerintahUjiSampelModel;
+
         $arrth = ['No', 'Kode Pengantar', 'Instalasi', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
@@ -12,19 +15,40 @@
     <tbody style="font-family: arial;">
         <?php
         $no = 1;
-        var_dump($items);
-        foreach ($items as $row) :   
+        // var_dump($items);
+        $pus = new PerintahUjiSampelModel();
+        foreach ($items as $row) :  
+        $fpush = $pus->where('kode_pengantar', $row['kode_pengantar'])
+        ->where('id_instalasi', $row['id_instalasi'])->first();
         ?>
-            <tr id="myId-<?= $row['id_pengantar']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_instalasi']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_pengantar']; ?></td>
                 <td><?= $row['nama_instalasi']; ?></td>
                 <td>
-                    <div class="d-flex justify-content-start">
+                    <div class="d-flex justify-content-start gap-1">
                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
-                            <span class="pc-micon"><span class="fa-solid fa-plus-circle"></span></span>
-                        </button>
+                        <?php
+                        if ($fpush) {
+                            ?>
+                            <button type="button" class="btn btn-warning btn-sm rounded btn-edit" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
+                                <span class="pc-micon"><span class="fa-solid fa-edit"></span></span>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-print" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
+                                <span class="pc-micon"><span class="fa-solid fa-print"></span></span>
+                            </button>
+                           <button type="button" class="btn btn-danger btn-sm rounded btn-delete" data-kode="<?= $row['kode_pengantar'];?>" data-instalasi="<?= $row['id_instalasi'];?>" data-id="<?= $row['id_instalasi']; ?>">
+                                <span class="pc-micon"><span class="fa-solid fa-trash-alt"></span></span>
+                            </button>
+                            <?php
+                        } else {
+                            ?>
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
+                                <span class="pc-micon"><span class="fa-solid fa-plus-circle"></span></span>
+                            </button>
+                            <?php
+                        }
+                        ?>
                     </div>
                 </td>              
                 
@@ -33,8 +57,13 @@
     </tbody>
 </table>
 <script>
-    function deleteData(id) {
-        var myElement = $('#myId-' + id);
+    $(".btn-delete").click(function(e) {
+        e.preventDefault();
+      
+        var kode_pengantar = $(this).data('kode');
+        var id_instalasi = $(this).data('instalasi');
+
+       var myElement = $('#myId-' + id_instalasi);
         if (myElement.data('urut')) {
             myElement.addClass('bg bg-danger');
         }
@@ -50,9 +79,13 @@
         }).then((result) => {
             if (result.value) {
                 $.ajax({
-                    type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lhu/delete-data/'); ?>' + id,
+                    type: 'get',
+                    url: '<?= site_url('pelayanan/perintah-uji-sampel/delete-data/'); ?>',
                     dataType: 'json',
+                    data: {
+                        kode_pengantar:kode_pengantar,
+                        id_instalasi:id_instalasi
+                    },
                     success: function(response) {
                         if (response.error) {
                             Swal.fire({
@@ -78,7 +111,7 @@
                 myElement.removeClass('bg bg-danger');
             }
         });
-    }
+    })
 
     $(".btn-tambah").click(function(e) {
         e.preventDefault();
@@ -89,6 +122,40 @@
         $.ajax({
             type: "get",
             url: "<?= site_url('pelayanan/perintah-uji-sampel/add-data'); ?>",
+            dataType: 'json',
+            cache: false,
+            data:{
+                 id_instalasi:id_instalasi,
+                 id_kat_lab:id_kat_lab,
+                 kode_pengantar:kode_pengantar
+            },
+            beforeSend: function() {
+                $('.btn-tambah').attr('disable', 'disabled');
+                $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-tambah').removeAttr('disable');
+                $('.btn-tambah').html('<span class="fa-solid fa-plus-circle"></span>');
+            },
+            success: function(response) {
+                $(".view-modal").html(response.data).show();
+                $("#exampleModal").modal('show');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        })
+    })
+
+    $(".btn-edit").click(function(e) {
+        e.preventDefault();
+        var id_instalasi = $(this).data("id");
+        var kode_pengantar = $(this).data('kode');
+        var id_kat_lab = $(this).data('katlab');
+
+        $.ajax({
+            type: "get",
+            url: "<?= site_url('pelayanan/perintah-uji-sampel/edit-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{
