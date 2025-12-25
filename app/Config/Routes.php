@@ -180,4 +180,16 @@ $routes->group('pelayanan/pengantar-lhu/resume', function ($routes) {
     $routes->get('list-data', 'ResumePengantarLhu::list');
 });
 
+/* Cetak Resume Pengantar LHU */
 $routes->get('cetak/resume/(:any)', 'ResumePengantarLhu::cetak/$1');
+
+/** Perintah uji sampel **/
+$routes->group('pelayanan/perintah-uji-sampel', function ($routes) {
+    $routes->get('', 'PerintahUjiSampel::index');
+    $routes->get('list-data', 'PerintahUjiSampel::list');
+    $routes->get('add-data', 'PerintahUjiSampel::new');
+    $routes->post('create-data', 'PerintahUjiSampel::create');
+    $routes->get('edit-data/(:num)', 'PerintahUjiSampel::edit/$1');
+    $routes->post('update-data', 'PerintahUjiSampel::update');
+    $routes->delete('delete-data/(:num)', 'PerintahUjiSampel::delete/$1');
+});

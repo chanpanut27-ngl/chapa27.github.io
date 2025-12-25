@@ -66,7 +66,9 @@ class PerintahUjiSampelModel extends Model
         master_pelanggan.alamat,
         master_laboratorium.nama_lab,
         master_instalasi.nama_instalasi,
-        master_instalasi.id AS id_instalasi
+        master_instalasi.id AS id_instalasi,
+        master_instalasi.id_kat_lab,
+        laboratorium_tujuan.id_laboratorium
         FROM pengantar_lhu
         LEFT JOIN master_pelanggan ON master_pelanggan.id = pengantar_lhu.id_pelanggan
         LEFT JOIN laboratorium_tujuan ON laboratorium_tujuan.id_pengantar_lhu = pengantar_lhu.id
@@ -95,6 +97,27 @@ class PerintahUjiSampelModel extends Model
         JOIN master_jenis_sampel C ON C.id = pelayanan_sampel_lingkungan.id_jenis_sampel
         WHERE laboratorium_tujuan.kode_pengantar IN (SELECT pelayanan_sampel_lingkungan.kode_pengantar FROM pelayanan_sampel_lingkungan) 
         AND pelayanan_sampel_lingkungan.kode_pengantar = '".$param."'
+        GROUP BY id_jenis_sampel";
+        $query = $db->query($sql)->getResultArray();
+        return $query;
+    }
+
+    public function get_data_spesimen_penyakit($param = null)
+    {
+        $db = \Config\Database::connect();
+
+        $sql = "SELECT 
+        laboratorium_tujuan.kode_pengantar,
+        pelayanan_spesimen_penyakit.id_jenis_sampel,
+        pelayanan_spesimen_penyakit.kode_sampel,
+        pelayanan_spesimen_penyakit.identitas_sampel,
+        jenis_sampel
+        FROM 
+        laboratorium_tujuan,
+        pelayanan_spesimen_penyakit
+        JOIN master_jenis_sampel C ON C.id = pelayanan_spesimen_penyakit.id_jenis_sampel
+        WHERE laboratorium_tujuan.kode_pengantar IN (SELECT pelayanan_spesimen_penyakit.kode_pengantar FROM pelayanan_sampel_lingkungan) 
+        AND pelayanan_spesimen_penyakit.kode_pengantar = '".$param."'
         GROUP BY id_jenis_sampel";
         $query = $db->query($sql)->getResultArray();
         return $query;

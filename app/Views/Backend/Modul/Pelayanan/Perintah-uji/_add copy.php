@@ -3,14 +3,14 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('pelayanan/perintah-uji-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="text" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
-                <input type="text" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
-                <input type="text" name="id_instalasi" value="<?= $id_instalasi; ?>">
+                <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
+                <input type="hidden" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
+                <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
                 <div class="modal-body">
                     <div class="mb-2">
                         <label for="" class="form-label h5">Sifat Pemeriksaan Sampel</label><br>
@@ -39,8 +39,8 @@
                                     <th><label for="">Keterangan</label></th>
                                 </tr>
                             </thead>
-                            <tbody style="font-family: arial; font-size:11px;">
-                                <?php $no=1; foreach ($items as $row) : ?>
+                            <tbody style="font-family: arial; font-size:12px;">
+                                <?php $no=1; foreach (@$items as $row) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $row['kode_sampel']; ?></td>
@@ -63,7 +63,7 @@
                             <label class="form-label h5">Tim Kerja Program Layanan</label>
                             <div class="mb-3">
                                 <label for="tgl-terima" class="form-label h5">Tanggal Penerimaan Sampel</label>
-                                <input type="text" name="tgl_terima_sampel" value="<?= date('d/m/Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" disabled id="tgl-terima">
+                                <input type="text" name="tgl_terima_sampel" value="<?= date('d/m/Y', strtotime($tgl_terima['tgl_terima_sampel'])) ?>" class="form-control" disabled id="tgl-terima">
                             </div>
                             <div class="mb-3">
                                 <label for="tgl-kirim-sampel" class="form-label h5">Tanggal Kirim Sampel</label>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="kepala-instalasi" class="form-label h5">Kepala <?= $instalasi['nama_instalasi']; ?></label>
+                                <label for="kepala-instalasi" class="form-label h5">Kepala <?= $instalasi['nama_instalasi']; ?> </label>
                                 <input type="text" name="kepala_instalasi" id="kepala-instalasi" class="form-control" autocomplete="off">
                                 <div class="invalid-feedback errorKepalaInstalasi"></div>
                             </div>

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\InstalasiModel;
 use App\Models\PenanggungJawabLhuModel;
+use App\Models\PenanggungJawabPengantarModel;
 use App\Models\PenanggungJawabSampelModel;
 use App\Models\PengantarLhuModel;
 use App\Models\PerintahUjiSampelModel;
@@ -29,9 +30,9 @@ class PerintahUjiSampel extends ResourceController
 
     public function __construct()
     {
-        $this->title = 'Surat Perintah Uji Sampel';
+        $this->title = 'Perintah Uji Sampel';
         $this->model = new PerintahUjiSampelModel();
-        $this->modelPj = new PenanggungJawabSampelModel();
+        $this->modelPj = new PenanggungJawabPengantarModel();
         $this->modelInstalasi = new InstalasiModel();
         $this->modelPengantarLhu = new PengantarLhuModel();
         $this->time = Time::now('Asia/Jakarta'); 
@@ -80,7 +81,7 @@ class PerintahUjiSampel extends ResourceController
         }    
     }
 
-    public function new()
+    public function new1()
     {
          if ($this->request->isAJAX()) {
 
@@ -114,6 +115,51 @@ class PerintahUjiSampel extends ResourceController
         } else {
             exit('Not Process');
         }    
+    }
+
+    public function new()
+    {
+         if ($this->request->isAJAX()) {
+
+            $_data = '';
+            $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $id_instalasi = $this->request->getVar('id_instalasi');
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
+            $instalasi = $this->modelInstalasi->find($id_instalasi);
+
+            // Penanggung jawab sampel
+            $penanggung_jawab = $this->modelPj->select('id_kat_lab, tgl_terima_sampel')
+            ->where('kode_pengantar', $kode_pengantar)
+            ->where('id_kat_lab', $id_kat_lab)->first();
+
+            // id pengantar lhu
+            $id_pengantar_lhu = $this->modelPengantarLhu->select('id')
+            ->where('kode_pengantar', $kode_pengantar)->first();
+
+            if ($penanggung_jawab['id_kat_lab'] == 1) {
+                $_data = $this->model->get_data_sampel_lingkungan($kode_pengantar);
+            }else{
+                $_data = $this->model->get_data_spesimen_penyakit($kode_pengantar);
+            }
+
+            $data = [
+                'title' => 'Tambah ' . $this->title . ' ('.$kode_pengantar.')',
+                'id_instalasi' => $id_instalasi,
+                'instalasi' => $instalasi,
+                'kode_pengantar' => $kode_pengantar,
+                'id_pengantar_lhu' => $id_pengantar_lhu,
+                'tgl_terima_sampel' => $penanggung_jawab,
+                'items' => $_data
+            ];
+
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/_add', $data)
+            ];
+            echo json_encode($msg);
+
+         } else {
+            exit('Not Process');
+         }
     }
 
     /**

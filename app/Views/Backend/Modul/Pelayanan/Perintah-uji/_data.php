@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Kode Pengantar', 'Nama Lab', 'Instalasi', ''];
+        $arrth = ['No', 'Kode Pengantar', 'Instalasi', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -12,21 +12,22 @@
     <tbody style="font-family: arial;">
         <?php
         $no = 1;
-        foreach ($items as $row) :
+        var_dump($items);
+        foreach ($items as $row) :   
         ?>
             <tr id="myId-<?= $row['id_pengantar']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_pengantar']; ?></td>
-                <td><?= $row['nama_lab']; ?></td>
                 <td><?= $row['nama_instalasi']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start">
                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $row['id_instalasi']; ?>" data-kode="<?= $row['kode_pengantar'];?>">
+                        <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
                             <span class="pc-micon"><span class="fa-solid fa-plus-circle"></span></span>
                         </button>
                     </div>
-                </td>
+                </td>              
+                
             </tr>
         <?php endforeach;?>
     </tbody>
@@ -83,12 +84,16 @@
         e.preventDefault();
         var id_instalasi = $(this).data("id");
         var kode_pengantar = $(this).data('kode');
+        var id_kat_lab = $(this).data('katlab');
+
         $.ajax({
+            type: "get",
             url: "<?= site_url('pelayanan/perintah-uji-sampel/add-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{
                  id_instalasi:id_instalasi,
+                 id_kat_lab:id_kat_lab,
                  kode_pengantar:kode_pengantar
             },
             success: function(response) {
