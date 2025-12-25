@@ -109,7 +109,7 @@
                                                     <a class="nav-link navtabs <?= @$id_lab == 'kaji-ulang-permintaan-kontrak-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/kaji-ulang-permintaan-kontrak-'.$id_kategori_lab);?>">Kaji ulang permintaan kontrak</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'penanggung-jawab'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/penanggung-jawab-'.$id_kategori_lab);?>">Penanggung jawab</a>
+                                                    <a class="nav-link navtabs <?= @$id_lab == 'penanggung-jawab-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/penanggung-jawab-'.$id_kategori_lab);?>">Penanggung jawab</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -117,10 +117,10 @@
                                     endforeach;
                                 ?>
                                 <li class="nav-item">
-                                    <a class="nav-link navtabs <?= @$kode_pengantar == strtolower($kode_pengantar) ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/resume/'.strtolower($kode_pengantar));?>">Resume</a>
+                                    <a class="nav-link navtabs" href="<?= base_url('pelayanan/pengantar-lhu/resume/'.strtolower($kode_pengantar));?>">Resume</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-info btn-sm" title="Kembali"><span class="fa-solid fa-arrow-left"></span></a>
+                                    <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="nav-link bg-info text-white" title="Kembali"><span class="fa-solid fa-arrow-left"></span> Kembali</a>
                                 </li>
                             </ul>
                         <?php } ?>
