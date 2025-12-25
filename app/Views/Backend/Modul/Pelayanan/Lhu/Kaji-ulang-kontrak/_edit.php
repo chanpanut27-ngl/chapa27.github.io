@@ -6,7 +6,7 @@
                 <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/kaji-ulang-sampel/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/pengantar-lhu/kaji-ulang-kontrak/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
@@ -62,7 +62,7 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-ubah').attr('disable', 'disabled');
-                    $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-ubah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');

@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <h4><?= $title; ?></h4>
+                        <h5><?= $title; ?></h5>
                         <div class="view-data"></div>
                     </div>
                 </div>
@@ -29,12 +29,13 @@
 
 <?= $this->section('bottomAssets'); ?>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/custom.js'); ?>"></script>
 <script>
     function listData() {
         var id_kat_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan/kaji-ulang-sampel/list-data'); ?>",
+            url: "<?= site_url('pelayanan/pengantar-lhu/kaji-ulang-kontrak/list-data'); ?>",
             dataType: 'json',
             data:{
                  id_kat_lab:id_kat_lab,
@@ -58,7 +59,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan/kaji-ulang-sampel/add-data'); ?>",
+                url: "<?= site_url('pelayanan/pengantar-lhu/kaji-ulang-kontrak/add-data'); ?>",
                 dataType: 'json',
                 cache:false,
                 data:{
@@ -80,19 +81,6 @@
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                }
-            })
-        })
-
-        $(".btn-refresh-data").click(function() {
-            $.ajax({
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-refresh-data').html('<span class="fa fa-spin fa-spinner"></span>');
-                },
-                success: function() {
-                    listData();
-                    $('.btn-refresh-data').html('<span class="fa-solid fa-refresh"></span>');
                 }
             })
         })

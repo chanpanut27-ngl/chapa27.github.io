@@ -141,7 +141,7 @@ $routes->group('pelayanan/pengantar-lhu/keterangan', function ($routes) {
     $routes->delete('delete-data/(:num)', 'KeteranganPengantar::delete/$1');
 });
 
-/* Pelayanan Kondisi Lingkungan Pengantar LHU lab lingkungan */
+/* Pelayanan Kondisi Lingkungan Pengantar LHU */
 $routes->group('pelayanan/pengantar-lhu/kondisi-lingkungan', function ($routes) {
     $routes->get('', 'KondisiLingkunganPengantar::index');
     $routes->get('list-data', 'KondisiLingkunganPengantar::list');
@@ -150,4 +150,15 @@ $routes->group('pelayanan/pengantar-lhu/kondisi-lingkungan', function ($routes) 
     $routes->get('edit-data/(:num)', 'KondisiLingkunganPengantar::edit/$1');
     $routes->post('update-data', 'KondisiLingkunganPengantar::update');
     $routes->delete('delete-data/(:num)', 'KondisiLingkunganPengantar::delete/$1');
+});
+
+/* Pelayanan Kaji Ulang Kontrak Pengantar LHU */
+$routes->group('pelayanan/pengantar-lhu/kaji-ulang-kontrak', function ($routes) {
+    $routes->get('', 'KajiUlangKontrakPengantar::index');
+    $routes->get('list-data', 'KajiUlangKontrakPengantar::list');
+    $routes->get('add-data', 'KajiUlangKontrakPengantar::new');
+    $routes->post('create-data', 'KajiUlangKontrakPengantar::create');
+    $routes->get('edit-data/(:num)', 'KajiUlangKontrakPengantar::edit/$1');
+    $routes->post('update-data', 'KajiUlangKontrakPengantar::update');
+    $routes->delete('delete-data/(:num)', 'KajiUlangKontrakPengantar::delete/$1');
 });

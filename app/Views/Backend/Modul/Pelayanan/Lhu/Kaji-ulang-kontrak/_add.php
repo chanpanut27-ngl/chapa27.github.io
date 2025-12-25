@@ -17,13 +17,13 @@
                         <?php
                     }else{
             ?>
-            <form action="<?= base_url('pelayanan/kaji-ulang-sampel/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/pengantar-lhu/kaji-ulang-kontrak/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
                 <input type="hidden" name="id_kat_lab" value="<?= $id_kat_lab ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="alat-utama" class="form-label h5h5">Alat utama</label>
+                        <label for="alat-utama" class="form-label h5">Alat utama</label>
                         <textarea name="alat_utama" class="form-control" id="alat-utama">Semua alat bagus</textarea>
                         <div class="invalid-feedback errorAlatUtama"></div>
                     </div>
@@ -75,12 +75,12 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
                     $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+                    $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
                 },
                 success: function(response) {
                     var err = response.error
