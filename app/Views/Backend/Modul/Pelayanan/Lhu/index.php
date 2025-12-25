@@ -108,6 +108,9 @@
                                                 <li class="nav-item">
                                                     <a class="nav-link navtabs <?= @$id_lab == 'kaji-ulang-permintaan-kontrak-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/kaji-ulang-permintaan-kontrak-'.$id_kategori_lab);?>">Kaji ulang permintaan kontrak</a>
                                                 </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link navtabs <?= @$id_lab == 'penanggung-jawab'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/penanggung-jawab-'.$id_kategori_lab);?>">Penanggung jawab</a>
+                                                </li>
                                             </ul>
                                         </li>
                                         <?php

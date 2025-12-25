@@ -162,3 +162,14 @@ $routes->group('pelayanan/pengantar-lhu/kaji-ulang-kontrak', function ($routes) 
     $routes->post('update-data', 'KajiUlangKontrakPengantar::update');
     $routes->delete('delete-data/(:num)', 'KajiUlangKontrakPengantar::delete/$1');
 });
+
+/* Pelayanan Penanggung Jawab Pengantar LHU */
+$routes->group('pelayanan/pengantar-lhu/penanggung-jawab', function ($routes) {
+    $routes->get('', 'PenanggungJawabPengantar::index');
+    $routes->get('list-data', 'PenanggungJawabPengantar::list');
+    $routes->get('add-data', 'PenanggungJawabPengantar::new');
+    $routes->post('create-data', 'PenanggungJawabPengantar::create');
+    $routes->get('edit-data/(:num)', 'PenanggungJawabPengantar::edit/$1');
+    $routes->post('update-data', 'PenanggungJawabPengantar::update');
+    $routes->delete('delete-data/(:num)', 'PenanggungJawabPengantar::delete/$1');
+});

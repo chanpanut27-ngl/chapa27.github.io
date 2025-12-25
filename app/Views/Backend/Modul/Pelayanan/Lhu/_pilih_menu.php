@@ -69,13 +69,13 @@ switch (@$id_kat_lab ?? $id_lab) {
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0].' '.$str_exp[1]).' Lab.Lingkungan';
         $data['id_kat_lab'] = intval($str_exp[2]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab-sampel/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/index', $data);
         break;
     case 'penanggung-jawab-2':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0].' '.$str_exp[1]).' Lab.Penyakit';
         $data['id_kat_lab'] = intval($str_exp[2]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab-penyakit/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/index', $data);
         break;
     default:
        
