@@ -275,10 +275,14 @@ class PerintahUjiSampel extends ResourceController
             $id_pengantar_lhu = $this->modelPengantarLhu->select('id')
             ->where('kode_pengantar', $kode_pengantar)->first();
 
-            if ($penanggung_jawab['id_kat_lab'] == 1) {
-                $_data = $this->model->get_data_sampel_lingkungan($kode_pengantar);
+            $cek_data = $this->model->where('kode_pengantar', $kode_pengantar)
+            ->where('id_instalasi', $id_instalasi)->first();
+            $id_perintah_uji = $cek_data['id'];
+
+            if ($id_instalasi == 1) {
+                $_data = $this->modelMpu->get_data_sampel_lingkungan_perintah_uji($id_perintah_uji);
             }else{
-                $_data = $this->model->get_data_spesimen_penyakit($kode_pengantar);
+                $_data = $this->modelMpu->get_data_spesimen_penyakit_perintah_uji($id_perintah_uji);
             }
 
             $search = $this->model->where('kode_pengantar', $kode_pengantar)

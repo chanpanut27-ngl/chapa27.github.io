@@ -8,9 +8,9 @@
             </div>
             <form action="<?= base_url('pelayanan/perintah-uji-sampel/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="text" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
-                <input type="text" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
-                <input type="text" name="id_instalasi" value="<?= $id_instalasi; ?>">
+                <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
+                <input type="hidden" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
+                <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
                 <div class="modal-body">
                     <div class="mb-2">
                         <label for="" class="form-label h5">Sifat Pemeriksaan Sampel</label><br>
@@ -39,16 +39,16 @@
                                     <th><label for="">Keterangan</label></th>
                                 </tr>
                             </thead>
-                            <tbody style="font-family: arial; font-size:11px;">
+                            <tbody style="font-family: arial; font-size:12px;">
                                 <?php $no=1; foreach ($items as $row) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
                                         <td><?= $row['kode_sampel']; ?></td>
-                                        <td><?= $row['jenis_sampel']; ?><input type="hidden" name="id_jenis_sampel[]" value="<?= $row['id_jenis_sampel'] ?>"></td>
-                                        <td><?= $row['jenis_sampel']; ?></td>
-                                        <td><textarea name="parameter_uji[]" class="form-control"></textarea></td>
-                                        <td><textarea name="metode_uji[]" class="form-control"></textarea></td>
-                                        <td><textarea name="keterangan[]" class="form-control"></textarea></td>
+                                        <td><?= $row['jenis_sampel'].','.$row['keterangan']; ?><input type="hidden" name="id_jenis_sampel[]" value="<?= $row['id_jenis_sampel'] ?>"></td>
+                                        <td><?= $row['peraturan']; ?></td>
+                                        <td><textarea name="parameter_uji[]" class="form-control"><?= $row['parameter_uji'] ?></textarea></td>
+                                        <td><textarea name="metode_uji[]" class="form-control"><?= $row['metode_uji'] ?></textarea></td>
+                                        <td><textarea name="keterangan[]" class="form-control"><?= $row['ket_sampel'] ?></textarea></td>
                                     </tr>
                                 <?php endforeach;?>
                             </tbody>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fa-solid fa-edit"></span> Ubah</button>
                     <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>

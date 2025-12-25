@@ -163,6 +163,15 @@ use App\Models\PerintahUjiSampelModel;
                  id_kat_lab:id_kat_lab,
                  kode_pengantar:kode_pengantar
             },
+            beforeSend: function() {
+                $('.btn-edit').attr('disable', 'disabled');
+                $('.btn-edit').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit').removeAttr('disable');
+                $('.btn-edit').html('<span class="fa-solid fa-edit"></span>');
+            },
             success: function(response) {
                 $(".view-modal").html(response.data).show();
                 $("#exampleModal").modal('show');
