@@ -178,5 +178,6 @@ $routes->group('pelayanan/pengantar-lhu/penanggung-jawab', function ($routes) {
 $routes->group('pelayanan/pengantar-lhu/resume', function ($routes) {
     $routes->get('(:any)', 'ResumePengantarLhu::index/$1');
     $routes->get('list-data', 'ResumePengantarLhu::list');
-    $routes->get('cetak/(:any)', 'ResumePengantarLhu::cetak/$1');
 });
+
+$routes->get('cetak/resume/(:any)', 'ResumePengantarLhu::cetak/$1');
