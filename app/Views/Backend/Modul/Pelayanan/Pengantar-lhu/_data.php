@@ -12,7 +12,9 @@
     <tbody style="font-family: arial;">
         <?php
         $no = 1;
+        
         foreach ($items as $row) :
+
         ?>
             <tr id="myId-<?= $row['id_pengantar']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>

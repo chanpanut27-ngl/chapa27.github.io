@@ -19,10 +19,10 @@
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
-                    <label data-i18n="Widget">Modul Pelayanan Pemeriksaan</label>
+                    <label data-i18n="Widget">Pelayanan Pemeriksaan</label>
                     <i class="pc-micon">
                         <svg class="pc-icon">
-                        <use xlink:href="#modul-pelayanan-pemeriksaan"></use>
+                        <use xlink:href="#pelayanan-pemeriksaan"></use>
                         </svg>
                     </i>
                 </li>

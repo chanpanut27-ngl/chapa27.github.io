@@ -66,6 +66,7 @@ class ResumePengantarLhu extends BaseController
     public function cetak($id = null)
     {
         $kode_pengantar = $id;
+        
         $data = [
             'title' => 'Resume',
             'kode_pengantar' => $kode_pengantar,

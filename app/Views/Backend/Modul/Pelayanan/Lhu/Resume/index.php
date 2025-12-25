@@ -149,7 +149,7 @@ $spesimen_penyakit = new SpesimenPenyakitModel();
 
     function openWin() {
         var prtContent = document.getElementById("#kodePengantar");
-        var WinPrint = window.open('<?= base_url('cetak/resume/'.strtoupper($kode_pengantar)) ?>', '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
+        var WinPrint = window.open('<?= base_url('cetak/resume/'.strtolower($kode_pengantar)) ?>', '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
         WinPrint.document.close();
         WinPrint.focus();
