@@ -117,7 +117,7 @@
                                     endforeach;
                                 ?>
                                 <li class="nav-item">
-                                    <a class="nav-link navtabs <?= @$kode_pengantar == strtolower($kode_pengantar) ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/resume/'.strtolower($kode_pengantar));?>">Resume</a>
+                                    <a class="nav-link navtabs <?= @$kode_pengantar == strtolower($kode_pengantar) ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/resume/'.strtolower($kode_pengantar));?>">Resume</a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-info btn-sm" title="Kembali"><span class="fa-solid fa-arrow-left"></span></a>

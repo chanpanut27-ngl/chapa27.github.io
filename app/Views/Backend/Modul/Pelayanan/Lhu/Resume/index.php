@@ -2,10 +2,12 @@
 <?= $this->section('content_menu'); ?>
 <?php
 
+use App\Models\KondisiLingkunganPengantarModel;
 use App\Models\KondisiLingkunganSampelModel;
 use App\Models\SampelLingkunganModel;
 use App\Models\SpesimenPenyakitModel;
- 
+
+$kl_sampel = new KondisiLingkunganPengantarModel(); 
 $spesimen_penyakit = new SpesimenPenyakitModel();
 
     foreach ($data_pelanggan as $dp) {
@@ -24,14 +26,16 @@ $spesimen_penyakit = new SpesimenPenyakitModel();
             </button>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body"> 
         <?php 
         foreach ($group_lab_tujuan as $kl) : 
-        if ($kl['idkatlab']) :
-            $kl_sampel = new KondisiLingkunganSampelModel();
-            $r = $kl_sampel->where('kode_pengantar', $kode_pengantar)->first();
-            var_dump($r);
-        ?>
+            $r = $kl_sampel->where('kode_pengantar', $kode_pengantar)->findAll();
+            foreach ($r as $x) {
+                if ($kl['idkatlab'] == $x['id_kat_lab']) {
+                    $klss = $x['kondisi_lingkungan_sekitar_sampel'];
+                }
+            }
+            ?>
         <h4 style="text-align: center;"><b>PENERIMAAN SAMPEL</b></h4><hr style="border: 1px solid;">
         <div class="row">
             <div class="col-md-12 mb-2">
@@ -39,7 +43,7 @@ $spesimen_penyakit = new SpesimenPenyakitModel();
                     <tr>
                         <td width="10%"><b>Asal sampel</b></td>
                         <td width="50%" style="vertical-align: top;"><?= $dp['nama']; ?></td>
-                        <td rowspan="3" style="vertical-align: top;"><b>Kondisi lingkungan sampel : </b><?= @$kondisi_lingkungan['kondisi_lingkungan_sekitar_sampel']; ?></td>
+                        <td rowspan="3" style="vertical-align: top;"><b>Kondisi lingkungan sampel : </b><?= $klss; ?></td>
                     </tr>
                     <tr>
                         <td><b>Alamat</b></td>
@@ -121,7 +125,6 @@ $spesimen_penyakit = new SpesimenPenyakitModel();
             </div>
         </div>     
         <?php 
-        endif;
         endforeach; ?>
     </div>
 </div>

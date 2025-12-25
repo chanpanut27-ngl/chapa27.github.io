@@ -52,7 +52,14 @@
 
 <script>
     $(document).ready(function() {
-        $( "#tgl-terima-sampel" ).datepicker({ dateFormat: 'dd-mm-yy' });
+        var dateToday = new Date();
+
+        $("#tgl-terima-sampel").datepicker(
+            { 
+                dateFormat: 'dd-mm-yy', 
+                defaultDate: "",  inDate: dateToday
+            }
+        );
 
         $(".form-data").submit(function(e) {
             e.preventDefault();

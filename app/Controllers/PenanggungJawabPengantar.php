@@ -43,7 +43,9 @@ class PenanggungJawabPengantar extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $kode_pengantar = $this->request->getVar('kode_pengantar');
-            $q = $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray();
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
+            $q = $this->model->where('kode_pengantar', $kode_pengantar)
+            ->where('id_kat_lab', $id_kat_lab)->get()->getResultArray();
             foreach ($q as $r) {
                 $tgl_terima_sampel = $r['tgl_terima_sampel'];
             }
@@ -74,13 +76,14 @@ class PenanggungJawabPengantar extends ResourceController
     public function new()
     {
         if ($this->request->isAJAX()) {
-            $id_kat_lab = $this->request->getVar('id_kat_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
             $data = [
                 'title' => 'Tambah ' . $this->title,
                 'id_kat_lab' => $id_kat_lab,
                 'kode_pengantar' => $kode_pengantar,
-                'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
+                'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)
+                ->where('id_kat_lab', $id_kat_lab)->countAllResults()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/_add', $data)

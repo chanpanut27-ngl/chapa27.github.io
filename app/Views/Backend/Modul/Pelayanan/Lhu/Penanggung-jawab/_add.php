@@ -73,6 +73,7 @@
                 defaultDate: "",  inDate: dateToday
             }
         );
+        
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({

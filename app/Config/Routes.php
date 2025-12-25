@@ -173,3 +173,10 @@ $routes->group('pelayanan/pengantar-lhu/penanggung-jawab', function ($routes) {
     $routes->post('update-data', 'PenanggungJawabPengantar::update');
     $routes->delete('delete-data/(:num)', 'PenanggungJawabPengantar::delete/$1');
 });
+
+/* Pelayanan Resume Pengantar LHU */
+$routes->group('pelayanan/pengantar-lhu/resume', function ($routes) {
+    $routes->get('(:any)', 'ResumePengantarLhu::index/$1');
+    $routes->get('list-data', 'ResumePengantarLhu::list');
+    $routes->get('cetak/(:any)', 'ResumePengantarLhu::cetak/$1');
+});
