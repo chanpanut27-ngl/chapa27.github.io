@@ -29,7 +29,7 @@
 
 <?= $this->section('bottomAssets'); ?>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/custom.js'); ?>"></script>
+<script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <script>
     function listData() {
         var id_kat_lab = $('.btn-tambah').data("id");

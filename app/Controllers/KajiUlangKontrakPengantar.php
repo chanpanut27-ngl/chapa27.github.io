@@ -43,11 +43,13 @@ class KajiUlangKontrakPengantar extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
             $data = [
-                'items' => $this->model->where('kode_pengantar', $kode_pengantar)->get()->getResultArray()
+                'items' => $this->model->where('kode_pengantar', $kode_pengantar)
+                ->where('id_kat_lab', $id_kat_lab)->get()->getResultArray()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-sampel/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-kontrak/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -71,11 +73,13 @@ class KajiUlangKontrakPengantar extends ResourceController
         if ($this->request->isAJAX()) {
             $id_kat_lab = $this->request->getVar('id_kat_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
+            $id_kat_lab = $this->request->getVar('id_kat_lab');
             $data = [
                 'title' => 'Tambah ' . $this->title,
                 'id_kat_lab' => $id_kat_lab,
                 'kode_pengantar' => $kode_pengantar,
-                'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)->countAllResults()
+                'jumlah' => $this->model->where('kode_pengantar', $kode_pengantar)
+                ->where('id_kat_lab', $id_kat_lab)->countAllResults()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-kontrak/_add', $data)
