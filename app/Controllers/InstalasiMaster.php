@@ -19,6 +19,7 @@ class InstalasiMaster extends ResourceController
 
     public function __construct()
     {
+        $this->cachePage(60);
         $this->title = 'Instalasi';
         $this->model = new InstalasiModel();
         $this->validation = \Config\Services::validation();

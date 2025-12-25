@@ -22,6 +22,7 @@ class PosisiCoolbox extends ResourceController
 
     public function __construct()
     {
+        $this->cachePage(60);
         $this->title = 'Posisi Coolbox';
         $this->model = new PosisiCoolboxModel();
         $this->masterInstansi = new InstansiModel();

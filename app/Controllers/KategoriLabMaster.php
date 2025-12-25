@@ -19,6 +19,7 @@ class KategoriLabMaster extends ResourceController
 
     public function __construct()
     {
+        $this->cachePage(60);
         $this->title = 'Kategori Lab';
         $this->model = new KategoriLabModel();
         $this->validation = \Config\Services::validation();

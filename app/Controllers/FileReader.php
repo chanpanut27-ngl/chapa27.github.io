@@ -7,6 +7,12 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class FileReader extends BaseController
 {
+
+    public function __construct()
+    {
+        $this->cachePage(60);
+    }
+
     public function standar_pelayanan()
     {
         $data = [

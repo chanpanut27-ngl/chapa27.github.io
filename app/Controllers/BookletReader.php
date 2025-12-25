@@ -7,6 +7,11 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class BookletReader extends BaseController
 {
+    public function __construct()
+    {
+        $this->cachePage(60);
+    }
+    
     public function booklet_3()
     {
         $data = [

@@ -7,6 +7,10 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class FormulirReader extends BaseController
 {
+    public function __construct()
+    {
+        $this->cachePage(60);
+    }
     
     public function prosedur_permintaan_pemeriksaan_pengujian()
     {

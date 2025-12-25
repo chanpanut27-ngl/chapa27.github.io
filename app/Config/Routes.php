@@ -258,3 +258,36 @@ $routes->group('master-data/instalasi', function ($routes) {
     $routes->post('update-data', 'InstalasiMaster::update');
     $routes->delete('delete-data/(:num)', 'InstalasiMaster::delete/$1');
 });
+
+/* Kategori lab */
+$routes->group('master-data/kategori-lab', function ($routes) {
+    $routes->get('', 'KategoriLabMaster::index');
+    $routes->get('list-data', 'KategoriLabMaster::list');
+    $routes->get('add-data', 'KategoriLabMaster::new');
+    $routes->post('create-data', 'KategoriLabMaster::create');
+    $routes->get('edit-data/(:num)', 'KategoriLabMaster::edit/$1');
+    $routes->post('update-data', 'KategoriLabMaster::update');
+    $routes->delete('delete-data/(:num)', 'KategoriLabMaster::delete/$1');
+});
+
+/* Laboratorium */
+$routes->group('master-data/laboratorium', function ($routes) {
+    $routes->get('', 'LaboratoriumMaster::index');
+    $routes->get('list-data', 'LaboratoriumMaster::list');
+    $routes->get('add-data', 'LaboratoriumMaster::new');
+    $routes->post('create-data', 'LaboratoriumMaster::create');
+    $routes->get('edit-data/(:num)', 'LaboratoriumMaster::edit/$1');
+    $routes->post('update-data', 'LaboratoriumMaster::update');
+    $routes->delete('delete-data/(:num)', 'LaboratoriumMaster::delete/$1');
+});
+
+/* Jenis sampel */
+$routes->group('master-data/jenis-sampel', function ($routes) {
+    $routes->get('', 'JenisSampelMaster::index');
+    $routes->get('list-data', 'JenisSampelMaster::list');
+    $routes->get('add-data', 'JenisSampelMaster::new');
+    $routes->post('create-data', 'JenisSampelMaster::create');
+    $routes->get('edit-data/(:num)', 'JenisSampelMaster::edit/$1');
+    $routes->post('update-data', 'JenisSampelMaster::update');
+    $routes->delete('delete-data/(:num)', 'JenisSampelMaster::delete/$1');
+});
