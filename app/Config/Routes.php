@@ -193,3 +193,57 @@ $routes->group('pelayanan/perintah-uji-sampel', function ($routes) {
     $routes->post('update-data', 'PerintahUjiSampel::update');
     $routes->get('delete-data', 'PerintahUjiSampel::delete');
 });
+
+/** Kumpulan file **/
+/* File Peraturan */
+$routes->group('file-peraturan/reader', function ($routes) {
+    $routes->get('standar-pelayanan', 'FileReader::standar_pelayanan');
+    $routes->get('tarif-pelayanan', 'FileReader::tarif_pelayanan');
+    $routes->get('permenkes-no2-2023', 'FileReader::permenkes_no2_2023');
+    $routes->get('menlhk-no68-2016', 'FileReader::menlhk_no68_2016');
+    $routes->get('permenlh-no11-2025', 'FileReader::permenlh_no11_2025');
+    $routes->get('permenlh-no12-2025', 'FileReader::permenlh_no12_2025');
+    $routes->get('pertek-baku-mutu-limbah-domestik', 'FileReader::pertek_bml_domestik');
+    $routes->get('permenkes-no1096-2011', 'FileReader::permenkes_no1096_2011');
+    $routes->get('permenkes-no7-aami-2019', 'FileReader::permenkes_no7_aami_2019');
+});
+
+/* File Formulir */
+$routes->group('file-formulir/reader', function ($routes) {
+    $routes->get('prosedur-permintaan-pemeriksaan-pengujian', 'FormulirReader::prosedur_permintaan_pemeriksaan_pengujian');
+    $routes->get('permintaan-pemeriksaan-rujukan-atau-kiriman', 'FormulirReader::permintaan_pemeriksaan_rujukan_atau_kiriman');
+    $routes->get('permintaan-pengujian-sampel-lingkungan', 'FormulirReader::permintaan_pengujian_sampel_lingkungan');
+    $routes->get('permintaan-pengujian-spesimen-klinis', 'FormulirReader::permintaan_pengujian_spesimen_klinis');
+});
+
+/* Booklet */
+$routes->group('file-booklet/reader', function ($routes) {
+    $routes->get('booklet-3', 'BookletReader::booklet_3');
+    $routes->get('harga-pnbp', 'BookletReader::harga_pnbp');
+});
+
+/** Modul Pengaturan Coolbox **/
+/* posisi coolbox */
+$routes->group('pengaturan-coolbox/posisi-coolbox', function ($routes) {
+    $routes->get('', 'PosisiCoolbox::index');
+    $routes->get('list-data', 'PosisiCoolbox::list');
+    $routes->get('add-data', 'PosisiCoolbox::new');
+    $routes->post('create-data', 'PosisiCoolbox::create');
+    $routes->get('edit-data/(:num)', 'PosisiCoolbox::edit/$1');
+    $routes->post('update-data', 'PosisiCoolbox::update');
+    $routes->delete('delete-data/(:num)', 'PosisiCoolbox::delete/$1');
+    $routes->get('add-foto/(:num)', 'PosisiCoolbox::add_foto/$1');
+    $routes->post('upload-foto', 'PosisiCoolbox::upload_foto');
+});
+
+/** Modul Master **/
+/* Pelanggan */
+$routes->group('master-data/pelanggan', function ($routes) {
+    $routes->get('', 'PelangganMaster::index');
+    $routes->get('list-data', 'PelangganMaster::list');
+    $routes->get('add-data', 'PelangganMaster::new');
+    $routes->post('create-data', 'PelangganMaster::create');
+    $routes->get('edit-data/(:num)', 'PelangganMaster::edit/$1');
+    $routes->post('update-data', 'PelangganMaster::update');
+    $routes->delete('delete-data/(:num)', 'PelangganMaster::delete/$1');
+});

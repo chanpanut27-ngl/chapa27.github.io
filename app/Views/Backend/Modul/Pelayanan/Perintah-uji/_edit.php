@@ -11,6 +11,7 @@
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
                 <input type="hidden" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
                 <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
+                <input type="text" name="id_perintah_uji" value="<?= $id_perintah_uji; ?>">
                 <div class="modal-body">
                     <div class="mb-2">
                         <label for="" class="form-label h5">Sifat Pemeriksaan Sampel</label><br>
@@ -42,7 +43,7 @@
                             <tbody style="font-family: arial; font-size:12px;">
                                 <?php $no=1; foreach ($items as $row) : ?>
                                     <tr>
-                                        <td><?= $no++; ?></td>
+                                        <td><?= $no++; ?><input type="text" name="id[]" value="<?= $row['id'] ?>"></td>
                                         <td><?= $row['kode_sampel']; ?></td>
                                         <td><?= $row['jenis_sampel'].','.$row['keterangan']; ?><input type="hidden" name="id_jenis_sampel[]" value="<?= $row['id_jenis_sampel'] ?>"></td>
                                         <td><?= $row['peraturan']; ?></td>

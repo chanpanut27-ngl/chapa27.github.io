@@ -290,14 +290,15 @@ class PerintahUjiSampel extends ResourceController
 
 
             $data = [
-                'title' => 'Tambah ' . $this->title . ' ('.$kode_pengantar.')',
+                'title' => 'Edit ' . $this->title . ' ('.$kode_pengantar.')',
                 'id_instalasi' => $id_instalasi,
                 'instalasi' => $instalasi,
                 'kode_pengantar' => $kode_pengantar,
                 'id_pengantar_lhu' => $id_pengantar_lhu,
                 'tgl_terima_sampel' => $penanggung_jawab,
                 'items' => $_data,
-                'search' => $search
+                'search' => $search,
+                'id_perintah_uji' => $id_perintah_uji
             ];
 
             $msg = [
@@ -319,7 +320,118 @@ class PerintahUjiSampel extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'tgl_kirim_sampel' => [
+                    'label' => 'Tgl kirim sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'kepala_instalasi' => [
+                    'label' => 'Kepala instalasi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_kirim_sampel' => [
+                    'label' => 'Tanggal kirim sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_terima_sampel_lab' => [
+                    'label' => 'Tanggal terima sampel lab',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_selesai_sampel' => [
+                    'label' => 'Tanggal selesai sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                    
+
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'tgl_kirim_sampel' => $this->validation->getError('tgl_kirim_sampel'),
+                        'kepala_instalasi' => $this->validation->getError('kepala_instalasi'),
+                        'tgl_kirim_sampel' => $this->validation->getError('tgl_kirim_sampel'),
+                        'tgl_terima_sampel_lab' => $this->validation->getError('tgl_terima_sampel_lab'),
+                        'tgl_selesai_sampel' => $this->validation->getError('tgl_selesai_sampel')
+                    ]
+                ];
+            } else {
+
+                $db = \Config\Database::connect();
+
+                $db->transStart();
+                $tgl_kirm_sampel = $this->request->getVar('tgl_kirim_sampel');
+                $tgl_terima_sampel_lab = $this->request->getVar('tgl_terima_sampel_lab');
+                $tgl_selesai_sampel = $this->request->getVar('tgl_selesai_sampel');
+                $tgl_terima_sampel = $this->request->getVar('tgl_terima_sampel');
+                $kepala_instalasi = $this->request->getVar('kepala_instalasi');
+
+              
+                if ($kepala_instalasi != '') {
+                    $username = user()->username;
+                }else{
+                    $username = '';
+                }
+                $simpandata = [
+                    'id' => $this->request->getVar('id_perintah_uji'),
+                    'id_pengantar_lhu' => $this->request->getVar('id_pengantar_lhu'),
+                    'id_instalasi' => $this->request->getVar('id_instalasi'),
+                    'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
+                    'tgl_kirim_sampel' => date('Y-m-d', strtotime($tgl_kirm_sampel)),
+                    'kepala_instalasi' => $kepala_instalasi,
+                    'tgl_terima_sampel_lab' => date('Y-m-d', strtotime($tgl_terima_sampel_lab)),
+                    'tgl_selesai_sampel' => date('Y-m-d', strtotime($tgl_selesai_sampel)),
+                    'analisis_lab' => $this->request->getVar('analisis_lab'),
+                    'tgl_terima_sampel' => date('Y-m-d', strtotime($tgl_terima_sampel)),
+                    'verificator' => $username
+                ];
+                
+                $this->model->save($simpandata);
+                $parameter_uji = $this->request->getVar('parameter_uji');
+                $countPu = count($parameter_uji ?? []);
+                $newId = $db->insertID();
+                for ($i=0; $i < $countPu; $i++) { 
+                    $mapp_data = [
+                        'id' => $this->request->getVar('id')[$i],
+                        'metode_uji' => $this->request->getVar('metode_uji')[$i],
+                        'keterangan' => $this->request->getVar('keterangan')[$i],
+                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel')[$i],
+                        'parameter_uji' => $parameter_uji[$i],
+                    ];
+                    $this->modelMpu->save($mapp_data);
+                }
+                $db->transComplete();
+
+                if ($db->transStatus() === FALSE) {
+                    $msg = [
+                        'error' => 'error'
+                    ];
+                } else {
+                   $msg = [
+                     'sukses' => 'Data berhasil diubah'
+                   ];
+                }
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

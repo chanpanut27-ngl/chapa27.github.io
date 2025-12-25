@@ -55,6 +55,7 @@ class MapPerintahUjiSampelModel extends Model
         $db = \Config\Database::connect();
 
         $sql = "SELECT 
+        map_perintah_uji_sampel.id,
         pelayanan_sampel_lingkungan.kode_sampel,
         map_perintah_uji_sampel.id_jenis_sampel,
         master_jenis_sampel.jenis_sampel,
