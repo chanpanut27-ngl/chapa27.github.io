@@ -94,7 +94,7 @@
 
     $(document).ready(function() {
         new DataTable('#example', {
-            responsive: true
+            responsive: true,
         });
     })
 </script>
