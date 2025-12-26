@@ -1,0 +1,21 @@
+/* #dt-search-0 {
+    width: 350px;
+}
+#dt-search-1 {
+    width: 350px;
+}
+#dt-search-2 {
+    width: 350px;
+} */
+@for $i from 1 through 10 {
+  #dt-search-#{$i} { // Membuat kelas .item-1, .item-2, dst.
+    font-size: 10px * $i; // Ukuran font akan bertambah
+  }
+}
+.kemkes-color1{
+    background-color: #40E0D0;
+}
+.kemkes-color2{
+    background-color: #b4fbd4;
+    /* #F0FFF0; */
+}

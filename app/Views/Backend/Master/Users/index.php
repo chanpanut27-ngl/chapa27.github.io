@@ -1,6 +1,7 @@
 <?= $this->extend('Backend/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
+<link rel="stylesheet" href="<?= base_url('assets/css/custom.scss'); ?>">
 <?= $this->endSection(); ?>
 <?= $this->section('content'); ?>
 <div class="pc-container">
