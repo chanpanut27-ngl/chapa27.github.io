@@ -225,6 +225,11 @@
                                 <span class="fa-solid fa-database"></span> Groups users
                             </a>
                         </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('master-data/auth-permissions'); ?>" data-i18n="Permissions">
+                                <span class="fa-solid fa-database"></span> Permissions
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="pc-item">
