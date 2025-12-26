@@ -6,18 +6,28 @@
                 <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/auth-groups/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/auth-groups-users/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label h5">Group</label>
-                        <input type="text" name="name" class="form-control" id="name" autocomplete="off">
-                        <div class="invalid-feedback errorName"></div>
+                        <label for="group-id" class="form-label h5">Group</label>
+                        <select class="form-select" name="group_id" aria-label="Default select example" id="group-id">
+                            <?php foreach ($groups as $row) : ?>
+                             <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorGroupId"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label h5">Keterangan</label>
-                        <input type="text" name="description" class="form-control" id="description">
-                        <div class="invalid-feedback errorDescription"></div>
+                        <label for="user-id" class="form-label h5">Username</label>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" name="user_id" aria-label="Default select example" id="user-id" style="width: 100%;">
+                            <?php foreach ($users as $row) : ?>
+                             <option value="<?= $row['id'] ?>"><?= $row['username'] ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorUserId"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -31,6 +41,10 @@
 
 <script>
     $(document).ready(function() {
+        $('#user-id').select2({
+            dropdownParent: $('#exampleModal')
+        });
+
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
@@ -51,19 +65,19 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.name) {
-                            $('#name').addClass('is-invalid');
-                            $('.errorName').html(err.name);
+                        if (err.group_id) {
+                            $('#group-id').addClass('is-invalid');
+                            $('.errorGroupId').html(err.group_id);
                         } else {
-                            $('#name').removeClass('is-invalid');
-                            $('.errorName').html('');
+                            $('#group-id').removeClass('is-invalid');
+                            $('.errorGroupId').html('');
                         }
-                        if (err.description) {
-                            $('#description').addClass('is-invalid');
-                            $('.errorDescription').html(err.description);
+                        if (err.user_id) {
+                            $('#user-id').addClass('is-invalid');
+                            $('.errorUserId').html(err.user_id);
                         } else {
-                            $('#description').removeClass('is-invalid');
-                            $('.errorDescription').html('');
+                            $('#user-id').removeClass('is-invalid');
+                            $('.errorUserId').html('');
                         }
                     } else {
                         Swal.fire({

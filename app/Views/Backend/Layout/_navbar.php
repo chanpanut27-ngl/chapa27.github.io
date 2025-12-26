@@ -216,8 +216,13 @@
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('master-data/auth-groups'); ?>" data-i18n="Users">
+                            <a class="pc-link" href="<?= base_url('master-data/auth-groups'); ?>" data-i18n="Groups">
                                 <span class="fa-solid fa-database"></span> Groups
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('master-data/auth-groups-users'); ?>" data-i18n="Groups users">
+                                <span class="fa-solid fa-database"></span> Groups users
                             </a>
                         </li>
                     </ul>

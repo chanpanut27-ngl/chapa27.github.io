@@ -359,7 +359,7 @@ $routes->group('master-data/users', function ($routes) {
     $routes->delete('delete-data/(:num)', 'UsersMaster::delete/$1');
 });
 
-/* Instansi */
+/* Auth Groups */
 $routes->group('master-data/auth-groups', function ($routes) {
     $routes->get('', 'AuthGroupsMaster::index');
     $routes->get('list-data', 'AuthGroupsMaster::list');
@@ -368,4 +368,16 @@ $routes->group('master-data/auth-groups', function ($routes) {
     $routes->get('edit-data/(:num)', 'AuthGroupsMaster::edit/$1');
     $routes->post('update-data', 'AuthGroupsMaster::update');
     $routes->delete('delete-data/(:num)', 'AuthGroupsMaster::delete/$1');
+});
+
+
+/* Auth Groups Users */
+$routes->group('master-data/auth-groups-users', function ($routes) {
+    $routes->get('', 'AuthGroupsUsersMaster::index');
+    $routes->get('list-data', 'AuthGroupsUsersMaster::list');
+    $routes->get('add-data', 'AuthGroupsUsersMaster::new');
+    $routes->post('create-data', 'AuthGroupsUsersMaster::create');
+    $routes->get('edit-data/(:num)', 'AuthGroupsUsersMaster::edit/$1');
+    $routes->post('update-data', 'AuthGroupsUsersMaster::update');
+    $routes->get('delete-data', 'AuthGroupsUsersMaster::delete');
 });

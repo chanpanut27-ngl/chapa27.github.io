@@ -35,12 +35,43 @@ class AuthGroupsUsersModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setInsertBy'];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function setUpdatedBy(array $data)
+    {
+       $userId = user()->username;
+        if ($userId) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['updated_at'] = date('Y-m-d H:is');
+        }
+        return $data;
+    }
+
+    protected function setInsertBy(array $data)
+    {
+        $userId = user()->username;
+        if ($userId) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['created_at'] = date('Y-m-d H:is');
+        }
+        return $data;
+    }
+
+    public function get_data()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('auth_groups_users');
+        $builder->select('email, username, name, description, user_id, group_id');
+        $builder->join('auth_groups', 'auth_groups.id=auth_groups_users.group_id');
+        $builder->join('users', 'users.id=auth_groups_users.user_id');
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
 }

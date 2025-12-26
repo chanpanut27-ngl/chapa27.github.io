@@ -90,7 +90,7 @@ class AuthGroupsMaster extends ResourceController
      */
     public function create()
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
             $valid = $this->validate([
                 'name' => [
                     'label' => 'Group',

@@ -3,25 +3,26 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/auth-groups/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/auth-groups/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
+                <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="name" class="form-label h5">Group</label>
-                        <input type="text" name="name" class="form-control" id="name" autocomplete="off">
+                        <input type="text" name="name" value="<?= $items['name'] ?>" class="form-control" id="name" autocomplete="off">
                         <div class="invalid-feedback errorName"></div>
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label h5">Keterangan</label>
-                        <input type="text" name="description" class="form-control" id="description">
+                        <input type="text" name="description" value="<?= $items['description'] ?>" class="form-control" id="description" autocomplete="off">
                         <div class="invalid-feedback errorDescription"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
                     <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
@@ -40,30 +41,29 @@
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.btn-ubah').attr('disable', 'disabled');
+                    $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
+                    $('.btn-ubah').removeAttr('disable');
+                    $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
                 },
                 success: function(response) {
-                    var err = response.error
-                    if (err) {
-                        if (err.name) {
-                            $('#name').addClass('is-invalid');
-                            $('.errorName').html(err.name);
+                    if (response.error) {
+
+                        if (response.nama_instansi) {
+                            $('#nama-instansi').addClass('is-invalid');
+                            $('.errorNamaInstansi').html(response.nama_instansi);
                         } else {
-                            $('#name').removeClass('is-invalid');
-                            $('.errorName').html('');
+                            $('#nama-instansi').removeClass('is-invalid');
+                            $('.errorNamaInstansi').html('');
                         }
-                        if (err.description) {
-                            $('#description').addClass('is-invalid');
-                            $('.errorDescription').html(err.description);
+                        if (response.wilayah) {
+                            $('#wilayah').addClass('is-invalid');
+                            $('.errorWilayah').html(response.wilayah);
                         } else {
-                            $('#description').removeClass('is-invalid');
-                            $('.errorDescription').html('');
+                            $('#wilayah').removeClass('is-invalid');
+                            $('.errorWilayah').html('');
                         }
                     } else {
                         Swal.fire({
