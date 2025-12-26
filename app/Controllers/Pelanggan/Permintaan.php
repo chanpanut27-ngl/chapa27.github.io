@@ -32,8 +32,11 @@ class Permintaan extends ResourceController
 
     public function index()
     {
+        $dataPelanggan = new \App\Models\ProfilPelangganModel();
+
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => 'Data ' . $this->title,
+            'profil_pelanggan' => $dataPelanggan->profil_pelanggan()
         ];
         return view('Pelanggan/Permintaan/index', $data);
     }

@@ -145,7 +145,7 @@
                             </div>
                         </div>
                         <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
-                            <li class="nav-item" role="presentation">
+                            <!-- <li class="nav-item" role="presentation">
                             <button
                                 class="nav-link active"
                                 id="drp-t1"
@@ -155,19 +155,15 @@
                                 role="tab"
                                 aria-controls="drp-tab-1"
                                 aria-selected="true"
-                                ><i class="ti ti-user"></i> Profile</button
+                                ><i class="ti ti-user"></i></button
                             >
-                            </li>
+                            </li> -->
                         </ul>
                         <div class="tab-content" id="mysrpTabContent">
                             <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1" tabindex="0">
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ti ti-edit-circle"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="#!" class="dropdown-item">
+                                <a href="<?= site_url('pelanggan/profil'); ?>" class="dropdown-item">
                                     <i class="ti ti-user"></i>
-                                    <span>View Profile</span>
+                                    <span>Profile</span>
                                 </a>
                                 <a href="<?= base_url('logout'); ?>" class="dropdown-item">
                                     <i class="ti ti-power"></i>

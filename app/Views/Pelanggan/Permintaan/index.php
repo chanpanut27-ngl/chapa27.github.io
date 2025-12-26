@@ -24,6 +24,9 @@
         <div class="row p-0">
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
+                <?php if (!$profil_pelanggan) : ?>
+                    <?= $this->include('Pelanggan/Profil/_header') ?>
+                <?php else : ?>
                 <div class="card">
                     <div class="card-header p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
@@ -41,6 +44,7 @@
                         <div class="view-data"></div>
                     </div>
                 </div>
+                <?php endif;?>
             </div>
             <!-- [ sample-page ] end -->
         </div>

@@ -30,15 +30,19 @@
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title; ?></h4>
                     </div>
                     <div class="card-body <?= $profil_pelanggan != null ? 'view-data' : '' ?>">
+                    <?php if (!$profil_pelanggan) {
+                        echo $this->include('Pelanggan/Profil/_header');
+                        }
+                    ?>
                     <?php
                     if (!$profil_pelanggan) {
                         ?>
                             <form action="<?= base_url('pelanggan/profil/create-data'); ?>" class="form-data">
                                 <?= csrf_field(); ?>
                                 <?php foreach ($items as $rows) : ?>
-                                <input type="text" name="username" value="<?= $rows['username'] ?>" class="form-control" id="username" readonly>
-                                <input type="text" name="email" value="<?= $rows['email'] ?>" class="form-control" id="email" readonly>
-                                <input type="text" name="id_users" value="<?= $rows['id'] ?>" class="form-control" id="idusers" readonly>
+                                <input type="hidden" name="username" value="<?= $rows['username'] ?>" class="form-control" id="username" readonly>
+                                <input type="hidden" name="email" value="<?= $rows['email'] ?>" class="form-control" id="email" readonly>
+                                <input type="hidden" name="id_users" value="<?= $rows['id'] ?>" class="form-control" id="idusers" readonly>
                                 <div class="mb-3">
                                     <label for="nama-instansi" class="form-label h5">Instansi</label>
                                     <input type="text" name="instansi" class="form-control" id="nama-instansi" placeholder="Isi nama instansi ..." autocomplete="off">
