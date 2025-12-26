@@ -19,6 +19,7 @@ class PenyakitMaster extends ResourceController
 
     public function __construct()
     {
+        $this->cachePage(60);
         $this->title = 'Penyakit';
         $this->model = new PenyakitModel();
         $this->validation = \Config\Services::validation();

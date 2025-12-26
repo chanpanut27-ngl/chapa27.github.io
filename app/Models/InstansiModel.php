@@ -54,7 +54,6 @@ class InstansiModel extends Model
         return $data;
     }
 
-
     protected function setInsertBy(array $data)
     {
         $userId = user()->username;

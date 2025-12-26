@@ -35,12 +35,33 @@ class BiayaAkomodasiModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setInsertBy'];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function setUpdatedBy(array $data)
+    {
+       $userId = user()->username;
+        if ($userId) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['updated_by'] = $userId;
+        }
+        return $data;
+    }
+
+    protected function setInsertBy(array $data)
+    {
+        $userId = user()->username;
+        if ($userId) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['created_by'] = $userId;
+        }
+        return $data;
+    }
+
 }

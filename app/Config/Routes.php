@@ -291,3 +291,47 @@ $routes->group('master-data/jenis-sampel', function ($routes) {
     $routes->post('update-data', 'JenisSampelMaster::update');
     $routes->delete('delete-data/(:num)', 'JenisSampelMaster::delete/$1');
 });
+
+/* Biaya Akomodasi */
+$routes->group('master-data/biaya-akomodasi', function ($routes) {
+    $routes->get('', 'BiayaAKomodasi::index');
+    $routes->get('list-data', 'BiayaAKomodasi::list');
+    $routes->get('add-data', 'BiayaAKomodasi::new');
+    $routes->post('create-data', 'BiayaAKomodasi::create');
+    $routes->get('edit-data/(:num)', 'BiayaAKomodasi::edit/$1');
+    $routes->post('update-data', 'BiayaAKomodasi::update');
+    $routes->delete('delete-data/(:num)', 'BiayaAKomodasi::delete/$1');
+});
+
+/* Instansi */
+$routes->group('master-data/instansi', function ($routes) {
+    $routes->get('', 'InstansiMaster::index');
+    $routes->get('list-data', 'InstansiMaster::list');
+    $routes->get('add-data', 'InstansiMaster::new');
+    $routes->post('create-data', 'InstansiMaster::create');
+    $routes->get('edit-data/(:num)', 'InstansiMaster::edit/$1');
+    $routes->post('update-data', 'InstansiMaster::update');
+    $routes->delete('delete-data/(:num)', 'InstansiMaster::delete/$1');
+});
+
+/* Peraturan Baku Mutu */
+$routes->group('master-data/peraturan-baku-mutu', function ($routes) {
+    $routes->get('', 'PeraturanMaster::index');
+    $routes->get('list-data', 'PeraturanMaster::list');
+    $routes->get('add-data', 'PeraturanMaster::new');
+    $routes->post('create-data', 'PeraturanMaster::create');
+    $routes->get('edit-data/(:num)', 'PeraturanMaster::edit/$1');
+    $routes->post('update-data', 'PeraturanMaster::update');
+    $routes->delete('delete-data/(:num)', 'PeraturanMaster::delete/$1');
+});
+
+/** Penyakit **/
+$routes->group('master-data/penyakit', function ($routes) {
+    $routes->get('', 'PenyakitMaster::index');
+    $routes->get('list-data', 'PenyakitMaster::list');
+    $routes->get('add-data', 'PenyakitMaster::new');
+    $routes->post('create-data', 'PenyakitMaster::create');
+    $routes->get('edit-data/(:num)', 'PenyakitMaster::edit/$1');
+    $routes->post('update-data', 'PenyakitMaster::update');
+    $routes->delete('delete-data/(:num)', 'PenyakitMaster::delete/$1');
+});
