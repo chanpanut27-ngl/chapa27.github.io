@@ -224,7 +224,7 @@ $routes->group('file-booklet/reader', function ($routes) {
 
 /** Modul Pengaturan Coolbox **/
 /* posisi coolbox */
-$routes->group('pengaturan-coolbox/posisi-coolbox', function ($routes) {
+$routes->group('pengaturan-coolbox/posisi-coolbox', ['filter' => 'permission:manage-coolbox'], function ($routes) {
     $routes->get('', 'PosisiCoolbox::index');
     $routes->get('list-data', 'PosisiCoolbox::list');
     $routes->get('add-data', 'PosisiCoolbox::new');
@@ -337,7 +337,7 @@ $routes->group('master-data/penyakit', function ($routes) {
 });
 
 /** Coolbox **/
-$routes->group('master-data/coolbox', function ($routes) {
+$routes->group('master-data/coolbox', ['filter' => 'permission:manage-coolbox'], function ($routes) {
     $routes->get('', 'CoolboxMaster::index');
     $routes->get('list-data', 'CoolboxMaster::list');
     $routes->get('add-data', 'CoolboxMaster::new');

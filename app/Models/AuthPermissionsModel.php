@@ -12,7 +12,7 @@ class AuthPermissionsModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['name', 'description'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -35,12 +35,32 @@ class AuthPermissionsModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setInsertBy'];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function setUpdatedBy(array $data)
+    {
+       $userId = user()->username;
+        if ($userId) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['updated_at'] = date('Y-m-d H:is');
+        }
+        return $data;
+    }
+
+    protected function setInsertBy(array $data)
+    {
+        $userId = user()->username;
+        if ($userId) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['created_at'] = date('Y-m-d H:is');
+        }
+        return $data;
+    }
 }

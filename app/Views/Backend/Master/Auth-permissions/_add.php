@@ -10,7 +10,7 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label h5">Group</label>
+                        <label for="name" class="form-label h5">Permissions</label>
                         <input type="text" name="name" class="form-control" id="name" autocomplete="off">
                         <div class="invalid-feedback errorName"></div>
                     </div>
