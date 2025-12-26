@@ -129,7 +129,7 @@
                         aria-expanded="false"
                         >
                         <img src="<?= base_url('assets/images/user-1.jpg'); ?>" alt="user-image" class="user-avtar">
-                        <span class="text-white">Prola</span>
+                        <span class="text-white"><?= user()->username; ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header">
@@ -138,7 +138,7 @@
                                     <img src="<?= base_url('assets/images/default.svg'); ?>" alt="user-image" class="user-avtar wid-35">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h6 class="mb-1">Prola <?= user()->username; ?></h6>
+                                    <h6 class="mb-1"><?= user()->username; ?></h6>
                                     <span>BBLabkesmas Jakarta</span>
                                 </div>
                                 <a href="#!" class="pc-head-link bg-transparent d-none"><i class="ti ti-power text-danger"></i></a>

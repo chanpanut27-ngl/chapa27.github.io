@@ -21,6 +21,7 @@ class CoolboxMaster extends ResourceController
 
     public function __construct()
     {
+        $this->cachePage(60);
         $this->title = 'Coolbox';
         $this->model = new CoolboxModel();
         $this->masterInstansi = new InstansiModel();

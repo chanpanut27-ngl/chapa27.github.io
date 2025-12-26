@@ -29,35 +29,40 @@
                     <div class="card-header bg-light p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title; ?></h4>
                     </div>
-                    <div class="card-body">
-                        <?php
-                        if (!$cek_data) :
+                    <div class="card-body <?= $profil_pelanggan != null ? 'view-data' : '' ?>">
+                    <?php
+                    if (!$profil_pelanggan) {
                         ?>
-                        <form action="<?= base_url('pelanggan/profil/create-data'); ?>" class="form-data">
-                            <?= csrf_field(); ?>
-                            <div class="mb-3">
-                                <label for="nama-instansi" class="form-label h5">Instansi</label>
-                                <input type="text" name="instansi" value="<?= set_value('instansi') ?>" class="form-control" id="nama-instansi" placeholder="Isi nama instansi ..." autocomplete="off">
-                                <div class="invalid-feedback errorNamaInstansi"></div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="alamat" class="form-label h5">Alamat</label>
-                                <textarea name="alamat" class="form-control" id="alamat" placeholder="Isi alamat instansi ..."><?= set_value('instansi') ?></textarea>
-                                <div class="invalid-feedback errorAlamat"></div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="no-telp" class="form-label h5">No.Telp</label>
-                                <input type="text" name="no_telp" value="<?= set_value('no_telp') ?>" class="form-control" id="no-telp" placeholder="Isi nomor telepon instansi ...">
-                                <div class="invalid-feedback errorNoTelp"></div>
-                            </div>
-                            <div class="card-footer bg-light">
-                                <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
-                                <button type="reset" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-refresh"></span> Batal</button>
-                            </div>
-                        </form>
-                        <?php else : ?>
-                        <div class="view-data"></div>
-                        <?php endif;?>
+                            <form action="<?= base_url('pelanggan/profil/create-data'); ?>" class="form-data">
+                                <?= csrf_field(); ?>
+                                <?php foreach ($items as $rows) : ?>
+                                <input type="text" name="username" value="<?= $rows['username'] ?>" class="form-control" id="username" readonly>
+                                <input type="text" name="email" value="<?= $rows['email'] ?>" class="form-control" id="email" readonly>
+                                <input type="text" name="id_users" value="<?= $rows['id'] ?>" class="form-control" id="idusers" readonly>
+                                <div class="mb-3">
+                                    <label for="nama-instansi" class="form-label h5">Instansi</label>
+                                    <input type="text" name="instansi" class="form-control" id="nama-instansi" placeholder="Isi nama instansi ..." autocomplete="off">
+                                    <div class="invalid-feedback errorNamaInstansi"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="alamat" class="form-label h5">Alamat</label>
+                                    <textarea name="alamat" class="form-control" id="alamat" placeholder="Isi alamat instansi ..."></textarea>
+                                    <div class="invalid-feedback errorAlamat"></div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="no-telp" class="form-label h5">No.Telp</label>
+                                    <input type="text" name="no_telp" value="" class="form-control" id="no-telp" placeholder="Isi nomor telepon instansi ...">
+                                    <div class="invalid-feedback errorNoTelp"></div>
+                                </div>
+                                <div class="card-footer bg-light">
+                                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
+                                    <button type="reset" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-refresh"></span> Batal</button>
+                                </div>
+                                <?php endforeach;?>
+                            </form>
+                        <?php
+                    }
+                    ?>
                     </div>
                 </div>
             </div>
@@ -81,6 +86,13 @@
         $.ajax({
             url: "<?= site_url('pelanggan/profil/list-data'); ?>",
             dataType: 'json',
+            beforeSend: function() {
+                $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span> Loading...');
+                $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.view-data').removeAttr('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
             success: function(response) {
                 $(".view-data").html(response.data);
             },
@@ -89,6 +101,7 @@
             }
         })
     }
+
 
     $(document).ready(function() {
         listData();
@@ -107,6 +120,7 @@
                     $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 complete: function() {
+                    $('.card-body').addClass('view-data');
                     $('.btn-simpan').removeAttr('disable');
                     $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
                 },
@@ -134,19 +148,13 @@
                             $('#no-telp').removeClass('is-invalid');
                             $('.errorNoTelp').html('');
                         }
-                        if (err) {
-                            Swal.fire({
-                                title: "Gagal",
-                                text: response.error,
-                                icon: "error"
-                            });
-                        }
                     } else {
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success"
                         });
+                        listData();
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {

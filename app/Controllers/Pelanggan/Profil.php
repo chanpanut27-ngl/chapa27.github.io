@@ -3,6 +3,7 @@
 namespace App\Controllers\Pelanggan;
 
 use App\Models\ProfilPelangganModel;
+use App\Models\UsersModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -15,12 +16,14 @@ class Profil extends ResourceController
      */
     protected $title;
     protected $model;
+    protected $modelUsers;
     protected $validation;
 
     public function __construct()
     {
         $this->title = 'Profil';
         $this->model = new ProfilPelangganModel();
+        $this->modelUsers = new UsersModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -28,7 +31,9 @@ class Profil extends ResourceController
     {
         $data = [
             'title' => $this->title,
-            'cek_data' => $this->model->where('instansi', 'PKM Tangerang Selatan')->first()
+            'profil_pelanggan' => $this->model->profil_pelanggan(),
+            'items' => $this->modelUsers->cek_login_user()
+
         ];
         return view('Pelanggan/Profil/index', $data);
     }
@@ -37,10 +42,10 @@ class Profil extends ResourceController
     {
 
         if ($this->request->isAJAX()) {
-            
+
             $data = [
                 'items' => $this->model->findAll(),
-                'cek_data' => $this->model->where('instansi', 'PKM Tangerang Selatan')->first()
+                'profil_pelanggan' => $this->model->profil_pelanggan()
             ];
             
             $msg = [
@@ -72,7 +77,7 @@ class Profil extends ResourceController
      */
     public function new()
     {
-        //
+        
     }
 
     /**
@@ -106,7 +111,6 @@ class Profil extends ResourceController
                     ]
                 ]
             ]);
-            $cek_data = $this->model->where('instansi', 'PKM Tangerang Selatan')->first();
             if (!$valid) {
                 $msg = [
                     'error' => [
@@ -115,15 +119,14 @@ class Profil extends ResourceController
                         'no_telp' => $this->validation->getError('no_telp'),
                     ]
                 ];
-            } elseif ($cek_data) {
-                $msg = [
-                    'error' => 'Data gagal disimpan'
-                ];
             } else {
                 $simpandata = [
                     'instansi' => $this->request->getVar('instansi'),
                     'alamat' => $this->request->getVar('alamat'),
-                    'no_telp' => $this->request->getVar('no_telp')
+                    'no_telp' => $this->request->getVar('no_telp'),
+                    'username' => $this->request->getVar('username'),
+                    'email' => $this->request->getVar('email'),
+                    'id_users' => $this->request->getVar('id_users')
                 ];
                 $this->model->save($simpandata);
                 $msg = [

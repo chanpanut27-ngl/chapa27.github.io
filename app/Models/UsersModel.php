@@ -4,22 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class ProfilPelangganModel extends Model
+class UsersModel extends Model
 {
-    protected $table            = 'profil_pelanggan';
+    protected $table            = 'users';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'instansi', 
-        'alamat', 
-        'no_telp', 
-        'id_users', 
-        'email',
-        'username'
-    ];
+    protected $allowedFields    = [];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -42,42 +35,23 @@ class ProfilPelangganModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = ['setInsertBy'];
+    protected $beforeInsert   = [];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = ['setUpdatedBy'];
+    protected $beforeUpdate   = [];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    protected function setUpdatedBy(array $data)
-    {
-       $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_by'] = $userId;
-        }
-        return $data;
-    }
-
-    protected function setInsertBy(array $data)
-    {
-        $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_by'] = $userId;
-        }
-        return $data;
-    }
-
-    public function profil_pelanggan()
+    public function cek_login_user()
     {
         $db = \Config\Database::connect();
-        $builder = $db->table('profil_pelanggan');
-        $builder->select('id, instansi, alamat, no_telp, username, email');
+        $builder = $db->table('users');
+        $builder->select('id,username,email');
         $builder->where('username', user()->username);
         $query = $builder->get()->getResultArray();
         return $query;
     }
+
 }

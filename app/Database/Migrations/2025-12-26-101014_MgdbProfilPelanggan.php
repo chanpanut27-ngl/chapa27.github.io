@@ -8,7 +8,7 @@ class MgdbProfilPelanggan extends Migration
 {
     public function up()
     {
-         $this->forge->addField([
+        $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
@@ -25,6 +25,18 @@ class MgdbProfilPelanggan extends Migration
             'no_telp' => [
                 'type'       => 'CHAR',
                 'constraint' => '20',
+            ],
+            'id_users' => [
+                'type'       => 'INT',
+                'constraint' => 5,
+            ],
+            'email' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'username' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '30',
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
