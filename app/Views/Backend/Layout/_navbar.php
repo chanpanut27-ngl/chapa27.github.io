@@ -199,6 +199,24 @@
                         </svg>
                     </i>
                 </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon">
+                        <svg class="pc-icon">
+                            <use xlink:href="#swap"></use>
+                        </svg>
+                        </span>
+                        <span class="pc-mtext" data-i18n="login"><span class="fa-solid fa-arrow-right"></span> Login</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('master-data/users'); ?>" data-i18n="Users">
+                                <span class="fa-solid fa-database"></span> Users
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="pc-item">
                     <a href="<?= base_url('wa/send-message'); ?>" class="pc-link">
                         <span class="pc-micon">
