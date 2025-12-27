@@ -1,7 +1,6 @@
 <?= $this->extend('Backend/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
-<link rel="stylesheet" href="<?= base_url('assets/css/custom.css'); ?>">
 <?= $this->endSection(); ?>
 <?= $this->section('content'); ?>
 <div class="pc-container">
@@ -32,6 +31,10 @@
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                             </button>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
+                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
+                            </button>
                         </div>
                     </div>
                     <div class="card-body">
@@ -57,7 +60,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('master-data/users/list-data'); ?>",
+            url: "<?= site_url('master-data/auth-groups-permissions/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -71,6 +74,30 @@
 
     $(document).ready(function() {
         listData();
+
+        $(".btn-tambah").click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "<?= site_url('master-data/auth-groups-permissions/add-data'); ?>",
+                dataType: 'json',
+                cache: false,
+                beforeSend: function() {
+                    $('.btn-tambah').attr('disable', 'disabled');
+                    $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                },
+                complete: function() {
+                    $('.btn-tambah').removeAttr('disable');
+                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                },
+                success: function(response) {
+                    $(".view-modal").html(response.data).show();
+                    $("#exampleModal").modal('show');
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                }
+            })
+        })
     })
 </script>
 <?= $this->endSection(); ?>

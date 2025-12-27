@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Jenis sampel', 'PNBP (Rp)', 'Peraturan', 'Keterangan', 'Laboratorium', 'Status', ''];
+        $arrth = ['No', 'Group ID', 'Name Group', 'Permissions ID', 'Name Permissions', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -14,20 +14,15 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['jenis_sampel']; ?></td>
-                <td style="text-align: right;"><?= number_to_currency($row['pnbp'], 'IDR', 'ID', 0); ?></td>
-                <td><?= $row['peraturan'] ?></td>
-                <td><?= $row['ket_sampel'] ?></td>
-                <td><?= $row['nama_lab']; ?></td>
-                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
+                <td><?= $row['group_id']; ?></td>
+                <td><?= $row['name_group']; ?></td>
+                <td><?= $row['permission_id']; ?></td>
+                <td><?= $row['name_permissions']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
-                            <span class="fa-solid fa-edit"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['group_id']; ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
@@ -40,7 +35,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/jenis-sampel/edit-data/'); ?>' + id,
+            url: '<?= site_url('master-data/auth-groups/edit-data/'); ?>' + id,
             dataType: 'json',
             success: function(response) {
                 if (response.sukses) {
@@ -73,7 +68,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/jenis-sampel/delete-data/'); ?>' + id,
+                    url: '<?= site_url('master-data/auth-groups/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
@@ -100,5 +95,4 @@
             responsive: true
         });
     })
-    
 </script>

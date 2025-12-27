@@ -12,7 +12,7 @@ $(document).ready(function () {
             url: currentUrl+'/list-data',
             dataType: 'json',
             beforeSend: function() {
-                $(".btn-refresh").html('<span class="fa fa-spin fa-spinner"></span>');
+                $(".btn-refresh").html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
             success: function(response) 
             {
@@ -27,7 +27,7 @@ $(document).ready(function () {
         $.ajax({
             cache: false,
             beforeSend: function() {
-                $('.btn-refresh-data').html('<span class="fa fa-spin fa-spinner"></span>');
+                $('.btn-refresh-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
             success: function() {
                 listData();
