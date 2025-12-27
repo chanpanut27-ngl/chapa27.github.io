@@ -1,4 +1,8 @@
-<header class="pc-header">
+<?php
+
+use CodeIgniter\I18n\Time;
+?>
+<header class="pc-header elevation-1">
     <div class="header-wrapper kemkes-color1"> <!-- [Mobile Media Block] start -->
         <div class="me-auto pc-mob-drp">
             <ul class="list-unstyled">
@@ -42,6 +46,9 @@
             </ul>
         </div>
         <div class="ms-auto">
+            <ul class="list-unstyled">
+                <li class="text-light"><?= 'TGL : '. date('d/m/Y', strtotime(Time::now())) ?></li>
+            </ul>
             <ul class="list-unstyled">
                 <li class="dropdown pc-h-item">
                     <a

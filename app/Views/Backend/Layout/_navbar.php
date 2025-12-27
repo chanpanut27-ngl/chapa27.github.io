@@ -1,6 +1,6 @@
 <nav class="pc-sidebar elevation-1">
     <div class="navbar-wrapper">
-        <div class="m-header kemkes-color2">
+        <div class="m-header kemkes-color2 elevation-2">
             <a href="<?= base_url('/'); ?>" class="b-brand text-primary">
                 <!-- ========   Change your logo from here   ============ -->
                 <img src="<?= base_url('assets/images/logo.webp'); ?>" class="img-fluid" alt="logo" style="height: 55px;">
@@ -206,33 +206,33 @@
                             <use xlink:href="#swap"></use>
                         </svg>
                         </span>
-                        <span class="pc-mtext" data-i18n="login"><span class="fa-solid fa-arrow-right"></span> Login</span>
+                        <span class="pc-mtext" data-i18n="login"><span class="fa-solid fa-lock"></span> Login</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
                             <a class="pc-link" href="<?= base_url('master-data/users'); ?>" data-i18n="Users">
-                                <span class="fa-solid fa-database"></span> Users
+                                <span class="fa-solid fa-users"></span> Users
                             </a>
                         </li>
                         <li class="pc-item">
                             <a class="pc-link" href="<?= base_url('master-data/auth-groups'); ?>" data-i18n="Groups">
-                                <span class="fa-solid fa-database"></span> Groups
+                                <span class="fa-solid fa-people-group"></span> Groups
                             </a>
                         </li>
                         <li class="pc-item">
                             <a class="pc-link" href="<?= base_url('master-data/auth-groups-users'); ?>" data-i18n="Groups users">
-                                <span class="fa-solid fa-database"></span> Groups users
+                                <span class="fa-solid fa-user-group"></span> Groups users
                             </a>
                         </li>
                         <li class="pc-item">
                             <a class="pc-link" href="<?= base_url('master-data/auth-permissions'); ?>" data-i18n="Permissions">
-                                <span class="fa-solid fa-database"></span> Permissions
+                                <span class="fa-solid fa-user-shield"></span> Permissions
                             </a>
                         </li>
                         <li class="pc-item">
                             <a class="pc-link" href="<?= base_url('master-data/auth-groups-permissions'); ?>" data-i18n="Groups Permissions">
-                                <span class="fa-solid fa-database"></span> Groups Permissions
+                                <span class="fa-solid fa-user-circle"></span> Groups Permissions
                             </a>
                         </li>
                     </ul>
