@@ -58,7 +58,7 @@ class ProfilPegawai extends ResourceController
         }
     }
 
-     public function list_foto()
+    public function list_foto()
     {
 
         if ($this->request->isAJAX()) {

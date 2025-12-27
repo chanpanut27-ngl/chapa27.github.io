@@ -44,12 +44,34 @@ class Profil extends ResourceController
         if ($this->request->isAJAX()) {
 
             $data = [
-                'items' => $this->model->findAll(),
-                'profil_pelanggan' => $this->model->profil_pelanggan()
+                'profil_pelanggan' => $this->model->profil_pelanggan(),
+                'items' => $this->modelUsers->cek_login_user()
             ];
             
             $msg = [
-                'data' => view('Pelanggan/Profil/_data', $data)
+                'data' => view('Pelanggan/Profil/_foto', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
+
+    public function list_foto()
+    {
+
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Foto profil',
+                'items' => $this->model->findAll(),
+                'profil' => $this->model->get_data()
+            ];
+            
+            $msg = [
+                'data' => view('Backend/Modul/Profil/_foto', $data)
             ];
 
             echo json_encode($msg);

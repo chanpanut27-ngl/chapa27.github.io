@@ -24,7 +24,10 @@
         <!-- [ Main Content ] start -->
         <div class="row p-0">
             <!-- [ sample-page ] start -->
-            <div class="col-sm-12">
+            <div class="col-sm-3">
+                <div class="view-foto"></div>
+            </div>
+            <div class="col-sm-9">
                 <div class="card">
                     <div class="card-header bg-light p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title; ?></h4>
@@ -78,9 +81,30 @@
         })
     }
 
+    function listFoto() {
+        $.ajax({
+            url: "<?= site_url('pelanggan/profil/list-foto'); ?>",
+            dataType: 'json',
+            beforeSend: function() {
+                $('.view-foto').html('<span class="fa-solid fa-spin fa-spinner"></span> Loading...');
+                $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.view-foto').removeAttr('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            success: function(response) {
+                $(".view-foto").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
 
     $(document).ready(function() {
         listData();
+        listFoto();
 
         $(".form-data").submit(function(e) {
             e.preventDefault();
