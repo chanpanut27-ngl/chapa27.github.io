@@ -78,7 +78,7 @@ class ProfilPelangganModel extends Model
         $db = \Config\Database::connect();
         $builder = $db->table('profil_pelanggan');
         $builder->select('id, instansi, alamat, no_telp, username, email');
-        $builder->where('username', user()->username);
+        $builder->where('id_users', user()->id);
         $query = $builder->get()->getResultArray();
         return $query;
     }

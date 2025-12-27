@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header bg-light p-2">
-        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title; ?></h4>
+        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Foto Profil</h4>
     </div>
         <div class="card-body" style="text-align: center;">
         <?php foreach ($profil as $rows) : ?>

@@ -64,7 +64,6 @@ class ProfilPegawai extends ResourceController
         if ($this->request->isAJAX()) {
 
             $data = [
-                'title' => 'Foto profil',
                 'items' => $this->model->findAll(),
                 'profil' => $this->model->get_data()
             ];
