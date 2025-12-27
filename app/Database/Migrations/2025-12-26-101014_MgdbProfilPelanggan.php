@@ -38,6 +38,10 @@ class MgdbProfilPelanggan extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '30',
             ],
+            'foto' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
                 'default' => 1
