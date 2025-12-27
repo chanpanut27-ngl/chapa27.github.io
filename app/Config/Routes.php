@@ -9,6 +9,9 @@ use DeepCopy\f013\C;
 
 /* Error Page 404 */
 $routes->set404Override('App\Controllers\ErrorPage::show404');
+
+$routes->get('not-privilege', 'NotEnoughPrivilege::show401');
+
 /* Cetak PDF */
 $routes->get('wa/send-message', 'WhatsAppController::sendWhatsAppMessage');
 
@@ -224,7 +227,7 @@ $routes->group('file-booklet/reader', function ($routes) {
 
 /** Modul Pengaturan Coolbox **/
 /* posisi coolbox */
-$routes->group('pengaturan-coolbox/posisi-coolbox', ['filter' => 'permission:manage-coolbox'], function ($routes) {
+$routes->group('pengaturan-coolbox/posisi-coolbox', ['filter' => 'permission:manage-coolbox', 'role:admin'], function ($routes) {
     $routes->get('', 'PosisiCoolbox::index');
     $routes->get('list-data', 'PosisiCoolbox::list');
     $routes->get('add-data', 'PosisiCoolbox::new');

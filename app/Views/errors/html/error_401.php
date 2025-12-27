@@ -64,6 +64,7 @@ if (in_groups('admin')) {
         }
         p {
             margin-top: 1.5rem;
+            font-size: 20px;
         }
         .footer {
             margin-top: 2rem;

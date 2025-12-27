@@ -19,6 +19,7 @@ class ErrorPage extends BaseController
 
     public function show404()
     {
+       
         $data = [
             'title' => $this->title,
             'message' => $this->message
