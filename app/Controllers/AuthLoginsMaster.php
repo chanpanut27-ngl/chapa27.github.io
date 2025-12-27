@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\AuthLoginsModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -12,9 +13,48 @@ class AuthLoginsMaster extends ResourceController
      *
      * @return ResponseInterface
      */
+    protected $title;
+    protected $model;
+    protected $validation;
+
+    public function __construct()
+    {
+        
+        $this->title = 'Auth Logins';
+        $this->model = new AuthLoginsModel();
+        $this->validation = \Config\Services::validation();
+    }
+
     public function index()
     {
-        //
+         $data = [
+            'title' => 'Data ' . $this->title
+        ];
+        return view('Backend/Master/Auth-logins/index', $data);
+    }
+
+    /**
+     * Return the properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function list()
+    {
+
+        if ($this->request->isAJAX()) {
+            $data = [
+                'items' => $this->model->findAll()
+            ];
+            $msg = [
+                'data' => view('Backend/Master/Auth-logins/_data', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

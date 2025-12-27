@@ -407,3 +407,10 @@ $routes->group('master-data/auth-groups-permissions', function ($routes) {
     $routes->post('update-data', 'AuthGroupsPermissionsMaster::update');
     $routes->get('delete-data', 'AuthGroupsPermissionsMaster::delete');
 });
+
+
+/* Auth Logins */
+$routes->group('master-data/auth-logins', function ($routes) {
+    $routes->get('', 'AuthLoginsMaster::index');
+    $routes->get('list-data', 'AuthLoginsMaster::list');
+});
