@@ -58,6 +58,7 @@
         $.ajax({
             url: "<?= site_url('master-data/auth-logins/list-data'); ?>",
             dataType: 'json',
+            cache: false,
             success: function(response) {
                 $(".view-data").html(response.data);
             },

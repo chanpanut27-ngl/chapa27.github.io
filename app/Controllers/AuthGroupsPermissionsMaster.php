@@ -23,7 +23,7 @@ class AuthGroupsPermissionsMaster extends ResourceController
 
     public function __construct()
     {
-        
+        $this->cachePage(60);
         $this->title = 'Auth Groups Permissions';
         $this->model = new AuthGroupsPermissionsModel();
         $this->modelAuthGroups = new AuthGroupsModel();

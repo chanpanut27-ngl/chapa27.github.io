@@ -59,6 +59,7 @@
         $.ajax({
             url: "<?= site_url('master-data/users/list-data'); ?>",
             dataType: 'json',
+            cache: false,
             success: function(response) {
                 $(".view-data").html(response.data);
             },
