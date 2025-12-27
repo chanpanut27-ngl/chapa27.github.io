@@ -58,6 +58,27 @@ class ProfilPegawai extends ResourceController
         }
     }
 
+     public function list_foto()
+    {
+
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Foto profil',
+                'items' => $this->model->findAll(),
+                'profil' => $this->model->get_data()
+            ];
+            
+            $msg = [
+                'data' => view('Backend/Modul/Profil/_foto', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
     /**
      * Return the properties of a resource object.
      *
