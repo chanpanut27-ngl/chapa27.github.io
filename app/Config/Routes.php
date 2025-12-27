@@ -414,3 +414,12 @@ $routes->group('master-data/auth-logins', function ($routes) {
     $routes->get('', 'AuthLoginsMaster::index');
     $routes->get('list-data', 'AuthLoginsMaster::list');
 });
+
+/* Profil Pegawai */
+$routes->group('profil-pegawai', function ($routes) {
+    $routes->get('', 'ProfilPegawai::index');
+    $routes->get('list-data', 'ProfilPegawai::list');
+    $routes->get('add-data', 'ProfilPegawai::new');
+    $routes->post('create-data', 'ProfilPegawai::create');
+    $routes->post('update-data', 'ProfilPegawai::update');
+});

@@ -1,4 +1,4 @@
-<?= $this->extend('Pelanggan/Layout/_main'); ?>
+<?= $this->extend('Backend/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
@@ -29,42 +29,14 @@
                     <div class="card-header bg-light p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title; ?></h4>
                     </div>
-                    <div class="card-body <?= $profil_pelanggan != null ? 'view-data' : '' ?>">
-                    <?php if (!$profil_pelanggan) {
-                        echo $this->include('Content/_profil');
+                    <div class="card-body <?= $profil != null ? 'view-data' : '' ?>">
+                    <?php if (!$profil) {
+                            echo $this->include('Content/_profil');
                         }
                     ?>
                     <?php
-                    if (!$profil_pelanggan) {
-                        ?>
-                            <form action="<?= base_url('pelanggan/profil/create-data'); ?>" class="form-data">
-                                <?= csrf_field(); ?>
-                                <?php foreach ($items as $rows) : ?>
-                                <input type="hidden" name="username" value="<?= $rows['username'] ?>" class="form-control" id="username" readonly>
-                                <input type="hidden" name="email" value="<?= $rows['email'] ?>" class="form-control" id="email" readonly>
-                                <input type="hidden" name="id_users" value="<?= $rows['id'] ?>" class="form-control" id="idusers" readonly>
-                                <div class="mb-3">
-                                    <label for="nama-instansi" class="form-label h5">Instansi</label>
-                                    <input type="text" name="instansi" class="form-control" id="nama-instansi" placeholder="Isi nama instansi ..." autocomplete="off">
-                                    <div class="invalid-feedback errorNamaInstansi"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="alamat" class="form-label h5">Alamat</label>
-                                    <textarea name="alamat" class="form-control" id="alamat" placeholder="Isi alamat instansi ..."></textarea>
-                                    <div class="invalid-feedback errorAlamat"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="no-telp" class="form-label h5">No.Telp</label>
-                                    <input type="text" name="no_telp" value="" class="form-control" id="no-telp" placeholder="Isi nomor telepon instansi ...">
-                                    <div class="invalid-feedback errorNoTelp"></div>
-                                </div>
-                                <div class="card-footer bg-light">
-                                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
-                                    <button type="reset" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-refresh"></span> Batal</button>
-                                </div>
-                                <?php endforeach;?>
-                            </form>
-                        <?php
+                    if (!$profil) {
+                      echo $this->include('Backend/Modul/Profil/_add');
                     }
                     ?>
                     </div>
@@ -88,7 +60,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelanggan/profil/list-data'); ?>",
+            url: "<?= site_url('profil-pegawai/list-data'); ?>",
             dataType: 'json',
             beforeSend: function() {
                 $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span> Loading...');
@@ -130,13 +102,27 @@
                 },
                 success: function(response) {
                     var err = response.error
-                    if (err) {
-                        if (err.instansi) {
-                            $('#nama-instansi').addClass('is-invalid');
-                            $('.errorNamaInstansi').html(err.instansi);
+                        if (err) {
+                            if (err.nama) {
+                            $('#nama').addClass('is-invalid');
+                            $('.errorNama').html(err.nama);
                         } else {
-                            $('#nama-instansi').removeClass('is-invalid');
-                            $('.errorNamaInstansi').html('');
+                            $('#nama').removeClass('is-invalid');
+                            $('.errorNama').html('');
+                        }
+                        if (err.nik) {
+                            $('#nik').addClass('is-invalid');
+                            $('.errorNik').html(err.nik);
+                        } else {
+                            $('#nik').removeClass('is-invalid');
+                            $('.errorNik').html('');
+                        }
+                        if (err.nip) {
+                            $('#nip').addClass('is-invalid');
+                            $('.errorNip').html(err.nip);
+                        } else {
+                            $('#nip').removeClass('is-invalid');
+                            $('.errorNip').html('');
                         }
                         if (err.alamat) {
                             $('#alamat').addClass('is-invalid');

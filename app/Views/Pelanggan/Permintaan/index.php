@@ -25,7 +25,7 @@
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <?php if (!$profil_pelanggan) : ?>
-                    <?= $this->include('Pelanggan/Profil/_header') ?>
+                    <?= $this->include('Content/_profil') ?>
                 <?php else : ?>
                 <div class="card">
                     <div class="card-header p-2">

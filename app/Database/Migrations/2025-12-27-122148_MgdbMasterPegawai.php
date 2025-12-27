@@ -66,7 +66,7 @@ class MgdbMasterPegawai extends Migration
                 'type'       => 'CHAR',
                 'constraint' => '20',
             ],
-            'user_id' => [
+            'id_users' => [
                 'type'       => 'INT'
             ],
             'email' => [
