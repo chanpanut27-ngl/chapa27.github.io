@@ -1,4 +1,4 @@
-<nav class="pc-sidebar">
+<nav class="pc-sidebar elevation-1">
     <div class="navbar-wrapper">
         <div class="m-header kemkes-color2">
             <a href="<?= base_url('/'); ?>" class="b-brand text-primary">

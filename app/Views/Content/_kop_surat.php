@@ -4,8 +4,8 @@
         <img src="<?= base_url('assets/images/logo.webp'); ?>" class="img-fluid" alt="logo" style="height: 55px;">
     </div>
     <div class="col-md-3">
-        <label for="" style="font-weight:bold; color: #00A69A; line-height: 1">Kementerian Kesehatan </label><br>
-        <label for="" style="line-height: 1; font-size: 10px;">
+        <label for="" class="title-kemenkes">Kementerian Kesehatan </label><br>
+        <label for="" class="desc-kemenkes">
         <b>Direktorat Jenderal</b> <br>
         <b>Kesehatan Primer dan Komunitas</b> <br>
         Balai Besar Laboratorium Kesehatan Masyarakat

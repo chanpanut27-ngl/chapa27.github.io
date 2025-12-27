@@ -25,6 +25,8 @@
     <?= link_tag('assets/css/style-preset.css'); ?>
     <!-- [Custom CSS] -->
     <?= link_tag('assets/css/custom.css'); ?>
+    <?= link_tag('assets/css/timeline.css'); ?>
+
 
     <!-- [topAssets] start -->
     <?= $this->renderSection('topAssets'); ?>

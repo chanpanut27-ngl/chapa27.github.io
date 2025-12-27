@@ -31,7 +31,7 @@
         <div class="row p-0">
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">

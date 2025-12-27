@@ -49,7 +49,7 @@
             }
             ?>
         <!-- HEADER --> <!-- start -->
-        <?= $this->include('Backend/Modul/Pelayanan/Lhu/Resume/_header'); ?>
+        <?= $this->include('Content/_kop_surat'); ?>
         <!-- HEADER --> <!-- end -->
 
         <h4 style="text-align: center;"><b>PENERIMAAN SAMPEL</b><br>

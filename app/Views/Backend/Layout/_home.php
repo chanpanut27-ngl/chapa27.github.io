@@ -17,6 +17,7 @@
             </div>
             <!-- [ breadcrumb ] end -->
             <!-- [ Main Content ] start -->
+            <?= $this->include('Content/_timeline.php') ?>
             <div class="row p-0">
                 <!-- [ sample-page ] start -->
                 <div class="col-sm-12">
