@@ -58,3 +58,20 @@
 .elevation-5 {
     box-shadow:0 19px 38px rgba(0,0,0,.3),0 15px 12px rgba(0,0,0,.22)!important
 }
+
+.back-to-top {
+    bottom:1.25rem;
+    position:fixed;
+    right:1.25rem;
+    z-index:1032;
+    color:white;
+    background-color: rgba(150, 146, 156, 0.5); /* Putih 50% transparan */
+
+}
+.back-to-top:hover {
+    background-color: rgba(117, 46, 232, 0.5); /* Putih 50% transparan */
+}
+.back-to-top:focus {
+    box-shadow:none;
+    background-color: rgba(95, 7, 235, 0.5); /* Putih 50% transparan */
+}

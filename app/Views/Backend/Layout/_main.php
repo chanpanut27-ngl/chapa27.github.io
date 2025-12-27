@@ -24,6 +24,7 @@ if (in_groups('admin')) {
 <!-- [ Main Content ] start -->
 <?= $this->renderSection('content', true); ?>
 <!-- [ Main Content ] end -->
+<?= $this->include('Content/_scroll_top'); ?>
 
 <!-- [ Footer ] start -->
 <?= $this->include($page.'/Layout/_footer'); ?>

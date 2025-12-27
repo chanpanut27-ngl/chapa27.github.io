@@ -12,7 +12,7 @@
 <!-- [bottomAssets] start -->
 <?= $this->renderSection('bottomAssets'); ?>
 <!-- [bottomAssets] end -->
-
+ 
 </body>
 <!-- [Body] end -->
 </html>

@@ -25,9 +25,8 @@
     <?= link_tag('assets/css/style-preset.css'); ?>
     <!-- [Custom CSS] -->
     <?= link_tag('assets/css/custom.css'); ?>
+    <!-- [Timeline CSS] -->
     <?= link_tag('assets/css/timeline.css'); ?>
-
-
     <!-- [topAssets] start -->
     <?= $this->renderSection('topAssets'); ?>
     <!-- [topAssets] end -->
@@ -38,7 +37,7 @@
 <!-- [Body] Start -->
 
 <body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
-  <!-- [ Pre-loader ] start -->
+<!-- [ Pre-loader ] start -->
 <div class="loader-bg">
   <div class="loader-track">
     <div class="loader-fill"></div>
