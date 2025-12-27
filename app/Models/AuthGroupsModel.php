@@ -49,7 +49,7 @@ class AuthGroupsModel extends Model
        $userId = user()->username;
         if ($userId) {
             // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_at'] = date('Y-m-d H:is');
+            $data['data']['updated_at'] = date('Y-m-d H:i:s');
         }
         return $data;
     }
@@ -59,7 +59,7 @@ class AuthGroupsModel extends Model
         $userId = user()->username;
         if ($userId) {
             // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_at'] = date('Y-m-d H:is');
+            $data['data']['created_at'] = date('Y-m-d H:i:s');
         }
         return $data;
     }
