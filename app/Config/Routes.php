@@ -426,3 +426,5 @@ $routes->group('profil-pegawai', function ($routes) {
     $routes->post('update-data', 'ProfilPegawai::update');
     $routes->post('upload-foto', 'ProfilPegawai::do_upload');
 });
+
+$routes->resource('instalasi');
