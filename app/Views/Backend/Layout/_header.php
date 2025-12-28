@@ -1,4 +1,5 @@
 <?php
+use App\Models\UsersModel;
 
 use CodeIgniter\I18n\Time;
 if (in_groups('superadmin')) {
@@ -9,6 +10,13 @@ if (in_groups('superadmin')) {
     $groups = 'User';
 } else {
     $groups = 'Pelanggan';
+}
+
+$login = new UsersModel();
+$dt_login = $login->cek_login_user();
+$foto_user = '';
+foreach ($dt_login as $row) {
+    $foto_user = $row['user_image'];
 }
 ?>
 <header class="pc-header elevation-1">
@@ -144,14 +152,14 @@ if (in_groups('superadmin')) {
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                         >
-                        <img src="<?= base_url('assets/images/user-1.jpg'); ?>" alt="user-image" class="user-avtar">
+                        <img src="<?= $foto_user === 'default.svg' ? base_url('assets/images/default.svg') : base_url('Uploads/Foto/'.$foto_user); ?>" alt="user-image" class="user-avtar">
                         <span class="text-white"><?= user()->username ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header">
                             <div class="d-flex mb-1">
                                 <div class="flex-shrink-0">
-                                    <img src="<?= base_url('assets/images/default.svg'); ?>" alt="user-image" class="user-avtar wid-35">
+                                    <img src="<?= $foto_user === 'default.svg' ? base_url('assets/images/default.svg') : base_url('Uploads/Foto/'.$foto_user); ?>" alt="user-image" class="user-avtar wid-35">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="mb-1"><?= user()->username; ?></h6>
