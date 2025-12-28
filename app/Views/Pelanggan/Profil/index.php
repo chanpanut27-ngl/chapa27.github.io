@@ -18,6 +18,40 @@
         </div>
         <!-- [ breadcrumb ] end -->
 
+        <!-- [ Main Content ] start -->
+        <div class="row p-0">
+            <!-- [ sample-page ] start -->
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-header bg-light p-2">
+                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Foto Profil</h4>
+                    </div>
+                    <div class="view-foto"></div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="card">
+                    <div class="card-header bg-light p-2">
+                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-file-alt"></span> <?= $title; ?></h4>
+                    </div>
+                    <div class="card-body <?= $profil != null ? 'view-data' : '' ?>">
+                    <?php if (!$profil) {
+                           echo '<div class="alert alert-warning" role="alert">
+                                    Silahkan lengkapi data profil anda
+                                </div>';
+                        }
+                    ?>
+                    <?php
+                    if (!$profil) {
+                        echo $this->include('Pelanggan/Profil/_add');
+                    }
+                    ?>
+                    </div>
+                </div>
+            </div>
+            <!-- [ sample-page ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
     </div>
 </div>
 <?= $this->endSection(); ?>
@@ -26,7 +60,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelanggan/profil/list-data'); ?>",
+            url: "<?= site_url('Pelanggan/profil/list-data'); ?>",
             dataType: 'json',
             beforeSend: function() {
                 $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span> Loading...');
@@ -44,8 +78,29 @@
         })
     }
 
+    function listFoto() {
+        $.ajax({
+            url: "<?= site_url('Pelanggan/profil/list-foto'); ?>",
+            dataType: 'json',
+            beforeSend: function() {
+                $('.view-foto').html('<span class="fa-solid fa-spin fa-spinner"></span> Loading...');
+                $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.view-foto').removeAttr('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            success: function(response) {
+                $(".view-foto").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
     $(document).ready(function() {
         listData();
+        listFoto();
 
         $(".form-data").submit(function(e) {
             e.preventDefault();
@@ -61,12 +116,14 @@
                     $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 complete: function() {
+                    $('.card-body').addClass('view-data');
                     $('.btn-simpan').removeAttr('disable');
                     $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
                 },
                 success: function(response) {
                     var err = response.error
                     if (err) {
+
                         if (err.instansi) {
                             $('#nama-instansi').addClass('is-invalid');
                             $('.errorNamaInstansi').html(err.instansi);
@@ -94,6 +151,8 @@
                             text: response.sukses,
                             icon: "success"
                         });
+                        listData();
+                        listFoto();
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
