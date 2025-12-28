@@ -74,7 +74,6 @@
                             icon: "success"
                         });
                         listData();
-                        listFoto();
                     }
             },
             error: function(xhr, ajaxOptions, thrownError) {

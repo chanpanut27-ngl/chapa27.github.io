@@ -87,43 +87,6 @@
                 return; 
             }
 
-            
-            // $.ajax({
-            //     type: "post",
-            //     url: $(".form-upload").attr('action'),
-            //     data: formData,
-            //     processData: false,
-            //     contentType: false,
-            //     cache: false,
-            //     beforeSend: function() {
-            //         $('.btn-upload').attr('disable', 'disabled');
-            //         $('.btn-upload').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-            //     },
-            //     complete: function() {
-            //         $('.btn-upload').removeAttr('disable');
-            //         $('.btn-upload').html('Ubah foto');
-            //     },
-            //     success: function(response) {
-            //         var res = response.error;
-            //         if (res) {
-            //              Swal.fire({
-            //                 title: "Gagal",
-            //                 text: response.error,
-            //                 icon: "error"
-            //             });
-            //         } else{
-            //             Swal.fire({
-            //                 title: "Berhasil",
-            //                 text: response.sukses,
-            //                 icon: "success"
-            //             });
-            //             listFoto();
-            //         }
-            //     },
-            //     error: function(xhr, ajaxOptions, thrownError) {
-            //         alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            //     }
-            // })
         })
     })
 </script>
