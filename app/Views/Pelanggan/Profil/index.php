@@ -60,7 +60,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('Pelanggan/profil/list-data'); ?>",
+            url: "<?= site_url('pelanggan/profil/list-data'); ?>",
             dataType: 'json',
             beforeSend: function() {
                 $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span> Loading...');
@@ -80,7 +80,7 @@
 
     function listFoto() {
         $.ajax({
-            url: "<?= site_url('Pelanggan/profil/list-foto'); ?>",
+            url: "<?= site_url('pelanggan/profil/list-foto'); ?>",
             dataType: 'json',
             beforeSend: function() {
                 $('.view-foto').html('<span class="fa-solid fa-spin fa-spinner"></span> Loading...');

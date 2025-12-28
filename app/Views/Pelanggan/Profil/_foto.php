@@ -15,10 +15,10 @@
         </div>
         <?php foreach ($profil as $rows) : ?>
         <div class="mb-2 mt-3">
-            <label><b><?= $rows['nama'] ?></b></label>
+            <label><b><?= $rows['instansi'] ?></b></label>
         </div>
         <div class="mb-2">
-            <label><?= $rows['nip'] ?></label>
+            <label><?= $rows['email'] ?></label>
         </div>
         <?php endforeach;?>
     </div>
