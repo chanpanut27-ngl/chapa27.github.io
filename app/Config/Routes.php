@@ -428,3 +428,4 @@ $routes->group('profil-pegawai', function ($routes) {
 });
 
 $routes->resource('instalasi');
+// $routes->get('instalasi', 'Instalasi::index');
