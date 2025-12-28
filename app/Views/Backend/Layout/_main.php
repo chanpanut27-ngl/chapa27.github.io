@@ -1,10 +1,14 @@
 <?php 
 $page = '';
 
-if (in_groups('admin')) {
+if (in_groups('superadmin')) {
+    $page = 'Backend';
+} else if (in_groups('admin')) {
     $page = 'Backend';
 } else if (in_groups('user')) {
     $page = 'Backend';
+} else if (in_groups('pelanggan')) {
+    $page = 'Pelanggan';
 } else {
     $page = 'Pelanggan';
 }
@@ -24,7 +28,7 @@ if (in_groups('admin')) {
 <!-- [ Main Content ] start -->
 <?= $this->renderSection('content', true); ?>
 <!-- [ Main Content ] end -->
-<?= $this->include('Content/_scroll_top'); ?>
+<?= $this->include('Component/_scroll_top'); ?>
 
 <!-- [ Footer ] start -->
 <?= $this->include($page.'/Layout/_footer'); ?>

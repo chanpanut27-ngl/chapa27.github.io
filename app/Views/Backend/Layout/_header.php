@@ -1,6 +1,15 @@
 <?php
 
 use CodeIgniter\I18n\Time;
+if (in_groups('superadmin')) {
+    $groups = 'Superadmin';
+} else if (in_groups('admin')) {
+    $groups = 'Administrator';
+} else if (in_groups('user')) {
+    $groups = 'User';
+} else {
+    $groups = 'Pelanggan';
+}
 ?>
 <header class="pc-header elevation-1">
     <div class="header-wrapper kemkes-color1"> <!-- [Mobile Media Block] start -->
@@ -136,7 +145,7 @@ use CodeIgniter\I18n\Time;
                         aria-expanded="false"
                         >
                         <img src="<?= base_url('assets/images/user-1.jpg'); ?>" alt="user-image" class="user-avtar">
-                        <span class="text-white">Prola</span>
+                        <span class="text-white"><?= user()->username ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header">
@@ -145,14 +154,16 @@ use CodeIgniter\I18n\Time;
                                     <img src="<?= base_url('assets/images/default.svg'); ?>" alt="user-image" class="user-avtar wid-35">
                                 </div>
                                 <div class="flex-grow-1 ms-3">
-                                    <h6 class="mb-1">Prola <?= user()->username; ?></h6>
+                                    <h6 class="mb-1"><?= user()->username; ?></h6>
                                     <span>BBLabkesmas Jakarta</span>
                                 </div>
                                 <a href="#!" class="pc-head-link bg-transparent d-none"><i class="ti ti-power text-danger"></i></a>
                             </div>
                         </div>
                         <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
-                            
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="drp-t1" data-bs-toggle="tab" data-bs-target="#drp-tab-1" type="button" role="tab" aria-controls="drp-tab-1" aria-selected="true"><?= $groups ?></button>
+                            </li>
                         </ul>
                         <div class="tab-content" id="mysrpTabContent">
                             <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1" tabindex="0">

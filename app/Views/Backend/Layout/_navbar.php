@@ -190,7 +190,7 @@
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Posisi Coolbox</span>
                     </a>
                 </li>
-                <?php if (in_groups('admin')) : ?>
+                <?php if (in_groups('admin') || in_groups('superadmin')) : ?>
                 <li class="pc-item pc-caption">
                     <label data-i18n="Widget">Master Data</label>
                     <i class="pc-micon">

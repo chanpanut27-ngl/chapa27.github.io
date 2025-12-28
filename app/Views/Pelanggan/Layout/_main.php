@@ -14,7 +14,7 @@
 <?= $this->renderSection('content', true); ?>
 <!-- [ Main Content ] end -->
 
-<?= $this->include('Content/_scroll_top'); ?>
+<?= $this->include('Component/_scroll_top'); ?>
 
 <!-- [ Footer ] start -->
 <?= $this->include('Pelanggan/Layout/_footer'); ?>

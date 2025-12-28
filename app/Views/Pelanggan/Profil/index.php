@@ -1,4 +1,4 @@
-<?= $this->extend('Pelanggan/Layout/_main'); ?>
+<?= $this->extend('Backend/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
@@ -24,23 +24,23 @@
         <!-- [ Main Content ] start -->
         <div class="row p-0">
             <!-- [ sample-page ] start -->
-            <div class="col-sm-3">
                 <div class="view-foto"></div>
-            </div>
             <div class="col-sm-9">
                 <div class="card">
                     <div class="card-header bg-light p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title; ?></h4>
+                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-file-alt"></span> <?= $title; ?></h4>
                     </div>
-                    <div class="card-body <?= $profil_pelanggan != null ? 'view-data' : '' ?>">
-                    <?php if (!$profil_pelanggan) {
-                        echo $this->include('Content/_profil');
+                    <div class="card-body <?= $profil != null ? 'view-data' : '' ?>">
+                    <?php if (!$profil) {
+                           echo '<div class="alert alert-warning" role="alert">
+                                    Silahkan lengkapi data profil anda
+                                </div>';
                         }
                     ?>
                     <?php
-                    if (!$profil_pelanggan) {
-                         echo $this->include('Pelanggan/Profil/_add');
-                    }
+                    if (!$profil) {
+                        echo $this->include('Pelanggan/Profil/_add');
+                    }                    
                     ?>
                     </div>
                 </div>
@@ -58,7 +58,6 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
-
 
 <script>
     function listData() {
@@ -100,7 +99,6 @@
             }
         })
     }
-
 
     $(document).ready(function() {
         listData();
@@ -155,13 +153,14 @@
                             icon: "success"
                         });
                         listData();
+                        listFoto();
                     }
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
                 }
             })
-        })
+        });
 
     })
 </script>

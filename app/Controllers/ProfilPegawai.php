@@ -63,7 +63,6 @@ class ProfilPegawai extends ResourceController
         if ($this->request->isAJAX()) {
 
             $data = [
-                'items' => $this->model->findAll(),
                 'profil' => $this->model->get_data(),
                 'items' => $this->modelUsers->cek_login_user()
             ];
@@ -282,22 +281,31 @@ class ProfilPegawai extends ResourceController
             $uploadPath = FCPATH . 'Uploads/Foto/';
             $fullname = $this->request->getVar('fullname');
 
+            $id = ['id' => user_id()];
+            $foto_lama = $this->modelUsers->find(user_id());
+
             $simpandata = [
                 'user_image' => $fileName,
                 'fullname' => $fullname
             ];
-            $id = ['id' => user_id()];
             
             $upload = $this->modelUsers->update($id, $simpandata);
             
             if (!$upload) {
                 $msg = [
-                    'error' => 'gagal'
+                    'error' => 'Foto gagal diubah'
+                ];
+            } else if (str_contains(strtolower($fileName), strtolower(user()->username))) {
+                $foto->move($uploadPath, $fileName);
+                @unlink($uploadPath . $foto_lama['user_image']);
+
+                $msg = [
+                    'sukses' => 'Foto berhasil diubah'
                 ];
             } else {
                 $foto->move($uploadPath, $fileName);
                 $msg = [
-                    'sukses' => 'foto berhasil diubah'
+                    'sukses' => 'Foto berhasil diubah'
                 ];
             }
             echo json_encode($msg);

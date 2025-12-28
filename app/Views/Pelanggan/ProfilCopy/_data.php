@@ -20,7 +20,6 @@
     </div>
     <div class="card-footer bg-light">
         <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fa-solid fa-edit"></span> Ubah</button>
-        <button type="reset" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-refresh"></span> Batal</button>
     </div>
     <?php endforeach;?>
 </form>
@@ -45,37 +44,35 @@
             },
             success: function(response) {
                 var err = response.error
-                 if (err) {
-                        if (err.instansi) {
-                            $('#nama-instansi').addClass('is-invalid');
-                            $('.errorNamaInstansi').html(err.instansi);
-                        } else {
-                            $('#nama-instansi').removeClass('is-invalid');
-                            $('.errorNamaInstansi').html('');
-                        }
-                        if (err.alamat) {
-                            $('#alamat').addClass('is-invalid');
-                            $('.errorAlamat').html(err.alamat);
-                        } else {
-                            $('#alamat').removeClass('is-invalid');
-                            $('.errorAlamat').html('');
-                        }
-                        if (err.no_telp) {
-                            $('#no-telp').addClass('is-invalid');
-                            $('.errorNoTelp').html(err.no_telp);
-                        } else {
-                            $('#no-telp').removeClass('is-invalid');
-                            $('.errorNoTelp').html('');
-                        }
+                if (err) {
+                    if (err.instansi) {
+                        $('#nama-instansi').addClass('is-invalid');
+                        $('.errorNamaInstansi').html(err.instansi);
                     } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success"
-                        });
-                        listData();
-                        listFoto();
+                        $('#nama-instansi').removeClass('is-invalid');
+                        $('.errorNamaInstansi').html('');
                     }
+                    if (err.alamat) {
+                        $('#alamat').addClass('is-invalid');
+                        $('.errorAlamat').html(err.alamat);
+                    } else {
+                        $('#alamat').removeClass('is-invalid');
+                        $('.errorAlamat').html('');
+                    }
+                    if (err.no_telp) {
+                        $('#no-telp').addClass('is-invalid');
+                        $('.errorNoTelp').html(err.no_telp);
+                    } else {
+                        $('#no-telp').removeClass('is-invalid');
+                        $('.errorNoTelp').html('');
+                    }
+                } else {
+                    Swal.fire({
+                        title: "Berhasil",
+                        text: response.sukses,
+                        icon: "success"
+                    });
+                }
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);

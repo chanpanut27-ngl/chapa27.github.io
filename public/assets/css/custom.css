@@ -75,3 +75,13 @@
     box-shadow:none;
     background-color: rgba(95, 7, 235, 0.5); /* Putih 50% transparan */
 }
+
+/** ukuran foto 4x6 **/
+.img-foto {
+  width: 4cm;  /* Lebar 4 sentimeter */
+  height: 6cm; /* Tinggi 6 sentimeter */
+  /* Jika rasio aspek gambar asli berbeda, gunakan object-fit agar tidak pecah */
+  object-fit: cover; /* Memenuhi area, memotong jika perlu */
+  /* Atau: */
+  /* object-fit: contain; */ /* Menampilkan seluruh gambar, mungkin ada ruang kosong */
+}
