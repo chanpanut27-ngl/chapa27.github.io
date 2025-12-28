@@ -14,7 +14,7 @@ class ProfilPegawai extends ResourceController
      *
      * @return ResponseInterface
      */
-   protected $title;
+    protected $title;
     protected $model;
     protected $modelUsers;
     protected $validation;
@@ -33,7 +33,6 @@ class ProfilPegawai extends ResourceController
             'title' => $this->title,
             'profil' => $this->model->get_data(),
             'items' => $this->modelUsers->cek_login_user()
-
         ];
         return view('Backend/Modul/Profil/index', $data);
     }
@@ -65,7 +64,8 @@ class ProfilPegawai extends ResourceController
 
             $data = [
                 'items' => $this->model->findAll(),
-                'profil' => $this->model->get_data()
+                'profil' => $this->model->get_data(),
+                'items' => $this->modelUsers->cek_login_user()
             ];
             
             $msg = [
@@ -274,8 +274,36 @@ class ProfilPegawai extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function delete($id = null)
+    public function do_upload()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $foto = $this->request->getFile('user_image');
+            $fileName = user()->username.'_'.str_replace(" ", "_", $foto->getRandomName());
+            $uploadPath = FCPATH . 'Uploads/Foto/';
+            $fullname = $this->request->getVar('fullname');
+
+            $simpandata = [
+                'user_image' => $fileName,
+                'fullname' => $fullname
+            ];
+            $id = ['id' => user_id()];
+            
+            $upload = $this->modelUsers->update($id, $simpandata);
+            
+            if (!$upload) {
+                $msg = [
+                    'error' => 'gagal'
+                ];
+            } else {
+                $foto->move($uploadPath, $fileName);
+                $msg = [
+                    'sukses' => 'foto berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+
+        } else {
+            exit('Not Proccess');
+        }
     }
 }

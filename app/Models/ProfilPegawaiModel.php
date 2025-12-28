@@ -80,7 +80,7 @@ class ProfilPegawaiModel extends Model
         $db = \Config\Database::connect();
         $builder = $db->table('master_pegawai');
         $builder->select('*');
-        $builder->where('id_users', user()->id);
+        $builder->where('username', user()->username);
         $query = $builder->get()->getResultArray();
         return $query;
     }

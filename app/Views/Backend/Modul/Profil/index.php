@@ -25,13 +25,19 @@
         <div class="row p-0">
             <!-- [ sample-page ] start -->
             <div class="col-sm-3">
-                <div class="view-foto"></div>
+                <div class="card">
+                    <div class="card-header bg-light p-2">
+                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Foto Profil</h4>
+                    </div>
+                    <div class="view-foto"></div>
+                </div>
             </div>
             <div class="col-sm-9">
                 <div class="card">
                     <div class="card-header bg-light p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title; ?></h4>
                     </div>
+                    <?= var_dump($items); ?>
                     <div class="card-body <?= $profil != null ? 'view-data' : '' ?>">
                     <?php if (!$profil) {
                             echo $this->include('Content/_profil');
@@ -58,7 +64,6 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
-
 
 <script>
     function listData() {
@@ -175,7 +180,7 @@
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
                 }
             })
-        })
+        });
 
     })
 </script>

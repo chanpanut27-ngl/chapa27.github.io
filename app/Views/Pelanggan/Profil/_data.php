@@ -1,7 +1,7 @@
 
 <form action="<?= base_url('pelanggan/profil/update-data'); ?>" class="form-data">
     <?= csrf_field(); ?>
-    <?php foreach ($profil_pelanggan as $rows) : ?>
+    <?php foreach ($profil as $rows) : ?>
     <input type="hidden" name="id" value="<?= @$rows['id']; ?>">
     <div class="mb-3">
         <label for="nama-instansi" class="form-label h5">Instansi</label>

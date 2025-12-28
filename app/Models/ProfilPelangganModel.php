@@ -73,12 +73,12 @@ class ProfilPelangganModel extends Model
         return $data;
     }
 
-    public function profil_pelanggan()
+    public function get_data()
     {
         $db = \Config\Database::connect();
         $builder = $db->table('profil_pelanggan');
         $builder->select('id, instansi, alamat, no_telp, username, email');
-        $builder->where('id_users', user()->id);
+        $builder->where('username', user()->username);
         $query = $builder->get()->getResultArray();
         return $query;
     }

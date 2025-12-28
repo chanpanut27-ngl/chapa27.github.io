@@ -12,7 +12,7 @@ class UsersModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['email', 'username', 'active'];
+    protected $allowedFields    = ['email', 'username', 'fullname', 'user_image', 'active'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -48,7 +48,7 @@ class UsersModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('users');
-        $builder->select('id,username,email');
+        $builder->select('id,username,email,user_image');
         $builder->where('username', user()->username);
         $query = $builder->get()->getResultArray();
         return $query;

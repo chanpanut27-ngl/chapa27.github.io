@@ -31,7 +31,7 @@ class Profil extends ResourceController
     {
         $data = [
             'title' => $this->title,
-            'profil_pelanggan' => $this->model->profil_pelanggan(),
+            'profil' => $this->model->get_data(),
             'items' => $this->modelUsers->cek_login_user()
 
         ];
@@ -44,7 +44,7 @@ class Profil extends ResourceController
         if ($this->request->isAJAX()) {
 
             $data = [
-                'profil_pelanggan' => $this->model->profil_pelanggan(),
+                'profil' => $this->model->get_data(),
                 'items' => $this->modelUsers->cek_login_user()
             ];
             
@@ -65,7 +65,7 @@ class Profil extends ResourceController
         if ($this->request->isAJAX()) {
 
             $data = [
-                'profil_pelanggan' => $this->model->profil_pelanggan(),
+                'profil' => $this->model->get_data(),
                 'items' => $this->modelUsers->cek_login_user()
             ];
             

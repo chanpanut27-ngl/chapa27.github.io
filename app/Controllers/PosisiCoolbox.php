@@ -299,56 +299,6 @@ class PosisiCoolbox extends ResourceController
 
     }
 
-    Public function upload_foto1()
-    {
-        if ($this->request->isAJAX()) {
-
-            $kodeCoolbox = $this->request->getVar('kode_coolbox');
-            $status = $this->request->getVar('status');
-            $fileOld = $this->request->getVar('file_old');
-            $fileDocument = $this->request->getFile('upload_foto');
-            $id = $this->request->getVar('id');
-
-            $uploadPath = FCPATH . 'Uploads/coolbox/'.$kodeCoolbox.'/';
-
-            if (! is_dir($uploadPath)) {
-                mkdir($uploadPath, 0777, true);
-            }
-            $msg = '';
-                $fileName = $status.'_'.str_replace(" ", "_", $fileDocument->getName());
-
-                if ($fileOld == '') {
-                    $fileDocument->move($uploadPath, $fileName);
-                    $simpandata = [
-                        'foto' => $fileName,
-                        'keterangan' => $this->request->getVar('keterangan')
-                    ];
-                    $this->model->update($id, $simpandata);
-                    $msg = [
-                        'sukses' => 'Foto berhasil di simpan'
-                    ];
-                } else {
-                    $expd = explode("_", $fileOld);
-                   if ($expd[0] == 1 || $expd[0] == 2 || $expd[0] == 3) {
-                        unlink($uploadPath . $fileOld);
-                        $fileDocument->move($uploadPath, $fileName);
-                        $simpandata = [
-                            'foto' => $fileName,
-                            'keterangan' => $this->request->getVar('keterangan')
-                        ];
-                        $this->model->update($id, $simpandata);
-                        $msg = [
-                            'sukses' => 'File berhasil di simpan'
-                        ];
-                   }
-                }
-                    echo json_encode($msg);              
-        } else {
-            exit('Not Process');
-        }
-    }
-
-
     Public function upload_foto()
     {
         if ($this->request->isAJAX()) {
