@@ -86,26 +86,6 @@ class Profil extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function show($id = null)
-    {
-        //
-    }
-
-    /**
-     * Return a new resource object, with default properties.
-     *
-     * @return ResponseInterface
-     */
-    public function new()
-    {
-        
-    }
-
-    /**
-     * Create a new resource object, from "posted" parameters.
-     *
-     * @return ResponseInterface
-     */
     public function create()
     {
         if ($this->request->isAJAX()) {
@@ -168,18 +148,7 @@ class Profil extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function edit($id = null)
-    {
-        //
-    }
 
-    /**
-     * Add or update a model resource, from "posted" properties.
-     *
-     * @param int|string|null $id
-     *
-     * @return ResponseInterface
-     */
     public function update($id = null)
     {
         if ($this->request->isAJAX()) {
@@ -240,8 +209,45 @@ class Profil extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function delete($id = null)
+    public function do_upload()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $foto = $this->request->getFile('user_image');
+            $fileName = user()->username.'_'.str_replace(" ", "_", $foto->getRandomName());
+            $uploadPath = FCPATH . 'Uploads/Foto/';
+            $fullname = $this->request->getVar('fullname');
+
+            $id = ['id' => user_id()];
+            $foto_lama = $this->modelUsers->find(user_id());
+
+            $simpandata = [
+                'user_image' => $fileName,
+                'fullname' => $fullname
+            ];
+            
+            $upload = $this->modelUsers->update($id, $simpandata);
+            
+            if (!$upload) {
+                $msg = [
+                    'error' => 'Foto gagal diubah'
+                ];
+            } else if (str_contains(strtolower($fileName), strtolower(user()->username))) {
+                $foto->move($uploadPath, $fileName);
+                @unlink($uploadPath . $foto_lama['user_image']);
+
+                $msg = [
+                    'sukses' => 'Foto berhasil diubah'
+                ];
+            } else {
+                $foto->move($uploadPath, $fileName);
+                $msg = [
+                    'sukses' => 'Foto berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+
+        } else {
+            exit('Not Proccess');
+        }
     }
 }

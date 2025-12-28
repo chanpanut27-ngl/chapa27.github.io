@@ -1,7 +1,4 @@
 <?= $this->extend('Backend/Layout/_main'); ?>
-<?= $this->section('topAssets'); ?>
-<link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
-<?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
 <div class="pc-container">
@@ -57,13 +54,9 @@
         <!-- [ Main Content ] end -->
     </div>
 </div>
-<div class="view-modal" style="display: none;"></div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
-<script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 
 <script>
