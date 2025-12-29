@@ -477,4 +477,66 @@ class PerintahUjiSampel extends ResourceController
             exit('Not Process');
         }
     }
+
+    public function cetak_perintah_uji1($param)
+    {
+    }
+
+    public function cetak_perintah_uji($param)
+    {
+       
+            $_data = '';
+
+            $param1 = explode("-", $param)[0];
+            $param2 = explode("-", $param)[1];
+            $param3 = explode("-", $param)[2];
+
+
+            $kode_pengantar = strtolower($param1);
+            $id_kat_lab = intval($param2);
+            $id_instalasi = intval($param3);
+
+
+            $instalasi = $this->modelInstalasi->find($id_instalasi);
+
+            // Penanggung jawab sampel
+            $penanggung_jawab = $this->modelPj->select('id_kat_lab, tgl_terima_sampel')
+            ->where('kode_pengantar', $kode_pengantar)
+            ->where('id_kat_lab', $id_kat_lab)->first();
+
+            // id pengantar lhu
+            $id_pengantar_lhu = $this->modelPengantarLhu->select('id')
+            ->where('kode_pengantar', $kode_pengantar)->first();
+           
+            $cek_data = $this->model->where('kode_pengantar', $kode_pengantar)
+            ->where('id_instalasi', $id_instalasi)->first();
+            $id_perintah_uji = $cek_data['id'];
+
+            if ($id_instalasi == 1) {
+                $_data = $this->modelMpu->get_data_sampel_lingkungan_perintah_uji($id_perintah_uji);
+            }else{
+                $_data = $this->modelMpu->get_data_spesimen_penyakit_perintah_uji($id_perintah_uji);
+            }
+
+            $search = $this->model->where('kode_pengantar', $kode_pengantar)
+            ->where('id_instalasi', $id_instalasi)->first();
+
+
+            $data = [
+                'title' => 'Edit ' . $this->title . ' ('.$kode_pengantar.')',
+                'id_instalasi' => $id_instalasi,
+                'instalasi' => $instalasi,
+                'kode_pengantar' => $kode_pengantar,
+                'id_pengantar_lhu' => $id_pengantar_lhu,
+                'tgl_terima_sampel' => $penanggung_jawab,
+                'items' => $_data,
+                'search' => $search,
+                'id_perintah_uji' => $id_perintah_uji
+            ];
+            
+
+          return view('Backend/Modul/Pelayanan/Perintah-uji/_cetak', $data);
+
+    }
+
 }

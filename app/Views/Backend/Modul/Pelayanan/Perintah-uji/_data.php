@@ -1,9 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-
-use App\Models\PerintahUjiSampelModel;
-
+        use App\Models\PerintahUjiSampelModel;
         $arrth = ['No', 'Kode Pengantar', 'Instalasi', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
@@ -15,12 +13,12 @@ use App\Models\PerintahUjiSampelModel;
     <tbody style="font-family: arial;">
         <?php
         $no = 1;
-        // var_dump($items);
         $pus = new PerintahUjiSampelModel();
         foreach ($items as $row) :  
         $fpush = $pus->where('kode_pengantar', $row['kode_pengantar'])
         ->where('id_instalasi', $row['id_instalasi'])->first();
         ?>
+        <input type="hidden" id="kp" value="<?= $row['kode_pengantar'] ?>">
             <tr id="myId-<?= $row['id_instalasi']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_pengantar']; ?></td>
@@ -34,7 +32,7 @@ use App\Models\PerintahUjiSampelModel;
                             <button type="button" class="btn btn-warning btn-sm rounded btn-edit" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
                                 <span class="pc-micon"><span class="fa-solid fa-edit"></span></span>
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-print" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
+                            <button class="btn btn-info rounded btn-sm" onclick="return clickBtn('<?= $row['kode_pengantar'].'-'.$row['id_kat_lab'].'-'.$row['id_instalasi'] ?>')" title="Cetak">
                                 <span class="pc-micon"><span class="fa-solid fa-print"></span></span>
                             </button>
                            <button type="button" class="btn btn-danger btn-sm rounded btn-delete" data-kode="<?= $row['kode_pengantar'];?>" data-instalasi="<?= $row['id_instalasi'];?>" data-id="<?= $row['id_instalasi']; ?>">
@@ -57,6 +55,31 @@ use App\Models\PerintahUjiSampelModel;
     </tbody>
 </table>
 <script>
+    function clickBtn(id) {
+        var urls = 'cetak/perintah-uji/'+id;
+        var WinPrint = window.open('<?= site_url() ?>'+urls, '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+    }
+    $(".btnPrint").click(function () {
+        var kode_pengantar = $(this).data('kode');
+        var id_kat_lab = $(this).data('katlab');
+        var id_instalasi = $(this).data("id");
+
+        var urls = 'cetak/perintah-uji/'+kode_pengantar+'-'+id_kat_lab+'-'+id_instalasi;
+        var WinPrint = window.open('<?= site_url() ?>'+urls, '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+    })
+
+
+
     $(".btn-delete").click(function(e) {
         e.preventDefault();
       
@@ -182,7 +205,6 @@ use App\Models\PerintahUjiSampelModel;
         })
     })
     
-
     $(document).ready(function() {
         new DataTable('#example', {
             responsive: true

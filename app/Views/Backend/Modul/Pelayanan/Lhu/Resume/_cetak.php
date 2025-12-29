@@ -17,7 +17,7 @@
         // window.print();
     </script>
 </head>
-<body>
+<body class="p-1">
 <?php
     use App\Models\KondisiLingkunganPengantarModel;
     use App\Models\SampelLingkunganModel;
@@ -137,9 +137,40 @@
                             <td><?= $row['jenis_wadah']; ?></td>
                             <td><?= $row['jenis_pengawet']; ?></td>
                         </tr>
-                    <?php }} endif; endforeach;?>
+                        <?php }} endif; endforeach;?>
                     </tbody>
                 </table>
+            </div>
+            <div class="col-md-6 mb-2">
+                <table style="border: 2px solid black; width:100%;">
+                    <tbody>
+                        <tr>
+                            <td>Keterangan :</td>
+                        </tr>
+                        <tr>
+                            <td>Parameter yang tidak dapat di uji :</td>
+                        </tr>
+                        <tr>
+                            <td>Sub kontrak :</td>
+                        </tr>
+                        <tr>
+                            <td>Kontrak diulang :</td>
+                        </tr>
+                        <tr>
+                            <td>Permintaan khusus :</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Kami tidak menjamin kualitas sampel yang tidak sesuai SOP/kriteria penerimaan sampel</b>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-6 mb-2"  style="border:2px solid black; align-items: center;justify-content: center;display:flex;">
+                <h3 class="text-center">
+                    <b>Tidak Menerima Gratifikasi Dalam Bentuk Apapun</b>
+                </h3>
             </div>
         </div>    
         <div style="page-break-before:always;"></div>

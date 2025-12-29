@@ -70,9 +70,11 @@
                         <?php 
                         if (!$menu_lab) {
                             ?>
-                                <div class="alert alert-danger fw-bold" role="alert">
-                                    Laboratorim tujuan belum di pilih !
-                                    <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="href"> [Kembali]</a>
+                                <div class="card-body">
+                                    <div class="alert alert-danger fw-bold" role="alert">
+                                        Laboratorim tujuan belum di pilih !
+                                        <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="href"> [Kembali]</a>
+                                    </div>
                                 </div>
                             <?php
                         }else{
@@ -120,7 +122,7 @@
                                     <a class="nav-link navtabs" href="<?= base_url('pelayanan/pengantar-lhu/resume/'.strtolower($kode_pengantar));?>">Resume</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="nav-link bg-info text-white" title="Kembali"><span class="fa-solid fa-arrow-left"></span> Kembali</a>
+                                    <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="nav-link bg-default" title="Kembali"><span class="fa-solid fa-arrow-left"></span> Kembali</a>
                                 </li>
                             </ul>
                         <?php } ?>

@@ -85,3 +85,13 @@
   /* Atau: */
   /* object-fit: contain; */ /* Menampilkan seluruh gambar, mungkin ada ruang kosong */
 }
+
+
+
+/* label printer */
+.persegi-panjang {
+    width: 6cm;
+    height: 3cm;
+    background-color: #007bff; /* Warna latar belakang biru (opsional) */
+    border: 1px solid black; /* Garis tepi (opsional) */
+}

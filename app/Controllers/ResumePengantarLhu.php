@@ -78,4 +78,5 @@ class ResumePengantarLhu extends BaseController
         return view('Backend/Modul/Pelayanan/Lhu/Resume/_cetak', $data);
     }
 
+   
 }
