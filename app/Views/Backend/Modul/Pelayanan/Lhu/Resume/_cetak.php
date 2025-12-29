@@ -299,7 +299,6 @@
             </div>
             <?php endforeach;?>
             <div style="page-break-after:always;"></div>
-
         </div>    
         <?php 
         endforeach; ?>
