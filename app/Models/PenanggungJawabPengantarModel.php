@@ -53,7 +53,7 @@ class PenanggungJawabPengantarModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-     public function konversi_tanggal($param = null) 
+    public function konversi_tanggal($param = null) 
     {
        $date = date('m', strtotime($param));
        $month = [
@@ -80,4 +80,16 @@ class PenanggungJawabPengantarModel extends Model
        }
 
     }
+
+    public function get_data($param1, $param2)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('penanggung_jawab_pengantar');
+        $builder->select('*');
+        $builder->where('kode_pengantar', $param1);
+        $builder->where('id_kat_lab', $param2);
+        $query = $builder->get()->getResultArray();
+        return $query;    
+    }
+
 }

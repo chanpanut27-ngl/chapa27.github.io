@@ -51,4 +51,16 @@ class KeteranganPengantarModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function get_data($param1, $param2)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('keterangan_pengantar');
+        $builder->select('*');
+        $builder->where('kode_pengantar', $param1);
+        $builder->where('id_kat_lab', $param2);
+        $query = $builder->get()->getResultArray();
+        return $query;    
+    }
+
 }
