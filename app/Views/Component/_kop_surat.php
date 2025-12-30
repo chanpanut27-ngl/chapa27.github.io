@@ -3,7 +3,7 @@
     <div class="col-md-9">
         <img src="<?= base_url('assets/images/logo.webp'); ?>" class="img-fluid" alt="logo" style="height: 55px;">
     </div>
-    <div class="col-md-3 d-flex">
+    <div class="col-md-3">
         <label for="" class="title-kemenkes">Kementerian Kesehatan </label><br>
         <label for="" class="desc-kemenkes">
         <b>Direktorat Jenderal</b> <br>

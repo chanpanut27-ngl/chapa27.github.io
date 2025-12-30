@@ -38,7 +38,7 @@ class ResumePengantarLhu extends BaseController
         return view('Backend/Modul/Pelayanan/Lhu/Resume/index', $data);
     }
 
-    public function list($id = null)
+    public function list()
     {
         if ($this->request->isAJAX()) {
             $kode_pengantar = $this->request->getVar('kode_pengantar');
@@ -53,7 +53,7 @@ class ResumePengantarLhu extends BaseController
             ];
 
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Resume/_data')
+                'data' => view('Backend/Modul/Pelayanan/Lhu/Resume/_data', $data)
             ];
 
             echo json_encode($msg);

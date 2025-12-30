@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" id="main-style-link" >
     <title><?= $kode_pengantar.'_Pengantar_LHU' ?></title>
-    
     <style media="print">
-        /* Sembunyikan elemen dengan ID ci-logo dan kelas no-print saat mencetak */
         #toolbarContainer, .no-print, button {
             display: none !important;
         }

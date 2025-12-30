@@ -1,4 +1,5 @@
 <?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
+
 <?= $this->section('content_menu'); ?>
 <?php
 
@@ -16,17 +17,11 @@
     $kaji_ulang = new KajiUlangKontrakPengantarModel();
     $penanggung_jawab = new PenanggungJawabPengantarModel();
 
-    foreach ($data_pelanggan as $dp) {
-        $alamat = $dp['alamat'];
-    }
-
+foreach ($data_pelanggan as $dp) :
 ?>
 <div class="card">
     <div class="card-header p-2">
         <div class="d-flex justify-content-end align-items-center gap-1">
-            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
-            </button>
             <button class="btn btn-info rounded btn-sm btnPrint" data-id="<?= $kode_pengantar ?>" onclick="openWin();" title="Cetak">
                 <span class="pc-micon"><span class="fa-solid fa-print"></span></span>
             </button>
@@ -39,24 +34,25 @@
             foreach ($r as $x) {
                 if ($kl['idkatlab'] == $x['id_kat_lab']) {
                     $klss = $x['kondisi_lingkungan_sekitar_sampel'];
+                    $ca = $x['catatan_abnormalitas'];
                 }
             }
             ?>
         <h4 style="text-align: center;"><b>PENERIMAAN SAMPEL</b></h4><hr style="border: 1px solid;">
-        <div class="row">
+        <div class="row" style="font-family: arial;">
             <div class="col-md-12 mb-2">
                 <table class="table-bordered" style="border: 1px solid black; width:100%;">
                     <tr>
-                        <td width="10%"><b>Asal sampel</b></td>
-                        <td width="50%" style="vertical-align: top;"><?= $dp['nama']; ?></td>
-                        <td rowspan="3" style="vertical-align: top;"><b>Kondisi lingkungan sampel : </b><?= $klss; ?></td>
+                        <td class="p-1 fw-bold" width="10%">Asal sampel</td>
+                        <td class="p-1" width="50%"><?= $dp['nama']; ?></td>
+                        <td class="p-1 align-top" rowspan="3"><b>Kondisi lingkungan sampel : </b><?= $klss; ?></td>
                     </tr>
                     <tr>
-                        <td><b>Alamat</b></td>
-                        <td style="vertical-align: top;"><?= $dp['alamat'] ?></td>
+                        <td class="p-1 fw-bold">Alamat</td>
+                        <td class="p-1"><?= $dp['alamat'] ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="vertical-align: top;"><b>Catatan abnormalitas : </b> <?= '[empty]'; ?></td>
+                        <td class="align-top p-1" colspan="2"><b>Catatan abnormalitas : </b> <?= $ca; ?></td>
                     </tr>
                 </table>
             </div>
@@ -68,11 +64,11 @@
                             if ($kl['idkatlab'] == $lab['id_kat_lab']) :
                         ?>
                         <tr>
-                            <td colspan="10" style="font-weight: bold; font-family:Arial;">
+                            <td colspan="10" class="p-1 fw-bold">
                                 <?= ucfirst($lab['nama_lab']);?>
                             </td>
                         </tr>
-                        <tr style="font-weight:bold; text-align:center; font-size:12px;">
+                        <tr class="fw-bold text-center" style="font-size:12px;">
                             <th>No.</th>
                             <th width="10%">Kode sampel</th>
                             <th>Jenis sampel</th>
@@ -95,16 +91,16 @@
                             $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel']));
                         ?>
                         <tr>
-                            <td><?= $index++ ?></td>
-                            <td style="text-align: center;"><b><?= $row['kode_sampel']; ?></b></td>
-                            <td><?= $row['jenis_sampel']; ?></td>
-                            <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
-                            <td style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
-                            <td><?= $row['peraturan']; ?></td>
-                            <td><?= $row['metode_pemeriksaan']; ?></td>
-                            <td style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
-                            <td><?= $row['jenis_wadah']; ?></td>
-                            <td><?= $row['jenis_pengawet']; ?></td>
+                            <td class="p-1"><?= $index++ ?></td>
+                            <td class="p-1 text-center"><b><?= $row['kode_sampel']; ?></b></td>
+                            <td class="p-1"><?= $row['jenis_sampel']; ?></td>
+                            <td class="p-1"><?= $row['lokasi_pengambilan_sampel']; ?></td>
+                            <td class="p-1" style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
+                            <td class="p-1"><?= $row['peraturan']; ?></td>
+                            <td class="p-1"><?= $row['metode_pemeriksaan']; ?></td>
+                            <td class="p-1" style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
+                            <td class="p-1"><?= $row['jenis_wadah']; ?></td>
+                            <td class="p-1"><?= $row['jenis_pengawet']; ?></td>
                         </tr>
                         <?php  }
                         } else {
@@ -114,16 +110,16 @@
                             $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_periksa_sampel'])).' '. date('H:i', strtotime($row['jam_periksa_sampel']));
                         ?>
                         <tr>
-                            <td><?= $index++ ?></td>
-                            <td style="text-align: center;"><b><?= $row['kode_sampel']; ?></b></td>
-                            <td><?= $row['jenis_sampel']; ?></td>
-                            <td><?= $row['identitas_sampel']; ?></td>
-                            <td style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
-                            <td><?= $row['peraturan']; ?></td>
-                            <td><?= $row['metode_pemeriksaan']; ?></td>
-                            <td style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
-                            <td><?= $row['jenis_wadah']; ?></td>
-                            <td><?= $row['jenis_pengawet']; ?></td>
+                            <td class="p-1"><?= $index++ ?></td>
+                            <td class="p-1" style="text-align: center;"><b><?= $row['kode_sampel']; ?></b></td>
+                            <td class="p-1"><?= $row['jenis_sampel']; ?></td>
+                            <td class="p-1"><?= $row['identitas_sampel']; ?></td>
+                            <td class="p-1" style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
+                            <td class="p-1"><?= $row['peraturan']; ?></td>
+                            <td class="p-1"><?= $row['metode_pemeriksaan']; ?></td>
+                            <td class="p-1" style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
+                            <td class="p-1"><?= $row['jenis_wadah']; ?></td>
+                            <td class="p-1"><?= $row['jenis_pengawet']; ?></td>
                         </tr>
                     <?php }} endif; endforeach;?>
                     </tbody>
@@ -153,17 +149,15 @@
                             <td class="p-1">Permintaan khusus : <?= $row['permintaan_khusus'] ?></td>
                         </tr>
                         <tr>
-                            <td class="p-1">
-                                <label for="">
-                                    <b><i>Kami tidak menjamin kualitas sampel yang tidak sesuai SOP/kriteria penerimaan sampel</i></b>
-                                </label>
+                            <td class="p-1 fw-bold">
+                                <i>Kami tidak menjamin kualitas sampel yang tidak sesuai SOP/kriteria penerimaan sampel</i>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-md-6 mb-2" style="align-items: center;justify-content: center;display:flex;">
-                <h4 class="text-center">
+                <h4 class="fw-bold text-center">
                     Tidak Menerima Gratifikasi Dalam Bentuk Apapun
                 </h4>
             </div>
@@ -284,28 +278,12 @@
         endforeach; ?>
     </div>
 </div>
+<?php endforeach;?>
 <?= $this->endSection(); ?>
+
 <?= $this->section('bottomAssets'); ?>
 <script>
-    function listData() {
-        var kode_pengantar = $('.btnPrint').data("id");
-        $.ajax({
-            url: "<?= site_url('pelayanan/resume/list-data'); ?>",
-            dataType: 'json',
-            data:{
-                kode_pengantar:kode_pengantar
-            },
-            success: function(response) {
-                $(".view-data").html(response.data);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        })
-    }
-
     function openWin() {
-        var prtContent = document.getElementById("#kodePengantar");
         var WinPrint = window.open('<?= base_url('cetak/resume/'.strtolower($kode_pengantar)) ?>', '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
         WinPrint.document.close();
