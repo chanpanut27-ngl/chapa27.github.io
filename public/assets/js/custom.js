@@ -12,7 +12,10 @@ $(document).ready(function () {
             url: currentUrl+'/list-data',
             dataType: 'json',
             beforeSend: function() {
-                $(".btn-refresh").html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.view-data').removeAttr('span');
             },
             success: function(response) 
             {

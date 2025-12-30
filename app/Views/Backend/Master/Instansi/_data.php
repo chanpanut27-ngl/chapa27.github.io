@@ -41,6 +41,7 @@
             type: 'get',
             url: '<?= site_url('master-data/instansi/edit-data/'); ?>' + id,
             dataType: 'json',
+            cache: false,
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();
