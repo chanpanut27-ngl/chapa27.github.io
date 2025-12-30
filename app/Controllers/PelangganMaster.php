@@ -21,7 +21,7 @@ class PelangganMaster extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
         $this->title = 'Pelanggan';
         $this->model = new PelangganModel();
         $this->validation = \Config\Services::validation();

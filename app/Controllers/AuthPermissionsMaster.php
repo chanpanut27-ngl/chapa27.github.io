@@ -19,7 +19,7 @@ class AuthPermissionsMaster extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
         $this->title = 'Auth Permissions';
         $this->model = new AuthPermissionsModel();
         $this->validation = \Config\Services::validation();

@@ -10,7 +10,7 @@ class FileReader extends BaseController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
     }
 
     public function standar_pelayanan()

@@ -19,7 +19,7 @@ class BiayaAkomodasi extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
         $this->title = 'Biaya akomodasi';
         $this->model = new BiayaAkomodasiModel();
         $this->validation = \Config\Services::validation();

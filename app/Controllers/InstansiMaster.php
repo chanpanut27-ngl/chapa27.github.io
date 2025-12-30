@@ -19,7 +19,7 @@ class InstansiMaster extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
         $this->title = 'Instansi';
         $this->model = new InstansiModel();
         $this->validation = \Config\Services::validation();

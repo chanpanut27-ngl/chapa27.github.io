@@ -11,7 +11,7 @@ class FormulirReader extends BaseController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
     }
     
     public function prosedur_permintaan_pemeriksaan_pengujian()

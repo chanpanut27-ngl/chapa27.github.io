@@ -19,7 +19,7 @@ class PeraturanMaster extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
         $this->title = 'Peraturan/Baku Mutu';
         $this->model = new PeraturanModel();
         $this->validation = \Config\Services::validation();

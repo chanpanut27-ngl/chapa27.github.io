@@ -19,7 +19,7 @@ class AuthLoginsMaster extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
         $this->title = 'Auth Logins';
         $this->model = new AuthLoginsModel();
         $this->validation = \Config\Services::validation();

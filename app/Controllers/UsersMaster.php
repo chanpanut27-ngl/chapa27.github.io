@@ -19,7 +19,7 @@ class UsersMaster extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
         $this->title = 'Users';
         $this->model = new UsersModel();
         $this->validation = \Config\Services::validation();

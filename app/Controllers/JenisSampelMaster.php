@@ -23,7 +23,7 @@ class JenisSampelMaster extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
         $this->title = 'Jenis sampel';
         $this->model = new JenisSampelModel();
         $this->modelLab = new LaboratoriumModel();

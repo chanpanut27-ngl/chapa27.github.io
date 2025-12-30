@@ -9,7 +9,7 @@ class BookletReader extends BaseController
 {
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
     }
     
     public function booklet_3()

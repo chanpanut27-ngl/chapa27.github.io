@@ -23,7 +23,7 @@ class LaboratoriumMaster extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+        $this->cachePage(5);
         $this->title = 'Laboratorium';
         $this->model = new LaboratoriumModel();
         $this->masterInstalasi = new InstalasiModel(); 
