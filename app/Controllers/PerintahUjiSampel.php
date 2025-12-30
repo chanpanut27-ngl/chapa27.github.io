@@ -32,7 +32,7 @@ class PerintahUjiSampel extends ResourceController
 
     public function __construct()
     {
-        $this->cachePage(60);
+       
         $this->title = 'Perintah Uji Sampel';
         $this->model = new PerintahUjiSampelModel();
         $this->modelPj = new PenanggungJawabPengantarModel();

@@ -18,7 +18,8 @@
 <body>
 <?php
 
-    use App\Models\KajiUlangKontrakPengantarModel;
+            use App\Libraries\CustomLib;
+            use App\Models\KajiUlangKontrakPengantarModel;
     use App\Models\KeteranganPengantarModel;
     use App\Models\KondisiLingkunganPengantarModel;
     use App\Models\PenanggungJawabPengantarModel;
@@ -54,7 +55,17 @@
             }
             ?>
         <!-- HEADER --> <!-- start -->
-        <?= $this->include('Component/_kop_surat'); ?>
+        <div class="row">
+            <div class="col-md-9">
+                <?php
+                $custom_lib = new CustomLib();
+                echo $custom_lib->logo_kopsurat();
+                ?>
+            </div>
+            <div class="col-md-3">
+                <?php echo $custom_lib->ket_kopsurat($nomor_form);?>
+            </div>
+        </div>
         <!-- HEADER --> <!-- end -->
 
         <h4 style="text-align: center;"><b>PENERIMAAN SAMPEL</b><br>

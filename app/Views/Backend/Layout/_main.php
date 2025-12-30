@@ -1,14 +1,9 @@
 <?php 
 $page = '';
-
-if (in_groups('superadmin')) {
-    $page = 'Backend';
-} else if (in_groups('admin')) {
-    $page = 'Backend';
-} else if (in_groups('user')) {
-    $page = 'Backend';
-} else {
+if (in_groups('Pelanggan')) {
     $page = 'Pelanggan';
+}else{
+    $page = 'Backend';
 }
 ?>
 <!-- [ Top ] start -->
