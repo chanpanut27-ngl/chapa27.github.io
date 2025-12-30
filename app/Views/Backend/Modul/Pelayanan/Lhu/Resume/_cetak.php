@@ -37,7 +37,7 @@
     }
 ?>
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button class="btn btn-info rounded btn-sm" onclick="window.print()" title="Cetak" style="text-align: right;">
+        <button class="btn btn-primary rounded btn-sm" onclick="window.print()" title="Cetak" style="text-align: right;">
             <span class="fa-solid fa-print"></span> Cetak
         </button>
     </div>

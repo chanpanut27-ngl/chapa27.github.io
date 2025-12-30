@@ -186,6 +186,7 @@ $routes->group('pelayanan/pengantar-lhu/resume', function ($routes) {
 
 /* Cetak Resume Pengantar LHU */
 $routes->get('cetak/resume/(:any)', 'ResumePengantarLhu::cetak/$1');
+$routes->get('cetak/perintah-uji/(:any)', 'PerintahUjiSampel::cetak/$1');
 
 
 /** Perintah uji sampel **/

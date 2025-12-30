@@ -478,11 +478,7 @@ class PerintahUjiSampel extends ResourceController
         }
     }
 
-    public function cetak_perintah_uji1($param)
-    {
-    }
-
-    public function cetak_perintah_uji($param)
+    public function cetak($param)
     {
        
             $_data = '';

@@ -22,8 +22,8 @@ foreach ($data_pelanggan as $dp) :
 <div class="card">
     <div class="card-header p-2">
         <div class="d-flex justify-content-end align-items-center gap-1">
-            <button class="btn btn-info rounded btn-sm btnPrint" data-id="<?= $kode_pengantar ?>" onclick="openWin();" title="Cetak">
-                <span class="pc-micon"><span class="fa-solid fa-print"></span></span>
+            <button class="btn btn-info rounded btn-sm btnPrint" data-id="<?= $kode_pengantar ?>" onclick="openWin();" title="Lihat">
+                <span class="pc-micon"><span class="fa-solid fa-eye"></span></span>
             </button>
         </div>
     </div>

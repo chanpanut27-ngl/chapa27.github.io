@@ -19,7 +19,7 @@
 </head>
 <body>
     <div class="d-flex justify-content-end align-items-center mt-1">
-        <button class="btn btn-info rounded btn-sm" onclick="window.print()" title="Cetak" style="text-align: right;">
+        <button class="btn btn-primary rounded btn-sm" onclick="window.print()" title="Cetak" style="text-align: right;">
             <span class="fa-solid fa-print"></span> Cetak
         </button>
     </div>
@@ -28,20 +28,20 @@
         <div class="col-md-12">
             <table>
                 <tr>
-                    <td class="p-1 fw-bold"><b>1. Tanggal penerimaan sampel</b></td>
+                    <td class="p-1 fw-bold">1. Tanggal penerimaan sampel</td>
                     <td class="p-1">: <?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1 fw-bold"><b>2. Sifat pemeriksaan sampel</b></td>
+                    <td class="p-1 fw-bold">2. Sifat pemeriksaan sampel</td>
                     <td class="p-1">: 
                         <label for="biasa">
-                            <input type="checkbox" name="sifat_pemeriksaan" value="Biasa" id="biasa" <?= $search['sifat_pemeriksaan'] == 'Biasa' ? 'checked' : '' ?>> Biasa
+                            <?= $search['sifat_pemeriksaan'] == 'Biasa' ? '☑' : '□' ?> Biasa
                         </label>
                         <label for="kasus">
-                            <input type="checkbox" name="sifat_pemeriksaan" value="Kasus" id="kasus" <?= $search['sifat_pemeriksaan'] == 'Kasus' ? 'checked' : '' ?>> Kasus
+                            <?= $search['sifat_pemeriksaan'] == 'Kasus' ? '☑' : '□' ?> Kasus
                         </label>
                         <label for="rutin/proyek">
-                            <input type="checkbox" name="sifat_pemeriksaan" value="Rutin/Proyek" id="rutin/proyek" <?= $search['sifat_pemeriksaan'] == 'Rutin/Proyek' ? 'checked' : '' ?>> Rutin/Proyek
+                            <?= $search['sifat_pemeriksaan'] == 'Rutin/Proyek' ? '☑' : '□' ?> Rutin/Proyek
                         </label>
                     </td>
                 </tr>
@@ -75,9 +75,9 @@
                     <td class="p-2">
                         Catatan : <br>
 Hasil Analisa Lab <br>
-1. Semua sampel penerimaan Bakteriologi dikirm pada suhu 8C <br>
+1. Semua sampel penerimaan Bakteriologi dikirm pada suhu 8℃ <br>
 2. Batas pengiriman sampel sampai laboratorium <br>
-   a. Air minum dan Air Bersih : Pemeriksaan Coliform (<= 30 jam) dan Eschericha coli (<=8 jam) <br>
+   a. Air minum dan Air Bersih : Pemeriksaan Coliform (≤= 30 jam) dan Eschericha coli (≤= 8 jam) <br>
 3. Pengujian sampel = 15 hari kerja
                     </td>
                 </tr>
