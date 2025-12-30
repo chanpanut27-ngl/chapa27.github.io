@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" id="main-style-link" >
-    <title><?= $kode_pengantar.'_Pengantar_LHU' ?></title>
+    <title><?= strtoupper($kode_pengantar).'_Pengantar_LHU' ?></title>
     <style media="print">
         #toolbarContainer, .no-print, button {
             display: none !important;

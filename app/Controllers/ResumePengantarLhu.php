@@ -73,7 +73,8 @@ class ResumePengantarLhu extends BaseController
             'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
             'menu_lab' => $this->modelLabTujuan->get_data($kode_pengantar),
             'data_pelanggan' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
-            'group_lab_tujuan' => $this->modelLabTujuan->get_data_by_group_kat_lab($kode_pengantar)
+            'group_lab_tujuan' => $this->modelLabTujuan->get_data_by_group_kat_lab($kode_pengantar),
+            'nomor_form' => 'LB IV 7.1.1.1'
         ];
         return view('Backend/Modul/Pelayanan/Lhu/Resume/_cetak', $data);
     }

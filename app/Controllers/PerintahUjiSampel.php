@@ -519,7 +519,7 @@ class PerintahUjiSampel extends ResourceController
 
 
             $data = [
-                'title' => 'Edit ' . $this->title . ' ('.$kode_pengantar.')',
+                'title' => 'Surat ' . $this->title,
                 'id_instalasi' => $id_instalasi,
                 'instalasi' => $instalasi,
                 'kode_pengantar' => $kode_pengantar,
@@ -527,7 +527,8 @@ class PerintahUjiSampel extends ResourceController
                 'tgl_terima_sampel' => $penanggung_jawab,
                 'items' => $_data,
                 'search' => $search,
-                'id_perintah_uji' => $id_perintah_uji
+                'id_perintah_uji' => $id_perintah_uji,
+                'nomor_form' => 'LB IV 7.4.1.1'
             ];
             
 

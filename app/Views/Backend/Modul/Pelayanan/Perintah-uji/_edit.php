@@ -13,7 +13,15 @@
                 <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
                 <input type="text" name="id_perintah_uji" value="<?= $id_perintah_uji; ?>">
                 <div class="modal-body">
-                    <div class="mb-2">
+                     <div class="mb-2">
+                        <div class="col-md-6">
+                            <label for="tgl-terima" class="form-label h5">Tanggal Penerimaan Sampel</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" readonly id="tgl-terima">
+                        </div>
+                    </div>
+                    <div class="mb-3">
                         <label for="" class="form-label h5">Sifat Pemeriksaan Sampel</label><br>
                     </div>
                     <div class="mb-3">
@@ -62,10 +70,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label h5">Tim Kerja Program Layanan</label>
-                            <div class="mb-3">
-                                <label for="tgl-terima" class="form-label h5">Tanggal Penerimaan Sampel</label>
-                                <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" readonly id="tgl-terima">
-                            </div>
                             <div class="mb-3">
                                 <label for="tgl-kirim-sampel" class="form-label h5">Tanggal Kirim Sampel</label>
                                 <input type="text" name="tgl_kirim_sampel" value="<?= date('d-m-Y', strtotime($search['tgl_kirim_sampel'])) ?>" id="tgl-kirim-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
