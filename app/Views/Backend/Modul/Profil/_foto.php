@@ -6,11 +6,9 @@
         }
         $pathFile = 'Uploads/Foto/'.$foto;
         if (file_exists($pathFile)) {
-            $img = '<img src="'.base_url('Uploads/Foto/'.$foto).'" alt="" class="img-fluid img-foto">';
-           
+            $img = '<img src="'.base_url('Uploads/Foto/'.$foto).'" alt="" class="img-fluid img-foto">'; 
         }else{
             $img = '<img src="'.base_url('assets/images/default.svg').'" alt="" class="img-fluid">';
-
         }
         ?>
         <div class="mb-2 mt-3">

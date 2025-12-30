@@ -143,14 +143,30 @@ foreach ($dt_login as $row) {
                         data-bs-auto-close="outside"
                         aria-expanded="false"
                         >
-                        <img src="<?= $foto_user == 'default.svg' ? base_url('assets/images/default.svg') : base_url('Uploads/Foto/'.$foto_user); ?>" alt="user-image" class="user-avtar">
+                         <?php
+                            $pathFile = 'Uploads/Foto/'.$foto_user;
+                            if (file_exists($pathFile)) {
+                                $img = '<img src="'.base_url('Uploads/Foto/'.$foto_user).'" alt="" class="user-avtar">'; 
+                            }else{
+                                $img = '<img src="'.base_url('assets/images/default.svg').'" alt="user-image" class="user-avtar">';
+                            }
+                            echo $img;
+                        ?>
                         <span class="text-white"><?= user()->username; ?></span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header">
                             <div class="d-flex mb-1">
                                 <div class="flex-shrink-0">
-                                    <img src="<?= $foto_user == 'default.svg' ? base_url('assets/images/default.svg') : base_url('Uploads/Foto/'.$foto_user); ?>" alt="user-image" class="user-avtar wid-35" style="height: 40px;">
+                                     <?php
+                                    $pathFile = 'Uploads/Foto/'.$foto_user;
+                                    if (file_exists($pathFile)) {
+                                        $img = '<img src="'.base_url('Uploads/Foto/'.$foto_user).'" alt="" class="user-avtar">'; 
+                                    }else{
+                                        $img = '<img src="'.base_url('assets/images/default.svg').'" alt="user-image" class="user-avtar">';
+                                    }
+                                    echo $img;
+                                    ?>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="mb-1"><?= user()->username; ?></h6>

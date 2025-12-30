@@ -4,8 +4,9 @@
         foreach ($items as $rows) {
             $foto = $rows['user_image'];
         }
-        if ($foto != 'default.svg') {
-            $img = '<img src="'.base_url('Uploads/Foto/'.$foto).'" alt="" class="img-fluid img-foto">';
+        $pathFile = 'Uploads/Foto/'.$foto;
+        if (file_exists($pathFile)) {
+            $img = '<img src="'.base_url('Uploads/Foto/'.$foto).'" alt="" class="img-fluid img-foto">'; 
         }else{
             $img = '<img src="'.base_url('assets/images/default.svg').'" alt="" class="img-fluid">';
         }
@@ -24,7 +25,7 @@
     </div>
     <div class="card-footer p-2">
         <form action="<?= base_url('profil-pegawai/upload-foto') ?>" class="form-upload" enctpype="multipart/form-data">
-            <input type="file" name="user_image" id="user-image" class="form-control">
+            <input type="file" name="user_image" id="user-image" class="form-control" accept="image/png, image/jpg, image/jpeg">
             <button type="submit" class="btn btn-sm btn-primary mt-2 btn-upload">Ubah foto</button>
         </form>
     </div>
@@ -34,7 +35,6 @@
         $(".btn-upload").click(function(e) {
             e.preventDefault();
            
-            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
             var urls = $(".form-upload").attr('action');
             var formData = new FormData();
             var foto = $("#user-image")[0];
