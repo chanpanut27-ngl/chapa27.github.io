@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" id="main-style-link" >
-    <title><?= strtoupper($kode_pengantar).'_' ?><?= $title ?></title>
+    <title><?= strtoupper($kode_pengantar).'_'.'Surat_Perintah_Uji_sampel';?></title>
     
     <style media="print">
         /* Sembunyikan elemen dengan ID ci-logo dan kelas no-print saat mencetak */
@@ -27,7 +27,7 @@
         <div class="col-md-12">
             <table style="width: 100%;">
                 <tr>
-                    <td class="align-top" style="width: 75%;">
+                    <td class="align-top" style="width: 70%;">
                         <img src="<?= base_url('assets/images/logo-2.png'); ?>" class="img-fluid" alt="logo" style="height: 55px;">
                     </td>
                     <td>
