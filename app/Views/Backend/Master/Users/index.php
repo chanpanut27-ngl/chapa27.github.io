@@ -60,6 +60,12 @@
             url: "<?= site_url('master-data/users/list-data'); ?>",
             dataType: 'json',
             cache: false,
+            beforeSend: function() {
+                $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.view-data').removeAttr('span');
+            },
             success: function(response) {
                 $(".view-data").html(response.data);
             },

@@ -81,6 +81,7 @@
 
     $(document).ready(function() {
         listData();
+setInterval(() => checkConnectionAjax('<?= site_url('master-data/kategori-lab/list-data'); ?>'), 5000);
 
         $(".btn-tambah").click(function(e) {
             e.preventDefault();

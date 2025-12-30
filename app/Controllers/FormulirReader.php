@@ -3,10 +3,12 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Libraries\CustomLib;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class FormulirReader extends BaseController
 {
+
     public function __construct()
     {
         $this->cachePage(60);
@@ -14,7 +16,7 @@ class FormulirReader extends BaseController
     
     public function prosedur_permintaan_pemeriksaan_pengujian()
     {
-        $data = [
+       $data = [
             'title' => 'Prosedur permintaan pemeriksaan pengujian'
         ];
         return view('Backend/File/Formulir/_prosedur_permintaan_pemeriksaan_pengujian', $data);

@@ -34,6 +34,7 @@
         $(".btn-upload").click(function(e) {
             e.preventDefault();
            
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
             var urls = $(".form-upload").attr('action');
             var formData = new FormData();
             var foto = $("#user-image")[0];

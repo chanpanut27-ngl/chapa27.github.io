@@ -14,6 +14,10 @@ class BookletReader extends BaseController
     
     public function booklet_3()
     {
+        $this->response->setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $this->response->setHeader('Pragma', 'no-cache');
+        $this->response->setHeader('Expires', '0');
+
         $data = [
             'title' => 'Booklet 3'
         ];
@@ -22,6 +26,10 @@ class BookletReader extends BaseController
 
     public function harga_pnbp()
     {
+        $this->response->setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $this->response->setHeader('Pragma', 'no-cache');
+        $this->response->setHeader('Expires', '0');
+        
         $data = [
             'title' => 'Harga PNBP (Paket)'
         ];
