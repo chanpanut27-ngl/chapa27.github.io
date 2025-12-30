@@ -21,9 +21,11 @@ class PerintahUjiSampelModel extends Model
         'tgl_kirim_sampel',
         'tgl_terima_sampel_lab',
         'tgl_selesai_sampel',
-        'analisis_lab',
         'kepala_instalasi',
         'verificator',
+        'kepala_instalasi_prola',
+        'analis_lab',
+        'tgl_terima_sampel_analis_lab',
         'created_by',
         'deleted_by',
         'updated_by'

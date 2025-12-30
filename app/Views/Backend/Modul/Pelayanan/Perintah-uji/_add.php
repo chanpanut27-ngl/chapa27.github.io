@@ -54,10 +54,6 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="mb-3">
-                        <label for="analisis-lab" class="form-label h5">Analisis Laboratorium</label>
-                        <textarea name="analisis_lab" class="form-control" id="analisis-lab"></textarea>
-                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label h5">Tim Kerja Program Layanan</label>
@@ -88,6 +84,19 @@
                                 <div class="invalid-feedback errorTglSelesaiSampel"></div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="kepala-instalasi" class="form-label h5">Analis laboratorium</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label h5">Paraf</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tgl-terima-sampel-analis-lab" class="form-label h5">Tanggal Terima Sampel</label>
+                                <input type="text" name="tgl_terima_sampel_analis_lab" class="form-control" id="tgl-terima-analis-lab" autocomplete="off" placeholder="tgl-bln-thn">
+                                <div class="invalid-feedback errorTglTerimaAnalisLab"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -107,6 +116,13 @@
 
         var dateToday = new Date();
         $("#tgl-kirim-sampel").datepicker(
+            { 
+                dateFormat: 'dd-mm-yy', 
+                defaultDate: "",  inDate: dateToday
+            }
+        );
+
+        $("#tgl-terima-analis-lab").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
                 defaultDate: "",  inDate: dateToday

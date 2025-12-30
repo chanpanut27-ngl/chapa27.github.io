@@ -6,7 +6,7 @@ use CodeIgniter\Database\Migration;
 
 class MgdbPerintahUjiSampel extends Migration
 {
-   public function up()
+    public function up()
     {
         $this->forge->addField([
             'id' => [
@@ -45,8 +45,16 @@ class MgdbPerintahUjiSampel extends Migration
             'tgl_selesai_sampel' => [
                 'type'           => 'DATE'
             ],
+            'kepala_instalasi_prola' => [
+                'type'           => 'VARCHAR',
+                'constraint'     => '255'
+            ],
             'analisis_lab' => [
-                'type'       => 'TEXT'
+                'type'           => 'VARCHAR',
+                'constraint'     => '255'
+            ],
+            'tgl_terima_sampel_analis_lab' => [
+                'type'           => 'DATE'
             ],
             'kepala_instalasi' => [
                 'type'           => 'VARCHAR',

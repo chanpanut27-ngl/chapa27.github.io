@@ -3,11 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\KajiUlangKontrakPengantarModel;
-use App\Models\KeteranganPengantarModel;
-use App\Models\KondisiLingkunganPengantarModel;
 use App\Models\LaboratoriumTujuanModel;
-use App\Models\PenanggungJawabPengantarModel;
 use App\Models\PengantarLhuModel;
 use CodeIgniter\HTTP\ResponseInterface;
 

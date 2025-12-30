@@ -24,7 +24,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="upload-foto" class="form-label h4">Upload Foto</label>
-                        <input type="file" name="upload_foto" class="form-control" id="upload-foto">
+                        <input type="file" name="upload_foto" class="form-control" id="upload-foto" accept="image/png, image/jpg, image/jpeg">
                         <div class="invalid-feedback errorFile"></div>
                     </div>
                 </div>

@@ -4,9 +4,7 @@ namespace App\Controllers;
 
 use App\Models\InstalasiModel;
 use App\Models\MapPerintahUjiSampelModel;
-use App\Models\PenanggungJawabLhuModel;
 use App\Models\PenanggungJawabPengantarModel;
-use App\Models\PenanggungJawabSampelModel;
 use App\Models\PengantarLhuModel;
 use App\Models\PerintahUjiSampelModel;
 use CodeIgniter\RESTful\ResourceController;
@@ -198,6 +196,8 @@ class PerintahUjiSampel extends ResourceController
                 $tgl_selesai_sampel = $this->request->getVar('tgl_selesai_sampel');
                 $tgl_terima_sampel = $this->request->getVar('tgl_terima_sampel');
                 $kepala_instalasi = $this->request->getVar('kepala_instalasi');
+                $tgl_terima_sampel_analis_lab = $this->request->getVar('tgl_terima_sampel_analis_lab');
+
                 if ($kepala_instalasi != '') {
                     $username = user()->username;
                 }else{
@@ -212,7 +212,7 @@ class PerintahUjiSampel extends ResourceController
                     'kepala_instalasi' => $kepala_instalasi,
                     'tgl_terima_sampel_lab' => date('Y-m-d', strtotime($tgl_terima_sampel_lab)),
                     'tgl_selesai_sampel' => date('Y-m-d', strtotime($tgl_selesai_sampel)),
-                    'analisis_lab' => $this->request->getVar('analisis_lab'),
+                    'tgl_terima_sampel_analis_lab' => date('Y-m-d', strtotime($tgl_terima_sampel_analis_lab)),
                     'tgl_terima_sampel' => date('Y-m-d', strtotime($tgl_terima_sampel)),
                     'verificator' => $username
                 ];
@@ -382,8 +382,8 @@ class PerintahUjiSampel extends ResourceController
                 $tgl_selesai_sampel = $this->request->getVar('tgl_selesai_sampel');
                 $tgl_terima_sampel = $this->request->getVar('tgl_terima_sampel');
                 $kepala_instalasi = $this->request->getVar('kepala_instalasi');
+                $tgl_terima_sampel_analis_lab = $this->request->getVar('tgl_terima_sampel_analis_lab');
 
-              
                 if ($kepala_instalasi != '') {
                     $username = user()->username;
                 }else{
@@ -398,7 +398,7 @@ class PerintahUjiSampel extends ResourceController
                     'kepala_instalasi' => $kepala_instalasi,
                     'tgl_terima_sampel_lab' => date('Y-m-d', strtotime($tgl_terima_sampel_lab)),
                     'tgl_selesai_sampel' => date('Y-m-d', strtotime($tgl_selesai_sampel)),
-                    'analisis_lab' => $this->request->getVar('analisis_lab'),
+                    'tgl_terima_sampel_analis_lab' => date('Y-m-d', strtotime($tgl_terima_sampel_analis_lab)),
                     'tgl_terima_sampel' => date('Y-m-d', strtotime($tgl_terima_sampel)),
                     'verificator' => $username
                 ];

@@ -150,7 +150,7 @@
                 </tr>
                 <tr>
                     <td class="p-1 w-50"><b>Tanggal terima sampel</b></td>
-                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_terima_sampel'])) ?></td>
+                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_terima_sampel_analis_lab'])) ?></td>
                 </tr>
             </table>
         </div>

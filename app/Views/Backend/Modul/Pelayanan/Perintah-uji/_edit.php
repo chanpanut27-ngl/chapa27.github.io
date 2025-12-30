@@ -11,7 +11,7 @@
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
                 <input type="hidden" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
                 <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
-                <input type="text" name="id_perintah_uji" value="<?= $id_perintah_uji; ?>">
+                <input type="hidden" name="id_perintah_uji" value="<?= $id_perintah_uji; ?>">
                 <div class="modal-body">
                      <div class="mb-2">
                         <div class="col-md-6">
@@ -51,7 +51,7 @@
                             <tbody style="font-family: arial; font-size:12px;">
                                 <?php $no=1; foreach ($items as $row) : ?>
                                     <tr>
-                                        <td><?= $no++; ?><input type="text" name="id[]" value="<?= $row['id'] ?>"></td>
+                                        <td><?= $no++; ?><input type="hidden" name="id[]" value="<?= $row['id'] ?>"></td>
                                         <td><?= $row['kode_sampel']; ?></td>
                                         <td><?= $row['jenis_sampel'].','.$row['keterangan']; ?><input type="hidden" name="id_jenis_sampel[]" value="<?= $row['id_jenis_sampel'] ?>"></td>
                                         <td><?= $row['peraturan']; ?></td>
@@ -63,13 +63,13 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="mb-3">
-                        <label for="analisis-lab" class="form-label h5">Analisis Laboratorium</label>
-                        <textarea name="analisis_lab" class="form-control" id="analisis-lab"><?= $search['analisis_lab'] ?></textarea>
-                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label h5">Tim Kerja Program Layanan</label>
+                            <div class="mb-3">
+                                <label for="tgl-terima" class="form-label h5">Tanggal Penerimaan Sampel</label>
+                                <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" readonly id="tgl-terima">
+                            </div>
                             <div class="mb-3">
                                 <label for="tgl-kirim-sampel" class="form-label h5">Tanggal Kirim Sampel</label>
                                 <input type="text" name="tgl_kirim_sampel" value="<?= date('d-m-Y', strtotime($search['tgl_kirim_sampel'])) ?>" id="tgl-kirim-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
@@ -93,6 +93,19 @@
                                 <div class="invalid-feedback errorTglSelesaiSampel"></div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="kepala-instalasi" class="form-label h5">Analis laboratorium</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label h5">Paraf</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tgl-terima-analis-lab" class="form-label h5">Tanggal Terima Sampel</label>
+                                <input type="text" name="tgl_terima_sampel_analis_lab" value="<?= date('d-m-Y', strtotime($search['tgl_terima_sampel_analis_lab'])) ?>" class="form-control" id="tgl-terima-analis-lab" autocomplete="off" placeholder="tgl-bln-thn">
+                                <div class="invalid-feedback errorTglTerimaAnalisLab"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -111,7 +124,15 @@
         });
 
         var dateToday = new Date();
+
         $("#tgl-kirim-sampel").datepicker(
+            { 
+                dateFormat: 'dd-mm-yy', 
+                defaultDate: "",  inDate: dateToday
+            }
+        );
+
+        $("#tgl-terima-analis-lab").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
                 defaultDate: "",  inDate: dateToday
