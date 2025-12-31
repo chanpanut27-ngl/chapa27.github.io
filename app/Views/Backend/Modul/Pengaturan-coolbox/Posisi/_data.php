@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: calibri;">
         <?php
-        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Status', 'Tgl & Jam', 'Keterangan', 'foto', 'Status', ''];
+        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Status', 'Tgl & Jam', 'Keterangan', 'Foto', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -31,6 +31,16 @@
                 <td>
                     <a href="<?= base_url('Uploads/Coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" target="_blank" rel="noopener noreferrer">
                         <img src="<?= base_url('Uploads/Coolbox/'.str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto']); ?>" class="img-fluid" style="width: 100px; height:50px;">
+                        <?php
+                        $foto = str_replace("/", "_", $row['kode_coolbox']).'/'.$row['foto'];
+                        $pathFile = 'Uploads/Coolbox/'.$foto;
+                        if (file_exists($pathFile)) {
+                            $img = '<img src="'.base_url('Uploads/Coolbox/'.$foto).'" alt="" class="img-fluid" style="width: 100px; height:50px;">'; 
+                        }else{
+                            $img = '<i class="fa-solid fa-box"></i>';
+                        }
+                        echo $img;
+                        ?>
                     </a>
                 </td>
                 <td><?= $row['active_posisi'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
@@ -41,6 +51,9 @@
                         </button>
                         <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
+                        </button>
+                         <button class="btn btn-info rounded btn-sm" onclick="clickBtn(<?= $row['idx'];?>)" title="Lihat">
+                            <span class="pc-micon"><i class="fa-solid fa-eye"></i></span>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['idx']; ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
@@ -124,6 +137,16 @@
                 myElement.removeClass('bg bg-danger');
             }
         });
+    }
+
+    function clickBtn(id) {
+        var urls = 'cetak/label-coolbox/'+id;
+        var WinPrint = window.open('<?= site_url() ?>'+urls, '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
     }
 
     $(document).ready(function() {

@@ -23,7 +23,7 @@
                         <textarea name="keterangan" class="form-control" id="keterangan"><?= $items['keterangan']; ?></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="upload-foto" class="form-label h4">Upload Foto</label>
+                        <label for="upload-foto" class="form-label h5">Upload Foto</label>
                         <input type="file" name="upload_foto" class="form-control" id="upload-foto" accept="image/png, image/jpg, image/jpeg">
                         <div class="invalid-feedback errorFile"></div>
                     </div>
@@ -60,13 +60,13 @@
                 },
                 complete: function() {
                     $('.btn-upload').removeAttr('disable');
-                    $('.btn-upload').html('<span class="fa-solid fa-upload"></span>');
+                    $('.btn-upload').html('<span class="fa-solid fa-upload"></span> Upload');
                 },
                 success: function(response) {
                     if (response.error) {
                          Swal.fire({
                             title: "Gagal",
-                            text: response.error,
+                            text: response.status,
                             icon: "error"
                         });
                         $("#exampleModal").modal('hide');

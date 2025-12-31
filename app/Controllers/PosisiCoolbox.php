@@ -341,7 +341,7 @@ class PosisiCoolbox extends ResourceController
                 }
 
                 $fileDocument->move($uploadPath, $fileName);
-
+                
                 $simpandata = [
                     'id' => $id,
                     'foto' => $fileName,

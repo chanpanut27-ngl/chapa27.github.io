@@ -35,7 +35,7 @@
                             <button class="btn btn-info rounded btn-sm" onclick="return clickBtn('<?= strtolower($row['kode_pengantar']).'-'.$row['id_kat_lab'].'-'.$row['id_instalasi'] ?>')" title="Lihat">
                                 <span class="pc-micon"><i class="fa-solid fa-eye"></i></span>
                             </button>
-                           <button type="button" class="btn btn-danger btn-sm rounded btn-delete" data-kode="<?= $row['kode_pengantar'];?>" data-instalasi="<?= $row['id_instalasi'];?>" data-id="<?= $row['id_instalasi']; ?>">
+                            <button type="button" class="btn btn-danger btn-sm rounded btn-delete" data-kode="<?= $row['kode_pengantar'];?>" data-instalasi="<?= $row['id_instalasi'];?>" data-id="<?= $row['id_instalasi']; ?>">
                                 <span class="pc-micon"><span class="fa-solid fa-trash-alt"></span></span>
                             </button>
                             <?php
@@ -64,6 +64,7 @@
         WinPrint.print();
         WinPrint.close();
     }
+    
     $(".btnPrint").click(function () {
         var kode_pengantar = $(this).data('kode');
         var id_kat_lab = $(this).data('katlab');

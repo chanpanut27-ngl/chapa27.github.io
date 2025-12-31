@@ -102,4 +102,17 @@ class PosisiCoolboxModel extends Model
         return $query;
     }
 
+    public function get_data_by_id($param)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('posisi_coolbox');
+        $builder->select('posisi_coolbox.id as idx, master_coolbox.id AS id_coolbox, master_coolbox.kode_coolbox, posisi_coolbox.status,tanggal,jam,foto,posisi_coolbox.keterangan AS ket_coolbox,
+        posisi_coolbox.is_active AS active_posisi, master_instansi.nama_instansi');
+        $builder->join("master_coolbox", "master_coolbox.id = posisi_coolbox.id_coolbox");
+        $builder->join("master_instansi", "master_instansi.id = master_coolbox.id_instansi");
+        $builder->where('posisi_coolbox.id', $param);
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
 }

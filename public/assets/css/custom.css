@@ -92,6 +92,21 @@
 .persegi-panjang {
     width: 6cm;
     height: 3cm;
-    background-color: #007bff; /* Warna latar belakang biru (opsional) */
     border: 1px solid black; /* Garis tepi (opsional) */
+}
+
+.content-label {
+    width: 5.5cm;
+    height: 2.6cm;
+    margin-left: 0.2cm;
+    margin-right: 0.2cm;
+    margin-top: 0.2cm;
+    margin-bottom: 0.2cm;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: monospace;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
 }

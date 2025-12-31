@@ -52,7 +52,6 @@
         })
     }
 
-
     function deleteData(id) {
         var myElement = $('#myId-' + id);
         if (myElement.data('urut')) {
