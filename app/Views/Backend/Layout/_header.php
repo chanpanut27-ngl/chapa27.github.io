@@ -195,7 +195,7 @@ foreach ($dt_login as $row) {
                                     <i class="ti ti-user"></i>
                                     <span>Profile</span>
                                 </a>
-                                <a href="<?= base_url('logout'); ?>" class="dropdown-item">
+                                <a href="<?= base_url('logout'); ?>" class="bg-danger fw-bold text-light dropdown-item">
                                     <i class="ti ti-power"></i>
                                     <span>Logout</span>
                                 </a>

@@ -431,5 +431,17 @@ $routes->group('profil-pegawai', function ($routes) {
     $routes->post('upload-foto', 'ProfilPegawai::do_upload');
 });
 
+
+/* Per item sampel */
+$routes->group('master-data/per-item-sampel', function ($routes) {
+    $routes->get('', 'PerItemSampelMaster::index');
+    $routes->get('list-data', 'PerItemSampelMaster::list');
+    $routes->get('add-data', 'PerItemSampelMaster::new');
+    $routes->post('create-data', 'PerItemSampelMaster::create');
+    $routes->get('edit-data/(:num)', 'PerItemSampelMaster::edit/$1');
+    $routes->post('update-data', 'PerItemSampelMaster::update');
+    $routes->delete('delete-data/(:num)', 'PerItemSampelMaster::delete/$1');
+});
+
 $routes->resource('instalasi');
 // $routes->get('instalasi', 'Instalasi::index');
