@@ -3,31 +3,46 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/instansi/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/per-item-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instansi" class="form-label h5">Instansi</label>
-                        <input type="text" name="nama_instansi" class="form-control" id="nama-instansi" autocomplete="off">
-                        <div class="invalid-feedback errorNamaInstansi"></div>
+                        <label for="id-lab" class="form-label h5" style="font-family: arial;">Laboratorium</label>
+                        <select name="id_lab" class="form-select" id="id-lab" aria-label="Default select example">
+                            <option value="">-- Pilih --</option>
+                            <?php
+                            foreach ($masterLab as $row) :
+                            ?>
+                                <option value="<?= $row['id']; ?>"><?= $row['nama_lab']; ?></option>
+                            <?php
+                            endforeach;
+                            ?>
+                        </select>
+                        <div class="invalid-feedback errorIdLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="alamat" class="form-label h5">Alamat</label>
-                        <textarea name="alamat" class="form-control" id="alamat"></textarea>
-                        <div class="invalid-feedback errorAlamat"></div>
+                        <label for="id-jenis-sampel" class="form-label h5">Jenis sampel</label>
+                        <select name="id_jenis_sampel" class="form-select" id="id-jenis-sampel" aria-label="Default select example">
+                        </select>
+                        <div class="invalid-feedback errorIdJenisSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp" class="form-label h5">No.Telp</label>
-                        <input type="text" name="no_telp" class="form-control" id="no-telp">
-                        <div class="invalid-feedback errorNoTelp"></div>
+                        <label for="parameter" class="form-label h5">Parameter</label>
+                        <input type="text" name="parameter" class="form-control" id="parameter">
+                        <div class="invalid-feedback errorParameter"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="wilayah" class="form-label h5">Wilayah</label>
-                        <input type="text" name="wilayah" class="form-control" id="wilayah">
-                        <div class="invalid-feedback errorWilayah"></div>
+                        <label for="metode" class="form-label h5">Metode</label>
+                        <input type="text" name="metode" class="form-control" id="metode">
+                        <div class="invalid-feedback errorMetode"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="harga-per-titik" class="form-label h5">Harga per titik</label>
+                        <input type="text" name="harga_per_titik" class="form-control" id="harga-per-titik">
+                        <div class="invalid-feedback errorHargaPertitik"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -61,19 +76,19 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.nama_instansi) {
-                            $('#nama-instansi').addClass('is-invalid');
-                            $('.errorNamaInstansi').html(err.nama_instansi);
+                        if (err.id_lab) {
+                            $('#id-lab').addClass('is-invalid');
+                            $('.errorIdLab').html(err.id_lab);
                         } else {
-                            $('#nama-instansi').removeClass('is-invalid');
-                            $('.errorNamaInstansi').html('');
+                            $('#id-lab').removeClass('is-invalid');
+                            $('.errorIdLab').html('');
                         }
-                        if (err.wilayah) {
-                            $('#wilayah').addClass('is-invalid');
-                            $('.errorWilayah').html(err.wilayah);
+                        if (err.id_jenis_sampel) {
+                            $('#id-jenis-sampel').addClass('is-invalid');
+                            $('.errorIdJenisSampel').html(err.id_jenis_sampel);
                         } else {
-                            $('#wilayah').removeClass('is-invalid');
-                            $('.errorWilayah').html('');
+                            $('#id-jenis-sampel').removeClass('is-invalid');
+                            $('.errorIdJenisSampel').html('');
                         }
                     } else {
                         Swal.fire({
@@ -90,6 +105,37 @@
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
                 }
             })
+        })
+
+        $("#id-lab").change(function (e) {
+            e.preventDefault();
+            var id_lab = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "<?= site_url('master-data/per-item-sampel/list-sampel'); ?>",
+                data: {id_lab:id_lab},
+                // dataType: 'html',
+                cache: false,
+                beforeSend: function() {
+                    $('#id-jenis-sampel').attr('disable', 'disabled');
+                    $('#id-jenis-sampel').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                },
+                complete: function() {
+                    $('#id-jenis-sampel').removeAttr('disable');
+                },
+                success: function(response) {
+                    $("#id-jenis-sampel").html(response)
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+            })
+        })
+
+        $("#id-jenis-sampel").change(function (e) {
+            e.preventDefault();
+            alert('change');
         })
     })
 </script>

@@ -440,6 +440,7 @@ $routes->group('master-data/per-item-sampel', function ($routes) {
     $routes->post('create-data', 'PerItemSampelMaster::create');
     $routes->get('edit-data/(:num)', 'PerItemSampelMaster::edit/$1');
     $routes->post('update-data', 'PerItemSampelMaster::update');
+    $routes->post('list-sampel', 'PerItemSampelMaster::list_sampel');
     $routes->delete('delete-data/(:num)', 'PerItemSampelMaster::delete/$1');
 });
 
