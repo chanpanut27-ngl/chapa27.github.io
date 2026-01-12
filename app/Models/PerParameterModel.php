@@ -4,15 +4,20 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PerItemSampelModel extends Model
+class PerParameterModel extends Model
 {
-    protected $table            = 'per_item_sampel';
+    protected $table            = 'per_parameter';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'id_jenis_sampel', 
+        'parameter', 
+        'metode',
+        'harga_per_titik'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -21,7 +26,7 @@ class PerItemSampelModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = true;
+    protected $useTimestamps = false;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

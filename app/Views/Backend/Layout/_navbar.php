@@ -303,13 +303,13 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('master-data/per-item-sampel'); ?>" class="pc-link">
+                    <a href="<?= base_url('master-data/parameter'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">
-                                <use xlink:href="#per-item-sampel"></use>
+                                <use xlink:href="#per-parameter"></use>
                             </svg>
                         </span>
-                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Per item sampel</span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Per parameter</span>
                     </a>
                 </li>
                 <li class="pc-item">

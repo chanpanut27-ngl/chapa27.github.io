@@ -5,11 +5,11 @@ namespace App\Controllers;
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
 use App\Models\PeraturanModel;
-use App\Models\PerItemSampelModel;
+use App\Models\PerParameterModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class PerItemSampelMaster extends ResourceController
+class PerParameterMaster extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -20,7 +20,6 @@ class PerItemSampelMaster extends ResourceController
     protected $model;
     protected $validation;
     protected $modelLab;
-    protected $modelPeraturan;
     protected $modelSampel;
 
 
@@ -28,9 +27,8 @@ class PerItemSampelMaster extends ResourceController
     {
         $this->cachePage(5);
         $this->title = 'Per Parameter Sampel';
-        $this->model = new PerItemSampelModel();
+        $this->model = new PerParameterModel();
         $this->modelLab = new LaboratoriumModel();
-        $this->modelPeraturan = new PeraturanModel();
         $this->modelSampel = new JenisSampelModel();
         $this->validation = \Config\Services::validation();
     }
@@ -40,7 +38,7 @@ class PerItemSampelMaster extends ResourceController
          $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Master/Item-sampel/index', $data);
+        return view('Backend/Master/Parameter/index', $data);
     }
 
     public function list()
@@ -51,7 +49,7 @@ class PerItemSampelMaster extends ResourceController
                 'items' => $this->model->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Master/Item-sampel/_data', $data)
+                'data' => view('Backend/Master/Parameter/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -59,6 +57,7 @@ class PerItemSampelMaster extends ResourceController
             exit('Not Process');
         }
     }
+
     /**
      * Return the properties of a resource object.
      *
@@ -76,16 +75,15 @@ class PerItemSampelMaster extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function new() 
+    public function new()
     {
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterLab' => $this->modelLab->get_data(),
-                'masterPeraturan' => $this->modelPeraturan->findAll()
+                'masterLab' => $this->modelLab->get_data()
             ];
             $msg = [
-                'data' => view('Backend/Master/Item-sampel/_add', $data)
+                'data' => view('Backend/Master/Parameter/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -101,7 +99,7 @@ class PerItemSampelMaster extends ResourceController
      */
     public function create()
     {
-        if ($this->request->isAJAX()) {
+         if ($this->request->isAJAX()) {
             $valid = $this->validate([
                 'id_jenis_sampel' => [
                     'label' => 'Jenis sampel',
@@ -117,26 +115,32 @@ class PerItemSampelMaster extends ResourceController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ]
+                
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
                         'id_lab' => $this->validation->getError('id_lab'),
-                        'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel'),
+                        'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel')
                     ]
                 ];
             } else {
-                $simpandata = [
-                    'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
-                    'parameter' => $this->request->getVar('parameter'),
-                    'metode' => $this->request->getVar('metode'),
-                    'harga_per_titik' => $this->request->getVar('harga_per_titik')
-                ];
-                $this->model->insert($simpandata);
-                $msg = [
-                    'sukses' => 'Data berhasil disimpan'
-                ];
+                $parameter = $this->request->getVar('parameter');
+                $count = count($parameter ?? []);
+                for ($i=0; $i < $count; $i++) { 
+
+                    $simpandata = [
+                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                        'parameter' => $parameter[$i],
+                        'metode' => $this->request->getVar('metode')[$i],
+                        'harga_per_titik' => $this->request->getVar('harga_per_titik')[$i]
+                    ];
+                    $this->model->insert($simpandata);
+                    $msg = [
+                        'sukses' => 'Data berhasil disimpan'
+                    ];
+                }
             }
             echo json_encode($msg);
         } else {
@@ -182,15 +186,34 @@ class PerItemSampelMaster extends ResourceController
 
     public function list_sampel()
     {
-        $id_lab = $this->request->getVar('id_lab');
+        if ($this->request->isAJAX()) {
+            $id_lab = $this->request->getVar('id_lab');
+            $result = $this->modelSampel->where('id_lab', $id_lab)->get()->getResultArray();
 
-        $result = $this->modelSampel->where('id_lab', $id_lab)->get()->getResultArray();
-    
-        foreach ($result as $rows) {
-            echo '<option value="'.$rows['id'].'">'.$rows['jenis_sampel'].'</option>';
+            foreach ($result as $rows) {
+                $data[] = '<option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
+            }
+            $msg = ['data' => $data];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
         }
     }
 
-
+    public function detail_sampel()
+    {
+        if ($this->request->isAJAX()) {
+            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+            $sampel = $this->modelSampel->find($id_jenis_sampel);
+            $id_peraturan = $sampel['id_peraturan'];
+            $peraturan = new PeraturanModel();
+            $result = $peraturan->find($id_peraturan);
+            $data = $result['peraturan'];
+            $msg = ['data' => $data];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
 
 }

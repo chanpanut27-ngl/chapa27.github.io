@@ -1,12 +1,12 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/per-item-sampel/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/parameter/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
@@ -25,13 +25,17 @@
                     </div>
                     <div class="mb-3">
                         <label for="id-jenis-sampel" class="form-label h5">Jenis sampel</label>
-                        <select name="id_jenis_sampel" class="form-select" id="id-jenis-sampel" aria-label="Default select example">
+                        <select name="id_jenis_sampel" class="form-select" id="id-jenis-sampel" style="width: 100%;" aria-label="Default select example">
                         </select>
                         <div class="invalid-feedback errorIdJenisSampel"></div>
                     </div>
                     <div class="mb-3">
+                        <label for="peraturan" class="form-label h5">Peraturan</label>
+                        <input type="text" class="form-control" id="peraturan">
+                    </div>
+                    <div class="mb-3">
                         <label for="parameter" class="form-label h5">Parameter</label>
-                        <input type="text" name="parameter" class="form-control" id="parameter">
+                        <input type="text" readonly class="form-control" id="parameter">
                         <div class="invalid-feedback errorParameter"></div>
                     </div>
                     <div class="mb-3">
@@ -43,6 +47,34 @@
                         <label for="harga-per-titik" class="form-label h5">Harga per titik</label>
                         <input type="text" name="harga_per_titik" class="form-control" id="harga-per-titik">
                         <div class="invalid-feedback errorHargaPertitik"></div>
+                    </div>
+                    <div class="mb-3">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Metode</th>
+                                    <th>Harga titik</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="form-multi-insert">
+                                <tr>
+                                    <td>
+                                        <input type="text" name="parameter[]" class="form-control">
+                                    </td>
+                                     <td>
+                                        <input type="text" name="metode[]" class="form-control">
+                                    </td>
+                                     <td>
+                                        <input type="text" name="harga_titik[]" class="form-control">
+                                    </td>
+                                    <td>
+                                        <button type="button" class="bg bg-primary add-multi-insert">+</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -56,6 +88,30 @@
 
 <script>
     $(document).ready(function() {
+        $('#id-jenis-sampel').select2({
+            dropdownParent: $('#exampleModal')
+        });
+
+        $(".add-multi-insert").click(function (e) {
+            e.preventDefault();
+            var html = `<tr>
+                            <td>
+                                <input type="text" name="parameter[]" class="form-control">
+                            </td>
+                                <td>
+                                <input type="text" name="metode[]" class="form-control">
+                            </td>
+                                <td>
+                                <input type="text" name="harga_titik[]" class="form-control">
+                            </td>
+                            <td>
+                                <button type="button" class="bg bg-primary add-multi-insert">+</button>
+                            </td>
+                        </tr>`;
+            $(".form-multi-insert").append(html);
+                    
+        })
+
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
@@ -90,6 +146,13 @@
                             $('#id-jenis-sampel').removeClass('is-invalid');
                             $('.errorIdJenisSampel').html('');
                         }
+                        if (err.harga_per_titik) {
+                            $('#harga-per-titik').addClass('is-invalid');
+                            $('.errorHargaPertitik').html(err.harga_per_titik);
+                        } else {
+                            $('#harga-per-titik').removeClass('is-invalid');
+                            $('.errorHargaPertitik').html('');
+                        }
                     } else {
                         Swal.fire({
                             title: "Berhasil",
@@ -112,20 +175,12 @@
             var id_lab = $(this).val();
             $.ajax({
                 type: "post",
-                url: "<?= site_url('master-data/per-item-sampel/list-sampel'); ?>",
+                url: "<?= site_url('master-data/parameter/list-sampel'); ?>",
                 data: {id_lab:id_lab},
-                // dataType: 'html',
+                dataType: 'json',
                 cache: false,
-                beforeSend: function() {
-                    $('#id-jenis-sampel').attr('disable', 'disabled');
-                    $('#id-jenis-sampel').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                },
-                complete: function() {
-                    $('#id-jenis-sampel').removeAttr('disable');
-                },
                 success: function(response) {
-                    $("#id-jenis-sampel").html(response)
+                    $("#id-jenis-sampel").html(response.data).show()
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
@@ -135,7 +190,21 @@
 
         $("#id-jenis-sampel").change(function (e) {
             e.preventDefault();
-            alert('change');
+            var id_jenis_sampel = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "<?= site_url('master-data/parameter/detail-sampel'); ?>",
+                data: {id_jenis_sampel:id_jenis_sampel},
+                dataType: 'json',
+                cache: false,
+                success: function(response) {
+                    $("#peraturan").val(response.data)
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+            })
+
         })
     })
 </script>
