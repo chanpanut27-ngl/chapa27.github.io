@@ -22,7 +22,7 @@
                 <td><?= $row['kode_sampel'].'-'.$row['jenis_sampel']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id_parameter']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded edit-data-<?= $row['id_parameter'] ?>" onclick="editData(<?= $row['id_parameter']; ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_parameter']; ?>)" title="Hapus data">
@@ -38,9 +38,18 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/instansi/edit-data/'); ?>' + id,
+            url: '<?= site_url('master-data/parameter/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
+            beforeSend: function() {
+                $('.edit-data-'+id).attr('disable', 'disabled');
+                $('.edit-data-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.edit-data-'+id).removeAttr('disable');
+                $('.edit-data-'+id).html('<span class="fa-solid fa-edit"></span>');
+            },
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();

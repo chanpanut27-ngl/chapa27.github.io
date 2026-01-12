@@ -3,48 +3,27 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/instansi/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/parameter/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instansi" class="form-label h5">Instansi</label>
-                        <input type="text" name="nama_instansi" value="<?=  $items['nama_instansi']; ?>" class="form-control" id="nama-instansi" autocomplete="off">
-                        <div class="invalid-feedback errorNamaInstansi"></div>
+                        <label for="parameter" class="form-label h5">Parameter</label>
+                        <input type="text" name="parameter" value="<?= $items['parameter'] ?>" class="form-control" id="parameter">
+                        <div class="invalid-feedback errorParameter"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="alamat" class="form-label h5">Alamat</label>
-                        <textarea name="alamat" class="form-control" id="alamat"><?= $items['alamat']; ?></textarea>
-                        <div class="invalid-feedback errorAlamat"></div>
+                        <label for="metode" class="form-label h5">Metode</label>
+                        <input type="text" name="metode" value="<?= $items['metode'] ?>" class="form-control" id="metode">
+                        <div class="invalid-feedback errorMetode"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp" class="form-label h5">No.Telp</label>
-                        <input type="text" name="no_telp" value="<?=  $items['no_telp']; ?>" class="form-control" id="no-telp">
-                        <div class="invalid-feedback errorNoTelp"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="wilayah" class="form-label h5">Wilayah</label>
-                        <input type="text" name="wilayah" value="<?=  $items['wilayah']; ?>" class="form-control" id="wilayah">
-                        <div class="invalid-feedback errorWilayah"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="is-active" class="form-label h5" style="font-family: calibri;">Status</label>
-                        <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
-                            <?php
-                            $_isActive = [
-                                '1' => 'Aktif', '0' => 'Tidak aktif'
-                            ];
-                            foreach ($_isActive as $r => $s) :
-                            ?>
-                                <option value="<?= $r; ?>" <?= $items['is_active'] == $r ? 'selected' : ''; ?>><?= $s; ?></option>
-                            <?php
-                            endforeach;
-                            ?>
-                        </select>
-                        <div class="invalid-feedback errorIsActive"></div>
+                        <label for="harga-per-titik" class="form-label h5">Harga per titik</label>
+                        <input type="text" name="harga_per_titik" value="<?= $items['harga_per_titik'] ?>" class="form-control" id="harga-per-titik">
+                        <div class="invalid-feedback errorHargaPertitik"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -76,20 +55,26 @@
                 },
                 success: function(response) {
                     if (response.error) {
-
-                        if (response.nama_instansi) {
-                            $('#nama-instansi').addClass('is-invalid');
-                            $('.errorNamaInstansi').html(response.nama_instansi);
+                        if (response.error.parameter) {
+                            $('#parameter').addClass('is-invalid');
+                            $('.errorParameter').html(response.error.parameter);
                         } else {
-                            $('#nama-instansi').removeClass('is-invalid');
-                            $('.errorNamaInstansi').html('');
+                            $('#parameter').removeClass('is-invalid');
+                            $('.errorParameter').html('');
                         }
-                        if (response.wilayah) {
-                            $('#wilayah').addClass('is-invalid');
-                            $('.errorWilayah').html(response.wilayah);
+                        if (response.error.metode) {
+                            $('#metode').addClass('is-invalid');
+                            $('.errorMetode').html(response.error.metode);
                         } else {
-                            $('#wilayah').removeClass('is-invalid');
-                            $('.errorWilayah').html('');
+                            $('#metode').removeClass('is-invalid');
+                            $('.errorMetode').html('');
+                        }
+                        if (response.error.harga_per_titik) {
+                            $('#harga-per-titik').addClass('is-invalid');
+                            $('.errorHargaPertitik').html(response.error.harga_per_titik);
+                        } else {
+                            $('#harga-per-titik').removeClass('is-invalid');
+                            $('.errorHargaPertitik').html('');
                         }
                     } else {
                         Swal.fire({

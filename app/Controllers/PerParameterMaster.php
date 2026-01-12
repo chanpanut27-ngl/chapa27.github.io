@@ -157,7 +157,19 @@ class PerParameterMaster extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id),
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Parameter/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -169,7 +181,57 @@ class PerParameterMaster extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'parameter' => [
+                    'label' => 'Parameter',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'metode' => [
+                    'label' => 'Metode',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'harga_per_titik' => [
+                    'label' => 'Harga per titik',
+                    'rules' => 'required|is_numeric',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong',
+                        'is_numeric' => '{field} harus angka'
+                    ]
+                ]
+                
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'parameter' => $this->validation->getError('parameter'),
+                        'metode' => $this->validation->getError('metode'),
+                        'harga_per_titik' => $this->validation->getError('harga_per_titik')
+                    ]
+                ];
+            } else {
+                    $simpandata = [
+                        'id' => $this->request->getVar('id'),
+                        'parameter' => $this->request->getVar('parameter'),
+                        'metode' => $this->request->getVar('metode'),
+                        'harga_per_titik' => $this->request->getVar('harga_per_titik')
+                    ];
+                    $this->model->save($simpandata);
+                    $msg = [
+                        'sukses' => 'Data berhasil diubah'
+                    ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

@@ -73,8 +73,8 @@ class PerParameterModel extends Model
         $db = \Config\Database::connect();
         $builder = $db->table('master_jenis_sampel mjs');
         $builder->select('kode_sampel, jenis_sampel, peraturan, parameter, metode, harga_per_titik, pp.id AS id_parameter');
-        $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan", "left");
-        $builder->join("per_parameter pp", "pp.id_jenis_sampel = mjs.id", "left");
+        $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan");
+        $builder->join("per_parameter pp", "pp.id_jenis_sampel = mjs.id");
         $query = $builder->get()->getResultArray();
         return $query;
     }
