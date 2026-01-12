@@ -46,7 +46,7 @@ class PerParameterMaster extends ResourceController
 
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->findAll()
+                'items' => $this->model->get_data()
             ];
             $msg = [
                 'data' => view('Backend/Master/Parameter/_data', $data)
@@ -181,7 +181,16 @@ class PerParameterMaster extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil dihapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     public function list_sampel()
