@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Parameter', 'Metode', 'Harga per titik', 'Jenis sampel', ''];
+        $arrth = ['No', 'Parameter', 'Metode', 'Harga per titik', 'Jenis sampel', 'Peraturan', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -20,6 +20,7 @@
                 <td><?= $row['metode']; ?></td>
                 <td><?= $row['harga_per_titik']; ?></td>
                 <td><?= $row['kode_sampel'].'-'.$row['jenis_sampel']; ?></td>
+                <td><?= $row['peraturan']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded edit-data-<?= $row['id_parameter'] ?>" onclick="editData(<?= $row['id_parameter']; ?>)" title="Edit data">
