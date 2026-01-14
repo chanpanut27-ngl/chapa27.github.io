@@ -31,7 +31,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="peraturan" class="form-label h5">Peraturan</label>
-                        <input type="text" class="form-control" id="peraturan">
+                        <input type="text" class="form-control" id="peraturan" readonly>
                     </div>
                     <div class="mb-3">
                         <table class="table">
@@ -52,7 +52,7 @@
                                         <input type="text" name="metode[]" class="form-control">
                                     </td>
                                      <td>
-                                        <input type="text" name="harga_per_titik[]" class="form-control" required>
+                                        <input type="number" name="harga_per_titik[]" class="form-control" required>
                                     </td>
                                     <td>
                                         <button type="button" class="bg bg-primary add-multi-insert">+</button>
@@ -73,6 +73,7 @@
 
 <script>
     $(document).ready(function() {
+
         $('#id-jenis-sampel').select2({
             dropdownParent: $('#exampleModal')
         });
@@ -88,7 +89,7 @@
                                 <input type="text" name="metode[]" class="form-control">
                             </td>
                             <td>
-                                <input type="text" name="harga_per_titik[]" class="form-control" required>
+                                <input type="number" name="harga_per_titik[]" id="harga-per-titik" class="form-control" required>
                             </td>
                             <td>
                                 <button type="button" class="bg bg-danger delete-rows">-</button>
