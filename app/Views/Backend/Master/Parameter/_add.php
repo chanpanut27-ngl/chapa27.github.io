@@ -55,7 +55,7 @@
                                         <input type="number" name="harga_per_titik[]" class="form-control" required>
                                     </td>
                                     <td>
-                                        <button type="button" class="bg bg-primary add-multi-insert">+</button>
+                                        <button type="button" class="btn btn-success btn-sm rounded add-multi-insert"><span class="fa-solid fa-plus"></span></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -92,7 +92,7 @@
                                 <input type="number" name="harga_per_titik[]" id="harga-per-titik" class="form-control" required>
                             </td>
                             <td>
-                                <button type="button" class="bg bg-danger delete-rows">-</button>
+                                <button type="button" class="btn btn-danger btn-sm rounded delete-rows"><span class="fa-solid fa-close"></span></button>
                             </td>
                         </tr>`;
             $(".form-multi-insert").append(html);
