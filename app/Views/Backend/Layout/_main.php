@@ -1,8 +1,8 @@
 <?php 
 $page = '';
-if (in_groups('Pelanggan')) {
+if (in_groups('pelanggan')) {
     $page = 'Pelanggan';
-}else{
+} else{
     $page = 'Backend';
 }
 ?>

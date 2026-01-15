@@ -11,7 +11,6 @@ class Pelanggan extends BaseController
 
     public function __construct()
     {
-        $this->cachePage(5);
         $this->title = 'Home';
     }
 

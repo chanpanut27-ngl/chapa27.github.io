@@ -1,13 +1,21 @@
+<?php 
+$page = '';
+if (in_groups('pelanggan')) {
+    $page = 'Pelanggan';
+} else{
+    $page = 'Backend';
+}
+?>
 <!-- [ Top ] start -->
-<?= $this->include('Pelanggan/Layout/_top'); ?>
+<?= $this->include($page.'/Layout/_top'); ?>
 <!-- [ Top ] end -->
 
 <!-- [ Sidebar Menu ] start -->
-<?= $this->include('Pelanggan/Layout/_navbar'); ?>
+<?= $this->include($page.'/Layout/_navbar'); ?>
 <!-- [ Sidebar Menu ] end -->
 
 <!-- [ Header Topbar ] start -->
-<?= $this->include('Pelanggan/Layout/_header'); ?>
+<?= $this->include($page.'/Layout/_header'); ?>
 <!-- [ Header ] end -->
 
 <!-- [ Main Content ] start -->
@@ -17,9 +25,9 @@
 <?= $this->include('Component/_scroll_top'); ?>
 
 <!-- [ Footer ] start -->
-<?= $this->include('Pelanggan/Layout/_footer'); ?>
+<?= $this->include($page.'/Layout/_footer'); ?>
 <!-- [ Footer ] end -->
 
 <!-- [ Bottom ] start -->
-<?= $this->include('Pelanggan/Layout/_bottom'); ?>
+<?= $this->include($page.'/Layout/_bottom'); ?>
 <!-- [ Bottom ] end -->
