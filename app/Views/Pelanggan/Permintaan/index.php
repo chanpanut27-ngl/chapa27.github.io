@@ -24,8 +24,10 @@
         <div class="row p-0">
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
-                <?php if (!$profil_pelanggan) : ?>
-                    <?= $this->include('Component/_profil') ?>
+                <?php if (!$profil) : ?>
+                    <?php  echo '<div class="alert alert-warning" role="alert">
+                                    Silahkan lengkapi data profil anda
+                                </div>'; ?>
                 <?php else : ?>
                 <div class="card">
                     <div class="card-header p-2">

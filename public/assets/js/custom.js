@@ -13,6 +13,7 @@ $(document).ready(function () {
             dataType: 'json',
             beforeSend: function() {
                 $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                $('.btn-refresh').html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
             complete: function() {
                 $('.view-data').removeAttr('span');

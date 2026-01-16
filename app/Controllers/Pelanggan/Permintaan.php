@@ -5,6 +5,7 @@ namespace App\Controllers\Pelanggan;
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
 use App\Models\PermintaanPelangganModel;
+use App\Models\ProfilPelangganModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -32,11 +33,11 @@ class Permintaan extends ResourceController
 
     public function index()
     {
-        $dataPelanggan = new \App\Models\ProfilPelangganModel();
+        $dataPelanggan = new ProfilPelangganModel();
 
         $data = [
             'title' => 'Data ' . $this->title,
-            'profil_pelanggan' => $dataPelanggan->profil_pelanggan()
+            'profil' => $dataPelanggan->get_data()
         ];
         return view('Pelanggan/Permintaan/index', $data);
     }
