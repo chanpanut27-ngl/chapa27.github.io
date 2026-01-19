@@ -54,7 +54,7 @@ class Permintaan extends ResourceController
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
-        $nomorAntrian = 'Reg.' . sprintf('%04d', $nomorUrut) . '.' . date('dmY');
+        $nomorAntrian = sprintf('%04d', $nomorUrut) . '.' . date('dmY');
         
         return $nomorAntrian;
     }
@@ -128,13 +128,29 @@ class Permintaan extends ResourceController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'tgl_ambil_sampel' => [
+                    'label' => 'Tanggal pengambilan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'jam_ambil_sampel' => [
+                    'label' => 'Jam pengambilan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama_pengirim' => $this->validation->getError('nama_pengirim')
+                        'nama_pengirim' => $this->validation->getError('nama_pengirim'),
+                        'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
+                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel'),
                     ]
                 ];
             } else {
@@ -143,6 +159,8 @@ class Permintaan extends ResourceController
                     'nama_pengirim' => $this->request->getVar('nama_pengirim'),
                     'instansi' => $this->request->getVar('instansi'),
                     'alamat' => $this->request->getVar('alamat'),
+                    'tgl_ambil_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel'))),
+                    'jam_ambil_sampel' => $this->request->getVar('jam_ambil_sampel'),
                     'no_telp' => $this->request->getVar('no_telp'),
                     'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
                     'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')

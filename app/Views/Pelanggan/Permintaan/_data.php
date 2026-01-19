@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'No.Registrasi', 'Nama pengirim', 'Tgl & Jam permintaan', 'Status', ''];
+        $arrth = ['No', 'No.Registrasi', 'Nama pengirim', 'Tgl & Jam pengambilan sampel', 'Spesimen', 'Tgl & Jam permintaan', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -18,6 +18,8 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['no_reg']; ?></td>
                 <td><?= $row['nama_pengirim']; ?></td>
+                <td style="text-align: center;"><?= date('d-m-Y', strtotime($row['tgl_ambil_sampel'])).' '.$row['jam_ambil_sampel']; ?></td>
+                <td><?= $row['spesimen_atau_sampel']; ?></td>
                 <td><?= $row['created_at']; ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>

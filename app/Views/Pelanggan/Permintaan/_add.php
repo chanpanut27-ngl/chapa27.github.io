@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
@@ -47,6 +47,11 @@
                         <label for="tgl-ambil-sampel" class="form-label h5">Tanggal pengambilan sampel/spesimen</label>
                         <input type="text" name="tgl_ambil_sampel" id="tgl-ambil-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
                         <div class="invalid-feedback errorTglAmbilSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jam-ambil-sampel" class="form-label h5">Jam pengambilan sampel/spesimen</label>
+                        <input type="time" name="jam_ambil_sampel" id="jam-ambil-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
+                        <div class="invalid-feedback errorJamAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
                         <label for="lokasi-ambil-sampel" class="form-label h5">Lokasi pengambilan sampel/spesimen</label>
@@ -102,6 +107,20 @@
                         } else {
                             $('#nama-pengirim').removeClass('is-invalid');
                             $('.errorNamaPengirim').html('');
+                        }
+                        if (err.tgl_ambil_sampel) {
+                            $('#tgl-ambil-sampel').addClass('is-invalid');
+                            $('.errorTglAmbilSampel').html(err.tgl_ambil_sampel);
+                        } else {
+                            $('#tgl-ambil-sampel').removeClass('is-invalid');
+                            $('.errorTglAmbilSampel').html('');
+                        }
+                        if (err.jam_ambil_sampel) {
+                            $('#jam-ambil-sampel').addClass('is-invalid');
+                            $('.errorJamAmbilSampel').html(err.jam_ambil_sampel);
+                        } else {
+                            $('#jam-ambil-sampel').removeClass('is-invalid');
+                            $('.errorJamAmbilSampel').html('');
                         }
                     } else {
                         Swal.fire({
