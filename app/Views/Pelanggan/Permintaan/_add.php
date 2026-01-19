@@ -1,13 +1,22 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelanggan/permintaan-pemeriksaan/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelanggan/permintaan-pelanggan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
+                <?php foreach ($profil as $row) {
+                    $instansi = $row['instansi'] ?? '';
+                    $alamat = $row['alamat'] ?? '';
+                    $no_telp = $row['no_telp'] ?? '';
+                }
+                ?>
+                <input type="hidden" name="instansi" value="<?= $instansi ?>">
+                <input type="hidden" name="alamat" value="<?= $alamat ?>">
+                <input type="hidden" name="no_telp" value="<?= $no_telp ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama-pengirim" class="form-label h5">Nama pengirim</label>
@@ -15,19 +24,7 @@
                         <div class="invalid-feedback errorNamaPengirim"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Nama lab</label>
-                        <select name="id_lab_permintaan" class="form-control" id="nama-lab" aria-label="Default select example">
-                            <option value="">-- Pilih --</option>
-                            <?php 
-                            foreach ($masterLab as $row) :
-                            ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['nama_lab']; ?></option>
-                            <?php endforeach;?>
-                        </select>
-                        <div class="invalid-feedback errorNamaLab"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Spesimen/Sampel</label>
+                        <label for="" class="form-label h5">Spesimen/Sampel</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="spesimen_atau_sampel" value="Rujukan / Kiriman" id="flexRadioDefault1" checked>
                             <label class="form-check-label" for="flexRadioDefault1">
@@ -42,16 +39,23 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="sampel_permintaan" class="form-label h5">Jenis pemeriksaan</label>
-                        <select name="id_sampel_permintaan" class="form-control" id="sampel_permintaan" aria-label="Default select example">
-                            <option value="">-- Pilih --</option>
-                            <?php 
-                            foreach ($masterSampel as $row) :
-                            ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['jenis_sampel']; ?></option>
-                            <?php endforeach;?>
-                        </select>
-                        <div class="invalid-feedback errorSampelPermintaan"></div>
+                        <label for="petugas" class="form-label h5">Petugas ambil sampel/spesimen</label>
+                        <input type="text" name="petugas_ambil_sampel" class="form-control" id="petugas" autocomplete="off">
+                        <div class="invalid-feedback errorPetugas"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tgl-ambil-sampel" class="form-label h5">Tanggal pengambilan sampel/spesimen</label>
+                        <input type="text" name="tgl_ambil_sampel" id="tgl-ambil-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
+                        <div class="invalid-feedback errorTglAmbilSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lokasi-ambil-sampel" class="form-label h5">Lokasi pengambilan sampel/spesimen</label>
+                        <input type="text" name="lokasi_ambil_sampel" class="form-control" id="lokasi-ambil-sampel" autocomplete="off">
+                        <div class="invalid-feedback errorLokasiAmbilSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="keterangan-tambahan" class="form-label h5">Keterangan tambahan</label>
+                        <textarea name="keterangan_tambahan" id="keterangan-tambahan" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -65,6 +69,13 @@
 
 <script>
     $(document).ready(function() {
+        var dateToday = new Date();
+        $("#tgl-ambil-sampel").datepicker(
+            { 
+                dateFormat: 'dd-mm-yy', 
+                defaultDate: "",  inDate: dateToday
+            }
+        );
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({

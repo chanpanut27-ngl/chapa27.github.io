@@ -20,14 +20,17 @@ class Permintaan extends ResourceController
     protected $model;
     protected $modelLab;
     protected $modelSampel;
+    protected $modelProfil;
+
     protected $validation;
 
     public function __construct()
     {
-        $this->title = 'Permintaan pemeriksaan';
+        $this->title = 'Permintaan pelanggan';
         $this->model = new PermintaanPelangganModel();
         $this->modelLab = new LaboratoriumModel();
         $this->modelSampel = new JenisSampelModel();
+        $this->modelProfil = new ProfilPelangganModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -97,7 +100,8 @@ class Permintaan extends ResourceController
             $data = [
                 'title' => 'Tambah ' . $this->title,
                 'masterLab' => $this->modelLab->findAll(),
-                'masterSampel' => $this->modelSampel->findAll()
+                'masterSampel' => $this->modelSampel->findAll(),
+                'profil' => $this->modelProfil->get_data()
             ];
             $msg = [
                 'data' => view('Pelanggan/Permintaan/_add', $data)
@@ -119,7 +123,7 @@ class Permintaan extends ResourceController
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
                 'nama_pengirim' => [
-                    'label' => 'Instansi',
+                    'label' => 'Nama pengirim',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -137,6 +141,10 @@ class Permintaan extends ResourceController
                 $simpandata = [
                     'no_reg' => $this->generate_kode_permintaan(),
                     'nama_pengirim' => $this->request->getVar('nama_pengirim'),
+                    'instansi' => $this->request->getVar('instansi'),
+                    'alamat' => $this->request->getVar('alamat'),
+                    'no_telp' => $this->request->getVar('no_telp'),
+                    'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
                     'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
                 ];
                 $this->model->insert($simpandata);

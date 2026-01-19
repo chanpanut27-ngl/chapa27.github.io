@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class PermintaanPelangganModel extends Model
 {
-    protected $table            = 'permintaan_pemeriksaan';
+    protected $table            = 'permintaan_pelanggan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -15,15 +15,16 @@ class PermintaanPelangganModel extends Model
     protected $allowedFields    = [
         'no_reg',
         'nama_pengirim',
+        'instansi',
+        'alamat',
+        'no_telp',
         'spesimen_atau_sampel',
         'tgl_ambil_sampel',
         'jam_ambil_sampel',
         'petugas_ambil_sampel',
         'lokasi_ambil_sampel',
         'paraf',
-        'keterangan_tambahan',
-        'id_lab_permintaan',
-        'id_sampel_permintaan',
+        'keterangan_tambahan'
     ];
 
     protected bool $allowEmptyInserts = false;

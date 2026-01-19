@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbPermintaanPemeriksaan extends Migration
+class MgdbPermintaanPelanggan extends Migration
 {
     public function up()
     {
@@ -22,6 +22,17 @@ class MgdbPermintaanPemeriksaan extends Migration
             'nama_pengirim' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '150',
+            ],
+            'instansi' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '150',
+            ],
+            'alamat' => [
+                'type'       => 'TEXT'
+            ],
+            'no_telp' => [
+                'type'       => 'CHAR',
+                'constraint' => '20',
             ],
             'spesimen_atau_sampel' => [
                 'type'       => 'VARCHAR',
@@ -47,16 +58,6 @@ class MgdbPermintaanPemeriksaan extends Migration
             ],
             'keterangan_tambahan' => [
                 'type'       => 'TEXT'
-            ],
-            'id_lab_permintaan' => [
-                'type'       => 'INT',
-                'constraint' => 5,
-                'unsigned'   => true
-            ],
-            'id_sampel_permintaan' => [
-                'type'       => 'INT',
-                'constraint' => 5,
-                'unsigned'   => true
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -88,13 +89,11 @@ class MgdbPermintaanPemeriksaan extends Migration
          ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('id_sampel_permintaan', 'master_jenis_sampel', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->addForeignKey('id_lab_permintaan', 'master_laboratorium', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('permintaan_pemeriksaan');
+        $this->forge->createTable('permintaan_pelanggan');
     }
 
     public function down()
     {
-        $this->forge->dropTable('permintaan_pemeriksaan');
+        $this->forge->dropTable('permintaan_pelanggan');
     }
 }

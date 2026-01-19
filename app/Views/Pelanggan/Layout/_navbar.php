@@ -37,13 +37,13 @@
                     </i>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('pelanggan/permintaan-pemeriksaan'); ?>" class="pc-link">
+                    <a href="<?= base_url('pelanggan/permintaan-pelanggan'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">
-                                <use xlink:href="#permintaan"></use>
+                                <use xlink:href="#permintaan-pelanggan"></use>
                             </svg>
                         </span>
-                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Permintaan</span>
+                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Permintaan pelanggan</span>
                     </a>
                 </li>
                 <li class="pc-item">

@@ -58,7 +58,7 @@ $routes->group('pelanggan/file-peraturan/reader', function ($routes) {
 });
 
 /* Permintaan Pemeriksaan */
-$routes->group('pelanggan/permintaan-pemeriksaan', function ($routes) {
+$routes->group('pelanggan/permintaan-pelanggan', function ($routes) {
     $routes->get('', 'Pelanggan\Permintaan::index');
     $routes->get('list-data', 'Pelanggan\Permintaan::list');
     $routes->get('add-data', 'Pelanggan\Permintaan::new');
