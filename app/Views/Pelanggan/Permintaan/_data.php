@@ -18,9 +18,9 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['no_reg']; ?></td>
                 <td><?= $row['nama_pengirim']; ?></td>
-                <td style="text-align: center;"><?= date('d-m-Y', strtotime($row['tgl_ambil_sampel'])).' '.$row['jam_ambil_sampel']; ?></td>
+                <td style="text-align: center;"><?= date('d-m-Y', strtotime($row['tgl_ambil_sampel'])).' '.date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
                 <td><?= $row['spesimen_atau_sampel']; ?></td>
-                <td><?= $row['created_at']; ?></td>
+                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
