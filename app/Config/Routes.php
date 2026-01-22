@@ -57,7 +57,7 @@ $routes->group('pelanggan/file-peraturan/reader', function ($routes) {
     $routes->get('tarif-pelayanan', 'Pelanggan\FileReader::tarif_pelayanan');
 });
 
-/* Permintaan Pemeriksaan */
+/* Permintaan Pelanggan */
 $routes->group('pelanggan/permintaan-pelanggan', function ($routes) {
     $routes->get('', 'Pelanggan\Permintaan::index');
     $routes->get('list-data', 'Pelanggan\Permintaan::list');
@@ -66,6 +66,23 @@ $routes->group('pelanggan/permintaan-pelanggan', function ($routes) {
     $routes->get('edit-data/(:num)', 'Pelanggan\Permintaan::edit/$1');
     $routes->post('update-data', 'Pelanggan\Permintaan::update');
     $routes->delete('delete-data/(:num)', 'Pelanggan\Permintaan::delete/$1');
+});
+
+/* Permintaan Pemeriksaan */
+$routes->group('pelanggan/permintaan-pemeriksaan', function ($routes) {
+    $routes->get('', 'Pelanggan\Pemeriksaan::index');
+    $routes->get('list-data', 'Pelanggan\Pemeriksaan::list');
+});
+
+/* List Permintaan Pemeriksaan */
+$routes->group('pelanggan/list-pemeriksaan', function ($routes) {
+    $routes->get('', 'Pelanggan\ListPemeriksaan::index');
+    $routes->get('list-data', 'Pelanggan\ListPemeriksaan::list');
+    $routes->get('add-data', 'Pelanggan\ListPemeriksaan::new');
+    $routes->post('create-data', 'Pelanggan\ListPemeriksaan::create');
+    $routes->get('edit-data/(:num)', 'Pelanggan\ListPemeriksaan::edit/$1');
+    $routes->post('update-data', 'Pelanggan\ListPemeriksaan::update');
+    $routes->delete('delete-data/(:num)', 'Pelanggan\ListPemeriksaan::delete/$1');
 });
 
 /* [Module Pelayanan Pemeriksaan] */
