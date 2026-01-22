@@ -150,7 +150,7 @@ class Permintaan extends ResourceController
                     'error' => [
                         'nama_pengirim' => $this->validation->getError('nama_pengirim'),
                         'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
-                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel'),
+                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
                     ]
                 ];
             } else {
@@ -161,6 +161,8 @@ class Permintaan extends ResourceController
                     'alamat' => $this->request->getVar('alamat'),
                     'tgl_ambil_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel'))),
                     'jam_ambil_sampel' => $this->request->getVar('jam_ambil_sampel'),
+                    'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
+                    'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
                     'no_telp' => $this->request->getVar('no_telp'),
                     'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
                     'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
