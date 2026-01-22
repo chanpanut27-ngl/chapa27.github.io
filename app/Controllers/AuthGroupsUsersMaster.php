@@ -146,10 +146,6 @@ class AuthGroupsUsersMaster extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function edit($id = null)
-    {
-        //
-    }
 
     /**
      * Add or update a model resource, from "posted" properties.

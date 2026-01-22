@@ -23,6 +23,9 @@
                 <td><?= $row['email']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
+                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['user_id']; ?>)" title="Edit data">
+                            <span class="fa-solid fa-edit"></span>
+                        </button>
                         <button type="button" class="btn btn-danger btn-sm rounded btn-hapus" data-user=<?= $row['user_id'] ?> data-group=<?= $row['group_id'] ?> title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
