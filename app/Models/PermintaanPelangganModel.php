@@ -48,12 +48,34 @@ class PermintaanPelangganModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setInsertBy'];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function setInsertBy(array $data)
+    {
+        $userName = user()->username;
+        if ($userName) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['created_by'] = $userName;
+            $data['data']['created_at'] = date('Y-m-d H:i:s');
+        }
+        return $data;
+    }
+
+    protected function setUpdatedBy(array $data)
+    {
+       $userName = user()->username;
+        if ($userName) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['updated_by'] = $userName;
+            $data['data']['updated_at'] = date('Y-m-d H:i:s');
+        }
+        return $data;
+    }
 }

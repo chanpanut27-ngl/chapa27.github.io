@@ -187,7 +187,19 @@ class Permintaan extends ResourceController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id),
+            ];
+            $msg = [
+                'sukses' => view('Pelanggan/Permintaan/_edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -199,7 +211,59 @@ class Permintaan extends ResourceController
      */
     public function update($id = null)
     {
-        //
+         if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'nama_pengirim' => [
+                    'label' => 'Nama pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_ambil_sampel' => [
+                    'label' => 'Tanggal pengambilan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'jam_ambil_sampel' => [
+                    'label' => 'Jam pengambilan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_pengirim' => $this->validation->getError('nama_pengirim'),
+                        'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
+                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'tgl_ambil_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel'))),
+                    'jam_ambil_sampel' => $this->request->getVar('jam_ambil_sampel'),
+                    'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
+                    'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
+                    'no_telp' => $this->request->getVar('no_telp'),
+                    'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
+                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -211,6 +275,15 @@ class Permintaan extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil dihapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }

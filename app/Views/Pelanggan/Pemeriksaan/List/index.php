@@ -71,7 +71,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelanggan/permintaan-pemeriksaan/list-data'); ?>",
+            url: "<?= site_url('pelanggan/list-pemeriksaan/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);

@@ -76,7 +76,7 @@ $routes->group('pelanggan/permintaan-pemeriksaan', function ($routes) {
 
 /* List Permintaan Pemeriksaan */
 $routes->group('pelanggan/list-pemeriksaan', function ($routes) {
-    $routes->get('', 'Pelanggan\ListPemeriksaan::index');
+    $routes->get('index/(:num)', 'Pelanggan\ListPemeriksaan::index');
     $routes->get('list-data', 'Pelanggan\ListPemeriksaan::list');
     $routes->get('add-data', 'Pelanggan\ListPemeriksaan::new');
     $routes->post('create-data', 'Pelanggan\ListPemeriksaan::create');

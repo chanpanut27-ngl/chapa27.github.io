@@ -1,37 +1,49 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Pelanggan;
 
-use App\Models\InstalasiApiModel;
-use CodeIgniter\API\ResponseTrait;
+use App\Models\ProfilPelangganModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class Instalasi extends ResourceController
+class ListPemeriksaan extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
      *
      * @return ResponseInterface
      */
-    protected $model;
-
     public function __construct()
     {
-        $this->model = new InstalasiApiModel();
+        $this->title = 'Pemeriksaan';
     }
 
-    public function index()
+    public function index($id = null)
     {
-       $data = $this->model->findAll();
-       $res = [
-        'status' => '200',
-        'message' => '',
-        'totalData' => count($data),
-        'data' => $data
-       ];
-       return $this->respond($data, 200);
-    //    return $this->response->setJSON($res);
+        $dataPelanggan = new ProfilPelangganModel();
+
+        $data = [
+            'title' => 'Data ' . $this->title,
+            'profil' => $dataPelanggan->get_data()
+        ];
+        return view('Pelanggan/Pemeriksaan/List/index', $data);
+    }
+
+     public function list()
+    {
+
+        if ($this->request->isAJAX()) {
+            $data = [
+                'items' => $this->modelPerPel->findAll()
+            ];
+            $msg = [
+                'data' => view('Pelanggan/Pemeriksaan/List/_data', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
