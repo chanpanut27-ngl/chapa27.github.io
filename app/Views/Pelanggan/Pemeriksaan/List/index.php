@@ -40,12 +40,13 @@
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                             </button>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_pelanggan ?>" data-noreg="<?= $no_reg ?>">
                                 <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
+                        <?= var_dump($id_pelanggan) ?>
                         <div class="view-data"></div>
                     </div>
                 </div>
@@ -88,9 +89,12 @@
 
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
+            var id_pelanggan = $(this).data("id");
+            var no_reg = $(this).data("noreg");
             $.ajax({
-                url: "<?= site_url('pelanggan/permintaan-pelanggan/add-data'); ?>",
+                url: "<?= site_url('pelanggan/list-pemeriksaan/add-data'); ?>",
                 dataType: 'json',
+                data: {id_pelanggan:id_pelanggan, no_reg:no_reg},
                 cache: false,
                 beforeSend: function() {
                     $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');

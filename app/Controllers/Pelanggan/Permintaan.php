@@ -72,7 +72,7 @@ class Permintaan extends ResourceController
 
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->findAll()
+                'items' => $this->model->where('created_by', user()->username)->findAll()
             ];
             $msg = [
                 'data' => view('Pelanggan/Permintaan/_data', $data)

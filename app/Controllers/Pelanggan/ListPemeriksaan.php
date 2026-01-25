@@ -2,6 +2,9 @@
 
 namespace App\Controllers\Pelanggan;
 
+use App\Models\LaboratoriumModel;
+use App\Models\PermintaanPelangganModel;
+use App\Models\PermintaanPemeriksaanModel;
 use App\Models\ProfilPelangganModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -13,18 +16,29 @@ class ListPemeriksaan extends ResourceController
      *
      * @return ResponseInterface
      */
+    protected $model;
+    protected $modelPermintaan;
+    protected $modelLab;
+    protected $title;
     public function __construct()
     {
         $this->title = 'Pemeriksaan';
+        $this->model = new PermintaanPemeriksaanModel();
+        $this->modelPermintaan = new PermintaanPelangganModel();
+        $this->modelLab = new LaboratoriumModel();
     }
 
     public function index($id = null)
     {
         $dataPelanggan = new ProfilPelangganModel();
-
+        $permintaan = $this->modelPermintaan->find($id);
+        $id_pelanggan = $permintaan['id'];
+        $no_reg = $permintaan['no_reg'];
         $data = [
             'title' => 'Data ' . $this->title,
-            'profil' => $dataPelanggan->get_data()
+            'profil' => $dataPelanggan->get_data(),
+            'id_pelanggan' => $id_pelanggan,
+            'no_reg' => $no_reg
         ];
         return view('Pelanggan/Pemeriksaan/List/index', $data);
     }
@@ -34,7 +48,7 @@ class ListPemeriksaan extends ResourceController
 
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->modelPerPel->findAll()
+                'items' => $this->model->findAll()
             ];
             $msg = [
                 'data' => view('Pelanggan/Pemeriksaan/List/_data', $data)
@@ -65,7 +79,21 @@ class ListPemeriksaan extends ResourceController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+                'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                'no_reg' => $this->request->getVar('no_reg'),
+                'masterLab' => $this->modelLab->get_data()
+            ];
+            $msg = [
+                'data' => view('Pelanggan/Pemeriksaan/List/_add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

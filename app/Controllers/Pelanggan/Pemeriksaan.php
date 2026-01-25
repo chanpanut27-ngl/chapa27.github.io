@@ -53,7 +53,7 @@ class Pemeriksaan extends ResourceController
 
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->modelPerPel->findAll()
+                'items' => $this->modelPerPel->where('created_by', user()->username)->findAll()
             ];
             $msg = [
                 'data' => view('Pelanggan/Pemeriksaan/_data', $data)
