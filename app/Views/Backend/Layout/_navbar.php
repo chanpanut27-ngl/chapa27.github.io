@@ -1,6 +1,6 @@
 <nav class="pc-sidebar elevation-1">
     <div class="navbar-wrapper">
-        <div class="m-header kemkes-color2 elevation-2">
+        <div class="m-header kemkes-color2 elevation-1">
             <a href="<?= base_url('/'); ?>" class="b-brand text-primary">
                 <!-- ========   Change your logo from here   ============ -->
                 <img src="<?= base_url('assets/images/logo-2.png'); ?>" class="img-fluid" alt="logo" style="height: 55px;">

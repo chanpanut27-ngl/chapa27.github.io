@@ -64,10 +64,7 @@ foreach ($dt_login as $row) {
         </div>
         <div class="ms-auto">
             <ul class="list-unstyled">
-                <li class="text-light"><?= 'TGL : '. date('d/m/Y', strtotime(Time::now())) ?></li>
-            </ul>
-            <ul class="list-unstyled">
-                <li class="dropdown pc-h-item">
+                <li class="dropdown pc-h-item d-none">
                     <a
                     class="pc-head-link dropdown-toggle arrow-none me-0"
                     data-bs-toggle="dropdown"
