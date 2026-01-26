@@ -63,7 +63,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('master-data/parameter/list-data'); ?>",
+            url: "<?= site_url('master-data/parameter-pemeriksaan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -88,7 +88,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('master-data/parameter/add-data'); ?>",
+                url: "<?= site_url('master-data/parameter-pemeriksaan/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {

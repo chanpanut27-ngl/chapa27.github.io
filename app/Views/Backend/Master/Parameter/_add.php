@@ -6,7 +6,7 @@
                 <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/parameter/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/parameter-pemeriksaan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
@@ -158,7 +158,7 @@
             var id_lab = $(this).val();
             $.ajax({
                 type: "post",
-                url: "<?= site_url('master-data/parameter/list-sampel'); ?>",
+                url: "<?= site_url('master-data/parameter-pemeriksaan/list-sampel'); ?>",
                 data: {id_lab:id_lab},
                 dataType: 'json',
                 cache: false,
@@ -176,7 +176,7 @@
             var id_jenis_sampel = $(this).val();
             $.ajax({
                 type: "post",
-                url: "<?= site_url('master-data/parameter/detail-sampel'); ?>",
+                url: "<?= site_url('master-data/parameter-pemeriksaan/detail-sampel'); ?>",
                 data: {id_jenis_sampel:id_jenis_sampel},
                 dataType: 'json',
                 cache: false,
