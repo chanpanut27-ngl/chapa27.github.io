@@ -303,7 +303,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('master-data/parameter'); ?>" class="pc-link">
+                    <a href="<?= base_url('master-data/parameter-pemeriksaan'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">
                                 <use xlink:href="#parameter-pemeriksaan"></use>

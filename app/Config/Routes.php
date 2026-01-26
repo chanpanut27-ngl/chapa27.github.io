@@ -450,7 +450,7 @@ $routes->group('profil-pegawai', function ($routes) {
 
 
 /* Per item sampel */
-$routes->group('master-data/parameter', function ($routes) {
+$routes->group('master-data/parameter-pemeriksaan', function ($routes) {
     $routes->get('', 'PerParameterMaster::index');
     $routes->get('list-data', 'PerParameterMaster::list');
     $routes->get('add-data', 'PerParameterMaster::new');
