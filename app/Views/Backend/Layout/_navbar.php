@@ -242,7 +242,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="pc-item">
+                <li class="pc-item d-none">
                     <a href="<?= base_url('wa/send-message'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">
@@ -306,10 +306,10 @@
                     <a href="<?= base_url('master-data/parameter'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">
-                                <use xlink:href="#per-parameter"></use>
+                                <use xlink:href="#parameter-pemeriksaan"></use>
                             </svg>
                         </span>
-                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Per parameter</span>
+                        <span class="pc-mtext"><span class="fa-solid fa-database"></span> Parameter pemeriksaan</span>
                     </a>
                 </li>
                 <li class="pc-item">

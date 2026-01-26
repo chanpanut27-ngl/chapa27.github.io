@@ -26,7 +26,7 @@ class PerParameterMaster extends ResourceController
     public function __construct()
     {
         $this->cachePage(5);
-        $this->title = 'Per Parameter Sampel';
+        $this->title = 'Parameter Pemeriksaan';
         $this->model = new PerParameterModel();
         $this->modelLab = new LaboratoriumModel();
         $this->modelSampel = new JenisSampelModel();
