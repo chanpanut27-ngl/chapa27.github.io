@@ -86,7 +86,7 @@ phpunit
 #-------------------------
 vendor/
 
-app/config/App.php
+# app/config/App.php
 #-------------------------
 # IDE / Development Files
 #-------------------------
