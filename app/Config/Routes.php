@@ -451,15 +451,15 @@ $routes->group('profil-pegawai', function ($routes) {
 
 /* Per item sampel */
 $routes->group('master-data/parameter-pemeriksaan', function ($routes) {
-    $routes->get('', 'PerParameterMaster::index');
-    $routes->get('list-data', 'PerParameterMaster::list');
-    $routes->get('add-data', 'PerParameterMaster::new');
-    $routes->post('create-data', 'PerParameterMaster::create');
-    $routes->get('edit-data/(:num)', 'PerParameterMaster::edit/$1');
-    $routes->post('update-data', 'PerParameterMaster::update');
-    $routes->post('list-sampel', 'PerParameterMaster::list_sampel');
-    $routes->post('detail-sampel', 'PerParameterMaster::detail_sampel');
-    $routes->delete('delete-data/(:num)', 'PerParameterMaster::delete/$1');
+    $routes->get('', 'ParameterPemeriksaanMaster::index');
+    $routes->get('list-data', 'ParameterPemeriksaanMaster::list');
+    $routes->get('add-data', 'ParameterPemeriksaanMaster::new');
+    $routes->post('create-data', 'ParameterPemeriksaanMaster::create');
+    $routes->get('edit-data/(:num)', 'ParameterPemeriksaanMaster::edit/$1');
+    $routes->post('update-data', 'ParameterPemeriksaanMaster::update');
+    $routes->post('list-sampel', 'ParameterPemeriksaanMaster::list_sampel');
+    $routes->post('detail-sampel', 'ParameterPemeriksaanMaster::detail_sampel');
+    $routes->delete('delete-data/(:num)', 'ParameterPemeriksaanMaster::delete/$1');
 });
 
 $routes->resource('instalasi');

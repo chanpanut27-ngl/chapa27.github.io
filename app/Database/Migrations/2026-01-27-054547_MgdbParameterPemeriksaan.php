@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbPerParameterSampel extends Migration
+class MgdbParameterPemeriksaan extends Migration
 {
     public function up()
     {
@@ -50,8 +50,7 @@ class MgdbPerParameterSampel extends Migration
                 'constraint' => '100'
             ],
             'deleted_at' => [
-                'type' => 'DATETIME',
-                'default' => 'current_timestamp'
+                'type' => 'DATETIME'
             ],
             'deleted_at datetime default current_timestamp',
             'deleted_by'     => [
@@ -62,11 +61,12 @@ class MgdbPerParameterSampel extends Migration
 
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('id_jenis_sampel', 'master_jenis_sampel', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('per_parameter');
+        $this->forge->createTable('parameter_pemeriksaan');
     }
 
     public function down()
     {
-        $this->forge->dropTable('per_parameter');
+        $this->forge->dropTable('parameter_pemeriksaan');
+        
     }
 }

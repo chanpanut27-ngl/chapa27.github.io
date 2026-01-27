@@ -4,9 +4,9 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PerParameterModel extends Model
+class ParameterPemeriksaanModel extends Model
 {
-    protected $table            = 'per_parameter';
+    protected $table            = 'parameter_pemeriksaan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
@@ -26,7 +26,7 @@ class PerParameterModel extends Model
     protected array $castHandlers = [];
 
     // Dates
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -49,33 +49,34 @@ class PerParameterModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    protected function setUpdatedBy(array $data)
-    {
-       $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_by'] = $userId;
-        }
-        return $data;
-    }
-
     protected function setInsertBy(array $data)
     {
-        $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_by'] = $userId;
+        $username = user()->username;
+        if ($username) {
+            $data['data']['created_by'] = $username;
         }
         return $data;
     }
 
-    public function get_data()  {
+    protected function setUpdatedBy(array $data)
+    {
+       $username = user()->username;
+        if ($username) {
+            $data['data']['updated_by'] = $username;
+            $data['data']['updated_at'] = date('Y-m-d H:i:s');
+        }
+        return $data;
+    }
+
+     public function get_data()  
+     {
         $db = \Config\Database::connect();
         $builder = $db->table('master_jenis_sampel mjs');
         $builder->select('kode_sampel, jenis_sampel, peraturan, parameter, metode, harga_per_titik, pp.id AS id_parameter');
         $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan");
-        $builder->join("per_parameter pp", "pp.id_jenis_sampel = mjs.id");
+        $builder->join("parameter_pemeriksaan pp", "pp.id_jenis_sampel = mjs.id");
         $query = $builder->get()->getResultArray();
         return $query;
     }
+
 }

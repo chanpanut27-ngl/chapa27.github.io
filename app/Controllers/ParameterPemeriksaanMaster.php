@@ -4,12 +4,12 @@ namespace App\Controllers;
 
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\ParameterPemeriksaanModel;
 use App\Models\PeraturanModel;
-use App\Models\PerParameterModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class PerParameterMaster extends ResourceController
+class ParameterPemeriksaanMaster extends ResourceController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -27,7 +27,7 @@ class PerParameterMaster extends ResourceController
     {
         $this->cachePage(5);
         $this->title = 'Parameter Pemeriksaan';
-        $this->model = new PerParameterModel();
+        $this->model = new ParameterPemeriksaanModel();
         $this->modelLab = new LaboratoriumModel();
         $this->modelSampel = new JenisSampelModel();
         $this->validation = \Config\Services::validation();
@@ -38,7 +38,7 @@ class PerParameterMaster extends ResourceController
          $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Master/Parameter/index', $data);
+        return view('Backend/Master/Parameter-pemeriksaan/index', $data);
     }
 
     public function list()
@@ -49,7 +49,7 @@ class PerParameterMaster extends ResourceController
                 'items' => $this->model->get_data()
             ];
             $msg = [
-                'data' => view('Backend/Master/Parameter/_data', $data)
+                'data' => view('Backend/Master/Parameter-pemeriksaan/_data', $data)
             ];
 
             echo json_encode($msg);
@@ -83,7 +83,7 @@ class PerParameterMaster extends ResourceController
                 'masterLab' => $this->modelLab->get_data()
             ];
             $msg = [
-                'data' => view('Backend/Master/Parameter/_add', $data)
+                'data' => view('Backend/Master/Parameter-pemeriksaan/_add', $data)
             ];
 
             echo json_encode($msg);
@@ -99,7 +99,7 @@ class PerParameterMaster extends ResourceController
      */
     public function create()
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
             $valid = $this->validate([
                 'id_jenis_sampel' => [
                     'label' => 'Jenis sampel',
@@ -164,7 +164,7 @@ class PerParameterMaster extends ResourceController
                 'items' => $this->model->find($id),
             ];
             $msg = [
-                'sukses' => view('Backend/Master/Parameter/_edit', $data)
+                'sukses' => view('Backend/Master/Parameter-pemeriksaan/_edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -260,10 +260,11 @@ class PerParameterMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $id_lab = $this->request->getVar('id_lab');
             $result = $this->modelSampel->where('id_lab', $id_lab)->get()->getResultArray();
-
+            
             foreach ($result as $rows) {
                 $data[] = '<option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
             }
+
             $msg = ['data' => $data];
             echo json_encode($msg);
         } else {
