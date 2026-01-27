@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Group ID', 'Group', 'User ID', 'Username', 'Email', ''];
+        $arrth = ['No', 'User ID', 'Username', 'Email', 'Group ID', 'Group', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -16,11 +16,11 @@
         ?>
             <tr>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['group_id']; ?></td>
-                <td><?= $row['name']; ?></td>
                 <td><?= $row['user_id']; ?></td>
                 <td><?= $row['username']; ?></td>
                 <td><?= $row['email']; ?></td>
+                <td><?= $row['group_id']; ?></td>
+                <td><?= $row['name']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['user_id']; ?>)" title="Edit data">
