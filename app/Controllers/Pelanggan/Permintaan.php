@@ -99,7 +99,7 @@ class Permintaan extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterLab' => $this->modelLab->findAll(),
+                'masterLab' => $this->modelLab->get_data(),
                 'masterSampel' => $this->modelSampel->findAll(),
                 'profil' => $this->modelProfil->get_data()
             ];

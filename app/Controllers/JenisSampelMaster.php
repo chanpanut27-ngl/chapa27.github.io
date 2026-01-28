@@ -33,7 +33,6 @@ class JenisSampelMaster extends ResourceController
 
     public function index()
     {
-
         $data = [
             'title' => 'Data ' . $this->title
         ];

@@ -2,7 +2,9 @@
 
 namespace App\Controllers\Pelanggan;
 
+use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\PeraturanModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\PermintaanPemeriksaanModel;
 use App\Models\ProfilPelangganModel;
@@ -19,6 +21,8 @@ class ListPemeriksaan extends ResourceController
     protected $model;
     protected $modelPermintaan;
     protected $modelLab;
+
+    protected $modelSampel;
     protected $title;
     public function __construct()
     {
@@ -26,6 +30,7 @@ class ListPemeriksaan extends ResourceController
         $this->model = new PermintaanPemeriksaanModel();
         $this->modelPermintaan = new PermintaanPelangganModel();
         $this->modelLab = new LaboratoriumModel();
+        $this->modelSampel = new JenisSampelModel();
     }
 
     public function index($id = null)
@@ -37,6 +42,7 @@ class ListPemeriksaan extends ResourceController
         $data = [
             'title' => 'Data ' . $this->title,
             'profil' => $dataPelanggan->get_data(),
+            'items' => $permintaan,
             'id_pelanggan' => $id_pelanggan,
             'no_reg' => $no_reg
         ];
@@ -140,5 +146,38 @@ class ListPemeriksaan extends ResourceController
     public function delete($id = null)
     {
         //
+    }
+
+    public function list_sampel()
+    {
+        if ($this->request->isAJAX()) {
+            $id_lab = $this->request->getVar('id_lab');
+            $result = $this->modelSampel->where('id_lab', $id_lab)->get()->getResultArray();
+            
+            foreach ($result as $rows) {
+                $data[] = '<option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
+            }
+
+            $msg = ['data' => $data];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
+    public function detail_sampel()
+    {
+        if ($this->request->isAJAX()) {
+            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+            $sampel = $this->modelSampel->find($id_jenis_sampel);
+            $id_peraturan = $sampel['id_peraturan'];
+            $peraturan = new PeraturanModel();
+            $result = $peraturan->find($id_peraturan);
+            $data = $result['peraturan'];
+            $msg = ['data' => $data];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }

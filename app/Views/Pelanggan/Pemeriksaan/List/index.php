@@ -3,6 +3,9 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <!-- [Datepicker css] --> 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+<!-- select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -46,7 +49,26 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <?= var_dump($id_pelanggan) ?>
+                        <table class="table">
+                            <tr>
+                                <td><b>Nama pengirim</b></td>
+                                <td>: <?= $items['nama_pengirim'] ?></td>
+                                <td><b>Tgl & jam pengambilan</b></td>
+                                <td>: <?= date('d-m-Y', strtotime($items['tgl_ambil_sampel'])).' '.date('H:i', strtotime($items['jam_ambil_sampel'])) ?></td>
+                            </tr>
+                            <tr>
+                                <td><b>Spesimen/sampel</b></td>
+                                <td>: <?= $items['spesimen_atau_sampel'] ?></td>
+                                <td><b>Lokasi pengambilan sampel/spesimen</b></td>
+                                <td>: <?= $items['lokasi_ambil_sampel'] ?></td>
+                            </tr>
+                            <tr>
+                                <td><b>Petugas ambil sampel</b></td>
+                                <td>: <?= $items['petugas_ambil_sampel'] ?></td>
+                                <td><b>Keterangan tambahan</b></td>
+                                <td>: <?= $items['keterangan_tambahan'] ?></td>
+                            </tr>
+                        </table>
                         <div class="view-data"></div>
                     </div>
                 </div>
@@ -68,6 +90,7 @@
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <!-- [Datepicker js] -->
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
     function listData() {

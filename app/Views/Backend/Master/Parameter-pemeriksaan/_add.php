@@ -187,7 +187,7 @@
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
                 }
             })
-
         })
+        
     })
 </script>

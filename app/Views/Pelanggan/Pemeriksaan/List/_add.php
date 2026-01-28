@@ -12,7 +12,7 @@
                 <input type="text" name="no_reg" value="<?= $no_reg ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                         <label for="id-lab" class="form-label h5" style="font-family: arial;">Laboratorium</label>
+                        <label for="id-lab" class="form-label h5" style="font-family: arial;">Laboratorium</label>
                         <select name="id_lab" class="form-select" id="id-lab" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
@@ -26,6 +26,14 @@
                         <div class="invalid-feedback errorIdLab"></div>
                     </div>
                     <div class="mb-3">
+                        <label for="id-jenis-sampel" class="form-label h5">Jenis sampel</label>
+                        <select name="id_jenis_sampel" class="form-select" id="id-jenis-sampel" style="width: 100%;" aria-label="Default select example">
+                        </select>
+                        <div class="invalid-feedback errorIdJenisSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="peraturan" class="form-label h5">Peraturan</label>
+                        <input type="text" class="form-control" id="peraturan" readonly>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -46,6 +54,47 @@
                 defaultDate: "",  inDate: dateToday
             }
         );
+
+        $('#id-jenis-sampel').select2({
+            dropdownParent: $('#exampleModal')
+        });
+
+        $("#id-lab").change(function (e) {
+            e.preventDefault();
+            var id_lab = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "<?= site_url('master-data/parameter-pemeriksaan/list-sampel'); ?>",
+                data: {id_lab:id_lab},
+                dataType: 'json',
+                cache: false,
+                success: function(response) {
+                    $("#id-jenis-sampel").html(response.data).show()
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+            })
+        })
+
+         $("#id-jenis-sampel").change(function (e) {
+            e.preventDefault();
+            var id_jenis_sampel = $(this).val();
+            $.ajax({
+                type: "post",
+                url: "<?= site_url('master-data/parameter-pemeriksaan/detail-sampel'); ?>",
+                data: {id_jenis_sampel:id_jenis_sampel},
+                dataType: 'json',
+                cache: false,
+                success: function(response) {
+                    $("#peraturan").val(response.data)
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+            })
+        })
+
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
@@ -103,5 +152,6 @@
                 }
             })
         })
+
     })
 </script>
