@@ -25,6 +25,7 @@ class ListPemeriksaan extends ResourceController
 
     protected $modelSampel;
     protected $title;
+    protected $validation;
     public function __construct()
     {
         $this->title = 'Pemeriksaan';
@@ -32,6 +33,7 @@ class ListPemeriksaan extends ResourceController
         $this->modelPermintaan = new PermintaanPelangganModel();
         $this->modelLab = new LaboratoriumModel();
         $this->modelSampel = new JenisSampelModel();
+        $this->validation = \Config\Services::validation();
     }
 
     public function index($id = null)
@@ -110,7 +112,55 @@ class ListPemeriksaan extends ResourceController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'id_jenis_sampel' => [
+                    'label' => 'Jenis sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'id_lab' => [
+                    'label' => 'Laboratorium',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+                
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_lab' => $this->validation->getError('id_lab'),
+                        'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel')
+                    ]
+                ];
+            } else {
+                $id_parameter = $this->request->getVar('id_parameter');
+                $count = count($id_parameter ?? []);
+                for ($i=0; $i < $count; $i++) { 
+
+                    $simpandata = [
+                        'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                        'no_reg' => $this->request->getVar('no_reg'),
+                        'id_lab' => $this->request->getVar('id_lab'),
+                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                        'id_parameter' => $id_parameter[$i],
+                        'jumlah_titik' => $this->request->getVar('jumlah_titik')[$i]
+                    ];
+                    $this->model->insert($simpandata);
+                    $msg = [
+                        'sukses' => 'Data berhasil disimpan'
+                    ];
+                }
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -188,9 +238,15 @@ class ListPemeriksaan extends ResourceController
 
             $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
             $parameter = new ParameterPemeriksaanModel();
-
+            
+            $sampel = new JenisSampelModel();
+            $peraturan = new PeraturanModel();
+            $jenis_sampel = $sampel->find($id_jenis_sampel);
+            $id_peraturan = $jenis_sampel['id_peraturan'];
+            
             $data = [
                 'items' =>  $parameter->where('id_jenis_sampel', $id_jenis_sampel)->findAll(),
+                'peraturan' =>  $peraturan->find($id_peraturan)
             ];
             $msg = [
                 'data' => view('Pelanggan/Pemeriksaan/List/_parameter', $data)

@@ -2,6 +2,10 @@
 <table class="table">
     <thead>
         <tr>
+            <th colspan="2">Peraturan</th>
+            <th colspan="2">: <?= $peraturan['peraturan'] ?></th>
+        </tr>
+        <tr>
             <th>No</th>
             <th></th>
             <th>Parameter</th>

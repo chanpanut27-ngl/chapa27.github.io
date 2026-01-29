@@ -6,7 +6,7 @@
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelanggan/permintaan-pelanggan/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelanggan/list-pemeriksaan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
                 <input type="hidden" name="no_reg" value="<?= $no_reg ?>">
@@ -31,13 +31,8 @@
                         </select>
                         <div class="invalid-feedback errorIdJenisSampel"></div>
                     </div>
-                    <div class="mb-3">
-                        <label for="peraturan" class="form-label h5">Peraturan</label>
-                        <input type="text" class="form-control" id="peraturan" readonly>
+                    <div class="mb-3 list-parameter">
                     </div>
-                     <div class="mb-3 list-parameter">
-
-                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
@@ -118,26 +113,19 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.nama_pengirim) {
-                            $('#nama-pengirim').addClass('is-invalid');
-                            $('.errorNamaPengirim').html(err.nama_pengirim);
+                        if (err.id_lab) {
+                            $('#id-lab').addClass('is-invalid');
+                            $('.errorIdLab').html(err.id_lab);
                         } else {
-                            $('#nama-pengirim').removeClass('is-invalid');
-                            $('.errorNamaPengirim').html('');
+                            $('#id-lab').removeClass('is-invalid');
+                            $('.errorIdLab').html('');
                         }
-                        if (err.tgl_ambil_sampel) {
-                            $('#tgl-ambil-sampel').addClass('is-invalid');
-                            $('.errorTglAmbilSampel').html(err.tgl_ambil_sampel);
+                        if (err.id_jenis_sampel) {
+                            $('#id-jenis-sampel').addClass('is-invalid');
+                            $('.errorIdJenisSampel').html(err.id_jenis_sampel);
                         } else {
-                            $('#tgl-ambil-sampel').removeClass('is-invalid');
-                            $('.errorTglAmbilSampel').html('');
-                        }
-                        if (err.jam_ambil_sampel) {
-                            $('#jam-ambil-sampel').addClass('is-invalid');
-                            $('.errorJamAmbilSampel').html(err.jam_ambil_sampel);
-                        } else {
-                            $('#jam-ambil-sampel').removeClass('is-invalid');
-                            $('.errorJamAmbilSampel').html('');
+                            $('#id-jenis-sampel').removeClass('is-invalid');
+                            $('.errorIdJenisSampel').html('');
                         }
                     } else {
                         Swal.fire({

@@ -51,6 +51,10 @@
                     <div class="card-body">
                         <table class="table">
                             <tr>
+                                <td><b>No.Registrasi</b></td>
+                                <td>: <?= $items['no_reg'] ?></td>
+                            </tr>
+                            <tr>
                                 <td><b>Nama pengirim</b></td>
                                 <td>: <?= $items['nama_pengirim'] ?></td>
                                 <td><b>Tgl & jam pengambilan</b></td>

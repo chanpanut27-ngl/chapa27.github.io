@@ -12,7 +12,14 @@ class PermintaanPemeriksaanModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'id_pelanggan',
+        'no_reg',
+        'id_lab',
+        'id_jenis_sampel',
+        'id_parameter',
+        'jumlah_titik'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -35,12 +42,34 @@ class PermintaanPemeriksaanModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setInsertBy'];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function setInsertBy(array $data)
+    {
+        $username = user()->username;
+        if ($username) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['created_by'] = $username;
+        }
+        return $data;
+    }
+
+    protected function setUpdatedBy(array $data)
+    {
+       $username = user()->username;
+        if ($username) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['updated_by'] = $username;
+        }
+        return $data;
+    }
+
+    
 }
