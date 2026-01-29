@@ -4,6 +4,7 @@ namespace App\Controllers\Pelanggan;
 
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\ParameterPemeriksaanModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\ProfilPelangganModel;
 use CodeIgniter\RESTful\ResourceController;
@@ -286,4 +287,7 @@ class Permintaan extends ResourceController
             exit('Not Process');
         }
     }
+
+
+    
 }

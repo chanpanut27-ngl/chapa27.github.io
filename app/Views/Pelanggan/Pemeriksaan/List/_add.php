@@ -8,8 +8,8 @@
             </div>
             <form action="<?= base_url('pelanggan/permintaan-pelanggan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="text" name="id_pelanggan" value="<?= $id_pelanggan ?>">
-                <input type="text" name="no_reg" value="<?= $no_reg ?>">
+                <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
+                <input type="hidden" name="no_reg" value="<?= $no_reg ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="id-lab" class="form-label h5" style="font-family: arial;">Laboratorium</label>
@@ -35,6 +35,9 @@
                         <label for="peraturan" class="form-label h5">Peraturan</label>
                         <input type="text" class="form-control" id="peraturan" readonly>
                     </div>
+                     <div class="mb-3 list-parameter">
+
+                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
@@ -82,12 +85,12 @@
             var id_jenis_sampel = $(this).val();
             $.ajax({
                 type: "post",
-                url: "<?= site_url('master-data/parameter-pemeriksaan/detail-sampel'); ?>",
+                url: "<?= site_url('pelanggan/list-pemeriksaan/list-parameter'); ?>",
                 data: {id_jenis_sampel:id_jenis_sampel},
                 dataType: 'json',
                 cache: false,
                 success: function(response) {
-                    $("#peraturan").val(response.data)
+                    $(".list-parameter").html(response.data);
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);

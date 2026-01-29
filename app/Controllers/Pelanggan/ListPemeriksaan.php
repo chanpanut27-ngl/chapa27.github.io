@@ -4,6 +4,7 @@ namespace App\Controllers\Pelanggan;
 
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\ParameterPemeriksaanModel;
 use App\Models\PeraturanModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\PermintaanPemeriksaanModel;
@@ -175,6 +176,25 @@ class ListPemeriksaan extends ResourceController
             $result = $peraturan->find($id_peraturan);
             $data = $result['peraturan'];
             $msg = ['data' => $data];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
+    public function list_parameter($id = null)
+    {
+        if ($this->request->isAJAX()) {
+
+            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+            $parameter = new ParameterPemeriksaanModel();
+
+            $data = [
+                'items' =>  $parameter->where('id_jenis_sampel', $id_jenis_sampel)->findAll(),
+            ];
+            $msg = [
+                'data' => view('Pelanggan/Pemeriksaan/List/_parameter', $data)
+            ];
             echo json_encode($msg);
         } else {
             exit('Not Process');
