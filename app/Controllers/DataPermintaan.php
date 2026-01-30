@@ -20,7 +20,7 @@ class DataPermintaan extends ResourceController
     public function __construct()
     {
         $this->cachePage(5);
-        $this->title = 'Instansi';
+        $this->title = 'Permintaan';
         $this->model = new PermintaanPelangganModel();
         $this->validation = \Config\Services::validation();
     }

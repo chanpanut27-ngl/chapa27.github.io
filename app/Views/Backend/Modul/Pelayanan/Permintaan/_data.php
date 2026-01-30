@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Instansi', 'Alamat', 'No.Telp', 'Wilayah', 'Status', ''];
+        $arrth = ['No', 'No.Reg', 'Nama', 'No.Telp', 'Instansi', 'Alamat', 'Tgl & jam', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -16,19 +16,17 @@
         ?>
             <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['nama_instansi']; ?></td>
-                <td><?= $row['alamat']; ?></td>
+                <td><?= $row['no_reg']; ?></td>
+                <td><?= $row['nama_pengirim']; ?></td>
                 <td><?= $row['no_telp']; ?></td>
-                <td><?= $row['wilayah']; ?></td>
-                <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
+                <td><?= $row['instansi']; ?></td>
+                <td><?= $row['alamat']; ?></td>
+                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
-                            <span class="fa-solid fa-edit"></span>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
-                        </button>
+                        <a href="<?= base_url('pelayanan/pengantar-lhu/proses/index/'.strtolower($row['id'])); ?>" class="btn btn-success rounded btn-sm" title="Proses">
+                            <span class="fa-solid fa-arrow-circle-right"></span>
+                        </a>
                     </div>
                 </td>
             </tr>
