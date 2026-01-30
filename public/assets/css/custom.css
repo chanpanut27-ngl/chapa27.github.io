@@ -1,0 +1,112 @@
+#dt-search-0 {
+    width: 350px;
+}
+#dt-search-1 {
+    width: 350px;
+}
+#dt-search-2 {
+    width: 350px;
+}
+#dt-search-3 {
+    width: 350px;
+}
+#dt-search-4 {
+    width: 350px;
+}
+#dt-search-5 {
+    width: 350px;
+}
+
+/* Kementerian kesehatan css */
+.kemkes-color1 {
+    background-color: #40E0D0;
+}
+.kemkes-color2 {
+    background-color: #b4fbd4;
+}
+
+.title-kemenkes {
+    font-weight:bold; 
+    color: #00A69A; 
+    line-height: 1
+}
+
+.desc-kemenkes {
+    line-height: 1; 
+    font-size: 10px;
+}
+/** ************************/
+
+.img-circle { 
+    border-radius:50%
+}
+.elevation-0 {
+    box-shadow:none!important
+}
+.elevation-1 {
+    box-shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.24)!important
+}
+.elevation-2 {
+    box-shadow:0 3px 6px rgba(0,0,0,.16),0 3px 6px rgba(0,0,0,.23)!important
+}
+.elevation-3 {
+    box-shadow:0 10px 20px rgba(0,0,0,.19),0 6px 6px rgba(0,0,0,.23)!important
+}
+.elevation-4 {
+    box-shadow:0 14px 28px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.22)!important
+}
+.elevation-5 {
+    box-shadow:0 19px 38px rgba(0,0,0,.3),0 15px 12px rgba(0,0,0,.22)!important
+}
+
+.back-to-top {
+    bottom:1.25rem;
+    position:fixed;
+    right:1.25rem;
+    z-index:1032;
+    color:white;
+    background-color: rgba(150, 146, 156, 0.5); /* Putih 50% transparan */
+
+}
+.back-to-top:hover {
+    background-color: rgba(117, 46, 232, 0.5); /* Putih 50% transparan */
+}
+.back-to-top:focus {
+    box-shadow:none;
+    background-color: rgba(95, 7, 235, 0.5); /* Putih 50% transparan */
+}
+
+/** ukuran foto 4x6 **/
+.img-foto {
+  width: 4cm;  /* Lebar 4 sentimeter */
+  height: 6cm; /* Tinggi 6 sentimeter */
+  /* Jika rasio aspek gambar asli berbeda, gunakan object-fit agar tidak pecah */
+  object-fit: cover; /* Memenuhi area, memotong jika perlu */
+  /* Atau: */
+  /* object-fit: contain; */ /* Menampilkan seluruh gambar, mungkin ada ruang kosong */
+}
+
+
+
+/* label printer */
+.persegi-panjang {
+    width: 6cm;
+    height: 3cm;
+    border: 1px solid black; /* Garis tepi (opsional) */
+}
+
+.content-label {
+    width: 5.5cm;
+    height: 2.6cm;
+    margin-left: 0.2cm;
+    margin-right: 0.2cm;
+    margin-top: 0.2cm;
+    margin-bottom: 0.2cm;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: monospace;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    align-items: center;
+}
