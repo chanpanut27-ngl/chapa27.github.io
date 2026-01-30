@@ -84,6 +84,9 @@
                 data: {id_jenis_sampel:id_jenis_sampel},
                 dataType: 'json',
                 cache: false,
+                beforeSend: function() {
+                    $('.list-parameter').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                },
                 success: function(response) {
                     $(".list-parameter").html(response.data);
                 },

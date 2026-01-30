@@ -27,7 +27,7 @@ class InstansiMaster extends ResourceController
 
     public function index()
     {
-         $data = [
+        $data = [
             'title' => 'Data ' . $this->title
         ];
         return view('Backend/Master/Instansi/index', $data);

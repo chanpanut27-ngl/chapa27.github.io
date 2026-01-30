@@ -1,7 +1,7 @@
 
 <table class="table">
     <thead>
-        <tr>
+        <tr style="background:chartreuse;">
             <th colspan="2">Peraturan</th>
             <th colspan="2">: <?= $peraturan['peraturan'] ?></th>
         </tr>

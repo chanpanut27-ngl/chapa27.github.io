@@ -27,9 +27,9 @@
                     </i>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-sampel/permintaan'); ?>" class="pc-link">
+                    <a href="<?= base_url('pelayanan-sampel/data-permintaan'); ?>" class="pc-link">
                         <svg class="pc-icon">
-                            <use xlink:href="#permintaan"></use>
+                            <use xlink:href="#data-permintaan"></use>
                         </svg>
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Permintaan</span>
                     </a>
