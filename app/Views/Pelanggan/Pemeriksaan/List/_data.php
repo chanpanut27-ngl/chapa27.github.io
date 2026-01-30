@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Pemeriksaan', 'Laboratorium', 'Tgl & Jam pengambilan spesimen/sampel', 'Tgl & Jam permintaan', ''];
+        $arrth = ['No', 'Pemeriksaan', 'Peraturan', 'Parameter', 'Jumlah titik', 'Laboratorium', 'Tgl & Jam', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -14,17 +14,19 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_permintaan_pemeriksaan']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['no_reg']; ?></td>
-                <td><?= $row['nama_pengirim']; ?></td>
-                <td style="text-align: center;"><?= date('d-m-Y', strtotime($row['tgl_ambil_sampel'])).' '.date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
-                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
+                <td><?= $row['jenis_sampel']; ?></td>
+                <td><?= $row['peraturan']; ?></td>
+                <td><?= $row['parameter']; ?></td>
+                <td><?= $row['jumlah_titik']; ?></td>
+                <td><?= $row['nama_lab']; ?></td>
+                <td><?= date('d-m-Y H:i', strtotime($row['tgl_entry'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start">
-                        <a href="<?= base_url('pelanggan/list-pemeriksaan/'.$row['id']); ?>" class="btn btn-primary rounded btn-sm" title="Tambah pemeriksaan">
-                            <span class="fa-solid fa-arrow-circle-right"></span>
-                        </a>
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan']; ?>)" title="Hapus data">
+                            <span class="fa-solid fa-trash-alt"></span>
+                        </button>
                     </div>
                 </td>
             </tr>
@@ -68,7 +70,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/instansi/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelanggan/list-pemeriksaan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

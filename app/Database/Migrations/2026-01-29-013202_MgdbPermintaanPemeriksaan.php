@@ -26,7 +26,7 @@ class MgdbPermintaanPemeriksaan extends Migration
                 'constraint' => 5,
                 'unsigned'   => true
             ],
-            'id_sampel' => [
+            'id_jenis_sampel' => [
                 'type'       => 'INT',
                 'constraint' => 5,
                 'unsigned'   => true

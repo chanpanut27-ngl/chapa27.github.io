@@ -16,7 +16,7 @@
         <?php $no=1; foreach ($items as $rows) : ?>
         <tr>
             <td><?= $no++; ?></td>
-            <td><input type="checkbox" name="id_parameter[]"></td>
+            <td><input type="checkbox" name="id_parameter[]" value="<?= $rows['id'] ?>"></td>
             <td><?= $rows['parameter'] ?></td>
             <td><input type="text" name="jumlah_titik[]" class="form-control"></td>
         </tr>
