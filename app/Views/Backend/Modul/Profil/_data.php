@@ -28,7 +28,7 @@
         <input type="text" name="no_telp" value="<?= $rows['no_telp'] ?>" class="form-control" id="no-telp" placeholder="Isi nomor telepon instansi ...">
         <div class="invalid-feedback errorNoTelp"></div>
     </div>
-    <div class="card-footer bg-light">
+    <div class="card-footer">
         <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fa-solid fa-edit"></span> Ubah</button>
         <button type="reset" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-refresh"></span> Batal</button>
     </div>

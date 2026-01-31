@@ -67,7 +67,7 @@
                             });
                         } else{
                             Swal.fire({
-                                title: "Berhasil",
+                                title: "Berhasil ubah foto",
                                 text: response.sukses,
                                 icon: "success"
                             });
