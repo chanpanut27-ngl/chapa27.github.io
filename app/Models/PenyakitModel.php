@@ -12,7 +12,7 @@ class PenyakitModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['penyakit', 'is_active'];
+    protected $allowedFields    = ['penyakit', 'keterangan', 'is_active'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -44,22 +44,21 @@ class PenyakitModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+     protected function setInsertBy(array $data)
+    {
+        $userId = user()->username;
+        if ($userId) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['created_by'] = $userId;
+        }
+        return $data;
+    }
     protected function setUpdatedBy(array $data)
     {
        $userId = user()->username;
         if ($userId) {
             // Tambahkan user_id ke data yang akan di-update
             $data['data']['updated_by'] = $userId;
-        }
-        return $data;
-    }
-
-    protected function setInsertBy(array $data)
-    {
-        $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_by'] = $userId;
         }
         return $data;
     }

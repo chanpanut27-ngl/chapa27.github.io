@@ -3,20 +3,24 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/penyakit/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id" value="<?= $items['id']; ?>">
+                <input type="hidden" name="id" value="<?= $items['id'] ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="penyakit" class="form-label h4" style="font-family: arial;">Penyakit</label>
+                        <label for="penyakit" class="form-label h4">Penyakit</label>
                         <input type="text" name="penyakit" value="<?= $items['penyakit']; ?>" class="form-control" id="penyakit" autocomplete="off">
                         <div class="invalid-feedback errorPenyakit"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4" style="font-family: arial;">Status</label>
+                        <label for="keterangan" class="form-label h3">Keterangan</label>
+                        <textarea name="keterangan" class="form-control" id="keterangan"><?= $items['keterangan'] ?></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="is-active" class="form-label h4">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
@@ -90,7 +94,8 @@
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
-                            icon: "success"
+                            icon: "success",
+                            timer: 3000
                         });
 
                         $("#exampleModal").modal('hide');

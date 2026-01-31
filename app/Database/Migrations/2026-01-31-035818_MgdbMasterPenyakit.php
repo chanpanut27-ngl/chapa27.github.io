@@ -8,7 +8,7 @@ class MgdbMasterPenyakit extends Migration
 {
     public function up()
     {
-         $this->forge->addField([
+        $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
@@ -18,6 +18,9 @@ class MgdbMasterPenyakit extends Migration
             'penyakit' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '150',
+            ],
+            'keterangan' => [
+                'type'       => 'TEXT'
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -38,8 +41,7 @@ class MgdbMasterPenyakit extends Migration
                 'constraint' => '100'
             ],
             'deleted_at' => [
-                'type' => 'DATETIME',
-                'default' => 'current_timestamp'
+                'type' => 'DATETIME'
             ],
             'deleted_at datetime default current_timestamp',
             'deleted_by'     => [
