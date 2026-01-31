@@ -44,23 +44,24 @@ class AuthGroupsModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    protected function setUpdatedBy(array $data)
-    {
-       $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_at'] = date('Y-m-d H:i:s');
-        }
-        return $data;
-    }
-
     protected function setInsertBy(array $data)
     {
-        $userId = user()->username;
-        if ($userId) {
+        $username = user()->username;
+        if ($username) {
             // Tambahkan user_id ke data yang akan di-update
             $data['data']['created_at'] = date('Y-m-d H:i:s');
         }
         return $data;
     }
+
+    protected function setUpdatedBy(array $data)
+    {
+       $username = user()->username;
+        if ($username) {
+            $data['data']['updated_at'] = date('Y-m-d H:i:s');
+        }
+        return $data;
+    }
+
+    
 }
