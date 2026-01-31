@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: arial;">
+    <thead>
         <?php
-        $arrth = ['No', 'No.Reg', 'Nama', 'No.Telp', 'Instansi', 'Alamat', 'Tgl & jam', ''];
+        $arrth = ['No', 'No.Registrasi', 'Nama', 'No.Telp', 'Instansi', 'Alamat', 'Tgl & jam', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -9,7 +9,7 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial;">
+    <tbody>
         <?php
         $no = 1;
         foreach ($items as $row) :
