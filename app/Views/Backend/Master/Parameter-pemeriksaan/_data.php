@@ -19,7 +19,7 @@
                 <td><?= $row['parameter']; ?></td>
                 <td><?= $row['metode']; ?></td>
                 <td style="text-align: right;"><?= number_to_currency($row['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
-                <td><?= $row['kode_sampel'].'-'.$row['jenis_sampel']; ?></td>
+                <td><?= '('.$row['kode_sampel'].') '.$row['jenis_sampel']; ?></td>
                 <td><?= $row['peraturan']; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">

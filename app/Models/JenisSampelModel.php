@@ -43,14 +43,32 @@ class JenisSampelModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setInsertBy'];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function setInsertBy(array $data)
+    {
+        $username = user()->username;
+        if ($username) {
+            $data['data']['created_by'] = $username;
+        }
+        return $data;
+    }
+
+    protected function setUpdatedBy(array $data)
+    {
+        $username = user()->username;
+        if ($username) {
+            $data['data']['updated_by'] = $username;
+        }
+        return $data;
+    }
 
     public function get_data()
     {
