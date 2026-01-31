@@ -44,22 +44,20 @@ class BiayaAkomodasiModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    protected function setUpdatedBy(array $data)
+    protected function setInsertBy(array $data)
     {
-       $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_by'] = $userId;
+        $username = user()->username;
+        if ($username) {
+            $data['data']['created_by'] = $username;
         }
         return $data;
     }
 
-    protected function setInsertBy(array $data)
+    protected function setUpdatedBy(array $data)
     {
-        $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_by'] = $userId;
+        $username = user()->username;
+        if ($username) {
+            $data['data']['updated_by'] = $username;
         }
         return $data;
     }

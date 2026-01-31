@@ -3,25 +3,25 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/peraturan-baku-mutu/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/peraturan-baku-mutu/update-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="peraturan" class="form-label h5">Peraturan</label>
+                        <label for="peraturan" class="form-label h4">Peraturan</label>
                         <input type="text" name="peraturan" value="<?= $items['peraturan']; ?>" class="form-control" id="peraturan" autocomplete="off">
                         <div class="invalid-feedback errorPeraturan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="keterangan" class="form-label h5">Keterangan</label>
+                        <label for="keterangan" class="form-label h4">Keterangan</label>
                         <textarea name="keterangan" class="form-control" id="keterangan"><?= $items['keterangan']; ?></textarea>
                         <div class="invalid-feedback errorKeterangan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h5" style="font-family: calibri;">Status</label>
+                        <label for="is-active" class="form-label h4">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
@@ -87,7 +87,7 @@
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
-                            timer: 8000,
+                            timer: 3000,
                             onOpen: () => {
                                 Swal.showLoading(); // Show a loading spinner while the timer runs
                             },
