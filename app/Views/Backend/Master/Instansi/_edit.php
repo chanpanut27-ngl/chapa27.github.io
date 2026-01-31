@@ -3,35 +3,35 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/instansi/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/instansi/update-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id" value="<?= $items['id']; ?>">
+                <input type="hidden" name="id" value="<?= $items['id'] ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instansi" class="form-label h5">Instansi</label>
-                        <input type="text" name="nama_instansi" value="<?=  $items['nama_instansi']; ?>" class="form-control" id="nama-instansi" autocomplete="off">
+                        <label for="nama-instansi" class="form-label h4">Instansi</label>
+                        <input type="text" name="nama_instansi" value="<?=  $items['nama_instansi'] ?>" class="form-control" id="nama-instansi" autocomplete="off">
                         <div class="invalid-feedback errorNamaInstansi"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="alamat" class="form-label h5">Alamat</label>
-                        <textarea name="alamat" class="form-control" id="alamat"><?= $items['alamat']; ?></textarea>
+                        <label for="alamat" class="form-label h4">Alamat</label>
+                        <textarea name="alamat" class="form-control" id="alamat"><?= $items['alamat'] ?></textarea>
                         <div class="invalid-feedback errorAlamat"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp" class="form-label h5">No.Telp/Hp</label>
-                        <input type="text" name="no_telp" value="<?=  $items['no_telp']; ?>" class="form-control" id="no-telp">
+                        <label for="no-telp" class="form-label h4">No.Telp/Hp</label>
+                        <input type="text" name="no_telp" value="<?=  $items['no_telp'] ?>" class="form-control" id="no-telp">
                         <div class="invalid-feedback errorNoTelp"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="wilayah" class="form-label h5">Wilayah</label>
-                        <input type="text" name="wilayah" value="<?=  $items['wilayah']; ?>" class="form-control" id="wilayah">
+                        <label for="wilayah" class="form-label h4">Wilayah</label>
+                        <input type="text" name="wilayah" value="<?=  $items['wilayah'] ?>" class="form-control" id="wilayah">
                         <div class="invalid-feedback errorWilayah"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h5" style="font-family: calibri;">Status</label>
+                        <label for="is-active" class="form-label h4">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
