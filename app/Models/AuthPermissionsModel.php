@@ -24,7 +24,7 @@ class AuthPermissionsModel extends Model
     protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    // protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
     // Validation
@@ -35,7 +35,7 @@ class AuthPermissionsModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = ['setInsertBy'];
+    protected $beforeInsert   = [];
     protected $afterInsert    = [];
     protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
@@ -46,20 +46,9 @@ class AuthPermissionsModel extends Model
 
     protected function setUpdatedBy(array $data)
     {
-       $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
+       $username = user()->username;
+        if ($username) {
             $data['data']['updated_at'] = date('Y-m-d H:i:s');
-        }
-        return $data;
-    }
-
-    protected function setInsertBy(array $data)
-    {
-        $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_at'] = date('Y-m-d H:i:s');
         }
         return $data;
     }

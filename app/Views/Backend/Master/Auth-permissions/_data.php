@@ -20,7 +20,7 @@
                 <td><?= $row['description'] ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded <?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">

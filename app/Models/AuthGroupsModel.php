@@ -24,7 +24,7 @@ class AuthGroupsModel extends Model
     protected $useTimestamps = true;
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    // protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
     // Validation
@@ -35,7 +35,7 @@ class AuthGroupsModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = ['setInsertBy'];
+    protected $beforeInsert   = [];
     protected $afterInsert    = [];
     protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
@@ -43,16 +43,6 @@ class AuthGroupsModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    protected function setInsertBy(array $data)
-    {
-        $username = user()->username;
-        if ($username) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_at'] = date('Y-m-d H:i:s');
-        }
-        return $data;
-    }
 
     protected function setUpdatedBy(array $data)
     {
