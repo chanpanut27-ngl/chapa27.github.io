@@ -45,6 +45,7 @@
 
 <script>
     $(document).ready(function() {
+       
         var dateToday = new Date();
         $("#tgl-ambil-sampel").datepicker(
             { 

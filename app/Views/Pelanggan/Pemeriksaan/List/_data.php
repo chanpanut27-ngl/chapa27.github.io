@@ -19,7 +19,7 @@
                 <td><?= $row['jenis_sampel']; ?></td>
                 <td><?= $row['peraturan']; ?></td>
                 <td><?= $row['parameter']; ?></td>
-                <td><?= $row['jumlah_titik']; ?></td>
+                <td style="text-align: center;"><?= $row['jumlah_titik']; ?></td>
                 <td><?= $row['nama_lab']; ?></td>
                 <td><?= date('d-m-Y H:i', strtotime($row['tgl_entry'])); ?></td>
                 <td>

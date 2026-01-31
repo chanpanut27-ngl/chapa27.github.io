@@ -52,7 +52,7 @@
                         <table class="table">
                             <tr>
                                 <td><b>No.Registrasi</b></td>
-                                <td>: <?= $items['no_reg'] ?></td>
+                                <td colspan="3">: <?= $items['no_reg'] ?></td>
                             </tr>
                             <tr>
                                 <td><b>Nama pengirim</b></td>
@@ -110,6 +110,16 @@
         })
     }
 
+     $("#selectAll").change(function(){
+        $(".checkbox").prop('checked', $(this).prop("checked"));
+    });
+
+    function toggle(source) {
+        checkboxes = document.getElementsByClassName('checkbox');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
 
     $(document).ready(function() {
         listData();

@@ -262,7 +262,7 @@ class ParameterPemeriksaanMaster extends ResourceController
             $result = $this->modelSampel->where('id_lab', $id_lab)->get()->getResultArray();
             $data = null;
             foreach ($result as $rows) {
-                $data[] = '<option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
+                $data[] = '<option value=></option><option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
             }
             $msg = '';
             $msg = ['data' => $data];
