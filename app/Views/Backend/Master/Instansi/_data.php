@@ -88,7 +88,8 @@
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 3000
                             });
                             listData();
                         }

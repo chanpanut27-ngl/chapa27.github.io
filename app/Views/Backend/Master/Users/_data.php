@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: arial;">
+    <thead>
         <?php
-        $arrth = ['No', 'Email', 'Username', 'Created', 'Status', ''];
+        $arrth = ['No', 'Email', 'Username', 'Tgl & jam', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -9,23 +9,23 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial;">
+    <tbody>
         <?php
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['email']; ?></td>
-                <td><?= $row['username']; ?></td>
-                <td><?= date('d/m/Y H:i:s', strtotime($row['created_at'])); ?></td>
+                <td><?= $row['email'] ?></td>
+                <td><?= $row['username'] ?></td>
+                <td style="text-align: right;"><?= date('d/m/Y H:i', strtotime($row['created_at'])) ?></td>
                 <td><?= $row['active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
@@ -40,6 +40,15 @@
             type: 'get',
             url: '<?= site_url('master-data/users/edit-data/'); ?>' + id,
             dataType: 'json',
+            cache: true,
+            beforeSend: function() {
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-edit"></span>');
+            },
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();
@@ -78,7 +87,8 @@
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 3000
                             });
                             listData();
                         }

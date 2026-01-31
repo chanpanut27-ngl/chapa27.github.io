@@ -37,12 +37,21 @@ class UsersModel extends Model
     protected $allowCallbacks = true;
     protected $beforeInsert   = [];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function setUpdatedBy(array $data)
+    {
+        $username = user()->username;
+        if ($username) {
+            $data['data']['updated_by'] = $username;
+        }
+        return $data;
+    }
 
     public function cek_login_user()
     {

@@ -3,19 +3,19 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/auth-groups/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/auth-groups/create-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="name" class="form-label h5">Group</label>
+                        <label for="name" class="form-label h4">Group</label>
                         <input type="text" name="name" class="form-control" id="name" autocomplete="off">
                         <div class="invalid-feedback errorName"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label h5">Keterangan</label>
+                        <label for="description" class="form-label h4">Keterangan</label>
                         <input type="text" name="description" class="form-control" id="description">
                         <div class="invalid-feedback errorDescription"></div>
                     </div>

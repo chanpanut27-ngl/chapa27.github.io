@@ -3,25 +3,25 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/users/update-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/users/update-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id" value="<?= $items['id']; ?>">
+                <input type="hidden" name="id" value="<?= $items['id'] ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="email" class="form-label h5">Email</label>
-                        <input type="text" name="email" value="<?= $items['email']; ?>" class="form-control" id="email" autocomplete="off">
+                        <label for="email" class="form-label h4">Email</label>
+                        <input type="text" name="email" value="<?= $items['email'] ?>" class="form-control" id="email" autocomplete="off">
                         <div class="invalid-feedback errorEmail"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="username" class="form-label h5">Username</label>
-                        <input type="text" name="username" value="<?= $items['username']; ?>" class="form-control" id="username">
+                        <label for="username" class="form-label h4">Username</label>
+                        <input type="text" name="username" value="<?= $items['username'] ?>" class="form-control" id="username">
                         <div class="invalid-feedback errorUsername"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h5" style="font-family: calibri;">Status</label>
+                        <label for="is-active" class="form-label h4">Status</label>
                         <select name="active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
@@ -85,7 +85,8 @@
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
-                            icon: "success"
+                            icon: "success",
+                            timer: 3000
                         });
 
                         $("#exampleModal").modal('hide');

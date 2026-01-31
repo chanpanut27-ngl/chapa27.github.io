@@ -1,5 +1,5 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: arial;">
+    <thead>
         <?php
         $arrth = ['No', 'User ID', 'Username', 'Email', 'Group ID', 'Group', ''];
         echo '<tr>';
@@ -9,23 +9,20 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial;">
+    <tbody>
         <?php
         $no = 1;
         foreach ($items as $row) :
         ?>
             <tr>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['user_id']; ?></td>
-                <td><?= $row['username']; ?></td>
-                <td><?= $row['email']; ?></td>
-                <td><?= $row['group_id']; ?></td>
-                <td><?= $row['name']; ?></td>
+                <td><?= $row['user_id'] ?></td>
+                <td><?= $row['username'] ?></td>
+                <td><?= $row['email'] ?></td>
+                <td><?= $row['group_id'] ?></td>
+                <td><?= $row['name'] ?></td>
                 <td>
-                    <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['user_id']; ?>)" title="Edit data">
-                            <span class="fa-solid fa-edit"></span>
-                        </button>
+                    <div class="d-flex justify-content-start">
                         <button type="button" class="btn btn-danger btn-sm rounded btn-hapus" data-user=<?= $row['user_id'] ?> data-group=<?= $row['group_id'] ?> title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
@@ -36,23 +33,6 @@
     </tbody>
 </table>
 <script>
-    function editData(id) {
-        $.ajax({
-            type: 'get',
-            url: '<?= site_url('master-data/auth-groups-users/edit-data/'); ?>' + id,
-            dataType: 'json',
-            success: function(response) {
-                if (response.sukses) {
-                    $(".view-modal").html(response.sukses).show();
-                    $("#exampleModal").modal('show');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        })
-    }
-
 
     $(".btn-hapus").click(function (e) {
         e.preventDefault();
