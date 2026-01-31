@@ -38,7 +38,7 @@
             type: 'get',
             url: '<?= site_url('master-data/auth-groups/edit-data/'); ?>' + id,
             dataType: 'json',
-            cache: true,
+            cache: false,
             beforeSend: function() {
                 $('.btn-edit-'+id).attr('disable', 'disabled');
                 $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
