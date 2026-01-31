@@ -3,10 +3,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/kategori-lab/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/kategori-lab/create-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
@@ -57,7 +57,8 @@
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
-                            icon: "success"
+                            icon: "success",
+                            timer: 3000
                         });
 
                         $("#exampleModal").modal('hide');
