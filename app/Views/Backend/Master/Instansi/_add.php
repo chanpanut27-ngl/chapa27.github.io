@@ -79,7 +79,8 @@
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
-                            icon: "success"
+                            icon: "success",
+                            timer: 3000,
                         });
 
                         $("#exampleModal").modal('hide');

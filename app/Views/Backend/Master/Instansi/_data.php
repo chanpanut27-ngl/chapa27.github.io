@@ -14,19 +14,19 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['nama_instansi']; ?></td>
-                <td><?= $row['alamat']; ?></td>
-                <td><?= $row['no_telp']; ?></td>
-                <td><?= $row['wilayah']; ?></td>
+                <td><?= $row['alamat'] ?></td>
+                <td><?= $row['no_telp'] ?></td>
+                <td><?= $row['wilayah'] ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
@@ -43,12 +43,12 @@
             dataType: 'json',
             cache: false,
             beforeSend: function() {
-                $('.btn-edit').attr('disable', 'disabled');
-                $('.btn-edit').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
             complete: function() {
-                $('.btn-edit').removeAttr('disable');
-                $('.btn-edit').html('<span class="fa-solid fa-edit"></span>');
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-edit"></span>');
             },
             success: function(response) {
                 if (response.sukses) {
