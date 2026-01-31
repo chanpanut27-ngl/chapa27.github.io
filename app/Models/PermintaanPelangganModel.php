@@ -14,6 +14,7 @@ class PermintaanPelangganModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'no_reg',
+        'kode_pelanggan',
         'nama_pengirim',
         'instansi',
         'alamat',

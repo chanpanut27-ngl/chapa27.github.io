@@ -6,19 +6,27 @@ use CodeIgniter\Model;
 
 class PelangganModel extends Model
 {
-    protected $table            = 'master_pelanggan';
+    protected $table            = 'permintaan_pelanggan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'kode_pelanggan', 
-        'nama', 
-        'alamat', 
+        'no_reg',
+        'kode_pelanggan',
+        'nama_pengirim',
+        'instansi',
+        'alamat',
         'no_telp',
-        'nama_pjb',
-        'is_active'
+        'no_telp_pengirim',
+        'spesimen_atau_sampel',
+        'tgl_ambil_sampel',
+        'jam_ambil_sampel',
+        'petugas_ambil_sampel',
+        'lokasi_ambil_sampel',
+        'paraf',
+        'keterangan_tambahan'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -51,23 +59,23 @@ class PelangganModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    protected function setInsertBy(array $data)
+    {
+        $username = user()->username;
+        if ($username) {
+            $data['data']['created_by'] = $username;
+        }
+        return $data;
+    }
+    
     protected function setUpdatedBy(array $data)
     {
-       $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_by'] = $userId;
+       $username = user()->username;
+        if ($username) {
+            $data['data']['updated_by'] = $username;
         }
         return $data;
     }
 
-    protected function setInsertBy(array $data)
-    {
-        $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_by'] = $userId;
-        }
-        return $data;
-    }
+    
 }

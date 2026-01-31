@@ -1,6 +1,9 @@
 <?= $this->extend('Backend/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
+<!-- [Datepicker css] --> 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -57,6 +60,8 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
+<!-- [Datepicker js] -->
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 
 <script>
     function listData() {

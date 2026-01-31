@@ -4,7 +4,6 @@ namespace App\Controllers\Pelanggan;
 
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
-use App\Models\ParameterPemeriksaanModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\ProfilPelangganModel;
 use CodeIgniter\RESTful\ResourceController;
@@ -46,7 +45,7 @@ class Permintaan extends ResourceController
         return view('Pelanggan/Permintaan/index', $data);
     }
 
-    public function generate_kode_permintaan() 
+    public function generate_no_reg() 
     {
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
         $count = $this->model->countAllResults();
@@ -56,6 +55,20 @@ class Permintaan extends ResourceController
 
         // Format nomor antrian
         $nomorAntrian = sprintf('%04d', $nomorUrut) . '.' . date('dmY');
+        
+        return $nomorAntrian;
+    }
+
+    public function generate_kode_pelanggan() 
+    {
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $this->model->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = 'PL' . sprintf('%04d', $nomorUrut);
         
         return $nomorAntrian;
     }
@@ -164,7 +177,8 @@ class Permintaan extends ResourceController
                 ];
             } else {
                 $simpandata = [
-                    'no_reg' => $this->generate_kode_permintaan(),
+                    'no_reg' => $this->generate_no_reg(),
+                    'kode_pelanggan' => $this->generate_kode_pelanggan(),
                     'nama_pengirim' => $this->request->getVar('nama_pengirim'),
                     'instansi' => $this->request->getVar('instansi'),
                     'alamat' => $this->request->getVar('alamat'),

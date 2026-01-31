@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PelangganModel;
+use App\Models\PermintaanPelangganModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
 
@@ -23,7 +24,7 @@ class PelangganMaster extends ResourceController
     {
         $this->cachePage(5);
         $this->title = 'Pelanggan';
-        $this->model = new PelangganModel();
+        $this->model = new PermintaanPelangganModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -84,6 +85,20 @@ class PelangganMaster extends ResourceController
         }
     }
 
+    public function generate_no_reg() 
+    {
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $this->model->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = sprintf('%04d', $nomorUrut) . '.' . date('dmY');
+        
+        return $nomorAntrian;
+    }
+
     public function generate_kode_pelanggan() 
     {
         // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
@@ -93,7 +108,7 @@ class PelangganMaster extends ResourceController
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
-        $nomorAntrian = 'P' . sprintf('%04d', $nomorUrut);
+        $nomorAntrian = 'PL' . sprintf('%04d', $nomorUrut);
         
         return $nomorAntrian;
     }
@@ -107,8 +122,8 @@ class PelangganMaster extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'nama' => [
-                    'label' => 'Nama pelanggan',
+                'nama_pengirim' => [
+                    'label' => 'Nama pengirim',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -121,15 +136,29 @@ class PelangganMaster extends ResourceController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'no_telp' => [
-                    'label' => 'No.Telp',
+                'instansi' => [
+                    'label' => 'Instansi',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'nama_pjb' => [
-                    'label' => 'Nama penanggung jawab',
+                'no_telp_pengirim' => [
+                    'label' => 'No.Telp/Hp pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_ambil_sampel' => [
+                    'label' => 'Tanggal pengambilan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'jam_ambil_sampel' => [
+                    'label' => 'Jam pengambilan sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -140,19 +169,29 @@ class PelangganMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama' => $this->validation->getError('nama'),
+                        'nama_pengirim' => $this->validation->getError('nama_pengirim'),
+                        'instansi' => $this->validation->getError('instansi'),
                         'alamat' => $this->validation->getError('alamat'),
-                        'nama_pjb' => $this->validation->getError('nama_pjb'),
-                        'no_telp' => $this->validation->getError('no_telp')
+                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
+                        'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
+                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
                     ]
                 ];
             } else {
                 $simpandata = [
+                    'no_reg' => $this->generate_no_reg(),
                     'kode_pelanggan' => $this->generate_kode_pelanggan(),
-                    'nama' => $this->request->getVar('nama'),
+                    'nama_pengirim' => $this->request->getVar('nama_pengirim'),
+                    'instansi' => $this->request->getVar('instansi'),
                     'alamat' => $this->request->getVar('alamat'),
+                    'tgl_ambil_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel'))),
+                    'jam_ambil_sampel' => $this->request->getVar('jam_ambil_sampel'),
+                    'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
+                    'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
                     'no_telp' => $this->request->getVar('no_telp'),
-                    'nama_pjb' => $this->request->getVar('nama_pjb')
+                    'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
+                    'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
+                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
                 ];
                 $this->model->insert($simpandata);
                 $msg = [

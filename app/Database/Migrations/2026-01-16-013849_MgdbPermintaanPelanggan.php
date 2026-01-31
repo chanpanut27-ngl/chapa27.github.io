@@ -19,6 +19,10 @@ class MgdbPermintaanPelanggan extends Migration
                 'type'       => 'CHAR',
                 'constraint' => '20',
             ],
+            'kode_pelanggan' => [
+                'type'       => 'CHAR',
+                'constraint' => '20',
+            ],
             'nama_pengirim' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '150',

@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: arial;">
+    <thead>
         <?php
-        $arrth = ['No', 'Kode Pelanggan', 'Pelanggan', 'Alamat', 'No.Telp', 'Nama PJ', 'Status', ''];
+        $arrth = ['No', 'No.Registrasi', 'Kode Pelanggan', 'Nama Pengirim', 'Instansi', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -9,22 +9,21 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial;">
+    <tbody>
         <?php
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['kode_pelanggan']; ?></td>
-                <td><?= $row['nama']; ?></td>
-                <td><?= $row['alamat']; ?></td>
-                <td><?= $row['no_telp']; ?></td>
-                <td><?= $row['nama_pjb']; ?></td>
+                <td><?= $row['no_reg'] ?></td>
+                <td><?= $row['kode_pelanggan'] ?></td>
+                <td><?= $row['nama_pengirim'] ?></td>
+                <td><?= $row['instansi'] ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id']; ?>" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
@@ -42,6 +41,15 @@
             type: 'get',
             url: '<?= site_url('master-data/pelanggan/edit-data/'); ?>' + id,
             dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-edit"></span>');
+            },
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();
@@ -80,7 +88,8 @@
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 3000
                             });
                             listData();
                         }
