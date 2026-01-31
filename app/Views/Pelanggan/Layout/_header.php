@@ -170,7 +170,7 @@ foreach ($dt_login as $row) {
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="mb-1"><?= user()->username; ?></h6>
-                                    <span>BBLabkesmas Jakarta</span>
+                                    <!-- <span>BBLabkesmas Jakarta</span> -->
                                 </div>
                                 <a href="#!" class="pc-head-link bg-transparent d-none"><i class="ti ti-power text-danger"></i></a>
                             </div>

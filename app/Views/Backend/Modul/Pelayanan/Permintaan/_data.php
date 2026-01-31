@@ -24,7 +24,10 @@
                 <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <a href="<?= base_url('pelayanan/pengantar-lhu/proses/index/'.strtolower($row['id'])); ?>" class="btn btn-success rounded btn-sm" title="Proses">
+                        <a href="<?= base_url('pelayanan-sampel/data-permintaan/proses/index/'.strtolower($row['id'])); ?>" class="btn btn-success rounded btn-sm" title="Proses">
+                            <span class="fa-solid fa-arrow-circle-right"></span>
+                        </a>
+                         <a href="<?= base_url('pelanggan/list-pemeriksaan/index/'.$row['id']) ?>" class="btn btn-primary rounded btn-sm" title="Tambah pemeriksaan">
                             <span class="fa-solid fa-arrow-circle-right"></span>
                         </a>
                     </div>

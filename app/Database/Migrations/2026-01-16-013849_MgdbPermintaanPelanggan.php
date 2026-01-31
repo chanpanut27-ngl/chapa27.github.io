@@ -34,6 +34,10 @@ class MgdbPermintaanPelanggan extends Migration
                 'type'       => 'CHAR',
                 'constraint' => '20',
             ],
+            'no_telp_pengirim' => [
+                'type'       => 'CHAR',
+                'constraint' => '20',
+            ],
             'spesimen_atau_sampel' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',

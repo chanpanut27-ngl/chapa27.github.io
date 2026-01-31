@@ -52,7 +52,9 @@
                         <table class="table">
                             <tr>
                                 <td><b>No.Registrasi</b></td>
-                                <td colspan="3">: <?= $items['no_reg'] ?></td>
+                                <td>: <?= $items['no_reg'] ?></td>
+                                <td><b>No.Telp/Hp</b></td>
+                                <td>: <?= $items['no_telp_pengirim'] ?></td>
                             </tr>
                             <tr>
                                 <td><b>Nama pengirim</b></td>

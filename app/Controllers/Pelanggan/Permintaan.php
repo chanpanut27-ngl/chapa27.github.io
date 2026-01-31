@@ -130,6 +130,13 @@ class Permintaan extends ResourceController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
+                'no_telp_pengirim' => [
+                    'label' => 'No.Telp/Hp pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
                 'tgl_ambil_sampel' => [
                     'label' => 'Tanggal pengambilan sampel',
                     'rules' => 'required',
@@ -150,6 +157,7 @@ class Permintaan extends ResourceController
                 $msg = [
                     'error' => [
                         'nama_pengirim' => $this->validation->getError('nama_pengirim'),
+                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
                         'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
                         'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
                     ]
@@ -165,6 +173,7 @@ class Permintaan extends ResourceController
                     'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
                     'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
                     'no_telp' => $this->request->getVar('no_telp'),
+                    'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
                     'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
                     'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
                 ];
@@ -221,6 +230,13 @@ class Permintaan extends ResourceController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
+                'no_telp_pengirim' => [
+                    'label' => 'No.Telp/Hp pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
                 'tgl_ambil_sampel' => [
                     'label' => 'Tanggal pengambilan sampel',
                     'rules' => 'required',
@@ -241,6 +257,7 @@ class Permintaan extends ResourceController
                 $msg = [
                     'error' => [
                         'nama_pengirim' => $this->validation->getError('nama_pengirim'),
+                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
                         'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
                         'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
                     ]
@@ -253,6 +270,7 @@ class Permintaan extends ResourceController
                     'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
                     'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
                     'no_telp' => $this->request->getVar('no_telp'),
+                    'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
                     'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
                     'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
                 ];

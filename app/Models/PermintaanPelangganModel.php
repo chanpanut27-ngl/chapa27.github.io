@@ -18,6 +18,7 @@ class PermintaanPelangganModel extends Model
         'instansi',
         'alamat',
         'no_telp',
+        'no_telp_pengirim',
         'spesimen_atau_sampel',
         'tgl_ambil_sampel',
         'jam_ambil_sampel',
