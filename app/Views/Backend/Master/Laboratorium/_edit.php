@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/laboratorium/update-data'); ?>" class="form-data">
@@ -11,17 +11,17 @@
                 <input type="hidden" name="id" value="<?= $items['id']; ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="kode-lab" class="form-label h5">Kode Lab</label>
+                        <label for="kode-lab" class="form-label h4">Kode Lab</label>
                         <input type="text" name="kode_lab" value="<?= $items['kode_lab']; ?>" class="form-control" id="kode-lab" autocomplete="off">
                         <div class="invalid-feedback errorKodeLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="nama-lab" class="form-label h5">Laboratorium</label>
+                        <label for="nama-lab" class="form-label h4">Laboratorium</label>
                         <input type="text" name="nama_lab" value="<?= $items['nama_lab']; ?>" class="form-control" id="nama-lab" autocomplete="off">
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="lantai" class="form-label h5">Lantai</label>
+                        <label for="lantai" class="form-label h4">Lantai</label>
                         <select name="lantai" class="form-select" id="lantai" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <option value="1" <?= $items['lantai'] == 1 ? 'selected' : ''; ?>>1</option>
@@ -32,7 +32,7 @@
                         <div class="invalid-feedback errorLantai"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="kode-instalasi" class="form-label h5">Instalasi</label>
+                        <label for="kode-instalasi" class="form-label h4">Instalasi</label>
                         <select name="kode_instalasi" class="form-select" id="kode-instalasi" aria-label="Default select example">
                             <option value="">-- pilih --</option>
                             <?php foreach ($masterInstalasi as $key) : ?>
@@ -42,7 +42,7 @@
                         <div class="invalid-feedback errorKodeInstalasi"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="kategori" class="form-label h5">Kategori</label>
+                        <label for="kategori" class="form-label h4">Kategori</label>
                         <select name="id_kat_lab" class="form-select" id="kategori" aria-label="Default select example">
                             <option value="">-- pilih --</option>
                             <?php foreach ($masterKategoriLab as $key) : ?>
@@ -52,7 +52,7 @@
                         <div class="invalid-feedback errorKategori"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h5" style="font-family: arial;">Status</label>
+                        <label for="is-active" class="form-label h4">Status</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
