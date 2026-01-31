@@ -21,7 +21,7 @@ class MgdbMasterBiayaAkomodasi extends Migration
             ],
             'transport' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '150',
+                'constraint' => '255',
             ],
             'uang_harian' => [
                 'type'       => 'DECIMAL'

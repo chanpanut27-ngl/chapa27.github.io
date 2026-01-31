@@ -14,20 +14,20 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['jenis_sampel']; ?></td>
+                <td><?= $row['jenis_sampel'] ?></td>
                 <td style="text-align: right;"><?= number_to_currency($row['pnbp'], 'IDR', 'ID', 0); ?></td>
                 <td><?= $row['peraturan'] ?></td>
                 <td><?= $row['ket_sampel'] ?></td>
-                <td><?= $row['nama_lab']; ?></td>
+                <td><?= $row['nama_lab'] ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
@@ -42,6 +42,15 @@
             type: 'get',
             url: '<?= site_url('master-data/jenis-sampel/edit-data/'); ?>' + id,
             dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-edit"></span>');
+            },
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();
@@ -80,7 +89,8 @@
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 3000
                             });
                             listData();
                         }
