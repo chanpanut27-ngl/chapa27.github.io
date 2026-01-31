@@ -132,7 +132,8 @@ class CoolboxMaster extends ResourceController
                 $id_instansi = $this->request->getVar('id_instansi');
                 $simpandata = [
                     'kode_coolbox' => $this->generate_kode_coolbox($id_instansi),
-                    'id_instansi' => $this->request->getVar('id_instansi')
+                    'id_instansi' => $this->request->getVar('id_instansi'),
+                    'keterangan' => $this->request->getVar('keterangan')
                 ];
                 $this->model->save($simpandata);
                 $msg = [
@@ -200,6 +201,7 @@ class CoolboxMaster extends ResourceController
                 $simpandata = [
                    'id' => $this->request->getVar('id'),
                    'id_instansi' => $this->request->getVar('id_instansi'),
+                   'keterangan' => $this->request->getVar('keterangan'),
                    'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);

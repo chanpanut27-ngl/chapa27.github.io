@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: arial;">
+    <thead>
         <?php
-        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Wilayah', 'Status', ''];
+        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Wilayah', 'Keterangan', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -9,23 +9,24 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial;">
+    <tbody>
         <?php
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id_coolbox']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_coolbox'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['kode_coolbox']; ?></td>
-                <td><?= $row['nama_instansi']; ?></td>
-                <td><?= $row['wilayah']; ?></td>
+                <td><?= $row['kode_coolbox'] ?></td>
+                <td><?= $row['nama_instansi'] ?></td>
+                <td><?= $row['wilayah'] ?></td>
+                <td><?= $row['keterangan'] ?></td>
                 <td><?= $row['aktif_coolbox'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['id_coolbox']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id_coolbox'] ?>" onclick="editData(<?= $row['id_coolbox'] ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_coolbox']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_coolbox'] ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
@@ -40,6 +41,15 @@
             type: 'get',
             url: '<?= site_url('master-data/coolbox/edit-data/'); ?>' + id,
             dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-edit"></span>');
+            },
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();

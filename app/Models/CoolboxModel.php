@@ -12,7 +12,7 @@ class CoolboxModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['kode_coolbox', 'id_instansi', 'is_active'];
+    protected $allowedFields    = ['kode_coolbox', 'id_instansi', 'keterangan', 'is_active'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -44,22 +44,19 @@ class CoolboxModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    protected function setUpdatedBy(array $data)
+    protected function setInsertBy(array $data)
     {
-       $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_by'] = $userId;
+        $username = user()->username;
+        if ($username) {
+            $data['data']['created_by'] = $username;
         }
         return $data;
     }
-
-    protected function setInsertBy(array $data)
+    protected function setUpdatedBy(array $data)
     {
-        $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_by'] = $userId;
+       $username = user()->username;
+        if ($username) {
+            $data['data']['updated_by'] = $username;
         }
         return $data;
     }
@@ -68,7 +65,7 @@ class CoolboxModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('master_coolbox');
-        $builder->select('master_coolbox.id AS id_coolbox,master_coolbox.kode_coolbox,master_coolbox.is_active AS aktif_coolbox,master_instansi.nama_instansi,wilayah');
+        $builder->select('master_coolbox.id AS id_coolbox,master_coolbox.kode_coolbox,master_coolbox.is_active AS aktif_coolbox,master_coolbox.keterangan,master_instansi.nama_instansi,wilayah');
         $builder->join("master_instansi", "master_instansi.id = master_coolbox.id_instansi");
         $query = $builder->get()->getResultArray();
         return $query;

@@ -3,15 +3,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/coolbox/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/coolbox/create-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
-                   <div class="mb-3">
-                        <label for="id-instansi" class="form-label h4" style="font-family: arial;">Instansi</label>
-                        <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example">
+                    <div class="mb-1">
+                        <label for="id-instansi" class="form-label h4">Instansi</label>
+                    </div>
+                    <div class="mb-3">
+                        <select name="id_instansi" class="form-select" id="id-instansi" aria-label="Default select example" style="width: 100%;">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($masterInstansi as $row) :
@@ -22,6 +24,10 @@
                             ?>
                         </select>
                         <div class="invalid-feedback errorAsalInstansi"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label h4">Keterangan</label>
+                        <textarea name="keterangan" class="form-control" id="keterangan"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -35,6 +41,10 @@
 
 <script>
     $(document).ready(function() {
+        $('#id-instansi').select2({
+            dropdownParent: $('#exampleModal')
+        });
+
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
@@ -66,7 +76,8 @@
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
-                            icon: "success"
+                            icon: "success",
+                            timer: 3000
                         });
 
                         $("#exampleModal").modal('hide');
