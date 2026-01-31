@@ -27,7 +27,7 @@
                             <option value="<?= $p['id'] ?>" <?= $selected; ?>><?= $p['peraturan'] ?></option>
                             <?php endforeach;?>
                         </select>
-                        <div class="invalid-feedback errorPelanggan"></div>
+                        <div class="invalid-feedback errorIdPeraturan"></div>
                     </div>
                     <div class="mb-3">
                         <label for="jenis-sampel" class="form-label h4">Jenis sampel</label>
@@ -113,6 +113,14 @@
                 },
                 success: function(response) {
                     if (response.error) {
+
+                        if (err.id_peraturan) {
+                            $("#id-peraturan").addClass('is-invalid');
+                            $('.errorIdPeraturan').html(err.id_peraturan);
+                        } else {
+                            $('#id-peraturan').removeClass('is-invalid');
+                            $('.errorIdPeraturan').html('');
+                        }
 
                         if (response.error.jenis_sampel) {
                             $('#jenis-sampel').addClass('is-invalid');

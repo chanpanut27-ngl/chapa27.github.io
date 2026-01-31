@@ -39,7 +39,7 @@
                                 <tr>
                                     <th>Parameter</th>
                                     <th>Metode</th>
-                                    <th>Harga titik</th>
+                                    <th>Harga per titik</th>
                                     <th></th>
                                 </tr>
                             </thead>

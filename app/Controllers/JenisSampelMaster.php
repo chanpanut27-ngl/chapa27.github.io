@@ -96,6 +96,13 @@ class JenisSampelMaster extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
+                'id_peraturan' => [
+                    'label' => 'Peraturan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
                 'jenis_sampel' => [
                     'label' => 'Jenis sampel',
                     'rules' => 'required',
@@ -123,6 +130,7 @@ class JenisSampelMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
+                        'id_peraturan' => $this->validation->getError('id_peraturan'),
                         'jenis_sampel' => $this->validation->getError('jenis_sampel'),
                         'pnbp' => $this->validation->getError('pnbp'),
                         'id_lab' => $this->validation->getError('id_lab')
@@ -187,6 +195,13 @@ class JenisSampelMaster extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
+                'id_peraturan' => [
+                    'label' => 'Peraturan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
                 'jenis_sampel' => [
                     'label' => 'Jenis sampel',
                     'rules' => 'required',
@@ -214,6 +229,7 @@ class JenisSampelMaster extends ResourceController
             if (!$valid) {
                 $msg = [
                     'error' => [
+                        'id_peraturan' => $this->validation->getError(field: 'id_peraturan'),
                         'jenis_sampel' => $this->validation->getError('jenis_sampel'),
                         'pnbp' => $this->validation->getError('pnbp'),
                         'id_lab' => $this->validation->getError('id_lab')

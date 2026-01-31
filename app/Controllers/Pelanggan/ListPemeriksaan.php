@@ -254,7 +254,7 @@ class ListPemeriksaan extends ResourceController
             $id_peraturan = $jenis_sampel['id_peraturan'];
             
             $data = [
-                'items' =>  $parameter->where('id_jenis_sampel', $id_jenis_sampel)->findAll(),
+                'items' =>  $parameter->where('id_jenis_sampel', $id_jenis_sampel)->where('is_active', 1)->findAll(),
                 'peraturan' =>  $peraturan->find($id_peraturan)
             ];
             $msg = [

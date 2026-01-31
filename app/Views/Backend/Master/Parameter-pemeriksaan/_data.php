@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead style="font-family: arial;">
         <?php
-        $arrth = ['No', 'Parameter', 'Metode', 'Harga per titik', 'Jenis sampel', 'Peraturan', ''];
+        $arrth = ['No', 'Parameter', 'Metode', 'Harga per titik', 'Jenis sampel', 'Peraturan', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -21,6 +21,7 @@
                 <td style="text-align: right;"><?= number_to_currency($row['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
                 <td><?= '('.$row['kode_sampel'].') '.$row['jenis_sampel']; ?></td>
                 <td><?= $row['peraturan']; ?></td>
+                <td><?= $row['active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded edit-data-<?= $row['id_parameter'] ?>" onclick="editData(<?= $row['id_parameter']; ?>)" title="Edit data">

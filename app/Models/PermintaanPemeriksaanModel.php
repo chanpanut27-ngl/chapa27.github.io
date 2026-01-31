@@ -56,6 +56,7 @@ class PermintaanPemeriksaanModel extends Model
         $username = user()->username;
         if ($username) {
             // Tambahkan user_id ke data yang akan di-update
+            $data['data']['created_at'] = date('Y-m-d H:i:s');
             $data['data']['created_by'] = $username;
         }
         return $data;
