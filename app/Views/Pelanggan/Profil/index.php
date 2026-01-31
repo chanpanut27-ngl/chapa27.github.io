@@ -24,7 +24,7 @@
             <div class="col-sm-3">
                 <div class="card">
                     <div class="card-header bg-light p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Foto Profil</h4>
+                        <h4><span class="pc-micon"><span class="fa-solid fa-image"></span> Foto Profil</h4>
                     </div>
                     <div class="view-foto"></div>
                 </div>
@@ -32,7 +32,7 @@
             <div class="col-sm-9">
                 <div class="card">
                     <div class="card-header bg-light p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-file-alt"></span> <?= $title; ?></h4>
+                        <h4><span class="pc-micon"><span class="fa-solid fa-user"></span> <?= $title; ?></h4>
                     </div>
                     <div class="card-body <?= $profil != null ? 'view-data' : '' ?>">
                     <?php if (!$profil) {

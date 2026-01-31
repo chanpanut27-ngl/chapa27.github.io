@@ -24,7 +24,7 @@
         <div class="invalid-feedback errorAlamat"></div>
     </div>
     <div class="mb-3">
-        <label for="no-telp" class="form-label h5">No.Telp</label>
+        <label for="no-telp" class="form-label h5">No.Telp/Hp</label>
         <input type="text" name="no_telp" value="<?= $rows['no_telp'] ?>" class="form-control" id="no-telp" placeholder="Isi nomor telepon instansi ...">
         <div class="invalid-feedback errorNoTelp"></div>
     </div>

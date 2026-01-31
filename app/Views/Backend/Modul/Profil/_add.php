@@ -25,11 +25,11 @@
         <div class="invalid-feedback errorAlamat"></div>
     </div>
     <div class="mb-3">
-        <label for="no-telp" class="form-label h5">No.Telp</label>
+        <label for="no-telp" class="form-label h5">No.Telp/Hp</label>
         <input type="text" name="no_telp" value="" class="form-control" id="no-telp" placeholder="Isi nomor telepon instansi ...">
         <div class="invalid-feedback errorNoTelp"></div>
     </div>
-    <div class="card-footer bg-light">
+    <div class="card-footer">
         <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
         <button type="reset" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-refresh"></span> Batal</button>
     </div>
