@@ -38,25 +38,17 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelanggan/permintaan-pelanggan'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#permintaan"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Permintaan</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelanggan/permintaan-pemeriksaan'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#pemeriksaan"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Pemeriksaan</span>
                     </a>
                 </li>
-                <li class="pc-item">
+                <li class="pc-item d-none">
                     <a href="<?= base_url('cetak-pdf/contoh-1'); ?>" class="pc-link">
                         <span class="pc-micon">
                             <svg class="pc-icon">
@@ -76,11 +68,7 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                        <svg class="pc-icon">
-                            <use xlink:href="#swap"></use>
-                        </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext" data-i18n="Peraturan"><span class="fa-solid fa-arrow-right"></span> Peraturan</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
@@ -99,11 +87,7 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                        <svg class="pc-icon">
-                            <use xlink:href="#swap"></use>
-                        </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext" data-i18n="booklet"><span class="fa-solid fa-arrow-right"></span> Booklet</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>

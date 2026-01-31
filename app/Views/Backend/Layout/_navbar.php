@@ -60,11 +60,7 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                        <svg class="pc-icon">
-                            <use xlink:href="#swap"></use>
-                        </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext" data-i18n="Peraturan"><span class="fa-solid fa-arrow-right"></span> Peraturan</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
@@ -118,11 +114,7 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                        <svg class="pc-icon">
-                            <use xlink:href="#swap"></use>
-                        </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext" data-i18n="formulir"><span class="fa-solid fa-arrow-right"></span> Formulir</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
@@ -151,11 +143,7 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                        <svg class="pc-icon">
-                            <use xlink:href="#swap"></use>
-                        </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext" data-i18n="booklet"><span class="fa-solid fa-arrow-right"></span> Booklet</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
@@ -173,7 +161,7 @@
                     </ul>
                 </li>
                 <li class="pc-item pc-caption">
-                    <label data-i18n="Widget">Pengaturan Coolbox</label>
+                    <label data-i18n="Widget">Coolbox</label>
                     <i class="pc-micon">
                         <svg class="pc-icon">
                             <use xlink:href="#pengaturan-coolbox"></use>
@@ -182,11 +170,7 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pengaturan-coolbox/posisi-coolbox'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#posisi-coolbox"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Posisi Coolbox</span>
                     </a>
                 </li>
@@ -201,11 +185,7 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon">
-                        <svg class="pc-icon">
-                            <use xlink:href="#swap"></use>
-                        </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext" data-i18n="login"><span class="fa-solid fa-lock"></span> Login</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
@@ -254,111 +234,67 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/pelanggan'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#pelanggan"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Pelanggan</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/instalasi'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#instalasi"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Instalasi</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/kategori-lab'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#kategori-lab"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Kategori lab</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/laboratorium'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#laboratorium"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Laboratorium</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/jenis-sampel'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#jenis-sampel"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Jenis sampel</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/parameter-pemeriksaan'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#parameter-pemeriksaan"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Parameter pemeriksaan</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/biaya-akomodasi'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#biaya-akomodasi"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Biaya akomodasi</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/instansi'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#instansi"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Instansi</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/peraturan-baku-mutu'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#peraturan-baku-mutu"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Peraturan/baku mutu</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/penyakit'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#penyakit"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Penyakit</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/coolbox'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#coolbox"></use>
-                            </svg>
-                        </span>
+                        <span class="pc-micon"></span>
                         <span class="pc-mtext"><span class="fa-solid fa-database"></span> Coolbox</span>
                     </a>
                 </li>

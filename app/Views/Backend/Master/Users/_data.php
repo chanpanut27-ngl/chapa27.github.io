@@ -18,7 +18,7 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['email'] ?></td>
                 <td><?= $row['username'] ?></td>
-                <td style="text-align: right;"><?= date('d/m/Y H:i', strtotime($row['created_at'])) ?></td>
+                <td><?= date('d/m/Y H:i', strtotime($row['created_at'])) ?></td>
                 <td><?= $row['active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
