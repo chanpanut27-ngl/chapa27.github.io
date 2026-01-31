@@ -3,14 +3,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/jenis-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-1">
-                        <label for="id-peraturan" class="form-label h5">Peraturan</label>
+                        <label for="id-peraturan" class="form-label h4">Peraturan</label>
                     </div>
                     <div class="mb-3">
                         <select name="id_peraturan" class="form-control" id="id-peraturan" style="width: 100%;" aria-label="Default select example">
@@ -24,22 +24,22 @@
                         <div class="invalid-feedback errorPelanggan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jenis-sampel" class="form-label h5" style="font-family: arial;">Jenis sampel</label>
+                        <label for="jenis-sampel" class="form-label h4">Jenis sampel</label>
                         <input type="text" name="jenis_sampel" class="form-control" id="jenis-sampel" autocomplete="off">
                         <div class="invalid-feedback errorJenisSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="pnbp" class="form-label h5" style="font-family: arial;">PNBP (Rp)</label>
+                        <label for="pnbp" class="form-label h4">PNBP (Rp)</label>
                         <input type="text" name="pnbp" class="form-control" id="pnbp" autocomplete="off">
                         <div class="invalid-feedback errorPnbp"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="keterangan" class="form-label h5" style="font-family: arial;">Keterangan</label>
+                        <label for="keterangan" class="form-label h4">Keterangan</label>
                         <input type="text" name="keterangan" class="form-control" id="keterangan" autocomplete="off">
                         <div class="invalid-feedback errorPnbp"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="id-lab" class="form-label h5" style="font-family: arial;">Laboratorium</label>
+                        <label for="id-lab" class="form-label h4">Laboratorium</label>
                         <select name="id_lab" class="form-select" id="id-lab" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php

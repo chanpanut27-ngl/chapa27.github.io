@@ -260,7 +260,7 @@ class ParameterPemeriksaanMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $id_lab = $this->request->getVar('id_lab');
             $result = $this->modelSampel->where('id_lab', $id_lab)->get()->getResultArray();
-            $data = '';
+            $data = null;
             foreach ($result as $rows) {
                 $data[] = '<option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
             }

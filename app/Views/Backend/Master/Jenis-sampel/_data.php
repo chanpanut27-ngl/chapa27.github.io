@@ -1,5 +1,5 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: arial;">
+    <thead>
         <?php
         $arrth = ['No', 'Jenis sampel', 'PNBP (Rp)', 'Peraturan', 'Keterangan', 'Laboratorium', 'Status', ''];
         echo '<tr>';
@@ -9,7 +9,7 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial;">
+    <tbody>
         <?php
         $no = 1;
         foreach ($items as $row) :
