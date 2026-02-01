@@ -40,7 +40,7 @@
                         <?php endif; ?>
                         <div class="form-group mb-3">
                         <label for="password" class="form-label"><?=lang('Auth.password')?></label>
-                        <input type="password" name="password" class="form-control  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.password')?>">
+                        <input type="password" name="password" class="form-control  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?=lang('Auth.password')?>" autocomplete="off">
 							<div class="invalid-feedback">
 								<?= session('errors.password') ?>
 							</div>

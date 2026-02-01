@@ -16,6 +16,7 @@
                 <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
                     <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                 </button>
+                <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
                     <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
