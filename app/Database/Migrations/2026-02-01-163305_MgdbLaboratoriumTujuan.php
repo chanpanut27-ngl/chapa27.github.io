@@ -53,8 +53,7 @@ class MgdbLaboratoriumTujuan extends Migration
                 'constraint' => '100'
             ],
             'deleted_at' => [
-                'type' => 'DATETIME',
-                'default' => 'current_timestamp'
+                'type' => 'DATETIME'
             ],
             'deleted_at datetime default current_timestamp',
             'deleted_by'     => [
@@ -64,7 +63,7 @@ class MgdbLaboratoriumTujuan extends Migration
          ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->addForeignKey('id_pelanggan', 'master_pelanggan', 'id', 'CASCADE', 'CASCADE');
+        $this->forge->addForeignKey('id_pelanggan', 'permintaan_pelanggan', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_pengantar_lhu', 'pengantar_lhu', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_laboratorium', 'master_laboratorium', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('laboratorium_tujuan');
