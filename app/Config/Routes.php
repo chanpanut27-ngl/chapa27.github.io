@@ -476,5 +476,18 @@ $routes->group('pelayanan-sampel/data-permintaan', function ($routes) {
     $routes->delete('delete-data/(:num)', 'DataPermintaan::delete/$1');
 });
 
+/* data Permintaan Pemeriksaan */
+$routes->group('pelayanan-sampel/data-pemeriksaan', function ($routes) {
+    $routes->get('index/(:num)', 'DataPemeriksaan::index/$1');
+    $routes->get('list-data', 'Pelanggan\ListPemeriksaan::list');
+    $routes->get('add-data', 'Pelanggan\ListPemeriksaan::new');
+    $routes->post('create-data', 'Pelanggan\ListPemeriksaan::create');
+    $routes->get('edit-data/(:num)', 'Pelanggan\ListPemeriksaan::edit/$1');
+    $routes->post('update-data', 'Pelanggan\ListPemeriksaan::update');
+    $routes->delete('delete-data/(:num)', 'Pelanggan\ListPemeriksaan::delete/$1');
+    $routes->post('detail-sampel', 'Pelanggan\ListPemeriksaan::detail_sampel');
+    $routes->post('list-parameter', 'Pelanggan\ListPemeriksaan::list_parameter');
+});
+
 $routes->resource('instalasi');
 // $routes->get('instalasi', 'Instalasi::index');

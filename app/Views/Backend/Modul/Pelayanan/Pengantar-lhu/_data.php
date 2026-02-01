@@ -19,7 +19,7 @@
             <tr id="myId-<?= $row['id_pengantar']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_pengantar']; ?></td>
-                <td><?= $row['nama']; ?></td>
+                <td><?= $row['nama_pengirim']; ?></td>
                 <td><?= $row['alamat']; ?></td>
                 <td><?= $row['no_telp']; ?></td>
                 <td><?= date('d/m/Y', strtotime($row['tanggal'])); ?></td>

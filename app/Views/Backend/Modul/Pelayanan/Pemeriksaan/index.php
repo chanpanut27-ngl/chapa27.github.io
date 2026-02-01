@@ -1,4 +1,4 @@
-<?= $this->extend('Pelanggan/Layout/_main'); ?>
+oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <!-- [Datepicker css] --> 
@@ -30,18 +30,14 @@
         <div class="row p-0">
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
-                <?php if (!$profil) : ?>
-                    <?php  echo '<div class="alert alert-warning" role="alert">
-                                    Silahkan lengkapi data profil anda
-                                </div>'; ?>
-                <?php else : ?>
                 <div class="card">
                     <div class="card-header p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
+                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh" title="Refresh data">
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                             </button>
+                            <a href="<?= base_url('pelayanan-sampel/data-permintaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-left"></span></a>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_pelanggan ?>" data-noreg="<?= $no_reg ?>">
                                 <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
@@ -77,7 +73,7 @@
                                     </div>  
                                     <div class="row">
                                         <div class="col-sm-3"><b>Petugas pengambilan sampel</b></div>
-                                        <div class="col-sm-3">: <?= $items['petugas_ambil_sampel'] ?></div>
+                                        <div class="col-sm-3">: <?= $items['spesimen_atau_sampel'] ?></div>
                                         <div class="col-sm-3"><b>Keterangan tambahan</b></div>
                                         <div class="col-sm-3">: <?= $items['keterangan_tambahan'] ?></div>
                                     </div>   
@@ -93,7 +89,6 @@
                         <div class="view-data"></div>
                     </div>
                 </div>
-                <?php endif;?>
             </div>
             <!-- [ sample-page ] end -->
         </div>

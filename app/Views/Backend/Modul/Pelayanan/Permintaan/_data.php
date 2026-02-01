@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'No.Registrasi', 'Nama', 'No.Telp', 'Instansi', 'Alamat', 'Tgl & jam', ''];
+        $arrth = ['No', 'No.Registrasi', 'Nama', 'No.Telp', 'Instansi', 'Tgl & jam', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -20,14 +20,10 @@
                 <td><?= $row['nama_pengirim']; ?></td>
                 <td><?= $row['no_telp']; ?></td>
                 <td><?= $row['instansi']; ?></td>
-                <td><?= $row['alamat']; ?></td>
                 <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <a href="<?= base_url('pelayanan-sampel/data-permintaan/proses/index/'.strtolower($row['id'])); ?>" class="btn btn-success rounded btn-sm" title="Proses">
-                            <span class="fa-solid fa-arrow-circle-right"></span>
-                        </a>
-                         <a href="<?= base_url('pelanggan/list-pemeriksaan/index/'.$row['id']) ?>" class="btn btn-primary rounded btn-sm" title="Tambah pemeriksaan">
+                         <a href="<?= base_url('pelayanan-sampel/data-pemeriksaan/index/'.$row['id']) ?>" class="btn btn-success rounded btn-sm" title="Tambah pemeriksaan">
                             <span class="fa-solid fa-arrow-circle-right"></span>
                         </a>
                     </div>

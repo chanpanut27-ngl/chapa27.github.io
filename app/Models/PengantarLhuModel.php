@@ -73,8 +73,8 @@ class PengantarLhuModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lhu');
-        $builder->select('pengantar_lhu.id as id_pengantar,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,master_pelanggan.nama,alamat,no_telp');
-        $builder->join("master_pelanggan", "master_pelanggan.id = pengantar_lhu.id_pelanggan", "left");
+        $builder->select('pengantar_lhu.id as id_pengantar,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,permintaan_pelanggan.nama_pengirim,alamat,no_telp');
+        $builder->join("permintaan_pelanggan", "permintaan_pelanggan.id = pengantar_lhu.id_pelanggan", "left");
         $query = $builder->get()->getResultArray();
         return $query;
     }
@@ -83,8 +83,8 @@ class PengantarLhuModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lhu');
-        $builder->select('pengantar_lhu.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,master_pelanggan.nama,alamat,no_telp');
-        $builder->join("master_pelanggan", "master_pelanggan.id = pengantar_lhu.id_pelanggan");
+        $builder->select('pengantar_lhu.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,permintaan_pelanggan.nama_pengirim,alamat,no_telp');
+        $builder->join("permintaan_pelanggan", "permintaan_pelanggan.id = pengantar_lhu.id_pelanggan");
         $builder->where('pengantar_lhu.id', $params);
         $query = $builder->get()->getResultArray();
         return $query;
@@ -94,8 +94,9 @@ class PengantarLhuModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lhu');
-        $builder->select('pengantar_lhu.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,master_pelanggan.nama,alamat,no_telp');
-        $builder->join("master_pelanggan", "master_pelanggan.id = pengantar_lhu.id_pelanggan", "left");
+        $builder->select('pengantar_lhu.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,tahun,pengantar_lhu.is_active,
+        permintaan_pelanggan.no_reg,kode_pelanggan,nama_pengirim,instansi,alamat,no_telp,no_telp_pengirim');
+        $builder->join("permintaan_pelanggan", "permintaan_pelanggan.id = pengantar_lhu.id_pelanggan", "left");
         $builder->where('pengantar_lhu.kode_pengantar', $params);
         $query = $builder->get()->getResultArray();
         return $query;

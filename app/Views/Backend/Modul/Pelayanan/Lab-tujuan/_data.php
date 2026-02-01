@@ -1,5 +1,5 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: arial;">
+    <thead>
         <?php
         $arrth = ['No', 'Laboratorium tujuan', ''];
         echo '<tr>';
@@ -9,17 +9,17 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial;">
+    <tbody>
         <?php
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id_lt']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_lt'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['nama_lab']; ?></td>
+                <td><?= $row['nama_lab'] ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-danger rounded btn-sm" onclick="deleteData(<?= $row['id_lt']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger rounded btn-sm" onclick="deleteData(<?= $row['id_lt'] ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
@@ -78,7 +78,8 @@
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 3000
                             });
                             listData();
                         }

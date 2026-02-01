@@ -22,6 +22,7 @@
         <!-- [ breadcrumb ] end -->
 
         <!-- [ Main Content ] start -->
+         
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -30,38 +31,36 @@
                 </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
+                    <div class="accordion-body" style="border:1px solid;">
                         <?php
                             foreach ($items as $row) :  
                                 $kode_pengantar = $row['kode_pengantar'];
                         ?>
                         <input type="hidden" id="kode-pengantar" value="<?= $kode_pengantar; ?>">
-                        <div class="row" style="font-family: arial;">
-                            <div class="col-sm-2">
-                                <label class="card-title fw-bold">Kode pengantar</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <label class="card-title" style="font-weight: initial;">: <?= $kode_pengantar; ?></label>
-                            </div>
-                            <div class="col-sm-2">
-                                <label class="card-title fw-bold">Alamat</label>
-                            </div>
-                                <div class="col-sm-4">
-                                <label class="card-title">: <?= $row['alamat']; ?></label>
-                            </div>
-                            <div class="col-sm-2">
-                                <label class="card-title fw-bold">Pelanggan</label>
-                            </div>
-                                <div class="col-sm-4">
-                                <label class="card-title">: <?= $row['nama']; ?></label>
-                            </div>
-                            <div class="col-sm-2">
-                                <label class="card-title fw-bold">No.Telepon</label>
-                            </div>
-                            <div class="col-sm-4">
-                                <label class="card-title">: <?= $row['no_telp']; ?></label>
-                            </div>
+                        <div class="row">
+                            <div class="col-sm-3 fw-bold">No.Registrasi</div>
+                            <div class="col-sm-3">: <?= $row['no_reg'] ?></div>
+                            <div class="col-sm-2 fw-bold">Instansi</div>
+                            <div class="col-sm-4">: <?= $row['instansi'] ?></div>
                         </div>
+                        <div class="row">
+                            <div class="col-sm-3 fw-bold">Kode pelanggan</div>
+                            <div class="col-sm-3">: <?= $row['kode_pelanggan'] ?></div>
+                            <div class="col-sm-2 fw-bold">No.Telp/Hp</div>
+                            <div class="col-sm-4">: <?= $row['no_telp'] ?></div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-sm-3 fw-bold">Nama pelanggan/Pengirim</div>
+                            <div class="col-sm-3">: <?= $row['nama_pengirim'] ?></div>
+                            <div class="col-sm-2 fw-bold">Alamat</div>
+                            <div class="col-sm-4">: <?= $row['alamat'] ?></div>
+                        </div>  
+                        <div class="row">
+                            <div class="col-sm-3 fw-bold">Kode Pengantar</div>
+                            <div class="col-sm-3">: <?= $row['kode_pengantar'] ?></div>
+                            <div class="col-sm-2 fw-bold">No.Telp/Hp pengirim</div>
+                            <div class="col-sm-4">: <?= $row['no_telp_pengirim'] ?></div>
+                        </div>   
                         <?php endforeach;?>
                     </div>
                 </div>

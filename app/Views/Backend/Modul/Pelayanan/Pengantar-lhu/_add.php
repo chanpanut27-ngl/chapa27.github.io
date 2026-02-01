@@ -18,7 +18,7 @@
                             <?php 
                             foreach ($masterPelanggan as $row) :
                             ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['nama']; ?></option>
+                            <option value="<?= $row['id'] ?>"><?= $row['no_reg']; ?> - <?= $row['instansi']; ?> - <?= $row['nama_pengirim']; ?></option>
                             <?php endforeach;?>
                         </select>
                         <div class="invalid-feedback errorPelanggan"></div>

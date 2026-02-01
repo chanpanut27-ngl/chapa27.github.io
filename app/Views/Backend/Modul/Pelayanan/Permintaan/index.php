@@ -32,9 +32,9 @@
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                             </button>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
+                            <!-- <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
                                 <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                     <div class="card-body">
