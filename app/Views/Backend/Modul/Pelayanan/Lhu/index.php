@@ -28,10 +28,14 @@
                 <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body" style="border:1px solid;">
                         <?php
-                            use App\Models\LaboratoriumTujuanModel;
+
+                        use App\Models\LaboratoriumTujuanModel;
+
                             foreach ($items as $row) :  
+                                $id_pelanggan = $row['id_pelanggan'];
                                 $kode_pengantar = $row['kode_pengantar'];
                         ?>
+                        <input type="hidden" id="id-pengantar" value="<?= $row['id_pengantar'] ?>">
                         <div class="row">
                             <div class="col-sm-3 fw-bold">No.Registrasi</div>
                             <div class="col-sm-3">: <?= $row['no_reg'] ?></div>
@@ -74,6 +78,7 @@
                                 <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span> Kembali</a>
                             <?php
                         }else{
+                            
                         ?>
                             <ul class="nav nav-tabs">
                                 <?php
@@ -116,9 +121,6 @@
                                 ?>
                                 <li class="nav-item">
                                     <a class="nav-link navtabs" href="<?= base_url('pelayanan/pengantar-lhu/resume/'.strtolower($kode_pengantar));?>">Resume</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="nav-link bg-default" title="Kembali"><span class="fa-solid fa-arrow-left"></span> Kembali</a>
                                 </li>
                             </ul>
                         <?php } ?>

@@ -1,3 +1,7 @@
+<?php
+
+use App\Models\PengantarLhuModel;
+?>
 <?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
 
 <?= $this->section('topAssets'); ?>
@@ -10,6 +14,10 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('content_menu'); ?>
+<?php 
+$pengantar_lhu = new PengantarLhuModel();
+$rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
+?>
     <div class="card">
         <div class="card-header p-2">
             <div class="d-flex justify-content-end align-items-center gap-1">    
@@ -18,6 +26,9 @@
                 </button>
                 <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
                 <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning btn-sm rounded btn-show-lab" onclick="showLab(<?= $rest_['id_pelanggan'] ?>);" title="Detail Lab">
+                    <span class="fa-solid fa-eye"></span> Detail Lab. Pemeriksaan
+                </button>
                 <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
                     <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
                 </button>
@@ -56,6 +67,32 @@
             },
             success: function(response) {
                 $(".view-data").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+    function showLab(id) {
+        $.ajax({
+            type: 'GET',
+            url: '<?= site_url('pelayanan-sampel/data-pemeriksaan/detail-lab/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-show-lab').attr('disable', 'disabled');
+                $('.btn-show-lab').html('<i class="fa fa-spin fa-spinner"></i>');
+            },
+            complete: function() {
+                $('.btn-show-lab').removeAttr('disable');
+                $('.btn-show-lab').html('<span class="fa-solid fa-eye"></span> Detail Lab');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);

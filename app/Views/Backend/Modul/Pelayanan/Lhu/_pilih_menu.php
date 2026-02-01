@@ -1,4 +1,5 @@
-<?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
+<?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); 
+use App\Models\PermintaanPemeriksaanModel;?>
 <?= $this->section('content_menu'); ?>
 <?php
 
@@ -7,7 +8,6 @@ use App\Models\LaboratoriumTujuanModel;
 $labTujuan = new LaboratoriumTujuanModel();
 
 $result = $labTujuan->get_data_by_id_kode_pengantar($kode_pengantar, $id_lab);
-
 foreach ($result as $row) {
     $id_kat_lab = $row['id_kat_lab'];
     $id_lab = $row['id_laboratorium'];
