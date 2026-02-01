@@ -87,7 +87,7 @@ class LaboratoriumTujuan extends ResourceController
     {
         $pengantar = $this->modelPengantarLhu->find($id);
         $kode_pengantar = $pengantar['kode_pengantar'];
-       if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah '.$this->title,
                 'masterLab' => $this->masterLab->findAll(),

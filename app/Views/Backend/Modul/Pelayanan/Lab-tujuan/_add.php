@@ -10,9 +10,9 @@
                 <?= csrf_field();?>
                 <?php
                 foreach ($pengantar_lhu as $lhu) : ?>
-                <input type="hidden" name="id_pelanggan" value="<?= $lhu['id_pelanggan']; ?>">
-                <input type="hidden" name="id_pengantar_lhu" value="<?= $lhu['id_pengantar']; ?>">
-                <input type="hidden" name="kode_pengantar" value="<?= $lhu['kode_pengantar']; ?>">
+                <input type="text" name="id_pelanggan" value="<?= $lhu['id_pelanggan']; ?>">
+                <input type="text" name="id_pengantar_lhu" value="<?= $lhu['id_pengantar']; ?>">
+                <input type="text" name="kode_pengantar" value="<?= $lhu['kode_pengantar']; ?>">
                 <?php endforeach;?>
                 <div class="modal-body">
                     <?php 

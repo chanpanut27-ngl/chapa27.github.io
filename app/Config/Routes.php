@@ -487,6 +487,8 @@ $routes->group('pelayanan-sampel/data-pemeriksaan', function ($routes) {
     $routes->delete('delete-data/(:num)', 'Pelanggan\ListPemeriksaan::delete/$1');
     $routes->post('detail-sampel', 'Pelanggan\ListPemeriksaan::detail_sampel');
     $routes->post('list-parameter', 'Pelanggan\ListPemeriksaan::list_parameter');
+    $routes->get('detail-lab/(:any)', 'DataPemeriksaan::show_lab/$1');
+
 });
 
 $routes->resource('instalasi');

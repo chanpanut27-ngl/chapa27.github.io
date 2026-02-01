@@ -68,9 +68,21 @@ class DataPemeriksaan extends ResourceController
      *
      * @return ResponseInterface
      */
-    public function show($id = null)
+    public function show_lab($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Detail Lab',
+                'items' => $this->model->detail_lab($id)
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan/Pemeriksaan/_detail_lab', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }  
     }
 
     /**

@@ -76,8 +76,11 @@
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span>
                             </button>
-                            <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-info btn-sm" title="Kembali"><span class="fa-solid fa-arrow-left"></span></a>
+                            <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
                             <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-warning btn-sm rounded btn-show-lab" onclick="showLab(<?= $row['id_pelanggan']; ?>)" title="Detail Lab">
+                                <span class="fa-solid fa-eye"></span> Detail Lab
+                            </button>
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" onclick="addData(<?= $row['id_pengantar']; ?>)" title="Tambah laboratorium tujuan">
                                 <span class="fa-solid fa-plus-square"></span> Tambah Data
                             </button>
@@ -117,20 +120,46 @@
         })
     }
 
+    function showLab(id) {
+        
+        $.ajax({
+            type: 'GET',
+            url: '<?= site_url('pelayanan-sampel/data-pemeriksaan/detail-lab/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-show-lab').attr('disable', 'disabled');
+                $('.btn-show-lab').html('<i class="fa fa-spin fa-spinner"></i>');
+            },
+            complete: function() {
+                $('.btn-show-lab').removeAttr('disable');
+                $('.btn-show-lab').html('<span class="fa-solid fa-eye"></span> Detail Lab');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
     function addData(id) {
         $.ajax({
-            type: 'get',
+            type: 'GET',
             url: '<?= site_url('laboratorium-tujuan/add-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
                 $('.btn-tambah').attr('disable', 'disabled');
-                $('.btn-tambah').html('<i class="fa fa-spin fa-spinner"></i>');
-                $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+                $('.btn-tambah').html('<span class="fa fa-spin fa-spinner"></span>');
             },
             complete: function() {
                 $('.btn-tambah').removeAttr('disable');
-                $('.btn-tambah').html('<i class="fa-solid fa-plus-square"></i> Tambah Data');
+                $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
             },
             success: function(response) {
                 if (response.sukses) {
