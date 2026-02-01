@@ -33,16 +33,6 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
                 <div class="card">
                     <div class="card-header p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
-                        <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh" title="Refresh data">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
-                            </button>
-                            <a href="<?= base_url('pelayanan-sampel/data-permintaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-left"></span></a>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_pelanggan ?>" data-noreg="<?= $no_reg ?>">
-                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
-                            </button>
-                        </div>
                     </div>
                     <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
                         <div class="accordion-item">
@@ -85,8 +75,22 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="view-data"></div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-end align-items-center gap-1">
+                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh" title="Refresh data">
+                                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                                </button>
+                                <a href="<?= base_url('pelayanan-sampel/data-permintaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_pelanggan ?>" data-noreg="<?= $no_reg ?>">
+                                    <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="view-data"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,9 +114,13 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
 
 <script>
     function listData() {
+        var id_pelanggan = $(".btn-tambah").data("id");
         $.ajax({
-            url: "<?= site_url('pelanggan/list-pemeriksaan/list-data'); ?>",
+            type: "GET",
+            url: "<?= site_url('pelayanan-sampel/data-pemeriksaan/list-data'); ?>",
             dataType: 'json',
+            cache: false,
+            data:{id_pelanggan:id_pelanggan},
             success: function(response) {
                 $(".view-data").html(response.data);
             },

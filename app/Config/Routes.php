@@ -479,7 +479,7 @@ $routes->group('pelayanan-sampel/data-permintaan', function ($routes) {
 /* data Permintaan Pemeriksaan */
 $routes->group('pelayanan-sampel/data-pemeriksaan', function ($routes) {
     $routes->get('index/(:num)', 'DataPemeriksaan::index/$1');
-    $routes->get('list-data', 'Pelanggan\ListPemeriksaan::list');
+    $routes->get('list-data', 'DataPemeriksaan::list');
     $routes->get('add-data', 'Pelanggan\ListPemeriksaan::new');
     $routes->post('create-data', 'Pelanggan\ListPemeriksaan::create');
     $routes->get('edit-data/(:num)', 'Pelanggan\ListPemeriksaan::edit/$1');

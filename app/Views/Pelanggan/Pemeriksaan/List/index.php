@@ -38,15 +38,6 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
-                        <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
-                            </button>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_pelanggan ?>" data-noreg="<?= $no_reg ?>">
-                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
-                            </button>
-                        </div>
                     </div>
                     <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
                         <div class="accordion-item">
@@ -89,8 +80,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="view-data"></div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-end align-items-center gap-1">
+                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
+                                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                                </button>
+                                <a href="<?= base_url('pelanggan/permintaan-pemeriksaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_pelanggan ?>" data-noreg="<?= $no_reg ?>">
+                                    <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="view-data"></div>
+                        </div>
                     </div>
                 </div>
                 <?php endif;?>

@@ -44,6 +44,23 @@ class DataPemeriksaan extends ResourceController
 
     }
 
+    public function list($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $id_pelanggan = $this->request->getVar('id_pelanggan');
+            $data = [
+                'items' => $this->model->get_data_list($id_pelanggan)
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Pemeriksaan/_data', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
     /**
      * Return the properties of a resource object.
      *
