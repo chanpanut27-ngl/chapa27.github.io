@@ -8,6 +8,7 @@
 <script src="<?= base_url('assets/js/fontawesome.v6.3.0.all.js'); ?>"></script>
 <script src="<?= base_url('assets/js/jquery-3.7.1.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
+<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 
 <script>
     function checkConnectionAjax(url) {
@@ -19,18 +20,17 @@
     xhr.setRequestHeader('Cache-Control', 'no-cache');
     xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 300) {
-            // console.log("Status Koneksi AJAX: AKTIF");
+            console.log("Status Koneksi AJAX: AKTIF");
 
         } else {
             // console.log(`Status Koneksi AJAX: TIDAK AKTIF (Kode Status: ${xhr.status})`);
             // alert('tidak aktif');
-            setTimeout(() => {
-                Swal.fire({
-                    title: `Kode Status: ${xhr.status}`,
-                    text: 'Koneksi internet terputus',
-                    icon: "error"
-                });
-            }, 10000);   
+           Swal.fire({
+                title: `Kode Status: ${xhr.status}`,
+                text: 'Koneksi internet terputus',
+                icon: "error",
+                timer: 3000
+            });  
         }
     };
 
@@ -51,7 +51,7 @@
 
 // Contoh penggunaan:
 // Cek setiap 5 detik
-// setInterval(() => checkConnectionAjax('www.google.com'), 15000);
+setInterval(() => checkConnectionAjax('http://google.com/'), 15000);
 
 </script>
 <!-- [bottomAssets] start -->
