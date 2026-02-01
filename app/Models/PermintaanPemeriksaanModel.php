@@ -72,7 +72,7 @@ class PermintaanPemeriksaanModel extends Model
         return $data;
     }
 
-    public function get_data_list()
+    public function get_data_list($id)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('permintaan_pemeriksaan pp');
@@ -81,6 +81,7 @@ class PermintaanPemeriksaanModel extends Model
         $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");
         $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan", "left");
         $builder->join("parameter_pemeriksaan a", "a.id = pp.id_parameter", "left");
+        $builder->where('id_pelanggan', $id);
         $query = $builder->get()->getResultArray();
         return $query;
     }

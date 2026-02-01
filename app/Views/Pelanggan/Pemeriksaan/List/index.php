@@ -39,7 +39,7 @@
                     <div class="card-header p-2">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
+                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                             </button>
                             <!-- Button trigger modal -->
@@ -115,9 +115,13 @@
 
 <script>
     function listData() {
+        var id_pelanggan = $(".btn-tambah").data("id");
         $.ajax({
+            type:"GET",
             url: "<?= site_url('pelanggan/list-pemeriksaan/list-data'); ?>",
             dataType: 'json',
+            cache: false,
+            data:{id_pelanggan:id_pelanggan},
             success: function(response) {
                 $(".view-data").html(response.data);
             },

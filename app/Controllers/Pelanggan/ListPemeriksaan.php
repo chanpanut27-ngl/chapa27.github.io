@@ -52,12 +52,12 @@ class ListPemeriksaan extends ResourceController
         return view('Pelanggan/Pemeriksaan/List/index', $data);
     }
 
-    public function list()
+    public function list($id = null)
     {
-
         if ($this->request->isAJAX()) {
+            $id_pelanggan = $this->request->getVar('id_pelanggan');
             $data = [
-                'items' => $this->model->get_data_list()
+                'items' => $this->model->get_data_list($id_pelanggan)
             ];
             $msg = [
                 'data' => view('Pelanggan/Pemeriksaan/List/_data', $data)
