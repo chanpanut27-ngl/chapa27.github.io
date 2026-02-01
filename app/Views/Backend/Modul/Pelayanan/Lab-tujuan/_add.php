@@ -3,12 +3,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
+                <h3 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('laboratorium-tujuan/create-data'); ?>" class="form-data">
                 <?= csrf_field();?>
-                <?php foreach ($pengantar_lhu as $lhu) : ?>
+                <?php
+                foreach ($pengantar_lhu as $lhu) : ?>
                 <input type="hidden" name="id_pelanggan" value="<?= $lhu['id_pelanggan']; ?>">
                 <input type="hidden" name="id_pengantar_lhu" value="<?= $lhu['id_pengantar']; ?>">
                 <input type="hidden" name="kode_pengantar" value="<?= $lhu['kode_pengantar']; ?>">
@@ -17,7 +18,7 @@
                     <?php 
                         foreach ($masterLab as $lb) : 
                             ?>
-                                <label for="<?= $lb['id'] ?>">
+                                 <label for="<?= $lb['id'] ?>">
                                     <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>"> <?= $lb['nama_lab']; ?>
                                 </label><br>
                             <?php
@@ -74,7 +75,8 @@
                             Swal.fire({
                                 title: "Gagal",
                                 text: response.error,
-                                icon: "error"
+                                icon: "error",
+                                timer: 3000
                             });
                         }
                     } else {

@@ -71,7 +71,8 @@
                             Swal.fire({
                                 title: "Gagal!",
                                 text: response.error,
-                                icon: "error"
+                                icon: "error",
+                                timer: 3000
                             });
                             myElement.removeClass('bg bg-danger');
                         } else {
