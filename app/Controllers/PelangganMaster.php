@@ -108,7 +108,7 @@ class PelangganMaster extends ResourceController
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
-        $nomorAntrian = 'PL' . sprintf('%04d', $nomorUrut);
+        $nomorAntrian = 'P' . sprintf('%04d', $nomorUrut);
         
         return $nomorAntrian;
     }
