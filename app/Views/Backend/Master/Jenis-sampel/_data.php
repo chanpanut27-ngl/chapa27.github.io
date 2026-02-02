@@ -24,6 +24,9 @@
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
+                        <button type="button" class="btn btn-info btn-sm rounded btn-show-parameter" onclick="showParameter(<?= $row['id']; ?>)" title="Detail Parameter">
+                            <span class="fa-solid fa-eye"></span>
+                        </button>
                         <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
                             <span class="fa-solid fa-edit"></span>
                         </button>
@@ -62,6 +65,33 @@
             }
         })
     }
+
+    function showParameter(id) {
+        $.ajax({
+            type: 'GET',
+            url: '<?= site_url('master-data/jenis-sampel/detail-parameter/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-show-parameter').attr('disable', 'disabled');
+                $('.btn-show-parameter').html('<span class="fa fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-show-parameter').removeAttr('disable');
+                $('.btn-show-parameter').html('<span class="fa-solid fa-eye"></span>');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
 
 
     function deleteData(id) {

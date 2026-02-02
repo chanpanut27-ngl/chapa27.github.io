@@ -190,7 +190,7 @@ foreach ($dt_login as $row) {
                             <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1" tabindex="0">
                                 <a href="<?= base_url('profil-pegawai'); ?>" class="dropdown-item">
                                     <i class="ti ti-user"></i>
-                                    <span>Profile</span>
+                                    <span>Profil</span>
                                 </a>
                                 <a href="<?= base_url('logout'); ?>" class="bg-danger fw-bold text-light dropdown-item">
                                     <i class="ti ti-power"></i>

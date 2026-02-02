@@ -86,7 +86,7 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-eye"></span> Detail Lab');
+                $('.btn-show-lab').html('<span class="fa-solid fa-eye"></span> Detail Lab. Pemeriksaan');
             },
             success: function(response) {
                 if (response.sukses) {

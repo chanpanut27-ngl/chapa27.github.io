@@ -18,8 +18,8 @@
 <body>
 <?php
 
-            use App\Libraries\CustomLib;
-            use App\Models\KajiUlangKontrakPengantarModel;
+    use App\Libraries\CustomLib;
+    use App\Models\KajiUlangKontrakPengantarModel;
     use App\Models\KeteranganPengantarModel;
     use App\Models\KondisiLingkunganPengantarModel;
     use App\Models\PenanggungJawabPengantarModel;
@@ -44,8 +44,9 @@
     </div>
     <div class="card-body"> 
         <?php 
+        $klss = '';
+        $ca = '';
         foreach ($group_lab_tujuan as $kl) : 
-            
             $r = $kl_sampel->where('kode_pengantar', $kode_pengantar)->findAll();
             foreach ($r as $x) {
                 if ($kl['idkatlab'] == $x['id_kat_lab']) {
@@ -76,7 +77,7 @@
                 <table class="table-bordered" style="border: 1px solid black; width:100%;">
                     <tr>
                         <td class="p-1" width="10%"><b>Asal sampel</b></td>
-                        <td class="p-1" width="50%" style="vertical-align: top;"><?= $dp['nama']; ?></td>
+                        <td class="p-1" width="50%" style="vertical-align: top;"><?= $dp['instansi']; ?></td>
                         <td class="p-1" rowspan="3" class="p-1" style="vertical-align: top;"><b>Kondisi lingkungan sampel : </b><?= $klss; ?></td>
                     </tr>
                     <tr>
@@ -125,7 +126,7 @@
                         <tr>
                             <td class="p-1"><?= $index++ ?></td>
                             <td class="p-1" style="text-align: center;"><b><?= $row['kode_sampel']; ?></b></td>
-                            <td class="p-1"><?= $row['jenis_sampel']; ?></td>
+                            <td class="p-1"><?= $row['jenis_sampel']; ?><?= $row['keterangan'] != '' ? ' , '.$row['keterangan'] : $row['keterangan']; ?></td>
                             <td class="p-1"><?= $row['lokasi_pengambilan_sampel']; ?></td>
                             <td class="p-1" style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
                             <td class="p-1"><?= $row['peraturan']; ?></td>

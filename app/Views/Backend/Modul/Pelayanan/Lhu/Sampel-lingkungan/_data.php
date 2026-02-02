@@ -25,7 +25,7 @@
             <tr id="myId-<?= $row['id_psl']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td class="text-center"><?= $row['kode_sampel']; ?></td>
-                <td><?= $row['jenis_sampel'].','.$row['keterangan']; ?></td>
+                <td><?= $row['jenis_sampel']?> <?= $row['keterangan'] != '' ? ' , '.$row['keterangan'] : $row['keterangan']; ?></td>
                 <td><?= $row['lokasi_pengambilan_sampel']; ?></td>
                 <td><?= date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
                 <td><?= $row['peraturan']; ?></td>

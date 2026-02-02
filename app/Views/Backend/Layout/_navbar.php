@@ -18,6 +18,16 @@
                         <span class="pc-mtext"><span class="fa-solid fa-home"></span> Home</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('profil-pegawai'); ?>" class="pc-link">
+                        <span class="pc-micon">
+                            <svg class="pc-icon">
+                                <use xlink:href="#profil"></use>
+                            </svg>
+                        </span>
+                        <span class="pc-mtext"><span class="fa-solid fa-user"></span> Profil</span>
+                    </a>
+                </li>
                 <li class="pc-item pc-caption">
                     <label data-i18n="Widget">Pelayanan Pemeriksaan</label>
                     <i class="pc-micon">

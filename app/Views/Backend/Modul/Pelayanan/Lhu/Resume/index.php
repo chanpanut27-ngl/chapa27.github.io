@@ -29,6 +29,8 @@ foreach ($data_pelanggan as $dp) :
     </div>
     <div class="card-body"> 
         <?php 
+        $klss = '';
+        $ca = '';
         foreach ($group_lab_tujuan as $kl) : 
             $r = $kl_sampel->where('kode_pengantar', $kode_pengantar)->findAll();
             foreach ($r as $x) {
@@ -44,7 +46,7 @@ foreach ($data_pelanggan as $dp) :
                 <table class="table-bordered" style="border: 1px solid black; width:100%;">
                     <tr>
                         <td class="p-1 fw-bold" width="10%">Asal sampel</td>
-                        <td class="p-1" width="50%"><?= $dp['nama']; ?></td>
+                        <td class="p-1" width="50%"><?= $dp['instansi']; ?></td>
                         <td class="p-1 align-top" rowspan="3"><b>Kondisi lingkungan sampel : </b><?= $klss; ?></td>
                     </tr>
                     <tr>

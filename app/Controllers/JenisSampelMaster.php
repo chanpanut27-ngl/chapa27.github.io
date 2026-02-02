@@ -279,4 +279,22 @@ class JenisSampelMaster extends ResourceController
             exit('Not Process');
         }
     }
+
+    public function show_parameter($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $parameter = new ParameterPemeriksaanMaster();
+            $data = [
+                'title' => 'Detail Parameter',
+                'items' => $parameter
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Jenis-sampel/_detail_parameter', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }  
+    }
 }
