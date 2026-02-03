@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class ProfilPelangganModel extends Model
@@ -51,24 +52,22 @@ class ProfilPelangganModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    protected function setUpdatedBy(array $data)
+    protected function setInsertBy(array $data)
     {
-       $userName = user()->username;
-        if ($userName) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_by'] = $userName;
-            $data['data']['updated_at'] = date('Y-m-d H:i:s');
+        $username = user()->username;
+        if ($username) {
+            $data['data']['created_by'] = $username;
         }
         return $data;
     }
-
-    protected function setInsertBy(array $data)
+ 
+    protected function setUpdatedBy(array $data)
     {
-        $userName = user()->username;
-        if ($userName) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_by'] = $userName;
-            $data['data']['created_at'] = date('Y-m-d H:i:s');
+       $username = user()->username;
+       $myTime = new Time();
+        if ($username) {
+            $data['data']['created_by'] = $username;
+            $data['data']['updated_at'] =$myTime->toDateTimeString();
         }
         return $data;
     }
