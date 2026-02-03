@@ -289,7 +289,7 @@ class JenisSampelMaster extends ResourceController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Detail Parameter',
-                'items' => $this->modelParameter->find($id),
+                'items' => $this->modelParameter->where('id_jenis_sampel', $id)->find(),
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Jenis-sampel/_detail_parameter', $data)
