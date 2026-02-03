@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbPermintaanPelanggan extends Migration
+class Mgdbpermintaanpelanggan extends Migration
 {
     public function up()
     {
@@ -102,6 +102,6 @@ class MgdbPermintaanPelanggan extends Migration
 
     public function down()
     {
-        $this->forge->dropTable('permintaan_pelanggan');
+        $this->forge->dropTable('permintaatable: n_pelanggan');
     }
 }
