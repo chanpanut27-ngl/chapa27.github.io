@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\ParameterPemeriksaanModel;
 use App\Models\PeraturanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\RESTful\ResourceController;
@@ -19,6 +20,7 @@ class JenisSampelMaster extends ResourceController
     protected $model;
     protected $modelLab;
     protected $modelPeraturan;
+    protected $modelParameter;
     protected $validation;
 
     public function __construct()
@@ -28,6 +30,7 @@ class JenisSampelMaster extends ResourceController
         $this->model = new JenisSampelModel();
         $this->modelLab = new LaboratoriumModel();
         $this->modelPeraturan = new PeraturanModel();
+        $this->modelParameter = new ParameterPemeriksaanModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -75,7 +78,7 @@ class JenisSampelMaster extends ResourceController
             $data = [
                 'title' => 'Tambah ' . $this->title,
                 'masterLab' => $this->modelLab->get_data(),
-                'masterPeraturan' => $this->modelPeraturan->findAll()
+                'masterPeraturan' => $this->modelPeraturan->where('is_active', 1)->findAll()
             ];
             $msg = [
                 'data' => view('Backend/Master/Jenis-sampel/_add', $data)
@@ -173,7 +176,7 @@ class JenisSampelMaster extends ResourceController
                 'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
                 'masterLab' => $this->modelLab->get_data(),
-                'masterPeraturan' => $this->modelPeraturan->findAll()
+                'masterPeraturan' => $this->modelPeraturan->where('is_active', 1)->findAll()
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Jenis-sampel/_edit', $data)
@@ -282,11 +285,11 @@ class JenisSampelMaster extends ResourceController
 
     public function show_parameter($id = null)
     {
+       
         if ($this->request->isAJAX()) {
-            $parameter = new ParameterPemeriksaanMaster();
             $data = [
                 'title' => 'Detail Parameter',
-                'items' => $parameter
+                'items' => $this->modelParameter->find($id),
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Jenis-sampel/_detail_parameter', $data)

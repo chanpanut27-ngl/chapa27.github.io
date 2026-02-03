@@ -24,7 +24,7 @@
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-info btn-sm rounded btn-show-parameter" onclick="showParameter(<?= $row['id']; ?>)" title="Detail Parameter">
+                        <button type="button" class="btn btn-info btn-sm rounded btn-show-parameter" onclick="showParameter(<?= $row['id'] ?>)" title="Detail Parameter">
                             <span class="fa-solid fa-eye"></span>
                         </button>
                         <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
@@ -68,7 +68,7 @@
 
     function showParameter(id) {
         $.ajax({
-            type: 'GET',
+            type: 'get',
             url: '<?= site_url('master-data/jenis-sampel/detail-parameter/'); ?>' + id,
             dataType: 'json',
             cache: false,
