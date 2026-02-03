@@ -66,12 +66,11 @@ class ProfilPelangganModel extends Model
        $username = user()->username;
        $myTime = new Time();
         if ($username) {
-            $data['data']['created_by'] = $username;
+            $data['data']['updated_by'] = $username;
             $data['data']['updated_at'] =$myTime->toDateTimeString();
         }
         return $data;
     }
-
     public function get_data()
     {
         $db = \Config\Database::connect();
