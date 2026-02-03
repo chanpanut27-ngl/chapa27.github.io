@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class AuthGroupsModel extends Model
@@ -47,8 +48,9 @@ class AuthGroupsModel extends Model
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
+       $myTime = new Time();
         if ($username) {
-            $data['data']['updated_at'] = date('Y-m-d H:i:s');
+            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }

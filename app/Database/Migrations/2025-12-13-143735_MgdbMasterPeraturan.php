@@ -41,8 +41,7 @@ class MgdbMasterPeraturan extends Migration
                 'constraint' => '100'
             ],
             'deleted_at' => [
-                'type' => 'DATETIME',
-                'default' => 'current_timestamp'
+                'type' => 'DATETIME'
             ],
             'deleted_at datetime default current_timestamp',
             'deleted_by'     => [

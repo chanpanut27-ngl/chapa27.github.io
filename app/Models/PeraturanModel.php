@@ -62,5 +62,4 @@ class PeraturanModel extends Model
         return $data;
     }
 
-    
 }
