@@ -46,7 +46,7 @@ class InstansiModel extends Model
     protected $afterDelete    = [];
     
     
-   protected function setInsertBy(array $data)
+    protected function setInsertBy(array $data)
     {
         $username = user()->username;
         if ($username) {
