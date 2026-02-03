@@ -36,7 +36,7 @@ class AuthGroupsUsersModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = ['setInsertBy'];
+    protected $beforeInsert   = [];
     protected $afterInsert    = [];
     protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
@@ -55,19 +55,7 @@ class AuthGroupsUsersModel extends Model
         }
         return $data;
     }
-
-    protected function setInsertBy(array $data)
-    {
-        $userId = user()->username;
-        $myTime = new Time();
-
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_at'] = $myTime->toDateTimeString();
-        }
-        return $data;
-    }
-
+    
     public function get_data()
     {
         $db = \Config\Database::connect();

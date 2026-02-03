@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class AuthGroupsPermissionsModel extends Model
@@ -37,12 +38,22 @@ class AuthGroupsPermissionsModel extends Model
     protected $allowCallbacks = true;
     protected $beforeInsert   = [];
     protected $afterInsert    = [];
-    protected $beforeUpdate   = [];
+    protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
     protected $beforeFind     = [];
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function setUpdatedBy(array $data)
+    {
+       $username = user()->username;
+       $myTime = new Time();
+        if ($username) {
+            $data['data']['updated_at'] = $myTime->toDateTimeString();
+        }
+        return $data;
+    }
 
     public function get_data()
     {
