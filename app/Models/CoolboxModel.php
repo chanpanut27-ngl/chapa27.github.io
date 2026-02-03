@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class CoolboxModel extends Model
@@ -52,11 +53,14 @@ class CoolboxModel extends Model
         }
         return $data;
     }
+ 
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
+       $myTime = new Time();
         if ($username) {
             $data['data']['updated_by'] = $username;
+            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
