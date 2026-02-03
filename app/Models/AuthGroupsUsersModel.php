@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class AuthGroupsUsersModel extends Model
@@ -47,9 +48,10 @@ class AuthGroupsUsersModel extends Model
     protected function setUpdatedBy(array $data)
     {
        $userId = user()->username;
+       $myTime = new Time();
         if ($userId) {
             // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_at'] = date('Y-m-d H:i:s');
+            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
@@ -57,9 +59,11 @@ class AuthGroupsUsersModel extends Model
     protected function setInsertBy(array $data)
     {
         $userId = user()->username;
+        $myTime = new Time();
+
         if ($userId) {
             // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_at'] = date('Y-m-d H:i:s');
+            $data['data']['created_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
