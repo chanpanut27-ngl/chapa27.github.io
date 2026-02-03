@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class PegawaiMasterModel extends Model
@@ -44,23 +45,24 @@ class PegawaiMasterModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    protected function setInsertBy(array $data)
+    {
+        $username = user()->username;
+        if ($username) {
+            $data['data']['created_by'] = $username;
+        }
+        return $data;
+    }
+ 
     protected function setUpdatedBy(array $data)
     {
-       $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_at'] = date('Y-m-d H:i:s');
+       $username = user()->username;
+       $myTime = new Time();
+        if ($username) {
+            $data['data']['created_by'] = $username;
+            $data['data']['updated_at'] =$myTime->toDateTimeString();
         }
         return $data;
     }
 
-    protected function setInsertBy(array $data)
-    {
-        $userId = user()->username;
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_at'] = date('Y-m-d H:i:s');
-        }
-        return $data;
-    }
 }
