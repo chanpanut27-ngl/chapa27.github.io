@@ -9,8 +9,8 @@
             <th>No</th>
             <th><input type="checkbox" id="selectAll" onclick="return toggle(this);" /> Pilih semua<br/></th>
             <th>Parameter</th>
-            <th>Harga pertitik</th>
             <th>Jumlah titik</th>
+            <th>Harga pertitik</th>
         </tr>
     </thead>
     <tbody>
@@ -19,8 +19,8 @@
             <td><?= $no++; ?></td>
             <td><input type="checkbox" name="id_parameter[]" value="<?= $rows['id'] ?>" class="checkbox"></td>
             <td><?= $rows['parameter'] ?></td>
-            <td><?= number_to_currency($rows['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
             <td><input type="number" value="1" name="jumlah_titik[]" class="form-control"></td>
+            <td style="text-align: right;"><?= number_to_currency($rows['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
         </tr>
         <?php endforeach;?>
     </tbody>
