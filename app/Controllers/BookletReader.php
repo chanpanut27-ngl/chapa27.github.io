@@ -12,16 +12,28 @@ class BookletReader extends BaseController
         $this->cachePage(5);
     }
     
-    public function booklet_3()
+    public function booklet_2025()
     {
         $this->response->setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
         $this->response->setHeader('Pragma', 'no-cache');
         $this->response->setHeader('Expires', '0');
 
         $data = [
-            'title' => 'Booklet 3'
+            'title' => 'Booklet Tahun 2025'
         ];
-        return view('Backend/File/Booklet/_booklet_3', $data);
+        return view('Backend/File/Booklet/_booklet_2025', $data);
+    }
+
+     public function booklet_2026()
+    {
+        $this->response->setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $this->response->setHeader('Pragma', 'no-cache');
+        $this->response->setHeader('Expires', '0');
+
+        $data = [
+            'title' => 'Booklet Tahun 2026'
+        ];
+        return view('Backend/File/Booklet/_booklet_2026', $data);
     }
 
     public function harga_pnbp()

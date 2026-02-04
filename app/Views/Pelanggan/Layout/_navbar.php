@@ -93,8 +93,13 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/reader/booklet-3'); ?>" data-i18n="Booklet 3">
-                                <span class="fa-solid fa-file-alt"></span> Booklet 3
+                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/reader/booklet-3'); ?>" data-i18n="Booklet 2025">
+                                <span class="fa-solid fa-file-alt"></span> Booklet 2025
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/reader/booklet-3'); ?>" data-i18n="Booklet 2026">
+                                <span class="fa-solid fa-file-alt"></span> Booklet 2026
                             </a>
                         </li>
                         <li class="pc-item">

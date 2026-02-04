@@ -69,6 +69,13 @@
         $.ajax({
             url: "<?= site_url('pelanggan/permintaan-pemeriksaan/list-data'); ?>",
             dataType: 'json',
+            cache: false,
+             beforeSend: function() {
+                $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.view-data').removeAttr('span');
+            },
             success: function(response) {
                 $(".view-data").html(response.data);
             },

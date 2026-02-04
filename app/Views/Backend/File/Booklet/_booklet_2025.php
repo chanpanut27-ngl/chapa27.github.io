@@ -4,7 +4,7 @@
 <div class="pc-container">
     <div class="pc-content">
         <h4><?= $title; ?></h4>
-        <object data="<?= base_url('File/Booklet__3.pdf') ?>" type="application/pdf" width="100%" height="600"></object>
+        <object data="<?= base_url('File/Booklet__2025.pdf') ?>" type="application/pdf" width="100%" height="600"></object>
     </div>
 </div>
 <?= $this->endSection(); ?>

@@ -246,7 +246,8 @@ $routes->group('file-formulir/reader', function ($routes) {
 
 /* Booklet */
 $routes->group('file-booklet/reader', function ($routes) {
-    $routes->get('booklet-3', 'BookletReader::booklet_3');
+    $routes->get('booklet-2025', 'BookletReader::booklet_2025');
+    $routes->get('booklet-2026', 'BookletReader::booklet_2026');
     $routes->get('harga-pnbp', 'BookletReader::harga_pnbp');
 });
 

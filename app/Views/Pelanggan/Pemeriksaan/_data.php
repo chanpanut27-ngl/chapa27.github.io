@@ -22,8 +22,8 @@
                 <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start">
-                        <a href="<?= base_url('pelanggan/list-pemeriksaan/index/'.$row['id']) ?>" class="btn btn-success rounded btn-sm" title="Tambah pemeriksaan">
-                            <span class="fa-solid fa-arrow-circle-right"></span>
+                        <a href="<?= base_url('pelanggan/list-pemeriksaan/index/'.$row['id']) ?>" class="btn btn-primary rounded btn-sm" title="Tambah pemeriksaan">
+                            <span class="fa-solid fa-arrow-circle-right"></span> Tambah pemeriksaan
                         </a>
                     </div>
                 </td>
