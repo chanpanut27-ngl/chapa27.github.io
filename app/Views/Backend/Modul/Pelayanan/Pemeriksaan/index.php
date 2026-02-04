@@ -78,6 +78,8 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
+                                <button type="button" class="btn btn-warning btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $id_pelanggan; ?>)" title="Detail pemeriksaan sampel">
+                                <span class="fa-solid fa-eye"></span> Detail pemeriksaan sampel
                                 <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data" title="Refresh data">
                                     <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                                 </button>
@@ -139,6 +141,33 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
         for (var i = 0; i < checkboxes.length; i++) {
             checkboxes[i].checked = source.checked;
         }
+    }
+
+    function showPermintaanSampel(id) {
+        
+        $.ajax({
+            type: 'GET',
+            url: '<?= site_url('pelayanan-sampel/data-pemeriksaan/detail-sampel/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-show-lab').attr('disable', 'disabled');
+                $('.btn-show-lab').html('<i class="fa fa-spin fa-spinner"></i>');
+            },
+            complete: function() {
+                $('.btn-show-lab').removeAttr('disable');
+                $('.btn-show-lab').html('<span class="fa-solid fa-eye"></span> Detail pemeriksaan sampel');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
     }
 
     $(document).ready(function() {

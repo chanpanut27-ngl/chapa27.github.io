@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\PermintaanPelangganModel;
 use App\Models\PermintaanPemeriksaanModel;
+use App\Models\PermintaanSampelModel;
 use App\Models\ProfilPelangganModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -84,6 +85,25 @@ class DataPemeriksaan extends ResourceController
             exit('Not Process');
         }  
     }
+
+    public function show_permintaan_sampel($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $permintaan_sampel = new PermintaanSampelModel();
+            $data = [
+                'title' => 'Detail sampel',
+                'items' => $permintaan_sampel->get_data($id)
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan/Pemeriksaan/_detail_sampel', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }  
+    }
+
 
     /**
      * Return a new resource object, with default properties.

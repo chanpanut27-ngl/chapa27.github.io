@@ -492,6 +492,7 @@ $routes->group('pelayanan-sampel/data-pemeriksaan', function ($routes) {
     $routes->post('detail-sampel', 'Pelanggan\ListPemeriksaan::detail_sampel');
     $routes->post('list-parameter', 'Pelanggan\ListPemeriksaan::list_parameter');
     $routes->get('detail-lab/(:any)', 'DataPemeriksaan::show_lab/$1');
+    $routes->get('detail-sampel/(:any)', 'DataPemeriksaan::show_permintaan_sampel/$1');
 
 });
 
