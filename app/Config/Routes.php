@@ -243,6 +243,7 @@ $routes->group('file-formulir/reader', function ($routes) {
     $routes->get('permintaan-pemeriksaan-rujukan-atau-kiriman', 'FormulirReader::permintaan_pemeriksaan_rujukan_atau_kiriman');
     $routes->get('permintaan-pengujian-sampel-lingkungan', 'FormulirReader::permintaan_pengujian_sampel_lingkungan');
     $routes->get('permintaan-pengujian-spesimen-klinis', 'FormulirReader::permintaan_pengujian_spesimen_klinis');
+    $routes->get('contoh-surat', 'FormulirReader::contoh_surat');
 });
 
 /* Booklet */

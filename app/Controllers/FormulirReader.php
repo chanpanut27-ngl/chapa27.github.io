@@ -46,4 +46,12 @@ class FormulirReader extends BaseController
         return view('Backend/File/Formulir/_permintaan_pengujian_spesimen_klinis', $data);
     }
 
+    public function contoh_surat()
+    {
+        $data = [
+            'title' => 'Contoh Surat'
+        ];
+        return view('Backend/File/Formulir/_contoh_surat', $data);
+    }
+
 }

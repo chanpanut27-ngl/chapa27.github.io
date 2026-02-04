@@ -149,7 +149,6 @@ class ListPemeriksaan extends ResourceController
                         'id_lab' => $this->request->getVar('id_lab'),
                         'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
                         'id_parameter' => $id_parameter[$i],
-                        'jumlah_titik' => $this->request->getVar('jumlah_titik')[$i]
                     ];
                     $this->model->insert($simpandata);
                     $msg = [

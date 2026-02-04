@@ -30,7 +30,7 @@ class PengantarLhu extends ResourceController
     public function __construct()
     {
         $this->cachePage(5);
-        $this->title = 'Pengantar LHU';
+        $this->title = 'Pengantar Lab';
         $this->model = new PengantarLhuModel();
         $this->modelLab = new LaboratoriumModel();
         $this->modelLabTujuan = new LaboratoriumTujuanModel();

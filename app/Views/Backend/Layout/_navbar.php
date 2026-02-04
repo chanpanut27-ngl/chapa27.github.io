@@ -47,9 +47,9 @@
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan/pengantar-lhu'); ?>" class="pc-link">
                         <svg class="pc-icon">
-                            <use xlink:href="#pengantar-lhu" for="pengantar-lhu"></use>
+                            <use xlink:href="#pengantar-lab" for="pengantar-lab"></use>
                         </svg>
-                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Pengantar LHU</span>
+                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Pengantar Lab</span>
                     </a>
                 </li>
                  <li class="pc-item">
@@ -147,6 +147,11 @@
                         <li class="pc-item">
                             <a class="pc-link" href="<?= base_url('file-formulir/reader/permintaan-pengujian-spesimen-klinis'); ?>" data-i18n="Permintaan pengujian spesimen klinis">
                                 <span class="fa-solid fa-file-alt"></span> Permintaan pengujian spesimen klinis
+                            </a>
+                        </li>
+                        <li class="pc-item">
+                            <a class="pc-link" href="<?= base_url('file-formulir/reader/contoh-surat'); ?>" data-i18n="Permintaan pengujian spesimen klinis">
+                                <span class="fa-solid fa-file-alt"></span> Contoh Surat
                             </a>
                         </li>
                     </ul>
