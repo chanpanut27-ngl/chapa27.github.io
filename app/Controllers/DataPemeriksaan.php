@@ -91,7 +91,7 @@ class DataPemeriksaan extends ResourceController
         if ($this->request->isAJAX()) {
             $permintaan_sampel = new PermintaanSampelModel();
             $data = [
-                'title' => 'Detail sampel',
+                'title' => 'Detail pemeriksaan sampel',
                 'items' => $permintaan_sampel->get_data($id)
             ];
             $msg = [
