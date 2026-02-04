@@ -23,6 +23,10 @@ class MgdbMasterInstalasi extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '255',
             ],
+            'id_kat_lab' => [
+                'type'           => 'INT',
+                'constraint'     => 5,
+            ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
                 'default' => 1

@@ -91,15 +91,15 @@ class PerintahUjiSampelModel extends Model
         $sql = "SELECT 
         pengantar_lhu.id AS id_pengantar, 
         pengantar_lhu.kode_pengantar, 
-        master_pelanggan.nama, 
-        master_pelanggan.alamat,
+        permintaan_pelanggan.nama_pengirim, 
+        permintaan_pelanggan.alamat,
         master_laboratorium.nama_lab,
         master_instalasi.nama_instalasi,
         master_instalasi.id AS id_instalasi,
         master_instalasi.id_kat_lab,
         laboratorium_tujuan.id_laboratorium
         FROM pengantar_lhu
-        LEFT JOIN master_pelanggan ON master_pelanggan.id = pengantar_lhu.id_pelanggan
+        LEFT JOIN permintaan_pelanggan ON permintaan_pelanggan.id = pengantar_lhu.id_pelanggan
         LEFT JOIN laboratorium_tujuan ON laboratorium_tujuan.id_pengantar_lhu = pengantar_lhu.id
         LEFT JOIN master_laboratorium ON master_laboratorium.id = laboratorium_tujuan.id_laboratorium
         LEFT JOIN master_kategori_lab ON master_kategori_lab.id = master_laboratorium.id_kat_lab
