@@ -27,9 +27,9 @@ class Database extends Config
     public array $default = [
         'DSN'          => '',
         'hostname'     => 'localhost',
-        'username'     => 'root',
+        'username'     => 'bblkmjak_chanPanuturan',
         'password'     => '',
-        'database'     => '',
+        'database'     => 'bblkmjak_dbs_bblabkesChan',
         'DBDriver'     => 'MySQLi',
         'DBPrefix'     => '',
         'pConnect'     => false,
