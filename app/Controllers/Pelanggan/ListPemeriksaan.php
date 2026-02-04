@@ -8,6 +8,7 @@ use App\Models\ParameterPemeriksaanModel;
 use App\Models\PeraturanModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\PermintaanPemeriksaanModel;
+use App\Models\PermintaanSampelModel;
 use App\Models\ProfilPelangganModel;
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -24,6 +25,8 @@ class ListPemeriksaan extends ResourceController
     protected $modelLab;
 
     protected $modelSampel;
+
+    protected $modelPermintaanSampel;
     protected $title;
     protected $validation;
     public function __construct()
@@ -33,6 +36,7 @@ class ListPemeriksaan extends ResourceController
         $this->modelPermintaan = new PermintaanPelangganModel();
         $this->modelLab = new LaboratoriumModel();
         $this->modelSampel = new JenisSampelModel();
+        $this->modelPermintaanSampel = new PermintaanSampelModel();
         $this->validation = \Config\Services::validation();
     }
 
@@ -160,16 +164,18 @@ class ListPemeriksaan extends ResourceController
                         'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
                         'id_parameter' => $id_parameter[$i],
                     ];
-                $this->model->insert($simpandata);
-
-                $simpan_permintaan_sampel = [
+                    $this->model->insert($simpandata);
+   
+                }
+                  $simpan_permintaan_sampel = [
                         'id_pelanggan' => $this->request->getVar('id_pelanggan'),
                         'no_reg' => $this->request->getVar('no_reg'),
                         'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
                         'jumlah_sampel' => $this->request->getVar(index: 'jumlah_sampel'),
                     ];
-                $this->model->insert($simpan_permintaan_sampel);
+                $this->modelPermintaanSampel->insert($simpan_permintaan_sampel);
 
+                 
                 $db->transComplete();
 
                 if ($db->transStatus() === FALSE) {
@@ -180,8 +186,6 @@ class ListPemeriksaan extends ResourceController
                    $msg = [
                         'sukses' => 'Data berhasil disimpan'
                     ];
-                }
-                    
                 }
             }
             echo json_encode($msg);

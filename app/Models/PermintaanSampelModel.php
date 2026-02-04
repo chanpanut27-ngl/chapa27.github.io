@@ -69,4 +69,13 @@ class PermintaanSampelModel extends Model
         }
         return $data;
     }
+
+    // SELECT
+    // jenis_sampel,
+    // jumlah_sampel,
+    // pnbp,
+    // jumlah_sampel * pnbp AS jumlah_biaya
+    // FROM permintaan_sampel ps
+    // JOIN master_jenis_sampel mjs ON mjs.id = ps.id_jenis_sampel
+    // WHERE id_pelanggan = 1;
 }

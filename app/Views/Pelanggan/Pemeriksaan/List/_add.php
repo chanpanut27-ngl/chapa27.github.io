@@ -6,7 +6,7 @@
                 <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelanggan/list-pemeriksaan/create-data'); ?>" class="form-data">
+            <form action="<?= base_url(relativePath: 'pelanggan/list-pemeriksaan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
                 <input type="hidden" name="no_reg" value="<?= $no_reg ?>">
@@ -58,8 +58,7 @@
             dropdownParent: $('#exampleModal')
         });
 
-        $("#id-lab").change(function (e) {
-            e.preventDefault();
+       $(document).on('change', '#id-lab', function () {
             var id_lab = $(this).val();
             $.ajax({
                 type: "post",
@@ -76,8 +75,7 @@
             })
         })
 
-         $("#id-jenis-sampel").change(function (e) {
-            e.preventDefault();
+        $(document).on('change', '#id-jenis-sampel', function () {
             var id_jenis_sampel = $(this).val();
             $.ajax({
                 type: "post",
@@ -96,6 +94,7 @@
                 }
             })
         })
+
 
         $(".form-data").submit(function(e) {
             e.preventDefault();
