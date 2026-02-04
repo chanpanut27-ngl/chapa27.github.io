@@ -44,8 +44,7 @@ class InstansiModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-    
-    
+     
     protected function setInsertBy(array $data)
     {
         $username = user()->username;
