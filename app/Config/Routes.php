@@ -47,7 +47,8 @@ $routes->group('pelanggan/profil', function ($routes) {
 
 /* Booklet */
 $routes->group('pelanggan/booklet/reader', function ($routes) {
-    $routes->get('booklet-3', 'Pelanggan\BookletReader::booklet_3');
+    $routes->get('booklet-2025', 'Pelanggan\BookletReader::booklet_2025');
+    $routes->get('booklet-2026', 'Pelanggan\BookletReader::booklet_2026');
     $routes->get('harga-pnbp', 'Pelanggan\BookletReader::harga_pnbp');
 });
 

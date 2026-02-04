@@ -7,12 +7,20 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class BookletReader extends BaseController
 {
-    public function booklet_3()
+    public function booklet_2025()
     {
         $data = [
-            'title' => 'Booklet 3'
+            'title' => 'Booklet 2025'
         ];
-        return view('Pelanggan/File/Booklet/_booklet_3', $data);
+        return view('Pelanggan/File/Booklet/_booklet_2025', $data);
+    }
+
+    public function booklet_2026()
+    {
+        $data = [
+            'title' => 'Booklet 2026'
+        ];
+        return view('Pelanggan/File/Booklet/_booklet_2026', $data);
     }
 
     public function harga_pnbp()

@@ -78,7 +78,7 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
-                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh" title="Refresh data">
+                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data" title="Refresh data">
                                     <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                                 </button>
                                 <a href="<?= base_url('pelayanan-sampel/data-permintaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
