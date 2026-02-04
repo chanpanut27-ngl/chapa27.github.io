@@ -13,7 +13,12 @@ class PermintaanSampelModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'id_pelanggan',
+        'no_reg',
+        'id_jenis_sampel',
+        'jumlah_sampel'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

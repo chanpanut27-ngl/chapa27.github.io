@@ -117,6 +117,14 @@
                 success: function(response) {
                     var err = response.error
                     if (err) {
+                        
+                        if (err.jumlah_sampel) {
+                            $('#jumlah-sampel').addClass('is-invalid');
+                            $('.errorJumlahSampel').html(err.jumlah_sampel);
+                        } else {
+                            $('#jumlah-sampel').removeClass('is-invalid');
+                            $('.errorJumlahSampel').html('');
+                        }
                         if (err.id_lab) {
                             $('#id-lab').addClass('is-invalid');
                             $('.errorIdLab').html(err.id_lab);

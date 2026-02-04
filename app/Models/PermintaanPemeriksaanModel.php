@@ -17,8 +17,7 @@ class PermintaanPemeriksaanModel extends Model
         'no_reg',
         'id_lab',
         'id_jenis_sampel',
-        'id_parameter',
-        'jumlah_titik'
+        'id_parameter'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -76,7 +75,7 @@ class PermintaanPemeriksaanModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('permintaan_pemeriksaan pp');
-        $builder->select('pp.id as id_permintaan_pemeriksaan, pp.jumlah_titik, pp.created_at as tgl_entry, nama_lab, jenis_sampel, parameter, mp.peraturan');
+        $builder->select('pp.id as id_permintaan_pemeriksaan, pp.created_at as tgl_entry, nama_lab, jenis_sampel, parameter, harga_per_titik, mp.peraturan');
         $builder->join("master_laboratorium ml", "ml.id = pp.id_lab", "left");
         $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");
         $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan", "left");

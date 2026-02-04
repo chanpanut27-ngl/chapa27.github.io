@@ -1,6 +1,13 @@
 
 <table class="table">
     <thead>
+        <tr>
+            <th>Jumlah sampel</th>
+            <th colspan="2">
+                <input type="number" name="jumlah_sampel" id="jumlah-sampel" class="form-control">
+                <div class="invalid-feedback errorJumlahSampel"></div>
+            </th>
+        </tr>
         <tr style="background:chartreuse;">
             <th colspan="2">Peraturan</th>
             <th colspan="3">: <?= $peraturan['peraturan'] ?></th>

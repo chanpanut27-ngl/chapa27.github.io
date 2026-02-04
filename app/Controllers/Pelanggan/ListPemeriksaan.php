@@ -127,6 +127,13 @@ class ListPemeriksaan extends ResourceController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'jumlah_sampel' => [
+                    'label' => 'Jumlah sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
                 
             ]);
@@ -135,10 +142,13 @@ class ListPemeriksaan extends ResourceController
                 $msg = [
                     'error' => [
                         'id_lab' => $this->validation->getError('id_lab'),
+                        'jumlah_sampel' => $this->validation->getError('jumlah_sampel'),
                         'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel')
                     ]
                 ];
             } else {
+                $db = \Config\Database::connect();
+                $db->transStart();
                 $id_parameter = $this->request->getVar('id_parameter');
                 $count = count($id_parameter ?? []);
                 for ($i=0; $i < $count; $i++) { 
@@ -150,10 +160,28 @@ class ListPemeriksaan extends ResourceController
                         'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
                         'id_parameter' => $id_parameter[$i],
                     ];
-                    $this->model->insert($simpandata);
-                    $msg = [
+                $this->model->insert($simpandata);
+
+                $simpan_permintaan_sampel = [
+                        'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                        'no_reg' => $this->request->getVar('no_reg'),
+                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                        'jumlah_sampel' => $this->request->getVar(index: 'jumlah_sampel'),
+                    ];
+                $this->model->insert($simpan_permintaan_sampel);
+
+                $db->transComplete();
+
+                if ($db->transStatus() === FALSE) {
+                   $msg = [
+                        'error' => 'Data gagal disimpan'
+                    ];
+                } else {
+                   $msg = [
                         'sukses' => 'Data berhasil disimpan'
                     ];
+                }
+                    
                 }
             }
             echo json_encode($msg);
