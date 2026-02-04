@@ -1,0 +1,2 @@
+username : bblkmjak_chanPanuturan
+database : bblkmjak_dbs_bblabkesChan
