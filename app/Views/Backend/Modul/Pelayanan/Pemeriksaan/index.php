@@ -156,7 +156,7 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Detail pemeriksaan sampel');
+                $('.btn-show-lab').html('<span class="fa-solid fa-eye"></span> Detail pemeriksaan sampel');
             },
             success: function(response) {
                 if (response.sukses) {

@@ -296,4 +296,24 @@ class ListPemeriksaan extends ResourceController
             exit('Not Process');
         }
     }
+
+    public function detail_permintaan_sampel($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $permintaan_sampel = new PermintaanSampelModel();
+            $data = [
+                'title' => 'Detail pemeriksaan sampel',
+                'items' => $permintaan_sampel->get_data($id)
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan/Pemeriksaan/_detail_sampel', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }  
+    }
+
+
 }

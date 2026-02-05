@@ -18,7 +18,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no=1; foreach ($items as $row) :?>
+                        <?php 
+                        $no=1; 
+                        foreach ($items as $row) :
+                        ?>
                             <tr>
                                 <td><?= $no++; ?></td>
                                 <td style="text-align: center;"><?= $row['jenis_sampel'] ?></td>

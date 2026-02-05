@@ -70,23 +70,21 @@ class PermintaanSampelModel extends Model
         return $data;
     }
 
-    public function get_data($id)
+    public function get_data($param)
     {
         $db = \Config\Database::connect();
-        $builder = $db->table('permintaan_sampel ps');
-        $builder->select('jenis_sampel, jumlah_sampel, pnbp, SUM(jumlah_sampel * pnbp) AS jumlah_biaya');
-        $builder->join('master_jenis_sampel mjs', 'mjs.id = ps.id_jenis_sampel');
-        $builder->where("id_pelanggan", $id);
-        $query = $builder->get()->getResultArray();
-        return $query;
+        $sql = 'SELECT
+                jenis_sampel,
+                jumlah_sampel,
+                pnbp,
+                jumlah_sampel * pnbp AS jumlah_biaya
+                FROM permintaan_sampel ps
+                JOIN master_jenis_sampel mjs ON mjs.id = ps.id_jenis_sampel
+                WHERE id_pelanggan = "'.$param.'"';
+
+        $query = $db->query($sql);
+        $row = $query->getResultArray();
+        return $row;
     }
 
-    // SELECT
-    // jenis_sampel,
-    // jumlah_sampel,
-    // pnbp,
-    // jumlah_sampel * pnbp AS jumlah_biaya
-    // FROM permintaan_sampel ps
-    // JOIN master_jenis_sampel mjs ON mjs.id = ps.id_jenis_sampel
-    // WHERE id_pelanggan = 1;
 }
