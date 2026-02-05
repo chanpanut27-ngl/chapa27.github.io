@@ -73,7 +73,7 @@ class DataPemeriksaan extends ResourceController
     {
         if ($this->request->isAJAX()) {
             $data = [
-                'title' => 'Detail Lab',
+                'title' => 'Detail Lab. Pemeriksaan',
                 'items' => $this->model->detail_lab($id)
             ];
             $msg = [

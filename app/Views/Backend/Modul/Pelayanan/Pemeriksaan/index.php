@@ -79,7 +79,7 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
                                 <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $id_pelanggan; ?>)" title="Detail pemeriksaan sampel">
-                                <span class="fa-solid fa-eye"></span> Detail pemeriksaan sampel
+                                <span class="fa-solid fa-eye"></span> Detail pemeriksaan sampel </button>
                                 <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data" title="Refresh data">
                                     <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                                 </button>
@@ -156,7 +156,7 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-eye"></span> Detail pemeriksaan sampel');
+                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Detail pemeriksaan sampel');
             },
             success: function(response) {
                 if (response.sukses) {

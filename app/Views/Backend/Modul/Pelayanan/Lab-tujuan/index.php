@@ -78,10 +78,10 @@
                             </button>
                             <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-warning btn-sm rounded btn-show-lab" onclick="showLab(<?= $row['id_pelanggan']; ?>)" title="Detail Lab">
-                                <span class="fa-solid fa-eye"></span> Detail Lab. Pemeriksaan
+                            <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showLab(<?= $row['id_pelanggan']; ?>)" title="Detail Lab. Pemeriksaan">
+                                <span class="fa-solid fa-clipboard"></span> Detail Lab. Pemeriksaan
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" onclick="addData(<?= $row['id_pengantar']; ?>)" title="Tambah laboratorium tujuan">
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" onclick="addData(<?= $row['id_pengantar']; ?>)" title="Tambah Data">
                                 <span class="fa-solid fa-plus-square"></span> Tambah Data
                             </button>
                         </div>
@@ -133,7 +133,7 @@
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-eye"></span> Detail Lab');
+                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Detail Lab. Pemeriksaan');
             },
             success: function(response) {
                 if (response.sukses) {

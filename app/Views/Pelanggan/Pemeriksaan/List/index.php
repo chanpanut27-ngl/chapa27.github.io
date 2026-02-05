@@ -87,6 +87,8 @@
                                     <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                                 </button>
                                 <a href="<?= base_url('pelanggan/permintaan-pemeriksaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $id_pelanggan; ?>)" title="Detail pemeriksaan sampel">
+                                <span class="fa-solid fa-clipboard"></span> Detail pemeriksaan sampel</button>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_pelanggan ?>" data-noreg="<?= $no_reg ?>">
                                     <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
@@ -136,7 +138,34 @@
         })
     }
 
-     $("#selectAll").change(function(){
+    function showPermintaanSampel(id) {
+        
+        $.ajax({
+            type: 'GET',
+            url: '<?= site_url('pelayanan-sampel/data-pemeriksaan/detail-sampel/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-show-lab').attr('disable', 'disabled');
+                $('.btn-show-lab').html('<i class="fa fa-spin fa-spinner"></i>');
+            },
+            complete: function() {
+                $('.btn-show-lab').removeAttr('disable');
+                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Detail pemeriksaan sampel');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+    $("#selectAll").change(function(){
         $(".checkbox").prop('checked', $(this).prop("checked"));
     });
 
