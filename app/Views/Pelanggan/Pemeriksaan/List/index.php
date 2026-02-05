@@ -93,6 +93,9 @@
                                 <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_pelanggan ?>" data-noreg="<?= $no_reg ?>">
                                     <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
                                 </button>
+                                <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteDataPemeriksaan(<?= $id_pelanggan; ?>)" title="Hapus data">
+                                    <span class="fa-solid fa-trash-alt"></span> Batal pemeriksaan
+                                </button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -174,6 +177,46 @@
         for (var i = 0; i < checkboxes.length; i++) {
             checkboxes[i].checked = source.checked;
         }
+    }
+
+    function deleteDataPemeriksaan(id) {
+        var myElement = $('#myId-' + id);
+        if (myElement.data('urut')) {
+            myElement.addClass('bg bg-danger');
+        }
+        Swal.fire({
+            title: "Yakin untuk menghapus data ?",
+            text: `No.urut : ` + myElement.data('urut'),
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus!",
+            cancelButtonText: "Tidak",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: 'get',
+                    url: '<?= site_url('pelanggan/list-pemeriksaan/delete-data-pemeriksaan/'); ?>' + id,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.sukses) {
+                            Swal.fire({
+                                title: "Hapus Data !",
+                                text: response.sukses,
+                                icon: "success"
+                            });
+                            listData();
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                    }
+                })
+            } else {
+                myElement.removeClass('bg bg-danger');
+            }
+        });
     }
 
     $(document).ready(function() {

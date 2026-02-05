@@ -87,6 +87,7 @@ $routes->group('pelanggan/list-pemeriksaan', function ($routes) {
     $routes->delete('delete-data/(:num)', 'Pelanggan\ListPemeriksaan::delete/$1');
     $routes->post('detail-sampel', 'Pelanggan\ListPemeriksaan::detail_sampel');
     $routes->post('list-parameter', 'Pelanggan\ListPemeriksaan::list_parameter');
+    $routes->get('delete-data-pemeriksaan/(:any)', 'Pelanggan\ListPemeriksaan::delete_data_pemeriksaan/$1');
 });
 
 /* [Module Pelayanan Pemeriksaan] */

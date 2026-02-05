@@ -238,6 +238,25 @@ class ListPemeriksaan extends ResourceController
             exit('Not Process');
         }
     }
+    public function delete_data_pemeriksaan($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $db = \Config\Database::connect();
+            
+            $pemeriksaan = $this->model->where('id_pelanggan', $id)->find();
+            if ($pemeriksaan) {
+            $sql1 = 'DELETE FROM permintaan_sampel WHERE id_pelanggan = "'.$id.'"';
+            $db->query($sql1);
+            }
+            $msg = [
+                'sukses' => 'Data berhasil dihapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+    
 
     public function list_sampel()
     {
@@ -282,7 +301,7 @@ class ListPemeriksaan extends ResourceController
             $sampel = new JenisSampelModel();
             $peraturan = new PeraturanModel();
             $jenis_sampel = $sampel->find($id_jenis_sampel);
-            $id_peraturan = $jenis_sampel['id_peraturan'];
+            $id_peraturan = @$jenis_sampel['id_peraturan'];
             
             $data = [
                 'items' =>  $parameter->where('id_jenis_sampel', $id_jenis_sampel)->where('is_active', 1)->findAll(),

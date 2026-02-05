@@ -10,7 +10,7 @@
         </tr>
         <tr style="background:chartreuse;">
             <th colspan="2">Peraturan</th>
-            <th colspan="3">: <?= $peraturan['peraturan'] ?></th>
+            <th colspan="3">: <?= @$peraturan['peraturan'] ?></th>
         </tr>
         <tr>
             <th>No</th>

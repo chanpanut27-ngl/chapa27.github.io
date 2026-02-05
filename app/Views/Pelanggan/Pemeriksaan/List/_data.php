@@ -24,7 +24,7 @@
                 <td><?= date('d-m-Y H:i', strtotime($row['tgl_entry'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
