@@ -243,14 +243,19 @@ class ListPemeriksaan extends ResourceController
         if ($this->request->isAJAX()) {
             $db = \Config\Database::connect();
             
-            $pemeriksaan = $this->model->where('id_pelanggan', $id)->find();
-            if ($pemeriksaan) {
-            $sql1 = 'DELETE FROM permintaan_sampel WHERE id_pelanggan = "'.$id.'"';
+            $db->transStart();
+            $sql1 = 'DELETE FROM permintaan_pemeriksaan WHERE id_pelanggan = "'.$id.'"';
             $db->query($sql1);
+            $sql2 = 'DELETE FROM permintaan_sampel WHERE id_pelanggan = "'.$id.'"';
+            $db->query($sql2);
+            $db->transComplete();
+            $msg = '';
+            if ($db->transStatus() === FALSE) {
+                $msg = [
+                    'sukses' => 'Data berhasil dihapus'
+                ];
             }
-            $msg = [
-                'sukses' => 'Data berhasil dihapus'
-            ];
+        
             echo json_encode($msg);
         } else {
             exit('Not Process');
