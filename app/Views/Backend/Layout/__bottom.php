@@ -8,23 +8,25 @@
 <script src="<?= base_url('assets/js/jquery-3.7.1.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
+<script src="<?= base_url('assets/js/mantis.js'); ?>"></script>
 
 <script>
-    function checkConnectionAjax(url) {
-    const xhr = new XMLHttpRequest();
-    const startTime = new Date().getTime();
-    const timeout = 3000; // 3 detik
+    function checkConnectionAjax(url) 
+    {
+        const xhr = new XMLHttpRequest();
+        const startTime = new Date().getTime();
+        const timeout = 3000; // 3 detik
 
-    xhr.open('GET', url, true);
-    xhr.setRequestHeader('Cache-Control', 'no-cache');
-    xhr.onload = function () {
-        if (xhr.status >= 200 && xhr.status < 300) {
-            console.log("Status Koneksi AJAX: AKTIF");
+        xhr.open('GET', url, true);
+        xhr.setRequestHeader('Cache-Control', 'no-cache');
+        xhr.onload = function () {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                console.log("Status Koneksi AJAX: AKTIF");
 
-        } else {
+            } else {
             // console.log(`Status Koneksi AJAX: TIDAK AKTIF (Kode Status: ${xhr.status})`);
             // alert('tidak aktif');
-           Swal.fire({
+            Swal.fire({
                 title: `Kode Status: ${xhr.status}`,
                 text: 'Koneksi internet terputus',
                 icon: "error",
