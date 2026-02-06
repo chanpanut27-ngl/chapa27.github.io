@@ -4,7 +4,7 @@
         <div class="m-header kemkes-color2">
             <a href="<?= base_url('/') ?>" class="b-brand text-primary">
                 <!-- ========   Change your logo from here   ============ -->
-                <img src="<?= base_url('assets/images/logo-2.png'); ?>" class="img-fluid logo" alt="logo">
+                <img src="<?= base_url('assets/images/logo-2.png') ?>" class="img-fluid logo" alt="logo">
             </a>
         </div>
         <div class="navbar-content">
@@ -147,17 +147,17 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-booklet/reader/booklet-2025'); ?>" data-i18n="Booklet 3">
+                            <a class="pc-link" href="<?= base_url('file-booklet/reader/booklet-2025') ?>" data-i18n="Booklet 3">
                                 <i class="ti ti-file"></i> Booklet 2025
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-booklet/reader/booklet-2026'); ?>" data-i18n="Booklet 3">
+                            <a class="pc-link" href="<?= base_url('file-booklet/reader/booklet-2026') ?>" data-i18n="Booklet 3">
                                 <i class="ti ti-file"></i> Booklet 2026
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-booklet/reader/harga-pnbp'); ?>" data-i18n="Harga Pnbp">
+                            <a class="pc-link" href="<?= base_url('file-booklet/reader/harga-pnbp') ?>" data-i18n="Harga Pnbp">
                                 <i class="ti ti-file"></i> Tarif Pnbp
                             </a>
                         </li>
@@ -185,32 +185,32 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('master-data/users'); ?>" data-i18n="Users">
+                            <a class="pc-link" href="<?= base_url('master-data/users') ?>" data-i18n="Users">
                                 <span class="fa-solid fa-users"></span> Users
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('master-data/auth-groups'); ?>" data-i18n="Groups">
+                            <a class="pc-link" href="<?= base_url('master-data/auth-groups') ?>" data-i18n="Groups">
                                 <span class="fa-solid fa-people-group"></span> Groups
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('master-data/auth-groups-users'); ?>" data-i18n="Groups users">
+                            <a class="pc-link" href="<?= base_url('master-data/auth-groups-users') ?>" data-i18n="Groups users">
                                 <span class="fa-solid fa-user-group"></span> Groups users
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('master-data/auth-permissions'); ?>" data-i18n="Permissions">
+                            <a class="pc-link" href="<?= base_url('master-data/auth-permissions') ?>" data-i18n="Permissions">
                                 <span class="fa-solid fa-user-shield"></span> Permissions
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('master-data/auth-groups-permissions'); ?>" data-i18n="Groups Permissions">
+                            <a class="pc-link" href="<?= base_url('master-data/auth-groups-permissions') ?>" data-i18n="Groups Permissions">
                                 <span class="fa-solid fa-user-circle"></span> Groups Permissions
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('master-data/auth-logins'); ?>" data-i18n="Auth Logins">
+                            <a class="pc-link" href="<?= base_url('master-data/auth-logins') ?>" data-i18n="Auth Logins">
                                 <span class="fa-solid fa-user"></span> Auth Logins
                             </a>
                         </li>
@@ -253,7 +253,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('master-data/biaya-akomodasi'); ?>" class="pc-link">
+                    <a href="<?= base_url('master-data/biaya-akomodasi') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
                         <span class="pc-mtext"> Biaya akomodasi</span>
                     </a>
@@ -271,13 +271,13 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('master-data/penyakit'); ?>" class="pc-link">
+                    <a href="<?= base_url('master-data/penyakit') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
                         <span class="pc-mtext"> Penyakit</span>
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('master-data/coolbox'); ?>" class="pc-link">
+                    <a href="<?= base_url('master-data/coolbox') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
                         <span class="pc-mtext"> Coolbox</span>
                     </a>
