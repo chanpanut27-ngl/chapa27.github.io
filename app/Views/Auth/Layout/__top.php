@@ -8,7 +8,7 @@
     <meta name="keywords" content="Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
     <meta name="author" content="Program Layanan BBLKM Jakarta">
     <?= $this->renderSection('title'); ?>
-
+    
      <!-- [Shortcut Icon] -->
     <?= link_tag('assets/images/favicon.ico', 'shortcut icon', 'image/x-icon') ?>
      <!-- [Google Font] Family -->
@@ -27,8 +27,18 @@
     <?= link_tag('assets/css/custom.css'); ?>
     <!-- [Style Preset CSS Files] -->
     <?= link_tag('assets/css/style-preset.css'); ?>
+    <style>
+    .login-container {
+        background-image: url('');
+        filter: blur(0);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-size: 100% 85%;
+    }
+</style>
 </head>
-<body>
+
+<body class="login-container">
     <!-- [ Pre-loader ] Start -->
     <div class="loader-bg">
         <div class="loader-track">
