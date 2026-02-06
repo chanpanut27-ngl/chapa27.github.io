@@ -9,3 +9,5 @@ use CodeIgniter\Router\RouteCollection;
 require __DIR__ . '/Routes/__error_page__.php';
 /* Admin */
 require __DIR__ . '/Routes/__admin__.php';
+/* Master Instansi */
+require __DIR__ . '/Routes/__instansi__master.php';
