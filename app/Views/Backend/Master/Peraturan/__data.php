@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Instansi', 'Alamat', 'No.Telp/Hp', 'Wilayah', 'Is_active', ''];
+        $arrth = ['No', 'Peraturan', 'Keterangan', 'Is_active', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -16,18 +16,16 @@
         ?>
             <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['nama_instansi'] ?></td>
-                <td><?= $row['alamat'] ?></td>
-                <td><?= $row['no_telp'] ?></td>
-                <td><?= $row['wilayah'] ?></td>
+                <td><?= $row['peraturan'] ?></td>
+                <td><?= $row['keterangan'] ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
-                            <span class="fa-solid fa-edit"></span>
+                            <ispan class="fa-solid fa-edit"></span>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
+                            <ispan class="fa-solid fa-trash-alt"></span>
                         </button>
                     </div>
                 </td>
@@ -39,9 +37,9 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/instansi/edit-data/'); ?>' + id,
+            url: '<?= site_url('master-data/peraturan/edit-data/'); ?>' + id,
             dataType: 'json',
-            cache: false,
+            cache:false,
             beforeSend: function() {
                 $('.btn-edit-'+id).attr('disable', 'disabled');
                 $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
@@ -81,7 +79,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/instansi/delete-data/'); ?>' + id,
+                    url: '<?= site_url('master-data/peraturan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
@@ -92,6 +90,7 @@
                                 timer: 3000,
                                 width: '300px',
                                 padding: '1em'
+                                
                             }).then((result) => {
                                 if (result.dismiss === Swal.DismissReason.timer) {
                                     console.log("I was closed by the timer");

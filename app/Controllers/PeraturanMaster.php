@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\InstansiModel;
+use App\Models\PeraturanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class InstansiMaster extends BaseController
+class PeraturanMaster extends BaseController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -18,8 +18,8 @@ class InstansiMaster extends BaseController
     public function __construct()
     {
         $this->cachePage(5);
-        $this->title = 'Instansi';
-        $this->model = new InstansiModel();
+        $this->title = 'Peraturan Baku/Mutu';
+        $this->model = new PeraturanModel();
     }
 
     public function index()
@@ -27,18 +27,17 @@ class InstansiMaster extends BaseController
         $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Master/Instansi/index', $data);
+        return view('Backend/Master/Peraturan/index', $data);
     }
 
     public function list()
     {
-
         if ($this->request->isAJAX()) {
             $data = [
                 'items' => $this->model->get_data()
             ];
             $msg = [
-                'data' => view('Backend/Master/Instansi/__data', $data)
+                'data' => view('Backend/Master/Peraturan/__data', $data)
             ];
 
             echo json_encode($msg);
@@ -46,7 +45,6 @@ class InstansiMaster extends BaseController
             exit('Not Process');
         }
     }
-
     /**
      * Return the properties of a resource object.
      *
@@ -68,12 +66,12 @@ class InstansiMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $data = [
-                'title' => 'Tambah ' . $this->title
+                'title' => 'Tambah ' . $this->title,
+            ];
+            $msg = [
+                'data' => view('Backend/Master/Peraturan/__add', $data)
             ];
 
-            $msg = [
-                'data' => view('Backend/Master/Instansi/__add', $data)
-            ];
             echo json_encode($msg);
         } else {
             exit('Not Process');
@@ -89,15 +87,15 @@ class InstansiMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'nama_instansi' => [
-                    'label' => 'Instansi',
+                'peraturan' => [
+                    'label' => 'Peraturan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'wilayah' => [
-                    'label' => 'Wilayah',
+                'keterangan' => [
+                    'label' => 'Keterangan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -108,18 +106,16 @@ class InstansiMaster extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama_instansi' => $this->validation->getError('nama_instansi'),
-                        'wilayah' => $this->validation->getError('wilayah'),
+                        'peraturan' => $this->validation->getError('peraturan'),
+                        'keterangan' => $this->validation->getError('keterangan')
                     ]
                 ];
             } else {
                 $simpandata = [
-                    'nama_instansi' => $this->request->getVar('nama_instansi'),
-                    'alamat' => $this->request->getVar('alamat'),
-                    'no_telp' => $this->request->getVar('no_telp'),
-                    'wilayah' => $this->request->getVar('wilayah')
+                    'peraturan' => $this->request->getVar('peraturan'),
+                    'keterangan' => $this->request->getVar('keterangan')
                 ];
-                $this->model->save($simpandata);
+                $this->model->insert($simpandata);
                 $msg = [
                     'sukses' => 'Data berhasil disimpan'
                 ];
@@ -142,11 +138,11 @@ class InstansiMaster extends BaseController
         if ($this->request->isAJAX()) {
 
             $data = [
-                'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Master/Instansi/__edit', $data)
+                'sukses' => view('Backend/Master/Peraturan/__edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -165,39 +161,38 @@ class InstansiMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'nama_instansi' => [
-                    'label' => 'Instansi',
+                'peraturan' => [
+                    'label' => 'Peraturan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'wilayah' => [
-                    'label' => 'Wilayah',
+                'keterangan' => [
+                    'label' => 'Keterangan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ]
             ]);
+
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama_instansi' => $this->validation->getError('nama_instansi'),
-                        'wilayah' => $this->validation->getError('wilayah')
+                        'peraturan' => $this->validation->getError('peraturan'),
+                        'keterangan' => $this->validation->getError('keterangan')
                     ]
                 ];
             } else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
-                    'nama_instansi' => $this->request->getVar('nama_instansi'),
-                    'alamat' => $this->request->getVar('alamat'),
-                    'no_telp' => $this->request->getVar('no_telp'),
-                    'wilayah' => $this->request->getVar('wilayah'),
+                    'peraturan' => $this->request->getVar('peraturan'),
+                    'keterangan' => $this->request->getVar('keterangan'),
                     'is_active' => $this->request->getVar('is_active')
+
                 ];
                 $this->model->save($simpandata);
-
                 $msg = [
                     'sukses' => 'Data berhasil diubah'
                 ];
@@ -221,7 +216,7 @@ class InstansiMaster extends BaseController
 
             $this->model->delete($id);
             $msg = [
-                'sukses' => 'Data berhasil dihapus'
+                'sukses' => 'Data berhasil di hapus'
             ];
             echo json_encode($msg);
         } else {

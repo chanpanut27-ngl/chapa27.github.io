@@ -60,7 +60,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('master-data/instansi/list-data'); ?>",
+            url: "<?= site_url('master-data/peraturan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -85,7 +85,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('master-data/instansi/add-data'); ?>",
+                url: "<?= site_url('master-data/peraturan/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {

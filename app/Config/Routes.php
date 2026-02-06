@@ -11,3 +11,6 @@ require __DIR__ . '/Routes/__error_page__.php';
 require __DIR__ . '/Routes/__admin__.php';
 /* Master Instansi */
 require __DIR__ . '/Routes/__instansi__master.php';
+require __DIR__ . '/Routes/__admin__.php';
+/* Master Peraturan/Baku Mutu */
+require __DIR__ . '/Routes/__peraturan__master.php';

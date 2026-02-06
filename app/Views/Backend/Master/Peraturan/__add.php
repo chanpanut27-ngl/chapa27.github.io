@@ -6,28 +6,18 @@
                 <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/instansi/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('master-data/peraturan/create-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instansi" class="form-label h5">Instansi</label>
-                        <input type="text" name="nama_instansi" class="form-control" id="nama-instansi" autocomplete="off">
-                        <div class="invalid-feedback errorNamaInstansi"></div>
+                        <label for="peraturan" class="form-label h5">Peraturan</label>
+                        <input type="text" name="peraturan" class="form-control" id="peraturan" autocomplete="off">
+                        <div class="invalid-feedback errorPeraturan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="alamat" class="form-label h5">Alamat</label>
-                        <textarea name="alamat" class="form-control" id="alamat"></textarea>
-                        <div class="invalid-feedback errorAlamat"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="no-telp" class="form-label h5">No.Telp/Hp</label>
-                        <input type="text" name="no_telp" class="form-control" id="no-telp">
-                        <div class="invalid-feedback errorNoTelp"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="wilayah" class="form-label h5">Wilayah</label>
-                        <input type="text" name="wilayah" class="form-control" id="wilayah">
-                        <div class="invalid-feedback errorWilayah"></div>
+                        <label for="keterangan" class="form-label h5">Keterangan</label>
+                        <textarea name="keterangan" class="form-control" id="keterangan"></textarea>
+                        <div class="invalid-feedback errorKeterangan"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -51,29 +41,29 @@
                 cache: false,
                 beforeSend: function() {
                     $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 complete: function() {
                     $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
+                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
                 },
                 success: function(response) {
                     var err = response.error
                     if (err) {
-                        if (err.nama_instansi) {
-                            $('#nama-instansi').addClass('is-invalid');
-                            $('.errorNamaInstansi').html(err.nama_instansi);
+                        if (err.peraturan) {
+                            $('#peraturan').addClass('is-invalid');
+                            $('.errorPeraturan').html(err.peraturan);
                         } else {
-                            $('#nama-instansi').removeClass('is-invalid');
-                            $('.errorNamaInstansi').html('');
+                            $('#peraturan').removeClass('is-invalid');
+                            $('.errorPeraturan').html('');
                         }
-                        if (err.wilayah) {
-                            $('#wilayah').addClass('is-invalid');
-                            $('.errorWilayah').html(err.wilayah);
+                        if (err.keterangan) {
+                            $('#keterangan').addClass('is-invalid');
+                            $('.errorKeterangan').html(err.keterangan);
                         } else {
-                            $('#wilayah').removeClass('is-invalid');
-                            $('.errorWilayah').html('');
+                            $('#keterangan').removeClass('is-invalid');
+                            $('.errorKeterangan').html('');
                         }
                     } else {
                         Swal.fire({
@@ -83,12 +73,13 @@
                             timer: 3000,
                             width: '300px',
                             padding: '1em'
+                            
                         }).then((result) => {
                             if (result.dismiss === Swal.DismissReason.timer) {
                                 console.log("I was closed by the timer");
                             }
                         });
-                        
+
                         $("#exampleModal").modal('hide');
                         listData();
                     }

@@ -267,7 +267,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('master-data/peraturan-baku-mutu') ?>" class="pc-link">
+                    <a href="<?= base_url('master-data/peraturan') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
                         <span class="pc-mtext"> Peraturan/baku mutu</span>
                     </a>
