@@ -21,7 +21,24 @@ class Encryption extends BaseConfig
      * You need to ensure it is long enough for the cipher and mode you plan to use.
      * See the user guide for more info.
      */
-    public string $key = 'B374A26A71490437AA024E4FADD5B497FDFF1A8EA6FF12F6FB65AF2720B59CCF';
+    public string $key = '';
+
+    /**
+     * --------------------------------------------------------------------------
+     * Previous Encryption Keys
+     * --------------------------------------------------------------------------
+     *
+     * When rotating encryption keys, add old keys here to maintain ability
+     * to decrypt data encrypted with previous keys. Encryption always uses
+     * the current $key. Decryption tries current key first, then falls back
+     * to previous keys if decryption fails.
+     *
+     * In .env file, use comma-separated string:
+     *   encryption.previousKeys = hex2bin:9be8c64fcea509867...,hex2bin:3f5a1d8e9c2b7a4f6...
+     *
+     * @var list<string>|string
+     */
+    public array|string $previousKeys = '';
 
     /**
      * --------------------------------------------------------------------------
