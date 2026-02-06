@@ -21,7 +21,7 @@
                         <div class="invalid-feedback errorKeterangan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h5">Status</label>
+                        <label for="is-active" class="form-label h5">Is_active</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             

@@ -6,29 +6,18 @@
                 <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/instansi/update-data') ?>" class="form-data">
+            <form action="<?= base_url('master-data/penyakit/update-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id'] ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instansi" class="form-label h5">Instansi</label>
-                        <input type="text" name="nama_instansi" value="<?=  $items['nama_instansi'] ?>" class="form-control" id="nama-instansi" autocomplete="off">
-                        <div class="invalid-feedback errorNamaInstansi"></div>
+                        <label for="penyakit" class="form-label h5">Penyakit</label>
+                        <input type="text" name="penyakit" value="<?= $items['penyakit']; ?>" class="form-control" id="penyakit" autocomplete="off">
+                        <div class="invalid-feedback errorPenyakit"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="alamat" class="form-label h5">Alamat</label>
-                        <textarea name="alamat" class="form-control" id="alamat"><?= $items['alamat'] ?></textarea>
-                        <div class="invalid-feedback errorAlamat"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="no-telp" class="form-label h5">No.Telp/Hp</label>
-                        <input type="text" name="no_telp" value="<?=  $items['no_telp'] ?>" class="form-control" id="no-telp">
-                        <div class="invalid-feedback errorNoTelp"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="wilayah" class="form-label h5">Wilayah</label>
-                        <input type="text" name="wilayah" value="<?=  $items['wilayah'] ?>" class="form-control" id="wilayah">
-                        <div class="invalid-feedback errorWilayah"></div>
+                        <label for="keterangan" class="form-label h5">Keterangan</label>
+                        <textarea name="keterangan" class="form-control" id="keterangan"><?= $items['keterangan'] ?></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="is-active" class="form-label h5">Is_active</label>
@@ -44,11 +33,11 @@
                             endforeach;
                             ?>
                         </select>
-                        <div class="invalid-feedback errorIsActive"></div>
+                        <div class="invalid-feedback errorAsalInstansi"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fa-solid fa-edit"></span> Ubah</button>
                     <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
@@ -72,25 +61,35 @@
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');
-                    $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
+                    $('.btn-ubah').html('Ubah');
                 },
                 success: function(response) {
                     if (response.error) {
 
-                        if (response.nama_instansi) {
-                            $('#nama-instansi').addClass('is-invalid');
-                            $('.errorNamaInstansi').html(response.nama_instansi);
+                        if (response.error.jenis_sampel) {
+                            $('#jenis-sampel').addClass('is-invalid');
+                            $('.errorJenisSampel').html(response.error.jenis_sampel);
                         } else {
-                            $('#nama-instansi').removeClass('is-invalid');
-                            $('.errorNamaInstansi').html('');
+                            $('#jenis-sampel').removeClass('is-invalid');
+                            $('.errorJenisSampel').html('');
                         }
-                        if (response.wilayah) {
-                            $('#wilayah').addClass('is-invalid');
-                            $('.errorWilayah').html(response.wilayah);
+
+                        if (response.error.pnbp) {
+                            $('#pnbp').addClass('is-invalid');
+                            $('.errorPnbp').html(response.error.pnbp);
                         } else {
-                            $('#wilayah').removeClass('is-invalid');
-                            $('.errorWilayah').html('');
+                            $('#pnbp').removeClass('is-invalid');
+                            $('.errorPnbp').html('');
                         }
+
+                        if (response.error.id_lab) {
+                            $('#id-lab').addClass('is-invalid');
+                            $('.errorIdLab').html(response.error.id_lab);
+                        } else {
+                            $('#id-lab').removeClass('is-invalid');
+                            $('.errorIdLab').html('');
+                        }
+
                     } else {
                         Swal.fire({
                             title: "Berhasil",

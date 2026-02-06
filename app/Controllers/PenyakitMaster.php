@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\PeraturanModel;
+use App\Models\PenyakitModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class PeraturanMaster extends BaseController
+class PenyakitMaster extends BaseController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -18,8 +18,8 @@ class PeraturanMaster extends BaseController
     public function __construct()
     {
         $this->cachePage(5);
-        $this->title = 'Peraturan';
-        $this->model = new PeraturanModel();
+        $this->title = 'Penyakit';
+        $this->model = new PenyakitModel();
     }
 
     public function index()
@@ -27,7 +27,7 @@ class PeraturanMaster extends BaseController
         $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Master/Peraturan/index', $data);
+        return view('Backend/Master/Penyakit/index', $data);
     }
 
     public function list()
@@ -37,7 +37,7 @@ class PeraturanMaster extends BaseController
                 'items' => $this->model->get_data()
             ];
             $msg = [
-                'data' => view('Backend/Master/Peraturan/__data', $data)
+                'data' => view('Backend/Master/Penyakit/__data', $data)
             ];
 
             echo json_encode($msg);
@@ -45,6 +45,7 @@ class PeraturanMaster extends BaseController
             exit('Not Process');
         }
     }
+
     /**
      * Return the properties of a resource object.
      *
@@ -67,9 +68,10 @@ class PeraturanMaster extends BaseController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
+                'masterLab' => $this->model->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Master/Peraturan/__add', $data)
+                'data' => view('Backend/Master/Penyakit/__add', $data)
             ];
 
             echo json_encode($msg);
@@ -87,15 +89,8 @@ class PeraturanMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'peraturan' => [
-                    'label' => 'Peraturan',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ],
-                'keterangan' => [
-                    'label' => 'Keterangan',
+                'penyakit' => [
+                    'label' => 'Penyakit',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -106,16 +101,15 @@ class PeraturanMaster extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'peraturan' => $this->validation->getError('peraturan'),
-                        'keterangan' => $this->validation->getError('keterangan')
+                        'penyakit' => $this->validation->getError('penyakit')
                     ]
                 ];
             } else {
                 $simpandata = [
-                    'peraturan' => $this->request->getVar('peraturan'),
-                    'keterangan' => $this->request->getVar('keterangan')
+                    'penyakit' => $this->request->getVar('penyakit'),
+                    'keterangan' => $this->request->getVar(index: 'keterangan')
                 ];
-                $this->model->insert($simpandata);
+                $this->model->save($simpandata);
                 $msg = [
                     'sukses' => 'Data berhasil disimpan'
                 ];
@@ -138,11 +132,11 @@ class PeraturanMaster extends BaseController
         if ($this->request->isAJAX()) {
 
             $data = [
-                'items' => $this->model->find($id),
-                'title' => 'Edit ' . $this->title
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id)
             ];
             $msg = [
-                'sukses' => view('Backend/Master/Peraturan/__edit', $data)
+                'sukses' => view('Backend/Master/Penyakit/__edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -161,36 +155,26 @@ class PeraturanMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'peraturan' => [
-                    'label' => 'Peraturan',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ],
-                'keterangan' => [
-                    'label' => 'Keterangan',
+                'penyakit' => [
+                    'label' => 'Penyakit',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ]
             ]);
-
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'peraturan' => $this->validation->getError('peraturan'),
-                        'keterangan' => $this->validation->getError('keterangan')
+                        'penyakit' => $this->validation->getError('penyakit')
                     ]
                 ];
             } else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
-                    'peraturan' => $this->request->getVar('peraturan'),
-                    'keterangan' => $this->request->getVar('keterangan'),
+                    'penyakit' => $this->request->getVar('penyakit'),
+                    'keterangan' => $this->request->getVar(index: 'keterangan'),
                     'is_active' => $this->request->getVar('is_active')
-
                 ];
                 $this->model->save($simpandata);
                 $msg = [
@@ -216,7 +200,7 @@ class PeraturanMaster extends BaseController
 
             $this->model->delete($id);
             $msg = [
-                'sukses' => 'Data berhasil di hapus'
+                'sukses' => 'Data berhasil dihapus'
             ];
             echo json_encode($msg);
         } else {
