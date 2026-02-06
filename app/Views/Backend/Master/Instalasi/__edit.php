@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h3>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/instalasi/update-data') ?>" class="form-data">
@@ -11,12 +11,12 @@
                 <input type="hidden" name="id" value="<?= $items['id'] ?>">
                  <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instalasi" class="form-label h4">Nama instalasi</label>
+                        <label for="nama-instalasi" class="form-label h5">Nama instalasi</label>
                         <input type="text" name="nama_instalasi" value="<?= $items['nama_instalasi'] ?>" class="form-control" id="nama-instalasi" autocomplete="off">
                         <div class="invalid-feedback errorNamaInstalasi"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4">Status</label>
+                        <label for="is-active" class="form-label h5">Is_active</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
@@ -74,6 +74,12 @@
                             text: response.sukses,
                             icon: "success",
                             timer: 3000,
+                            width: '300px',
+                            padding: '1em'
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log("I was closed by the timer");
+                            }
                         });
 
                         $("#exampleModal").modal('hide');
