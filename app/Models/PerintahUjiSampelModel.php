@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class PerintahUjiSampelModel extends Model
 {
-    protected $table            = 'perintah_uji_sampel';
+    protected $table            = 'surat_perintah_uji_sampel';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
