@@ -40,7 +40,7 @@ class App extends BaseConfig
      * something else. If you have configured your web server to remove this file
      * from your site URIs, set this variable to an empty string.
      */
-    public string $indexPage = 'index.php';
+    public string $indexPage = '';
 
     /**
      * --------------------------------------------------------------------------
@@ -93,7 +93,7 @@ class App extends BaseConfig
      * strings (like currency markers, numbers, etc), that your program
      * should run under for this request.
      */
-    public string $defaultLocale = 'en';
+    public string $defaultLocale = 'Asia/Jakarta';
 
     /**
      * --------------------------------------------------------------------------
@@ -199,4 +199,12 @@ class App extends BaseConfig
      * @see http://www.w3.org/TR/CSP/
      */
     public bool $CSPEnabled = false;
+
+    public string $cookieDomain = ''; // Tambahkan baris ini
+
+    public $cookiePath = '/'; // Tambahkan baris ini
+
+    public $cookiePrefix = ''; // Tambahkan ini jika belum ada
+    public $cookieSameSite = 'Lax'; // Pastikan ini juga ada
+    public $cookieSecure = false; // Ubah menjadi true jika menggunakan HTTPS
 }
