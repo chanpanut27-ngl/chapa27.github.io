@@ -5,4 +5,9 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+/* Admin */
+$routes->group('/', ['filter' => 'role:admin'], function ($routes) {
+    $routes->get('', 'Admin::index');
+    $routes->get('dashboard', 'User::dashboard');
+});
+

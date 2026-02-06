@@ -7,7 +7,7 @@
     <meta name="description" content="Application BBLKM Jakarta made using Bootstrap 5 design framework">
     <meta name="keywords" content="Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
     <meta name="author" content="Program Layanan BBLKM Jakarta">
-      <?= $this->renderSection('title'); ?>
+    <?= $this->renderSection('title'); ?>
 
      <!-- [Shortcut Icon] -->
     <?= link_tag('assets/images/favicon.ico', 'shortcut icon', 'image/x-icon') ?>
