@@ -2,10 +2,11 @@
 
 namespace App\Controllers;
 
-use App\Models\InstansiModel;
+use App\Models\InstalasiModel;
+use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class InstansiMaster extends BaseController
+class InstalasiMaster extends BaseController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -17,8 +18,8 @@ class InstansiMaster extends BaseController
 
     public function __construct()
     {
-        $this->title = 'Instansi';
-        $this->model = new InstansiModel();
+        $this->title = 'Instalasi';
+        $this->model = new InstalasiModel();
     }
 
     public function index()
@@ -26,7 +27,7 @@ class InstansiMaster extends BaseController
         $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Master/Instansi/index', $data);
+        return view('Backend/Master/Instalasi/index', $data);
     }
 
     public function list()
@@ -37,13 +38,27 @@ class InstansiMaster extends BaseController
                 'items' => $this->model->get_data()
             ];
             $msg = [
-                'data' => view('Backend/Master/Instansi/__data', $data)
+                'data' => view('Backend/Master/Instalasi/__data', $data)
             ];
 
             echo json_encode($msg);
         } else {
             exit('Not Process');
         }
+    }
+
+    public function generate_kode_instalasi() 
+    {
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $this->model->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = 'KI.' . sprintf('%02d', $nomorUrut);
+        
+        return $nomorAntrian;
     }
 
     /**
@@ -67,12 +82,12 @@ class InstansiMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $data = [
-                'title' => 'Tambah ' . $this->title
+                'title' => 'Tambah ' . $this->title,
+            ];
+            $msg = [
+                'data' => view('Backend/Master/Instalasi/__add', $data)
             ];
 
-            $msg = [
-                'data' => view('Backend/Master/Instansi/__add', $data)
-            ];
             echo json_encode($msg);
         } else {
             exit('Not Process');
@@ -88,15 +103,8 @@ class InstansiMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'nama_instansi' => [
-                    'label' => 'Instansi',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ],
-                'wilayah' => [
-                    'label' => 'Wilayah',
+                'nama_instalasi' => [
+                    'label' => 'Nama instalasi',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -107,16 +115,13 @@ class InstansiMaster extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama_instansi' => $this->validation->getError('nama_instansi'),
-                        'wilayah' => $this->validation->getError('wilayah'),
+                        'nama_instalasi' => $this->validation->getError('nama_instalasi')
                     ]
                 ];
             } else {
                 $simpandata = [
-                    'nama_instansi' => $this->request->getVar('nama_instansi'),
-                    'alamat' => $this->request->getVar('alamat'),
-                    'no_telp' => $this->request->getVar('no_telp'),
-                    'wilayah' => $this->request->getVar('wilayah')
+                    'kode_instalasi' => $this->generate_kode_instalasi(),
+                    'nama_instalasi' => $this->request->getVar('nama_instalasi')
                 ];
                 $this->model->save($simpandata);
                 $msg = [
@@ -141,11 +146,11 @@ class InstansiMaster extends BaseController
         if ($this->request->isAJAX()) {
 
             $data = [
-                'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
             ];
             $msg = [
-                'sukses' => view('Backend/Master/Instansi/__edit', $data)
+                'sukses' => view('Backend/Master/Instalasi/__edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -164,39 +169,28 @@ class InstansiMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'nama_instansi' => [
-                    'label' => 'Instansi',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ],
-                'wilayah' => [
-                    'label' => 'Wilayah',
+                'nama_instalasi' => [
+                    'label' => 'Nama instalasi',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ]
             ]);
+
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama_instansi' => $this->validation->getError('nama_instansi'),
-                        'wilayah' => $this->validation->getError('wilayah')
+                        'nama_instalasi' => $this->validation->getError('nama_instalasi')
                     ]
                 ];
             } else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
-                    'nama_instansi' => $this->request->getVar('nama_instansi'),
-                    'alamat' => $this->request->getVar('alamat'),
-                    'no_telp' => $this->request->getVar('no_telp'),
-                    'wilayah' => $this->request->getVar('wilayah'),
+                    'nama_instalasi' => $this->request->getVar('nama_instalasi'),
                     'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);
-
                 $msg = [
                     'sukses' => 'Data berhasil diubah'
                 ];
@@ -220,7 +214,7 @@ class InstansiMaster extends BaseController
 
             $this->model->delete($id);
             $msg = [
-                'sukses' => 'Data berhasil dihapus'
+                'sukses' => 'Data berhasil di hapus'
             ];
             echo json_encode($msg);
         } else {

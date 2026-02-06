@@ -17,7 +17,6 @@ class PenyakitMaster extends BaseController
 
     public function __construct()
     {
-        $this->cachePage(5);
         $this->title = 'Penyakit';
         $this->model = new PenyakitModel();
     }

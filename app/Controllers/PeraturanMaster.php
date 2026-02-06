@@ -17,7 +17,6 @@ class PeraturanMaster extends BaseController
 
     public function __construct()
     {
-        $this->cachePage(5);
         $this->title = 'Peraturan';
         $this->model = new PeraturanModel();
     }
