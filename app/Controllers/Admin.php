@@ -17,12 +17,12 @@ class Admin extends BaseController
     public function index()
     {
         $data['title'] = $this->title;
-        return view('Backend/Layout/_home', $data);
+        return view('Backend/Layout/__home', $data);
     }
 
     public function dashboard()
     {
         $data['title'] = $this->title;
-        return view('Backend/Layout/_home', $data);
+        return view('Backend/Layout/__home', $data);
     }
 }

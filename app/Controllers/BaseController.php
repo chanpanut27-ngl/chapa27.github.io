@@ -30,6 +30,7 @@ abstract class BaseController extends Controller
     /**
      * @return void
      */
+    protected $db;
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         // Load here all helpers you want to be available in your controllers that extend BaseController.
@@ -41,5 +42,6 @@ abstract class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
         // $this->session = service('session');
+        $this->db = \Config\Database::connect();
     }
 }

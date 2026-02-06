@@ -1,3 +1,5 @@
+<?= $this->extend('Backend/Layout/__main'); ?>
+<?= $this->section('content'); ?>
 <!-- [ Main Content ] start -->
   <div class="pc-container">
     <div class="pc-content">
@@ -38,3 +40,4 @@
     </div>
   </div>
   <!-- [ Main Content ] end -->
+<?= $this->endSection(); ?>
