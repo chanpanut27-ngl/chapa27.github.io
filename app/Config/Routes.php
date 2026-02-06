@@ -5,14 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-/* Error Page 404 */
-$routes->set404Override('App\Controllers\ErrorPage::show404');
-
-$routes->get('not-privilege', 'NotEnoughPrivilege::show401');
-
+/* Error Page */
+require __DIR__ . '/Routes/__error_page__.php';
 /* Admin */
-$routes->group('/', ['filter' => 'role:admin'], function ($routes) {
-    $routes->get('', 'Admin::index');
-    $routes->get('dashboard', 'User::dashboard');
-});
-
+require __DIR__ . '/Routes/__admin__.php';

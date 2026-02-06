@@ -172,8 +172,10 @@
                         <span class="pc-mtext">Posisi Coolbox</span>
                     </a>
                 </li>
+                <?php if ( in_groups('admin') ) : ?>
+
                 <li class="pc-item pc-caption">
-                    <label>Master</label>
+                    <label>Master Data</label>
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
@@ -282,6 +284,7 @@
                         <span class="pc-mtext"> Coolbox</span>
                     </a>
                 </li>
+                <?php endif; ?>
             </ul>
             <div class="card text-center">
                 <!-- empty fill  -->
