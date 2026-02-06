@@ -27,15 +27,6 @@
     <?= link_tag('assets/css/custom.css'); ?>
     <!-- [Style Preset CSS Files] -->
     <?= link_tag('assets/css/style-preset.css'); ?>
-    <style>
-    .login-container {
-        background-image: url('');
-        filter: blur(0);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-size: 100% 85%;
-    }
-</style>
 </head>
 
 <body class="login-container">

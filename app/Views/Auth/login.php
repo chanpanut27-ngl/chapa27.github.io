@@ -11,7 +11,7 @@
                 <div class="auth-header">
                     <a href="#"><img src="<?= base_url('assets/images/logo-2.png') ?>" alt="img" class="img-fluid" style="height: 50px;"></a>
                 </div>
-                 <div class="card my-5">
+                <div class="card my-5">
 				    <div class="card-body">
                         <div class="d-flex justify-content-between align-items-end mb-4">
                             <h2 class="mb-0">

@@ -114,3 +114,13 @@
     vertical-align: middle;
     align-items: center;
 }
+
+
+/* Background Login  */
+.login-container {
+    background-image: url('');
+    filter: blur(0);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 100% 85%;
+}

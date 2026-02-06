@@ -44,6 +44,7 @@
                     </form>
                 </div>
             </div>
+            <?= $this->include('Auth/Layout/__footer') ?>
         </div>
     </div>
 </div>
