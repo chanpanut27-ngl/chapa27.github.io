@@ -7,10 +7,6 @@
 <script src="<?= base_url('assets/js/plugins/feather.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/fontawesome.v6.3.0.all.js'); ?>"></script>
 <script src="<?= base_url('assets/js/jquery-3.7.1.js'); ?>"></script>
-<script>layout_change('light');</script>
-<script>change_box_container('false');</script>
-<script>layout_rtl_change('false');</script>
-<script>preset_change("preset-1");</script>
-<script>font_change("Public-Sans");</script>
+<script src="<?= base_url('assets/js/mantis.js'); ?>"></script>
 </body>
 </html>
