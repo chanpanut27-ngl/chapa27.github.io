@@ -62,7 +62,7 @@
             var id_lab = $(this).val();
             $.ajax({
                 type: "post",
-                url: "<?= site_url('master-data/parameter-pemeriksaan/list-sampel'); ?>",
+                url: "<?= site_url('master-data/parameter/list-sampel'); ?>",
                 data: {id_lab:id_lab},
                 dataType: 'json',
                 cache: false,

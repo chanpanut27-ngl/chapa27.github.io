@@ -3,9 +3,14 @@
 namespace App\Controllers\Pelanggan;
 
 use App\Controllers\BaseController;
+use App\Models\JenisSampelModel;
+use App\Models\LaboratoriumModel;
+use App\Models\ParameterPemeriksaanModel;
 use App\Models\Pelanggan\ProfilPelangganModel;
+use App\Models\PeraturanModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\PermintaanPemeriksaanModel;
+use App\Models\PermintaanSampelModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class ListPemeriksaan extends BaseController
@@ -19,6 +24,9 @@ class ListPemeriksaan extends BaseController
     protected $model;
     protected $m_profil;
     protected $m_permintaan;
+    protected $m_lab;
+    protected $m_permintaan_sampel;
+    protected $m_jenis_sampel;
 
     public function __construct()
     {
@@ -26,6 +34,9 @@ class ListPemeriksaan extends BaseController
         $this->model = new PermintaanPemeriksaanModel();
         $this->m_profil = new ProfilPelangganModel();
         $this->m_permintaan = new PermintaanPelangganModel();
+        $this->m_lab = new LaboratoriumModel();
+        $this->m_permintaan_sampel = new PermintaanSampelModel();
+        $this->m_jenis_sampel = new JenisSampelModel();
     }
 
     public function index($id = null)
@@ -64,11 +75,6 @@ class ListPemeriksaan extends BaseController
      *
      * @return ResponseInterface
      */
-    public function show($id = null)
-    {
-        //
-    }
-
     /**
      * Return a new resource object, with default properties.
      *
@@ -76,7 +82,21 @@ class ListPemeriksaan extends BaseController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+                'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                'no_reg' => $this->request->getVar('no_reg'),
+                'masterLab' => $this->m_lab->get_data()
+            ];
+            $msg = [
+                'data' => view('Pelanggan/Pemeriksaan/List/__add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -86,7 +106,82 @@ class ListPemeriksaan extends BaseController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'id_jenis_sampel' => [
+                    'label' => 'Jenis sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'id_lab' => [
+                    'label' => 'Laboratorium',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'jumlah_sampel' => [
+                    'label' => 'Jumlah sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+                
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_lab' => $this->validation->getError('id_lab'),
+                        'jumlah_sampel' => $this->validation->getError('jumlah_sampel'),
+                        'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel')
+                    ]
+                ];
+            } else {
+               
+                $this->db->transStart();
+                $id_parameter = $this->request->getVar('id_parameter');
+                $count = count($id_parameter ?? []);
+                for ($i=0; $i < $count; $i++) { 
+
+                    $save = [
+                        'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                        'no_reg' => $this->request->getVar('no_reg'),
+                        'id_lab' => $this->request->getVar('id_lab'),
+                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                        'id_parameter' => $id_parameter[$i],
+                    ];
+                    $this->model->insert($save);
+   
+                }
+                  $simpan_permintaan_sampel = [
+                        'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                        'no_reg' => $this->request->getVar('no_reg'),
+                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                        'jumlah_sampel' => $this->request->getVar(index: 'jumlah_sampel'),
+                    ];
+                $this->m_permintaan_sampel->insert($simpan_permintaan_sampel);
+
+                 
+                $this->db->transComplete();
+
+                if ($this->db->transStatus() === FALSE) {
+                    $msg = [
+                        'error' => 'Data gagal disimpan'
+                    ];
+                } else {
+                   $msg = [
+                        'sukses' => 'Data berhasil disimpan'
+                    ];
+                }
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -124,4 +219,46 @@ class ListPemeriksaan extends BaseController
     {
         //
     }
+
+    public function list_sampel()
+    {
+        if ($this->request->isAJAX()) {
+            $id_lab = $this->request->getVar('id_lab');
+            $result = $this->m_jenis_sampel->where('id_lab', $id_lab)->findAll();
+            
+            foreach ($result as $rows) {
+                $data[] = '<option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
+            }
+
+            $msg = ['data' => $data];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
+    public function list_parameter($id = null)
+    {
+        if ($this->request->isAJAX()) {
+
+            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+            $parameter = new ParameterPemeriksaanModel();
+            
+            $peraturan = new PeraturanModel();
+            $jenis_sampel = $this->m_jenis_sampel->find($id_jenis_sampel);
+            $id_peraturan = @$jenis_sampel['id_peraturan'];
+            
+            $data = [
+                'items' =>  $parameter->where('id_jenis_sampel', $id_jenis_sampel)->where('is_active', 1)->findAll(),
+                'peraturan' =>  $peraturan->find($id_peraturan)
+            ];
+            $msg = [
+                'data' => view('Pelanggan/Pemeriksaan/List/__parameter', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
 }
