@@ -37,15 +37,7 @@
                 <?php else : ?>
                 <div class="card">
                     <div class="card-header p-2">
-                            <div class="d-flex justify-content-end align-items-center gap-1">
-                                <a href="<?= base_url('pelanggan/permintaan-pemeriksaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
-                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
-                                    <span class="fa-solid fa-undo"></span> Batal pemeriksaan
-                                </button>
-                            </div>
+                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                     </div>
                     <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
                         <div class="accordion-item">
@@ -91,30 +83,20 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
-                                <ul class="nav nav-tabs">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Active</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Link</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Link</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                                    </li>
-                                    </ul>
                                 <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Detail pemeriksaan sampel">
                                 <span class="fa-solid fa-clipboard"></span> Detail pemeriksaan sampel</button>
                                 <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
+                                    <span class="fa-solid fa-undo"></span> Batal pemeriksaan
+                                </button>
                                  <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
                                     <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
                                 </button>
+                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
+                                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                                </button>
+                                <a href="<?= base_url('pelanggan/permintaan-pemeriksaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
                             </div>
-                        </div>
-                        <div class="card-header">
-                            <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         </div>
                         <div class="card-body">
                             <div class="view-data"></div>

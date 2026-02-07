@@ -22,7 +22,7 @@
                 <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start">
-                        <a href="<?= base_url('pelanggan/list-pemeriksaan/index/'.$row['id']) ?>" class="btn btn-primary rounded btn-sm" title="Tambah pemeriksaan">
+                        <a href="<?= base_url('pelanggan/list-pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-primary rounded btn-sm" title="Tambah pemeriksaan" style="padding:initial; font-size:13px;">
                             <span class="fa-solid fa-arrow-circle-right"></span> Tambah pemeriksaan
                         </a>
                     </div>
