@@ -33,4 +33,5 @@ require __DIR__ . '/Routes/__jenis__sampel__master.php';
 require __DIR__ . '/Routes/__parameter__master.php';
 /* Master Users */
 require __DIR__ . '/Routes/__users__master.php';
-
+/* Master Auth Groups */
+require __DIR__ . '/Routes/__auth__groups__master.php';

@@ -2,11 +2,10 @@
 
 namespace App\Controllers;
 
-use App\Models\UsersModel;
-use CodeIgniter\RESTful\ResourceController;
+use App\Models\AuthGroupsModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class UsersMaster extends BaseController
+class AuthGroupsMaster extends BaseController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -18,8 +17,8 @@ class UsersMaster extends BaseController
 
     public function __construct()
     {
-        $this->title = 'Users';
-        $this->model = new UsersModel();
+        $this->title = 'Auth Groups';
+        $this->model = new AuthGroupsModel();
     }
 
     public function index()
@@ -27,7 +26,7 @@ class UsersMaster extends BaseController
         $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Master/Users/index', $data);
+        return view('Backend/Master/Auth-groups/index', $data);
     }
 
     public function list()
@@ -38,7 +37,7 @@ class UsersMaster extends BaseController
                 'items' => $this->model->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Master/Users/__data', $data)
+                'data' => view('Backend/Master/Auth-groups/__data', $data)
             ];
 
             echo json_encode($msg);
@@ -66,7 +65,18 @@ class UsersMaster extends BaseController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title
+            ];
+            $msg = [
+                'data' => view('Backend/Master/Auth-groups/__add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -76,7 +86,45 @@ class UsersMaster extends BaseController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'name' => [
+                    'label' => 'Group',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'description' => [
+                    'label' => 'Keterangan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'name' => $this->validation->getError('name'),
+                        'description' => $this->validation->getError('description'),
+                    ]
+                ];
+            } else {
+                $save = [
+                    'name' => $this->request->getVar('name'),
+                    'description' => $this->request->getVar('description')
+                ];
+                $this->model->save($save);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -95,7 +143,7 @@ class UsersMaster extends BaseController
                 'items' => $this->model->find($id),
             ];
             $msg = [
-                'sukses' => view('Backend/Master/Users/__edit', $data)
+                'sukses' => view('Backend/Master/Auth-groups/__edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -114,16 +162,15 @@ class UsersMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'email' => [
-                    'label' => 'Email',
-                    'rules' => 'required|valid_email',
+                'name' => [
+                    'label' => 'Group',
+                    'rules' => 'required',
                     'errors' => [
-                        'required' => '{field} tidak boleh kosong',
-                        'valid_email' => '{field} tidak valid'
+                        'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'username' => [
-                    'label' => 'Username',
+                'description' => [
+                    'label' => 'Keterangan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -133,16 +180,15 @@ class UsersMaster extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'email' => $this->validation->getError('email'),
-                        'username' => $this->validation->getError('username')
+                        'name' => $this->validation->getError('name'),
+                        'description' => $this->validation->getError('description')
                     ]
                 ];
             } else {
                 $save = [
                     'id' => $this->request->getVar('id'),
-                    'email' => $this->request->getVar('email'),
-                    'username' => $this->request->getVar('username'),
-                    'active' => $this->request->getVar('active')
+                    'name' => $this->request->getVar('name'),
+                    'description' => $this->request->getVar('description')
                 ];
                 $this->model->save($save);
                 $msg = [
