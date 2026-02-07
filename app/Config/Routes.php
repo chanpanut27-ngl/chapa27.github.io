@@ -35,3 +35,7 @@ require __DIR__ . '/Routes/__parameter__master.php';
 require __DIR__ . '/Routes/__users__master.php';
 /* Master Auth Groups */
 require __DIR__ . '/Routes/__auth__groups__master.php';
+/* Master Auth Groups Users */
+require __DIR__ . '/Routes/__auth__groups__users__master.php';
+/* Master Auth Permissions */
+require __DIR__ . '/Routes/__auth__permissions__master.php';
