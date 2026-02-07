@@ -7,6 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 /* Error Page */
 require __DIR__ . '/Routes/__error_page__.php';
+/* File Peraturan */
+require __DIR__ . '/Routes/__file__reader.php';
 /* Admin */
 require __DIR__ . '/Routes/__admin__.php';
 /* Master Instansi */
@@ -21,6 +23,6 @@ require __DIR__ . '/Routes/__instalasi__master.php';
 require __DIR__ . '/Routes/__kategori__lab__master.php';
 /* Master Coolbox */
 require __DIR__ . '/Routes/__coolbox__master.php';
-/* File Peraturan */
-require __DIR__ . '/Routes/__file__reader.php';
+/* Master Biaya Akomodasi */
+require __DIR__ . '/Routes/__biaya__akomodasi__master.php';
 

@@ -26,7 +26,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-2">
-                        <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
+                        <h4><span class="pc-micon"><ti class="ti ti-list"></ti> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
@@ -60,7 +60,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('master-data/instansi/list-data'); ?>",
+            url: "<?= site_url('master-data/biaya-akomodasi/list-data'); ?>",
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -85,7 +85,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('master-data/instansi/add-data'); ?>",
+                url: "<?= site_url('master-data/biaya-akomodasi/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {
