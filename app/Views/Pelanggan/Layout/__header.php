@@ -193,7 +193,7 @@ $foto_user = $result_users['user_image'];
                                     <i class="ti ti-user"></i>
                                     <span>Profil</span>
                                 </a>
-                                <a href="<?= base_url('logout'); ?>" class="dropdown-item">
+                                <a href="<?= base_url('logout'); ?>" class="bg-danger fw-bold text-light dropdown-item">
                                     <i class="ti ti-power"></i>
                                     <span>Logout</span>
                                 </a>

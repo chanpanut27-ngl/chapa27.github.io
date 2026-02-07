@@ -19,7 +19,7 @@ if ( in_groups('pelanggan') ) {
 <!-- [ Header ] end -->
 
 <!-- [ Main Content ] start -->
-<?= $this->renderSection('content', true); ?>
+<?= $this->renderSection('content'); ?>
 <!-- [ Main Content ] end -->
 
 <?= $this->include('Component/_scroll_top'); ?>

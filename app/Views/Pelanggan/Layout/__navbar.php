@@ -29,7 +29,7 @@
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
-                    <label data-i18n="Widget">Pelayanan Pemeriksaan</label>
+                    <label data-i18n="Widget" class="fw-bold">Pelayanan Pemeriksaan</label>
                     <i class="pc-micon">
                         <svg class="pc-icon">
                         <use xlink:href="#modul-pelayanan-pemeriksaan"></use>
@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
-                    <label data-i18n="Widget">Kumpulan file</label>
+                    <label data-i18n="Widget" class="fw-bold">Kumpulan file</label>
                     <i class="pc-micon">
                         <svg class="pc-icon">
                         <use xlink:href="#kumpulan-file"></use>
@@ -69,17 +69,17 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
                         <span class="pc-micon"></span>
-                        <span class="pc-mtext" data-i18n="Peraturan"><span class="fa-solid fa-arrow-right"></span> Peraturan</span>
+                        <span class="pc-mtext" data-i18n="Pelayanan"><span class="fa-solid fa-arrow-right"></span> Pelayanan</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('pelanggan/file-peraturan/reader/standar-pelayanan'); ?>" data-i18n="Standar Pelayanan">
+                            <a class="pc-link" href="<?= base_url('pelanggan/file-pelayanan/reader/standar-pelayanan'); ?>" data-i18n="Standar Pelayanan">
                                 <span class="fa-solid fa-file-alt"></span> Standar Pelayanan
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('pelanggan/file-peraturan/reader/tarif-pelayanan'); ?>" data-i18n="Tarif Pelayanan">
+                            <a class="pc-link" href="<?= base_url('pelanggan/file-pelayanan/reader/tarif-pelayanan'); ?>" data-i18n="Tarif Pelayanan">
                                 <span class="fa-solid fa-file-alt"></span> Tarif Pelayanan
                             </a>
                         </li>
@@ -103,7 +103,7 @@
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/reader/harga-pnbp'); ?>" data-i18n="Harga Pnbp">
+                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/reader/tarif-pnbp'); ?>" data-i18n="Harga Pnbp">
                                 <span class="fa-solid fa-file-alt"></span> Harga Pnbp
                             </a>
                         </li>

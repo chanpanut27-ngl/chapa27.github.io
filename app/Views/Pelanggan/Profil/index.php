@@ -1,4 +1,4 @@
-<?= $this->extend('Pelanggan/Layout/_main'); ?>
+<?= $this->extend('Pelanggan/Layout/__main'); ?>
 
 <?= $this->section('content'); ?>
 <div class="pc-container">
@@ -43,7 +43,7 @@
                     ?>
                     <?php
                     if (!$profil) {
-                        echo $this->include('Pelanggan/Profil/_add');
+                        echo $this->include('Pelanggan/Profil/__add');
                     }
                     ?>
                     </div>
