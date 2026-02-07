@@ -73,10 +73,10 @@ class InstansiModel extends Model
 
     public function get_data()
     {
-        $users = new InstansiModel();
-        $users->select('*');
-        $users->where('is_active', 1);
-        $query = $users->findAll();
+        $model = new InstansiModel();
+        $model->select('*');
+        $model->where('is_active', 1);
+        $query = $model->findAll();
         return $query;
     }
 }

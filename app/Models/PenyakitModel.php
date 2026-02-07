@@ -71,10 +71,10 @@ class PenyakitModel extends Model
 
     public function get_data()
     {
-        $users = new PenyakitModel();
-        $users->select('*');
-        $users->where('is_active', 1);
-        $query = $users->findAll();
+        $model = new PenyakitModel();
+        $model->select('*');
+        $model->where('is_active', 1);
+        $query = $model->findAll();
         return $query;
     }
 }

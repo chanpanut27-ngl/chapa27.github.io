@@ -71,10 +71,10 @@ class PeraturanModel extends Model
 
     public function get_data()
     {
-        $users = new PeraturanModel();
-        $users->select('*');
-        $users->where('is_active', 1);
-        $query = $users->findAll();
+        $model = new PeraturanModel();
+        $model->select('*');
+        $model->where('is_active', 1);
+        $query = $model->findAll();
         return $query;
     }
 

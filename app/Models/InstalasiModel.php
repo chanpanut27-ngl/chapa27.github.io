@@ -71,10 +71,10 @@ class InstalasiModel extends Model
 
     public function get_data()
     {
-        $users = new InstalasiModel();
-        $users->select('*');
-        $users->where('is_active', 1);
-        $query = $users->findAll();
+        $model = new InstalasiModel();
+        $model->select('*');
+        $model->where('is_active', 1);
+        $query = $model->findAll();
         return $query;
     }
 }

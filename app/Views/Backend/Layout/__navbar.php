@@ -46,7 +46,7 @@
                     <label>File</label>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
+                    <a href="#" class="pc-link">
                         <span class="pc-micon">
                             <i class="ti ti-arrow-right"></i>
                         </span>
@@ -102,7 +102,7 @@
                     </ul>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
+                    <a href="#" class="pc-link">
                         <span class="pc-micon">
                             <i class="ti ti-arrow-right"></i>
                         </span>
@@ -138,7 +138,7 @@
                     </ul>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
+                    <a href="#" class="pc-link">
                         <span class="pc-micon">
                             <i class="ti ti-arrow-right"></i>
                         </span>
@@ -178,7 +178,7 @@
                     <label>Master Data</label>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
+                    <a href="#" class="pc-link">
                         <span class="pc-micon">
                             <i class="ti ti-lock"></i>
                         </span>

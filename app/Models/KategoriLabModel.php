@@ -67,10 +67,10 @@ class KategoriLabModel extends Model
 
     public function get_data()
     {
-        $users = new KategoriLabModel();
-        $users->select('*');
-        $users->where('is_active', 1);
-        $query = $users->findAll();
+        $model = new KategoriLabModel();
+        $model->select('*');
+        $model->where('is_active', 1);
+        $query = $model->findAll();
         return $query;
     }
 }
