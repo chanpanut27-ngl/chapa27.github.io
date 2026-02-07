@@ -249,9 +249,9 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('master-data/parameter-pemeriksaan'); ?>" class="pc-link">
+                    <a href="<?= base_url('master-data/parameter'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
-                        <span class="pc-mtext"> Parameter pemeriksaan</span>
+                        <span class="pc-mtext"> Parameter</span>
                     </a>
                 </li>
                 <li class="pc-item">
