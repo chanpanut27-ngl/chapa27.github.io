@@ -25,4 +25,6 @@ require __DIR__ . '/Routes/__kategori__lab__master.php';
 require __DIR__ . '/Routes/__coolbox__master.php';
 /* Master Biaya Akomodasi */
 require __DIR__ . '/Routes/__biaya__akomodasi__master.php';
+/* Master Laboratorium */
+require __DIR__ . '/Routes/__laboratorium__master.php';
 
