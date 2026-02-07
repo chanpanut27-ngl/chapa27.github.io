@@ -5,22 +5,15 @@ namespace App\Models;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
-class LaboratoriumModel extends Model
+class PegawaiModel extends Model
 {
-    protected $table            = 'master_laboratorium';
+    protected $table            = 'master_pegawai';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [
-        'kode_lab',
-        'nama_lab', 
-        'lantai',
-        'id_kat_lab',
-        'kode_instalasi',
-        'is_active'
-    ];
+    protected $allowedFields    = [];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -67,14 +60,14 @@ class LaboratoriumModel extends Model
        $myTime = new Time();
         if ($username) {
             $data['data']['updated_by'] = $username;
-            $data['data']['updated_at'] =$myTime->toDateTimeString();
+            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
 
     public function get_data()
     {
-        $model = new LaboratoriumModel();
+        $model = new PegawaiModel();
         $model->select('*');
         $model->where('is_active', 1);
         $query = $model->findAll();
@@ -83,21 +76,11 @@ class LaboratoriumModel extends Model
 
     public function get_data_all()
     {
-        $model = new LaboratoriumModel();
-        $model->select('
-        master_laboratorium.id, 
-        master_laboratorium.kode_lab, 
-        master_laboratorium.nama_lab, 
-        master_laboratorium.lantai, 
-        master_laboratorium.is_active,
-        master_instalasi.nama_instalasi,
-        master_kategori_lab.kategori');
-        $model->join('master_instalasi', 'master_instalasi.kode_instalasi = master_laboratorium.kode_instalasi', 'left');
-        $model->join('master_kategori_lab', 'master_kategori_lab.id = master_laboratorium.id_kat_lab', 'left');
+        $model = new PegawaiModel();
+        $model->select('*');
         $query = $model->findAll();
         return $query;
     }
-
 
 
 }

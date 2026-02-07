@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
-use App\Models\InstalasiModel;
-use App\Models\KategoriLabModel;
+use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\PeraturanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class LaboratoriumMaster extends BaseController
+class JenisSampelMaster extends BaseController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -16,15 +16,16 @@ class LaboratoriumMaster extends BaseController
      */
     protected $title;
     protected $model;
-    protected $m_instalasi;
-    protected $m_kategori_lab;
+    protected $m_lab;
+    protected $m_peraturan;
+
 
     public function __construct()
     {
-        $this->title = 'Laboratorium';
-        $this->model = new LaboratoriumModel();
-        $this->m_instalasi = new InstalasiModel();
-        $this->m_kategori_lab = new KategoriLabModel();
+        $this->title = 'Jenis Sampel';
+        $this->model = new JenisSampelModel();
+        $this->m_lab = new LaboratoriumModel();
+        $this->m_peraturan = new PeraturanModel();
     }
 
     public function index()
@@ -32,7 +33,7 @@ class LaboratoriumMaster extends BaseController
         $data = [
             'title' => 'Data ' . $this->title
         ];
-        return view('Backend/Master/Laboratorium/index', $data);
+        return view('Backend/Master/Jenis-sampel/index', $data);
     }
 
     public function list()
@@ -43,7 +44,7 @@ class LaboratoriumMaster extends BaseController
                 'items' => $this->model->get_data_all()
             ];
             $msg = [
-                'data' => view('Backend/Master/Laboratorium/__data', $data)
+                'data' => view('Backend/Master/Jenis-sampel/__data', $data)
             ];
 
             echo json_encode($msg);
@@ -51,6 +52,7 @@ class LaboratoriumMaster extends BaseController
             exit('Not Process');
         }
     }
+
     /**
      * Return the properties of a resource object.
      *
@@ -73,11 +75,11 @@ class LaboratoriumMaster extends BaseController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterInstalasi' => $this->m_instalasi->get_data(),
-                'masterKategoriLab' => $this->m_kategori_lab->get_data()
+                'masterLab' => $this->m_lab->get_data(),
+                'masterPeraturan' => $this->m_peraturan->get_data()
             ];
             $msg = [
-                'data' => view('Backend/Master/Laboratorium/__add', $data)
+                'data' => view('Backend/Master/Jenis-sampel/__add', $data)
             ];
 
             echo json_encode($msg);
@@ -95,36 +97,30 @@ class LaboratoriumMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'kode_lab' => [
-                    'label' => 'Kode laboratorium',
+                'id_peraturan' => [
+                    'label' => 'Peraturan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'nama_lab' => [
-                    'label' => 'Nama laboratorium',
+                'jenis_sampel' => [
+                    'label' => 'Jenis sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'lantai' => [
-                    'label' => 'Lantai',
-                    'rules' => 'required',
+                'pnbp' => [
+                    'label' => 'PNBP',
+                    'rules' => 'required|numeric',
                     'errors' => [
-                        'required' => '{field} tidak boleh kosong'
+                        'required' => '{field} tidak boleh kosong',
+                        'numeric' => '{field} harus berisi angka'
                     ]
                 ],
-                'kode_instalasi' => [
-                    'label' => 'Instalasi',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ],
-                'id_kat_lab' => [
-                    'label' => 'Kategori lab',
+                'id_lab' => [
+                    'label' => 'Laboratorium',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -135,22 +131,24 @@ class LaboratoriumMaster extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'kode_lab' => $this->validation->getError('kode_lab'),
-                        'nama_lab' => $this->validation->getError('nama_lab'),
-                        'lantai' => $this->validation->getError('lantai'),
-                        'id_kat_lab' => $this->validation->getError('id_kat_lab'),
-                        'kode_instalasi' => $this->validation->getError('kode_instalasi')
+                        'id_peraturan' => $this->validation->getError('id_peraturan'),
+                        'jenis_sampel' => $this->validation->getError('jenis_sampel'),
+                        'pnbp' => $this->validation->getError('pnbp'),
+                        'id_lab' => $this->validation->getError('id_lab')
                     ]
                 ];
             } else {
+                $id_lab = $this->request->getVar('id_lab');
+                $kode_sampel = $this->m_lab->find($id_lab);
                 $save = [
-                    'kode_lab' => $this->request->getVar('kode_lab'),
-                    'nama_lab' => $this->request->getVar('nama_lab'),
-                    'lantai' => $this->request->getVar('lantai'),
-                    'kode_instalasi' => $this->request->getVar('kode_instalasi'),
-                    'id_kat_lab' => $this->request->getVar('id_kat_lab')
+                    'kode_sampel' => $kode_sampel['kode_lab'],
+                    'id_peraturan' => $this->request->getVar('id_peraturan'),
+                    'jenis_sampel' => $this->request->getVar('jenis_sampel'),
+                    'pnbp' => $this->request->getVar('pnbp'),
+                    'keterangan' => $this->request->getVar('keterangan'),
+                    'id_lab' => $id_lab
                 ];
-                $this->model->save($save);
+                $this->model->insert($save);
                 $msg = [
                     'sukses' => 'Data berhasil disimpan'
                 ];
@@ -175,11 +173,11 @@ class LaboratoriumMaster extends BaseController
             $data = [
                 'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
-                'masterInstalasi' => $this->m_instalasi->get_data(),
-                'masterKategoriLab' => $this->m_kategori_lab->get_data()
+                'masterLab' => $this->m_lab->get_data(),
+                'masterPeraturan' => $this->m_peraturan->get_data()
             ];
             $msg = [
-                'sukses' => view('Backend/Master/Laboratorium/__edit', $data)
+                'sukses' => view('Backend/Master/Jenis-sampel/__edit', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -198,36 +196,30 @@ class LaboratoriumMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'kode_lab' => [
-                    'label' => 'Kode laboratorium',
+                'id_peraturan' => [
+                    'label' => 'Peraturan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'nama_lab' => [
-                    'label' => 'Nama laboratorium',
+                'jenis_sampel' => [
+                    'label' => 'Jenis sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'lantai' => [
-                    'label' => 'Lantai',
-                    'rules' => 'required',
+                'pnbp' => [
+                    'label' => 'PNBP',
+                    'rules' => 'required|numeric',
                     'errors' => [
-                        'required' => '{field} tidak boleh kosong'
+                        'required' => '{field} tidak boleh kosong',
+                        'numeric' => '{field} harus berisi angka'
                     ]
                 ],
-                'kode_instalasi' => [
-                    'label' => 'Instalasi',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ],
-                'id_kat_lab' => [
-                    'label' => 'Kategori lab',
+                'id_lab' => [
+                    'label' => 'Laboratorium',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -238,21 +230,23 @@ class LaboratoriumMaster extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'kode_lab' => $this->validation->getError('kode_lab'),
-                        'nama_lab' => $this->validation->getError('nama_lab'),
-                        'lantai' => $this->validation->getError('lantai'),
-                        'id_kat_lab' => $this->validation->getError('id_kat_lab'),
-                        'kode_instalasi' => $this->validation->getError('kode_instalasi')
+                        'id_peraturan' => $this->validation->getError(field: 'id_peraturan'),
+                        'jenis_sampel' => $this->validation->getError('jenis_sampel'),
+                        'pnbp' => $this->validation->getError('pnbp'),
+                        'id_lab' => $this->validation->getError('id_lab')
                     ]
                 ];
             } else {
+                $id_lab = $this->request->getVar('id_lab');
+                $kode_sampel = $this->m_lab->find($id_lab);
                 $save = [
                     'id' => $this->request->getVar('id'),
-                    'kode_lab' => $this->request->getVar('kode_lab'),
-                    'nama_lab' => $this->request->getVar('nama_lab'),
-                    'lantai' => $this->request->getVar('lantai'),
-                    'kode_instalasi' => $this->request->getVar('kode_instalasi'),
-                    'id_kat_lab' => $this->request->getVar('id_kat_lab'),
+                    'kode_sampel' => $kode_sampel['kode_lab'],
+                    'id_peraturan' => $this->request->getVar('id_peraturan'),
+                    'jenis_sampel' => $this->request->getVar('jenis_sampel'),
+                    'pnbp' => $this->request->getVar('pnbp'),
+                    'keterangan' => $this->request->getVar('keterangan'),
+                    'id_lab' => $this->request->getVar('id_lab'),
                     'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($save);
@@ -279,11 +273,31 @@ class LaboratoriumMaster extends BaseController
 
             $this->model->delete($id);
             $msg = [
-                'sukses' => 'Data berhasil di hapus'
+                'sukses' => 'Data berhasil dihapus'
             ];
             echo json_encode($msg);
         } else {
             exit('Not Process');
         }
     }
+
+    public function show_parameter($id = null)
+    {
+       
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Detail Parameter',
+                // 'items' => $this->modelParameter->where('id_jenis_sampel', $id)->find(),
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Jenis-sampel/__parameter', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }  
+    }
+
+
 }

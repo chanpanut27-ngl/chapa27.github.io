@@ -5,20 +5,21 @@ namespace App\Models;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
-class LaboratoriumModel extends Model
+class JenisSampelModel extends Model
 {
-    protected $table            = 'master_laboratorium';
+    protected $table            = 'master_jenis_sampel';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'kode_lab',
-        'nama_lab', 
-        'lantai',
-        'id_kat_lab',
-        'kode_instalasi',
+        'kode_sampel', 
+        'jenis_sampel', 
+        'id_peraturan', 
+        'pnbp', 
+        'keterangan', 
+        'id_lab', 
         'is_active'
     ];
 
@@ -67,14 +68,14 @@ class LaboratoriumModel extends Model
        $myTime = new Time();
         if ($username) {
             $data['data']['updated_by'] = $username;
-            $data['data']['updated_at'] =$myTime->toDateTimeString();
+            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
 
     public function get_data()
     {
-        $model = new LaboratoriumModel();
+        $model = new JenisSampelModel();
         $model->select('*');
         $model->where('is_active', 1);
         $query = $model->findAll();
@@ -83,21 +84,23 @@ class LaboratoriumModel extends Model
 
     public function get_data_all()
     {
-        $model = new LaboratoriumModel();
-        $model->select('
-        master_laboratorium.id, 
-        master_laboratorium.kode_lab, 
-        master_laboratorium.nama_lab, 
-        master_laboratorium.lantai, 
-        master_laboratorium.is_active,
-        master_instalasi.nama_instalasi,
-        master_kategori_lab.kategori');
-        $model->join('master_instalasi', 'master_instalasi.kode_instalasi = master_laboratorium.kode_instalasi', 'left');
-        $model->join('master_kategori_lab', 'master_kategori_lab.id = master_laboratorium.id_kat_lab', 'left');
+        $model = new JenisSampelModel();
+        $model->select('master_jenis_sampel.id, master_jenis_sampel.jenis_sampel, master_jenis_sampel.pnbp, master_jenis_sampel.is_active, 
+        master_jenis_sampel.keterangan AS ket_sampel, master_peraturan.peraturan, master_laboratorium.id AS id_lab, master_laboratorium.nama_lab');
+        $model->join("master_laboratorium", "master_jenis_sampel.id_lab = master_laboratorium.id", "left");
+        $model->join("master_peraturan", "master_peraturan.id = master_jenis_sampel.id_peraturan", "left");
         $query = $model->findAll();
         return $query;
     }
 
+    public function get_data_jenis_sampel($idlab)
+    {
 
-
+        $model = new JenisSampelModel();
+        $model->select('master_jenis_sampel.id, master_jenis_sampel.jenis_sampel, master_jenis_sampel.pnbp, master_jenis_sampel.keterangan, master_jenis_sampel.is_active, master_peraturan.peraturan');
+        $model->join("master_peraturan", "master_peraturan.id = master_jenis_sampel.id_peraturan", "left");
+        $model->where("master_jenis_sampel.id_lab", $idlab);
+        $query = $model->findAll();
+        return $query;
+    }
 }
