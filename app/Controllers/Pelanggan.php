@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Controllers;
-
-use App\Models\AuthLoginsModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class AuthLoginsMaster extends BaseController
+class Pelanggan extends BaseController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -13,37 +11,22 @@ class AuthLoginsMaster extends BaseController
      * @return ResponseInterface
      */
     protected $title;
-    protected $model;
 
     public function __construct()
     {
-        $this->title = 'Auth Logins';
-        $this->model = new AuthLoginsModel();
+        $this->title = 'Home';
     }
 
     public function index()
     {
-        $data = [
-            'title' => 'Data ' . $this->title
-        ];
-        return view('Backend/Master/Auth-logins/index', $data);
+        $data['title'] = $this->title;
+        return view('Pelanggan/Layout/__home', $data);
     }
 
-    public function list()
+    public function dashboard()
     {
-
-        if ($this->request->isAJAX()) {
-            $data = [
-                'items' => $this->model->findAll()
-            ];
-            $msg = [
-                'data' => view('Backend/Master/Auth-logins/__data', $data)
-            ];
-
-            echo json_encode($msg);
-        } else {
-            exit('Not Process');
-        }
+        $data['title'] = $this->title;
+        return view('Pelanggan/Layout/__home', $data);
     }
 
     /**
@@ -111,15 +94,6 @@ class AuthLoginsMaster extends BaseController
      */
     public function delete($id = null)
     {
-        if ($this->request->isAJAX()) {
-
-            $this->model->delete($id);
-            $msg = [
-                'sukses' => 'Data berhasil dihapus'
-            ];
-            echo json_encode($msg);
-        } else {
-            exit('Not Process');
-        }
+        //
     }
 }

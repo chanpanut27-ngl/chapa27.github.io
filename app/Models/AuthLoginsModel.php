@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class AuthLoginsModel extends Model
@@ -35,7 +36,7 @@ class AuthLoginsModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setInsertBy'];
     protected $afterInsert    = [];
     protected $beforeUpdate   = [];
     protected $afterUpdate    = [];
@@ -43,4 +44,14 @@ class AuthLoginsModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    protected function setInsertBy(array $data)
+    {
+        $username = user()->username;
+        $myTime = new Time();
+        if ($username) {
+            $data['data']['date'] = $myTime->toDateTimeString();
+        }
+        return $data;
+    }
 }

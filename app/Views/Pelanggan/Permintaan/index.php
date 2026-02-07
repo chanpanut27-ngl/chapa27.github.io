@@ -1,7 +1,10 @@
-<?= $this->extend('Backend/Layout/__main'); ?>
+<?= $this->extend('Pelanggan/Layout/_main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
+<!-- [Datepicker css] --> 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
 <?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 <div class="pc-container">
     <div class="pc-content">
@@ -24,12 +27,21 @@
         <div class="row p-0">
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
+                <?php if (!$profil) : ?>
+                    <?php  echo '<div class="alert alert-warning" role="alert">
+                                    Silahkan lengkapi data profil anda
+                                </div>'; ?>
+                <?php else : ?>
                 <div class="card">
                     <div class="card-header p-2">
-                        <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
+                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                            </button>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
+                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
                             </button>
                         </div>
                     </div>
@@ -37,6 +49,7 @@
                         <div class="view-data"></div>
                     </div>
                 </div>
+                <?php endif;?>
             </div>
             <!-- [ sample-page ] end -->
         </div>
@@ -52,13 +65,14 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
+<!-- [Datepicker js] -->
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('master-data/auth-logins/list-data'); ?>",
+            url: "<?= site_url('pelanggan/permintaan-pelanggan/list-data'); ?>",
             dataType: 'json',
-            cache: false,
             success: function(response) {
                 $(".view-data").html(response.data);
             },
@@ -72,6 +86,27 @@
     $(document).ready(function() {
         listData();
 
+        $(".btn-tambah").click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "<?= site_url('pelanggan/permintaan-pelanggan/add-data'); ?>",
+                dataType: 'json',
+                cache: false,
+                beforeSend: function() {
+                    $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                },
+                complete: function() {
+                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                },
+                success: function(response) {
+                    $(".view-modal").html(response.data).show();
+                    $("#exampleModal").modal('show');
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                }
+            })
+        })
     })
 </script>
 <?= $this->endSection(); ?>
