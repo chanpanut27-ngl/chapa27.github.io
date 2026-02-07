@@ -14,4 +14,11 @@ $routes->group('file-peraturan/reader', function ($routes) {
     $routes->get('permenkes-no7-aami-2019', 'FileReader::permenkes_no7_aami_2019');
 });
 
+/* Booklet */
+$routes->group('file-booklet/reader', function ($routes) {
+    $routes->get('booklet-2025', 'BookletReader::booklet_2025');
+    $routes->get('booklet-2026', 'BookletReader::booklet_2026');
+    $routes->get('tarif-pnbp', 'BookletReader::tarif_pnbp');
+});
+
 ?>

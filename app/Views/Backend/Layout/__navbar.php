@@ -157,7 +157,7 @@
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-booklet/reader/harga-pnbp') ?>" data-i18n="Harga Pnbp">
+                            <a class="pc-link" href="<?= base_url('file-booklet/reader/tarif-pnbp') ?>" data-i18n="Harga Pnbp">
                                 <i class="ti ti-file"></i> Tarif Pnbp
                             </a>
                         </li>
