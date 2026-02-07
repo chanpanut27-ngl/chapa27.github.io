@@ -39,7 +39,7 @@ require __DIR__ . '/Routes/__auth__groups__master.php';
 require __DIR__ . '/Routes/__auth__groups__users__master.php';
 /* Master Auth Permissions */
 require __DIR__ . '/Routes/__auth__permissions__master.php';
-/* Master Auth Permissions */
+/* Master Auth Groups Permissions */
 require __DIR__ . '/Routes/__auth__groups__permissions__master.php';
 /* Master Auth Logins */
 require __DIR__ . '/Routes/__auth__logins__master.php';
