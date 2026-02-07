@@ -17,3 +17,5 @@ require __DIR__ . '/Routes/__peraturan__master.php';
 require __DIR__ . '/Routes/__penyakit__master.php';
 /* Master Instalasi */
 require __DIR__ . '/Routes/__instalasi__master.php';
+/* Master Kategori Laboratorium */
+require __DIR__ . '/Routes/__kategori__lab__master.php';
