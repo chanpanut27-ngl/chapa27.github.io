@@ -10,7 +10,7 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="id-lab" class="form-label h5" style="font-family: arial;">Laboratorium</label>
+                        <label for="id-lab" class="form-label h5">Laboratorium</label>
                         <select name="id_lab" class="form-select" id="id-lab" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
