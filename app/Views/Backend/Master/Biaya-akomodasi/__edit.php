@@ -3,30 +3,30 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/biaya-akomodasi/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="hidden" name="id" value="<?= $items['id']; ?>">
+                <input type="hidden" name="id" value="<?= $items['id'] ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="uraian" class="form-label h4" style="font-family: arial;">Uraian</label>
+                        <label for="uraian" class="form-label h5">Uraian</label>
                         <input type="text" name="uraian" value="<?= $items['uraian']; ?>" class="form-control" id="uraian" autocomplete="off">
                         <div class="invalid-feedback errorUraian"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="transport" class="form-label h4" style="font-family: arial;">Transport</label>
-                        <input type="text" name="transport" value="<?= $items['transport']; ?>" class="form-control" id="transport" autocomplete="off">
+                        <label for="transport" class="form-label h5">Transport</label>
+                        <input type="text" name="transport" value="<?= $items['transport'] ?>" class="form-control" id="transport" autocomplete="off">
                         <div class="invalid-feedback errorTransport"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="uang-harian" class="form-label h4" style="font-family: arial;">Uang harian</label>
-                        <input type="text" name="uang_harian" value="<?= $items['uang_harian']; ?>" class="form-control" id="uang-harian" autocomplete="off">
+                        <label for="uang-harian" class="form-label h5">Uang harian</label>
+                        <input type="text" name="uang_harian" value="<?= $items['uang_harian'] ?>" class="form-control" id="uang-harian" autocomplete="off">
                         <div class="invalid-feedback errorUangHarian"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="is-active" class="form-label h4" style="font-family: arial;">Status</label>
+                        <label for="is-active" class="form-label h5">Is_active</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php
                             $_isActive = [
@@ -85,7 +85,13 @@
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success",
-                            timer: 3000
+                            timer: 3000,
+                            width: '300px',
+                            padding: '1em'
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log("I was closed by the timer");
+                            }
                         });
 
                         $("#exampleModal").modal('hide');

@@ -3,24 +3,24 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h3>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/biaya-akomodasi/create-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="uraian" class="form-label h4">Uraian</label>
+                        <label for="uraian" class="form-label h5">Uraian</label>
                         <input type="text" name="uraian" class="form-control" id="uraian" autocomplete="off">
                         <div class="invalid-feedback errorUraian"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="transport" class="form-label h4">Transport</label>
+                        <label for="transport" class="form-label h5">Transport</label>
                         <input type="text" name="transport" class="form-control" id="transport" autocomplete="off">
                         <div class="invalid-feedback errorTransport"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="uang-harian" class="form-label h4">Uang harian</label>
+                        <label for="uang-harian" class="form-label h5">Uang harian</label>
                         <input type="text" name="uang_harian" class="form-control" id="uang-harian" autocomplete="off">
                         <div class="invalid-feedback errorUangHarian"></div>
                     </div>
@@ -75,7 +75,13 @@
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success",
-                            timer: 3000
+                            timer: 3000,
+                            width: '300px',
+                            padding: '1em'
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                console.log("I was closed by the timer");
+                            }
                         });
 
                         $("#exampleModal").modal('hide');
