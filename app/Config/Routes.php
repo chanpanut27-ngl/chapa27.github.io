@@ -21,3 +21,6 @@ require __DIR__ . '/Routes/__instalasi__master.php';
 require __DIR__ . '/Routes/__kategori__lab__master.php';
 /* Master Coolbox */
 require __DIR__ . '/Routes/__coolbox__master.php';
+/* File Peraturan */
+require __DIR__ . '/Routes/__file__reader.php';
+
