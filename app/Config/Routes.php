@@ -31,4 +31,6 @@ require __DIR__ . '/Routes/__laboratorium__master.php';
 require __DIR__ . '/Routes/__jenis__sampel__master.php';
 /* Master Parameter */
 require __DIR__ . '/Routes/__parameter__master.php';
+/* Master Users */
+require __DIR__ . '/Routes/__users__master.php';
 
