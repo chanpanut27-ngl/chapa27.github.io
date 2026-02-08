@@ -38,4 +38,17 @@
         $routes->delete('delete-data/(:num)', 'Pelanggan\ListPemeriksaan::delete/$1');
         $routes->get('delete-data-pemeriksaan/(:any)', 'Pelanggan\ListPemeriksaan::delete_data_pemeriksaan/$1');
     });
+
+
+    /* List Permintaan Pemeriksaan */
+        $routes->group('pelayanan-sampel/permintaan-pemeriksaan', function ($routes) {
+        $routes->get('index/(:any)', 'ListPemeriksaan::index/$1');
+        $routes->get('list-data', 'ListPemeriksaan::list');
+        $routes->get('add-data', 'ListPemeriksaan::new');
+        $routes->post('create-data', 'ListPemeriksaan::create');
+        $routes->get('edit-data/(:num)', 'ListPemeriksaan::edit/$1');
+        $routes->post('update-data', 'ListPemeriksaan::update');
+        $routes->delete('delete-data/(:num)', 'ListPemeriksaan::delete/$1');
+        $routes->get('delete-data-pemeriksaan/(:any)', 'ListPemeriksaan::delete_data_pemeriksaan/$1');
+    });
 ?>

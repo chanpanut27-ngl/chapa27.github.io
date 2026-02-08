@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Parameter', 'Harga per titik', 'Pemeriksaan', 'Peraturan', 'Laboratorium', 'Tgl & Jam', ''];
+        $arrth = ['No', 'No.Registrasi', 'Nama', 'No.Telp', 'Instansi', 'Tgl & jam', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -14,33 +14,18 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id_permintaan_pemeriksaan']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['parameter']; ?></td>
-                <td style="text-align: right;"><?= number_to_currency($row['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
-                <td><?= $row['jenis_sampel']; ?></td>
-                <td><?= $row['peraturan']; ?></td>
-                <td><?= $row['nama_lab']; ?></td>
-                <td><?= date('d-m-Y H:i', strtotime($row['tgl_entry'])); ?></td>
-                
+                <td><?= $row['no_reg']; ?></td>
+                <td><?= $row['nama_pengirim']; ?></td>
+                <td><?= $row['no_telp']; ?></td>
+                <td><?= $row['instansi']; ?></td>
+                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <?php 
-                        if ($row['ket_peraturan'] == 'Tidak lengkap') : 
-                        echo '<span class="badge text-bg-dark">Tanpa peraturan</span>'; 
-                        ?>
-                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
-                        </button>
-                        <?php 
-                        else : 
-                        echo '<span class="badge text-bg-success">Sesuai peraturan</span>'; 
-                        ?>
-                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
-                        </button>
-                        <?php
-                        endif;?>
+                         <a href="<?= base_url('pelayanan-sampel/permintaan-pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-success rounded btn-sm" title="Tambah pemeriksaan">
+                            <span class="fa-solid fa-arrow-circle-right"></span>
+                        </a>
                     </div>
                 </td>
             </tr>
@@ -53,6 +38,7 @@
             type: 'get',
             url: '<?= site_url('master-data/instansi/edit-data/'); ?>' + id,
             dataType: 'json',
+            cache: false,
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();
@@ -84,7 +70,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelanggan/list-pemeriksaan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('master-data/instansi/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

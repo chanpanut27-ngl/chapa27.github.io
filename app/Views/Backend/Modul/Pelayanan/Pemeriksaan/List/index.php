@@ -1,4 +1,4 @@
-oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
+<?= $this->extend('Backend/Layout/__main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <!-- [Datepicker css] --> 
@@ -32,7 +32,15 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
+                            <div class="d-flex justify-content-end align-items-center gap-1">
+                                <a href="<?= base_url('pelanggan/permintaan-pemeriksaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
+                                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
+                                    <span class="fa-solid fa-undo"></span> Batal pemeriksaan
+                                </button>
+                            </div>
                     </div>
                     <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
                         <div class="accordion-item">
@@ -63,7 +71,7 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
                                     </div>  
                                     <div class="row">
                                         <div class="col-sm-3"><b>Petugas pengambilan sampel</b></div>
-                                        <div class="col-sm-3">: <?= $items['spesimen_atau_sampel'] ?></div>
+                                        <div class="col-sm-3">: <?= $items['petugas_ambil_sampel'] ?></div>
                                         <div class="col-sm-3"><b>Keterangan tambahan</b></div>
                                         <div class="col-sm-3">: <?= $items['keterangan_tambahan'] ?></div>
                                     </div>   
@@ -78,18 +86,16 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
-                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $id_pelanggan; ?>)" title="Detail pemeriksaan sampel">
-                                    <span class="fa-solid fa-clipboard"></span> Detail pemeriksaan sampel 
-                                </button>
+                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Pemeriksaan sampel">
+                                <span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel</button>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_pelanggan ?>" data-noreg="<?= $no_reg ?>">
+                                 <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
                                     <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
                                 </button>
-                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data" title="Refresh data">
-                                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
-                                </button>
-                                <a href="<?= base_url('pelayanan-sampel/data-permintaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
                             </div>
+                        </div>
+                        <div class="card-header">
+                            <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         </div>
                         <div class="card-body">
                             <div class="view-data"></div>
@@ -119,8 +125,8 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
     function listData() {
         var id_pelanggan = $(".btn-tambah").data("id");
         $.ajax({
-            type: "GET",
-            url: "<?= site_url('pelayanan-sampel/data-pemeriksaan/list-data'); ?>",
+            type:"GET",
+            url: "<?= site_url('pelanggan/list-pemeriksaan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{id_pelanggan:id_pelanggan},
@@ -133,22 +139,11 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
         })
     }
 
-     $("#selectAll").change(function(){
-        $(".checkbox").prop('checked', $(this).prop("checked"));
-    });
-
-    function toggle(source) {
-        checkboxes = document.getElementsByClassName('checkbox');
-        for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = source.checked;
-        }
-    }
-
     function showPermintaanSampel(id) {
         
         $.ajax({
             type: 'GET',
-            url: '<?= site_url('pelayanan-sampel/data-pemeriksaan/detail-sampel/'); ?>' + id,
+            url: '<?= site_url('pelanggan/permintaan-pemeriksaan/show-permintaan-sampel/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -157,7 +152,7 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Detail pemeriksaan sampel');
+                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel');
             },
             success: function(response) {
                 if (response.sukses) {
@@ -169,6 +164,56 @@ oke<?= $this->extend('Pelanggan/Layout/_main'); ?>
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
             }
         })
+    }
+
+    $("#selectAll").change(function(){
+        $(".checkbox").prop('checked', $(this).prop("checked"));
+    });
+
+    function toggle(source) {
+        checkboxes = document.getElementsByClassName('checkbox');
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+
+    function deleteAllDataPemeriksaan(id) {
+        var myElement = $('#myId-' + id);
+        if (myElement.data('urut')) {
+            myElement.addClass('bg bg-danger');
+        }
+        Swal.fire({
+            title: "Yakin untuk menghapus data ?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus!",
+            cancelButtonText: "Tidak",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: 'get',
+                    url: '<?= site_url('pelanggan/permintaan-pemeriksaan/delete-all-data/'); ?>' + id,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.sukses) {
+                            Swal.fire({
+                                title: "Hapus Data !",
+                                text: response.sukses,
+                                icon: "success"
+                            });
+                            listData();
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                    }
+                })
+            } else {
+                myElement.removeClass('bg bg-danger');
+            }
+        });
     }
 
     $(document).ready(function() {

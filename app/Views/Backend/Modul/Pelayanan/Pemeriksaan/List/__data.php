@@ -17,16 +17,30 @@
             <tr id="myId-<?= $row['id_permintaan_pemeriksaan']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['parameter']; ?></td>
-                <td style="text-align:right;"><?= number_to_currency($row['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
+                <td style="text-align: right;"><?= number_to_currency($row['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
                 <td><?= $row['jenis_sampel']; ?></td>
                 <td><?= $row['peraturan']; ?></td>
                 <td><?= $row['nama_lab']; ?></td>
                 <td><?= date('d-m-Y H:i', strtotime($row['tgl_entry'])); ?></td>
+                
                 <td>
                     <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan']; ?>)" title="Hapus data">
+                        <?php 
+                        if ($row['ket_peraturan'] == 'Tidak lengkap') : 
+                        echo '<span class="badge text-bg-dark">Tanpa peraturan</span>'; 
+                        ?>
+                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
+                        <?php 
+                        else : 
+                        echo '<span class="badge text-bg-success">Sesuai peraturan</span>'; 
+                        ?>
+                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
+                            <span class="fa-solid fa-trash-alt"></span>
+                        </button>
+                        <?php
+                        endif;?>
                     </div>
                 </td>
             </tr>

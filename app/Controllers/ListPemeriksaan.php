@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Pelanggan;
+namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\JenisSampelModel;
@@ -46,7 +46,7 @@ class ListPemeriksaan extends BaseController
             'profil' => $profil,
             'items' => $permintaan
         ];
-        return view('Pelanggan/Pemeriksaan/List/index', $data);
+        return view('Backend/Modul/Pelayanan/Pemeriksaan/List/index', $data);
     }
 
     public function list($id = null)
@@ -57,7 +57,7 @@ class ListPemeriksaan extends BaseController
                 'items' => $this->model->get_data_list($id_pelanggan)
             ];
             $msg = [
-                'data' => view('Pelanggan/Pemeriksaan/List/__data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Pemeriksaan/List/__data', $data)
             ];
 
             echo json_encode($msg);
