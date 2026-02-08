@@ -3,37 +3,36 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\LaboratoriumModel;
+use App\Models\LaboratoriumTujuanModel;
+use App\Models\PengantarLabModel;
+use App\Models\PermintaanPelangganModel;
+use App\Models\SampelLingkunganModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class PengantarLab extends BaseController
 {
     protected $title;
     protected $model;
-    protected $validation;
-    protected $modelLab;
-    protected $modelLabTujuan;
-    protected $modelPelanggan;
-    protected $time;
-    protected $today;
+    protected $m_lab;
+    protected $m_lab_tujuan;
+    protected $m_permintaan;
 
     public function __construct()
     {
         $this->cachePage(5);
         $this->title = 'Pengantar Lab';
-        $this->model = new PengantarLhuModel();
-        $this->modelLab = new LaboratoriumModel();
-        $this->modelLabTujuan = new LaboratoriumTujuanModel();
-        $this->modelPelanggan = new PelangganModel();
-        $this->time = Time::now('Asia/Jakarta'); 
-        $this->today = $this->time->toDateTimeString();
-        $this->validation = \Config\Services::validation();
+        $this->model = new PengantarLabModel();
+        $this->m_lab = new LaboratoriumModel();
+        $this->m_lab_tujuan = new LaboratoriumTujuanModel();
+        $this->m_permintaan = new PermintaanPelangganModel();
     }
 
     public function index()
     {
         $data = [
             'title' => 'Data ' . $this->title,
-            'items' => $this->modelLabTujuan->findAll()
+            'items' => $this->m_lab_tujuan->findAll()
         ];
         return view('Backend/Modul/Pelayanan/Pengantar-lab/index', $data);
     }
@@ -71,7 +70,7 @@ class PengantarLab extends BaseController
         if ($this->request->isAJAX()) {
             $data = [
                 'items' => $this->model->get_data(),
-                'cek_setting_lab' => $this->modelLabTujuan->findAll()
+                'cek_setting_lab' => $this->m_lab_tujuan->findAll()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Pengantar-lab/_data', $data)
@@ -99,7 +98,7 @@ class PengantarLab extends BaseController
 
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'masterPelanggan' => $this->modelPelanggan->where('is_active', 1)->findAll()
+                'permintaan' => $this->m_permintaan->where('is_active', 1)->findAll()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Pengantar-lab/_add', $data)
@@ -223,14 +222,14 @@ class PengantarLab extends BaseController
 
                 for ($i=0; $i < $countJlhLab; $i++) { 
 
-                    $simpandata = [
+                    $save = [
                         'id_pelanggan' => $this->request->getVar('id_pelanggan'),
                         'id_pengantar_lhu' => $this->request->getVar('id_pengantar_lhu'),
                         'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                         'id_laboratorium' => $idLab[$i]    
                     ];
 
-                    $this->modelMapSetLab->save($simpandata);
+                    $this->m_lab_tujuan->save($save);
                     $msg = [
                         'sukses' => 'Data berhasil disimpan'
                     ];

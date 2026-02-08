@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\I18n\Time;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -31,8 +32,9 @@ abstract class BaseController extends Controller
      * @return void
      */
     protected $db;
-    
+    protected $today;
     protected $validation;
+    protected $time;
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
@@ -47,6 +49,8 @@ abstract class BaseController extends Controller
         // $this->session = service('session');
         $this->db = \Config\Database::connect();
         $this->validation = \Config\Services::validation();
+        $this->time = Time::now('Asia/Jakarta'); 
+        $this->today = $this->time->toDateTimeString();
 
     }
 }
