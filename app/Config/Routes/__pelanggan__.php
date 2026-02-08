@@ -17,31 +17,7 @@
         $routes->delete('delete-data/(:num)', 'Pelanggan\Profil::delete/$1');
     });
 
-    /* File Pelayanan */
-        $routes->group('pelanggan/file-pelayanan/reader', function ($routes) {
-        $routes->get('standar-pelayanan', 'Pelanggan\FileReader::standar_pelayanan');
-        $routes->get('tarif-pelayanan', 'Pelanggan\FileReader::tarif_pelayanan');
-    });
-
-    /* Booklet */
-        $routes->group('pelanggan/booklet/reader', function ($routes) {
-        $routes->get('booklet-2025', 'Pelanggan\BookletReader::booklet_2025');
-        $routes->get('booklet-2026', 'Pelanggan\BookletReader::booklet_2026');
-        $routes->get('tarif-pnbp', 'Pelanggan\BookletReader::tarif_pnbp');
-    });
-
-    /* Permintaan Pelanggan */
-        $routes->group('pelanggan/permintaan-pelanggan', function ($routes) {
-        $routes->get('', 'Pelanggan\Permintaan::index');
-        $routes->get('list-data', 'Pelanggan\Permintaan::list');
-        $routes->get('add-data', 'Pelanggan\Permintaan::new');
-        $routes->post('create-data', 'Pelanggan\Permintaan::create');
-        $routes->get('edit-data/(:num)', 'Pelanggan\Permintaan::edit/$1');
-        $routes->post('update-data', 'Pelanggan\Permintaan::update');
-        $routes->delete('delete-data/(:num)', 'Pelanggan\Permintaan::delete/$1');
-        $routes->post('list-sampel', 'Pelanggan\Permintaan::update');
-    });
-
+    
     /* Permintaan Pemeriksaan */
         $routes->group('pelanggan/permintaan-pemeriksaan', function ($routes) {
         $routes->get('', 'Pelanggan\Pemeriksaan::index');

@@ -47,4 +47,6 @@ require __DIR__ . '/Routes/__auth__logins__master.php';
 require __DIR__ . '/Routes/__pelanggan__.php';
 /* Profil Pegawai */
 require __DIR__ . '/Routes/__profil__pegawai.php';
+/* Permintaan Pelanggan */
+require __DIR__ . '/Routes/__permintaan__pelanggan.php';
 

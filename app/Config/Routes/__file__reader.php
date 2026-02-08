@@ -2,7 +2,7 @@
 
 /** Kumpulan file **/
 /* File Peraturan */
-$routes->group('file-peraturan/reader', function ($routes) {
+    $routes->group('file-peraturan/reader', function ($routes) {
     $routes->get('standar-pelayanan', 'FileReader::standar_pelayanan');
     $routes->get('tarif-pelayanan', 'FileReader::tarif_pelayanan');
     $routes->get('permenkes-no2-2023', 'FileReader::permenkes_no2_2023');
@@ -15,10 +15,24 @@ $routes->group('file-peraturan/reader', function ($routes) {
 });
 
 /* Booklet */
-$routes->group('file-booklet/reader', function ($routes) {
+    $routes->group('file-booklet/reader', function ($routes) {
     $routes->get('booklet-2025', 'BookletReader::booklet_2025');
     $routes->get('booklet-2026', 'BookletReader::booklet_2026');
     $routes->get('tarif-pnbp', 'BookletReader::tarif_pnbp');
 });
+
+/* Pelanggan *
+/* File Pelayanan */
+    $routes->group('pelanggan/file-pelayanan/reader', function ($routes) {
+        $routes->get('standar-pelayanan', 'Pelanggan\FileReader::standar_pelayanan');
+        $routes->get('tarif-pelayanan', 'Pelanggan\FileReader::tarif_pelayanan');
+    });
+
+    /* Booklet */
+        $routes->group('pelanggan/booklet/reader', function ($routes) {
+        $routes->get('booklet-2025', 'Pelanggan\BookletReader::booklet_2025');
+        $routes->get('booklet-2026', 'Pelanggan\BookletReader::booklet_2026');
+        $routes->get('tarif-pnbp', 'Pelanggan\BookletReader::tarif_pnbp');
+    });
 
 ?>
