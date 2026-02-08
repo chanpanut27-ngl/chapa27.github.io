@@ -42,7 +42,7 @@
                                 <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
                                     <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                                 </button>
-                                <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
+                                <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
                                     <span class="fa-solid fa-undo"></span> Batal pemeriksaan
                                 </button>
                             </div>
@@ -183,7 +183,7 @@
         }
     }
 
-    function deleteDataPemeriksaan(id) {
+    function deleteAllDataPemeriksaan(id) {
         var myElement = $('#myId-' + id);
         if (myElement.data('urut')) {
             myElement.addClass('bg bg-danger');
@@ -201,7 +201,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'get',
-                    url: '<?= site_url('pelanggan/list-pemeriksaan/delete-data-pemeriksaan/'); ?>' + id,
+                    url: '<?= site_url('pelanggan/permintaan-pemeriksaan/delete-all-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

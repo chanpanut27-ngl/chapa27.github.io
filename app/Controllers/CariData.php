@@ -48,7 +48,6 @@ class CariData extends BaseController
             $builder->where('mjs.id', $id_jenis_sampel);
             $result = $builder->get()->getResultArray();
 
-            $data = '<option value=></option>';
             foreach ($result as $rows) {
                 $data[] = '<option value="'.$rows['id_peraturan'].'">'.$rows['peraturan'].'</option>';  
             }

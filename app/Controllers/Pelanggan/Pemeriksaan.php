@@ -105,9 +105,34 @@ class Pemeriksaan extends BaseController
      *
      * @return ResponseInterface
      */
-    public function update($id = null)
+    public function delete_all_data($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $db = \Config\Database::connect();
+            
+            $db->transStart();
+            $sql1 = 'DELETE FROM permintaan_pemeriksaan WHERE id_pelanggan = "'.$id.'"';
+            $db->query($sql1);
+            $sql2 = 'DELETE FROM permintaan_sampel WHERE id_pelanggan = "'.$id.'"';
+            $db->query($sql2);
+            $db->transComplete();
+            $var = '';
+            if ($db->transStatus() === FALSE) {
+                ?>
+                <script>alert('Data gagal dihapus');</script>
+                <?php
+            } else {
+                $var = 'Data berhasil dihapus';
+            }
+            $msg = [
+                'sukses' => $var
+            ];
+            echo json_encode($msg);
+
+        
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
