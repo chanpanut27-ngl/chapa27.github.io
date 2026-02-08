@@ -16,7 +16,7 @@
                         <select name="id_pelanggan" class="form-control" id="pelanggan" style="width: 100%;" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php 
-                            foreach ($masterPelanggan as $row) :
+                            foreach ($permintaan as $row) :
                             ?>
                             <option value="<?= $row['id'] ?>"><?= $row['no_reg']; ?> - <?= $row['instansi']; ?> - <?= $row['nama_pengirim']; ?></option>
                             <?php endforeach;?>

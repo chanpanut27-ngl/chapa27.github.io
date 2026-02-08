@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Layout/_main'); ?>
+<?= $this->extend('Backend/Layout/__main'); ?>
 
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
@@ -72,7 +72,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelayanan/pengantar-lhu/list-data'); ?>",
+            url: "<?= site_url('pelayanan/pengantar-lab/list-data'); ?>",
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -90,7 +90,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan/pengantar-lhu/add-data'); ?>",
+                url: "<?= site_url('pelayanan/pengantar-lab/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {

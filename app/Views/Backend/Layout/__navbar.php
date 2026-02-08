@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-pemeriksaan/pengantar-lab'); ?>" class="pc-link">
+                    <a href="<?= base_url('pelayanan/pengantar-lab'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
                         <span class="pc-mtext">Pengantar Lab</span>
                     </a>

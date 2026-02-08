@@ -1,7 +1,7 @@
 <?php
 
 /* Pengantar LHU */
-$routes->group('pelayanan-pemeriksaan/pengantar-lab', function ($routes) {
+$routes->group('pelayanan/pengantar-lab', function ($routes) {
     $routes->get('', 'PengantarLab::index');
     $routes->get('list-data', 'PengantarLab::list');
     $routes->get('add-data', 'PengantarLab::new');

@@ -20,7 +20,6 @@ class PengantarLab extends BaseController
 
     public function __construct()
     {
-        $this->cachePage(5);
         $this->title = 'Pengantar Lab';
         $this->model = new PengantarLabModel();
         $this->m_lab = new LaboratoriumModel();
@@ -73,7 +72,7 @@ class PengantarLab extends BaseController
                 'cek_setting_lab' => $this->m_lab_tujuan->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Pengantar-lab/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Pengantar-lab/__data', $data)
             ];
 
             echo json_encode($msg);
@@ -101,7 +100,7 @@ class PengantarLab extends BaseController
                 'permintaan' => $this->m_permintaan->where('is_active', 1)->findAll()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Pengantar-lab/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Pengantar-lab/__add', $data)
             ];
 
             echo json_encode($msg);
