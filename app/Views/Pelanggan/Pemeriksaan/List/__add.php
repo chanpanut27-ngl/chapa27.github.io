@@ -3,16 +3,16 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url(relativePath: 'pelanggan/list-pemeriksaan/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelanggan/list-pemeriksaan/create-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
                 <input type="hidden" name="no_reg" value="<?= $no_reg ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="id-lab" class="form-label h5" style="font-family: arial;">Laboratorium</label>
+                        <label for="id-lab" class="form-label h5">Laboratorium</label>
                         <select name="id_lab" class="form-select" id="id-lab" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
                             <?php
@@ -30,6 +30,12 @@
                         <select name="id_jenis_sampel" class="form-select" id="id-jenis-sampel" style="width: 100%;" aria-label="Default select example">
                         </select>
                         <div class="invalid-feedback errorIdJenisSampel"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="id-peraturan" class="form-label h5">Peraturan</label>
+                        <select class="form-select" id="id-peraturan" style="width: 100%;" aria-label="Default select example">
+                        </select>
+                        <div class="invalid-feedback errorIdPeraturan"></div>
                     </div>
                     <div class="mb-3 list-parameter">
                     </div>
@@ -58,11 +64,15 @@
             dropdownParent: $('#exampleModal')
         });
 
+        $('#id-peraturan').select2({
+            dropdownParent: $('#exampleModal')
+        });
+
        $(document).on('change', '#id-lab', function () {
             var id_lab = $(this).val();
             $.ajax({
                 type: "post",
-                url: "<?= site_url('master-data/parameter/list-sampel'); ?>",
+                url: "<?= site_url('cari-sampel'); ?>",
                 data: {id_lab:id_lab},
                 dataType: 'json',
                 cache: false,
@@ -75,11 +85,33 @@
             })
         })
 
-        $(document).on('change', '#id-jenis-sampel', function () {
+        $(document).on('change', '#id-jenis-sampel', function (e) {
+            e.preventDefault();
+            var id_jenis_sampel = $(this).val();
+            var id_lab = $("#id-lab").val();
+            $.ajax({
+                type: "post",
+                url: "<?= site_url('cari-peraturan'); ?>",
+                data: {
+                    id_jenis_sampel:id_jenis_sampel,
+                    id_lab:id_lab
+                },
+                dataType: 'json',
+                cache: false,
+                success: function(response) {
+                    $("#id-peraturan").html(response.data).show()
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                }
+            })
+        })
+
+        $(document).on('change', '#id-jenis-sampel1', function () {
             var id_jenis_sampel = $(this).val();
             $.ajax({
                 type: "post",
-                url: "<?= site_url('pelanggan/list-pemeriksaan/list-parameter'); ?>",
+                url: "<?= site_url('cari-parameter'); ?>",
                 data: {id_jenis_sampel:id_jenis_sampel},
                 dataType: 'json',
                 cache: false,

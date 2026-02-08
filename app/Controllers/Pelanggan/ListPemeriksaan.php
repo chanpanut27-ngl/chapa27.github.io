@@ -220,22 +220,6 @@ class ListPemeriksaan extends BaseController
         //
     }
 
-    public function list_sampel()
-    {
-        if ($this->request->isAJAX()) {
-            $id_lab = $this->request->getVar('id_lab');
-            $result = $this->m_jenis_sampel->where('id_lab', $id_lab)->findAll();
-            
-            foreach ($result as $rows) {
-                $data[] = '<option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
-            }
-
-            $msg = ['data' => $data];
-            echo json_encode($msg);
-        } else {
-            exit('Not Process');
-        }
-    }
 
     public function list_parameter($id = null)
     {
