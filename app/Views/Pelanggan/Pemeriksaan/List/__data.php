@@ -22,11 +22,14 @@
                 <td><?= $row['peraturan']; ?></td>
                 <td><?= $row['nama_lab']; ?></td>
                 <td><?= date('d-m-Y H:i', strtotime($row['tgl_entry'])); ?></td>
+                
                 <td>
                     <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
+                        <?php if ($row['ket_peraturan'] == 'Tidak lengkap') : ?>
+                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
+                        <?php else : echo '<span class="badge text-bg-success">Sesuai peraturan</span>'; endif;?>
                     </div>
                 </td>
             </tr>

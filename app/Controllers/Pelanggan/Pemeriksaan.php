@@ -5,6 +5,7 @@ namespace App\Controllers\Pelanggan;
 use App\Controllers\BaseController;
 use App\Models\Pelanggan\ProfilPelangganModel;
 use App\Models\PermintaanPelangganModel;
+use App\Models\PermintaanSampelModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Pemeriksaan extends BaseController
@@ -145,5 +146,24 @@ class Pemeriksaan extends BaseController
     public function delete($id = null)
     {
         //
+    }
+
+
+    public function detail_permintaan_sampel($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $permintaan_sampel = new PermintaanSampelModel();
+            $data = [
+                'title' => 'Pemeriksaan sampel',
+                'items' => $permintaan_sampel->get_data($id)
+            ];
+            $msg = [
+                'sukses' => view('Data/__permintaan__sampel', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }  
     }
 }

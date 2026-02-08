@@ -5,9 +5,7 @@ namespace App\Controllers\Pelanggan;
 use App\Controllers\BaseController;
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
-use App\Models\ParameterPemeriksaanModel;
 use App\Models\Pelanggan\ProfilPelangganModel;
-use App\Models\PeraturanModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\PermintaanPemeriksaanModel;
 use App\Models\PermintaanSampelModel;
@@ -158,13 +156,15 @@ class ListPemeriksaan extends BaseController
                 }
                 $jumlah_parameter = $this->request->getVar('jumlah_parameter');
                 if ($count < $jumlah_parameter) {
-                    $ket_peraturan = "Tidak berdasarkan peraturan";
+                    $ket_peraturan = "Tidak lengkap";
                 }else{
                     $ket_peraturan = "Lengkap";
                 }
+                $id_pelanggan = $this->request->getVar('id_pelanggan');
+                $no_reg = $this->request->getVar('no_reg');
                   $simpan_permintaan_sampel = [
-                        'id_pelanggan' => $this->request->getVar('id_pelanggan'),
-                        'no_reg' => $this->request->getVar('no_reg'),
+                        'id_pelanggan' => $id_pelanggan,
+                        'no_reg' => $no_reg,
                         'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
                         'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
                         'ket_peraturan' => $ket_peraturan,
@@ -221,7 +221,26 @@ class ListPemeriksaan extends BaseController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $permintaan_pemeriksaan = $this->model->find($id);
+            $id_jenis_sampel = $permintaan_pemeriksaan['id_jenis_sampel'];
+            $id_pelanggan = $permintaan_pemeriksaan['id_pelanggan'];
+            $jumlah = $this->model->
+            where('id_jenis_sampel', $id_jenis_sampel)->
+            where('id_pelanggan', $id_pelanggan)
+            ->countAllResults();
+
+            $this->model->delete($id);
+            if ($jumlah == 1) {
+                $this->m_permintaan_sampel->where('id_jenis_sampel', $id_jenis_sampel)->delete();
+            }
+            $msg = [
+                'sukses' => 'Data berhasil di hapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
 

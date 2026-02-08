@@ -91,7 +91,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
-                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Detail pemeriksaan sampel">
+                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Pemeriksaan sampel">
                                 <span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel</button>
                                 <!-- Button trigger modal -->
                                  <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
@@ -149,7 +149,7 @@
         
         $.ajax({
             type: 'GET',
-            url: '<?= site_url('pelayanan-sampel/data-pemeriksaan/detail-sampel/'); ?>' + id,
+            url: '<?= site_url('pelanggan/permintaan-pemeriksaan/show-permintaan-sampel/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -158,7 +158,7 @@
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Detail pemeriksaan sampel');
+                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel');
             },
             success: function(response) {
                 if (response.sukses) {
@@ -190,7 +190,6 @@
         }
         Swal.fire({
             title: "Yakin untuk menghapus data ?",
-            text: `No.urut : ` + myElement.data('urut'),
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",

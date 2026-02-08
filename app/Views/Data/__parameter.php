@@ -17,7 +17,7 @@
         ?>
         <tr>
             <td style="text-align:left;"><?= $no++; ?></td>
-            <td style="text-align:center;"><input type="checkbox" name="id_parameter[]" value="<?= $rows['id'] ?>" class="checkbox" required></td>
+            <td style="text-align:center;"><input type="checkbox" name="id_parameter[]" value="<?= $rows['id'] ?>" class="checkbox"></td>
             <td><?= $rows['parameter'] ?></td>
             <td style="text-align:right;"><?= number_to_currency($rows['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
         </tr>
