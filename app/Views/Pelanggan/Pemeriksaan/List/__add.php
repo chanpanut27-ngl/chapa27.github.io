@@ -37,6 +37,11 @@
                         </select>
                         <div class="invalid-feedback errorIdPeraturan"></div>
                     </div>
+                    <div class="mb-3">
+                        <label for="jumlah-sampel" class="form-label h5">Jumlah sampel</label>
+                        <input type="number" name="jumlah_sampel" id="jumlah-sampel" class="form-control">
+                        <div class="invalid-feedback errorJumlahSampel"></div>
+                    </div>
                     <div class="mb-3 list-parameter">
                     </div>
                 </div>
@@ -88,46 +93,22 @@
         $(document).on('change', '#id-jenis-sampel', function (e) {
             e.preventDefault();
             var id_jenis_sampel = $(this).val();
-            var id_lab = $("#id-lab").val();
             $.ajax({
                 type: "post",
                 url: "<?= site_url('cari-peraturan'); ?>",
-                data: {
-                    id_jenis_sampel:id_jenis_sampel,
-                    id_lab:id_lab
-                },
+                data: {id_jenis_sampel:id_jenis_sampel},
                 dataType: 'json',
                 cache: false,
                 success: function(response) {
                     $("#id-peraturan").html(response.data).show()
+                    $(".list-parameter").html(response.parameter).show()
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
                 }
             })
         })
-
-        $(document).on('change', '#id-jenis-sampel1', function () {
-            var id_jenis_sampel = $(this).val();
-            $.ajax({
-                type: "post",
-                url: "<?= site_url('cari-parameter'); ?>",
-                data: {id_jenis_sampel:id_jenis_sampel},
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.list-parameter').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                },
-                success: function(response) {
-                    $(".list-parameter").html(response.data);
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-
-
+        
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({
