@@ -26,7 +26,7 @@ class CariData extends BaseController
             $id_lab = $this->request->getVar('id_lab');
             $result = $this->m_jenis_sampel->where('id_lab', $id_lab)->findAll();
 
-            $data = null;
+            $data[] = '<option value=></option>';
             foreach ($result as $rows) {
                 $data[] = '<option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
             }
@@ -48,7 +48,7 @@ class CariData extends BaseController
             $builder->where('mjs.id', $id_jenis_sampel);
             $result = $builder->get()->getResultArray();
 
-            $data = null;
+            $data = '<option value=></option>';
             foreach ($result as $rows) {
                 $data[] = '<option value="'.$rows['id_peraturan'].'">'.$rows['peraturan'].'</option>';  
             }

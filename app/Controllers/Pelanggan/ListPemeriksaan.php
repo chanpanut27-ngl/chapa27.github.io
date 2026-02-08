@@ -169,7 +169,7 @@ class ListPemeriksaan extends BaseController
                         'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
                         'ket_peraturan' => $ket_peraturan,
                     ];
-                $this->m_permintaan_sampel->insert($simpan_permintaan_sampel);
+                    $this->m_permintaan_sampel->insert($simpan_permintaan_sampel);
                 $db->transComplete();
 
                 if ($this->db->transStatus() === FALSE) {

@@ -73,7 +73,8 @@
             dropdownParent: $('#exampleModal')
         });
 
-       $(document).on('change', '#id-lab', function () {
+       $(document).on('change', '#id-lab', function (e) {
+            e.preventDefault();
             var id_lab = $(this).val();
             $.ajax({
                 type: "post",
@@ -81,6 +82,12 @@
                 data: {id_lab:id_lab},
                 dataType: 'json',
                 cache: false,
+                beforeSend: function() {
+                    $('.btn-simpan').attr('disable', 'disabled');
+                },
+                complete: function() {
+                    $('.btn-simpan').removeAttr('disable');
+                },
                 success: function(response) {
                     $("#id-jenis-sampel").html(response.data).show()
                 },
