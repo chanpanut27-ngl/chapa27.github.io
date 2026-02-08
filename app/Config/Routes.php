@@ -53,4 +53,6 @@ require __DIR__ . '/Routes/__permintaan__pelanggan.php';
 require __DIR__ . '/Routes/__cari__data.php';
 /* Coolbox */
 require __DIR__ . '/Routes/__coolbox.php';
+/* Pelanggan Master */
+require __DIR__ . '/Routes/__pelanggan__master.php';
 
