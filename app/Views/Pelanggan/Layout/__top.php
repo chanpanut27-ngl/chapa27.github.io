@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=0, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="BBLKM Jakarta Aplikasi Sistem Informasi">
-    <meta name="keywords" content="BB Labkesmas Jakarta Aplikasi">
-    <meta name="author" content="CodedThemes">
+    <meta name="description" content="Application BBLKM Jakarta made using Bootstrap 5 design framework">
+    <meta name="keywords" content="Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
+    <meta name="author" content="Program Layanan BBLKM Jakarta">
     <!-- [Favicon] icon -->
     <?= link_tag(base_url('assets/images/favicon.ico'), 'shortcut icon', 'image/x-icon'); ?>
     <!-- [Google Font] Family -->
