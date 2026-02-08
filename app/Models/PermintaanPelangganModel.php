@@ -80,4 +80,35 @@ class PermintaanPelangganModel extends Model
         return $data;
     }
 
+    public function generate_no_reg() 
+    {
+        $model = new PermintaanPelangganModel();
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $model->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = sprintf('%04d', $nomorUrut) . '.' . date('dmY');
+        
+        return $nomorAntrian;
+    }
+
+    public function generate_kode_pelanggan() 
+    {
+        $model = new PermintaanPelangganModel();
+
+        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
+        $count = $model->countAllResults();
+       
+        // Buat nomor urut baru
+        $nomorUrut = $count + 1;
+
+        // Format nomor antrian
+        $nomorAntrian = 'P' . sprintf('%04d', $nomorUrut);
+        
+        return $nomorAntrian;
+    }
+
 }

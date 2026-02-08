@@ -7,7 +7,6 @@ use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
 use App\Models\Pelanggan\ProfilPelangganModel;
 use App\Models\PermintaanPelangganModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class Permintaan extends BaseController
 {
@@ -38,33 +37,6 @@ class Permintaan extends BaseController
         return view('Pelanggan/Permintaan/index', $data);
     }
 
-    public function generate_no_reg() 
-    {
-        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
-        $count = $this->model->countAllResults();
-       
-        // Buat nomor urut baru
-        $nomorUrut = $count + 1;
-
-        // Format nomor antrian
-        $nomorAntrian = sprintf('%04d', $nomorUrut) . '.' . date('dmY');
-        
-        return $nomorAntrian;
-    }
-
-    public function generate_kode_pelanggan() 
-    {
-        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
-        $count = $this->model->countAllResults();
-       
-        // Buat nomor urut baru
-        $nomorUrut = $count + 1;
-
-        // Format nomor antrian
-        $nomorAntrian = 'P' . sprintf('%04d', $nomorUrut);
-        
-        return $nomorAntrian;
-    }
 
     public function list()
     {
@@ -165,8 +137,8 @@ class Permintaan extends BaseController
                 ];
             } else {
                 $save = [
-                    'no_reg' => $this->generate_no_reg(),
-                    'kode_pelanggan' => $this->generate_kode_pelanggan(),
+                    'no_reg' => $this->model->generate_no_reg(),
+                    'kode_pelanggan' => $this->model->generate_kode_pelanggan(),
                     'nama_pengirim' => $this->request->getVar('nama_pengirim'),
                     'instansi' => $this->request->getVar('instansi'),
                     'alamat' => $this->request->getVar('alamat'),
@@ -255,6 +227,20 @@ class Permintaan extends BaseController
         } else {
             exit('Not Process');
         }
+    }
+
+    public function delete($id = null) 
+    {
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil dihapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }    
     }
 
 
