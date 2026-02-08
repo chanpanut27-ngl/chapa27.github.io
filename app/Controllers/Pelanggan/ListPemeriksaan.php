@@ -141,12 +141,12 @@ class ListPemeriksaan extends BaseController
                     ]
                 ];
             } else {
-               
-                $this->db->transStart();
+                $db = \Config\Database::connect();
+                $db->transStart();
                 $id_parameter = $this->request->getVar('id_parameter');
                 $count = count($id_parameter ?? []);
+                
                 for ($i=0; $i < $count; $i++) { 
-
                     $save = [
                         'id_pelanggan' => $this->request->getVar('id_pelanggan'),
                         'no_reg' => $this->request->getVar('no_reg'),
@@ -155,18 +155,22 @@ class ListPemeriksaan extends BaseController
                         'id_parameter' => $id_parameter[$i],
                     ];
                     $this->model->insert($save);
-   
+                }
+                $jumlah_parameter = $this->request->getVar('jumlah_parameter');
+                if ($count < $jumlah_parameter) {
+                    $ket_peraturan = "Tidak berdasarkan peraturan";
+                }else{
+                    $ket_peraturan = "Lengkap";
                 }
                   $simpan_permintaan_sampel = [
                         'id_pelanggan' => $this->request->getVar('id_pelanggan'),
                         'no_reg' => $this->request->getVar('no_reg'),
                         'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
-                        'jumlah_sampel' => $this->request->getVar(index: 'jumlah_sampel'),
+                        'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
+                        'ket_peraturan' => $ket_peraturan,
                     ];
                 $this->m_permintaan_sampel->insert($simpan_permintaan_sampel);
-
-                 
-                $this->db->transComplete();
+                $db->transComplete();
 
                 if ($this->db->transStatus() === FALSE) {
                     $msg = [
@@ -221,28 +225,5 @@ class ListPemeriksaan extends BaseController
     }
 
 
-    public function list_parameter($id = null)
-    {
-        if ($this->request->isAJAX()) {
-
-            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
-            $parameter = new ParameterPemeriksaanModel();
-            
-            $peraturan = new PeraturanModel();
-            $jenis_sampel = $this->m_jenis_sampel->find($id_jenis_sampel);
-            $id_peraturan = @$jenis_sampel['id_peraturan'];
-            
-            $data = [
-                'items' =>  $parameter->where('id_jenis_sampel', $id_jenis_sampel)->where('is_active', 1)->findAll(),
-                'peraturan' =>  $peraturan->find($id_peraturan)
-            ];
-            $msg = [
-                'data' => view('Pelanggan/Pemeriksaan/List/__parameter', $data)
-            ];
-            echo json_encode($msg);
-        } else {
-            exit('Not Process');
-        }
-    }
 
 }

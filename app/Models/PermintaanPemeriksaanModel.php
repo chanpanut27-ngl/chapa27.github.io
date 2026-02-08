@@ -7,27 +7,18 @@ use CodeIgniter\Model;
 
 class PermintaanPemeriksaanModel extends Model
 {
-    protected $table            = 'permintaan_pelanggan';
+    protected $table            = 'permintaan_pemeriksaan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
+        'id_pelanggan',
         'no_reg',
-        'kode_pelanggan',
-        'nama_pengirim',
-        'instansi',
-        'alamat',
-        'no_telp',
-        'no_telp_pengirim',
-        'spesimen_atau_sampel',
-        'tgl_ambil_sampel',
-        'jam_ambil_sampel',
-        'petugas_ambil_sampel',
-        'lokasi_ambil_sampel',
-        'paraf',
-        'keterangan_tambahan'
+        'id_lab',
+        'id_jenis_sampel',
+        'id_parameter'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -64,18 +55,19 @@ class PermintaanPemeriksaanModel extends Model
     {
         $username = user()->username;
         if ($username) {
+            // Tambahkan user_id ke data yang akan di-update
+            $data['data']['created_at'] = date('Y-m-d H:i:s');
             $data['data']['created_by'] = $username;
         }
         return $data;
     }
- 
+
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
-       $myTime = new Time();
         if ($username) {
+            // Tambahkan user_id ke data yang akan di-update
             $data['data']['updated_by'] = $username;
-            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
@@ -88,7 +80,7 @@ class PermintaanPemeriksaanModel extends Model
         $builder->join("master_laboratorium ml", "ml.id = pp.id_lab", "left");
         $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");
         $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan", "left");
-        $builder->join("parameter_pemeriksaan a", "a.id = pp.id_parameter", "left");
+        $builder->join("master_parameter a", "a.id = pp.id_parameter", "left");
         $builder->where('id_pelanggan', $id);
         $query = $builder->get()->getResultArray();
         return $query;

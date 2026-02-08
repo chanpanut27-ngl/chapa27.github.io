@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class ParameterPemeriksaanModel extends Model
@@ -75,7 +76,7 @@ class ParameterPemeriksaanModel extends Model
         $builder = $db->table('master_jenis_sampel mjs');
         $builder->select('kode_sampel, jenis_sampel, peraturan, parameter, metode, harga_per_titik, pp.id AS id_parameter, pp.is_active AS active');
         $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan");
-        $builder->join("parameter_pemeriksaan pp", "pp.id_jenis_sampel = mjs.id");
+        $builder->join("master_parameter pp", "pp.id_jenis_sampel = mjs.id");
         $query = $builder->get()->getResultArray();
         return $query;
     }

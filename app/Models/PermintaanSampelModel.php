@@ -17,7 +17,8 @@ class PermintaanSampelModel extends Model
         'id_pelanggan',
         'no_reg',
         'id_jenis_sampel',
-        'jumlah_sampel'
+        'jumlah_sampel',
+        'ket_peraturan'
     ];
 
     protected bool $allowEmptyInserts = false;
