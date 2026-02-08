@@ -167,7 +167,7 @@
                     <label>Coolbox</label>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('pengaturan-coolbox/posisi-coolbox') ?>" class="pc-link">
+                    <a href="<?= base_url('coolbox/posisi-coolbox') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
                         <span class="pc-mtext">Posisi Coolbox</span>
                     </a>

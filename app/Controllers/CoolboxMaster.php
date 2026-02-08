@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\CoolboxModel;
 use App\Models\InstansiModel;
+use App\Models\PosisiCoolboxModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class CoolboxMaster extends BaseController
@@ -214,5 +215,23 @@ class CoolboxMaster extends BaseController
         } else {
             exit('Not Process');
         }
+    }
+
+    public function cetak_label($param) 
+    {
+        $posisi = new PosisiCoolboxModel();
+        $query = $posisi->get_data_by_id($param);
+        $kode_coolbox = '';
+        foreach ($query as $key) {
+            $kode_coolbox = $key['kode_coolbox'];
+        }
+
+        $data = [
+            'title' => 'Label Coolbox',
+            'kode_coolbox' => $kode_coolbox,
+            'items' => $query
+        ];
+            
+        return view('Backend/Master/Coolbox/__cetak', $data);    
     }
 }
