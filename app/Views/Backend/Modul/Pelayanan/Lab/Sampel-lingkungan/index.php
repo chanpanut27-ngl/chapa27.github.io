@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\PengantarLhuModel;
+use App\Models\PengantarLabModel;
 ?>
-<?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
+<?= $this->extend('Backend/Modul/Pelayanan/Lab/index'); ?>
 
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
@@ -15,7 +15,7 @@ use App\Models\PengantarLhuModel;
 
 <?= $this->section('content_menu'); ?>
 <?php 
-$pengantar_lhu = new PengantarLhuModel();
+$pengantar_lhu = new PengantarLabModel();
 $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
 ?>
     <div class="card">
@@ -24,7 +24,7 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
                 <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
                     <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
                 </button>
-                <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-warning btn-sm rounded btn-show-lab" onclick="showLab(<?= $rest_['id_pelanggan'] ?>);" title="Detail Lab">
                     <span class="fa-solid fa-eye"></span> Detail Lab. Pemeriksaan
@@ -58,7 +58,7 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
         var id_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan/pengantar-lhu/sampel-lingkungan/list-data'); ?>",
+            url: "<?= site_url('pelayanan/pengantar-lab/sampel-lingkungan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{
@@ -108,7 +108,7 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
             var id_lab = $(this).data("id");
             var kode_pengantar = $(this).data('kode');
             $.ajax({
-                url: "<?= site_url('pelayanan/pengantar-lhu/sampel-lingkungan/add-data'); ?>",
+                url: "<?= site_url('pelayanan/pengantar-lab/sampel-lingkungan/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 data:{

@@ -59,5 +59,7 @@ require __DIR__ . '/Routes/__pelanggan__master.php';
 require __DIR__ . '/Routes/__pengantar__lab.php';
 /* Laboratorium */
 require __DIR__ . '/Routes/__lab__tujuan.php';
+/* Proses pengantar lab */
+require __DIR__ . '/Routes/__proses__pengantar__lab.php';
 
 

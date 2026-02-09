@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
+<?= $this->extend('Backend/Modul/Pelayanan/Lab/index'); ?>
 
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">

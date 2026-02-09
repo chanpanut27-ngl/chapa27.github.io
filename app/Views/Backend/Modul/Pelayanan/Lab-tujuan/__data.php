@@ -64,7 +64,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('laboratorium-tujuan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/laboratorium-tujuan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.error) {

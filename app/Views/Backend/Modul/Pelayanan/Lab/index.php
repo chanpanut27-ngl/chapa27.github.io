@@ -9,7 +9,7 @@
                     <div class="col-md-12">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript: void(0)">Modul Pelayanan Pemeriksaan</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pengantar LHU</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pengantar Laboratorium</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
@@ -87,7 +87,7 @@
                                         $nama_lab = $m['nama_lab'];
                                         ?>
                                         <li class="nav-item">
-                                            <a class="nav-link navtabs <?= @$id_lab == $m['id_lab'] ? 'active text-light fw-bold bg-success' : '' ; ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $nama_lab ?></a>
+                                            <a class="nav-link navtabs <?= @$id_lab == $m['id_lab'] ? 'active text-light fw-bold bg-success' : '' ; ?>" href="<?= base_url('pelayanan/pengantar-lab/proses/pilih-menu/'.strtolower($kode_pengantar).'/'.$m['id_lab']) ?>"><?= $nama_lab ?></a>
                                         </li>
                                     <?php
                                     endforeach;
@@ -103,16 +103,16 @@
                                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false"><?= $kategori_lab ?></a>
                                             <ul class="dropdown-menu">
                                                 <li class="nav-item">
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'keterangan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/keterangan-'.$id_kategori_lab);?>">Keterangan</a>
+                                                    <a class="nav-link navtabs <?= @$id_lab == 'keterangan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lab/proses/pilih-menu/'.strtolower($kode_pengantar).'/keterangan-'.$id_kategori_lab);?>">Keterangan</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'kondisi-lingkungan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/kondisi-lingkungan-'.$id_kategori_lab);?>">Kondisi lingkungan</a>
+                                                    <a class="nav-link navtabs <?= @$id_lab == 'kondisi-lingkungan-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lab/proses/pilih-menu/'.strtolower($kode_pengantar).'/kondisi-lingkungan-'.$id_kategori_lab);?>">Kondisi lingkungan</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'kaji-ulang-permintaan-kontrak-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/kaji-ulang-permintaan-kontrak-'.$id_kategori_lab);?>">Kaji ulang permintaan kontrak</a>
+                                                    <a class="nav-link navtabs <?= @$id_lab == 'kaji-ulang-permintaan-kontrak-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lab/proses/pilih-menu/'.strtolower($kode_pengantar).'/kaji-ulang-permintaan-kontrak-'.$id_kategori_lab);?>">Kaji ulang permintaan kontrak</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link navtabs <?= @$id_lab == 'penanggung-jawab-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lhu/proses/pilih-menu/'.strtolower($kode_pengantar).'/penanggung-jawab-'.$id_kategori_lab);?>">Penanggung jawab</a>
+                                                    <a class="nav-link navtabs <?= @$id_lab == 'penanggung-jawab-'.$id_kategori_lab ? 'active text-light fw-bold bg-success' : '' ?>" href="<?= base_url('pelayanan/pengantar-lab/proses/pilih-menu/'.strtolower($kode_pengantar).'/penanggung-jawab-'.$id_kategori_lab);?>">Penanggung jawab</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -120,7 +120,7 @@
                                     endforeach;
                                 ?>
                                 <li class="nav-item">
-                                    <a class="nav-link navtabs" href="<?= base_url('pelayanan/pengantar-lhu/resume/'.strtolower($kode_pengantar));?>">Resume</a>
+                                    <a class="nav-link navtabs" href="<?= base_url('pelayanan/pengantar-lab/resume/'.strtolower($kode_pengantar));?>">Resume</a>
                                 </li>
                             </ul>
                         <?php } ?>

@@ -6,7 +6,6 @@ use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
 use App\Models\SampelLingkunganModel;
 use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\RESTful\ResourceController;
 
 class SampelLingkungan extends BaseController
 {
@@ -31,7 +30,7 @@ class SampelLingkungan extends BaseController
     public function index($param1 = null, $param2 = null)
     {
          $data = ['param1' => $param1];
-         return view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/index', $data);
+         return view('Backend/Modul/Pelayanan/Lab/Sampel-lingkungan/index', $data);
     }
 
 
@@ -77,7 +76,7 @@ class SampelLingkungan extends BaseController
                 'items' => $this->model->get_data($kode_pengantar, $id_lab)
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lab/Sampel-lingkungan/__data', $data)
             ];
             echo json_encode($msg);
         } else {
@@ -112,7 +111,7 @@ class SampelLingkungan extends BaseController
                 'kode_pengantar' => $kode_pengantar
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lab/Sampel-lingkungan/__add', $data)
             ];
 
             echo json_encode($msg);
@@ -221,7 +220,7 @@ class SampelLingkungan extends BaseController
                 ->where('is_active', 1)->find()
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/_edit', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lab/Sampel-lingkungan/__edit', $data)
             ];
             echo json_encode($msg);
         }else{

@@ -24,58 +24,58 @@ $data = [
 
 switch (@$id_kat_lab ?? $id_lab) {
     case 1:
-        echo view('Backend/Modul/Pelayanan/Lhu/Sampel-lingkungan/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Sampel-lingkungan/index', $data);
         break;
     case 2:
-        echo view('Backend/Modul/Pelayanan/Lhu/Spesimen-penyakit/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Spesimen-penyakit/index', $data);
         break;
     case 'keterangan-1':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0]).' Lab.Lingkungan';
         $data['id_kat_lab'] = intval($str_exp[1]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Keterangan/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Keterangan/index', $data);
         break;
     case 'keterangan-2':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0]).' Lab.Penyakit';
         $data['id_kat_lab'] = intval($str_exp[1]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Keterangan/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Keterangan/index', $data);
         break;
     case 'kondisi-lingkungan-1':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0].' '.$str_exp[1]).' Lab.Lingkungan';
         $data['id_kat_lab'] = intval($str_exp[2]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Kondisi-lingkungan/index', $data);
         break;
     case 'kondisi-lingkungan-2':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0].' '.$str_exp[1]).' Lab.Penyakit';
         $data['id_kat_lab'] = intval($str_exp[2]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Kondisi-lingkungan/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Kondisi-lingkungan/index', $data);
         break;
     case 'kaji-ulang-permintaan-kontrak-1':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0].' '.$str_exp[1].' '.$str_exp[2].' '.$str_exp[3]).' Lab.Lingkungan';
         $data['id_kat_lab'] = intval($str_exp[4]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-kontrak/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Kaji-ulang-kontrak/index', $data);
         break;
     case 'kaji-ulang-permintaan-kontrak-2':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0].' '.$str_exp[1].' '.$str_exp[2].' '.$str_exp[3]).' Lab.Penyakit';
         $data['id_kat_lab'] = intval($str_exp[4]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Kaji-ulang-kontrak/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Kaji-ulang-kontrak/index', $data);
         break;
     case 'penanggung-jawab-1':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0].' '.$str_exp[1]).' Lab.Lingkungan';
         $data['id_kat_lab'] = intval($str_exp[2]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Penanggung-jawab/index', $data);
         break;
     case 'penanggung-jawab-2':
         $str_exp = explode('-', $id_lab);
         $data['title'] = ucfirst($str_exp[0].' '.$str_exp[1]).' Lab.Penyakit';
         $data['id_kat_lab'] = intval($str_exp[2]);
-        echo view('Backend/Modul/Pelayanan/Lhu/Penanggung-jawab/index', $data);
+        echo view('Backend/Modul/Pelayanan/Lab/Penanggung-jawab/index', $data);
         break;
     default:
        

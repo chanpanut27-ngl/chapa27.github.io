@@ -52,7 +52,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/pengantar-lhu/sampel-lingkungan/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/pengantar-lab/sampel-lingkungan/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -94,7 +94,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lhu/sampel-lingkungan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/pengantar-lab/sampel-lingkungan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

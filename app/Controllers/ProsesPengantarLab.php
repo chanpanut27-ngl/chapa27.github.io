@@ -57,7 +57,7 @@ class ProsesPengantarLab extends BaseController
             'id_lab' => $id_lab,
             'kode_pengantar' => $kode_pengantar
         ];
-       return view('Backend/Modul/Pelayanan/Lab/_menu', $data);
+       return view('Backend/Modul/Pelayanan/Lab/__menu', $data);
     }
 
     public function pilih_menu($param1 = null, $param2 = null) 
@@ -82,7 +82,7 @@ class ProsesPengantarLab extends BaseController
         'id_lab' => $id_lab,
     ];
 
-       return view('Backend/Modul/Pelayanan/Lab/_pilih_menu', $data);
+       return view('Backend/Modul/Pelayanan/Lab/__menu', $data);
     }
 
     public function show($id = null)

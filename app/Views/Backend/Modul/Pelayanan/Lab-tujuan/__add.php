@@ -11,20 +11,22 @@
                 <?php
                 foreach ($pengantar_lhu as $lhu) : ?>
                 <input type="hidden" name="id_pelanggan" value="<?= $lhu['id_pelanggan']; ?>">
-                <input type="hidden" name="id_pengantar_lhu" value="<?= $lhu['id_pengantar']; ?>">
+                <input type="hidden" name="id_pengantar_lab" value="<?= $lhu['id_pengantar']; ?>">
                 <input type="hidden" name="kode_pengantar" value="<?= $lhu['kode_pengantar']; ?>">
                 <?php endforeach;?>
                 <div class="modal-body">
                     <?php 
-                   
                       foreach ($cek_lab as $r) : 
+                        foreach ($masterLab as $lb) : 
+                            if ($r['id_lab'] == $lb['id']) {
+                               
                             ?>
-                                 <label for="<?= $r['id'] ?>">
-                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $r['id'] ?>" id="<?= $r['id'] ?>"> <?= $r['nama_lab']; ?>
+                                 <label for="<?= $r['id_lab'] ?>">
+                                    <input type="checkbox" checked name="id_laboratorium[]" value="<?= $r['id_lab'] ?>" id="<?= $r['id_lab'] ?>"> <?= $r['nama_lab']; ?>
                                 </label><br>
                             <?php
+                            }
                         endforeach;
-                        foreach ($masterLab as $lb) : 
                             ?>
                                  <label for="<?= $lb['id'] ?>">
                                     <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>"> <?= $lb['nama_lab']; ?>
