@@ -153,7 +153,7 @@
     function addData(id) {
         $.ajax({
             type: 'GET',
-            url: '<?= site_url('laboratorium-tujuan/add-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/laboratorium-tujuan/add-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {

@@ -6,7 +6,7 @@
                 <h3 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('laboratorium-tujuan/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/laboratorium-tujuan/create-data'); ?>" class="form-data">
                 <?= csrf_field();?>
                 <?php
                 foreach ($pengantar_lhu as $lhu) : ?>
@@ -16,6 +16,14 @@
                 <?php endforeach;?>
                 <div class="modal-body">
                     <?php 
+                   
+                      foreach ($cek_lab as $r) : 
+                            ?>
+                                 <label for="<?= $r['id'] ?>">
+                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $r['id'] ?>" id="<?= $r['id'] ?>"> <?= $r['nama_lab']; ?>
+                                </label><br>
+                            <?php
+                        endforeach;
                         foreach ($masterLab as $lb) : 
                             ?>
                                  <label for="<?= $lb['id'] ?>">

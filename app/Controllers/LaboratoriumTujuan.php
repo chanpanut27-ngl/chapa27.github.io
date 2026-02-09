@@ -92,7 +92,7 @@ class LaboratoriumTujuan extends ResourceController
                 'cek_lab' => $this->model->get_data($kode_pengantar)
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pelayanan/Lab-tujuan/_add', $data)
+                'sukses' => view('Backend/Modul/Pelayanan/Lab-tujuan/__add', $data)
             ];
 
             echo json_encode($msg);
@@ -116,7 +116,7 @@ class LaboratoriumTujuan extends ResourceController
 
                     $simpandata = [
                         'id_pelanggan' => $this->request->getVar('id_pelanggan'),
-                        'id_pengantar_lhu' => $this->request->getVar('id_pengantar_lhu'),
+                        'id_pengantar_lab' => $this->request->getVar('id_pengantar_lab'),
                         'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                         'id_laboratorium' => $idLab[$i]    
                     ];

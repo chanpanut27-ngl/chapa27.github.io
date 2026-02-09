@@ -75,7 +75,7 @@ class LaboratoriumTujuanModel extends Model
         $db = \Config\Database::connect();
         $builder = $db->table('master_laboratorium');
         $builder->select('master_laboratorium.id AS id_lab,nama_lab, laboratorium_tujuan.id AS id_lt, laboratorium_tujuan.kode_pengantar, master_laboratorium.id_kat_lab');
-        $builder->join("laboratorium_tujuan", "laboratorium_tujuan.id_laboratorium = master_laboratorium.id", "left");
+        $builder->join("laboratorium_tujuan", "laboratorium_tujuan.id_laboratorium = master_laboratorium.id");
         $builder->orderBy('master_laboratorium.id', 'ASC');
         $builder->where("laboratorium_tujuan.kode_pengantar", $params);
         $query = $builder->get()->getResultArray();
