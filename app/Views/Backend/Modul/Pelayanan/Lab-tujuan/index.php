@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Layout/_main'); ?>
+<?= $this->extend('Backend/Layout/__main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
@@ -11,8 +11,8 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Modul Pelayanan Pemeriksaan</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pengantar LHU</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pelayanan</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pengantar Laboratorium</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
@@ -22,13 +22,20 @@
         <!-- [ breadcrumb ] end -->
 
         <!-- [ Main Content ] start -->
-         
+        <div class="card-header p-2">
+            <div class="d-flex justify-content-end align-items-center gap-1">
+                <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
+                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span>
+                </button>
+            </div>
+        </div>
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                    <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
-                </button>
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
+                    </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body" style="border:1px solid;">
@@ -71,15 +78,11 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
+                        <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span>
-                            </button>
-                            <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showLab(<?= $row['id_pelanggan']; ?>)" title="Detail Lab. Pemeriksaan">
-                                <span class="fa-solid fa-clipboard"></span> Detail Lab. Pemeriksaan
+                            <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showLab(<?= $row['id_pelanggan']; ?>)" title="Laboratorium Pemeriksaan">
+                                <span class="fa-solid fa-clipboard"></span> Laboratorium Pemeriksaan
                             </button>
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" onclick="addData(<?= $row['id_pengantar']; ?>)" title="Tambah Data">
                                 <span class="fa-solid fa-plus-square"></span> Tambah Data
@@ -109,7 +112,7 @@
     function listData() {
         var kode_pengantar = $("#kode-pengantar").val();
         $.ajax({
-            url: "<?= site_url('laboratorium-tujuan/list-data/'); ?>" + kode_pengantar,
+            url: "<?= site_url('pelayanan/laboratorium-tujuan/list-data/'); ?>" + kode_pengantar,
             dataType: 'json',
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -133,7 +136,7 @@
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Detail Lab. Pemeriksaan');
+                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Laboratorium Pemeriksaan');
             },
             success: function(response) {
                 if (response.sukses) {

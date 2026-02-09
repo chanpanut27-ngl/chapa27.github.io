@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\LaboratoriumModel;
 use App\Models\LaboratoriumTujuanModel;
+use App\Models\PengantarLabModel;
 use App\Models\PengantarLhuModel;
 use App\Models\SampelLingkunganModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -30,10 +31,7 @@ class LaboratoriumTujuan extends ResourceController
         $this->title = 'Laboratorium Tujuan';
         $this->model = new LaboratoriumTujuanModel();
         $this->masterLab = new LaboratoriumModel();
-        $this->modelPengantarLhu = new PengantarLhuModel();
-        $this->time = Time::now('Asia/Jakarta'); 
-        $this->today = $this->time->toDateTimeString();
-        $this->validation = \Config\Services::validation();
+        $this->modelPengantarLhu = new PengantarLabModel();
     }
 
     public function index($id = null)
@@ -64,7 +62,7 @@ class LaboratoriumTujuan extends ResourceController
                 'items' => $this->model->get_data($kode_pengantar)
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Lab-tujuan/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Lab-tujuan/__data', $data)
             ];
 
             echo json_encode($msg);

@@ -20,7 +20,7 @@ class PengantarLab extends BaseController
 
     public function __construct()
     {
-        $this->title = 'Pengantar Lab';
+        $this->title = 'Pengantar Laboratorium';
         $this->model = new PengantarLabModel();
         $this->m_lab = new LaboratoriumModel();
         $this->m_lab_tujuan = new LaboratoriumTujuanModel();

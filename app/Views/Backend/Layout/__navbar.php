@@ -22,10 +22,10 @@
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
-                    <label>Pelayanan Pemeriksaan</label>
+                    <label>Pelayanan</label>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('pelayanan-sampel/permintaan-pelangan'); ?>" class="pc-link">
+                    <a href="<?= base_url('pelayanan/permintaan-pelanggan'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
                         <span class="pc-mtext">Permintaan</span>
                     </a>
@@ -33,7 +33,7 @@
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan/pengantar-lab'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
-                        <span class="pc-mtext">Pengantar Lab</span>
+                        <span class="pc-mtext">Pengantar Laboratorium</span>
                     </a>
                 </li>
                 <li class="pc-item">

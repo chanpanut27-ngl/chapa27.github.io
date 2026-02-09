@@ -13,7 +13,7 @@
 
 
     /* Permintaan pelanggan */
-    $routes->group('pelayanan-sampel/permintaan-pelangan', function ($routes) {
+    $routes->group('pelayanan/permintaan-pelanggan', function ($routes) {
     $routes->get('', 'Permintaan::index');
     $routes->get('list-data', 'Permintaan::list');
     $routes->get('add-data', 'Permintaan::new');

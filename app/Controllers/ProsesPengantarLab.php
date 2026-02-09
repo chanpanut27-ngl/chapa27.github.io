@@ -1,0 +1,149 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Models\LaboratoriumTujuanModel;
+use App\Models\PengantarLabModel;
+use CodeIgniter\HTTP\ResponseInterface;
+
+class ProsesPengantarLab extends BaseController
+{
+    /**
+     * Return an array of resource objects, themselves in array format.
+     *
+     * @return ResponseInterface
+     */
+    protected $title;
+    protected $m_pengantar_lab;
+    protected $m_lab_tujuan;
+
+    public function __construct()
+    {
+        $this->title = 'Proses Pengantar Laboratorium';
+        $this->m_pengantar_lab = new PengantarLabModel();
+        $this->m_lab_tujuan = new LaboratoriumTujuanModel();
+    }
+
+    public function index($id = null)
+    {
+        $kode_pengantar = $id;
+
+        $data = [
+            'title' => 'Data pelanggan',
+            'items' => $this->m_pengantar_lab->get_data_by_kode_pengantar($kode_pengantar),
+            'menu_lab' => $this->m_lab_tujuan->get_data($kode_pengantar),
+            'data_pelanggan' => $this->m_pengantar_lab->get_data_by_kode_pengantar($kode_pengantar),
+        ];
+
+       return view('Backend/Modul/Pelayanan/Lab/index', $data);
+    }
+
+    /**
+     * Return the properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+
+    public function list_menu($param1, $param2)
+    {
+        $kode_pengantar = $param1;
+        $id_lab = $param2;
+        $data = [
+            'title' => 'Entry ' . $this->title,
+            'items' => $this->m_pengantar_lab->get_data_by_kode_pengantar($kode_pengantar),
+            'menu_lab' => $this->m_lab_tujuan->get_data($kode_pengantar),
+            'id_lab' => $id_lab,
+            'kode_pengantar' => $kode_pengantar
+        ];
+       return view('Backend/Modul/Pelayanan/Lab/_menu', $data);
+    }
+
+    public function pilih_menu($param1 = null, $param2 = null) 
+    {
+
+     $kode_pengantar = $param1;
+     $id_lab = $param2;  
+
+     $kategori_lab = $this->m_lab_tujuan->get_data_kategori_lab($kode_pengantar, $id_lab);
+     foreach ($kategori_lab as $row) {
+        $nama_lab = $row['nama_lab'];
+        $kode_pengantar = $row['kode_pengantar'];
+        $id_lab = $row['id_laboratorium'];
+     }
+    
+     $data = [
+        'title' => @$nama_lab,
+        'items' => $this->m_pengantar_lab->get_data_by_kode_pengantar($kode_pengantar),
+        'menu_lab' => $this->m_lab_tujuan->get_data($kode_pengantar),
+        'kategori_lab' => $kategori_lab,
+        'kode_pengantar' => $kode_pengantar,
+        'id_lab' => $id_lab,
+    ];
+
+       return view('Backend/Modul/Pelayanan/Lab/_pilih_menu', $data);
+    }
+
+    public function show($id = null)
+    {
+        //
+    }
+
+    /**
+     * Return a new resource object, with default properties.
+     *
+     * @return ResponseInterface
+     */
+    public function new()
+    {
+        //
+    }
+
+    /**
+     * Create a new resource object, from "posted" parameters.
+     *
+     * @return ResponseInterface
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Return the editable properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function edit($id = null)
+    {
+        //
+    }
+
+    /**
+     * Add or update a model resource, from "posted" properties.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function update($id = null)
+    {
+        //
+    }
+
+    /**
+     * Delete the designated resource object from the model.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+    public function delete($id = null)
+    {
+        //
+    }
+}
+?>

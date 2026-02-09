@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Layout/_main'); ?>
+<?= $this->extend('Backend/Layout/__main'); ?>
 <?= $this->section('content'); ?>
 <div class="pc-container">
     <div class="pc-content">
@@ -75,7 +75,7 @@
                                 <div class="alert alert-danger fw-bold" role="alert">
                                     Laboratorim tujuan belum di pilih !
                                 </div>
-                                <a href="<?= base_url('pelayanan/pengantar-lhu') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span> Kembali</a>
+                                <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span> Kembali</a>
                             <?php
                         }else{
                             

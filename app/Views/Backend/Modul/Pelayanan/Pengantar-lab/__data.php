@@ -30,10 +30,10 @@
                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
                             <span class="fa-solid fa-trash-alt"></span>
                         </button>
-                        <a href="<?= base_url('laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Lab tujuan">
+                        <a href="<?= base_url('pelayanan/laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Lab tujuan">
                             <span class="fa-solid fa-flask"></span>
                         </a>
-                        <a href="<?= base_url('pelayanan/pengantar-lhu/proses/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-success rounded btn-sm" title="Proses">
+                        <a href="<?= base_url('pelayanan/pengantar-lab/proses/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-success rounded btn-sm" title="Proses">
                             <span class="fa-solid fa-arrow-circle-right"></span>
                         </a>
                     </div>
@@ -78,7 +78,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lhu/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/pengantar-lab/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.error) {
