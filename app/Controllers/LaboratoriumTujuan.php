@@ -21,9 +21,8 @@ class LaboratoriumTujuan extends ResourceController
     protected $title;
     protected $model;
     protected $time;
-    protected $validation;
     protected $today;
-    protected $modelPengantarLhu;
+    protected $m_pengantar_lab;
     protected $masterLab;
 
     public function __construct()
@@ -31,7 +30,7 @@ class LaboratoriumTujuan extends ResourceController
         $this->title = 'Laboratorium Tujuan';
         $this->model = new LaboratoriumTujuanModel();
         $this->masterLab = new LaboratoriumModel();
-        $this->modelPengantarLhu = new PengantarLabModel();
+        $this->m_pengantar_lab = new PengantarLabModel();
     }
 
     public function index($id = null)
@@ -39,7 +38,7 @@ class LaboratoriumTujuan extends ResourceController
         $kode_pengantar = $id;
         $data = [
             'title' => $this->title,
-            'items' => $this->modelPengantarLhu->get_data_by_kode_pengantar($kode_pengantar),
+            'items' => $this->m_pengantar_lab->get_data_by_kode_pengantar($kode_pengantar),
             'kode_pengantar' => $id
         ];
 
@@ -83,13 +82,13 @@ class LaboratoriumTujuan extends ResourceController
      */
     public function new($id = null)
     {
-        $pengantar = $this->modelPengantarLhu->find($id);
+        $pengantar = $this->m_pengantar_lab->find($id);
         $kode_pengantar = $pengantar['kode_pengantar'];
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah '.$this->title,
                 'masterLab' => $this->masterLab->findAll(),
-                'pengantar_lhu' => $this->modelPengantarLhu->get_data_by_id_lhu($id),
+                'pengantar_lhu' => $this->m_pengantar_lab->get_data_by_id_lhu($id),
                 'cek_lab' => $this->model->get_data($kode_pengantar)
             ];
             $msg = [

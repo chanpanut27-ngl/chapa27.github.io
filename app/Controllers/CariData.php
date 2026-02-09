@@ -6,18 +6,23 @@ use App\Controllers\BaseController;
 use App\Models\JenisSampelModel;
 use App\Models\ParameterPemeriksaanModel;
 use App\Models\PeraturanModel;
+use App\Models\PermintaanPemeriksaanModel;
 
 class CariData extends BaseController
 {
+
+    protected $model;
     protected $m_jenis_sampel;
     protected $m_peraturan;
     protected $m_parameter;
     
     public function __construct()
     {
+        $this->model = new PermintaanPemeriksaanModel();
         $this->m_jenis_sampel = new JenisSampelModel();
         $this->m_peraturan = new PeraturanModel();
         $this->m_parameter = new ParameterPemeriksaanModel();
+        
     }
 
     public function cari_sampel()
@@ -65,4 +70,24 @@ class CariData extends BaseController
             exit('Not Process');
         }
     }
+
+
+    public function show_lab_pemeriksaan($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Laboratorium Pemeriksaan',
+                'items' => $this->model->detail_lab($id)
+            ];
+            $msg = [
+                'sukses' => view('Data/__lab__pemeriksaan', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }  
+    }
+
+    
 }

@@ -87,4 +87,18 @@ class PermintaanPemeriksaanModel extends Model
         return $query;
     }
 
+    public function detail_lab($id)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('permintaan_pemeriksaan pp');
+        $builder->select('nama_lab,jenis_sampel,peraturan');
+        $builder->join("master_laboratorium ml", "ml.id = pp.id_lab", "left");
+        $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");
+        $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan", "left");
+        $builder->where('pp.id_pelanggan', $id);
+        $builder->groupBy('pp.id_lab');
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
 }

@@ -127,7 +127,7 @@
         
         $.ajax({
             type: 'GET',
-            url: '<?= site_url('pelayanan-sampel/data-pemeriksaan/detail-lab/'); ?>' + id,
+            url: '<?= site_url('show-data/lab-pemeriksaan/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
