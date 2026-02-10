@@ -24,7 +24,7 @@
                         ?>
                             <tr>
                                 <td><?= $no++; ?></td>
-                                <td style="text-align: center;"><?= $row['jenis_sampel'] ?></td>
+                                <td><?= $row['jenis_sampel'] ?></td>
                                 <td style="text-align: center;"><?= $row['jumlah_sampel'] ?></td>
                                 <td style="text-align: right;"><?= number_to_currency($row['pnbp'], 'IDR', 'ID', 0); ?></td>
                                 <td style="text-align: right;"><?= number_to_currency($row['jumlah_biaya'], 'IDR', 'ID', 0); ?></td>
