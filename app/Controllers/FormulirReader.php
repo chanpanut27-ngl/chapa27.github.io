@@ -7,13 +7,17 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class FormulirReader extends BaseController
 {
-    public function __construct()
+    public function response_set_header()
     {
-        $this->cachePage(5);
+        $this->response->setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $this->response->setHeader('Pragma', 'no-cache');
+        $this->response->setHeader('Expires', '0');
+
     }
     
     public function prosedur_permintaan_pemeriksaan_pengujian()
     {
+       $this->response_set_header();
        $data = [
             'title' => 'Prosedur permintaan pemeriksaan pengujian'
         ];
@@ -22,6 +26,7 @@ class FormulirReader extends BaseController
 
     public function permintaan_pemeriksaan_rujukan_atau_kiriman()
     {
+        $this->response_set_header();
         $data = [
             'title' => 'Permintaan Pemeriksaan Rujukan atau Kiriman'
         ];
@@ -30,6 +35,7 @@ class FormulirReader extends BaseController
 
     public function permintaan_pengujian_sampel_lingkungan()
     {
+        $this->response_set_header();
         $data = [
             'title' => 'Permintaan Pengujian Sampel Lingkungan'
         ];
@@ -38,6 +44,7 @@ class FormulirReader extends BaseController
 
     public function permintaan_pengujian_spesimen_klinis()
     {
+        $this->response_set_header();
         $data = [
             'title' => 'Permintaan Pengujian Spesimen Klinis'
         ];
@@ -46,6 +53,7 @@ class FormulirReader extends BaseController
 
     public function contoh_surat()
     {
+        $this->response_set_header();
         $data = [
             'title' => 'Contoh Surat'
         ];
