@@ -21,6 +21,15 @@
     $routes->get('tarif-pnbp', 'BookletReader::tarif_pnbp');
 });
 
+/* File Formulir */
+$routes->group('file-formulir/reader', function ($routes) {
+    $routes->get('prosedur-permintaan-pemeriksaan-pengujian', 'FormulirReader::prosedur_permintaan_pemeriksaan_pengujian');
+    $routes->get('permintaan-pemeriksaan-rujukan-atau-kiriman', 'FormulirReader::permintaan_pemeriksaan_rujukan_atau_kiriman');
+    $routes->get('permintaan-pengujian-sampel-lingkungan', 'FormulirReader::permintaan_pengujian_sampel_lingkungan');
+    $routes->get('permintaan-pengujian-spesimen-klinis', 'FormulirReader::permintaan_pengujian_spesimen_klinis');
+    $routes->get('contoh-surat', 'FormulirReader::contoh_surat');
+});
+
 /* Pelanggan *
 /* File Pelayanan */
     $routes->group('pelanggan/file-pelayanan/reader', function ($routes) {
