@@ -89,5 +89,34 @@ class CariData extends BaseController
         }  
     }
 
+    public function cari_metode()
+    {
+        if ($this->request->isAJAX()) {
+            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+           
+            $model = $this->m_jenis_sampel->find($id_jenis_sampel);
+            $kode_sampel = $model['kode_sampel'];
+            if ($kode_sampel == 'K') {
+                $metode = 'SNI, APHA, dan EPA';
+                $satuan = '2L';
+                $wadah = 'Jerigen';
+            }else{
+                $metode = 'SNI, APHA, dan EPA';
+                $satuan = '250mL';
+                $wadah = 'Botol kaca';
+            }
+            
+            $msg = [
+                'metode' => $metode,
+                'volume' => $satuan,
+                'wadah'  => $wadah
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
     
 }

@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-4" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('pelayanan/pengantar-lab/sampel-lingkungan/create-data'); ?>" class="form-data">
@@ -48,18 +48,18 @@
                         <div class="invalid-feedback errorMetodePemeriksaan"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="volume-berat" class="form-label h5" style="font-family: arial;">Volume/Berat</label>
+                        <label for="volume-berat" class="form-label h5">Volume/Berat</label>
                         <input type="text" name="volume_berat" class="form-control" id="volume-berat">
                         <div class="invalid-feedback errorVolumeBerat"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jenis-wadah" class="form-label h5" style="font-family: arial;">Jenis wadah</label>
+                        <label for="jenis-wadah" class="form-label h5">Jenis wadah</label>
                         <input type="text" name="jenis_wadah" class="form-control" id="jenis-wadah">
                         <div class="invalid-feedback errorJenisWadah"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jenis-pengawet" class="form-label h5" style="font-family: arial;">Jenis pengawet</label>
-                        <input type="text" name="jenis_pengawet" class="form-control" id="jenis-pengawet">
+                        <label for="jenis-pengawet" class="form-label h5">Jenis pengawet</label>
+                        <input type="text" name="jenis_pengawet" value="-" class="form-control" id="jenis-pengawet">
                         <div class="invalid-feedback errorJenisPengawet"></div>
                     </div>
                 </div>
@@ -84,6 +84,22 @@
         $('#jenis-sampel').select2({
             dropdownParent: $('#exampleModal')
         });
+
+        $(document).on('change', "#jenis-sampel", function (e) {
+            var id_jenis_sampel = $(this).val();
+            $.ajax({
+                type: 'post',
+                url: "<?= site_url('cari-metode'); ?>",
+                data: {id_jenis_sampel:id_jenis_sampel},
+                dataType: 'json',
+                cache: false,
+                success:function(response){
+                    $("#volume-berat").val(response.volume);
+                    $("#metode-pemeriksaan").val(response.metode);
+                    $("#jenis-wadah").val(response.wadah);
+                }
+            })
+        })
 
         $(".form-data").submit(function(e) {
            e.preventDefault();

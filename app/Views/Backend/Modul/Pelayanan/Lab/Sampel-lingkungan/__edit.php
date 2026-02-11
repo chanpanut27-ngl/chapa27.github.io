@@ -85,6 +85,22 @@
             dropdownParent: $('#exampleModal')
         });
 
+         $(document).on('change', "#jenis-sampel", function (e) {
+            var id_jenis_sampel = $(this).val();
+            $.ajax({
+                type: 'post',
+                url: "<?= site_url('cari-metode'); ?>",
+                data: {id_jenis_sampel:id_jenis_sampel},
+                dataType: 'json',
+                cache: false,
+                success:function(response){
+                    $("#volume-berat").val(response.volume);
+                    $("#metode-pemeriksaan").val(response.metode);
+                    $("#jenis-wadah").val(response.wadah);
+                }
+            })
+        })
+
         $(".form-data").submit(function(e) {
             e.preventDefault();
             $.ajax({

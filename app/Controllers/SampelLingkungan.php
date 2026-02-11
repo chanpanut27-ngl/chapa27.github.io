@@ -16,15 +16,14 @@ class SampelLingkungan extends BaseController
      */
     protected $title;
     protected $model;
-    protected $masterJenisSampel;
-    protected $masterLab;
-    protected $time;
+    protected $m_jenis_sampel;
+    protected $m_lab;
 
     public function __construct()
     {
         $this->model = new SampelLingkunganModel();
-        $this->masterJenisSampel = new JenisSampelModel();
-        $this->masterLab = new LaboratoriumModel();
+        $this->m_jenis_sampel = new JenisSampelModel();
+        $this->m_lab = new LaboratoriumModel();
     }
 
     public function index($param1 = null, $param2 = null)
@@ -50,7 +49,7 @@ class SampelLingkungan extends BaseController
         $nomorUrut = $count + 1;
 
         // Format nomor antrian
-        $getLab = $this->masterLab->find($idlab);
+        $getLab = $this->m_lab->find($idlab);
 
         $js = new JenisSampelModel();
         $r = $js->where('id_lab', $getLab['id'])
@@ -99,14 +98,13 @@ class SampelLingkungan extends BaseController
         if ($this->request->isAJAX()) {
             $id_lab = $this->request->getVar('id_lab');
             $kode_pengantar = $this->request->getVar('kode_pengantar');
-            $lab = $this->masterLab->find($id_lab);
-            $nama_lab = $lab['nama_lab'];
+            $laboratorium = $this->m_lab->find($id_lab);
+            $nama_lab = $laboratorium['nama_lab'];
+
             $data = [
                 'title' => 'Tambah ' . $nama_lab,
                 'masterLab' => $this->model->findAll(),
-                // 'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)
-                // ->where('is_active', 1)->find(),
-                'masterJenisSampel' => $this->masterJenisSampel->get_data_jenis_sampel($id_lab),
+                'masterJenisSampel' => $this->m_jenis_sampel->get_data_jenis_sampel($id_lab),
                 'id_lab' => $id_lab,
                 'kode_pengantar' => $kode_pengantar
             ];
@@ -208,7 +206,7 @@ class SampelLingkungan extends BaseController
     public function edit($id = null)
     {    
         $query = $this->model->find($id);
-        $lab = $this->masterLab->find($query['id_laboratorium']);
+        $lab = $this->m_lab->find($query['id_laboratorium']);
         $id_lab = $lab['id'];
         $nama_lab = $lab['nama_lab'];
 
@@ -216,7 +214,7 @@ class SampelLingkungan extends BaseController
             $data = [
                 'title' => 'Edit ' . $nama_lab,
                 'items' => $this->model->find($id),
-                'masterJenisSampel' => $this->masterJenisSampel->where('id_lab', $id_lab)
+                'masterJenisSampel' => $this->m_jenis_sampel->where('id_lab', $id_lab)
                 ->where('is_active', 1)->find()
             ];
             $msg = [
