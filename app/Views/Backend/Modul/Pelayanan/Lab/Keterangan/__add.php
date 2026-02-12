@@ -17,7 +17,7 @@
                         <?php
                     }else{
             ?>
-            <form action="<?= base_url('pelayanan/pengantar-lhu/keterangan/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/pengantar-lab/keterangan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
                 <input type="hidden" name="id_kat_lab" value="<?= $id_kat_lab ?>">

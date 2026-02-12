@@ -68,7 +68,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/pengantar-lhu/kaji-ulang-kontrak/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/pengantar-lab/kaji-ulang-kontrak/edit-data/'); ?>' + id,
             dataType: 'json',
             cache:false,
             beforeSend: function() {

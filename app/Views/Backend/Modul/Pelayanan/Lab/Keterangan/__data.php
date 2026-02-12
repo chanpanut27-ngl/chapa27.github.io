@@ -59,7 +59,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/pengantar-lhu/keterangan/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/pengantar-lab/keterangan/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -102,7 +102,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lhu/keterangan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/pengantar-lab/keterangan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     cache: false,
                     success: function(response) {

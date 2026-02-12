@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <?php if (!$items) {
         ?>
-        <tbody style="font-family: arial;">
+        <tbody>
             <tr>
                 <td style="width: 30%;"><b>Kondisi lingkungan sekitar sampel</b></td>
                 <td>: </td>
@@ -36,7 +36,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/pengantar-lhu/kondisi-lingkungan/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/pengantar-lab/kondisi-lingkungan/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -79,7 +79,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lhu/kondisi-lingkungan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/pengantar-lab/kondisi-lingkungan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

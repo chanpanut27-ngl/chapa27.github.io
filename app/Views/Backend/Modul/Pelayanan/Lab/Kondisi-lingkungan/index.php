@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
+<?= $this->extend('Backend/Modul/Pelayanan/Lab/index'); ?>
 
 <?= $this->section('content_menu'); ?>
 <div class="row p-0">
@@ -35,7 +35,7 @@
         var id_kat_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
         $.ajax({
-            url: "<?= site_url('pelayanan/pengantar-lhu/kondisi-lingkungan/list-data'); ?>",
+            url: "<?= site_url('pelayanan/pengantar-lab/kondisi-lingkungan/list-data'); ?>",
             dataType: 'json',
             data:{
                  id_kat_lab:id_kat_lab,
@@ -59,7 +59,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan/pengantar-lhu/kondisi-lingkungan/add-data'); ?>",
+                url: "<?= site_url('pelayanan/pengantar-lab/kondisi-lingkungan/add-data'); ?>",
                 dataType: 'json',
                 cache:false,
                 data:{
