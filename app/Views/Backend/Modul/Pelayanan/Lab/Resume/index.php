@@ -23,7 +23,7 @@ foreach ($data_pelanggan as $dp) :
     <div class="card-header p-2">
         <div class="d-flex justify-content-end align-items-center gap-1">
             <button class="btn btn-info rounded btn-sm btnPrint" data-id="<?= $kode_pengantar ?>" onclick="openWin();" title="Lihat">
-                <span class="pc-micon"><span class="fa-solid fa-eye"></span></span>
+                <span class="pc-micon"><i class="ti ti-clipboard"></i></span>
             </button>
         </div>
     </div>
@@ -286,7 +286,7 @@ foreach ($data_pelanggan as $dp) :
 <?= $this->section('bottomAssets'); ?>
 <script>
     function openWin() {
-        var WinPrint = window.open('<?= base_url('cetak/resume/'.strtolower($kode_pengantar)) ?>', '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
+        var WinPrint = window.open('<?= base_url('cetak/resume/'.strtolower($kode_pengantar)) ?>', '', 'left=0,top=0,width=1500,height=1000,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
         WinPrint.document.close();
         WinPrint.focus();

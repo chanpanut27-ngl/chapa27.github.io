@@ -111,7 +111,7 @@ class PerintahUjiSampel extends BaseController
             ];
 
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/_add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/__add', $data)
             ];
             echo json_encode($msg);
 

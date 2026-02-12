@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
@@ -12,23 +12,25 @@
                 <input type="hidden" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
                 <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
                 <div class="modal-body">
-                    <div class="mb-2">
-                        <label for="" class="form-label h5">Sifat Pemeriksaan Sampel</label><br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="" class="form-label h5">Sifat Pemeriksaan Sampel</label>
+                        </div>
+                        <div class="col-md">
+                            <label for="biasa">
+                                <input type="radio" name="sifat_pemeriksaan" value="Biasa" id="biasa" checked> Biasa
+                            </label>
+                            <label for="kasus">
+                                <input type="radio" name="sifat_pemeriksaan" value="Kasus" id="kasus"> Kasus
+                            </label>
+                            <label for="rutin/proyek">
+                                <input type="radio" name="sifat_pemeriksaan" value="Rutin/Proyek" id="rutin/proyek"> Rutin/Proyek
+                            </label>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label for="biasa">
-                            <input type="radio" name="sifat_pemeriksaan" value="Biasa" id="biasa" checked> Biasa
-                        </label>
-                        <label for="kasus">
-                            <input type="radio" name="sifat_pemeriksaan" value="Kasus" id="kasus"> Kasus
-                        </label>
-                        <label for="rutin/proyek">
-                            <input type="radio" name="sifat_pemeriksaan" value="Rutin/Proyek" id="rutin/proyek"> Rutin/Proyek
-                        </label>
-                    </div>
-                    <div class="mb-3">
-                        <table class="table table-hover table-bordered ti">
-                            <thead style="font-family: arial; font-size:12px;">
+                        <table class="table table-hover table-bordered">
+                            <thead>
                                 <tr>
                                     <th><label for="">No</label></th>
                                     <th><label for="">Kode Sampel</label></th>
@@ -39,7 +41,7 @@
                                     <th><label for="">Keterangan</label></th>
                                 </tr>
                             </thead>
-                            <tbody style="font-family: arial; font-size:12px;">
+                            <tbody>
                                 <?php $no=1; foreach ($items as $row) : ?>
                                     <tr>
                                         <td><?= $no++; ?></td>
@@ -56,45 +58,81 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label class="form-label h5">Tim Kerja Program Layanan</label>
-                            <div class="mb-3">
-                                <label for="tgl-terima" class="form-label h5">Tanggal Penerimaan Sampel</label>
-                                <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" readonly id="tgl-terima">
+                            <div class="card mb-2">
+                                <div class="card-header p-1 bg-info text-white">
+                                    <h4 class="card-title text-center">Tim Kerja Program Layanan</h4>
+                                </div>
+                                <div class="card-body text-secondary">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="fw-bold">Tanggal penerimaan sampel</p>
+                                        </div>
+                                        <div class="col-md">
+                                            : <?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                         <div class="col-md-6">
+                                            <p class="fw-bold" for="tgl-kirim-sampel">Tanggal kirim sampel</p>
+                                        </div>
+                                        <div class="col-md d-flex">
+                                            :&nbsp;<input type="text" name="tgl_kirim_sampel" id="tgl-kirim-sampel" class="form-control" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="tgl-kirim-sampel" class="form-label h5">Tanggal Kirim Sampel</label>
-                                <input type="text" name="tgl_kirim_sampel" id="tgl-kirim-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
-                                <div class="invalid-feedback errorTglKirimSampel"></div>
+                            <div class="card">
+                                <div class="card-header p-1 bg-info text-white">
+                                    <h4 class="card-title text-center">Analis Laboratorium</h4>
+                                </div>
+                                <div class="card-body text-secondary">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <p class="fw-bold">Tanggal penerimaan sampel</p>
+                                        </div>
+                                        <div class="col-md">
+                                            : <?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                         <div class="col-md-6">
+                                            <p class="fw-bold" for="tgl-kirim-sampel">Tanggal terima sampel</p>
+                                        </div>
+                                        <div class="col-md d-flex">
+                                            :&nbsp;<input type="text" name="tgl_terima_sampel_analis_lab" class="form-control" id="tgl-terima-analis-lab" autocomplete="off" placeholder="tgl-bln-thn">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="kepala-instalasi" class="form-label h5">Kepala <?= $instalasi['nama_instalasi']; ?></label>
-                                <input type="text" name="kepala_instalasi" id="kepala-instalasi" class="form-control" autocomplete="off">
-                                <div class="invalid-feedback errorKepalaInstalasi"></div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tgl-terima-sampel-lab" class="form-label h5">Tanggal Terima Sampel</label>
-                                <input type="text" name="tgl_terima_sampel_lab" class="form-control" id="tgl-terima-sampel-lab" autocomplete="off" placeholder="tgl-bln-thn">
-                                <div class="invalid-feedback errorTglTerimaSampelLab"></div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tgl-selesai-sampel" class="form-label h5">Tanggal Selesai Sampel</label>
-                                <input type="text" name="tgl_selesai_sampel" id="tgl-selesai-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
-                                <div class="invalid-feedback errorTglSelesaiSampel"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="kepala-instalasi" class="form-label h5">Analis laboratorium</label>
-                            </div>
-                            <div class="mb-3">
-                                <label for="" class="form-label h5">Paraf</label>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tgl-terima-sampel-analis-lab" class="form-label h5">Tanggal Terima Sampel</label>
-                                <input type="text" name="tgl_terima_sampel_analis_lab" class="form-control" id="tgl-terima-analis-lab" autocomplete="off" placeholder="tgl-bln-thn">
-                                <div class="invalid-feedback errorTglTerimaAnalisLab"></div>
+                            <div class="card mb-2">
+                                <div class="card-header p-1 bg-info text-white">
+                                    <h4 class="card-title text-center">Kepala <?= $instalasi['nama_instalasi']; ?></h4>
+                                </div>
+                                <div class="card-body text-secondary">
+                                    <div class="row mb-2">
+                                        <div class="col-md">
+                                            <input type="text" name="kepala_instalasi" id="kepala-instalasi" placeholder="Nama kepala instalasi" class="form-control" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-6">
+                                            <p class="fw-bold">Paraf</p>
+                                        </div>
+                                        <div class="col-md d-flex">
+                                            :&nbsp;
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                         <div class="col-md-6">
+                                            <p class="fw-bold" for="tgl-kirim-sampel">Tanggal terima sampel</p>
+                                        </div>
+                                        <div class="col-md d-flex">
+                                            :&nbsp;<input type="text" name="tgl_selesai_sampel" id="tgl-selesai-sampel" class="form-control" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,17 +148,16 @@
 <script>
     $(document).ready(function() {
        
-        $('#pelanggan').select2({
-            dropdownParent: $('#exampleModal')
-        });
-
         var dateToday = new Date();
         $("#tgl-kirim-sampel").datepicker(
             { 
+                EventTarget:AnimationTimeline,
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "",  inDate: dateToday
+                defaultDate: "+1",  
+                inDate: dateToday
             }
         );
+             
 
         $("#tgl-terima-analis-lab").datepicker(
             { 
