@@ -6,10 +6,8 @@ use App\Models\InstalasiModel;
 use App\Models\MapPerintahUjiSampelModel;
 use App\Models\PenanggungJawabPengantarModel;
 use App\Models\PengantarLabModel;
-use App\Models\PengantarLhuModel;
 use App\Models\PerintahUjiSampelModel;
 use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\I18n\Time;
 
 class PerintahUjiSampel extends BaseController
 {
@@ -24,9 +22,6 @@ class PerintahUjiSampel extends BaseController
     protected $modelInstalasi;
     protected $modelPengantarLhu;
     protected $modelMpu;
-    protected $validation;
-    protected $time;
-    protected $today;
 
     public function __construct()
     {
@@ -71,7 +66,7 @@ class PerintahUjiSampel extends BaseController
                 'items' => $this->model->get_data()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/_data', $data)
+                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/__data', $data)
             ];
 
             echo json_encode($msg);

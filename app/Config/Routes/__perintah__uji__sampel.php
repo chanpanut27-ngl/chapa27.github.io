@@ -9,3 +9,5 @@ $routes->group('pelayanan/perintah-uji-sampel', function ($routes) {
     $routes->post('update-data', 'PerintahUjiSampel::update');
     $routes->get('delete-data', 'PerintahUjiSampel::delete');
 });
+
+

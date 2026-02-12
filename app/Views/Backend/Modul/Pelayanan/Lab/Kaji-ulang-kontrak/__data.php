@@ -111,7 +111,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lhu/kaji-ulang-kontrak/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/pengantar-lab/kaji-ulang-kontrak/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

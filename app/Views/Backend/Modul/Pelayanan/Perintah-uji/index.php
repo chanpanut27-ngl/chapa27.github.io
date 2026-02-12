@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Layout/_main'); ?>
+<?= $this->extend('Backend/Layout/__main'); ?>
 
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
@@ -17,7 +17,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pelayanan Pemeriksaan</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pelayanan</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
@@ -32,7 +32,7 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
+                        <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh" title="refresh">
                                 <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
