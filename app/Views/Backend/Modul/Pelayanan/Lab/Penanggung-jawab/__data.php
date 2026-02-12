@@ -8,7 +8,7 @@
                 <th style="text-align: center;">No.Telepon</th>
             </tr>
         </thead>
-        <tbody style="font-family: arial;">
+        <tbody>
             <tr>
                 <td style="width: 25%;"><b>Petugas sampling/pengambil/pembawa sampel</b></td>
                 <td>: </td>
@@ -63,7 +63,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/pengantar-lhu/penanggung-jawab/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/pengantar-lab/penanggung-jawab/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -106,7 +106,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lhu/penanggung-jawab/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/pengantar-lab/penanggung-jawab/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

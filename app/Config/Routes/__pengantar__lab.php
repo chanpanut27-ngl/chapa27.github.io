@@ -65,5 +65,26 @@ $routes->group('pelayanan/pengantar-lab/kaji-ulang-kontrak', function ($routes) 
     $routes->delete('delete-data/(:num)', 'KajiUlangKontrakPengantar::delete/$1');
 });
 
+/* Pelayanan Penanggung Jawab Pengantar Lab */
+$routes->group('pelayanan/pengantar-lab/penanggung-jawab', function ($routes) {
+    $routes->get('', 'PenanggungJawabPengantar::index');
+    $routes->get('list-data', 'PenanggungJawabPengantar::list');
+    $routes->get('add-data', 'PenanggungJawabPengantar::new');
+    $routes->post('create-data', 'PenanggungJawabPengantar::create');
+    $routes->get('edit-data/(:num)', 'PenanggungJawabPengantar::edit/$1');
+    $routes->post('update-data', 'PenanggungJawabPengantar::update');
+    $routes->delete('delete-data/(:num)', 'PenanggungJawabPengantar::delete/$1');
+});
+
+/* Pelayanan Resume Pengantar Lab */
+$routes->group('pelayanan/pengantar-lab/resume', function ($routes) {
+    $routes->get('(:any)', 'ResumePengantarLab::index/$1');
+    $routes->get('list-data', 'ResumePengantarLab::list');
+});
+
+/* Cetak Resume Pengantar Lab */
+$routes->get('cetak/resume/(:any)', 'ResumePengantarLab::cetak/$1');
+$routes->get('cetak/perintah-uji/(:any)', 'PerintahUjiSampel::cetak/$1');
+$routes->get('cetak/label-coolbox/(:any)', 'CoolboxMaster::cetak_label/$1');
 
 ?>

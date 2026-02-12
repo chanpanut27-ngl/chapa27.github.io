@@ -1,4 +1,4 @@
-<?= $this->extend('Backend/Modul/Pelayanan/Lhu/index'); ?>
+<?= $this->extend('Backend/Modul/Pelayanan/Lab/index'); ?>
 
 <?= $this->section('content_menu'); ?>
 <?php

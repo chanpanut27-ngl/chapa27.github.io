@@ -21,9 +21,9 @@
         <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                    <h4><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
-                </button>
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                        <h4><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
+                    </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
                     <div class="accordion-body" style="border:1px solid;">
