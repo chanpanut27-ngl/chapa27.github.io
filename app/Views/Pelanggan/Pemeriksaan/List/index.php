@@ -17,7 +17,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pelayanan</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
@@ -37,15 +37,15 @@
                 <?php else : ?>
                 <div class="card">
                     <div class="card-header p-2">
-                            <div class="d-flex justify-content-end align-items-center gap-1">
-                                <a href="<?= base_url('pelanggan/permintaan-pemeriksaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
-                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
-                                    <span class="fa-solid fa-undo"></span> Batal pemeriksaan
-                                </button>
-                            </div>
+                        <div class="d-flex justify-content-end align-items-center gap-1">
+                            <a href="<?= base_url('pelanggan/permintaan-pemeriksaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
+                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
+                                <span class="fa-solid fa-undo"></span> Batal pemeriksaan
+                            </button>
+                        </div>
                     </div>
                     <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
                         <div class="accordion-item">

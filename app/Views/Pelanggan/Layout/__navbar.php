@@ -10,42 +10,29 @@
             <ul class="pc-navbar">
                 <li class="pc-item">
                     <a href="<?= base_url('/'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#home"></use>
-                            </svg>
-                        </span>
-                        <span class="pc-mtext"><span class="fa-solid fa-home"></span> Home</span>
+                        <span class="pc-micon"></span>
+                        <span class="pc-mtext"><span class="ti ti-home"></span> Home</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelanggan/profil'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#profil"></use>
-                            </svg>
-                        </span>
-                        <span class="pc-mtext"><span class="fa-solid fa-user"></span> Profil</span>
+                        <span class="pc-micon"></span>
+                        <span class="pc-mtext"><span class="ti ti-user"></span> Profil</span>
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
-                    <label data-i18n="Widget" class="fw-bold">Pelayanan Pemeriksaan</label>
-                    <i class="pc-micon">
-                        <svg class="pc-icon">
-                        <use xlink:href="#modul-pelayanan-pemeriksaan"></use>
-                        </svg>
-                    </i>
+                    <label class="fw-bold">Pelayanan</label>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelanggan/permintaan-pelanggan'); ?>" class="pc-link">
-                        <span class="pc-micon"></span>
-                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Permintaan</span>
+                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-mtext">Permintaan</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelanggan/permintaan-pemeriksaan'); ?>" class="pc-link">
-                        <span class="pc-micon"></span>
-                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Pemeriksaan</span>
+                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-mtext">Pemeriksaan</span>
                     </a>
                 </li>
                 <li class="pc-item d-none">
@@ -59,17 +46,12 @@
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
-                    <label data-i18n="Widget" class="fw-bold">Kumpulan file</label>
-                    <i class="pc-micon">
-                        <svg class="pc-icon">
-                        <use xlink:href="#kumpulan-file"></use>
-                        </svg>
-                    </i>
+                    <label class="fw-bold">File</label>
                 </li>
                 <li class="pc-item pc-hasmenu">
-                    <a href="#!" class="pc-link">
-                        <span class="pc-micon"></span>
-                        <span class="pc-mtext" data-i18n="Pelayanan"><span class="fa-solid fa-arrow-right"></span> Pelayanan</span>
+                    <a href="#" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-mtext">Pelayanan</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
@@ -87,8 +69,8 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon"></span>
-                        <span class="pc-mtext" data-i18n="booklet"><span class="fa-solid fa-arrow-right"></span> Booklet</span>
+                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-mtext" data-i18n="booklet">Booklet</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
                     <ul class="pc-submenu">
