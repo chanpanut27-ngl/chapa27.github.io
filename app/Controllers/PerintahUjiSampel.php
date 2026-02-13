@@ -2,12 +2,16 @@
 
 namespace App\Controllers;
 
+use App\Libraries\Ciqrcode as LibrariesCiqrcode;
+use App\Libraries\CiqrcodeLib;
 use App\Models\InstalasiModel;
 use App\Models\MapPerintahUjiSampelModel;
 use App\Models\PenanggungJawabPengantarModel;
 use App\Models\PengantarLabModel;
 use App\Models\PerintahUjiSampelModel;
+use Ciqrcode;
 use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\I18n\Time;
 
 class PerintahUjiSampel extends BaseController
 {
@@ -22,6 +26,9 @@ class PerintahUjiSampel extends BaseController
     protected $modelInstalasi;
     protected $modelPengantarLhu;
     protected $modelMpu;
+    protected $validation;
+    protected $time;
+    protected $today;
 
     public function __construct()
     {
@@ -32,14 +39,25 @@ class PerintahUjiSampel extends BaseController
         $this->modelInstalasi = new InstalasiModel();
         $this->modelPengantarLhu = new PengantarLabModel();
         $this->modelMpu = new MapPerintahUjiSampelModel();
+        $this->time = Time::now('Asia/Jakarta'); 
+        $this->today = $this->time->toDateTimeString();
+        $this->validation = \Config\Services::validation();
     }
 
     public function index()
     {
-        $data = [
-            'title' => 'Data ' . $this->title
-        ];
-        return view('Backend/Modul/Pelayanan/Perintah-uji/index', $data);
+
+        // $this->load->library('ciqrcode');
+        $ciq = new CiqrcodeLib();
+
+        header("Content-Type: image/png");
+        $params['data'] = 'This is a text to encode become QR Code';
+        $ciq->generate($params);
+
+        // $data = [
+        //     'title' => 'Data ' . $this->title
+        // ];
+        // return view('Backend/Modul/Pelayanan/Perintah-uji/index', $data);
     }
 
     /**
@@ -91,7 +109,7 @@ class PerintahUjiSampel extends BaseController
             ->where('id_kat_lab', $id_kat_lab)->first();
 
             // id pengantar lhu
-            $id_pengantar_lhu = $this->modelPengantarLhu->select('id')
+            $id_pengantar_lab = $this->modelPengantarLhu->select('id')
             ->where('kode_pengantar', $kode_pengantar)->first();
 
             if ($penanggung_jawab['id_kat_lab'] == 1) {
@@ -105,13 +123,13 @@ class PerintahUjiSampel extends BaseController
                 'id_instalasi' => $id_instalasi,
                 'instalasi' => $instalasi,
                 'kode_pengantar' => $kode_pengantar,
-                'id_pengantar_lhu' => $id_pengantar_lhu,
+                'id_pengantar_lab' => $id_pengantar_lab,
                 'tgl_terima_sampel' => $penanggung_jawab,
                 'items' => $_data
             ];
 
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/__add', $data)
+                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/__add1', $data)
             ];
             echo json_encode($msg);
 
@@ -126,6 +144,66 @@ class PerintahUjiSampel extends BaseController
      * @return ResponseInterface
      */
     public function create()
+    {
+        if ($this->request->isAJAX()) 
+        {
+            $valid = $this->validate([
+                'tgl_kirim_sampel' => [
+                    'label' => 'Tgl kirim sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'tgl_kirim_sampel' => $this->validation->getError('tgl_kirim_sampel'),
+                    ]
+                ];
+            } else {
+                $this->db->transStart();
+
+                $tb_uji_sampel = [
+                   'id_pengantar_lab' => $this->request->getVar('id_pengantar_lab'),
+                   'id_instalasi' => $this->request->getVar('id_instalasi'),
+                   'kode_pengantar' => $this->request->getVar('kode_pengantar'),
+                   'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
+                   'tgl_kirim_sampel' => $this->request->getVar('tgl_kirim_sampel'),
+                ];
+                $this->model->save($tb_uji_sampel);
+
+                // Mapp data 
+                $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+                
+                $count = count($id_jenis_sampel ?? []);
+                $new_id = $this->db->insertID();
+                for ($i=0; $i < $count; $i++) { 
+                    $map_data = [
+                        'id_map' =>  $new_id,
+                        'id_jenis_sampel' => $id_jenis_sampel[$i],
+                        'metode_uji' => $this->request->getVar('metode_uji'),
+                        'keterangan' => $this->request->getVar('keterangan'),
+                        'parameter_uji' => $this->request->getVar('parameter_uji'),
+                    ];
+                    $this->modelMpu->save($map_data);
+                }
+                $this->db->transComplete();
+
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+
+        } else {
+            exit('Not Process');
+        }
+    }
+
+    public function create1()
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
@@ -225,17 +303,15 @@ class PerintahUjiSampel extends BaseController
                 }
                 $db->transComplete();
 
-                if ($db->transStatus() === FALSE) {
-                    $msg = [
-                        'error' => 'error'
-                    ];
-                } else {
+                // if ($db->transStatus() === TRUE) {
+                  
                    $msg = [
                      'sukses' => 'Data berhasil disimpan'
                    ];
-                }
+                // }
+                echo json_encode($msg);
+
             }
-            echo json_encode($msg);
         } else {
             exit('Not Process');
         }
@@ -264,8 +340,8 @@ class PerintahUjiSampel extends BaseController
             ->where('kode_pengantar', $kode_pengantar)
             ->where('id_kat_lab', $id_kat_lab)->first();
 
-            // id pengantar lhu
-            $id_pengantar_lhu = $this->modelPengantarLhu->select('id')
+            // id pengantar lab
+            $id_pengantar_lab = $this->modelPengantarLhu->select('id')
             ->where('kode_pengantar', $kode_pengantar)->first();
 
             $cek_data = $this->model->where('kode_pengantar', $kode_pengantar)
@@ -281,13 +357,12 @@ class PerintahUjiSampel extends BaseController
             $search = $this->model->where('kode_pengantar', $kode_pengantar)
             ->where('id_instalasi', $id_instalasi)->first();
 
-
             $data = [
                 'title' => 'Edit ' . $this->title . ' ('.$kode_pengantar.')',
                 'id_instalasi' => $id_instalasi,
                 'instalasi' => $instalasi,
                 'kode_pengantar' => $kode_pengantar,
-                'id_pengantar_lhu' => $id_pengantar_lhu,
+                'id_pengantar_lab' => $id_pengantar_lab,
                 'tgl_terima_sampel' => $penanggung_jawab,
                 'items' => $_data,
                 'search' => $search,
@@ -295,7 +370,7 @@ class PerintahUjiSampel extends BaseController
             ];
 
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/_edit', $data)
+                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/__edit', $data)
             ];
             echo json_encode($msg);
 
@@ -524,7 +599,7 @@ class PerintahUjiSampel extends BaseController
             ];
             
 
-          return view('Backend/Modul/Pelayanan/Perintah-uji/_cetak', $data);
+          return view('Backend/Modul/Pelayanan/Perintah-uji/__cetak', $data);
 
     }
 

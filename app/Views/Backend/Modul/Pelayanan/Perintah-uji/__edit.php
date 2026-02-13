@@ -9,7 +9,7 @@
             <form action="<?= base_url('pelayanan/perintah-uji-sampel/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
-                <input type="hidden" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
+                <input type="hidden" name="id_pengantar_lab" value="<?= $id_pengantar_lab['id']; ?>">
                 <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
                 <input type="hidden" name="id_perintah_uji" value="<?= $id_perintah_uji; ?>">
                 <div class="modal-body">

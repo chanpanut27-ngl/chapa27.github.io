@@ -128,7 +128,7 @@ class PerintahUjiSampelModel extends Model
         JOIN master_peraturan ON master_peraturan.id = C.id_peraturan
         WHERE laboratorium_tujuan.kode_pengantar IN (SELECT pelayanan_sampel_lingkungan.kode_pengantar FROM pelayanan_sampel_lingkungan) 
         AND pelayanan_sampel_lingkungan.kode_pengantar = '".$param."'
-        GROUP BY id_jenis_sampel";
+        GROUP BY id_jenis_sampel ORDER BY kode_sampel ASC";
         $query = $db->query($sql)->getResultArray();
         return $query;
     }
@@ -151,7 +151,7 @@ class PerintahUjiSampelModel extends Model
         JOIN master_peraturan ON master_peraturan.id = C.id_peraturan
         WHERE laboratorium_tujuan.kode_pengantar IN (SELECT pelayanan_spesimen_penyakit.kode_pengantar FROM pelayanan_sampel_lingkungan) 
         AND pelayanan_spesimen_penyakit.kode_pengantar = '".$param."'
-        GROUP BY id_jenis_sampel";
+        GROUP BY id_jenis_sampel ORDER BY kode_sampel ASC";
         $query = $db->query($sql)->getResultArray();
         return $query;
     }

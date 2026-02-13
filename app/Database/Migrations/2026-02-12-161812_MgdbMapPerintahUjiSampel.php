@@ -17,20 +17,20 @@ class MgdbMapPerintahUjiSampel extends Migration
             ],
             'id_map' => [
                 'type'           => 'INT',
-                'constraint'     => 5
+                'constraint'     => 5,
             ],
             'id_jenis_sampel' => [
                 'type'           => 'INT',
-                'constraint'     => 5
+                'constraint'     => 5,
             ],
             'parameter_uji' => [
-                'type'      => 'TEXT'
+                'type'       => 'TEXT'
             ],
             'metode_uji' => [
-                'type' => 'TEXT'
+                'type'       => 'TEXT'
             ],
             'keterangan' => [
-                'type' => 'TEXT'
+                'type'       => 'TEXT'
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -67,6 +67,6 @@ class MgdbMapPerintahUjiSampel extends Migration
     public function down()
     {
         $this->forge->dropTable('map_perintah_uji_sampel');
-
+        
     }
 }
