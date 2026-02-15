@@ -4,7 +4,7 @@
         <div class="m-header kemkes-color2">
             <a href="<?= base_url('/') ?>" class="b-brand text-primary">
                 <!-- ========   Change your logo from here   ============ -->
-                <img src="<?= base_url('assets/images/logo-2.webp') ?>" class="img-fluid logo" alt="logo">
+                <img src="<?= base_url('assets/images/logo.webp') ?>" class="img-fluid logo" alt="logo">
             </a>
         </div>
         <div class="navbar-content">
