@@ -11,3 +11,9 @@ $routes->group('pelayanan/perintah-uji-sampel', function ($routes) {
 });
 
 
+// app/Config/Routes.php
+$routes->get('qrcode/(:any)', 'QrCodeController::generate/$1');
+// Or a default route:
+$routes->get('qrcode', 'QrCodeController::index');
+
+
