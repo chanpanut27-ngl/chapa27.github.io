@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Feb 2026 pada 20.36
+-- Waktu pembuatan: 15 Feb 2026 pada 21.37
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbs_bblkm_jkt_copy`
+-- Database: `dbs_bblkm_jkt`
 --
 
 -- --------------------------------------------------------
@@ -33,6 +33,14 @@ CREATE TABLE `auth_groups_users` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `auth_groups_users`
+--
+
+INSERT INTO `auth_groups_users` (`group_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 1, '2026-02-16 02:51:21', '2026-02-16 02:51:21'),
+(1, 2, '2026-02-16 02:56:35', '2026-02-16 03:02:23');
 
 --
 -- Indexes for dumped tables
