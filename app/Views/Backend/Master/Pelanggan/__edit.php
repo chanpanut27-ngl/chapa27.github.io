@@ -94,12 +94,15 @@
 </div>
 
 <script>
+
     $(document).ready(function() {
         var dateToday = new Date();
+       
         $("#tgl-ambil-sampel").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "",  inDate: dateToday
+                defaultDate: "+1",  
+                inDate: dateToday
             }
         );
 
