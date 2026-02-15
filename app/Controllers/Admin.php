@@ -16,9 +16,6 @@ class Admin extends BaseController
 
     public function index()
     {
-        if (!logged_in()) {
-            return base_url('login');
-        }
         $data['title'] = $this->title;
         return view('Backend/Layout/__home', $data);
     }

@@ -238,8 +238,8 @@ class PelangganMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'nama' => [
-                    'label' => 'Nama pelanggan',
+                'nama_pengirim' => [
+                    'label' => 'Nama pengirim',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -252,15 +252,29 @@ class PelangganMaster extends BaseController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'no_telp' => [
-                    'label' => 'No.Telp',
+                'instansi' => [
+                    'label' => 'Instansi',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'nama_pjb' => [
-                    'label' => 'Nama penanggung jawab',
+                'no_telp_pengirim' => [
+                    'label' => 'No.Telp/Hp pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_ambil_sampel' => [
+                    'label' => 'Tanggal pengambilan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'jam_ambil_sampel' => [
+                    'label' => 'Jam pengambilan sampel',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -271,20 +285,28 @@ class PelangganMaster extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama' => $this->validation->getError('nama'),
+                        'nama_pengirim' => $this->validation->getError('nama_pengirim'),
+                        'instansi' => $this->validation->getError('instansi'),
                         'alamat' => $this->validation->getError('alamat'),
-                        'no_telp' => $this->validation->getError('no_telp'),
-                        'nama_pjb' => $this->validation->getError('nama_pjb')
+                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
+                        'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
+                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
                     ]
                 ];
             } else {
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
-                    'nama' => $this->request->getVar('nama'),
+                    'nama_pengirim' => $this->request->getVar('nama_pengirim'),
+                    'instansi' => $this->request->getVar('instansi'),
                     'alamat' => $this->request->getVar('alamat'),
+                    'tgl_ambil_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel'))),
+                    'jam_ambil_sampel' => $this->request->getVar('jam_ambil_sampel'),
+                    'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
+                    'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
                     'no_telp' => $this->request->getVar('no_telp'),
-                    'nama_pjb' => $this->request->getVar('nama_pjb'),
-                    'is_active' => $this->request->getVar('is_active')
+                    'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
+                    'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
+                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
                 ];
                 $this->model->save($simpandata);
                 $msg = [

@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel" style="font-family: arial;"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/pelanggan/create-data'); ?>" class="form-data">
@@ -11,27 +11,27 @@
                 <input type="hidden" name="no_telp" value="0">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-pengirim" class="form-label h4">Nama pengirim</label>
+                        <label for="nama-pengirim" class="form-label h5">Nama pengirim</label>
                         <input type="text" name="nama_pengirim" class="form-control" id="nama-pengirim" autocomplete="off">
                         <div class="invalid-feedback errorNamaPengirim"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp-pengirim" class="form-label h4">No.Telp/Hp</label>
+                        <label for="no-telp-pengirim" class="form-label h5">No.Telp/Hp</label>
                         <input type="text" name="no_telp_pengirim" class="form-control" id="no-telp-pengirim" autocomplete="off">
                         <div class="invalid-feedback errorTelpPengirim"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="instansi" class="form-label h4">Instansi</label>
+                        <label for="instansi" class="form-label h5">Instansi</label>
                         <input type="text" name="instansi" id="instansi" class="form-control">
                         <div class="invalid-feedback errorInstansi"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="alamat" class="form-label h4">Alamat</label>
+                        <label for="alamat" class="form-label h5">Alamat</label>
                         <textarea name="alamat" id="alamat" class="form-control"></textarea>
                         <div class="invalid-feedback errorAlamat"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="" class="form-label h4">Spesimen/Sampel</label>
+                        <label for="" class="form-label h5">Spesimen/Sampel</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="spesimen_atau_sampel" value="Rujukan / Kiriman" id="flexRadioDefault1" checked>
                             <label class="form-check-label" for="flexRadioDefault1">
@@ -46,27 +46,27 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="petugas" class="form-label h4">Petugas ambil sampel/spesimen</label>
+                        <label for="petugas" class="form-label h5">Petugas ambil sampel/spesimen</label>
                         <input type="text" name="petugas_ambil_sampel" class="form-control" id="petugas" autocomplete="off">
                         <div class="invalid-feedback errorPetugas"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="tgl-ambil-sampel" class="form-label h4">Tanggal pengambilan sampel/spesimen</label>
-                        <input type="text" name="tgl_ambil_sampel" id="tgl-ambil-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
+                        <label for="tgl-ambil-sampel" class="form-label h5">Tanggal pengambilan sampel/spesimen</label>
+                        <input type="text" name="tgl_ambil_sampel" id="tgl-ambil-sampel" class="form-control" autocomplete="off">
                         <div class="invalid-feedback errorTglAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="jam-ambil-sampel" class="form-label h4">Jam pengambilan sampel/spesimen</label>
-                        <input type="time" name="jam_ambil_sampel" id="jam-ambil-sampel" class="form-control" autocomplete="off" placeholder="tgl-bln-thn">
+                        <label for="jam-ambil-sampel" class="form-label h5">Jam pengambilan sampel/spesimen</label>
+                        <input type="time" name="jam_ambil_sampel" id="jam-ambil-sampel" class="form-control" autocomplete="off">
                         <div class="invalid-feedback errorJamAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="lokasi-ambil-sampel" class="form-label h4">Lokasi pengambilan sampel/spesimen</label>
+                        <label for="lokasi-ambil-sampel" class="form-label h5">Lokasi pengambilan sampel/spesimen</label>
                         <input type="text" name="lokasi_ambil_sampel" class="form-control" id="lokasi-ambil-sampel" autocomplete="off">
                         <div class="invalid-feedback errorLokasiAmbilSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="keterangan-tambahan" class="form-label h4">Keterangan tambahan</label>
+                        <label for="keterangan-tambahan" class="form-label h5">Keterangan tambahan</label>
                         <textarea name="keterangan_tambahan" id="keterangan-tambahan" class="form-control"></textarea>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                     if (err) {
                         if (err.instansi) {
                             $('#instansi').addClass('is-invalid');
-                            $('.errorNamaPengirim').html(err.instansi);
+                            $('.errorInstansi').html(err.instansi);
                         } else {
                             $('#instansi').removeClass('is-invalid');
                             $('.errorInstansi').html('');
