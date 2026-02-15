@@ -2,16 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Libraries\Ciqrcode as LibrariesCiqrcode;
 use App\Libraries\CiqrcodeLib;
 use App\Models\InstalasiModel;
 use App\Models\MapPerintahUjiSampelModel;
 use App\Models\PenanggungJawabPengantarModel;
 use App\Models\PengantarLabModel;
 use App\Models\PerintahUjiSampelModel;
-use Ciqrcode;
 use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\I18n\Time;
 
 class PerintahUjiSampel extends BaseController
 {
@@ -26,9 +23,6 @@ class PerintahUjiSampel extends BaseController
     protected $modelInstalasi;
     protected $modelPengantarLhu;
     protected $modelMpu;
-    protected $validation;
-    protected $time;
-    protected $today;
 
     public function __construct()
     {
@@ -39,25 +33,15 @@ class PerintahUjiSampel extends BaseController
         $this->modelInstalasi = new InstalasiModel();
         $this->modelPengantarLhu = new PengantarLabModel();
         $this->modelMpu = new MapPerintahUjiSampelModel();
-        $this->time = Time::now('Asia/Jakarta'); 
-        $this->today = $this->time->toDateTimeString();
-        $this->validation = \Config\Services::validation();
     }
 
     public function index()
     {
 
-        // $this->load->library('ciqrcode');
-        $ciq = new CiqrcodeLib();
-
-        header("Content-Type: image/png");
-        $params['data'] = 'This is a text to encode become QR Code';
-        $ciq->generate($params);
-
-        // $data = [
-        //     'title' => 'Data ' . $this->title
-        // ];
-        // return view('Backend/Modul/Pelayanan/Perintah-uji/index', $data);
+        $data = [
+            'title' => 'Data ' . $this->title
+        ];
+        return view('Backend/Modul/Pelayanan/Perintah-uji/index', $data);
     }
 
     /**
