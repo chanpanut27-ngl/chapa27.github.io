@@ -2,7 +2,10 @@
 namespace App\Controllers;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use App\Models\EmployeeModel; // Asumsi ada model
+require __DIR__ . '/vendor/autoload.php';
+
+// Create new Spreadsheet object
+$spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
 use App\Models\InstalasiModel;
 
 class ExportController extends BaseController {
