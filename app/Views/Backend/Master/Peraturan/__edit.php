@@ -89,7 +89,7 @@
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success",
-                            timer: 3000,
+                            timer: 2000,
                             width: '300px',
                             padding: '1em'
                         }).then((result) => {
