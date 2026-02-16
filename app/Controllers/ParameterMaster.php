@@ -253,12 +253,14 @@ class ParameterMaster extends BaseController
     public function list_sampel()
     {
         if ($this->request->isAJAX()) {
+           
             $id_lab = $this->request->getVar('id_lab');
             $result = $this->m_jenis_sampel->where('id_lab', $id_lab)->findAll();
             $data = null;
             foreach ($result as $rows) {
                 $data[] = '<option value=></option><option value="'.$rows['id'].'">'.$rows['jenis_sampel'].' '.$rows['keterangan'].'</option>';
             }
+
             $msg = '';
             $msg = ['data' => $data];
 
@@ -277,7 +279,8 @@ class ParameterMaster extends BaseController
             $peraturan = new PeraturanModel();
             $result = $peraturan->find($id_peraturan);
             $data = $result['peraturan'];
-            $msg = ['data' => $data];
+            $ket_peraturan = $result['keterangan'];
+            $msg = ['data' => $data, 'ket_peraturan' => $ket_peraturan];
             echo json_encode($msg);
         } else {
             exit('Not Process');

@@ -38,6 +38,11 @@
                         <div class="invalid-feedback errorIdPeraturan"></div>
                     </div>
                     <div class="mb-3">
+                        <label for="ket-peraturan" class="form-label h5">Keterangan</label>
+                        <textarea id="ket-peraturan" class="form-control"></textarea>
+                        <div class="invalid-feedback errorKetPeraturan"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="jumlah-sampel" class="form-label h5">Jumlah sampel</label>
                         <input type="number" name="jumlah_sampel" id="jumlah-sampel" class="form-control">
                         <div class="invalid-feedback errorJumlahSampel"></div>
@@ -108,6 +113,7 @@
                 cache: false,
                 success: function(response) {
                     $("#id-peraturan").html(response.data).show()
+                    $("#ket-peraturan").html(response.ket_peraturan).show()
                     $(".list-parameter").html(response.parameter).show()
                 },
                 error: function(xhr, ajaxOptions, thrownError) {

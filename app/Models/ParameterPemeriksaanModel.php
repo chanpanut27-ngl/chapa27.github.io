@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 
 class ParameterPemeriksaanModel extends Model
 {
-    protected $table            = 'parameter_pemeriksaan';
+    protected $table            = 'master_parameter';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';

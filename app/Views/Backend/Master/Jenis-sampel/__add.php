@@ -18,7 +18,7 @@
                             <?php 
                             foreach ($masterPeraturan as $row) :
                             ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['peraturan']; ?></option>
+                            <option value="<?= $row['id'] ?>"><?= $row['peraturan']; ?> <?= $row['keterangan'] ?></option>
                             <?php endforeach;?>
                         </select>
                         <div class="invalid-feedback errorIdPeraturan"></div>

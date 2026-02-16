@@ -48,21 +48,27 @@ class CariData extends BaseController
             $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
             
             $builder = $this->db->table('master_jenis_sampel mjs');
-            $builder->select('id_peraturan,peraturan');
+            $builder->select('id_peraturan,peraturan,mp.keterangan as ket_peraturan');
             $builder->join('master_peraturan mp', 'mp.id=mjs.id_peraturan');
             $builder->where('mjs.id', $id_jenis_sampel);
             $result = $builder->get()->getResultArray();
 
+            $data[] = '';
+            $ket_peraturan = '';
+            
             foreach ($result as $rows) {
                 $data[] = '<option value="'.$rows['id_peraturan'].'">'.$rows['peraturan'].'</option>';  
+                $ket_peraturan = $rows['ket_peraturan'];
             }
+
             $parameter = [
                 'items' => $this->m_parameter->where('id_jenis_sampel', $id_jenis_sampel)->where('is_active', 1)->findAll(),
             ];
-            
+          
             $msg = [
                 'data' => $data, 
-                'parameter' => view('Data/__parameter', $parameter)
+                'parameter' => view('Data/__parameter', $parameter),
+                'ket_peraturan' => $ket_peraturan
             ];
 
             echo json_encode($msg);

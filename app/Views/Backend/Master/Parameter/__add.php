@@ -34,6 +34,11 @@
                         <input type="text" class="form-control fw-bold" id="peraturan" readonly>
                     </div>
                     <div class="mb-3">
+                        <label for="ket-peraturan" class="form-label h5">Keterangan</label>
+                        <textarea id="ket-peraturan" class="form-control"></textarea>
+                        <div class="invalid-feedback errorKetPeraturan"></div>
+                    </div>
+                    <div class="mb-3">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -183,6 +188,7 @@
                 cache: false,
                 success: function(response) {
                     $("#peraturan").val(response.data)
+                    $("#ket-peraturan").html(response.ket_peraturan).show()
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
