@@ -33,14 +33,14 @@
             <div class="col-sm-12">
                 <div class="card mb-3">
                     <div class="card-header p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
+                        <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh" title="refresh">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
-                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
+                                <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
                             </button>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                 },
                 complete: function() {
                     $('.btn-tambah').removeAttr('disable');
-                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                    $('.btn-tambah').html('<i class="ti ti-square-plus"></i> Tambah Data');
                 },
                 success: function(response) {
                     $(".view-modal").html(response.data).show();

@@ -207,7 +207,14 @@
                             Swal.fire({
                                 title: "Gagal",
                                 text: response.error,
-                                icon: "error"
+                                icon: "error",
+                                timer: 2000,
+                                width: '300px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    listData();
+                                }
                             });
                         }
                         

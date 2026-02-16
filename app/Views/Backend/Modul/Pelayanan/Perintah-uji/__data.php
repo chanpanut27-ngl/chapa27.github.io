@@ -30,19 +30,19 @@
                         if ($fpush) {
                             ?>
                             <button type="button" class="btn btn-warning btn-sm rounded btn-edit" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
-                                <span class="pc-micon"><span class="fa-solid fa-edit"></span></span>
+                                <span class="pc-micon"><i class="ti ti-edit"></i></span>
                             </button>
                             <button class="btn btn-info rounded btn-sm" onclick="return clickBtn('<?= strtolower($row['kode_pengantar']).'-'.$row['id_kat_lab'].'-'.$row['id_instalasi'] ?>')" title="Lihat">
-                                <span class="pc-micon"><i class="fa-solid fa-eye"></i></span>
+                                <span class="pc-micon"><i class="ti ti-eye"></i></span>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm rounded btn-delete" data-kode="<?= $row['kode_pengantar'];?>" data-instalasi="<?= $row['id_instalasi'];?>" data-id="<?= $row['id_instalasi']; ?>">
-                                <span class="pc-micon"><span class="fa-solid fa-trash-alt"></span></span>
+                                <span class="pc-micon"><i class="ti ti-trash"></i></span>
                             </button>
                             <?php
                         } else {
                             ?>
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
-                                <span class="pc-micon"><span class="fa-solid fa-plus-circle"></span></span>
+                                <span class="pc-micon"><i class="ti ti-square-plus"></i></span>
                             </button>
                             <?php
                         }

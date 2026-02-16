@@ -197,7 +197,14 @@
                         Swal.fire({
                             title: "Berhasil",
                             text: response.sukses,
-                            icon: "success"
+                            icon: "success",
+                            timer: 2000,
+                            width: '300px',
+                            padding: '1em'
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                listData();
+                            }
                         });
 
                         $("#exampleModal").modal('hide');

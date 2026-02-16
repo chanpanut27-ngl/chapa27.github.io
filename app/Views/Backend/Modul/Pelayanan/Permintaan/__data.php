@@ -25,7 +25,7 @@
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                          <a href="<?= base_url('pelayanan-sampel/permintaan-pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-success rounded btn-sm" title="Tambah pemeriksaan">
-                            <span class="fa-solid fa-arrow-circle-right"></span>
+                            <i class="ti ti-arrow-right-circle"></i>
                         </a>
                     </div>
                 </td>

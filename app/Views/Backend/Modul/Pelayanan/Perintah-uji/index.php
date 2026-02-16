@@ -35,7 +35,7 @@
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh" title="refresh">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
                         </div>
                     </div>
