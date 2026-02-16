@@ -16,7 +16,7 @@ $(document).ready(function () {
             success: function(response) 
             {
                 $(".view-data").html(response.data);
-                $(".btn-refresh").html('<span class="fa-solid fa-refresh"></span>');
+                $(".btn-refresh").html('<i class="ti ti-refresh"></i>');
             },
             
         })
@@ -30,7 +30,7 @@ $(document).ready(function () {
             },
             success: function() {
                 listData();
-                $('.btn-refresh-data').html('<span class="fa-solid fa-refresh"></span>');
+                $('.btn-refresh-data').html('<i class="ti ti-refresh"></i>');
             }
         })
     })
