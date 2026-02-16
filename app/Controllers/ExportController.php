@@ -1,8 +1,8 @@
 <?php
 namespace App\Controllers;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
+// use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-require __DIR__ . '/vendor/autoload.php';
+// require __DIR__ . '/vendor/autoload.php';
 
 // Create new Spreadsheet object
 $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
