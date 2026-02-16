@@ -18,7 +18,7 @@
                             <?php 
                             foreach ($masterPeraturan as $row) :
                             ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['peraturan']; ?> <?= $row['keterangan'] ?></option>
+                            <option value="<?= $row['id'] ?>"><?= $row['peraturan']; ?></option>
                             <?php endforeach;?>
                         </select>
                         <div class="invalid-feedback errorIdPeraturan"></div>
@@ -122,7 +122,13 @@
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success",
-                            timer: 3000
+                            timer: 2000,
+                            width: '300px',
+                            padding: '1em'
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                listData();
+                            }
                         });
 
                         $("#exampleModal").modal('hide');
