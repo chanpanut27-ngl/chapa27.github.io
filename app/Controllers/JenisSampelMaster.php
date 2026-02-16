@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\ParameterModel;
 use App\Models\PeraturanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -18,6 +19,7 @@ class JenisSampelMaster extends BaseController
     protected $model;
     protected $m_lab;
     protected $m_peraturan;
+    protected $m_parameter;
 
 
     public function __construct()
@@ -26,6 +28,7 @@ class JenisSampelMaster extends BaseController
         $this->model = new JenisSampelModel();
         $this->m_lab = new LaboratoriumModel();
         $this->m_peraturan = new PeraturanModel();
+        $this->m_parameter = new ParameterModel();
     }
 
     public function index()
@@ -287,7 +290,7 @@ class JenisSampelMaster extends BaseController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Detail Parameter',
-                // 'items' => $this->modelParameter->where('id_jenis_sampel', $id)->find(),
+                'items' => $this->m_parameter->where('id_jenis_sampel', $id)->find(),
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Jenis-sampel/__parameter', $data)

@@ -24,7 +24,7 @@
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-info btn-sm rounded btn-show-parameter" onclick="showParameter(<?= $row['id'] ?>)" title="Detail Parameter">
+                        <button type="button" class="btn btn-info btn-sm rounded btn-show-parameter-<?= $row['id'] ?>" onclick="showParameter(<?= $row['id'] ?>)" title="Detail Parameter">
                             <i class="ti ti-file"></i>
                         </button>
                         <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
@@ -73,12 +73,12 @@
             dataType: 'json',
             cache: false,
             beforeSend: function() {
-                $('.btn-show-parameter').attr('disable', 'disabled');
-                $('.btn-show-parameter').html('<span class="fa fa-spin fa-spinner"></span>');
+                $('.btn-show-parameter-'+id).attr('disable', 'disabled');
+                $('.btn-show-parameter-'+id).html('<span class="fa fa-spin fa-spinner"></span>');
             },
             complete: function() {
-                $('.btn-show-parameter').removeAttr('disable');
-                $('.btn-show-parameter').html('<span class="fa-solid fa-eye"></span>');
+                $('.btn-show-parameter-'+id).removeAttr('disable');
+                $('.btn-show-parameter-'+id).html('<i class="ti ti-file"></i>');
             },
             success: function(response) {
                 if (response.sukses) {

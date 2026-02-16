@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-eye"></span> <?= $title; ?></h3>
+                <h3 class="modal-title" id="exampleModalLabel"><i class="ti ti-file"></i> <?= $title; ?></h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -20,9 +20,9 @@
                         <?php $no=1; foreach ($items as $row) : ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $row['parameter']; ?></td>
-                            <td><?= $row['metode']; ?></td>
-                            <td><?= number_to_currency($row['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
+                            <td><?= $row['parameter'] ?></td>
+                            <td><?= $row['metode'] ?></td>
+                            <td style="text-align: right;"><?= number_to_currency($row['harga_per_titik'], 'IDR', 'ID', 0) ?></td>
                         </tr>
                         <?php endforeach;?>
                     </tbody>
