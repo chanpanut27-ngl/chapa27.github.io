@@ -60,7 +60,7 @@
                                         <input type="number" name="harga_per_titik[]" class="form-control" required>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-success btn-sm rounded add-multi-insert"><span class="fa-solid fa-plus"></span></button>
+                                        <button type="button" class="btn btn-success btn-sm rounded add-multi-insert"><i class="ti ti-plus"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -97,7 +97,7 @@
                                 <input type="number" name="harga_per_titik[]" id="harga-per-titik" class="form-control" required>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm rounded delete-rows"><span class="fa-solid fa-close"></span></button>
+                                <button type="button" class="btn btn-danger btn-sm rounded delete-rows">x</button>
                             </td>
                         </tr>`;
             $(".form-multi-insert").append(html);
@@ -146,7 +146,13 @@
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success",
-                            timer: 3000
+                            timer: 2000,
+                            width: '300px',
+                            padding: '1em'
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                listData();
+                            }
                         });
 
                         $("#exampleModal").modal('hide');
