@@ -63,5 +63,7 @@ require __DIR__ . '/Routes/__lab__tujuan.php';
 require __DIR__ . '/Routes/__proses__pengantar__lab.php';
 /* Perintah uji sampel */
 require __DIR__ . '/Routes/__perintah__uji__sampel.php';
+/* Export */
+require __DIR__ . '/Routes/__export.php';
 
 

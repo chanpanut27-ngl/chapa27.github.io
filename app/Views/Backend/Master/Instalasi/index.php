@@ -32,6 +32,9 @@
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
+                            <a href="<?= site_url('export-excel-instalasi') ?>" class="btn btn-info btn-sm rounded btn-export-excel">
+                                <span class="pc-micon">Export excel</span>
+                            </a>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
                                 <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
