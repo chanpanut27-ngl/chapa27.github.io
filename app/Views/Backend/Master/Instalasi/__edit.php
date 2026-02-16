@@ -57,7 +57,7 @@
                 },
                 complete: function() {
                     $('.btn-ubah').removeAttr('disable');
-                    $('.btn-ubah').html('Ubah');
+                    $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
                 },
                 success: function(response) {
                     if (response.error) {
@@ -73,7 +73,7 @@
                             title: "Berhasil",
                             text: response.sukses,
                             icon: "success",
-                            timer: 3000,
+                            timer: 2000,
                             width: '300px',
                             padding: '1em'
                         }).then((result) => {
