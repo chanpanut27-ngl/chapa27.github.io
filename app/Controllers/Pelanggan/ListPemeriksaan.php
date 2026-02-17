@@ -143,6 +143,8 @@ class ListPemeriksaan extends BaseController
                 $ket_peraturan = '';
 
                 $this->db->transStart();
+                $builder = $this->db->table('permintaan_pemeriksaan');
+                $builder2 = $this->db->table('permintaan_sampel');
                
                 $id_parameter = $this->request->getVar('id_parameter');
                 $id_pelanggan = $this->request->getVar('id_pelanggan');
@@ -160,7 +162,9 @@ class ListPemeriksaan extends BaseController
                         'id_jenis_sampel' => $id_jenis_sampel,
                         'id_parameter' => $id_parameter[$i],
                     ];
-                    $this->model->insert($save_pemeriksaan);
+                    
+                    $builder->insert($save_pemeriksaan);
+
                 }
 
                 $jumlah_parameter = $this->request->getVar('jumlah_parameter');
@@ -179,7 +183,7 @@ class ListPemeriksaan extends BaseController
                     'ket_peraturan' => $ket_peraturan,
                 ];
 
-                $this->m_permintaan_sampel->insert($save_permintaan_sampel);
+                $builder2->insert($save_permintaan_sampel);
 
                 $this->db->transComplete();
 
@@ -245,6 +249,10 @@ class ListPemeriksaan extends BaseController
             if ($jumlah == 1) {
                 $this->m_permintaan_sampel->where('id_jenis_sampel', $id_jenis_sampel)->delete();
             }
+            $this->m_permintaan_sampel->where('id_pelanggan', $id_pelanggan)->
+            where('id_jenis_sampel', $id_jenis_sampel)->
+            set('ket_peraturan', 'Tidak Lengkap')->update();
+
             $msg = [
                 'sukses' => 'Data berhasil di hapus'
             ];
