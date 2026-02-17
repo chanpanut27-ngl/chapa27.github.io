@@ -139,47 +139,58 @@ class ListPemeriksaan extends BaseController
                     ]
                 ];
             } else {
-                $db = \Config\Database::connect();
-                $db->transStart();
+                $msg = '';
+                $ket_peraturan = '';
+
+                $this->db->transStart();
+               
                 $id_parameter = $this->request->getVar('id_parameter');
+                $id_pelanggan = $this->request->getVar('id_pelanggan');
+                $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+                $no_reg = $this->request->getVar('no_reg');
+
                 $count = count($id_parameter ?? []);
                 
                 for ($i=0; $i < $count; $i++) { 
-                    $save = [
-                        'id_pelanggan' => $this->request->getVar('id_pelanggan'),
-                        'no_reg' => $this->request->getVar('no_reg'),
+
+                    $save_pemeriksaan = [
+                        'id_pelanggan' => $id_pelanggan,
+                        'no_reg' => $no_reg,
                         'id_lab' => $this->request->getVar('id_lab'),
-                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                        'id_jenis_sampel' => $id_jenis_sampel,
                         'id_parameter' => $id_parameter[$i],
                     ];
-                    $this->model->insert($save);
+                    $this->model->insert($save_pemeriksaan);
                 }
+
                 $jumlah_parameter = $this->request->getVar('jumlah_parameter');
+
                 if ($count < $jumlah_parameter) {
                     $ket_peraturan = "Tidak lengkap";
                 }else{
                     $ket_peraturan = "Lengkap";
                 }
-                $id_pelanggan = $this->request->getVar('id_pelanggan');
-                $no_reg = $this->request->getVar('no_reg');
-                  $simpan_permintaan_sampel = [
-                        'id_pelanggan' => $id_pelanggan,
-                        'no_reg' => $no_reg,
-                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
-                        'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
-                        'ket_peraturan' => $ket_peraturan,
-                    ];
-                    $this->m_permintaan_sampel->insert($simpan_permintaan_sampel);
-                $db->transComplete();
+
+                $save_permintaan_sampel = [
+                    'id_pelanggan' => $id_pelanggan,
+                    'no_reg' => $no_reg,
+                    'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                    'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
+                    'ket_peraturan' => $ket_peraturan,
+                ];
+
+                $this->m_permintaan_sampel->insert($save_permintaan_sampel);
+
+                $this->db->transComplete();
 
                 if ($this->db->transStatus() === FALSE) {
                     $msg = [
                         'error' => 'Data gagal disimpan'
                     ];
                 } else {
-                   $msg = [
+                    $msg = [
                         'sukses' => 'Data berhasil disimpan'
-                    ];
+                    ]; 
                 }
             }
             echo json_encode($msg);

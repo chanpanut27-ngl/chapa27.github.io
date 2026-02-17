@@ -162,6 +162,7 @@ class ListPemeriksaan extends BaseController
                 }
                 $id_pelanggan = $this->request->getVar('id_pelanggan');
                 $no_reg = $this->request->getVar('no_reg');
+
                   $simpan_permintaan_sampel = [
                         'id_pelanggan' => $id_pelanggan,
                         'no_reg' => $no_reg,
@@ -170,17 +171,13 @@ class ListPemeriksaan extends BaseController
                         'ket_peraturan' => $ket_peraturan,
                     ];
                     $this->m_permintaan_sampel->insert($simpan_permintaan_sampel);
-                $db->transComplete();
+                  $db->transComplete();
 
-                if ($this->db->transStatus() === FALSE) {
+                if ($this->db->transStatus() === TRUE) {
                     $msg = [
-                        'error' => 'Data gagal disimpan'
-                    ];
-                } else {
-                   $msg = [
                         'sukses' => 'Data berhasil disimpan'
                     ];
-                }
+                } 
             }
             echo json_encode($msg);
         } else {

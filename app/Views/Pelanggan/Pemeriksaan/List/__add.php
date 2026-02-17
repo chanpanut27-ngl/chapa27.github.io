@@ -164,6 +164,13 @@
                             $('#id-jenis-sampel').removeClass('is-invalid');
                             $('.errorIdJenisSampel').html('');
                         }
+                        if (err) {
+                            Swal.fire({
+                                title: "Gagal",
+                                text: response.error,
+                                icon: "error"
+                            });
+                        }
                     } else {
                         Swal.fire({
                             title: "Berhasil",
