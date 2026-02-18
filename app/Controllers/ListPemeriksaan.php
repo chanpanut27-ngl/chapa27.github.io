@@ -39,12 +39,11 @@ class ListPemeriksaan extends BaseController
 
     public function index($id = null)
     {
-        $profil = $this->m_profil->get_data();
-        $permintaan = $this->m_permintaan->first($id);
+    
         $data = [
             'title' => 'Data ' . $this->title,
-            'profil' => $profil,
-            'items' => $permintaan
+            'profil' => $this->m_profil->get_data(),
+            'items' => $this->m_permintaan->where('no_reg', $id)->first()
         ];
         return view('Backend/Modul/Pelayanan/Pemeriksaan/List/index', $data);
     }
