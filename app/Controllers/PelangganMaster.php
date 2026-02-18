@@ -149,20 +149,20 @@ class PelangganMaster extends BaseController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'tgl_ambil_sampel' => [
-                    'label' => 'Tanggal pengambilan sampel',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ],
-                'jam_ambil_sampel' => [
-                    'label' => 'Jam pengambilan sampel',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ]
+                // 'tgl_ambil_sampel' => [
+                //     'label' => 'Tanggal pengambilan sampel',
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => '{field} tidak boleh kosong'
+                //     ]
+                // ],
+                // 'jam_ambil_sampel' => [
+                //     'label' => 'Jam pengambilan sampel',
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => '{field} tidak boleh kosong'
+                //     ]
+                // ]
             ]);
 
             if (!$valid) {
@@ -172,8 +172,8 @@ class PelangganMaster extends BaseController
                         'instansi' => $this->validation->getError('instansi'),
                         'alamat' => $this->validation->getError('alamat'),
                         'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
-                        'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
-                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
+                        // 'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
+                        // 'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
                     ]
                 ];
             } else {
@@ -183,14 +183,14 @@ class PelangganMaster extends BaseController
                     'nama_pengirim' => $this->request->getVar('nama_pengirim'),
                     'instansi' => $this->request->getVar('instansi'),
                     'alamat' => $this->request->getVar('alamat'),
-                    'tgl_ambil_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel'))),
-                    'jam_ambil_sampel' => $this->request->getVar('jam_ambil_sampel'),
-                    'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
-                    'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
-                    'no_telp' => $this->request->getVar('no_telp'),
                     'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
-                    'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
-                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
+                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel'),
+                    // 'tgl_ambil_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel'))),
+                    // 'jam_ambil_sampel' => $this->request->getVar('jam_ambil_sampel'),
+                    // 'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
+                    // 'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
+                    // 'no_telp' => $this->request->getVar('no_telp'),
+                    // 'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
                 ];
                 $this->model->insert($simpandata);
                 $msg = [
@@ -266,20 +266,20 @@ class PelangganMaster extends BaseController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'tgl_ambil_sampel' => [
-                    'label' => 'Tanggal pengambilan sampel',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ],
-                'jam_ambil_sampel' => [
-                    'label' => 'Jam pengambilan sampel',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ]
+                // 'tgl_ambil_sampel' => [
+                //     'label' => 'Tanggal pengambilan sampel',
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => '{field} tidak boleh kosong'
+                //     ]
+                // ],
+                // 'jam_ambil_sampel' => [
+                //     'label' => 'Jam pengambilan sampel',
+                //     'rules' => 'required',
+                //     'errors' => [
+                //         'required' => '{field} tidak boleh kosong'
+                //     ]
+                // ]
             ]);
 
             if (!$valid) {
@@ -289,8 +289,8 @@ class PelangganMaster extends BaseController
                         'instansi' => $this->validation->getError('instansi'),
                         'alamat' => $this->validation->getError('alamat'),
                         'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
-                        'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
-                        'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
+                        // 'tgl_ambil_sampel' => $this->validation->getError('tgl_ambil_sampel'),
+                        // 'jam_ambil_sampel' => $this->validation->getError('jam_ambil_sampel')
                     ]
                 ];
             } else {
@@ -299,14 +299,16 @@ class PelangganMaster extends BaseController
                     'nama_pengirim' => $this->request->getVar('nama_pengirim'),
                     'instansi' => $this->request->getVar('instansi'),
                     'alamat' => $this->request->getVar('alamat'),
-                    'tgl_ambil_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel'))),
-                    'jam_ambil_sampel' => $this->request->getVar('jam_ambil_sampel'),
-                    'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
-                    'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
-                    'no_telp' => $this->request->getVar('no_telp'),
                     'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
-                    'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
-                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
+                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel'),
+                    'is_active' => $this->request->getVar('is_active'),
+                    // 'lokasi_ambil_sampel' => $this->request->getVar('lokasi_ambil_sampel'),
+                    // 'petugas_ambil_sampel' => $this->request->getVar('petugas_ambil_sampel'),
+                    // 'no_telp' => $this->request->getVar('no_telp'),
+                    // 'keterangan_tambahan' => $this->request->getVar('keterangan_tambahan'),
+                    // 'tgl_ambil_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_ambil_sampel'))),
+                    // 'jam_ambil_sampel' => $this->request->getVar('jam_ambil_sampel'),
+                    
                 ];
                 $this->model->save($simpandata);
                 $msg = [

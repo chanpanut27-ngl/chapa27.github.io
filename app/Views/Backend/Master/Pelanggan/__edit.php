@@ -16,56 +16,56 @@
                         <div class="invalid-feedback errorNamaPengirim"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp-pengirim" class="form-label h5">No.Telp/Hp</label>
+                        <label for="no-telp-pengirim" class="form-label h5">No.Telp/Hp Pengirim</label>
                         <input type="text" name="no_telp_pengirim" value="<?= $items['no_telp_pengirim'] ?>" class="form-control" id="no-telp-pengirim" autocomplete="off">
                         <div class="invalid-feedback errorTelpPengirim"></div>
                     </div>
                     <div class="mb-3">
                         <label for="instansi" class="form-label h5">Instansi</label>
-                        <input type="text" name="instansi" id="instansi" class="form-control">
+                        <input type="text" name="instansi" value="<?= $items['instansi'] ?>" id="instansi" class="form-control">
                         <div class="invalid-feedback errorInstansi"></div>
                     </div>
                     <div class="mb-3">
                         <label for="alamat" class="form-label h5">Alamat</label>
-                        <textarea name="alamat" id="alamat" class="form-control"></textarea>
+                        <textarea name="alamat" id="alamat" class="form-control"><?= $items['alamat'] ?></textarea>
                         <div class="invalid-feedback errorAlamat"></div>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label h5">Spesimen/Sampel</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="spesimen_atau_sampel" value="Rujukan / Kiriman" id="flexRadioDefault1" checked>
+                            <input class="form-check-input" type="radio" name="spesimen_atau_sampel" value="Rujukan / Kiriman" id="flexRadioDefault1" <?= $items['spesimen_atau_sampel'] == 'Rujukan / Kiriman' ? 'checked' : '' ?>>
                             <label class="form-check-label" for="flexRadioDefault1">
                                 Rujukan / Kiriman
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="spesimen_atau_sampel" value="Diambil oleh Petugas BBLKM Jakarta" id="flexRadioDefault2">
+                            <input class="form-check-input" type="radio" name="spesimen_atau_sampel" value="Diambil oleh Petugas BBLKM Jakarta" id="flexRadioDefault2" <?= $items['spesimen_atau_sampel'] == 'Diambil oleh Petugas BBLKM Jakarta' ? 'checked' : '' ?>>
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Diambil oleh Petugas BBLKM Jakarta
                             </label>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="petugas" class="form-label h5">Petugas ambil sampel/spesimen</label>
                         <input type="text" name="petugas_ambil_sampel" class="form-control" id="petugas" autocomplete="off">
                         <div class="invalid-feedback errorPetugas"></div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="tgl-ambil-sampel" class="form-label h5">Tanggal pengambilan sampel/spesimen</label>
                         <input type="text" name="tgl_ambil_sampel" id="tgl-ambil-sampel" class="form-control" autocomplete="off">
                         <div class="invalid-feedback errorTglAmbilSampel"></div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="jam-ambil-sampel" class="form-label h5">Jam pengambilan sampel/spesimen</label>
                         <input type="time" name="jam_ambil_sampel" id="jam-ambil-sampel" class="form-control" autocomplete="off">
                         <div class="invalid-feedback errorJamAmbilSampel"></div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="lokasi-ambil-sampel" class="form-label h5">Lokasi pengambilan sampel/spesimen</label>
                         <input type="text" name="lokasi_ambil_sampel" class="form-control" id="lokasi-ambil-sampel" autocomplete="off">
                         <div class="invalid-feedback errorLokasiAmbilSampel"></div>
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 d-none">
                         <label for="keterangan-tambahan" class="form-label h5">Keterangan tambahan</label>
                         <textarea name="keterangan_tambahan" id="keterangan-tambahan" class="form-control"></textarea>
                     </div>
@@ -153,20 +153,20 @@
                             $('#no-telp-pengirim').removeClass('is-invalid');
                             $('.errorTelpPengirim').html('');
                         }
-                        if (err.tgl_ambil_sampel) {
-                            $('#tgl-ambil-sampel').addClass('is-invalid');
-                            $('.errorTglAmbilSampel').html(err.tgl_ambil_sampel);
-                        } else {
-                            $('#tgl-ambil-sampel').removeClass('is-invalid');
-                            $('.errorTglAmbilSampel').html('');
-                        }
-                        if (err.jam_ambil_sampel) {
-                            $('#jam-ambil-sampel').addClass('is-invalid');
-                            $('.errorJamAmbilSampel').html(err.jam_ambil_sampel);
-                        } else {
-                            $('#jam-ambil-sampel').removeClass('is-invalid');
-                            $('.errorJamAmbilSampel').html('');
-                        }
+                        // if (err.tgl_ambil_sampel) {
+                        //     $('#tgl-ambil-sampel').addClass('is-invalid');
+                        //     $('.errorTglAmbilSampel').html(err.tgl_ambil_sampel);
+                        // } else {
+                        //     $('#tgl-ambil-sampel').removeClass('is-invalid');
+                        //     $('.errorTglAmbilSampel').html('');
+                        // }
+                        // if (err.jam_ambil_sampel) {
+                        //     $('#jam-ambil-sampel').addClass('is-invalid');
+                        //     $('.errorJamAmbilSampel').html(err.jam_ambil_sampel);
+                        // } else {
+                        //     $('#jam-ambil-sampel').removeClass('is-invalid');
+                        //     $('.errorJamAmbilSampel').html('');
+                        // }
                     } else {
                         Swal.fire({
                             title: "Berhasil",
