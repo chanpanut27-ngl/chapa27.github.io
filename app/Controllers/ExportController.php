@@ -44,8 +44,6 @@ class ExportController extends BaseController {
 
     public function xls_instalasi() 
     {
-        // require '../prola.bblkmjakarta.org/vendor/autoload.php';
-        require '/prola.bblkmjakarta.org/vendor/autoload.php';
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
