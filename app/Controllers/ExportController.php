@@ -3,7 +3,7 @@ namespace App\Controllers;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Models\InstalasiModel;
-
+require __DIR__ . '/vendor/autoload.php';
 class ExportController extends BaseController {
     
     public function header($fileName)
@@ -45,7 +45,7 @@ class ExportController extends BaseController {
 
     public function xls_instalasi() 
     {
-        require '../../vendor/autoload.php';
+        require __DIR__ . '/vendor/autoload.php';
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
