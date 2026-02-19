@@ -24,7 +24,7 @@
                                     $selected = '';
                                 }
                             ?>
-                            <option value="<?= $p['id'] ?>" <?= $selected; ?>><?= $p['peraturan'] ?></option>
+                            <option value="<?= $p['id'] ?>" <?= $selected; ?>><?= $p['peraturan'] ?> <?= $p['keterangan'] ?></option>
                             <?php endforeach;?>
                         </select>
                         <div class="invalid-feedback errorIdPeraturan"></div>

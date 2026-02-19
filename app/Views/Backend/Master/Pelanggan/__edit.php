@@ -70,7 +70,7 @@
                         <textarea name="keterangan_tambahan" id="keterangan-tambahan" class="form-control"></textarea>
                     </div>
                      <div class="mb-3">
-                        <label for="status" class="form-label h5" style="font-family: calibri;">Status</label>
+                        <label for="status" class="form-label h5" style="font-family: calibri;">Is_active</label>
                         <select name="is_active" class="form-select" id="status" aria-label="Default select example">
                             <?php
                             $status = [
