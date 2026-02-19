@@ -3,7 +3,6 @@ namespace App\Controllers;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Models\InstalasiModel;
-require __DIR__ . '/vendor/autoload.php';
 class ExportController extends BaseController {
     
     public function header($fileName)
