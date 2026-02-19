@@ -44,7 +44,7 @@ class ExportController extends BaseController {
 
     public function xls_instalasi() 
     {
-        require '/vendor/autoload.php';
+        $spreadsheet = new \PhpOffice\PhpSpreadsheet\Spreadsheet();
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
 
