@@ -99,7 +99,7 @@ class KeteranganPengantar extends BaseController
 
             $simpandata = [
                 'kode_pengantar' => $this->request->getVar('kode_pengantar'),
-                'paramater_tidak_dapat_di_uji' => $this->request->getVar('paramater_tidak_dapat_di_uji'),
+                'parameter_tidak_dapat_di_uji' => $this->request->getVar('parameter_tidak_dapat_di_uji'),
                 'sub_kontrak' => $this->request->getVar('sub_kontrak'),
                 'kontrak_diulang' => $this->request->getVar('kontrak_diulang'),
                 'permintaan_khusus' => $this->request->getVar('permintaan_khusus'),
@@ -152,7 +152,7 @@ class KeteranganPengantar extends BaseController
         if ($this->request->isAJAX()) {
             $simpandata = [
                 'id' => $this->request->getVar('id'),
-                'paramater_tidak_dapat_di_uji' => $this->request->getVar('paramater_tidak_dapat_di_uji'),
+                'parameter_tidak_dapat_di_uji' => $this->request->getVar('parameter_tidak_dapat_di_uji'),
                 'sub_kontrak' => $this->request->getVar('sub_kontrak'),
                 'kontrak_diulang' => $this->request->getVar('kontrak_diulang'),
                 'permintaan_khusus' => $this->request->getVar('permintaan_khusus'),

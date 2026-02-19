@@ -15,27 +15,36 @@
                 <input type="hidden" name="kode_pengantar" value="<?= $lhu['kode_pengantar']; ?>">
                 <?php endforeach;?>
                 <div class="modal-body">
-                    <?php
-                    foreach ($cek_lab as $key) :
-                        foreach ($masterLab as $lb) :   
-                               if ($lb['id'] == $key['id_lab']) {
-                                $checked = 'checked';
-                               }else{
-                                $checked = null;
-                               }
-                                 ?>
+                    <?php 
+                   if (!$cek_lab) {
+                     foreach ($masterLab as $lb) : 
+                        ?>
+                        <label for="<?= $lb['id'] ?>">
+                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>"> <?= $lb['nama_lab']; ?>
+                                </label><br>
+                        <?php
+                    endforeach;
+                   }
+                      foreach ($cek_lab as $r) : 
+                        foreach ($masterLab as $lb) : 
+                            ?>
+                            <?php
+                            if ($lb['id'] == $r['id_lab']) {
+                               
+                            ?>
                                 <label for="<?= $lb['id'] ?>">
-                                        <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>" <?= $checked ?>> <?= $lb['nama_lab']; ?>
+                                    <input type="checkbox" checked name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>"> <?= $lb['nama_lab']; ?>
                                 </label><br>
                             <?php
-                               
-                            endforeach;
-                           ?>
-                                <label for="<?= $lb['id'] ?>">
-                                        <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>" <?= $checked ?>> <?= $lb['nama_lab']; ?>
+                            } 
+                            ?>
+                             <label for="<?= $lb['id'] ?>">
+                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>"> <?= $lb['nama_lab']; ?>
                                 </label><br>
                             <?php
                         endforeach;
+                        endforeach;
+
                     ?>
                 </div>
                 <div class="modal-footer">

@@ -20,7 +20,7 @@
             <form action="<?= base_url('pelayanan/pengantar-lab/keterangan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= strtoupper($kode_pengantar); ?>">
-                <input type="hidden" name="id_kat_lab" value="<?= $id_kat_lab ?>">
+                <input type="text" name="id_kat_lab" value="<?= $id_kat_lab ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="keterangan" class="form-label h5">Keterangan</label>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="parameter" class="form-label h5">Parameter tidak dapat di uji</label>
-                        <textarea name="paramater_tidak_dapat_di_uji" class="form-control" id="parameter"></textarea>
+                        <textarea name="parameter_tidak_dapat_di_uji" class="form-control" id="parameter"></textarea>
                         <div class="invalid-feedback errorParameter"></div>
                     </div>
                     <div class="mb-3">

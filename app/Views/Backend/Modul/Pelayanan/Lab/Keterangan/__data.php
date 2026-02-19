@@ -38,7 +38,7 @@
         </tr>
         <tr>
             <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
-            <td>: <?= $row['paramater_tidak_dapat_di_uji'] ?></td>
+            <td>: <?= $row['parameter_tidak_dapat_di_uji'] ?></td>
         </tr>
         <tr>
             <td><b>Sub kontrak</b></td>

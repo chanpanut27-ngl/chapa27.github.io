@@ -17,7 +17,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="parameter" class="form-label h5">Parameter tidak dapat di uji</label>
-                        <textarea name="paramater_tidak_dapat_di_uji" class="form-control" id="parameter"><?= $items['paramater_tidak_dapat_di_uji'] ?></textarea>
+                        <textarea name="parameter_tidak_dapat_di_uji" class="form-control" id="parameter"><?= $items['parameter_tidak_dapat_di_uji'] ?></textarea>
                         <div class="invalid-feedback errorParameter"></div>
                     </div>
                     <div class="mb-3">

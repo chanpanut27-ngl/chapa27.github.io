@@ -170,7 +170,7 @@
                             <td class="p-1">Keterangan : <?= $row['keterangan'] ?></td>
                         </tr>
                         <tr>
-                            <td class="p-1">Parameter yang tidak dapat di uji : <?= $row['paramater_tidak_dapat_di_uji'] ?></td>
+                            <td class="p-1">Parameter yang tidak dapat di uji : <?= $row['parameter_tidak_dapat_di_uji'] ?></td>
                         </tr>
                         <tr>
                             <td class="p-1">Sub kontrak : <?= $row['sub_kontrak'] ?></td>

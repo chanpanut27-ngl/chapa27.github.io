@@ -15,7 +15,7 @@ class KeteranganPengantarModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'keterangan',
-        'paramater_tidak_dapat_di_uji',
+        'parameter_tidak_dapat_di_uji',
         'sub_kontrak',
         'kontrak_diulang',
         'permintaan_khusus',

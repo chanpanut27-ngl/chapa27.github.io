@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Kode Pelanggan', 'Nama Pengirim', 'Instansi', 'Alamat', 'No.Telp/Hp instansi', 'Is_active', ''];
+        $arrth = ['No', 'Kode Pelanggan', 'Nama Pengirim', 'Instansi', 'Alamat', 'No.Telp/Hp pengirim', 'Is_active', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -20,7 +20,7 @@
                 <td><?= $row['nama_pengirim'] ?></td>
                 <td><?= $row['instansi'] ?></td>
                 <td><?= $row['alamat'] ?></td>
-                <td><?= $row['no_telp'] ?></td>
+                <td><?= $row['no_telp_pengirim'] ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
