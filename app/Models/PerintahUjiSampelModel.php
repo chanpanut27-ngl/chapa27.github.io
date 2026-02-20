@@ -95,6 +95,7 @@ class PerintahUjiSampelModel extends Model
         pengantar_lab.kode_pengantar, 
         permintaan_pelanggan.nama_pengirim, 
         permintaan_pelanggan.alamat,
+        pengantar_lab.tanggal,
         master_laboratorium.nama_lab,
         master_instalasi.nama_instalasi,
         master_instalasi.id AS id_instalasi,

@@ -2,7 +2,7 @@
     <thead>
         <?php
         use App\Models\PerintahUjiSampelModel;
-        $arrth = ['No', 'Kode Pengantar', 'Instalasi', ''];
+        $arrth = ['No', 'Kode Pengantar', 'Instalasi', 'Tanggal', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -23,6 +23,7 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_pengantar']; ?></td>
                 <td><?= $row['nama_instalasi']; ?></td>
+                <td><?= date('d/m/Y', strtotime($row['tanggal'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                        <!-- Button trigger modal -->
@@ -57,7 +58,7 @@
 <script>
     function clickBtn(id) {
         var urls = 'cetak/perintah-uji/'+id;
-        var WinPrint = window.open('<?= site_url() ?>'+urls, '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
+        var WinPrint = window.open('<?= site_url() ?>'+urls, '', 'left=0,top=0,width=1500,height=1000,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
         WinPrint.document.close();
         WinPrint.focus();
