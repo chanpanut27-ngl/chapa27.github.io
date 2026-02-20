@@ -25,7 +25,7 @@ class MgdbPerintahUjiSampel extends Migration
                 'constraint'     => 5,
                 'unsigned'       => true,
             ],
-            'sifat_terima_sampel' => [
+            'sifat_pemeriksaan' => [
                 'type'           => 'VARCHAR',
                 'constraint'     => '100'
             ],

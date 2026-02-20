@@ -16,7 +16,7 @@ class PerintahUjiSampelModel extends Model
     protected $allowedFields    = [
         'id_pengantar_lab',
         'id_instalasi',
-        'sifat_terima_sampel',
+        'sifat_pemeriksaan',
         'tgl_terima_sampel',
         'parameter_uji',
         'metode_uji',
@@ -26,9 +26,10 @@ class PerintahUjiSampelModel extends Model
         'ka_ins_prola',
         'ka_ins_lab',
         'analis_lab',
-        'tgl_kirim_sampel_dari_prola',
+        'tgl_kirim_sampel',
         'tgl_terima_sampel_ke_kains_lab',
         'tgl_selesai_sampel',
+        'tgl_terima_sampel_ke_analis_lab',
         'kode_pengantar',
         'is_active'
     ];
