@@ -48,11 +48,11 @@
         <div class="col-sm-12">
             <table>
                 <tr>
-                    <td class="p-1 fw-bold">1. Tanggal Penerimaan sampel</td>
-                    <td class="p-1">: <?= date('d-m-Y', strtotime($search['tgl_terima_sampel'])) ?></td>
+                    <td class="p-1 fw-bold">1. Tanggal penerimaan sampel</td>
+                    <td class="p-1">: <?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1 fw-bold">2. Sifat Pemeriksaan sampel</td>
+                    <td class="p-1 fw-bold">2. Sifat pemeriksaan sampel</td>
                     <td class="p-1">: 
                         <label for="biasa">
                             <?= $search['sifat_pemeriksaan'] == 'Biasa' ? '☑' : '□' ?> Biasa
@@ -79,9 +79,9 @@
                 <?php $no=1; foreach ($items as $row) : ?>
                     <tr>
                         <td class="p-1"><?= $no++; ?></td>
-                        <td class="text-center"><?= $row['kode_sampel'] ?></td>
-                        <td class="p-1"><?= $row['jenis_sampel'] ?><input type="hidden" name="id_jenis_sampel[]" value="<?= $row['id_jenis_sampel'] ?>"></td>
-                        <td class="p-1"><?= $row['peraturan'] ?></td>
+                        <td class="text-center"><?= $row['kode_sampel']; ?></td>
+                        <td class="p-1"><?= $row['jenis_sampel'].','.$row['keterangan']; ?><input type="hidden" name="id_jenis_sampel[]" value="<?= $row['id_jenis_sampel'] ?>"></td>
+                        <td class="p-1"><?= $row['peraturan']; ?></td>
                         <td class="p-1"><?= $row['parameter_uji'] ?></td>
                         <td class="p-1"><?= $row['metode_uji'] ?></td>
                         <td class="p-1"><?= $row['ket_sampel'] ?></td>
@@ -113,7 +113,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="p-1 w-0"><b>Tanggal Kirim sampel</b></td>
+                    <td class="p-1 w-0"><b>Tanggal kirim sampel</b></td>
                     <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_kirim_sampel'])) ?></td>
                 </tr>
             </table>
@@ -127,14 +127,14 @@
                     <td class="p-1" colspan="2"><b>Paraf</b></td>
                 </tr>
                 <tr>
-                    <td class="text-center" colspan="2"><u><?= $search['ka_ins_lab'] ?></u></td>
+                    <td class="text-center" colspan="2"><u><?= $search['kepala_instalasi'] ?></u></td>
                 </tr>
                 <tr>
-                    <td class="p-1 w-50"><b>Tanggal Terima sampel</b></td>
-                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_terima_sampel_ke_kains_lab'])) ?></td>
+                    <td class="p-1 w-50"><b>Tanggal terima sampel</b></td>
+                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_terima_sampel_lab'])) ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1"><b>Tanggal Selesai sampel</b></td>
+                    <td class="p-1"><b>Tanggal selesai sampel</b></td>
                     <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_selesai_sampel'])) ?></td>
                 </tr>
             </table>
@@ -149,8 +149,8 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td class="p-1 w-50"><b>Tanggal Terima Sampel</b></td>
-                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_terima_sampel_ke_analis_lab'])) ?></td>
+                    <td class="p-1 w-50"><b>Tanggal terima sampel</b></td>
+                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_terima_sampel_analis_lab'])) ?></td>
                 </tr>
             </table>
         </div>

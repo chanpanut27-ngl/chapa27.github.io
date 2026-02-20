@@ -1,5 +1,5 @@
 <table id="example" class="table table-hover table-bordered">
-    <thead style="font-family: arial;">
+    <thead>
         <?php
         use App\Models\PerintahUjiSampelModel;
         $arrth = ['No', 'Kode Pengantar', 'Instalasi', ''];
@@ -10,7 +10,7 @@
         echo '</tr>';
         ?>
     </thead>
-    <tbody style="font-family: arial;">
+    <tbody>
         <?php
         $no = 1;
         $pus = new PerintahUjiSampelModel();
@@ -71,7 +71,7 @@
         var id_instalasi = $(this).data("id");
 
         var urls = 'cetak/perintah-uji/'+kode_pengantar+'-'+id_kat_lab+'-'+id_instalasi;
-        var WinPrint = window.open('<?= site_url() ?>'+urls, '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
+        var WinPrint = window.open('<?= site_url() ?>'+urls, '', 'left=0,top=0,width=1500,height=1000,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
         WinPrint.document.close();
         WinPrint.focus();
