@@ -268,7 +268,7 @@ class PerintahUjiSampel extends BaseController
                 'tgl_terima_sampel_ke_kains_lab' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_kains_lab'))),
                 'tgl_selesai_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_selesai_sampel'))),
                 'tgl_terima_sampel_ke_analis_lab' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_analis_lab'))),
-                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_analis_lab'))),
+                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel'))),
             ];
             $this->model->save($tb_uji_sampel);
 
