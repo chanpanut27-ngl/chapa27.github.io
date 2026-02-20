@@ -14,22 +14,23 @@ class PerintahUjiSampelModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'kode_pengantar',
         'id_pengantar_lab',
         'id_instalasi',
-        'sifat_pemeriksaan',
+        'sifat_terima_sampel',
         'tgl_terima_sampel',
-        'tgl_kirim_sampel',
-        'tgl_terima_sampel_lab',
-        'tgl_selesai_sampel',
-        'kepala_instalasi',
-        'verificator',
-        'kepala_instalasi_prola',
+        'parameter_uji',
+        'metode_uji',
+        'keterangan',
+        'analisis_lab',
+        'petugas_prola',
+        'ka_ins_prola',
+        'ka_ins_lab',
         'analis_lab',
-        'tgl_terima_sampel_analis_lab',
-        'created_by',
-        'deleted_by',
-        'updated_by'
+        'tgl_kirim_sampel_dari_prola',
+        'tgl_terima_sampel_ke_kains_lab',
+        'tgl_selesai_sampel',
+        'kode_pengantar',
+        'is_active'
     ];
 
     protected bool $allowEmptyInserts = false;

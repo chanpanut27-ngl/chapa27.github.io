@@ -68,6 +68,7 @@
                                             <p class="fw-bold">Tanggal penerimaan sampel</p>
                                         </div>
                                         <div class="col-md">
+                                            <?= $tgl_terima_sampel = null; ?>
                                             : <?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>
                                             <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" readonly id="tgl-terima">
                                         </div>
@@ -93,7 +94,7 @@
                                             <p class="fw-bold">Tanggal penerimaan sampel</p>
                                         </div>
                                         <div class="col-md">
-                                            : <?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>
+                                            : <?= date('d-m-Y', strtotime($tgl_terima_sampel_lab['tgl_terima_sampel_lab'])) ?>
                                         </div>
                                     </div>
                                     <div class="row">

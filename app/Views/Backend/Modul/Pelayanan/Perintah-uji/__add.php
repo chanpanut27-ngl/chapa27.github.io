@@ -9,7 +9,7 @@
             <form action="<?= base_url('pelayanan/perintah-uji-sampel/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
-                <input type="hidden" name="id_pengantar_lhu" value="<?= $id_pengantar_lhu['id']; ?>">
+                <input type="hidden" name="id_pengantar_lab" value="<?= $id_pengantar_lab['id']; ?>">
                 <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
                 <div class="modal-body">
                     <div class="mb-2">
@@ -59,7 +59,7 @@
                             <label class="form-label h5">Tim Kerja Program Layanan</label>
                             <div class="mb-3">
                                 <label for="tgl-terima" class="form-label h5">Tanggal Penerimaan Sampel</label>
-                                <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" readonly id="tgl-terima">
+                                <input type="text" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime(@$tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control" readonly id="tgl-terima">
                             </div>
                             <div class="mb-3">
                                 <label for="tgl-kirim-sampel" class="form-label h5">Tanggal Kirim Sampel</label>

@@ -88,14 +88,18 @@ class PerintahUjiSampel extends BaseController
             $instalasi = $this->modelInstalasi->find($id_instalasi);
 
             // Penanggung jawab sampel
-            $penanggung_jawab = $this->modelPj->select('id_kat_lab, tgl_terima_sampel')
+            $penanggung_jawab1 = $this->modelPj->select('id_kat_lab,tgl_terima_sampel')
             ->where('kode_pengantar', $kode_pengantar)
             ->where('id_kat_lab', $id_kat_lab)->first();
+
+            $penanggung_jawab = $this->modelPj->
+            where('kode_pengantar', $kode_pengantar)->first();
+
 
             // id pengantar lhu
             $id_pengantar_lab = $this->modelPengantarLhu->select('id')
             ->where('kode_pengantar', $kode_pengantar)->first();
-
+            
             if ($penanggung_jawab['id_kat_lab'] == 1) {
                 $_data = $this->model->get_data_sampel_lingkungan($kode_pengantar);
             }else{
@@ -113,7 +117,7 @@ class PerintahUjiSampel extends BaseController
             ];
 
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/__add1', $data)
+                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/__add', $data)
             ];
             echo json_encode($msg);
 
