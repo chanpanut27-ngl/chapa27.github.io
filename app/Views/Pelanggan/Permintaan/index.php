@@ -71,7 +71,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelanggan/permintaan-pelanggan/list-data'); ?>",
+            url: "<?= site_url('pelanggan/pelayanan/permintaan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -96,7 +96,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelanggan/permintaan-pelanggan/add-data'); ?>",
+                url: "<?= site_url('pelanggan/pelayanan/permintaan/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {
