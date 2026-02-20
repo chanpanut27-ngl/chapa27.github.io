@@ -12,3 +12,12 @@ $routes->set404Override('App\Controllers\ErrorPage::show404');
 $routes->get('not-privilege', 'NotEnoughPrivilege::show401');
 
 
+/*________ Admin ________*/
+require __DIR__ . '/Routes/__@admin__.php';
+/*________ User ________*/
+require __DIR__ . '/Routes/__@user__.php';
+/*________ Pelanggan ________*/
+require __DIR__ . '/Routes/__@pelanggan__.php';
+
+
+
