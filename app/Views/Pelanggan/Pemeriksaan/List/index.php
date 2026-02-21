@@ -59,31 +59,21 @@
                                     <div class="row">
                                         <div class="col-sm-3"><b>No.Registrasi</b></div>
                                         <div class="col-sm-3">: <?= $items['no_reg'] ?></div>
-                                        <div class="col-sm-3"><b>No.Telp/Hp</b></div>
-                                        <div class="col-sm-3">: <?= $items['no_telp_pengirim'] ?></div>
+                                        <div class="col-sm-2"><b>Instansi</b></div>
+                                        <div class="col-sm-4">: <?= $items['instansi'] ?></div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-3"><b>Nama pengirim</b></div>
                                         <div class="col-sm-3">: <?= $items['nama_pengirim'] ?></div>
-                                        <div class="col-sm-3"><b>Tgl & jam pengambilan sampel</b></div>
-                                        <div class="col-sm-3">: <?= date('d-m-Y', strtotime($items['tgl_ambil_sampel'])).' '.date('H:i', strtotime($items['jam_ambil_sampel'])) ?></div>
+                                        <div class="col-sm-2"><b>No.Telp/Hp pengirim</b></div>
+                                        <div class="col-sm-3">: <?= $items['no_telp_pengirim'] ?></div>
                                     </div>    
                                     <div class="row">
                                         <div class="col-sm-3"><b>Spesimen/sampel</b></div>
                                         <div class="col-sm-3">: <?= $items['spesimen_atau_sampel'] ?></div>
-                                        <div class="col-sm-3"><b>Lokasi pengambilan sampel/spesimen	</b></div>
-                                        <div class="col-sm-3">: <?= $items['lokasi_ambil_sampel'] ?></div>
-                                    </div>  
-                                    <div class="row">
-                                        <div class="col-sm-3"><b>Petugas pengambilan sampel</b></div>
-                                        <div class="col-sm-3">: <?= $items['petugas_ambil_sampel'] ?></div>
-                                        <div class="col-sm-3"><b>Keterangan tambahan</b></div>
-                                        <div class="col-sm-3">: <?= $items['keterangan_tambahan'] ?></div>
-                                    </div>   
-                                    <div class="row">
-                                        <div class="col-sm-3"><b>Instansi</b></div>
-                                        <div class="col-sm-9">: <?= $items['instansi'] ?></div>
-                                    </div>                                
+                                        <div class="col-sm-2"><b>Alamat</b></div>
+                                        <div class="col-sm-4">: <?= $items['alamat'] ?></div>
+                                    </div>                  
                                 </div>
                             </div>
                         </div>
@@ -121,7 +111,6 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <!-- [Datepicker js] -->
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
@@ -132,7 +121,7 @@
         var id_pelanggan = $(".btn-tambah").data("id");
         $.ajax({
             type:"GET",
-            url: "<?= site_url('pelanggan/list-pemeriksaan/list-data'); ?>",
+            url: "<?= site_url('pelanggan/pelayanan/list-pemeriksaan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{id_pelanggan:id_pelanggan},
