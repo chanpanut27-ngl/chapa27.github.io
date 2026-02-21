@@ -1,5 +1,7 @@
 <?= $this->extend('Pelanggan/Layout/__main'); ?>
+
 <?= $this->section('topAssets'); ?>
+<!-- [Datatables css] --> 
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <!-- [Datepicker css] --> 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
@@ -34,18 +36,20 @@
                 <?php else : ?>
                 <div class="card">
                     <div class="card-header p-2">
-                        <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
-                        <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
-                            </button>
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
-                                <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
+                        <h4><span class="pc-micon"><i class="ti ti-list"></i><?= $title; ?></h4>
+                        <div class="d-flex justify-content-end align-items-center">
+                            <button type="button" class="btn btn-success btn-sm rounded btn-refresh" title="refresh">
+                                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="d-flex justify-content-end align-items-center gap-1">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
+                                <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
+                            </button>
+                        </div>
                         <div class="view-data"></div>
                     </div>
                 </div>
@@ -63,15 +67,15 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <!-- [Datepicker js] -->
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 
 <script>
+
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelanggan/pelayanan/permintaan/list-data'); ?>",
+            url: "<?= site_url('pelanggan/pelayanan/permintaan/list-data') ?>",
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -84,19 +88,19 @@
                 $(".view-data").html(response.data);
             },
             error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
             }
-        })
+        });
     }
 
+    $(document).ready(function () {
 
-    $(document).ready(function() {
-        listData();
+    listData();
 
-        $(".btn-tambah").click(function(e) {
-            e.preventDefault();
+    $(".btn-tambah").click(function (e) {
+        e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelanggan/pelayanan/permintaan/add-data'); ?>",
+                url: "<?= site_url('pelanggan/pelayanan/permintaan/add-data') ?>",
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {
@@ -114,6 +118,6 @@
                 }
             })
         })
-    })
+    });
 </script>
 <?= $this->endSection(); ?>
