@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Status', 'Tgl & Jam', 'Keterangan', 'Foto', 'Status', ''];
+        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Status', 'Tgl & Jam', 'Keterangan', 'Foto', 'Is_active', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -47,7 +47,7 @@
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-secondary rounded btn-sm" onclick="addFoto(<?= $row['idx']; ?>)" title="Input Foto">
-                            <i class="ti ti-image"></i>
+                            <i class="fa fa-image"></i>
                         </button>
                         <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
                             <i class="ti ti-edit"></i>
@@ -125,7 +125,7 @@
                                 title: "Hapus Data !",
                                 text: response.sukses,
                                 icon: "success",
-                                timer: 3000,
+                                timer: 2000,
                                 width: '400px',
                                 padding: '1em'
                             }).then((result) => {

@@ -28,6 +28,7 @@ require __DIR__ . '/Routes/__@cari__data.php';
 require __DIR__ . '/Routes/__@file__reader.php';
 /*________ Master data ________*/
 require __DIR__ . '/Routes/__@master__data.php';
-
+/*________ Coolbox ________*/
+require __DIR__ . '/Routes/__@coolbox__.php';
 
 

@@ -27,18 +27,20 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-2">
-                        <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-list"></span> <?= $title; ?></h4>
+                        <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
+                            <button type="button" class="btn btn-success btn-sm rounded btn-refresh" title="refresh">
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-end align-items-center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
                                 <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
                             </button>
                         </div>
-                    </div>
-                    <div class="card-body">
                         <div class="view-data"></div>
                     </div>
                 </div>

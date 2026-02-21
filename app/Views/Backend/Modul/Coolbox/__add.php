@@ -43,6 +43,7 @@
                     <div class="mb-3">
                         <label for="jam" class="form-label h5">Jam</label>
                         <input type="time" name="jam" class="form-control" id="jam" autocomplete="off">
+                        <div class="invalid-feedback errorJam"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -53,75 +54,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
-                },
-                success: function(response) {
-                    var err = response.error
-                    if (err) {
-                        if (err.id_coolbox) {
-                            $('#id-coolbox').addClass('is-invalid');
-                            $('.errorIdCoolbox').html(err.id_coolbox);
-                        } else {
-                            $('#id-coolbox').removeClass('is-invalid');
-                            $('.errorIdCoolbox').html('');
-                        }
-                        if (err.status) {
-                            $('#status-coolbox').addClass('is-invalid');
-                            $('.errorStatusCoolbox').html(err.status);
-                        } else {
-                            $('#status-coolbox').removeClass('is-invalid');
-                            $('.errorStatusCoolbox').html('');
-                        }
-                        if (err.tanggal) {
-                            $('#tanggal').addClass('is-invalid');
-                            $('.errorTanggal').html(err.tanggal);
-                        } else {
-                            $('#tanggal').removeClass('is-invalid');
-                            $('.errorTanggal').html('');
-                        }
-                        if (response.error) {
-                            Swal.fire({
-                                title: "Gagal",
-                                text: response.error,
-                                icon: "error"
-                            });
-                            $("#exampleModal").modal('hide');
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success"
-                        });
-
-                        $("#exampleModal").modal('hide');
-                        listData();
-                    }
-
-                   
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-    })
-</script>
+<script src="<?= base_url('assets/js/Coolbox/@save_posisi_coolbox.js') ?>"></script>

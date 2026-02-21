@@ -121,6 +121,13 @@ class PosisiCoolbox extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'jam' => [
+                    'label' => 'Jam',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -129,7 +136,8 @@ class PosisiCoolbox extends BaseController
                     'error' => [
                         'id_coolbox' => $this->validation->getError('id_coolbox'),
                         'status' => $this->validation->getError('status'),
-                        'tanggal' => $this->validation->getError('tanggal')
+                        'tanggal' => $this->validation->getError('tanggal'),
+                        'jam' => $this->validation->getError('jam')
                     ]
                 ];
             } else if ($cek_data) {
@@ -216,6 +224,13 @@ class PosisiCoolbox extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'jam' => [
+                    'label' => 'Jam',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -224,7 +239,8 @@ class PosisiCoolbox extends BaseController
                     'error' => [
                         'id_coolbox' => $this->validation->getError('id_coolbox'),
                         'status' => $this->validation->getError('status'),
-                        'tanggal' => $this->validation->getError('tanggal')
+                        'tanggal' => $this->validation->getError('tanggal'),
+                        'jam' => $this->validation->getError('jam')
                     ]
                 ];
             } else if ($cek_data) {
@@ -287,7 +303,7 @@ class PosisiCoolbox extends BaseController
                 'title' => 'Upload Foto'
             ];
             $msg = [
-                'sukses' => view('Backend/Modul/Pengaturan-coolbox/Posisi/__add_foto', $data)
+                'sukses' => view('Backend/Modul/Coolbox/__add_foto', $data)
             ];
             echo json_encode($msg);
         } else {
