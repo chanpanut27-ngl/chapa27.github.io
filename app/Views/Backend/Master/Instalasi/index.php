@@ -29,19 +29,21 @@
                     <div class="card-header p-2">
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
+                            <button type="button" class="btn btn-success btn-sm rounded btn-refresh" title="refresh">
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
                             <a href="<?= site_url('export-excel-instalasi') ?>" class="btn btn-info btn-sm rounded btn-export-excel">
                                 <span class="pc-micon">Export excel</span>
                             </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-end align-items-center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
                                 <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
                             </button>
                         </div>
-                    </div>
-                    <div class="card-body">
                         <div class="view-data"></div>
                     </div>
                 </div>

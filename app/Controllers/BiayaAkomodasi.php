@@ -102,6 +102,13 @@ class BiayaAkomodasi extends BaseController
                         'required' => '{field} tidak boleh kosong',
                         'numeric' => '{field} harus angka'
                     ]
+                ],
+                'transport' => [
+                    'label' => 'Transport',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -109,6 +116,7 @@ class BiayaAkomodasi extends BaseController
                 $msg = [
                     'error' => [
                         'uraian' => $this->validation->getError('uraian'),
+                        'transport' => $this->validation->getError('transport'),
                         'uang_harian' => $this->validation->getError('uang_harian')
                     ]
                 ];
@@ -178,6 +186,13 @@ class BiayaAkomodasi extends BaseController
                         'required' => '{field} tidak boleh kosong',
                         'numeric' => '{field} harus angka'
                     ]
+                ],
+                'transport' => [
+                    'label' => 'Transport',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -185,6 +200,7 @@ class BiayaAkomodasi extends BaseController
                 $msg = [
                     'error' => [
                         'uraian' => $this->validation->getError('uraian'),
+                        'transport' => $this->validation->getError('transport'),
                         'uang_harian' => $this->validation->getError('uang_harian')
                     ]
                 ];

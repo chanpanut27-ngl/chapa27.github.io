@@ -86,8 +86,8 @@
                                 title: "Hapus Data !",
                                 text: response.sukses,
                                 icon: "success",
-                                timer: 3000,
-                                width: '300px',
+                                timer: 2000,
+                                width: '400px',
                                 padding: '1em'
                             }).then((result) => {
                                 if (result.dismiss === Swal.DismissReason.timer) {
