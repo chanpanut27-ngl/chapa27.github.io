@@ -24,7 +24,7 @@
                 <td>
                     <div class="d-flex justify-content-start">
                         <button type="button" class="btn btn-danger btn-sm rounded btn-hapus" data-user=<?= $row['user_id'] ?> data-group=<?= $row['group_id'] ?> title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
+                            <i class="ti ti-trash"></i>
                         </button>
                     </div>
                 </td>
@@ -64,7 +64,14 @@
                                 Swal.fire({
                                     title: "Hapus Data !",
                                     text: response.sukses,
-                                    icon: "success"
+                                    icon: "success",
+                                    timer: 2000,
+                                    width: '400px',
+                                    padding: '1em'
+                                }).then((result) => {
+                                    if (result.dismiss === Swal.DismissReason.timer) {
+                                    listData();
+                                    }
                                 });
                                 listData();
                             }

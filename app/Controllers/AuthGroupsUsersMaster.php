@@ -95,40 +95,15 @@ class AuthGroupsUsersMaster extends BaseController
     public function create()
     {
         if ($this->request->isAJAX()) {
-            $valid = $this->validate([
-                'group_id' => [
-                    'label' => 'Group',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ],
-                'user_id' => [
-                    'label' => 'Username',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
-                ]
-            ]);
 
-            if (!$valid) {
-                $msg = [
-                    'error' => [
-                        'group_id' => $this->validation->getError('group_id'),
-                        'user_id' => $this->validation->getError('user_id'),
-                    ]
-                ];
-            } else {
-                $save = [
-                    'group_id' => $this->request->getVar('group_id'),
-                    'user_id' => $this->request->getVar('user_id')
-                ];
-                $this->model->save($save);
-                $msg = [
-                    'sukses' => 'Data berhasil disimpan'
-                ];
-            }
+            $save = [
+                'group_id' => $this->request->getVar('group_id'),
+                'user_id' => $this->request->getVar('user_id')
+            ];
+            $this->model->save($save);
+            $msg = [
+                'sukses' => 'Data berhasil disimpan'
+            ];
             echo json_encode($msg);
         } else {
             exit('Not Process');
