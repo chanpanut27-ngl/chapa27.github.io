@@ -52,7 +52,7 @@
             },
             complete: function() {
                 $('.btn-edit-'+id).removeAttr('disable');
-                $('.btn-edit-'+id).html('<span class="fa-solid fa-edit"></span>');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
             },
             success: function(response) {
                 if (response.sukses) {
@@ -121,7 +121,7 @@
                                 text: response.sukses,
                                 icon: "success",
                                 timer: 2000,
-                                width: '300px',
+                                width: '400px',
                                 padding: '1em'
                             }).then((result) => {
                                 if (result.dismiss === Swal.DismissReason.timer) {

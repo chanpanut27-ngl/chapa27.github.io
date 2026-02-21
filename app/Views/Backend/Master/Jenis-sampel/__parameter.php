@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-               <table class="table table-bordered">
+               <table id="example1" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -31,3 +31,10 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        new DataTable('#example1', {
+            responsive: true
+        });
+    })
+</script>

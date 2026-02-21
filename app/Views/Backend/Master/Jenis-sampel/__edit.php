@@ -90,84 +90,8 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $('#id-peraturan').select2({
-            dropdownParent: $('#exampleModal')
-        });
-
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-ubah').attr('disable', 'disabled');
-                    $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.btn-ubah').removeAttr('disable');
-                    $('.btn-ubah').html('Ubah');
-                },
-                success: function(response) {
-                    if (response.error) {
-
-                        if (err.id_peraturan) {
-                            $("#id-peraturan").addClass('is-invalid');
-                            $('.errorIdPeraturan').html(err.id_peraturan);
-                        } else {
-                            $('#id-peraturan').removeClass('is-invalid');
-                            $('.errorIdPeraturan').html('');
-                        }
-
-                        if (response.error.jenis_sampel) {
-                            $('#jenis-sampel').addClass('is-invalid');
-                            $('.errorJenisSampel').html(response.error.jenis_sampel);
-                        } else {
-                            $('#jenis-sampel').removeClass('is-invalid');
-                            $('.errorJenisSampel').html('');
-                        }
-
-                        if (response.error.pnbp) {
-                            $('#pnbp').addClass('is-invalid');
-                            $('.errorPnbp').html(response.error.pnbp);
-                        } else {
-                            $('#pnbp').removeClass('is-invalid');
-                            $('.errorPnbp').html('');
-                        }
-
-                        if (response.error.id_lab) {
-                            $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(response.error.id_lab);
-                        } else {
-                            $('#id-lab').removeClass('is-invalid');
-                            $('.errorIdLab').html('');
-                        }
-
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success",
-                            timer: 2000,
-                            width: '300px',
-                            padding: '1em'
-                        }).then((result) => {
-                            if (result.dismiss === Swal.DismissReason.timer) {
-                                listData();
-                            }
-                        });
-
-                        $("#exampleModal").modal('hide');
-                        listData();
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-    })
+    $('#id-peraturan').select2({
+        dropdownParent: $('#exampleModal')
+    });
 </script>
+<script src="<?= base_url('assets/js/Master/@update_jenis_sampel.js') ?>"></script>
