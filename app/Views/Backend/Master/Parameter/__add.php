@@ -77,130 +77,70 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+    $('#id-jenis-sampel').select2({
+        dropdownParent: $('#exampleModal')
+    });
 
-        $('#id-jenis-sampel').select2({
-            dropdownParent: $('#exampleModal')
-        });
+    $(".add-multi-insert").click(function (e) {
+        e.preventDefault();
+        let itemIndex = 0;
+        var html = `<tr>
+                        <td>
+                            <input type="text" name="parameter[]" class="form-control">
+                        </td>
+                        <td>
+                            <input type="text" name="metode[]" class="form-control">
+                        </td>
+                        <td>
+                            <input type="number" name="harga_per_titik[]" id="harga-per-titik" class="form-control" required>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm rounded delete-rows">x</button>
+                        </td>
+                    </tr>`;
+        $(".form-multi-insert").append(html);
+    })
 
-        $(".add-multi-insert").click(function (e) {
-            e.preventDefault();
-            let itemIndex = 0;
-            var html = `<tr>
-                            <td>
-                                <input type="text" name="parameter[]" class="form-control">
-                            </td>
-                            <td>
-                                <input type="text" name="metode[]" class="form-control">
-                            </td>
-                            <td>
-                                <input type="number" name="harga_per_titik[]" id="harga-per-titik" class="form-control" required>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger btn-sm rounded delete-rows">x</button>
-                            </td>
-                        </tr>`;
-            $(".form-multi-insert").append(html);
+    $(document).on('click', '.delete-rows', function () {
+        $(this).closest('tr').remove();
+    })
+
+    $("#id-lab").change(function (e) {
+        e.preventDefault();
+        var id_lab = $(this).val();
+        $.ajax({
+            type: "post",
+            url: "<?= site_url('master-data/parameter/list-sampel'); ?>",
+            data: {id_lab:id_lab},
+            dataType: 'json',
+            cache: false,
+            success: function(response) {
+                $("#id-jenis-sampel").html(response.data).show()
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
         })
+    })
 
-        $(document).on('click', '.delete-rows', function () {
-            $(this).closest('tr').remove();
+    $("#id-jenis-sampel").change(function (e) {
+        e.preventDefault();
+        var id_jenis_sampel = $(this).val();
+        $.ajax({
+            type: "post",
+            url: "<?= site_url('master-data/parameter/detail-sampel'); ?>",
+            data: {id_jenis_sampel:id_jenis_sampel},
+            dataType: 'json',
+            cache: false,
+            success: function(response) {
+                $("#peraturan").val(response.data)
+                $("#ket-peraturan").html(response.ket_peraturan).show()
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
         })
-
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
-                },
-                success: function(response) {
-                    var err = response.error
-                    if (err) {
-                        if (err.id_lab) {
-                            $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(err.id_lab);
-                        } else {
-                            $('#id-lab').removeClass('is-invalid');
-                            $('.errorIdLab').html('');
-                        }
-                        if (err.id_jenis_sampel) {
-                            $('#id-jenis-sampel').addClass('is-invalid');
-                            $('.errorIdJenisSampel').html(err.id_jenis_sampel);
-                        } else {
-                            $('#id-jenis-sampel').removeClass('is-invalid');
-                            $('.errorIdJenisSampel').html('');
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success",
-                            timer: 2000,
-                            width: '300px',
-                            padding: '1em'
-                        }).then((result) => {
-                            if (result.dismiss === Swal.DismissReason.timer) {
-                                listData();
-                            }
-                        });
-
-                        $("#exampleModal").modal('hide');
-                        listData();
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-
-        $("#id-lab").change(function (e) {
-            e.preventDefault();
-            var id_lab = $(this).val();
-            $.ajax({
-                type: "post",
-                url: "<?= site_url('master-data/parameter/list-sampel'); ?>",
-                data: {id_lab:id_lab},
-                dataType: 'json',
-                cache: false,
-                success: function(response) {
-                    $("#id-jenis-sampel").html(response.data).show()
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-
-        $("#id-jenis-sampel").change(function (e) {
-            e.preventDefault();
-            var id_jenis_sampel = $(this).val();
-            $.ajax({
-                type: "post",
-                url: "<?= site_url('master-data/parameter/detail-sampel'); ?>",
-                data: {id_jenis_sampel:id_jenis_sampel},
-                dataType: 'json',
-                cache: false,
-                success: function(response) {
-                    $("#peraturan").val(response.data)
-                    $("#ket-peraturan").html(response.ket_peraturan).show()
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-        
     })
 </script>
+
+<script src="<?= base_url('assets/js/Master/@save_parameter.js') ?>"></script>

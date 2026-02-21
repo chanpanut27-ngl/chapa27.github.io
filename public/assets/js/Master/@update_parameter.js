@@ -1,0 +1,85 @@
+$(document).ready(function () {
+
+    $(".form-data").submit(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-ubah').attr('disable', 'disabled');
+                $('.btn-ubah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            success: function(response) {
+                var error = response.error;
+
+                if (error) {
+                    
+                        if (response.error.parameter) {
+                            $('#parameter').addClass('is-invalid');
+                            $('.errorParameter').html(response.error.parameter);
+                        } else {
+                            $('#parameter').removeClass('is-invalid');
+                            $('.errorParameter').html('');
+                        }
+                        if (response.error.metode) {
+                            $('#metode').addClass('is-invalid');
+                            $('.errorMetode').html(response.error.metode);
+                        } else {
+                            $('#metode').removeClass('is-invalid');
+                            $('.errorMetode').html('');
+                        }
+                        if (response.error.harga_per_titik) {
+                            $('#harga-per-titik').addClass('is-invalid');
+                            $('.errorHargaPertitik').html(response.error.harga_per_titik);
+                        } else {
+                            $('#harga-per-titik').removeClass('is-invalid');
+                            $('.errorHargaPertitik').html('');
+                        }
+
+                        Swal.fire({
+                            title: "Gagal",
+                            text: response.errorMessage,
+                            icon: "error",
+                            timer: 2000,
+                            width: '400px',
+                            padding: '1em'
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                listData();
+                            }
+                        });
+
+                } else {
+                    
+                    Swal.fire({
+                        title: "Berhasil",
+                        text: response.sukses,
+                        icon: "success",
+                        timer: 2000,
+                        width: '400px',
+                        padding: '1em'
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            listData();
+                        }
+                    });
+
+                    $("#exampleModal").modal('hide');
+                    listData();
+                }
+            },
+            complete: function() {
+                $('.btn-ubah').removeAttr('disable');
+                $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);
+            }
+        })
+
+    })
+})
