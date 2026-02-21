@@ -125,4 +125,26 @@
         $routes->delete('delete-data/(:num)', 'PelangganMaster::delete/$1');
     });
 
+    /* Users */
+        $routes->group('master-data/users', function ($routes) {
+        $routes->get('', 'UsersMaster::index');
+        $routes->get('list-data', 'UsersMaster::list');
+        $routes->get('add-data', 'UsersMaster::new');
+        $routes->post('create-data', 'UsersMaster::create');
+        $routes->get('edit-data/(:num)', 'UsersMaster::edit/$1');
+        $routes->post('update-data', 'UsersMaster::update');
+        $routes->delete('delete-data/(:num)', 'UsersMaster::delete/$1');
+    });
+
+    /* Auth Groups */
+        $routes->group('master-data/auth-groups', function ($routes) {
+        $routes->get('', 'AuthGroupsMaster::index');
+        $routes->get('list-data', 'AuthGroupsMaster::list');
+        $routes->get('add-data', 'AuthGroupsMaster::new');
+        $routes->post('create-data', 'AuthGroupsMaster::create');
+        $routes->get('edit-data/(:num)', 'AuthGroupsMaster::edit/$1');
+        $routes->post('update-data', 'AuthGroupsMaster::update');
+        $routes->delete('delete-data/(:num)', 'AuthGroupsMaster::delete/$1');
+    });
+
 ?>
