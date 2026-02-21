@@ -42,12 +42,12 @@ $(document).ready(function () {
                         icon: "success",
                         timer: 2000,
                         width: '400px',
-                            padding: '1em'
-                        }).then((result) => {
-                            if (result.dismiss === Swal.DismissReason.timer) {
-                                listData();
-                            }
-                        });
+                        padding: '1em'
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            listData();
+                        }
+                    });
 
                     $("#exampleModal").modal('hide');
                     listData();

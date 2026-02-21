@@ -18,8 +18,10 @@ require __DIR__ . '/Routes/__@admin__.php';
 require __DIR__ . '/Routes/__@user__.php';
 /*________ Pelanggan ________*/
 require __DIR__ . '/Routes/__@pelanggan__.php';
-/*________ Pelanggan ________*/
+/*________ Pelanggan permintaan ________*/
 require __DIR__ . '/Routes/__@pelanggan__permintaan.php';
+/*________ Pelanggan pemeriksaan ________*/
+require __DIR__ . '/Routes/__@pelanggan_pemeriksaan.php';
 
 
 

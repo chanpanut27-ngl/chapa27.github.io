@@ -1,5 +1,5 @@
 <?php
-        /* Permintaan Pelanggan */
+    /* Permintaan Pelanggan */
         $routes->group('pelanggan/pelayanan/permintaan', function ($routes) {
         $routes->get('', 'Pelanggan\Permintaan::index');
         $routes->get('list-data', 'Pelanggan\Permintaan::list');

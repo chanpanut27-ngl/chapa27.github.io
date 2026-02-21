@@ -86,10 +86,19 @@
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
+                            
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 2000,
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    listData();
+                                }
                             });
                             listData();
                         }
