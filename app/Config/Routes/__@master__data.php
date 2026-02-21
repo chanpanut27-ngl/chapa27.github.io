@@ -158,4 +158,27 @@
         $routes->get('delete-data', 'AuthGroupsUsersMaster::delete');
     });
 
+    /* Auth Permissions */
+        $routes->group('master-data/auth-permissions', function ($routes) {
+        $routes->get('', 'AuthPermissionsMaster::index');
+        $routes->get('list-data', 'AuthPermissionsMaster::list');
+        $routes->get('add-data', 'AuthPermissionsMaster::new');
+        $routes->post('create-data', 'AuthPermissionsMaster::create');
+        $routes->get('edit-data/(:num)', 'AuthPermissionsMaster::edit/$1');
+        $routes->post('update-data', 'AuthPermissionsMaster::update');
+        $routes->delete('delete-data/(:num)', 'AuthPermissionsMaster::delete/$1');
+    });
+
+
+    /* Auth Groups Permissions */
+    $routes->group('master-data/auth-groups-permissions', function ($routes) {
+        $routes->get('', 'AuthGroupsPermissionsMaster::index');
+        $routes->get('list-data', 'AuthGroupsPermissionsMaster::list');
+        $routes->get('add-data', 'AuthGroupsPermissionsMaster::new');
+        $routes->post('create-data', 'AuthGroupsPermissionsMaster::create');
+        $routes->get('edit-data/(:num)', 'AuthGroupsPermissionsMaster::edit/$1');
+        $routes->post('update-data', 'AuthGroupsPermissionsMaster::update');
+        $routes->get('delete-data', 'AuthGroupsPermissionsMaster::delete');
+    });
+
 ?>

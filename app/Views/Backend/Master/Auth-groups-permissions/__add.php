@@ -10,7 +10,7 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="group-id" class="form-label h5">Group</label>
+                        <label for="group-id" class="form-label h5">Groups permissions</label>
                         <select class="form-select" name="group_id" aria-label="Default select example" id="group-id">
                             <?php foreach ($groupss as $row) : ?>
                              <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
