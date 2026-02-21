@@ -14,21 +14,21 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['no_reg']; ?></td>
-                <td><?= $row['kode_pelanggan']; ?></td>
-                <td><?= $row['nama_pengirim']; ?></td>
-                <td><?= $row['no_telp_pengirim']; ?></td>
-                <td><?= $row['spesimen_atau_sampel']; ?></td>
-                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
+                <td><?= $row['no_reg'] ?></td>
+                <td><?= $row['kode_pelanggan'] ?></td>
+                <td><?= $row['nama_pengirim'] ?></td>
+                <td><?= $row['no_telp_pengirim'] ?></td>
+                <td><?= $row['spesimen_atau_sampel'] ?></td>
+                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
-                            <span class="fa-solid fa-edit"></span>
+                            <i class="ti ti-edit"></i>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
+                            <i class="ti ti-trash"></i>
                         </button>
                     </div>
                 </td>
@@ -40,16 +40,12 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelanggan/permintaan-pelanggan/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelanggan/pelayanan/permintaan/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
                 $('.btn-edit-'+id).attr('disable', 'disabled');
                 $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
-            },
-            complete: function() {
-                $('.btn-edit-'+id).removeAttr('disable');
-                $('.btn-edit-'+id).html('<span class="fa-solid fa-edit"></span>');
             },
             success: function(response) {
                 if (response.sukses) {
@@ -57,8 +53,12 @@
                     $("#exampleModal").modal('show');
                 }
             },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
+            },
             error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);
             }
         })
     }
@@ -82,7 +82,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelanggan/permintaan-pelanggan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelanggan/pelayanan/permintaan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
@@ -95,7 +95,7 @@
                         }
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
-                        alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);
                     }
                 })
             } else {
