@@ -6,17 +6,12 @@
                 <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelanggan/permintaan-pelanggan/create-data'); ?>" class="form-data">
-                <?= csrf_field(); ?>
-                <?php foreach ($profil as $row) {
-                    $instansi = $row['instansi'] ?? '';
-                    $alamat = $row['alamat'] ?? '';
-                    $no_telp = $row['no_telp'] ?? '';
-                }
-                ?>
-                <input type="hidden" name="instansi" value="<?= $instansi ?>">
-                <input type="hidden" name="alamat" value="<?= $alamat ?>">
-                <input type="hidden" name="no_telp" value="<?= $no_telp ?>">
+            <form action="<?= base_url('pelanggan/pelayanan/permintaan/create-data'); ?>" class="form-data">
+                <?= csrf_field() ?>
+                <?= form_hidden('instansi', $profil['instansi'] ?? '') ?>
+                <?= form_hidden('alamat', $profil['alamat'] ?? '') ?>
+                <?= form_hidden('no_telp', $profil['no_telp'] ?? '') ?>
+
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama-pengirim" class="form-label h5">Nama pengirim</label>
@@ -24,7 +19,7 @@
                         <div class="invalid-feedback errorNamaPengirim"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp-pengirim" class="form-label h5">No.Telp/Hp</label>
+                        <label for="no-telp-pengirim" class="form-label h5">No.Telp/Hp Pengirim</label>
                         <input type="text" name="no_telp_pengirim" class="form-control" id="no-telp-pengirim" autocomplete="off">
                         <div class="invalid-feedback errorTelpPengirim"></div>
                     </div>
@@ -43,30 +38,6 @@
                             </label>
                         </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="petugas" class="form-label h5">Petugas ambil sampel/spesimen</label>
-                        <input type="text" name="petugas_ambil_sampel" class="form-control" id="petugas" autocomplete="off">
-                        <div class="invalid-feedback errorPetugas"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="tgl-ambil-sampel" class="form-label h5">Tanggal pengambilan sampel/spesimen</label>
-                        <input type="text" name="tgl_ambil_sampel" id="tgl-ambil-sampel" class="form-control" autocomplete="off">
-                        <div class="invalid-feedback errorTglAmbilSampel"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="jam-ambil-sampel" class="form-label h5">Jam pengambilan sampel/spesimen</label>
-                        <input type="time" name="jam_ambil_sampel" id="jam-ambil-sampel" class="form-control" autocomplete="off">
-                        <div class="invalid-feedback errorJamAmbilSampel"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="lokasi-ambil-sampel" class="form-label h5">Lokasi pengambilan sampel/spesimen</label>
-                        <input type="text" name="lokasi_ambil_sampel" class="form-control" id="lokasi-ambil-sampel" autocomplete="off">
-                        <div class="invalid-feedback errorLokasiAmbilSampel"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="keterangan-tambahan" class="form-label h5">Keterangan tambahan</label>
-                        <textarea name="keterangan_tambahan" id="keterangan-tambahan" class="form-control"></textarea>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
@@ -76,81 +47,75 @@
         </div>
     </div>
 </div>
+<script src="<?= base_url('assets/js/pelanggan/@permintaan.js') ?>"></script>
 
 <script>
-    $(document).ready(function() {
-        var dateToday = new Date();
-        $("#tgl-ambil-sampel").datepicker(
-            { 
-                dateFormat: 'dd-mm-yy', 
-                defaultDate: "",  inDate: dateToday
-            }
-        );
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
-                },
-                success: function(response) {
-                    var err = response.error
-                    if (err) {
+    // $(document).ready(function() {
+    //     $(".form-data").submit(function(e) {
+    //         e.preventDefault();
+    //         $.ajax({
+    //             type: "post",
+    //             url: $(this).attr('action'),
+    //             data: $(this).serialize(),
+    //             dataType: 'json',
+    //             cache: false,
+    //             beforeSend: function() {
+    //                 $('.btn-simpan').attr('disable', 'disabled');
+    //                 $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+    //                 $('.invalid-feedback').removeAttr('span');
+    //             },
+    //             complete: function() {
+    //                 $('.btn-simpan').removeAttr('disable');
+    //                 $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
+    //             },
+    //             success: function(response) {
+    //                 var err = response.error
+    //                 if (err) {
                         
-                        if (err.nama_pengirim) {
-                            $('#nama-pengirim').addClass('is-invalid');
-                            $('.errorNamaPengirim').html(err.nama_pengirim);
-                        } else {
-                            $('#nama-pengirim').removeClass('is-invalid');
-                            $('.errorNamaPengirim').html('');
-                        }
-                        if (err.no_telp_pengirim) {
-                            $('#no-telp-pengirim').addClass('is-invalid');
-                            $('.errorTelpPengirim').html(err.no_telp_pengirim);
-                        } else {
-                            $('#no-telp-pengirim').removeClass('is-invalid');
-                            $('.errorTelpPengirim').html('');
-                        }
-                        if (err.tgl_ambil_sampel) {
-                            $('#tgl-ambil-sampel').addClass('is-invalid');
-                            $('.errorTglAmbilSampel').html(err.tgl_ambil_sampel);
-                        } else {
-                            $('#tgl-ambil-sampel').removeClass('is-invalid');
-                            $('.errorTglAmbilSampel').html('');
-                        }
-                        if (err.jam_ambil_sampel) {
-                            $('#jam-ambil-sampel').addClass('is-invalid');
-                            $('.errorJamAmbilSampel').html(err.jam_ambil_sampel);
-                        } else {
-                            $('#jam-ambil-sampel').removeClass('is-invalid');
-                            $('.errorJamAmbilSampel').html('');
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success",
-                            timer: 3000
-                        });
+    //                     if (err.nama_pengirim) {
+    //                         $('#nama-pengirim').addClass('is-invalid');
+    //                         $('.errorNamaPengirim').html(err.nama_pengirim);
+    //                     } else {
+    //                         $('#nama-pengirim').removeClass('is-invalid');
+    //                         $('.errorNamaPengirim').html('');
+    //                     }
+    //                     if (err.no_telp_pengirim) {
+    //                         $('#no-telp-pengirim').addClass('is-invalid');
+    //                         $('.errorTelpPengirim').html(err.no_telp_pengirim);
+    //                     } else {
+    //                         $('#no-telp-pengirim').removeClass('is-invalid');
+    //                         $('.errorTelpPengirim').html('');
+    //                     }
+    //                     if (err.tgl_ambil_sampel) {
+    //                         $('#tgl-ambil-sampel').addClass('is-invalid');
+    //                         $('.errorTglAmbilSampel').html(err.tgl_ambil_sampel);
+    //                     } else {
+    //                         $('#tgl-ambil-sampel').removeClass('is-invalid');
+    //                         $('.errorTglAmbilSampel').html('');
+    //                     }
+    //                     if (err.jam_ambil_sampel) {
+    //                         $('#jam-ambil-sampel').addClass('is-invalid');
+    //                         $('.errorJamAmbilSampel').html(err.jam_ambil_sampel);
+    //                     } else {
+    //                         $('#jam-ambil-sampel').removeClass('is-invalid');
+    //                         $('.errorJamAmbilSampel').html('');
+    //                     }
+    //                 } else {
+    //                     Swal.fire({
+    //                         title: "Berhasil",
+    //                         text: response.sukses,
+    //                         icon: "success",
+    //                         timer: 3000
+    //                     });
 
-                        $("#exampleModal").modal('hide');
-                        listData();
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-    })
+    //                     $("#exampleModal").modal('hide');
+    //                     listData();
+    //                 }
+    //             },
+    //             error: function(xhr, ajaxOptions, thrownError) {
+    //                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+    //             }
+    //         })
+    //     })
+    // })
 </script>

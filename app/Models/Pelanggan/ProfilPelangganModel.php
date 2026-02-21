@@ -2,6 +2,7 @@
 
 namespace App\Models\Pelanggan;
 
+use App\Controllers\Pelanggan\Profil;
 use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
@@ -74,10 +75,10 @@ class ProfilPelangganModel extends Model
     
     public function get_data()
     {
-        $builder = $this->db->table('profil_pelanggan');
-        $builder->select('id, instansi, alamat, no_telp, username, email');
-        $builder->where('username', user()->username);
-        $query = $builder->get()->getResultArray();
+        $model = new ProfilPelangganModel();
+        $model->select('id, instansi, alamat, no_telp, username, email');
+        $model->where('username', user()->username);
+        $query = $model->first();
         return $query;
     }
 }
