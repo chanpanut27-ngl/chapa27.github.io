@@ -2,7 +2,7 @@
 
 /** Kumpulan file **/
 /* File Peraturan */
-    $routes->group('file-peraturan/reader', function ($routes) {
+    $routes->group('file/peraturan', function ($routes) {
     $routes->get('standar-pelayanan', 'FileReader::standar_pelayanan');
     $routes->get('tarif-pelayanan', 'FileReader::tarif_pelayanan');
     $routes->get('permenkes-no2-2023', 'FileReader::permenkes_no2_2023');
@@ -15,14 +15,14 @@
 });
 
 /* Booklet */
-    $routes->group('file-booklet/reader', function ($routes) {
+    $routes->group('file/booklet', function ($routes) {
     $routes->get('booklet-2025', 'BookletReader::booklet_2025');
     $routes->get('booklet-2026', 'BookletReader::booklet_2026');
     $routes->get('tarif-pnbp', 'BookletReader::tarif_pnbp');
 });
 
 /* File Formulir */
-$routes->group('file-formulir/reader', function ($routes) {
+$routes->group('file/formulir', function ($routes) {
     $routes->get('prosedur-permintaan-pemeriksaan-pengujian', 'FormulirReader::prosedur_permintaan_pemeriksaan_pengujian');
     $routes->get('permintaan-pemeriksaan-rujukan-atau-kiriman', 'FormulirReader::permintaan_pemeriksaan_rujukan_atau_kiriman');
     $routes->get('permintaan-pengujian-sampel-lingkungan', 'FormulirReader::permintaan_pengujian_sampel_lingkungan');

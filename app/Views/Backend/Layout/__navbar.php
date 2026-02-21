@@ -55,47 +55,47 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/standar-pelayanan') ?>">
+                            <a class="pc-link" href="<?= base_url('file/peraturan/standar-pelayanan') ?>">
                                 <i class="ti ti-file"></i> Standar Pelayanan
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/tarif-pelayanan') ?>">
+                            <a class="pc-link" href="<?= base_url('file/peraturan/tarif-pelayanan') ?>">
                                 <i class="ti ti-file"></i> Tarif Pelayanan
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenkes-no2-2023') ?>">
+                            <a class="pc-link" href="<?= base_url('file/peraturan/permenkes-no2-2023') ?>">
                                 <i class="ti ti-file"></i> Permenkes No.02 Tahun 2023
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/menlhk-no68-2016') ?>" data-i18n="MenLHK No. 68 Tahun 2016">
+                            <a class="pc-link" href="<?= base_url('file/peraturan/menlhk-no68-2016') ?>" data-i18n="MenLHK No. 68 Tahun 2016">
                                 <i class="ti ti-file"></i> MenLHK No. 68 Tahun 2016
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenlh-no11-2025') ?>" data-i18n="PermenLH No. 11 Tahun 2025">
+                            <a class="pc-link" href="<?= base_url('file/peraturan/permenlh-no11-2025') ?>" data-i18n="PermenLH No. 11 Tahun 2025">
                                 <i class="ti ti-file"></i> PermenLH No. 11 Tahun 2025
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenlh-no12-2025') ?>" data-i18n="PermenLH No. 12 Tahun 2025">
+                            <a class="pc-link" href="<?= base_url('file/peraturan/permenlh-no12-2025') ?>" data-i18n="PermenLH No. 12 Tahun 2025">
                                 <i class="ti ti-file"></i> PermenLH No. 12 Tahun 2025
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/pertek-baku-mutu-limbah-domestik') ?>" data-i18n="Pertek Baku Mutu Limbah Domestik">
+                            <a class="pc-link" href="<?= base_url('file/peraturan/pertek-baku-mutu-limbah-domestik') ?>" data-i18n="Pertek Baku Mutu Limbah Domestik">
                                 <i class="ti ti-file"></i> Pertek Baku Mutu Limbah Domestik
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenkes-no1096-2011') ?>" data-i18n="Permenkes No.1096 Tahun 2011">
+                            <a class="pc-link" href="<?= base_url('file/peraturan/permenkes-no1096-2011') ?>" data-i18n="Permenkes No.1096 Tahun 2011">
                                 <i class="ti ti-file"></i> Permenkes No.1096 Tahun 2011
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-peraturan/reader/permenkes-no7-aami-2019') ?>" data-i18n="Permenkes No.7 Tahun 2019 AAMI">
+                            <a class="pc-link" href="<?= base_url('file/peraturan/permenkes-no7-aami-2019') ?>" data-i18n="Permenkes No.7 Tahun 2019 AAMI">
                                 <i class="ti ti-file"></i> Permenkes No.7 Tahun 2019 AAMI
                             </a>
                         </li>
@@ -111,27 +111,27 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-formulir/reader/prosedur-permintaan-pemeriksaan-pengujian') ?>" data-i18n="Prosedur permintaan pemeriksaan pengujian">
+                            <a class="pc-link" href="<?= base_url('file/formulir/prosedur-permintaan-pemeriksaan-pengujian') ?>" data-i18n="Prosedur permintaan pemeriksaan pengujian">
                                <i class="ti ti-file"></i> Prosedur permintaan pemeriksaan pengujian
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-formulir/reader/permintaan-pemeriksaan-rujukan-atau-kiriman') ?>" data-i18n="Prosedur permintaan pemeriksaan pengujian">
+                            <a class="pc-link" href="<?= base_url('file/formulir/permintaan-pemeriksaan-rujukan-atau-kiriman') ?>" data-i18n="Prosedur permintaan pemeriksaan pengujian">
                                <i class="ti ti-file"></i> Permintaan pemeriksaan rujukan atau kiriman
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-formulir/reader/permintaan-pengujian-sampel-lingkungan') ?>" data-i18n="Prosedur permintaan pemeriksaan pengujian">
+                            <a class="pc-link" href="<?= base_url('file/formulir/permintaan-pengujian-sampel-lingkungan') ?>" data-i18n="Prosedur permintaan pemeriksaan pengujian">
                                <i class="ti ti-file"></i> Permintaan pengujian sampel lingkungan
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-formulir/reader/permintaan-pengujian-spesimen-klinis'); ?>" data-i18n="Permintaan pengujian spesimen klinis">
+                            <a class="pc-link" href="<?= base_url('file/formulir/permintaan-pengujian-spesimen-klinis'); ?>" data-i18n="Permintaan pengujian spesimen klinis">
                                 <i class="ti ti-file"></i> Permintaan pengujian spesimen klinis
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-formulir/reader/contoh-surat'); ?>" data-i18n="Permintaan pengujian spesimen klinis">
+                            <a class="pc-link" href="<?= base_url('file/formulir/contoh-surat'); ?>" data-i18n="Permintaan pengujian spesimen klinis">
                                 <i class="ti ti-file"></i> Contoh Surat
                             </a>
                         </li>
@@ -147,17 +147,17 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-booklet/reader/booklet-2025') ?>" data-i18n="Booklet 3">
+                            <a class="pc-link" href="<?= base_url('file/booklet/booklet-2025') ?>" data-i18n="Booklet 3">
                                 <i class="ti ti-file"></i> Booklet 2025
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-booklet/reader/booklet-2026') ?>" data-i18n="Booklet 3">
+                            <a class="pc-link" href="<?= base_url('file/booklet/booklet-2026') ?>" data-i18n="Booklet 3">
                                 <i class="ti ti-file"></i> Booklet 2026
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('file-booklet/reader/tarif-pnbp') ?>" data-i18n="Harga Pnbp">
+                            <a class="pc-link" href="<?= base_url('file/booklet/tarif-pnbp') ?>" data-i18n="Harga Pnbp">
                                 <i class="ti ti-file"></i> Tarif Pnbp
                             </a>
                         </li>
