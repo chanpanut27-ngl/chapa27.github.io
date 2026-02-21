@@ -100,13 +100,21 @@ class CoolboxMaster extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'keterangan' => [
+                    'label' => 'Keterangan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'id_instansi' => $this->validation->getError('id_instansi')
+                        'id_instansi' => $this->validation->getError('id_instansi'),
+                        'keterangan' => $this->validation->getError('keterangan')
                     ]
                 ];
             } else {
@@ -169,13 +177,21 @@ class CoolboxMaster extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'keterangan' => [
+                    'label' => 'Keterangan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'id_instansi' => $this->validation->getError('id_instansi')
+                        'id_instansi' => $this->validation->getError('id_instansi'),
+                        'keterangan' => $this->validation->getError('keterangan')
                     ]
                 ];
             } else {

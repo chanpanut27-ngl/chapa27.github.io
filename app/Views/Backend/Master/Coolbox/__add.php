@@ -28,6 +28,7 @@
                     <div class="mb-3">
                         <label for="keterangan" class="form-label h5">Keterangan</label>
                         <textarea name="keterangan" class="form-control" id="keterangan"></textarea>
+                        <div class="invalid-feedback errorKeterangan"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -38,62 +39,9 @@
         </div>
     </div>
 </div>
-
 <script>
-    $(document).ready(function() {
-        $('#id-instansi').select2({
-            dropdownParent: $('#exampleModal')
-        });
-
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
-                },
-                success: function(response) {
-                    var err = response.error
-                    if (err) {
-                        if (err.id_instansi) {
-                            $("#id-instansi").addClass('is-invalid');
-                            $('.errorAsalInstansi').html(err.id_instansi);
-                        } else {
-                            $('#id-instansi').removeClass('is-invalid');
-                            $('.errorAsalInstansi').html('');
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success",
-                            timer: 3000,
-                            width: '300px',
-                            padding: '1em'
-                        }).then((result) => {
-                            if (result.dismiss === Swal.DismissReason.timer) {
-                                console.log("I was closed by the timer");
-                            }
-                        });
-
-                        $("#exampleModal").modal('hide');
-                        listData();
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-    })
+    $('#id-instansi').select2({
+        dropdownParent: $('#exampleModal')
+    });
 </script>
+<script src="<?= base_url('assets/js/Master/@save_coolbox.js') ?>"></script>
