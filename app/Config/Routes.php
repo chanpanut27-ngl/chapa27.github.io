@@ -30,5 +30,7 @@ require __DIR__ . '/Routes/__@file__reader.php';
 require __DIR__ . '/Routes/__@master__data.php';
 /*________ Coolbox ________*/
 require __DIR__ . '/Routes/__@coolbox__.php';
+/*________ Profil pegawai ________*/
+require __DIR__ . '/Routes/__@profil__pegawai.php';
 
 
