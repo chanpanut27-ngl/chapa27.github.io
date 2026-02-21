@@ -23,6 +23,5 @@
         </tr>
         <?php endforeach;?>
         Jumlah parameter : <?= $jumlah ?>
-        <input type="hidden" name="jumlah_parameter" value="<?= $jumlah ?>">
     </tbody>
 </table>

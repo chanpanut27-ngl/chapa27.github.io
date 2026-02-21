@@ -30,14 +30,14 @@
                         echo '<span class="badge text-bg-dark">Tanpa peraturan</span>'; 
                         ?>
                         <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
+                            <i class="ti ti-trash"></i>
                         </button>
                         <?php 
                         else : 
                         echo '<span class="badge text-bg-success">Sesuai peraturan</span>'; 
                         ?>
                         <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
+                            <i class="ti ti-trash"></i>
                         </button>
                         <?php
                         endif;?>
@@ -84,7 +84,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelanggan/list-pemeriksaan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelanggan/pelayanan/list-pemeriksaan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

@@ -81,7 +81,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
-                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Pemeriksaan sampel">
+                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPemeriksaanSampel(<?= $items['id']; ?>)" title="Pemeriksaan sampel">
                                 <span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel</button>
                                 <!-- Button trigger modal -->
                                  <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
@@ -134,11 +134,11 @@
         })
     }
 
-    function showPermintaanSampel(id) {
+    function showPemeriksaanSampel(id) {
         
         $.ajax({
             type: 'GET',
-            url: '<?= site_url('pelanggan/permintaan-pemeriksaan/show-permintaan-sampel/'); ?>' + id,
+            url: '<?= site_url('pelanggan/pelayanan/pemeriksaan/show-permintaan-sampel/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -189,7 +189,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'get',
-                    url: '<?= site_url('pelanggan/permintaan-pemeriksaan/delete-all-data/'); ?>' + id,
+                    url: '<?= site_url('pelanggan/pelayanan/pemeriksaan/delete-all-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
@@ -219,7 +219,7 @@
             var id_pelanggan = $(this).data("id");
             var no_reg = $(this).data("noreg");
             $.ajax({
-                url: "<?= site_url('pelanggan/list-pemeriksaan/add-data'); ?>",
+                url: "<?= site_url('pelanggan/pelayanan/list-pemeriksaan/add-data'); ?>",
                 dataType: 'json',
                 data: {id_pelanggan:id_pelanggan, no_reg:no_reg},
                 cache: false,

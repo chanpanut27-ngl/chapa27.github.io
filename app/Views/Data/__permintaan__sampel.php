@@ -7,7 +7,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table class="table table-bordered">
+                <table id="examples" class="table table-bordered">
                     <thead>
                         <tr>
                             <th class="fw-bold">No.</th>
@@ -23,7 +23,7 @@
                         foreach ($items as $row) :
                         ?>
                             <tr>
-                                <td><?= $no++; ?></td>
+                                <td class="text-center"><?= $no++; ?></td>
                                 <td><?= $row['jenis_sampel'] ?></td>
                                 <td style="text-align: center;"><?= $row['jumlah_sampel'] ?></td>
                                 <td style="text-align: right;"><?= number_to_currency($row['pnbp'], 'IDR', 'ID', 0); ?></td>
@@ -36,3 +36,11 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        new DataTable('#examples', {
+            responsive: true
+        });
+    })
+</script>

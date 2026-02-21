@@ -5,6 +5,7 @@ namespace App\Controllers\Pelanggan;
 use App\Controllers\BaseController;
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\ParameterModel;
 use App\Models\Pelanggan\ProfilPelangganModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\PermintaanPemeriksaanModel;
@@ -167,9 +168,17 @@ class ListPemeriksaan extends BaseController
 
                 }
 
-                $jumlah_parameter = $this->request->getVar('jumlah_parameter');
+                
+                $_parameter = new ParameterModel();
+                $jlh_p = $_parameter->
+                where('id_jenis_sampel', $id_jenis_sampel)->countAllResults();
 
-                if ($count < $jumlah_parameter) {
+                $_permintaan_periksa = new PermintaanPemeriksaanModel();
+                $jlh_pp = $_permintaan_periksa->
+                where('id_jenis_sampel', $id_jenis_sampel)->
+                where('id_pelanggan', $id_pelanggan)->countAllResults();
+
+                if ($jlh_pp < $jlh_p) {
                     $ket_peraturan = "Tidak lengkap";
                 }else{
                     $ket_peraturan = "Lengkap";
@@ -183,7 +192,16 @@ class ListPemeriksaan extends BaseController
                     'ket_peraturan' => $ket_peraturan,
                 ];
 
-                $builder2->insert($save_permintaan_sampel);
+                $cek_permintaan_sampel = $this->m_permintaan_sampel->
+                where('id_pelanggan', $id_pelanggan)->
+                where('id_jenis_sampel', $id_jenis_sampel)->countAllResults();
+                
+                if ($cek_permintaan_sampel > 0) {
+                    $builder2->where('id_pelanggan', $id_pelanggan)->
+                    where('id_jenis_sampel', $id_jenis_sampel)->update($save_permintaan_sampel);
+                } else {
+                    $builder2->insert($save_permintaan_sampel);
+                }
 
                 $this->db->transComplete();
 

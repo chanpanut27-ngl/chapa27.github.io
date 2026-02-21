@@ -19,4 +19,5 @@
         $routes->delete('delete-data/(:num)', 'Pelanggan\ListPemeriksaan::delete/$1');
         $routes->get('delete-data-pemeriksaan/(:any)', 'Pelanggan\ListPemeriksaan::delete_data_pemeriksaan/$1');
     });
+
 ?>

@@ -21,7 +21,9 @@ require __DIR__ . '/Routes/__@pelanggan__.php';
 /*________ Pelanggan permintaan ________*/
 require __DIR__ . '/Routes/__@pelanggan__permintaan.php';
 /*________ Pelanggan pemeriksaan ________*/
-require __DIR__ . '/Routes/__@pelanggan_pemeriksaan.php';
+require __DIR__ . '/Routes/__@pelanggan__pemeriksaan.php';
+/*________ Cari data ________*/
+require __DIR__ . '/Routes/__@cari__data.php';
 
 
 
