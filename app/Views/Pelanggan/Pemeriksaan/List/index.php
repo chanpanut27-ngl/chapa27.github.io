@@ -38,12 +38,12 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <a href="<?= base_url('pelanggan/permintaan-pemeriksaan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
-                            <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                            <a href="<?= base_url('pelanggan/pelayanan/pemeriksaan') ?>" class="btn btn-secondary btn-sm btn-rounded" title="Kembali"><i class="fa-solid fa-arrow-circle-left"></i></a>
+                            <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
+                                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
-                                <span class="fa-solid fa-undo"></span> Batal pemeriksaan
+                                <i class="fa-solid fa-undo"></i> Batal pemeriksaan
                             </button>
                         </div>
                     </div>
