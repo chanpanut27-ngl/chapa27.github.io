@@ -95,6 +95,20 @@ class InstansiMaster extends BaseController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
+                'alamat' => [
+                    'label' => 'Alamat',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'no_telp' => [
+                    'label' => 'No.Telp/Hp',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
                 'wilayah' => [
                     'label' => 'Wilayah',
                     'rules' => 'required',
@@ -108,6 +122,8 @@ class InstansiMaster extends BaseController
                 $msg = [
                     'error' => [
                         'nama_instansi' => $this->validation->getError('nama_instansi'),
+                        'alamat' => $this->validation->getError('alamat'),
+                        'no_telp' => $this->validation->getError('no_telp'),
                         'wilayah' => $this->validation->getError('wilayah'),
                     ]
                 ];
