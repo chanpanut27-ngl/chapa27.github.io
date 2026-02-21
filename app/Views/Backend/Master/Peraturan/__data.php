@@ -88,7 +88,7 @@
                                 text: response.sukses,
                                 icon: "success",
                                 timer: 2000,
-                                width: '300px',
+                                width: '400px',
                                 padding: '1em'
                                 
                             }).then((result) => {
