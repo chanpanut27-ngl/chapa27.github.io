@@ -4,33 +4,31 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbPermintaanSampel extends Migration
+class MgdbMasterInstansi extends Migration
 {
     public function up()
     {
-        $this->forge->addField([
+         $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'id_pelanggan' => [
-                'type'       => 'INT'
-            ],
-            'no_reg' => [
+            'nama_instansi' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255'
+                'constraint' => '150',
             ],
-            'id_jenis_sampel' => [
-                'type'       => 'INT'
+            'alamat' => [
+                'type'       => 'TEXT'
             ],
-            'jumlah_sampel' => [
-                'type'       => 'INT'
+            'no_telp' => [
+                'type'       => 'CHAR',
+                'constraint' => '20',
             ],
-            'ket_peraturan' => [
+            'wilayah' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '150'
+                'constraint' => '150',
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -61,11 +59,11 @@ class MgdbPermintaanSampel extends Migration
          ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('permintaan_sampel');
+        $this->forge->createTable('master_instansi');
     }
 
     public function down()
     {
-        $this->forge->dropTable('permintaan_sampel');
+        $this->forge->dropTable('master_instansi');
     }
 }

@@ -32,13 +32,13 @@ $routes->group('file-formulir/reader', function ($routes) {
 
 /* Pelanggan *
 /* File Pelayanan */
-    $routes->group('pelanggan/file-pelayanan/reader', function ($routes) {
+    $routes->group('pelanggan/file/pelayanan', function ($routes) {
         $routes->get('standar-pelayanan', 'Pelanggan\FileReader::standar_pelayanan');
         $routes->get('tarif-pelayanan', 'Pelanggan\FileReader::tarif_pelayanan');
     });
 
     /* Booklet */
-        $routes->group('pelanggan/booklet/reader', function ($routes) {
+        $routes->group('pelanggan/booklet', function ($routes) {
         $routes->get('booklet-2025', 'Pelanggan\BookletReader::booklet_2025');
         $routes->get('booklet-2026', 'Pelanggan\BookletReader::booklet_2026');
         $routes->get('tarif-pnbp', 'Pelanggan\BookletReader::tarif_pnbp');

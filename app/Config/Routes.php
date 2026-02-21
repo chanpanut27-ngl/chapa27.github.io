@@ -24,6 +24,10 @@ require __DIR__ . '/Routes/__@pelanggan__permintaan.php';
 require __DIR__ . '/Routes/__@pelanggan__pemeriksaan.php';
 /*________ Cari data ________*/
 require __DIR__ . '/Routes/__@cari__data.php';
+/*________ File reader ________*/
+require __DIR__ . '/Routes/__@file__reader.php';
+/*________ Master data ________*/
+require __DIR__ . '/Routes/__@master__data.php';
 
 
 

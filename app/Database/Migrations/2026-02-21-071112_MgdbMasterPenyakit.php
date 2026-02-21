@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbPermintaanSampel extends Migration
+class MgdbMasterPenyakit extends Migration
 {
     public function up()
     {
@@ -15,22 +15,12 @@ class MgdbPermintaanSampel extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'id_pelanggan' => [
-                'type'       => 'INT'
-            ],
-            'no_reg' => [
+            'penyakit' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '255'
+                'constraint' => '150',
             ],
-            'id_jenis_sampel' => [
-                'type'       => 'INT'
-            ],
-            'jumlah_sampel' => [
-                'type'       => 'INT'
-            ],
-            'ket_peraturan' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '150'
+            'keterangan' => [
+                'type'       => 'TEXT'
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -61,11 +51,11 @@ class MgdbPermintaanSampel extends Migration
          ]);
 
         $this->forge->addKey('id', true);
-        $this->forge->createTable('permintaan_sampel');
+        $this->forge->createTable('master_penyakit');
     }
 
     public function down()
     {
-        $this->forge->dropTable('permintaan_sampel');
+        $this->forge->dropTable('master_penyakit');
     }
 }

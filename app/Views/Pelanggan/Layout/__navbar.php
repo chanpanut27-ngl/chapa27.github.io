@@ -56,12 +56,12 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('pelanggan/file-pelayanan/reader/standar-pelayanan'); ?>" data-i18n="Standar Pelayanan">
+                            <a class="pc-link" href="<?= base_url('pelanggan/file/pelayanan/standar-pelayanan'); ?>" data-i18n="Standar Pelayanan">
                                 <span class="fa-solid fa-file-alt"></span> Standar Pelayanan
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('pelanggan/file-pelayanan/reader/tarif-pelayanan'); ?>" data-i18n="Tarif Pelayanan">
+                            <a class="pc-link" href="<?= base_url('pelanggan/file/pelayanan/tarif-pelayanan'); ?>" data-i18n="Tarif Pelayanan">
                                 <span class="fa-solid fa-file-alt"></span> Tarif Pelayanan
                             </a>
                         </li>
@@ -75,17 +75,17 @@
                     </a>
                     <ul class="pc-submenu">
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/reader/booklet-2025'); ?>" data-i18n="Booklet 2025">
+                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/booklet-2025'); ?>" data-i18n="Booklet 2025">
                                 <span class="fa-solid fa-file-alt"></span> Booklet 2025
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/reader/booklet-2026'); ?>" data-i18n="Booklet 2026">
+                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/booklet-2026'); ?>" data-i18n="Booklet 2026">
                                 <span class="fa-solid fa-file-alt"></span> Booklet 2026
                             </a>
                         </li>
                         <li class="pc-item">
-                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/reader/tarif-pnbp'); ?>" data-i18n="Harga Pnbp">
+                            <a class="pc-link" href="<?= base_url('pelanggan/booklet/tarif-pnbp'); ?>" data-i18n="Harga Pnbp">
                                 <span class="fa-solid fa-file-alt"></span> Harga Pnbp
                             </a>
                         </li>
