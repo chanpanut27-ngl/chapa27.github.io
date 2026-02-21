@@ -92,6 +92,7 @@
         </div>
     </div>
 </div>
+<script src="<?= base_url('assets/js/Master/@update_pelanggan.js') ?>"></script>
 
 <script>
 
