@@ -35,9 +35,9 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
-                        <div class="d-flex justify-content-end align-items-center gap-1">
+                        <div class="d-flex justify-content-end align-items-center">
                             <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh">
-                                <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
                         </div>
                     </div>
@@ -63,14 +63,13 @@
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <!-- [Datepicker js] -->
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
-
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelanggan/permintaan-pemeriksaan/list-data'); ?>",
+            url: "<?= site_url('pelanggan/pelayanan/pemeriksaan/list-data') ?>",
             dataType: 'json',
             cache: false,
-             beforeSend: function() {
+            beforeSend: function() {
                 $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
             complete: function() {
@@ -80,14 +79,13 @@
                 $(".view-data").html(response.data);
             },
             error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);
             }
-        })
+        });
     }
 
-
-    $(document).ready(function() {
+    $(document).ready(function () {
         listData();
-    })
+    });
 </script>
 <?= $this->endSection(); ?>

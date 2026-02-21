@@ -72,7 +72,6 @@
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 
 <script>
-
     function listData() {
         $.ajax({
             url: "<?= site_url('pelanggan/pelayanan/permintaan/list-data') ?>",
@@ -95,10 +94,10 @@
 
     $(document).ready(function () {
 
-    listData();
+        listData();
 
-    $(".btn-tambah").click(function (e) {
-        e.preventDefault();
+        $(".btn-tambah").click(function (e) {
+            e.preventDefault();
             $.ajax({
                 url: "<?= site_url('pelanggan/pelayanan/permintaan/add-data') ?>",
                 dataType: 'json',
@@ -118,6 +117,7 @@
                 }
             })
         })
+
     });
 </script>
 <?= $this->endSection(); ?>
