@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'No.Registrasi', 'Nama pengirim', 'Tgl & Jam pengambilan spesimen/sampel', 'Tgl & Jam permintaan', ''];
+        $arrth = ['No', 'Parameter', 'Harga per titik', 'Pemeriksaan', 'Peraturan', 'Laboratorium', 'Tgl & Jam', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -14,17 +14,33 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_permintaan_pemeriksaan']; ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['no_reg'] ?></td>
-                <td><?= $row['nama_pengirim']; ?></td>
-                <td style="text-align: center;"><?= date('d-m-Y', strtotime($row['tgl_ambil_sampel'])).' '.date('H:i', strtotime($row['jam_ambil_sampel'])); ?></td>
-                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
+                <td><?= $row['parameter']; ?></td>
+                <td style="text-align: right;"><?= number_to_currency($row['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
+                <td><?= $row['jenis_sampel']; ?></td>
+                <td><?= $row['peraturan']; ?></td>
+                <td><?= $row['nama_lab']; ?></td>
+                <td><?= date('d-m-Y H:i', strtotime($row['tgl_entry'])); ?></td>
+                
                 <td>
                     <div class="d-flex justify-content-start">
-                        <a href="<?= base_url('pelayanan-sampel/permintaan-pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-primary rounded btn-sm" title="Tambah pemeriksaan" style="padding:initial; font-size:13px;">
-                            <span class="fa-solid fa-arrow-circle-right"></span> Tambah pemeriksaan
-                        </a>
+                        <?php 
+                        if ($row['ket_peraturan'] == 'Tidak lengkap') : 
+                        echo '<span class="badge text-bg-dark">Tanpa peraturan</span>'; 
+                        ?>
+                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
+                            <span class="fa-solid fa-trash-alt"></span>
+                        </button>
+                        <?php 
+                        else : 
+                        echo '<span class="badge text-bg-success">Sesuai peraturan</span>'; 
+                        ?>
+                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
+                            <span class="fa-solid fa-trash-alt"></span>
+                        </button>
+                        <?php
+                        endif;?>
                     </div>
                 </td>
             </tr>
@@ -32,6 +48,64 @@
     </tbody>
 </table>
 <script>
+    function editData(id) {
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('master-data/instansi/edit-data/'); ?>' + id,
+            dataType: 'json',
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+
+    function deleteData(id) {
+        var myElement = $('#myId-' + id);
+        if (myElement.data('urut')) {
+            myElement.addClass('bg bg-danger');
+        }
+        Swal.fire({
+            title: "Yakin untuk menghapus data ?",
+            text: `No.urut : ` + myElement.data('urut'),
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus!",
+            cancelButtonText: "Tidak",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: 'delete',
+                    url: '<?= site_url('pelanggan/list-pemeriksaan/delete-data/'); ?>' + id,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.sukses) {
+                            Swal.fire({
+                                title: "Hapus Data !",
+                                text: response.sukses,
+                                icon: "success"
+                            });
+                            listData();
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                    }
+                })
+            } else {
+                myElement.removeClass('bg bg-danger');
+            }
+        });
+    }
+
     $(document).ready(function() {
         new DataTable('#example', {
             responsive: true

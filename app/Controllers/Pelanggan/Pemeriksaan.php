@@ -23,7 +23,7 @@ class Pemeriksaan extends BaseController
 
     public function __construct()
     {
-        $this->title = 'permintaan pemeriksaan';
+        $this->title = 'Pemeriksaan';
         $this->m_permintaan = new PermintaanPelangganModel();
         $this->m_profil = new ProfilPelangganModel();
     }
