@@ -51,4 +51,26 @@
     });
 
 
+    /* Pelayanan Resume Pengantar Lab */
+    $routes->group('pelayanan/pengantar-lab/resume', function ($routes) {
+        $routes->get('(:any)', 'ResumePengantarLab::index/$1');
+        $routes->get('list-data', 'ResumePengantarLab::list');
+    });
+
+    /* Cetak Resume Pengantar Lab */
+    $routes->get('cetak/resume/(:any)', 'ResumePengantarLab::cetak/$1');
+    $routes->get('cetak/perintah-uji/(:any)', 'PerintahUjiSampel::cetak/$1');
+    $routes->get('cetak/label-coolbox/(:any)', 'CoolboxMaster::cetak_label/$1');
+
+    /* Pelayanan Kaji Ulang Kontrak Pengantar Lab */
+    $routes->group('pelayanan/pengantar-lab/kaji-ulang-kontrak', function ($routes) {
+        $routes->get('', 'KajiUlangKontrakPengantar::index');
+        $routes->get('list-data', 'KajiUlangKontrakPengantar::list');
+        $routes->get('add-data', 'KajiUlangKontrakPengantar::new');
+        $routes->post('create-data', 'KajiUlangKontrakPengantar::create');
+        $routes->get('edit-data/(:num)', 'KajiUlangKontrakPengantar::edit/$1');
+        $routes->post('update-data', 'KajiUlangKontrakPengantar::update');
+        $routes->delete('delete-data/(:num)', 'KajiUlangKontrakPengantar::delete/$1');
+    });
+
     ?>

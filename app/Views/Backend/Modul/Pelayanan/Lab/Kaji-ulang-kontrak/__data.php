@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <?php if (!$items) {
         ?>
-        <tbody style="font-family: arial;">
+        <tbody>
             <tr>
                 <td style="width: 25%;"><b>Alat utama</b></td>
                 <td>: </td>
@@ -31,12 +31,12 @@
     } else {
     foreach ($items as $row) : ?>
     <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
-       <span class="fa-solid fa-edit"></span>
+       <i class="ti ti-edit"></i>
     </button>&nbsp;
     <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
-       <span class="fa-solid fa-trash-alt"></span>
+       <i class="ti ti-trash"></i>
     </button>
-    <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
+    <tbody id="myId-<?= $row['id']; ?>">
         <tr>
             <td style="width: 25%;"><b>Alat utama</b></td>
             <td>: <?= $row['alat_utama'] ?></td>
@@ -78,7 +78,7 @@
             },
             complete: function() {
                 $('.btn-edit').removeAttr('disable');
-                $('.btn-edit').html('<span class="fa-solid fa-edit"></span>');
+                $('.btn-edit').html('<i class="ti ti-trash"></i>');
             },
             success: function(response) {
                 if (response.sukses) {
