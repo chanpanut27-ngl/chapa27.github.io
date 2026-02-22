@@ -20,7 +20,7 @@
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-danger rounded btn-sm" onclick="deleteData(<?= $row['id_lt'] ?>)" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
+                            <i class="ti ti-trash"></i>
                         </button>
                     </div>
                 </td>
@@ -72,7 +72,13 @@
                                 title: "Gagal!",
                                 text: response.error,
                                 icon: "error",
-                                timer: 3000
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                   listData();
+                                }
                             });
                             myElement.removeClass('bg bg-danger');
                         } else {

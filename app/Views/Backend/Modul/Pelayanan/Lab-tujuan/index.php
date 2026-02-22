@@ -24,9 +24,9 @@
         <!-- [ Main Content ] start -->
         <div class="card-header p-2">
             <div class="d-flex justify-content-end align-items-center gap-1">
-                <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
-                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span>
+                <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-secondary btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
+                    <span class="pc-micon"><i class="ti ti-refresh"></i>
                 </button>
             </div>
         </div>
