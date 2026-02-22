@@ -12,12 +12,14 @@
         <div class="mb-2 mt-3">
             <?php echo $img; ?>
         </div>
+        <?php foreach ($profil as $rows) : ?>
         <div class="mb-2 mt-3">
-            <label><b><?= @$profil['instansi'] ?></b></label>
+            <label><b><?= $rows['instansi'] ?></b></label>
         </div>
         <div class="mb-2">
-            <label><?= @$profil['email'] ?></label>
+            <label><?= $rows['email'] ?></label>
         </div>
+        <?php endforeach;?>
     </div>
     <div class="card-footer p-2">
         <form action="<?= base_url('profil-pegawai/upload-foto') ?>" class="form-upload" enctpype="multipart/form-data">

@@ -81,8 +81,8 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
-                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPemeriksaanSampel(<?= $items['id']; ?>)" title="Pemeriksaan sampel">
-                                <span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel</button>
+                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPemeriksaanSampel(<?= $items['id']; ?>)" title="Jenis sampel">
+                                <span class="fa-solid fa-clipboard"></span> Jenis sampel</button>
                                 <!-- Button trigger modal -->
                                  <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
                                     <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
@@ -196,7 +196,14 @@
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                   listData();
+                                }
                             });
                             listData();
                         }
