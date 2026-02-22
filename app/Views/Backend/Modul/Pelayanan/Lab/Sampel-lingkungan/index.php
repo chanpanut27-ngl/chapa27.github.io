@@ -21,13 +21,9 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
     <div class="card">
         <div class="card-header p-2">
             <div class="d-flex justify-content-end align-items-center gap-1">    
-                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
-                </button>
-                <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $rest_['id_pelanggan']; ?>)" title="Pemeriksaan sampel">
-                    <span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel
+                 <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showLab(<?= intval($rest_['id_pelanggan']); ?>)" title="Laboratorium Pemeriksaan">
+                    <i class="ti ti-clipboard-list"></i> Laboratorium Pemeriksaan
                 </button>
                 <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
                     <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
@@ -54,6 +50,33 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
+     function showLab(id) {
+        
+        $.ajax({
+            type: 'GET',
+            url: '<?= site_url('show-data/lab-pemeriksaan/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-show-lab').attr('disable', 'disabled');
+                $('.btn-show-lab').html('<i class="fa fa-spin fa-spinner"></i>');
+            },
+            complete: function() {
+                $('.btn-show-lab').removeAttr('disable');
+                $('.btn-show-lab').html('<i class="ti ti-clipboard-list"></i> Laboratorium Pemeriksaan');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
     function listData() {
         var id_lab = $('.btn-tambah').data("id");
         var kode_pengantar = $('.btn-tambah').data('kode');
@@ -74,58 +97,33 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
         })
     }
 
-    function showLab(id) {
-        $.ajax({
-            type: 'GET',
-            url: '<?= site_url('pelayanan-sampel/data-pemeriksaan/detail-lab/'); ?>' + id,
-            dataType: 'json',
-            cache: false,
-            beforeSend: function() {
-                $('.btn-show-lab').attr('disable', 'disabled');
-                $('.btn-show-lab').html('<i class="fa fa-spin fa-spinner"></i>');
-            },
-            complete: function() {
-                $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-eye"></span> Detail Lab. Pemeriksaan');
-            },
-            success: function(response) {
-                if (response.sukses) {
-                    $(".view-modal").html(response.sukses).show();
-                    $("#exampleModal").modal('show');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        })
-    }
-
-    function showPermintaanSampel(id) {
+    // function showPermintaanSampel(id) 
+    // {
         
-        $.ajax({
-            type: 'GET',
-            url: '<?= site_url('pelanggan/permintaan-pemeriksaan/show-permintaan-sampel/'); ?>' + id,
-            dataType: 'json',
-            cache: false,
-            beforeSend: function() {
-                $('.btn-show-lab').attr('disable', 'disabled');
-                $('.btn-show-lab').html('<i class="fa fa-spin fa-spinner"></i>');
-            },
-            complete: function() {
-                $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel');
-            },
-            success: function(response) {
-                if (response.sukses) {
-                    $(".view-modal").html(response.sukses).show();
-                    $("#exampleModal").modal('show');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        })
-    }
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: '<?= site_url('pelanggan/permintaan-pemeriksaan/show-permintaan-sampel/'); ?>' + id,
+    //         dataType: 'json',
+    //         cache: false,
+    //         beforeSend: function() {
+    //             $('.btn-show-lab').attr('disable', 'disabled');
+    //             $('.btn-show-lab').html('<i class="fa fa-spin fa-spinner"></i>');
+    //         },
+    //         complete: function() {
+    //             $('.btn-show-lab').removeAttr('disable');
+    //             $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel');
+    //         },
+    //         success: function(response) {
+    //             if (response.sukses) {
+    //                 $(".view-modal").html(response.sukses).show();
+    //                 $("#exampleModal").modal('show');
+    //             }
+    //         },
+    //         error: function(xhr, ajaxOptions, thrownError) {
+    //             alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+    //         }
+    //     })
+    // }
 
     $(document).ready(function() {
         listData();

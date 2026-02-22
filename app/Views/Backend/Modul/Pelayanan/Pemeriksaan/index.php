@@ -91,7 +91,7 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
                                 <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Jenis sampel">
-                                <span class="fa-solid fa-clipboard"></span> Jenis sampel</button>
+                                <i class="ti ti-clipboard"></i> Jenis sampel</button>
                                 <!-- Button trigger modal -->
                                  <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
                                     <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
