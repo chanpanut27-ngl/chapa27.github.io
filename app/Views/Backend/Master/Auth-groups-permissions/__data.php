@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Id Group', 'Name Group', 'Id Permissions', 'Name Permissions', ''];
+        $arrth = ['No', 'Id Group', 'Name Group', 'Id Permissions', 'Name Permissions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -20,13 +20,6 @@
                 <td><?= $row['name_group'] ?></td>
                 <td><?= $row['permission_id'] ?></td>
                 <td><?= $row['name_permissions'] ?></td>
-                <td>
-                    <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['group_id'] ?>)" title="Hapus data">
-                            <i class="ti ti-trash"></i>
-                        </button>
-                    </div>
-                </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
