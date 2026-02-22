@@ -219,12 +219,6 @@
                     </ul>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('master-data/pelanggan') ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-database"></i></span>
-                        <span class="pc-mtext">Pelanggan</span>
-                    </a>
-                </li>
-                <li class="pc-item">
                     <a href="<?= base_url('master-data/kategori-laboratorium') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
                         <span class="pc-mtext"> Kategori laboratorium</span>
