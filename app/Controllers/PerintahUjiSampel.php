@@ -89,7 +89,14 @@ class PerintahUjiSampel extends BaseController
             // Penanggung jawab sampel
             $penanggung_jawab = $this->modelPj->
             where('kode_pengantar', $kode_pengantar)->first();
-            
+
+            if (!$penanggung_jawab) {
+                $msg = [
+                    'error' => 'Penanggung jawab sampel belum diisi'
+                ];
+                echo json_encode($msg);
+                exit;
+            }
            
             // id pengantar lhu
             $id_pengantar_lab = $this->modelPengantarLhu->select('id')

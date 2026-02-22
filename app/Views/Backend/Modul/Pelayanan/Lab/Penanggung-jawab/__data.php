@@ -76,6 +76,13 @@
                 $('.btn-edit').html('<span class="fa-solid fa-edit"></span>');
             },
             success: function(response) {
+                if (response.error) {
+                    Swal.fire({
+                        title: "Gagal !",
+                        text: response.error,
+                        icon: "error"
+                    });
+                }
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();
                     $("#exampleModal").modal('show');
