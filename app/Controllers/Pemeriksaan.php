@@ -102,7 +102,85 @@ class Pemeriksaan extends BaseController
      */
     public function create()
     {
-        //
+         if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'id_jenis_sampel' => [
+                    'label' => 'Jenis sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'id_lab' => [
+                    'label' => 'Laboratorium',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'jumlah_sampel' => [
+                    'label' => 'Jumlah sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+                
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_lab' => $this->validation->getError('id_lab'),
+                        'jumlah_sampel' => $this->validation->getError('jumlah_sampel'),
+                        'id_jenis_sampel' => $this->validation->getError('id_jenis_sampel')
+                    ]
+                ];
+            } else {
+                $db = \Config\Database::connect();
+                $db->transStart();
+                $id_parameter = $this->request->getVar('id_parameter');
+                $count = count($id_parameter ?? []);
+                
+                for ($i=0; $i < $count; $i++) { 
+                    $save = [
+                        'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                        'no_reg' => $this->request->getVar('no_reg'),
+                        'id_lab' => $this->request->getVar('id_lab'),
+                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                        'id_parameter' => $id_parameter[$i],
+                    ];
+                    $this->model->insert($save);
+                }
+                $jumlah_parameter = $this->request->getVar('jumlah_parameter');
+                if ($count < $jumlah_parameter) {
+                    $ket_peraturan = "Tidak lengkap";
+                }else{
+                    $ket_peraturan = "Lengkap";
+                }
+                $id_pelanggan = $this->request->getVar('id_pelanggan');
+                $no_reg = $this->request->getVar('no_reg');
+
+                  $simpan_permintaan_sampel = [
+                        'id_pelanggan' => $id_pelanggan,
+                        'no_reg' => $no_reg,
+                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                        'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
+                        'ket_peraturan' => $ket_peraturan,
+                    ];
+                    $this->m_permintaan_sampel->insert($simpan_permintaan_sampel);
+                  $db->transComplete();
+
+                if ($this->db->transStatus() === TRUE) {
+                    $msg = [
+                        'sukses' => 'Data berhasil disimpan'
+                    ];
+                } 
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
