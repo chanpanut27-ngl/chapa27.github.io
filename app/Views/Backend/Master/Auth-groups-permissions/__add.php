@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title fs-3" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/auth-groups-permissions/create-data'); ?>" class="form-data">
@@ -36,58 +36,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
-                },
-                success: function(response) {
-                    var err = response.error
-                    if (err) {
-                        if (err.group_id) {
-                            $('#group-id').addClass('is-invalid');
-                            $('.errorGroupId').html(err.group_id);
-                        } else {
-                            $('#group-id').removeClass('is-invalid');
-                            $('.errorGroupId').html('');
-                        }
-                        if (err.permission_id) {
-                            $('#permission-id').addClass('is-invalid');
-                            $('.errorPermissionId').html(err.permission_id);
-                        } else {
-                            $('#permission-id').removeClass('is-invalid');
-                            $('.errorPermissionId').html('');
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success"
-                        });
-
-                        $("#exampleModal").modal('hide');
-                        listData();
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-    })
-</script>
+<script src="<?= base_url('assets/js/Master/@save_groups_permissions.js') ?>"></script>

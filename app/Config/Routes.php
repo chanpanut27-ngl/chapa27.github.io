@@ -32,5 +32,11 @@ require __DIR__ . '/Routes/__@master__data.php';
 require __DIR__ . '/Routes/__@coolbox__.php';
 /*________ Profil pegawai ________*/
 require __DIR__ . '/Routes/__@profil__pegawai.php';
+/*________ Export excel ________*/
+require __DIR__ . '/Routes/__@export__excel.php';
+/*________ Lab tujuan ________*/
+require __DIR__ . '/Routes/__@lab__tujuan.php';
+
+
 
 
