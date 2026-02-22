@@ -73,4 +73,26 @@
         $routes->delete('delete-data/(:num)', 'KajiUlangKontrakPengantar::delete/$1');
     });
 
+    /* Pelayanan Keterangan Pengantar Lab **/
+    $routes->group('pelayanan/pengantar-lab/keterangan', function ($routes) {
+        $routes->get('', 'KeteranganPengantar::index');
+        $routes->get('list-data', 'KeteranganPengantar::list');
+        $routes->get('add-data', 'KeteranganPengantar::new');
+        $routes->post('create-data', 'KeteranganPengantar::create');
+        $routes->get('edit-data/(:num)', 'KeteranganPengantar::edit/$1');
+        $routes->post('update-data', 'KeteranganPengantar::update');
+        $routes->delete('delete-data/(:num)', 'KeteranganPengantar::delete/$1');
+    });
+
+    /* Pelayanan Kondisi Lingkungan Pengantar Lab */
+    $routes->group('pelayanan/pengantar-lab/kondisi-lingkungan', function ($routes) {
+        $routes->get('', 'KondisiLingkunganPengantar::index');
+        $routes->get('list-data', 'KondisiLingkunganPengantar::list');
+        $routes->get('add-data', 'KondisiLingkunganPengantar::new');
+        $routes->post('create-data', 'KondisiLingkunganPengantar::create');
+        $routes->get('edit-data/(:num)', 'KondisiLingkunganPengantar::edit/$1');
+        $routes->post('update-data', 'KondisiLingkunganPengantar::update');
+        $routes->delete('delete-data/(:num)', 'KondisiLingkunganPengantar::delete/$1');
+    });
+
     ?>
