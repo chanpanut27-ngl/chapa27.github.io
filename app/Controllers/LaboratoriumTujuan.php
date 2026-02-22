@@ -5,13 +5,11 @@ namespace App\Controllers;
 use App\Models\LaboratoriumModel;
 use App\Models\LaboratoriumTujuanModel;
 use App\Models\PengantarLabModel;
-use App\Models\PengantarLhuModel;
+use App\Models\PermintaanPemeriksaanModel;
 use App\Models\SampelLingkunganModel;
 use CodeIgniter\HTTP\ResponseInterface;
-use CodeIgniter\I18n\Time;
-use CodeIgniter\RESTful\ResourceController;
 
-class LaboratoriumTujuan extends ResourceController
+class LaboratoriumTujuan extends BaseController
 {
     /**
      * Return an array of resource objects, themselves in array format.
@@ -20,8 +18,6 @@ class LaboratoriumTujuan extends ResourceController
      */
     protected $title;
     protected $model;
-    protected $time;
-    protected $today;
     protected $m_pengantar_lab;
     protected $masterLab;
 
@@ -57,6 +53,7 @@ class LaboratoriumTujuan extends ResourceController
     {
         $kode_pengantar = $id;
         if ($this->request->isAJAX()) {
+
             $data = [
                 'items' => $this->model->get_data($kode_pengantar)
             ];
@@ -84,12 +81,17 @@ class LaboratoriumTujuan extends ResourceController
     {
         $pengantar = $this->m_pengantar_lab->find($id);
         $kode_pengantar = $pengantar['kode_pengantar'];
+        $id_pelanggan = $pengantar['id_pelanggan'];
+        $pemeriksaan = new PermintaanPemeriksaanModel();
+
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah '.$this->title,
                 'masterLab' => $this->masterLab->findAll(),
                 'pengantar_lhu' => $this->m_pengantar_lab->get_data_by_id_lhu($id),
-                'cek_lab' => $this->model->get_data($kode_pengantar)
+                'cek_lab' => $pemeriksaan->groupBy('id_lab')->where('id_pelanggan', $id_pelanggan)->findAll()
+                // 'cek_lab' => $this->model->get_data($kode_pengantar)
+
             ];
             $msg = [
                 'sukses' => view('Backend/Modul/Pelayanan/Lab-tujuan/__add', $data)
@@ -122,11 +124,10 @@ class LaboratoriumTujuan extends ResourceController
                     ];
                     $kode_pengantar = $this->request->getVar('kode_pengantar');
                     $cek_lab = $this->model->where('kode_pengantar', $kode_pengantar)
-                    ->where('id_laboratorium', $idLab[$i])->first();
-                    if ($cek_lab) {
-                        $msg = [
-                            'error' => 'Data gagal disimpan, (Lab sudah di simpan sebelumnya)'
-                        ];
+                    ->where('id_laboratorium', $idLab[$i])->find();
+                    
+                    if ($cek_lab > 0) {
+                        $this->model->where('kode_pengantar', $kode_pengantar)->where('id_laboratorium', $idLab[$i])->update($simpandata);
                     }else{
                         $this->model->save($simpandata);
 

@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h3>
+                <h4 class="modal-title" id="exampleModalLabel"><i class="fa-solid fa-plus-square"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('pelayanan/laboratorium-tujuan/create-data'); ?>" class="form-data">
@@ -16,26 +16,29 @@
                 <?php endforeach;?>
                 <div class="modal-body">
                     <?php
-                    foreach ($cek_lab as $key) :
-                        foreach ($masterLab as $lb) :   
-                               if ($lb['id'] == $key['id_lab']) {
-                                $checked = 'checked';
-                               }else{
-                                $checked = null;
-                               }
-                                 ?>
-                                <label for="<?= $lb['id'] ?>">
-                                        <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>" <?= $checked ?>> <?= $lb['nama_lab']; ?>
+                    foreach ($masterLab as $lab) :
+                         
+                        foreach ($cek_lab as $cl) {
+                            if ($cl['id_lab'] == $lab['id']) {
+                                ?>
+                                <label for="<?= $lab['id'] ?>">
+                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $lab['id'] ?>" id="<?= $lab['id'] ?>" checked> <?= $lab['nama_lab']; ?>
                                 </label><br>
-                            <?php
-                               
-                            endforeach;
-                           ?>
-                                <label for="<?= $lb['id'] ?>">
-                                        <input type="checkbox" name="id_laboratorium[]" value="<?= $lb['id'] ?>" id="<?= $lb['id'] ?>" <?= $checked ?>> <?= $lb['nama_lab']; ?>
+                                <?php
+                                break;
+                            } 
+
+                        }
+                        if ($cl['id_lab'] != $lab['id']) {
+                        ?>
+                                <label for="<?= $lab['id'] ?>">
+                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $lab['id'] ?>" id="<?= $lab['id'] ?>"> <?= $lab['nama_lab']; ?>
                                 </label><br>
-                            <?php
-                        endforeach;
+                                <?php
+                        }
+
+                    endforeach;
+                        
                     ?>
                 </div>
                 <div class="modal-footer">

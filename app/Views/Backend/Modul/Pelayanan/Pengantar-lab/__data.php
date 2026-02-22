@@ -28,13 +28,13 @@
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
+                            <i class="ti ti-trash"></i>
                         </button>
                         <a href="<?= base_url('pelayanan/laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Lab tujuan">
-                            <span class="fa-solid fa-flask"></span>
+                            <i class="ti ti-flask"></i>
                         </a>
                         <a href="<?= base_url('pelayanan/pengantar-lab/proses/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-success rounded btn-sm" title="Proses">
-                            <span class="fa-solid fa-arrow-circle-right"></span>
+                            <i class="ti ti-arrow-right-circle"></i>
                         </a>
                     </div>
                 </td>

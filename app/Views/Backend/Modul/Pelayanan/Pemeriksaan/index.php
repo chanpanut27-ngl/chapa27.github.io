@@ -90,7 +90,7 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex justify-content-end align-items-center gap-1">
-                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Pemeriksaan sampel">
+                                <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Jenis sampel">
                                 <span class="fa-solid fa-clipboard"></span> Jenis sampel</button>
                                 <!-- Button trigger modal -->
                                  <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
@@ -156,7 +156,7 @@
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel');
+                $('.btn-show-lab').html('<i class="ti ti-clipboard"></i> Jenis sampel');
             },
             success: function(response) {
                 if (response.sukses) {
