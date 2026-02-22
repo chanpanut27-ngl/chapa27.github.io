@@ -16,6 +16,7 @@ class InstalasiModel extends Model
     protected $allowedFields    = [
         'kode_instalasi', 
         'nama_instalasi', 
+        'id_kat_lab',
         'is_active'
     ];
 
@@ -76,5 +77,15 @@ class InstalasiModel extends Model
         $model->where('is_active', 1);
         $query = $model->findAll();
         return $query;
+    }
+
+    public function get_data_all() 
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('master_instalasi');
+        $builder->select('master_instalasi.*, master_kategori_lab.kategori');
+        $builder->join('master_kategori_lab', 'master_kategori_lab.id = master_instalasi.id_kat_lab');
+        $query = $builder->get();
+        return $query->getResultArray();
     }
 }

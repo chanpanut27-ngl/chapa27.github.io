@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\InstalasiModel;
-use CodeIgniter\RESTful\ResourceController;
+use App\Models\KategoriLabModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class InstalasiMaster extends BaseController
@@ -15,11 +15,13 @@ class InstalasiMaster extends BaseController
      */
     protected $title;
     protected $model;
+    protected $m_kategori_lab;
 
     public function __construct()
     {
         $this->title = 'Instalasi';
         $this->model = new InstalasiModel();
+        $this->m_kategori_lab = new KategoriLabModel();
     }
 
     public function index()
@@ -35,7 +37,7 @@ class InstalasiMaster extends BaseController
 
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->get_data()
+                'items' => $this->model->get_data_all()
             ];
             $msg = [
                 'data' => view('Backend/Master/Instalasi/__data', $data)
@@ -83,6 +85,7 @@ class InstalasiMaster extends BaseController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
+                'masterKategoriLab' => $this->m_kategori_lab->get_data()
             ];
             $msg = [
                 'data' => view('Backend/Master/Instalasi/__add', $data)
@@ -146,8 +149,9 @@ class InstalasiMaster extends BaseController
         if ($this->request->isAJAX()) {
 
             $data = [
+                'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
-                'title' => 'Edit ' . $this->title
+                'masterKategoriLab' => $this->m_kategori_lab->get_data()
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Instalasi/__edit', $data)
@@ -188,6 +192,7 @@ class InstalasiMaster extends BaseController
                 $simpandata = [
                     'id' => $this->request->getVar('id'),
                     'nama_instalasi' => $this->request->getVar('nama_instalasi'),
+                    'id_kat_lab' => $this->request->getVar('id_kat_lab'),
                     'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);

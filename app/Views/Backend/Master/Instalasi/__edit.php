@@ -16,6 +16,23 @@
                         <div class="invalid-feedback errorNamaInstalasi"></div>
                     </div>
                     <div class="mb-3">
+                        <label for="kategori" class="form-label h5">Kategori</label>
+                        <select name="id_kat_lab" class="form-select" id="kategori" aria-label="Default select example">
+                            <option value="">-- pilih --</option>
+                            <?php foreach ($masterKategoriLab as $key) : ?>
+                                <?php
+                                if ($items['id_kat_lab'] == $key['id']) {
+                                    $selected = 'selected';
+                                } else {
+                                    $selected = '';
+                                }
+                                ?>
+                                <option value="<?= $key['id'] ?>" <?= $selected ?>><?= $key['kategori'] ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorKategori"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="is-active" class="form-label h5">Is_active</label>
                         <select name="is_active" class="form-select" id="is-active" aria-label="Default select example">
                             <?php

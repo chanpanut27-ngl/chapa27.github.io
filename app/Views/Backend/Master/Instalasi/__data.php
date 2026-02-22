@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Kode instalasi', 'Nama instalasi', 'Is_active', ''];
+        $arrth = ['No', 'Kode instalasi', 'Nama instalasi', 'Kategori', 'Is_active', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -18,6 +18,7 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_instalasi'] ?></td>
                 <td><?= $row['nama_instalasi'] ?></td>
+                <td><?= $row['kategori'] ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
@@ -46,7 +47,7 @@
             },
             complete: function() {
                 $('.btn-edit-'+id).removeAttr('disable');
-                $('.btn-edit-'+id).html('<i class="ti ti-trash"></i>');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
             },
             success: function(response) {
                 if (response.sukses) {
