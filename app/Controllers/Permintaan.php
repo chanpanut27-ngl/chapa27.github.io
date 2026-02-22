@@ -29,6 +29,14 @@ class Permintaan extends BaseController
         return view('Backend/Modul/Pelayanan/Permintaan/index', $data);
     }
 
+    /**
+     * Return the properties of a resource object.
+     *
+     * @param int|string|null $id
+     *
+     * @return ResponseInterface
+     */
+
     public function list() 
     {
         if ($this->request->isAJAX()) {
@@ -45,13 +53,6 @@ class Permintaan extends BaseController
         }    
     }
 
-    /**
-     * Return the properties of a resource object.
-     *
-     * @param int|string|null $id
-     *
-     * @return ResponseInterface
-     */
     public function show($id = null)
     {
         //
@@ -64,7 +65,18 @@ class Permintaan extends BaseController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Permintaan/__add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -74,7 +86,66 @@ class Permintaan extends BaseController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'nama_pengirim' => [
+                    'label' => 'Nama pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'alamat' => [
+                    'label' => 'Alamat',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'instansi' => [
+                    'label' => 'Instansi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'no_telp_pengirim' => [
+                    'label' => 'No.Telp/Hp pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_pengirim' => $this->validation->getError('nama_pengirim'),
+                        'instansi' => $this->validation->getError('instansi'),
+                        'alamat' => $this->validation->getError('alamat'),
+                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'no_reg' => $this->model->generate_no_reg(),
+                    'kode_pelanggan' => $this->model->generate_kode_pelanggan(),
+                    'nama_pengirim' => $this->request->getVar('nama_pengirim'),
+                    'instansi' => $this->request->getVar('instansi'),
+                    'alamat' => $this->request->getVar('alamat'),
+                    'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
+                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel'),
+                ];
+                $this->model->insert($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -86,7 +157,19 @@ class Permintaan extends BaseController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'items' => $this->model->find($id),
+                'title' => 'Edit ' . $this->title
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan/Permintaan/__edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -98,7 +181,65 @@ class Permintaan extends BaseController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'nama_pengirim' => [
+                    'label' => 'Nama pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'alamat' => [
+                    'label' => 'Alamat',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'instansi' => [
+                    'label' => 'Instansi',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'no_telp_pengirim' => [
+                    'label' => 'No.Telp/Hp pengirim',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'nama_pengirim' => $this->validation->getError('nama_pengirim'),
+                        'instansi' => $this->validation->getError('instansi'),
+                        'alamat' => $this->validation->getError('alamat'),
+                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
+                    ]
+                ];
+            } else {
+                $save = [
+                    'id' => $this->request->getVar('id'),
+                    'nama_pengirim' => $this->request->getVar('nama_pengirim'),
+                    'instansi' => $this->request->getVar('instansi'),
+                    'alamat' => $this->request->getVar('alamat'),
+                    'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
+                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
+                ];
+                $this->model->save($save);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -110,6 +251,15 @@ class Permintaan extends BaseController
      */
     public function delete($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil di hapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 }

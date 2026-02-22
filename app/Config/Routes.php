@@ -36,6 +36,8 @@ require __DIR__ . '/Routes/__@profil__pegawai.php';
 require __DIR__ . '/Routes/__@export__excel.php';
 /*________ Lab tujuan ________*/
 require __DIR__ . '/Routes/__@lab__tujuan.php';
+/*________ Pelayanan ________*/
+require __DIR__ . '/Routes/__@pelayanan__.php';
 
 
 

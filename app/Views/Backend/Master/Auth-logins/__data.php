@@ -24,7 +24,7 @@
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
-                            <span class="fa-solid fa-trash-alt"></span>
+                            <i class="ti ti-trash"></i>
                         </button>
                     </div>
                 </td>

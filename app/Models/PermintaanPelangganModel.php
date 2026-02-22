@@ -80,6 +80,7 @@ class PermintaanPelangganModel extends Model
         }
         return $data;
     }
+    
 
     public function generate_no_reg() 
     {

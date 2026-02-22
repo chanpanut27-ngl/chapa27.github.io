@@ -24,8 +24,14 @@
                 <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                         <a href="<?= base_url('pelayanan-sampel/permintaan-pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-success rounded btn-sm" title="Tambah pemeriksaan">
-                            <i class="ti ti-arrow-right-circle"></i>
+                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id']; ?>" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+                            <i class="ti ti-edit"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+                            <i class="ti ti-trash"></i>
+                        </button>
+                        <a href="<?= base_url('pelayanan-sampel/permintaan-pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-success rounded btn-sm" title="Tambah pemeriksaan">
+                            <i class="ti ti-arrow-right-circle"></i> Tambah Pemeriksaan
                         </a>
                     </div>
                 </td>
@@ -37,9 +43,17 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('master-data/instansi/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/permintaan-pelanggan/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
+            beforeSend: function() {
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
+            },
             success: function(response) {
                 if (response.sukses) {
                     $(".view-modal").html(response.sukses).show();
@@ -71,14 +85,21 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/instansi/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/permintaan-pelanggan/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    listData();
+                                }
                             });
                             listData();
                         }
