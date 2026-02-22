@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\LaboratoriumModel;
 use App\Models\Pelanggan\ProfilPelangganModel;
 use App\Models\PermintaanPelangganModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -17,12 +18,14 @@ class Pemeriksaan extends BaseController
     protected $model;
     protected $m_profil;
     protected $m_permintaan;
+    protected $m_lab;
 
     public function __construct()
     {
         $this->title = 'Pemeriksaan';
         $this->model = new PermintaanPelangganModel();
         $this->m_profil = new ProfilPelangganModel();
+        $this->m_lab = new LaboratoriumModel();
     }
 
     public function index($id)
@@ -31,6 +34,7 @@ class Pemeriksaan extends BaseController
         $data = [
             'title' => 'Data ' . $this->title,
             'profil' => $this->m_profil->get_data(),
+            'no_reg' => $id,
             'items' => $this->model->where('no_reg', $id)->first()
         ];
         return view('Backend/Modul/Pelayanan/Pemeriksaan/index', $data);
@@ -53,7 +57,7 @@ class Pemeriksaan extends BaseController
 
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->findAll()
+                'items' => $this->model->where('no_reg', $this->request->getGet('no_reg'))->findAll()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Pemeriksaan/__data', $data)
@@ -63,6 +67,8 @@ class Pemeriksaan extends BaseController
         } else {
             exit('Not Process');
         }
+
+        
     }
 
     /**
@@ -72,7 +78,21 @@ class Pemeriksaan extends BaseController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $data = [
+                'title' => 'Tambah ' . $this->title,
+                'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                'no_reg' => $this->request->getVar('no_reg'),
+                'masterLab' => $this->m_lab->get_data()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Pemeriksaan/__add', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

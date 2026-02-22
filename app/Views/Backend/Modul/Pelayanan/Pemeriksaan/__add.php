@@ -58,12 +58,6 @@
     $(document).ready(function() {
        
         var dateToday = new Date();
-        $("#tgl-ambil-sampel").datepicker(
-            { 
-                dateFormat: 'dd-mm-yy', 
-                defaultDate: "",  inDate: dateToday
-            }
-        );
 
         $('#id-jenis-sampel').select2({
             dropdownParent: $('#exampleModal')

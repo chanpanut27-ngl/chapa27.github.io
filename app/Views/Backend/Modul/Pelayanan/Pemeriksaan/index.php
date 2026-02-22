@@ -32,15 +32,15 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-header p-2">
-                            <div class="d-flex justify-content-end align-items-center gap-1">
-                                <a href="<?= base_url('pelayanan/permintaan-pelanggan') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
-                                <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                                    <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
-                                </button>
-                                <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
-                                    <span class="fa-solid fa-undo"></span> Batal pemeriksaan
-                                </button>
-                            </div>
+                        <div class="d-flex justify-content-end align-items-center gap-1">
+                            <a href="<?= base_url('pelayanan/permintaan-pelanggan') ?>" class="btn btn-secondary btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                            <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
+                                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
+                                <span class="fa-solid fa-undo"></span> Batal pemeriksaan
+                            </button>
+                        </div>
                     </div>
                     <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
                         <div class="accordion-item">
@@ -130,7 +130,7 @@
         var id_pelanggan = $(".btn-tambah").data("id");
         $.ajax({
             type:"GET",
-            url: "<?= site_url('pelanggan/list-pemeriksaan/list-data'); ?>",
+            url: "<?= site_url('pelayanan/pemeriksaan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{id_pelanggan:id_pelanggan},
@@ -228,7 +228,7 @@
             var id_pelanggan = $(this).data("id");
             var no_reg = $(this).data("noreg");
             $.ajax({
-                url: "<?= site_url('pelanggan/list-pemeriksaan/add-data'); ?>",
+                url: "<?= site_url('pelayanan/pemeriksaan/add-data'); ?>",
                 dataType: 'json',
                 data: {id_pelanggan:id_pelanggan, no_reg:no_reg},
                 cache: false,
