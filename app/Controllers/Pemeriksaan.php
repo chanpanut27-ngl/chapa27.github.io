@@ -3,8 +3,11 @@
 namespace App\Controllers;
 
 use App\Models\LaboratoriumModel;
+use App\Models\ParameterModel;
 use App\Models\Pelanggan\ProfilPelangganModel;
 use App\Models\PermintaanPelangganModel;
+use App\Models\PermintaanPemeriksaanModel;
+use App\Models\PermintaanSampelModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Pemeriksaan extends BaseController
@@ -19,6 +22,8 @@ class Pemeriksaan extends BaseController
     protected $m_profil;
     protected $m_permintaan;
     protected $m_lab;
+    protected $m_permintaan_sampel;
+    
 
     public function __construct()
     {
@@ -26,6 +31,7 @@ class Pemeriksaan extends BaseController
         $this->model = new PermintaanPelangganModel();
         $this->m_profil = new ProfilPelangganModel();
         $this->m_lab = new LaboratoriumModel();
+        $this->m_permintaan_sampel = new PermintaanSampelModel();
     }
 
     public function index($id)
@@ -34,7 +40,6 @@ class Pemeriksaan extends BaseController
         $data = [
             'title' => 'Data ' . $this->title,
             'profil' => $this->m_profil->get_data(),
-            'no_reg' => $id,
             'items' => $this->model->where('no_reg', $id)->first()
         ];
         return view('Backend/Modul/Pelayanan/Pemeriksaan/index', $data);
@@ -56,9 +61,13 @@ class Pemeriksaan extends BaseController
     {
 
         if ($this->request->isAJAX()) {
+            $pemeriksaan = new PermintaanPemeriksaanModel();
+            $id_pelanggan = $this->request->getVar('id_pelanggan');
+             
             $data = [
-                'items' => $this->model->where('no_reg', $this->request->getGet('no_reg'))->findAll()
+                'items' => $pemeriksaan->get_data_list($id_pelanggan)
             ];
+
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Pemeriksaan/__data', $data)
             ];
@@ -102,7 +111,7 @@ class Pemeriksaan extends BaseController
      */
     public function create()
     {
-         if ($this->request->isAJAX()) {
+        if ($this->request->isAJAX()) {
             $valid = $this->validate([
                 'id_jenis_sampel' => [
                     'label' => 'Jenis sampel',
@@ -137,45 +146,80 @@ class Pemeriksaan extends BaseController
                     ]
                 ];
             } else {
-                $db = \Config\Database::connect();
-                $db->transStart();
+                $msg = '';
+                $ket_peraturan = '';
+
+                $this->db->transStart();
+                $builder = $this->db->table('permintaan_pemeriksaan');
+                $builder2 = $this->db->table('permintaan_sampel');
+               
                 $id_parameter = $this->request->getVar('id_parameter');
+                $id_pelanggan = $this->request->getVar('id_pelanggan');
+                $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+                $no_reg = $this->request->getVar('no_reg');
+
                 $count = count($id_parameter ?? []);
                 
                 for ($i=0; $i < $count; $i++) { 
-                    $save = [
-                        'id_pelanggan' => $this->request->getVar('id_pelanggan'),
-                        'no_reg' => $this->request->getVar('no_reg'),
+
+                    $save_pemeriksaan = [
+                        'id_pelanggan' => $id_pelanggan,
+                        'no_reg' => $no_reg,
                         'id_lab' => $this->request->getVar('id_lab'),
-                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                        'id_jenis_sampel' => $id_jenis_sampel,
                         'id_parameter' => $id_parameter[$i],
                     ];
-                    $this->model->insert($save);
+                    
+                    $builder->insert($save_pemeriksaan);
+
                 }
-                $jumlah_parameter = $this->request->getVar('jumlah_parameter');
-                if ($count < $jumlah_parameter) {
+
+                
+                $_parameter = new ParameterModel();
+                $jlh_p = $_parameter->
+                where('id_jenis_sampel', $id_jenis_sampel)->countAllResults();
+
+                $_permintaan_periksa = new PermintaanPemeriksaanModel();
+                $jlh_pp = $_permintaan_periksa->
+                where('id_jenis_sampel', $id_jenis_sampel)->
+                where('id_pelanggan', $id_pelanggan)->countAllResults();
+
+                if ($jlh_pp < $jlh_p) {
                     $ket_peraturan = "Tidak lengkap";
                 }else{
                     $ket_peraturan = "Lengkap";
                 }
-                $id_pelanggan = $this->request->getVar('id_pelanggan');
-                $no_reg = $this->request->getVar('no_reg');
 
-                  $simpan_permintaan_sampel = [
-                        'id_pelanggan' => $id_pelanggan,
-                        'no_reg' => $no_reg,
-                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
-                        'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
-                        'ket_peraturan' => $ket_peraturan,
+                $save_permintaan_sampel = [
+                    'id_pelanggan' => $id_pelanggan,
+                    'no_reg' => $no_reg,
+                    'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                    'jumlah_sampel' => $this->request->getVar('jumlah_sampel'),
+                    'ket_peraturan' => $ket_peraturan,
+                ];
+
+                $cek_permintaan_sampel = $this->m_permintaan_sampel->
+                where('id_pelanggan', $id_pelanggan)->
+                where('id_jenis_sampel', $id_jenis_sampel)->countAllResults();
+                
+                if ($cek_permintaan_sampel > 0) {
+                    $builder2->where('id_pelanggan', $id_pelanggan)->
+                    where('id_jenis_sampel', $id_jenis_sampel)->update($save_permintaan_sampel);
+                } else {
+                    $builder2->insert($save_permintaan_sampel);
+                }
+
+                $this->db->transComplete();
+
+                if ($this->db->transStatus() === FALSE) {
+                    $msg = [
+                        'error' => 'Data gagal disimpan'
                     ];
-                    $this->m_permintaan_sampel->insert($simpan_permintaan_sampel);
-                  $db->transComplete();
-
-                if ($this->db->transStatus() === TRUE) {
+                } else {
                     $msg = [
                         'sukses' => 'Data berhasil disimpan'
-                    ];
-                } 
+                    ]; 
+                }
             }
             echo json_encode($msg);
         } else {
@@ -216,6 +260,6 @@ class Pemeriksaan extends BaseController
      */
     public function delete($id = null)
     {
-        //
+        
     }
 }

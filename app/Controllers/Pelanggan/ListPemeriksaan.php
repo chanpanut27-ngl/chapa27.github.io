@@ -168,7 +168,8 @@ class ListPemeriksaan extends BaseController
 
                 }
 
-                
+                $jumlah_parameter = $this->request->getVar('jumlah_parameter');
+
                 $_parameter = new ParameterModel();
                 $jlh_p = $_parameter->
                 where('id_jenis_sampel', $id_jenis_sampel)->countAllResults();

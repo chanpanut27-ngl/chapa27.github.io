@@ -25,7 +25,7 @@
                     <label>Pelayanan</label>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('pelayanan/permintaan-pelanggan'); ?>" class="pc-link">
+                    <a href="<?= base_url('pelayanan/permintaan'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
                         <span class="pc-mtext">Permintaan</span>
                     </a>

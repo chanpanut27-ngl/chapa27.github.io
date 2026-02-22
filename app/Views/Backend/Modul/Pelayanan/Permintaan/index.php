@@ -61,7 +61,7 @@
 <script>
     function listData() {
         $.ajax({
-            url: "<?= site_url('pelayanan/permintaan-pelanggan/list-data'); ?>",
+            url: "<?= site_url('pelayanan/permintaan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             beforeSend: function() {

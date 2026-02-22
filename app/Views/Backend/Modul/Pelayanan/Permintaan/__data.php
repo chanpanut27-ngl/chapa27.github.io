@@ -30,7 +30,7 @@
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
-                        <a href="<?= base_url('pelayanan/pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-success rounded btn-sm" title="Pemeriksaan">
+                        <a href="<?= base_url('pelayanan/pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-primary rounded btn-sm" title="Pemeriksaan">
                             Pemeriksaan
                         </a>
                     </div>
