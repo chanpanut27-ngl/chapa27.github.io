@@ -86,7 +86,7 @@
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= site_url('pelayanan/permintaan-pelanggan/add-data'); ?>",
+                url: "<?= site_url('pelayanan/permintaan/add-data'); ?>",
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {

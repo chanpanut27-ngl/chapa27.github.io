@@ -6,7 +6,7 @@
                 <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/permintaan-pelanggan/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/permintaan/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="no_telp" value="0">
                 <div class="modal-body">
