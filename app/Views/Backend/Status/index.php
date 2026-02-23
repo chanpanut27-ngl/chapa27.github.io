@@ -12,11 +12,14 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="" class="form-label h5">Status : </label>
-                        <label for="diterima">
-                            <input type="radio" name="status" value="Diterima" id="diterima"> Diterima
+                        <label for="1">
+                            <input type="radio" name="status" value="Permintaan Di Terima" id="1" checked> Permintaan Di Terima
                         </label>&nbsp;&nbsp;
-                        <label for="proses">
-                            <input type="radio" name="status" value="Proses" id="proses"> Proses
+                        <label for="2">
+                            <input type="radio" name="status" value="Penawaran Di Proses" id="2"> Penawaran Di Proses
+                        </label>
+                        <label for="3">
+                            <input type="radio" name="status" value="Penawaran Di Tolak" id="3"> Penawaran Di Tolak
                         </label>
                     </div>
                     <div class="mb-3">

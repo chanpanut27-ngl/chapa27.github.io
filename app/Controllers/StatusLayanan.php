@@ -88,10 +88,17 @@ class StatusLayanan extends BaseController
                     'keterangan' => $this->request->getVar('keterangan'),
                     'status' => $this->request->getVar('status')
                 ];
-                $this->model->save($save);
-                $msg = [
-                    'sukses' => 'Data berhasil disimpan'
-                ];
+                $cek_data = $this->model->where('status', $save['status'])->where('id_pelanggan', $save['id_pelanggan'])->find();
+                if ($cek_data) {
+                    $msg = [
+                        'error' => 'Status sudah ada'
+                    ];
+                } else {
+                    $this->model->save($save);
+                    $msg = [
+                        'sukses' => 'Data berhasil disimpan'
+                    ];
+                }
             echo json_encode($msg);
         } else {
             exit('Not Process');
