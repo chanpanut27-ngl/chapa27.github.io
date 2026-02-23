@@ -69,4 +69,21 @@ class StatusLayananModel extends Model
         return $data;
     }
 
+    public function get_data_all($param)
+    {
+        $db = \Config\Database::connect(); 
+
+        $builder = $db->table('status_layanan');
+        $builder->select(
+            'status_layanan.id as id_status, 
+            status_layanan.keterangan,
+            status_layanan.status,
+            status_layanan.id_pelanggan,
+            pp.nama_pengirim'
+        );
+        $builder->join('permintaan_pelanggan pp', 'pp.id=status_layanan.id_pelanggan');
+        $builder->where('status_layanan.id_pelanggan', $param);
+        return $builder->get()->getResultArray();
+    }
+
 }

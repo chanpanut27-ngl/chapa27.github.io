@@ -15,7 +15,12 @@
         foreach ($items as $row) :
         ?>
             <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
-                <td><b><?= $no++; ?></b></td>
+                <td class="text-center">
+                    <b><?= $no++; ?></b>
+                    <button type="button" class="btn btn-secondary btn-sm rounded btn-sts-<?= $row['id']; ?>" onclick="statusLayanan(<?= $row['id']; ?>)" title="Edit data">
+                        <i class="ti ti-plus"></i>
+                    </button>
+                </td>
                 <td><?= $row['no_reg'] ?></td>
                 <td><?= $row['kode_pelanggan'] ?></td>
                 <td><?= $row['nama_pengirim'] ?></td>
@@ -39,8 +44,10 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
 <script>
-    function editData(id) {
+    function editData(id) 
+    {
         $.ajax({
             type: 'get',
             url: '<?= site_url('pelayanan/permintaan/edit-data/'); ?>' + id,
@@ -65,7 +72,6 @@
             }
         })
     }
-
 
     function deleteData(id) {
         var myElement = $('#myId-' + id);
@@ -113,6 +119,35 @@
             }
         });
     }
+
+    function statusLayanan(id) 
+    {
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('pelayanan/status-layanan/index/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-sts-'+id).attr('disable', 'disabled');
+                $('.btn-sts-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-sts-'+id).removeAttr('disable');
+                $('.btn-sts-'+id).html('<i class="ti ti-plus"></i>');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+
 
     $(document).ready(function() {
         new DataTable('#example', {

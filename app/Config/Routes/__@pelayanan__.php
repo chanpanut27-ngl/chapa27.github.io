@@ -106,5 +106,14 @@
         $routes->post('update-data', 'PerintahUjiSampel::update');
         $routes->get('delete-data', 'PerintahUjiSampel::delete');
     });
+
+
+    /* Instalasi */
+    $routes->group('pelayanan/status-layanan', function ($routes) {
+        $routes->get('index/(:num)', 'StatusLayanan::index/$1');
+        $routes->get('list-data', 'StatusLayanan::list');
+        $routes->delete('delete-data/(:num)', 'StatusLayanan::delete/$1');
+        $routes->post('create-data', 'StatusLayanan::delete/$1');
+    });
     
     ?>
