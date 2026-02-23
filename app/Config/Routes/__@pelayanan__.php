@@ -116,4 +116,12 @@
         $routes->post('create-data', 'StatusLayanan::create/');
     });
     
+    /* Penawaran */
+    $routes->group('pelayanan/penawaran', function ($routes) {
+        $routes->get('index', 'Penawaran::index');
+        $routes->get('list-data', 'Penawaran::list');
+        $routes->delete('delete-data/(:num)', 'Penawaran::delete/$1');
+        $routes->post('create-data', 'Penawaran::create/');
+    });
+    
     ?>

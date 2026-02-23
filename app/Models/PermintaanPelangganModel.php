@@ -113,4 +113,13 @@ class PermintaanPelangganModel extends Model
         return $nomorAntrian;
     }
 
+    public function get_data() 
+    {
+        $db = \Config\Database::connect();   
+        $builder = $db->table('permintaan_pelanggan'); 
+        $builder->join('status_layanan ss', 'ss.id_pelanggan = permintaan_pelanggan.id', 'left');
+        $builder->where('ss.status', 'Permintaan Di Terima');
+        return $builder->get()->getResultArray();
+    }
+
 }
