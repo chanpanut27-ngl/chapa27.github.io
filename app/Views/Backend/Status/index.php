@@ -6,8 +6,9 @@
                 <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-list"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/status-layanan/create-data') ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/status-layanan/create-data') ?>" class="form-status">
                 <?= csrf_field(); ?>
+                <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="" class="form-label h5">Status : </label>
@@ -30,7 +31,7 @@
                     <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
-            <div class="card-body">
+            <div class="modal-body">
                 <div class="view-status"></div>
             </div>
         </div>
@@ -62,4 +63,3 @@
     })
 </script>
 <script src="<?= base_url('assets/js/Pelanggan/@save_status.js') ?>"></script>
-

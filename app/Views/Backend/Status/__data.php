@@ -1,7 +1,7 @@
 <table id="example1" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Id pelanggan', 'Status', 'Keterangan', ''];
+        $arrth = ['No', 'Nama pengirim', 'Status', 'Keterangan', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -12,12 +12,11 @@
     <tbody>
         <?php
         $no = 1;
-        var_dump($items);
         foreach ($items as $row) :
         ?>
             <tr>
                 <td id="myIdSts-<?= $row['id_status'] ?>" data-urut=<?= $no; ?>><b><?= $no++; ?></b></td>
-                <td><?= $row['id_pelanggan'] ?></td>
+                <td><?= $row['nama_pengirim'] ?></td>
                 <td><?= $row['status'] ?></td>
                 <td><?= $row['keterangan'] ?></td>
                 <td class="text-center">

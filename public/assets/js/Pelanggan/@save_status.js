@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $(".form-data").submit(function (e) {
+    $(".form-status").submit(function (e) {
         e.preventDefault();
 
         $.ajax({
@@ -46,7 +46,7 @@ $(document).ready(function () {
                         }
                     });
 
-                    $("#exampleModal").modal('hide');
+                    // $("#exampleModal").modal('hide');
                     listData();
                 }
             },

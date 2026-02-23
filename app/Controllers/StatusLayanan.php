@@ -82,7 +82,20 @@ class StatusLayanan extends BaseController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+              $save = [
+                    'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                    'keterangan' => $this->request->getVar('keterangan'),
+                    'status' => $this->request->getVar('status')
+                ];
+                $this->model->save($save);
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

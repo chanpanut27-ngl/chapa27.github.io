@@ -18,7 +18,7 @@
                 <td class="text-center">
                     <b><?= $no++; ?></b>
                     <button type="button" class="btn btn-secondary btn-sm rounded btn-sts-<?= $row['id']; ?>" onclick="statusLayanan(<?= $row['id']; ?>)" title="Edit data">
-                        <i class="ti ti-plus"></i>
+                        <i class="ti ti-circle-check"></i>
                     </button>
                 </td>
                 <td><?= $row['no_reg'] ?></td>
@@ -35,7 +35,7 @@
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
-                        <a href="<?= base_url('pelayanan/pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-primary rounded btn-sm" title="Pemeriksaan">
+                        <a href="<?= base_url('pelayanan/pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-info rounded btn-sm" title="Pemeriksaan">
                             Pemeriksaan
                         </a>
                     </div>
