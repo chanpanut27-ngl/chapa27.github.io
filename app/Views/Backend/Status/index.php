@@ -26,12 +26,12 @@
                         <textarea name="keterangan" id="" class="form-control"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer p-1">
                     <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
                     <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
                 </div>
             </form>
-            <div class="modal-body">
+            <div class="modal-body p-1">
                 <div class="view-status"></div>
             </div>
         </div>

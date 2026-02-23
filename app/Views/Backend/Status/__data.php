@@ -1,3 +1,8 @@
+<style>
+    .swal2-container {
+    z-index: 99999 !important; /* Set angka sangat tinggi */
+}
+</style>
 <table id="example1" class="table table-hover table-bordered">
     <thead>
         <?php
@@ -14,8 +19,8 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr>
-                <td id="myIdSts-<?= $row['id_status'] ?>" data-urut=<?= $no; ?>><b><?= $no++; ?></b></td>
+            <tr id="myIdSts-<?= $row['id_status'] ?>" data-urut=<?= $no; ?>>
+                <td><b><?= $no++; ?></b></td>
                 <td><?= $row['nama_pengirim'] ?></td>
                 <td><?= $row['status'] ?></td>
                 <td><?= $row['keterangan'] ?></td>
