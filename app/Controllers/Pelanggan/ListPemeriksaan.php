@@ -153,6 +153,9 @@ class ListPemeriksaan extends BaseController
                 $no_reg = $this->request->getVar('no_reg');
 
                 $count = count($id_parameter ?? []);
+
+                $pemeriksaan = new PermintaanPemeriksaanModel();
+
                 
                 for ($i=0; $i < $count; $i++) { 
 
@@ -164,11 +167,20 @@ class ListPemeriksaan extends BaseController
                         'id_parameter' => $id_parameter[$i],
                     ];
                     
-                    $builder->insert($save_pemeriksaan);
+                   $_pemeriksaan = $pemeriksaan->
+                    where('id_pelanggan', $id_pelanggan)->
+                    where('id_jenis_sampel', $id_jenis_sampel)->
+                    where('id_parameter', $id_parameter[$i])->countAllResults();
+
+                    if ($_pemeriksaan > 0) {
+                        $builder->where('id_pelanggan', $id_pelanggan)->
+                        where('id_jenis_sampel', $id_jenis_sampel)->
+                        where('id_parameter', $id_parameter[$i])->update($save_pemeriksaan);
+                    } else {
+                        $builder->insert($save_pemeriksaan);
+                    }
 
                 }
-
-                $jumlah_parameter = $this->request->getVar('jumlah_parameter');
 
                 $_parameter = new ParameterModel();
                 $jlh_p = $_parameter->

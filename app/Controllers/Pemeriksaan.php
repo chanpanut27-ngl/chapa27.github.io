@@ -159,6 +159,7 @@ class Pemeriksaan extends BaseController
                 $no_reg = $this->request->getVar('no_reg');
 
                 $count = count($id_parameter ?? []);
+                
                 $pemeriksaan = new PermintaanPemeriksaanModel();
               
                 
