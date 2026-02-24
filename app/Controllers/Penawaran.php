@@ -117,6 +117,23 @@ class Penawaran extends BaseController
      *
      * @return ResponseInterface
      */
+    public function show_rencana_anggaran_biaya($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $no_reg = $this->request->getVar('no_reg');
+            $data = [
+                'items' => $this->m_permintaan->where('no_reg', $no_reg)->first()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Penawaran/__rencana_anggaran_biaya', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
     public function new()
     {
         //

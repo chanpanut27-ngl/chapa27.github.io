@@ -79,6 +79,20 @@
                             </div>
                         </div>
                     </div>
+                    <div class="accordion accordion-flush accordion-color" id="accordionRencanaAnggaranBiaya">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="true" aria-controls="flush-collapseFour">
+                                <h5><span class="pc-micon"><i class="ti ti-file"></i> Rencana Anggaran Biaya</h5>
+                            </button>
+                            </h2>
+                            <div id="flush-collapseFour" class="accordion-collapse" data-bs-parent="#accordionRencanaAnggaranBiaya">
+                                <div class="accordion-body">
+                                    <div class="show-rencana-anggaran-biaya"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- [ sample-page ] end -->
@@ -168,10 +182,34 @@
         })
     }
 
+    function showDataRencanaAnggaranBiaya() {
+        var no_reg = $(".pc-container").data("id");
+        $.ajax({
+            type:"GET",
+            url: "<?= site_url('pelayanan/penawaran/detail-rencana-anggaran-biaya'); ?>",
+            dataType: 'json',
+            cache: false,
+            data:{no_reg:no_reg},
+            beforeSend: function() {
+                $('.show-rencana-anggaran-biaya').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.show-rencana-anggaran-biaya').removeAttr('span');
+            },
+            success: function(response) {
+                $(".show-rencana-anggaran-biaya").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
     $(document).ready(function() {
         showDataSurat();
         showDataPaktaIntegritas();
         showDataPelanggan();
+        showDataRencanaAnggaranBiaya();
     })
 </script>
 <?= $this->endSection(); ?>

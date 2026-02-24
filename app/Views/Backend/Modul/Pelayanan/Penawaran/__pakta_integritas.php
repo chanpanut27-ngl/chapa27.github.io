@@ -38,6 +38,7 @@
 <div class="kertas-surat">
     <!-- Kepala Surat (Kop) -->
     <div class="kop-surat">
+        <div class="text-end fw-bold fs-5">LB.IV.7.1.1.5</div>
         <h2>PAKTA INTEGRITAS <br>
 ANTI GRATIFIKASI DAN PELAYANAN PRIMA</h2>
     </div>
