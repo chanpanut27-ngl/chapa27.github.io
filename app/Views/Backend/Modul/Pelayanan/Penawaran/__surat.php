@@ -46,8 +46,8 @@ use App\Libraries\CustomLib;
                     echo $custom_lib->logo_kopsurat();
                     ?>
                 </td>
-                <td>
-                    <?php echo $custom_lib->ket_kopsurat2('No.Kode: LB.IV.7.1.1.3');?>
+                <td class="text-align:left;">
+                    <?php echo $custom_lib->ket_kopsurat2('LB.IV.7.1.1.3');?>
                 </td>
             </tr>
         </table>

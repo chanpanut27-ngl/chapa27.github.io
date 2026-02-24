@@ -44,39 +44,9 @@
                             </button>
                             </h2>
                             <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
+                                </div>
                                 <div class="accordion-body" style="border:1px solid;">
-                                    <div class="row">
-                                        <div class="col-sm-3"><b>No.Registrasi</b></div>
-                                        <div class="col-sm-3">: <?= $items['no_reg'] ?></div>
-                                        <div class="col-sm-3"><b>No.Telp/Hp Pengirim</b></div>
-                                        <div class="col-sm-3">: <?= $items['no_telp_pengirim'] ?></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-3"><b>Nama pengirim</b></div>
-                                        <div class="col-sm-3">: <?= $items['nama_pengirim'] ?></div>
-                                        <div class="col-sm-3 d-none"><b>Tgl & jam pengambilan sampel</b></div>
-                                        <div class="col-sm-3 d-none">: <?= date('d-m-Y', strtotime($items['tgl_ambil_sampel'])).' '.date('H:i', strtotime($items['jam_ambil_sampel'])) ?></div>
-                                        <div class="col-sm-3"><b>Instansi</b></div>
-                                        <div class="col-sm-3">: <?= $items['instansi'] ?></div>
-                                    </div>    
-                                    <div class="row">
-                                        <div class="col-sm-3"><b>Spesimen/sampel</b></div>
-                                        <div class="col-sm-3">: <?= $items['spesimen_atau_sampel'] ?></div>
-                                        <div class="col-sm-3 d-none"><b>Lokasi pengambilan sampel/spesimen	</b></div>
-                                        <div class="col-sm-3 d-none">: <?= $items['lokasi_ambil_sampel'] ?></div>
-                                        <div class="col-sm-3"><b>Alamat</b></div>
-                                        <div class="col-sm-3">: <?= $items['alamat'] ?></div>
-                                    </div>  
-                                    <div class="row">
-                                        <div class="col-sm-3 d-none"><b>Petugas pengambilan sampel</b></div>
-                                        <div class="col-sm-3 d-none">: <?= $items['petugas_ambil_sampel'] ?></div>
-                                        <div class="col-sm-3 d-none"><b>Keterangan tambahan</b></div>
-                                        <div class="col-sm-3 d-none">: <?= $items['keterangan_tambahan'] ?></div>
-                                    </div>   
-                                    <div class="row d-none">
-                                        <div class="col-sm-3"><b>Instansi</b></div>
-                                        <div class="col-sm-9">: <?= $items['instansi'] ?></div>
-                                    </div>                                
+                                    <div class="show-pelanggan"></div>                                
                                 </div>
                             </div>
                         </div>
@@ -175,9 +145,33 @@
         })
     }
 
+    function showDataPelanggan() {
+        var no_reg = $(".pc-container").data("id");
+        $.ajax({
+            type:"GET",
+            url: "<?= site_url('pelayanan/penawaran/detail-pelanggan'); ?>",
+            dataType: 'json',
+            cache: false,
+            data:{no_reg:no_reg},
+            beforeSend: function() {
+                $('.show-pelanggan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.show-pelanggan').removeAttr('span');
+            },
+            success: function(response) {
+                $(".show-pelanggan").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
     $(document).ready(function() {
         showDataSurat();
         showDataPaktaIntegritas();
+        showDataPelanggan();
     })
 </script>
 <?= $this->endSection(); ?>

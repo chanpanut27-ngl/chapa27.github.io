@@ -57,9 +57,25 @@ class Penawaran extends BaseController
          $data = [
             'title' => 'Data ' . $this->title,
             'no_reg' => $id,
-            'items' => $this->m_permintaan->where('no_reg', $id)->first()
         ];
         return view('Backend/Modul/Pelayanan/Penawaran/__detail', $data);
+    }
+
+    public function show_pelanggan()  
+    {
+        if ($this->request->isAJAX()) {
+            $no_reg = $this->request->getVar('no_reg');
+            $data = [
+                'items' => $this->m_permintaan->where('no_reg', $no_reg)->first()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Penawaran/__pelanggan', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     public function show_surat($id = null)
@@ -79,7 +95,7 @@ class Penawaran extends BaseController
         }
     }
 
-     public function show_integritas($id = null)
+    public function show_integritas($id = null)
     {
         if ($this->request->isAJAX()) {
             $no_reg = $this->request->getVar('no_reg');

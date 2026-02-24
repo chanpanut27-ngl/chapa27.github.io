@@ -123,6 +123,7 @@
         $routes->get('detail/(:any)', 'Penawaran::show/$1');
         $routes->get('detail-surat', 'Penawaran::show_surat');
         $routes->get('detail-pakta-integritas', 'Penawaran::show_integritas');
+        $routes->get('detail-pelanggan', 'Penawaran::show_pelanggan');
         $routes->delete('delete-data/(:num)', 'Penawaran::delete/$1');
         $routes->post('create-data', 'Penawaran::create/');
     });
