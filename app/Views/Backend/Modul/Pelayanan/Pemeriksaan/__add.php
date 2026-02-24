@@ -39,11 +39,10 @@
                     </div>
                     <div class="mb-3">
                         <label for="jumlah-sampel" class="form-label h5">Jumlah sampel</label>
-                        <input type="number" name="jumlah_sampel" id="jumlah-sampel" class="form-control">
+                        <input type="number" name="jumlah_sampel" id="jumlah-sampel" class="form-control" autocomplete="off">
                         <div class="invalid-feedback errorJumlahSampel"></div>
                     </div>
-                    <div class="mb-3 list-parameter">
-                    </div>
+                    <div class="mb-3 list-parameter"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
@@ -55,41 +54,31 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-       
-        var dateToday = new Date();
+    $('#id-jenis-sampel').select2({
+        dropdownParent: $('#exampleModal')
+    });
 
-        $('#id-jenis-sampel').select2({
-            dropdownParent: $('#exampleModal')
-        });
+     $('#id-peraturan').select2({
+        dropdownParent: $('#exampleModal')
+    });
 
-        $('#id-peraturan').select2({
-            dropdownParent: $('#exampleModal')
-        });
-
-       $(document).on('change', '#id-lab', function (e) {
-            e.preventDefault();
-            var id_lab = $(this).val();
-            $.ajax({
-                type: "post",
-                url: "<?= site_url('cari-sampel'); ?>",
-                data: {id_lab:id_lab},
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                },
-                success: function(response) {
-                    $("#id-jenis-sampel").html(response.data).show()
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
+    $(document).on('change', '#id-lab', function (e) {
+        e.preventDefault();
+        var id_lab = $(this).val();
+        $.ajax({
+            type: "post",
+            url: "<?= site_url('cari-sampel'); ?>",
+            data: {id_lab:id_lab},
+            dataType: 'json',
+            cache: false,
+            success: function(response) {
+                $("#id-jenis-sampel").html(response.data).show()
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
         })
+    })
 
         $(document).on('change', '#id-jenis-sampel', function (e) {
             e.preventDefault();
@@ -100,6 +89,12 @@
                 data: {id_jenis_sampel:id_jenis_sampel},
                 dataType: 'json',
                 cache: false,
+                 beforeSend: function() {
+                    $('.list-parameter').attr('disable', 'disabled');
+                },
+                complete: function() {
+                    $('.list-parameter').removeAttr('disable');
+                },
                 success: function(response) {
                     $("#id-peraturan").html(response.data).show()
                     $(".list-parameter").html(response.parameter).show()
@@ -109,65 +104,69 @@
                 }
             })
         })
+
+    // $(document).ready(function() {
+       
         
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
-                },
-                success: function(response) {
-                    var err = response.error
-                    if (err) {
+        // $(".form-data").submit(function(e) {
+        //     e.preventDefault();
+        //     $.ajax({
+        //         type: "post",
+        //         url: $(this).attr('action'),
+        //         data: $(this).serialize(),
+        //         dataType: 'json',
+        //         cache: false,
+        //         beforeSend: function() {
+        //             $('.btn-simpan').attr('disable', 'disabled');
+        //             $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+        //             $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
+        //         },
+        //         complete: function() {
+        //             $('.btn-simpan').removeAttr('disable');
+        //             $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
+        //         },
+        //         success: function(response) {
+        //             var err = response.error
+        //             if (err) {
                         
-                        if (err.jumlah_sampel) {
-                            $('#jumlah-sampel').addClass('is-invalid');
-                            $('.errorJumlahSampel').html(err.jumlah_sampel);
-                        } else {
-                            $('#jumlah-sampel').removeClass('is-invalid');
-                            $('.errorJumlahSampel').html('');
-                        }
-                        if (err.id_lab) {
-                            $('#id-lab').addClass('is-invalid');
-                            $('.errorIdLab').html(err.id_lab);
-                        } else {
-                            $('#id-lab').removeClass('is-invalid');
-                            $('.errorIdLab').html('');
-                        }
-                        if (err.id_jenis_sampel) {
-                            $('#id-jenis-sampel').addClass('is-invalid');
-                            $('.errorIdJenisSampel').html(err.id_jenis_sampel);
-                        } else {
-                            $('#id-jenis-sampel').removeClass('is-invalid');
-                            $('.errorIdJenisSampel').html('');
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success"
-                        });
+        //                 if (err.jumlah_sampel) {
+        //                     $('#jumlah-sampel').addClass('is-invalid');
+        //                     $('.errorJumlahSampel').html(err.jumlah_sampel);
+        //                 } else {
+        //                     $('#jumlah-sampel').removeClass('is-invalid');
+        //                     $('.errorJumlahSampel').html('');
+        //                 }
+        //                 if (err.id_lab) {
+        //                     $('#id-lab').addClass('is-invalid');
+        //                     $('.errorIdLab').html(err.id_lab);
+        //                 } else {
+        //                     $('#id-lab').removeClass('is-invalid');
+        //                     $('.errorIdLab').html('');
+        //                 }
+        //                 if (err.id_jenis_sampel) {
+        //                     $('#id-jenis-sampel').addClass('is-invalid');
+        //                     $('.errorIdJenisSampel').html(err.id_jenis_sampel);
+        //                 } else {
+        //                     $('#id-jenis-sampel').removeClass('is-invalid');
+        //                     $('.errorIdJenisSampel').html('');
+        //                 }
+        //             } else {
+        //                 Swal.fire({
+        //                     title: "Berhasil",
+        //                     text: response.sukses,
+        //                     icon: "success"
+        //                 });
 
-                        $("#exampleModal").modal('hide');
-                        listData();
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
+        //                 $("#exampleModal").modal('hide');
+        //                 listData();
+        //             }
+        //         },
+        //         error: function(xhr, ajaxOptions, thrownError) {
+        //             alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+        //         }
+        //     })
+        // })
 
-    })
+    // })
 </script>
+<script src="<?= base_url('assets/js/Admin/@save_pemeriksaan.js') ?>"></script>

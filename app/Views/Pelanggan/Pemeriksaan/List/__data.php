@@ -25,22 +25,9 @@
                 
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <?php 
-                        if ($row['ket_peraturan'] == 'Tidak lengkap') : 
-                        echo '<span class="badge text-bg-dark">Tanpa peraturan</span>'; 
-                        ?>
                         <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
-                        <?php 
-                        else : 
-                        echo '<span class="badge text-bg-success">Sesuai peraturan</span>'; 
-                        ?>
-                        <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
-                            <i class="ti ti-trash"></i>
-                        </button>
-                        <?php
-                        endif;?>
                     </div>
                 </td>
             </tr>

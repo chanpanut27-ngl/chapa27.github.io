@@ -159,6 +159,8 @@ class Pemeriksaan extends BaseController
                 $no_reg = $this->request->getVar('no_reg');
 
                 $count = count($id_parameter ?? []);
+                $pemeriksaan = new PermintaanPemeriksaanModel();
+              
                 
                 for ($i=0; $i < $count; $i++) { 
 
@@ -170,23 +172,33 @@ class Pemeriksaan extends BaseController
                         'id_parameter' => $id_parameter[$i],
                     ];
                     
-                    $builder->insert($save_pemeriksaan);
+                    $_pemeriksaan = $pemeriksaan->
+                    where('id_pelanggan', $id_pelanggan)->
+                    where('id_jenis_sampel', $id_jenis_sampel)->
+                    where('id_parameter', $id_parameter[$i])->countAllResults();
+
+                    if ($_pemeriksaan > 0) {
+                        $builder->where('id_pelanggan', $id_pelanggan)->
+                        where('id_jenis_sampel', $id_jenis_sampel)->
+                        where('id_parameter', $id_parameter[$i])->update($save_pemeriksaan);
+                    } else {
+                        $builder->insert($save_pemeriksaan);
+                    }
 
                 }
 
-                
-                $_parameter = new ParameterModel();
-                $jlh_p = $_parameter->
-                where('id_jenis_sampel', $id_jenis_sampel)->countAllResults();
-
-                $_permintaan_periksa = new PermintaanPemeriksaanModel();
-                $jlh_pp = $_permintaan_periksa->
+                $jlh_pp = $pemeriksaan->
                 where('id_jenis_sampel', $id_jenis_sampel)->
                 where('id_pelanggan', $id_pelanggan)->countAllResults();
 
+                $_parameter = new ParameterModel();
+                $jlh_p = $_parameter->
+                where('id_jenis_sampel', $id_jenis_sampel)->countAllResults();
+                
+
                 if ($jlh_pp < $jlh_p) {
                     $ket_peraturan = "Tidak lengkap";
-                }else{
+                } else{
                     $ket_peraturan = "Lengkap";
                 }
 
@@ -198,11 +210,11 @@ class Pemeriksaan extends BaseController
                     'ket_peraturan' => $ket_peraturan,
                 ];
 
-                $cek_permintaan_sampel = $this->m_permintaan_sampel->
+                $_permintaan_sampel = $this->m_permintaan_sampel->
                 where('id_pelanggan', $id_pelanggan)->
                 where('id_jenis_sampel', $id_jenis_sampel)->countAllResults();
                 
-                if ($cek_permintaan_sampel > 0) {
+                if ($_permintaan_sampel > 0) {
                     $builder2->where('id_pelanggan', $id_pelanggan)->
                     where('id_jenis_sampel', $id_jenis_sampel)->update($save_permintaan_sampel);
                 } else {

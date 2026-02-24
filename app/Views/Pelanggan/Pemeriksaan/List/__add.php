@@ -44,7 +44,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="jumlah-sampel" class="form-label h5">Jumlah sampel</label>
-                        <input type="number" name="jumlah_sampel" id="jumlah-sampel" class="form-control">
+                        <input type="number" name="jumlah_sampel" value="1" id="jumlah-sampel" class="form-control" autocomplete="off">
                         <div class="invalid-feedback errorJumlahSampel"></div>
                     </div>
                     <div class="mb-3 list-parameter">
