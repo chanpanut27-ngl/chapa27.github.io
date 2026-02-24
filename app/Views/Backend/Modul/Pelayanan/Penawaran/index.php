@@ -34,12 +34,6 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex justify-content-end align-items-center">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
-                                <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
-                            </button>
-                        </div>
                         penawaran
                         <div class="view-data"></div>
                     </div>
@@ -61,52 +55,28 @@
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 
 <script>
-    // function listData() {
-    //     $.ajax({
-    //         url: "<?= site_url('pelayanan/permintaan/list-data'); ?>",
-    //         dataType: 'json',
-    //         cache: false,
-    //         beforeSend: function() {
-    //             $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-    //         },
-    //         complete: function() {
-    //             $('.view-data').removeAttr('span');
-    //         },
-    //         success: function(response) {
-    //             $(".view-data").html(response.data);
-    //         },
-    //         error: function(xhr, ajaxOptions, thrownError) {
-    //             alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-    //         }
-    //     })
-    // }
+    function listData() {
+        $.ajax({
+            url: "<?= site_url('pelayanan/penawaran/list-data'); ?>",
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.view-data').removeAttr('span');
+            },
+            success: function(response) {
+                $(".view-data").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
 
     $(document).ready(function() {
-        // listData();
-
-        $(".btn-tambah").click(function(e) {
-            e.preventDefault();
-            $.ajax({
-                url: "<?= site_url('pelayanan/permintaan/add-data'); ?>",
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-tambah').attr('disable', 'disabled');
-                    $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                },
-                complete: function() {
-                    $('.btn-tambah').removeAttr('disable');
-                    $('.btn-tambah').html('<i class="ti ti-square-plus"></i> Tambah Data');
-                },
-                success: function(response) {
-                    $(".view-modal").html(response.data).show();
-                    $("#exampleModal").modal('show');
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-                }
-            })
-        })
+        listData();
     })
 </script>
 <?= $this->endSection(); ?>
