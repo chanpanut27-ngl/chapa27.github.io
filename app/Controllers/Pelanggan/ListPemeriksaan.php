@@ -45,7 +45,9 @@ class ListPemeriksaan extends BaseController
         $data = [
             'title' => 'Data ' . $this->title,
             'profil' => $profil,
-            'items' => $permintaan
+            // 'items' => $permintaan
+            'items' => $this->m_permintaan->where('no_reg', $id)->first()
+
         ];
         return view('Pelanggan/Pemeriksaan/List/index', $data);
     }

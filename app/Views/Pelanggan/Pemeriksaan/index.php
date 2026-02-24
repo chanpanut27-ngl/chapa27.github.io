@@ -65,6 +65,7 @@
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 <script>
     function listData() {
+       
         $.ajax({
             url: "<?= site_url('pelanggan/pelayanan/pemeriksaan/list-data') ?>",
             dataType: 'json',
