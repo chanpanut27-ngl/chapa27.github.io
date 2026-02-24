@@ -39,7 +39,7 @@
                     <div class="accordion accordion-flush accordion-color mb-2" id="accordionFlushExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                            <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
                                 <h5><span class="pc-micon"><i class="ti ti-user"></i> Data Pelanggan</h5>
                             </button>
                             </h2>
@@ -81,10 +81,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion accordion-flush accordion-color" id="accordionSurat">
+                    <div class="accordion accordion-flush accordion-color mb-2" id="accordionSurat">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseOne">
+                            <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseOne">
                                 <h5><span class="pc-micon"><i class="ti ti-file"></i> Surat permintaan</h5>
                             </button>
                             </h2>
@@ -98,7 +98,7 @@
                     <div class="accordion accordion-flush accordion-color" id="accordionPaktaIntegritas">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="true" aria-controls="flush-collapseThree">
+                            <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="true" aria-controls="flush-collapseThree">
                                 <h5><span class="pc-micon"><i class="ti ti-file"></i> Pakta Integritas</h5>
                             </button>
                             </h2>

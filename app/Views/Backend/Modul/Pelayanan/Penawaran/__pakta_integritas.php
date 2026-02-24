@@ -26,9 +26,9 @@
         
         .tanda-tangan {
             margin-top: 50px;
-            float: right;
+            float: left;
             text-align: left;
-            width: 200px;
+            width: 100%;
         }
         .nama-penanda { margin-top: 70px; font-weight: bold; text-decoration: underline; }
     </style>
@@ -79,9 +79,23 @@ administrasi sesuai dengan ketentuan Perundang-undangan yang berlaku.
 
     <!-- Penutup & Tanda Tangan -->
     <div class="tanda-tangan">
-        Ditandatangani di : Jakarta <br>
-Pada tanggal :  Februari <?= date('Y') ?><br>
+        <div class="row">
+            <div class="col-md-8">
+                <br><br><br>
+Kepala Balai Besar Laboratorium <br>
+Kesehatan Masyarakat Jakarta
+        <div class="nama-penanda">
+            dr. Nida Rohmawati, MPH <br>
+NIP. 197208182000122001
+        </div>
+            </div>
+            <div class="col-md-4">
+                Ditandatangani di : Jakarta <br>
+Pada tanggal :   <?= date('Y') ?><br><br>
+<?= $items['instansi'] ?><br><br>
         <div class="nama-penanda">_____________________</div>
+            </div>
+        </div>
     </div>
     
 </div>
