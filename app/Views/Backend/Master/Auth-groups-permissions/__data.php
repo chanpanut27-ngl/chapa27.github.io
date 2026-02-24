@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Id Group', 'Name Group', 'Id Permissions', 'Name Permissions'];
+        $arrth = ['No', 'Name Group', 'Name Permissions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -16,9 +16,7 @@
         ?>
             <tr>
                 <td id="myId-<?= $row['group_id'] ?>" data-urut=<?= $no; ?>><b><?= $no++; ?></b></td>
-                <td><?= $row['group_id'] ?></td>
                 <td><?= $row['name_group'] ?></td>
-                <td><?= $row['permission_id'] ?></td>
                 <td><?= $row['name_permissions'] ?></td>
             </tr>
         <?php endforeach; ?>

@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'User ID', 'Username', 'Email', 'Group ID', 'Group', ''];
+        $arrth = ['No', 'Username', 'Email', 'Group', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -16,10 +16,8 @@
         ?>
             <tr>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['user_id'] ?></td>
                 <td><?= $row['username'] ?></td>
                 <td><?= $row['email'] ?></td>
-                <td><?= $row['group_id'] ?></td>
                 <td><?= $row['name'] ?></td>
                 <td>
                     <div class="d-flex justify-content-start">

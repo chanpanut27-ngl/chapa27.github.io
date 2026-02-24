@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'IP Address', 'Email', 'User_ID', 'Tgl & Jam', 'Status', ''];
+        $arrth = ['No', 'IP Address', 'Email', 'Tgl & Jam', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -18,7 +18,6 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['ip_address']; ?></td>
                 <td><?= $row['email']; ?></td>
-                <td><?= $row['user_id']; ?></td>
                 <td><?= date('d/m/Y H:i:s', strtotime($row['date'])); ?></td>
                 <td><?= $row['success'] != 1 ? '<span class="badge text-bg-danger">Failed</span>' : '<span class="badge text-bg-success">Success</span>'; ?></td>
                 <td>
