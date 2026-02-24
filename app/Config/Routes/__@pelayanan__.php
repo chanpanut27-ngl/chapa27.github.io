@@ -122,6 +122,7 @@
         $routes->get('list-data', 'Penawaran::list');
         $routes->get('detail/(:any)', 'Penawaran::show/$1');
         $routes->get('detail-surat', 'Penawaran::show_surat');
+        $routes->get('detail-pakta-integritas', 'Penawaran::show_integritas');
         $routes->delete('delete-data/(:num)', 'Penawaran::delete/$1');
         $routes->post('create-data', 'Penawaran::create/');
     });

@@ -81,23 +81,32 @@
                             </div>
                         </div>
                     </div>
-                    <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
+                    <div class="accordion accordion-flush accordion-color" id="accordionSurat">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseOne">
                                 <h5><span class="pc-micon"><i class="ti ti-file"></i> Surat permintaan</h5>
                             </button>
                             </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
+                            <div id="flush-collapseTwo" class="accordion-collapse" data-bs-parent="#accordionSurat">
                                 <div class="accordion-body">
-                                    <div class="show-data-surat"></div>
+                                    <div class="show-surat"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="view-data"></div>
+                    <div class="accordion accordion-flush accordion-color" id="accordionPaktaIntegritas">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="true" aria-controls="flush-collapseThree">
+                                <h5><span class="pc-micon"><i class="ti ti-file"></i> Pakta Integritas</h5>
+                            </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse" data-bs-parent="#accordionPaktaIntegritas">
+                                <div class="accordion-body">
+                                    <div class="show-pakta-integritas"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -129,7 +138,24 @@
             cache: false,
             data:{no_reg:no_reg},
             success: function(response) {
-                $(".show-data-surat").html(response.data);
+                $(".show-surat").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+    function showDataPaktaIntegritas() {
+        var no_reg = $(".pc-container").data("id");
+        $.ajax({
+            type:"GET",
+            url: "<?= site_url('pelayanan/penawaran/detail-pakta-integritas'); ?>",
+            dataType: 'json',
+            cache: false,
+            data:{no_reg:no_reg},
+            success: function(response) {
+                $(".show-pakta-integritas").html(response.data);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
@@ -139,6 +165,7 @@
 
     $(document).ready(function() {
         showDataSurat();
+        showDataPaktaIntegritas();
     })
 </script>
 <?= $this->endSection(); ?>

@@ -70,7 +70,24 @@ class Penawaran extends BaseController
                 'items' => $this->m_permintaan->where('no_reg', $no_reg)->first()
             ];
             $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Penawaran/__detail_surat', $data)
+                'data' => view('Backend/Modul/Pelayanan/Penawaran/__surat', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
+     public function show_integritas($id = null)
+    {
+        if ($this->request->isAJAX()) {
+            $no_reg = $this->request->getVar('no_reg');
+            $data = [
+                'items' => $this->m_permintaan->where('no_reg', $no_reg)->first()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Penawaran/__pakta_integritas', $data)
             ];
 
             echo json_encode($msg);
