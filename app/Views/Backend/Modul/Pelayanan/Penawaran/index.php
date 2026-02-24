@@ -34,7 +34,6 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        penawaran
                         <div class="view-data"></div>
                     </div>
                 </div>

@@ -137,6 +137,12 @@
             dataType: 'json',
             cache: false,
             data:{no_reg:no_reg},
+            beforeSend: function() {
+                $('.show-surat').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.show-surat').removeAttr('span');
+            },
             success: function(response) {
                 $(".show-surat").html(response.data);
             },
@@ -154,6 +160,12 @@
             dataType: 'json',
             cache: false,
             data:{no_reg:no_reg},
+            beforeSend: function() {
+                $('.show-pakta-integritas').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.show-pakta-integritas').removeAttr('span');
+            },
             success: function(response) {
                 $(".show-pakta-integritas").html(response.data);
             },
