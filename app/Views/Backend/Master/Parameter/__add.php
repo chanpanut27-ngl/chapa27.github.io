@@ -95,7 +95,7 @@
                             <input type="number" name="harga_per_titik[]" id="harga-per-titik" class="form-control" required>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-danger btn-sm rounded delete-rows">x</button>
+                            <button type="button" class="btn btn-danger btn-sm rounded delete-rows">-</button>
                         </td>
                     </tr>`;
         $(".form-multi-insert").append(html);
