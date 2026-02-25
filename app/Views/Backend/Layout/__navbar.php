@@ -243,6 +243,12 @@
                     </a>
                 </li>
                 <li class="pc-item">
+                    <a href="<?= base_url('master-data/peraturan') ?>" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-database"></i></span>
+                        <span class="pc-mtext"> Peraturan</span>
+                    </a>
+                </li>
+                <li class="pc-item">
                     <a href="<?= base_url('master-data/jenis-sampel') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
                         <span class="pc-mtext"> Jenis sampel</span>
@@ -264,12 +270,6 @@
                     <a href="<?= base_url('master-data/instansi') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
                         <span class="pc-mtext"> Instansi</span>
-                    </a>
-                </li>
-                <li class="pc-item">
-                    <a href="<?= base_url('master-data/peraturan') ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-database"></i></span>
-                        <span class="pc-mtext"> Peraturan</span>
                     </a>
                 </li>
                 <li class="pc-item">
