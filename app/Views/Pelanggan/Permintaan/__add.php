@@ -13,7 +13,7 @@
                 <?= form_hidden('no_telp', $profil['no_telp'] ?? '') ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-pengirim" class="form-label h5">Nama pengirim</label>
+                        <label for="nama-pengirim" class="form-label h5">Nama pelanggan</label>
                         <input type="text" name="nama_pengirim" class="form-control" id="nama-pengirim" autocomplete="off">
                         <div class="invalid-feedback errorNamaPengirim"></div>
                     </div>

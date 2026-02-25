@@ -20,7 +20,7 @@ class Permintaan extends BaseController
 
     public function __construct()
     {
-        $this->title = 'permintaan pelanggan';
+        $this->title = 'Permintaan';
         $this->model = new PermintaanPelangganModel();
         $this->m_lab = new LaboratoriumModel();
         $this->m_jenis_sampel = new JenisSampelModel();
