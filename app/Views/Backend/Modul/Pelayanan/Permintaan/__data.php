@@ -1,6 +1,9 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
+
+use App\Models\StatusLayananModel;
+
         $arrth = ['No', 'No.Registrasi', 'Kode pelanggan', 'Nama', 'No.Telp/Hp pengirim', 'Instansi', 'Tgl & jam permintaan', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
@@ -12,7 +15,11 @@
     <tbody>
         <?php
         $no = 1;
+        $status_layanan = new StatusLayananModel();
+        $sts = $status_layanan->findAll();
+
         foreach ($items as $row) :
+            
         ?>
             <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td class="text-center">
@@ -21,7 +28,29 @@
                         <i class="ti ti-circle-check"></i>
                     </button>
                 </td>
-                <td><?= $row['no_reg'] ?></td>
+                <td>
+                    <?= $row['no_reg'] ?> <br>
+                    <?php
+                    foreach ($sts as $key) {
+                        if ($row['id'] == $key['id_pelanggan']) {
+                            $sts_ket = '';
+                            $bgs = '';
+                            if ($key['status'] == 'Permintaan Di Terima') {
+                                $sts_ket = 1;
+                                $bgs = 'text-bg-success';
+                                // Penawaran Di Proses
+                            } else if ($key['status'] == 'Penawaran Di Proses'){
+                                $sts_ket = 2;
+                                $bgs = 'text-bg-warning';
+                            } else {
+                                $sts_ket = 3;
+                                $bgs = 'text-bg-danger';
+                            }
+                            echo '<span class="badge '.$bgs.'" title="'.$key['status'].'">'.$sts_ket.'</span> &nbsp;';
+                        }
+                    }
+                    ?>
+                </td>
                 <td><?= $row['kode_pelanggan'] ?></td>
                 <td><?= $row['nama_pengirim'] ?></td>
                 <td><?= $row['no_telp_pengirim'] ?></td>
@@ -133,7 +162,7 @@
             },
             complete: function() {
                 $('.btn-sts-'+id).removeAttr('disable');
-                $('.btn-sts-'+id).html('<i class="ti ti-plus"></i>');
+                $('.btn-sts-'+id).html('<i class="ti ti-circle-check"></i>');
             },
             success: function(response) {
                 if (response.sukses) {

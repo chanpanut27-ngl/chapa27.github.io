@@ -43,10 +43,10 @@ $(document).ready(function () {
                     }).then((result) => {
                         if (result.dismiss === Swal.DismissReason.timer) {
                             listData();
+                            $(".btn-refresh").trigger('click');
                         }
                     });
-
-                    // $("#exampleModal").modal('hide');
+                                        
                     listData();
                 }
             },

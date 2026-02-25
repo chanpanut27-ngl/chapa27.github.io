@@ -68,6 +68,7 @@
                             }).then((result) => {
                                 if (result.dismiss === Swal.DismissReason.timer) {
                                     listData();
+                                    $(".btn-refresh").trigger('click');
                                 }
                             });
                             listData();
