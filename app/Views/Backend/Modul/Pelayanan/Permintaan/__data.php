@@ -74,10 +74,10 @@ use App\Models\StatusLayananModel;
     </tbody>
 </table>
 <p>
-    <span class="badge text-bg-success rounded">Permintaan Di Terima</span>
-    <span class="badge text-bg-secondary rounded">Permintaan Di Tolak</span>
-    <span class="badge text-bg-warning rounded">Penawaran Di Diterima</span>
-    <span class="badge text-bg-danger rounded">Penawaran Di Tolak</span>
+    <h5><span class="badge text-bg-success rounded">Permintaan di Terima</span>
+    <span class="badge text-bg-secondary rounded">Permintaan di Tolak</span>
+    <span class="badge text-bg-warning rounded">Penawaran di Diterima</span>
+    <span class="badge text-bg-danger rounded">Penawaran di Tolak</span></h5>
 </p>
 
 <script>
