@@ -81,7 +81,7 @@ class PermintaanPemeriksaanModel extends Model
         $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");
         $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan", "left");
         $builder->join("master_parameter a", "a.id = pp.id_parameter", "left");
-        $builder->join("permintaan_sampel ps", "ps.id_jenis_sampel = pp.id_jenis_sampel", "left");
+        // $builder->join("permintaan_sampel ps", "ps.id_jenis_sampel = pp.id_jenis_sampel", "left");
         $builder->where('pp.id_pelanggan', $id);
         $query = $builder->get()->getResultArray();
         return $query;
