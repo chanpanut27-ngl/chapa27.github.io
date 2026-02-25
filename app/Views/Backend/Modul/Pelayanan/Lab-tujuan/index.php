@@ -33,12 +33,12 @@
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                    <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body" style="border:1px solid;">
+                    <div class="accordion-body">
                         <?php
                             foreach ($items as $row) :  
                                 $kode_pengantar = $row['kode_pengantar'];
