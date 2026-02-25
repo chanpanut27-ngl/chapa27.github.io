@@ -129,4 +129,5 @@
         $routes->post('create-data', 'Penawaran::create/');
     });
     
+    $routes->get('qrcode', 'QrCodeGenerator::generate');
     ?>
