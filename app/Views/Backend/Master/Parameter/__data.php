@@ -50,7 +50,7 @@
             },
             complete: function() {
                 $('.edit-data-'+id).removeAttr('disable');
-                $('.edit-data-'+id).html('<span class="fa-solid fa-edit"></span>');
+                $('.edit-data-'+id).html('<i class="ti ti-edit"></i>');
             },
             success: function(response) {
                 if (response.sukses) {
