@@ -35,11 +35,13 @@ use App\Models\StatusLayananModel;
                         if ($row['id'] == $key['id_pelanggan']) {
                             $sts_ket = '';
                             $bgs = '';
-                            if ($key['status'] == 'Permintaan Di Terima') {
+                            if ($key['status'] == 'Permintaan di Terima') {
                                 $sts_ket = 1;
                                 $bgs = 'text-bg-success';
-                                // Penawaran Di Proses
-                            } else if ($key['status'] == 'Penawaran Di Proses'){
+                            } else if ($key['status'] == 'Permintaan di Tolak'){
+                                $sts_ket = 2;
+                                $bgs = 'text-bg-secondary';
+                            } else if ($key['status'] == 'Penawaran di Diterima'){
                                 $sts_ket = 2;
                                 $bgs = 'text-bg-warning';
                             } else {

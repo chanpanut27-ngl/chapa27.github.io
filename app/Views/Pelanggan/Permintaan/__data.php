@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'No.Registrasi', 'Kode pelanggan', 'Nama pengirim', 'No.Telp/Hp Pengirim', 'Spesimen/Sampel', 'Tgl & Jam permintaan', ''];
+        $arrth = ['No', 'No.Registrasi', 'Kode pelanggan', 'Nama pengirim', 'No.Telp/Hp Pengirim', 'Tgl & Jam permintaan', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -20,7 +20,6 @@
                 <td><?= $row['kode_pelanggan'] ?></td>
                 <td><?= $row['nama_pengirim'] ?></td>
                 <td><?= $row['no_telp_pengirim'] ?></td>
-                <td><?= $row['spesimen_atau_sampel'] ?></td>
                 <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
@@ -30,6 +29,7 @@
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
+                        <a href="<?= site_url('pelanggan/pelayanan/list-pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-info btn-sm">Pemeriksaan</a>
                     </div>
                 </td>
             </tr>

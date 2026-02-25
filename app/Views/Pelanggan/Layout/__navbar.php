@@ -29,10 +29,16 @@
                         <span class="pc-mtext">Permintaan</span>
                     </a>
                 </li>
-                <li class="pc-item">
+                <!-- <li class="pc-item">
                     <a href="<?= base_url('pelanggan/pelayanan/pemeriksaan'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
                         <span class="pc-mtext">Pemeriksaan</span>
+                    </a>
+                </li> -->
+                <li class="pc-item">
+                    <a href="<?= base_url('pelanggan/pelayanan/penawaran'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-mtext">Penawaran</span>
                     </a>
                 </li>
                 <li class="pc-item d-none">
