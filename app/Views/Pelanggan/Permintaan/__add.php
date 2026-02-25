@@ -11,7 +11,6 @@
                 <?= form_hidden('instansi', $profil['instansi'] ?? '') ?>
                 <?= form_hidden('alamat', $profil['alamat'] ?? '') ?>
                 <?= form_hidden('no_telp', $profil['no_telp'] ?? '') ?>
-
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="nama-pengirim" class="form-label h5">Nama pengirim</label>
@@ -47,4 +46,4 @@
         </div>
     </div>
 </div>
-<script src="<?= base_url('assets/js/pelanggan/@save_permintaan.js') ?>"></script>
+<script src="<?= base_url('assets/js/Pelanggan/@save_permintaan.js') ?>"></script>

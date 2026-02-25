@@ -38,19 +38,19 @@
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm rounded delete-all-pemeriksaan" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
-                                <span class="fa-solid fa-undo"></span> Batal pemeriksaan
+                                <span class="ti ti-undo"></i> Batal pemeriksaan
                             </button>
                         </div>
                     </div>
                     <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-                                <h5><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h5>
-                            </button>
+                                <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                                    <h5><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h5>
+                                </button>
                             </h2>
                             <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body" style="border:1px solid;">
+                                <div class="accordion-body">
                                     <div class="row">
                                         <div class="col-sm-3"><b>No.Registrasi</b></div>
                                         <div class="col-sm-3">: <?= $items['no_reg'] ?></div>
@@ -94,7 +94,7 @@
                                 <i class="ti ti-clipboard"></i> Jenis sampel</button>
                                 <!-- Button trigger modal -->
                                  <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
-                                    <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
+                                    <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
                                 </button>
                             </div>
                         </div>
@@ -243,7 +243,7 @@
                     $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
                 },
                 complete: function() {
-                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                    $('.btn-tambah').html('<i class="ti ti-square-plus"></i> Tambah Data');
                 },
                 success: function(response) {
                     $(".view-modal").html(response.data).show();
