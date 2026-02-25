@@ -24,7 +24,7 @@ use App\Models\StatusLayananModel;
             <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td class="text-center">
                     <b><?= $no++; ?></b>
-                    <button type="button" class="btn btn-secondary btn-sm rounded btn-sts-<?= $row['id']; ?>" onclick="statusLayanan(<?= $row['id']; ?>)" title="Status layanan">
+                    <button type="button" class="btn btn-primary btn-sm rounded btn-sts-<?= $row['id']; ?>" onclick="statusLayanan(<?= $row['id']; ?>)" title="Status layanan">
                         <i class="ti ti-circle-check"></i>
                     </button>
                 </td>
@@ -73,6 +73,12 @@ use App\Models\StatusLayananModel;
         <?php endforeach; ?>
     </tbody>
 </table>
+<p>
+    <span class="badge text-bg-success rounded">Permintaan Di Terima</span>
+    <span class="badge text-bg-secondary rounded">Permintaan Di Tolak</span>
+    <span class="badge text-bg-warning rounded">Penawaran Di Diterima</span>
+    <span class="badge text-bg-danger rounded">Penawaran Di Tolak</span>
+</p>
 
 <script>
     function editData(id) 

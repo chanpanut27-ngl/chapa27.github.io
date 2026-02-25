@@ -11,15 +11,18 @@
                 <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="" class="form-label h5">Status : </label>
+                        <label for="" class="form-label h5">Status : </label>&nbsp;
                         <label for="1">
-                            <input type="radio" name="status" value="Permintaan Di Terima" id="1" checked> Permintaan Di Terima
+                            <input type="radio" name="status" value="Permintaan di Terima" id="1" checked> <span class="badge text-bg-success rounded">Permintaan di Terima</span>
                         </label>&nbsp;&nbsp;
                         <label for="2">
-                            <input type="radio" name="status" value="Penawaran Di Proses" id="2"> Penawaran Di Proses
-                        </label>
+                            <input type="radio" name="status" value="Permintaan di Tolak" id="2" checked> <span class="badge text-bg-secondary rounded">Permintaan di Tolak</span>
+                        </label>&nbsp;&nbsp;
                         <label for="3">
-                            <input type="radio" name="status" value="Penawaran Di Tolak" id="3"> Penawaran Di Tolak
+                            <input type="radio" name="status" value="Penawaran di Terima" id="3"> <span class="badge text-bg-warning rounded">Penawaran di Terima</span>
+                        </label>&nbsp;
+                        <label for="4">
+                            <input type="radio" name="status" value="Penawaran di Tolak" id="4"> <span class="badge text-bg-danger rounded">Penawaran di Tolak</span>
                         </label>
                     </div>
                     <div class="mb-3">
