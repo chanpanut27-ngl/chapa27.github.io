@@ -53,6 +53,7 @@ return array(
     'App\\Controllers\\ProfilPegawai' => $baseDir . '/app/Controllers/ProfilPegawai.php',
     'App\\Controllers\\ProsesPengantarLab' => $baseDir . '/app/Controllers/ProsesPengantarLab.php',
     'App\\Controllers\\QrCodeController' => $baseDir . '/app/Controllers/QrCodeController.php',
+    'App\\Controllers\\QrCodeGenerator' => $baseDir . '/app/Controllers/QrCodeGenerator.php',
     'App\\Controllers\\ResumePengantarLab' => $baseDir . '/app/Controllers/ResumePengantarLab.php',
     'App\\Controllers\\SampelLingkungan' => $baseDir . '/app/Controllers/SampelLingkungan.php',
     'App\\Controllers\\SpesimenPenyakit' => $baseDir . '/app/Controllers/SpesimenPenyakit.php',
