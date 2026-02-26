@@ -13,16 +13,16 @@
                     <div class="mb-3">
                         <label for="" class="form-label h5">Status : </label>&nbsp;
                         <label for="1">
-                            <input type="radio" name="status" value="Permintaan di Terima" id="1" checked> <span class="badge text-bg-success rounded">Permintaan di Terima</span>
+                            <input type="radio" name="status" value="Permintaan di Terima" id="1" checked> Permintaan di Terima
                         </label>&nbsp;&nbsp;
                         <label for="2">
-                            <input type="radio" name="status" value="Permintaan di Tolak" id="2" checked> <span class="badge text-bg-secondary rounded">Permintaan di Tolak</span>
+                            <input type="radio" name="status" value="Permintaan di Tolak" id="2" checked> Permintaan di Tolak
                         </label>&nbsp;&nbsp;
                         <label for="3">
-                            <input type="radio" name="status" value="Penawaran di Terima" id="3"> <span class="badge text-bg-warning rounded">Penawaran di Terima</span>
-                        </label>&nbsp;
+                            <input type="radio" name="status" value="Penawaran di Terima" id="3"> Penawaran di Terima
+                        </label>&nbsp;&nbsp;
                         <label for="4">
-                            <input type="radio" name="status" value="Penawaran di Tolak" id="4"> <span class="badge text-bg-danger rounded">Penawaran di Tolak</span>
+                            <input type="radio" name="status" value="Penawaran di Tolak" id="4"> Penawaran di Tolak
                         </label>
                     </div>
                     <div class="mb-3">

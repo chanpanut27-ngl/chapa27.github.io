@@ -7,13 +7,14 @@
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     .kop-surat {
-        text-align: left;
+        text-align: justify;
         border-bottom: 3px double #000;
         margin-bottom: 20px;
         padding-bottom: 10px;
     }
+
     .kop-surat h2 { margin: 0; text-transform: uppercase; }
-    .kop-surat p { margin: 0; font-size: 12px; }
+    .kop-surat p { margin: 0; font-size: 12px; text-align: left;}
     
     .info-surat {
         display: flex;
@@ -38,19 +39,24 @@ use App\Libraries\CustomLib;
 <div class="kertas-surat">
     <!-- Kepala Surat (Kop) -->
     <div class="kop-surat">
-        <table class="table">
-            <tr>
-                <td width="60%">
-                    <?php
-                    $custom_lib = new CustomLib();
-                    echo $custom_lib->logo_kopsurat();
-                    ?>
-                </td>
-                <td class="text-align:left;">
-                    <?php echo $custom_lib->ket_kopsurat2('LB.IV.7.1.1.3');?>
-                </td>
-            </tr>
-        </table>
+        <div class="row">
+            <div class="col-md">
+                <img src="<?= base_url('assets/images/logo.webp') ?>" alt="" class="img-fluid" alt="logo" style="height: 55px;">
+            </div>
+            <div class="col-md">
+                <p>
+                    <label for="" style="color: #00A69A;">Kementerian Kesehatan</label><br>
+                    <b>Direktorat Jenderal</b><br>
+                    <b>Kesehatan Primer dan Komunitas</b><br>
+                    Balai Besar Laboratorium Kesehatan Masyarakat
+                    Jakarta <br>
+                    <label for=""><i class="fa-solid fa-location-dot"></i> Jl.Bambu Apus Raya No.6 Blok C1 Jakarta Timur 13890<br>
+                    <i class="ti ti-phone"></i> (021) 3871 2050 - (021) 3871 2051<br>
+                    <i class="ti ti-globe"></i> www.bblkmjakarta.org</label><br>
+                    <label for="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No. Kode '.$nomor_form.'</label>';
+                </p>
+            </div>
+        </div>
     </div>
 
     <!-- Tanggal & Perihal -->

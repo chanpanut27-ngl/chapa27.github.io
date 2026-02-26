@@ -41,13 +41,13 @@ use App\Models\StatusLayananModel;
                             } else if ($key['status'] == 'Permintaan di Tolak'){
                                 $sts_ket = 2;
                                 $bgs = 'text-bg-secondary';
-                            } else if ($key['status'] == 'Penawaran di Diterima'){
-                                $sts_ket = 2;
+                            } else if ($key['status'] == 'Penawaran di Terima'){
+                                $sts_ket = 3;
                                 $bgs = 'text-bg-warning';
                             } else {
-                                $sts_ket = 3;
+                                $sts_ket = 4;
                                 $bgs = 'text-bg-danger';
-                            }
+                            } 
                             echo '<span class="badge '.$bgs.'" title="'.$key['status'].'">'.$sts_ket.'</span> &nbsp;';
                         }
                     }
