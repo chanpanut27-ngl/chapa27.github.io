@@ -9,7 +9,6 @@
             <form action="<?= base_url('master-data/parameter/update-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id" value="<?= $items['id'] ?>">
-                <?= var_dump($items) ?>
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="id-jenis-sampel" class="form-label h5">Jenis sampel</label>
