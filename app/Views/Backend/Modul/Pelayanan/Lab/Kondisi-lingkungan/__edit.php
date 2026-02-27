@@ -28,37 +28,4 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-ubah').attr('disable', 'disabled');
-                    $('.btn-ubah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                },
-                complete: function() {
-                    $('.btn-ubah').removeAttr('disable');
-                    $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
-                },
-                success: function(response) {
-                    Swal.fire({
-                        title: "Berhasil",
-                        text: response.sukses,
-                        icon: "success"
-                    });
-                    $("#exampleModal").modal('hide');
-                    listData();
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-    })
-</script>
+<script src="<?= base_url('assets/js/Pelayanan/@update_koling_plab.js') ?>"></script>
