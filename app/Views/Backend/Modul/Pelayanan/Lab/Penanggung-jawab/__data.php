@@ -1,43 +1,27 @@
-<table id="example" class="table table-hover table-bordered">
-    <?php if (!$items) {
-        ?>
-        <thead>
-            <tr>
-                <th>Penanggung jawab</th>
-                <th style="text-align: center;">Nama & Tanda tangan</th>
-                <th style="text-align: center;">No.Telepon</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="width: 25%;"><b>Petugas sampling/pengambil/pembawa sampel</b></td>
-                <td>: </td>
-                <td>: </td>
-            </tr>
-            <tr>
-                <td><b>Penerima sampel</b></td>
-                <td>: </td>
-                <td>: </td>
-            </tr>
-            <tr>
-                <td><b>Tgl. terima sampel</b></td>
-                <td>: </td>
-                <td>: </td>
-            </tr>
-        </tbody>
-        <?php
-    } else { ?>
-    <?php foreach ($items as $row) : ?>
-    <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
-       <span class="fa-solid fa-edit"></span>
+<?php
+$array_result = [];
+$row = null;
+
+foreach ($items as $row) {
+    $array_result[] = $row;
+}
+
+if ($row) {
+   ?>
+   <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+       <i class="ti ti-edit"></i>
     </button>&nbsp;
     <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
-       <span class="fa-solid fa-trash-alt"></span>
+       <i class="ti ti-trash"></i>
     </button>
+   <?php
+}
+?>
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th colspan="3" class="text-center">
-            <?= 'Jakarta, '.$konversi_tanggal.' '.date('H:i', strtotime($row['jam_terima_sampel'])); ?></th>
+            <?= 'Jakarta, '.$konversi_tanggal.' '.date('H:i', strtotime(@$row['jam_terima_sampel'])) ?></th>
         </tr>
         <tr>
             <th>Penanggung jawab</th>
@@ -45,19 +29,18 @@
             <th style="text-align: center;">No.Telepon</th>
         </tr>
     </thead>
-    <tbody style="font-family: arial;" id="myId-<?= $row['id']; ?>">
+    <tbody id="myId-<?= $row['id'] ?? null ?>">
         <tr>
             <td style="width: 25%;"><b>Petugas sampling/pengambil/pembawa sampel</b></td>
-            <td>: <?= $row['nama_pjb'] ?></td>
-            <td>: <?= $row['no_telp_pjb'] ?></td>
+            <td>: <?= $row['nama_pjb'] ?? '' ?></td>
+            <td>: <?= $row['no_telp_pjb'] ?? '' ?></td>
         </tr>
          <tr>
             <td><b>Penerima sampel</b></td>
-            <td>: <?= $row['penerima_sampel'] ?></td>
-            <td>: <?= $row['no_telp_penerima'] ?></td>
+            <td>: <?= $row['penerima_sampel'] ?? '' ?></td>
+            <td>: <?= $row['no_telp_penerima'] ?? '' ?></td>
         </tr>
     </tbody>
-    <?php endforeach; } ?>
 </table>
 <script>
     function editData(id) {
@@ -73,7 +56,7 @@
             },
             complete: function() {
                 $('.btn-edit').removeAttr('disable');
-                $('.btn-edit').html('<span class="fa-solid fa-edit"></span>');
+                $('.btn-edit').html('<i class="ti ti-edit"></i>');
             },
             success: function(response) {
                 if (response.error) {
@@ -120,7 +103,14 @@
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    listData();
+                                }
                             });
                             listData();
                         }

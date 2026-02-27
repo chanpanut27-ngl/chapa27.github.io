@@ -1,7 +1,7 @@
 <?= $this->extend('Backend/Modul/Pelayanan/Lab/index'); ?>
 <?= $this->section('topAssets'); ?>
 <!-- [Datepicker css] --> 
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="<?= base_url('assets/css/datepicker/jquery-ui.css'); ?>">
 <?= $this->endSection(); ?>
 
 <?= $this->section('content_menu'); ?>
@@ -11,12 +11,12 @@
         <div class="card">
             <div class="card-header p-2" style="padding:0px;">
                 <div class="d-flex justify-content-end align-items-center gap-1">
-                    <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                        <span class="pc-micon"><i class="fa-solid fa-refresh"></i>
+                    <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
+                        <span class="pc-micon"><i class="ti ti-refresh"></i>
                     </button>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_kat_lab; ?>" data-kode="<?= $kode_pengantar;?>">
-                        <span class="pc-micon"><i class="fa-solid fa-plus-square"></i> Tambah Data
+                        <span class="pc-micon"><i class="ti ti-square-plus"></i> Tambah Data
                     </button>
                 </div>
             </div>
@@ -33,19 +33,19 @@
 
 <?= $this->section('bottomAssets'); ?>
 <!-- [Datepicker js] -->
-<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+<script src="<?= base_url('assets/js/datepicker/jquery-ui.js'); ?>"></script>
+<script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 
 <script>
     function listData() {
-        var id_kat_lab = $('.btn-tambah').data("id");
-        var kode_pengantar = $('.btn-tambah').data('kode');
+        
         $.ajax({
             url: "<?= site_url('pelayanan/pengantar-lab/penanggung-jawab/list-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{
-                 id_kat_lab:id_kat_lab,
-                 kode_pengantar:kode_pengantar
+                 id_kat_lab:'<?= $id_kat_lab ?>',
+                 kode_pengantar:'<?= $kode_pengantar ?>'
             },
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -59,8 +59,6 @@
     $(document).ready(function() {
         listData();
 
-        var id_kat_lab = $('.btn-tambah').data("id");
-        var kode_pengantar = $('.btn-tambah').data('kode');
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
@@ -68,8 +66,8 @@
                 dataType: 'json',
                 cache: false,
                 data:{
-                 id_kat_lab:id_kat_lab,
-                 kode_pengantar:kode_pengantar
+                    id_kat_lab:'<?= $id_kat_lab ?>',
+                    kode_pengantar:'<?= $kode_pengantar ?>'
                 },
                 beforeSend: function() {
                     $('.btn-tambah').attr('disable', 'disabled');
@@ -78,7 +76,7 @@
                 },
                 complete: function() {
                     $('.btn-tambah').removeAttr('disable');
-                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                    $('.btn-tambah').html('<i class="ti ti-square-plus"></i> Tambah Data');
                 },
                 success: function(response) {
                     $(".view-modal").html(response.data).show();
@@ -91,6 +89,4 @@
         })
     })
 </script>
-<script src="<?= base_url('assets/js/custom.js'); ?>"></script>
-
 <?= $this->endSection(); ?>

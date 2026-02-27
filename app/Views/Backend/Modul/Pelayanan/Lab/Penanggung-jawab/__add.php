@@ -65,12 +65,13 @@
 
 <script>
     $(document).ready(function() {
-        var dateToday = new Date();
 
+       var dateToday = new Date();
         $("#tgl-terima-sampel").datepicker(
             { 
                 dateFormat: 'dd-mm-yy', 
-                defaultDate: "",  inDate: dateToday
+                defaultDate: "",  
+                inDate: dateToday
             }
         );
         
