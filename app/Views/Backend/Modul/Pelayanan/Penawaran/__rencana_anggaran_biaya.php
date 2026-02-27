@@ -1,3 +1,9 @@
+<?php
+
+use App\Models\PermintaanPemeriksaanModel;
+use App\Models\PermintaanSampelModel;
+
+?>
 <style>
         .kertas-surat {
             width: 210mm; /* Ukuran A4 */
@@ -62,38 +68,35 @@ Uji Laboratorium <?= $items['instansi'] ?> <br>
     <tbody style="border: 1px solid;">
         <tr>
             <td></td>
-            <td><b>Biologi</b></td>
             <td></td>
             <td></td>
             <td></td>
         </tr>
+        <?php   
+        $id_pelanggan = $items['id'];
+        $permintaan_sampel = new PermintaanSampelModel();
+        $result = $permintaan_sampel->get_data($id_pelanggan);
+        $no = 1;
+        foreach ($result as $rows) {
+        ?>
         <tr>
-            <td>1</td>
-            <td>
-                Air Bersih (E.coli, Coliform), Permenkes No.02 Tahun 2023 
-            </td>
-            <td>3</td>
-            <td>165.000</td>
-            <td>495.000</td>
+            <td><?= $no++ ?></td>
+            <td><?= $rows['jenis_sampel'] ?></td>
+            <td class="text-center"><?= $rows['jumlah_sampel'] ?></td>
+            <td class="text-right"><?= $rows['pnbp'] ?></td>
+            <td><?= $rows['jumlah_biaya'] ?></td>
             <td>
                 Pengujian: Uji Duplo Metode Uji: Metode Membran Flter dengan media CCA/ISO 9308
             </td>
         </tr>
-        <tr>
-            <td>2</td>
-            <td>
-                Air Minum (E.coli, Coliform), Permenkes No.02 Tahun 2023  
-            </td>
-            <td>3</td>
-            <td>165.000</td>
-            <td>495.000</td>
-            <td>
-                Pengujian: Uji Duplo Metode Uji: Metode Membran Flter dengan media CCA/ISO 9308
-            </td>
-        </tr>
+        <?php
+        $total = 0;
+             $total = $total + $rows['jumlah_biaya'];
+        }
+        ?>
         <tr>
             <td colspan="4" class="text-end"><b>Total Biaya Pengujian (PNBP) ( 1 x pengujian)</b></td>
-            <td>990.000</td>
+            <td><?= $total ?></td>
         </tr>
     </tbody>
 </table>
@@ -119,7 +122,7 @@ Wajib Bayar ke kas Negara melalui Bank/POS Persepsi maksimal 7 hari sejak billin
 Menyetujui <br>
 <?= $items['instansi'] ?>
         <div class="nama-penanda">
-            (                       )
+            (______________________)
         </div>
             </div>
             <div class="col-md-4">
@@ -127,7 +130,7 @@ Menyetujui <br>
 Atasan langsung Bendahara Penerima<br>
         <div class="nama-penanda">
             ${nama_pengirim1} <br>
-            NIP. ${nip_pengirim1})
+            NIP. ${nip_pengirim1}
         </div>
             </div>
         </div>
