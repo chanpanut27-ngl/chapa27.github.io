@@ -44,7 +44,7 @@ class KeteranganPengantar extends BaseController
 
             $data = [
                 'items' => $this->model->where('kode_pengantar', $kode_pengantar)
-                ->where('id_kat_lab', $id_kat_lab)->get()->getResultArray()
+                ->where('id_kat_lab', $id_kat_lab)->find()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Lab/Keterangan/__data', $data)

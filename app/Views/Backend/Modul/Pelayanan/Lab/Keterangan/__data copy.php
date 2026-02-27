@@ -1,45 +1,59 @@
-<?php
-$array_result = [];
-$row = null;
-
-foreach ($items as $row) {
-    $array_result[] = $row;
-}
-
-if ($row) {
-   ?>
-   <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+<table id="example" class="table table-hover table-bordered">
+    <?php if (!$items) {
+       ?>
+       <tbody>
+        <tr>
+            <td style="width: 25%;"><b>Keterangan</b></td>
+            <td>: </td>
+        </tr>
+        <tr>
+            <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
+            <td>: </td>
+        </tr>
+         <tr>
+            <td><b>Sub kontrak</b></td>
+            <td>: </td>
+        </tr>
+        <tr>
+            <td><b>Kontrak di ulang</b></td>
+            <td>: </td>
+        </tr>
+        <tr>
+            <td><b>Permintaan khusus</b></td>
+            <td>: </td>
+        </tr>
+    </tbody>
+       <?php
+    } else { foreach ($items as $row) : ?>
+    <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <i class="ti ti-edit"></i>
     </button>&nbsp;
     <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
        <i class="ti ti-trash"></i>
     </button>
-   <?php
-}
-?>
-<table class="table table-hover table-bordered">
-    <tbody id="myId-<?= $row['id'] ?? null ?>">
+    <tbody id="myId-<?= $row['id']; ?>">
         <tr>
             <td><b>Keterangan</b></td>
-            <td>: <?= $row['keterangan'] ?? '' ?></td>
+            <td>: <?= $row['keterangan'] ?></td>
         </tr>
         <tr>
             <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
-            <td>: <?= $row['parameter_tidak_dapat_di_uji'] ?? '' ?></td>
+            <td>: <?= $row['parameter_tidak_dapat_di_uji'] ?></td>
         </tr>
         <tr>
             <td><b>Sub kontrak</b></td>
-            <td>: <?= $row['sub_kontrak'] ?? '' ?></td>
+            <td>: <?= $row['sub_kontrak'] ?></td>
         </tr>
         <tr>
             <td><b>Kontrak di ulang</b></td>
-            <td>: <?= $row['kontrak_diulang'] ?? '' ?></td>
+            <td>: <?= $row['kontrak_diulang'] ?></td>
         </tr>
         <tr>
             <td><b>Permintaan khusus</b></td>
-            <td>: <?= $row['permintaan_khusus'] ?? '' ?></td>
+            <td>: <?= $row['permintaan_khusus'] ?></td>
         </tr>
     </tbody>
+    <?php endforeach; } ?>
 </table>
 <script>
     function editData(id) {
@@ -110,4 +124,10 @@ if ($row) {
             }
         });
     }
+
+    $(document).ready(function() {
+        new DataTable('#example', {
+            responsive: true
+        });
+    })
 </script>
