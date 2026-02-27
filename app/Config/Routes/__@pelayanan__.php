@@ -128,6 +128,17 @@
         $routes->delete('delete-data/(:num)', 'Penawaran::delete/$1');
         $routes->post('create-data', 'Penawaran::create/');
     });
+
+    /* Pelayanan Penanggung Jawab Pengantar Lab */
+    $routes->group('pelayanan/pengantar-lab/penanggung-jawab', function ($routes) {
+        $routes->get('', 'PenanggungJawabPengantar::index');
+        $routes->get('list-data', 'PenanggungJawabPengantar::list');
+        $routes->get('add-data', 'PenanggungJawabPengantar::new');
+        $routes->post('create-data', 'PenanggungJawabPengantar::create');
+        $routes->get('edit-data/(:num)', 'PenanggungJawabPengantar::edit/$1');
+        $routes->post('update-data', 'PenanggungJawabPengantar::update');
+        $routes->delete('delete-data/(:num)', 'PenanggungJawabPengantar::delete/$1');
+    });
     
     $routes->get('qrcode', 'QrCodeGenerator::generate');
     ?>
