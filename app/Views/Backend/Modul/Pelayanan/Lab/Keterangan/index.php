@@ -7,12 +7,12 @@
         <div class="card">
             <div class="card-header p-2">
                 <div class="d-flex justify-content-end align-items-center gap-1">
-                    <button type="button" class="btn btn-secondary btn-sm rounded btn-refresh-data">
-                        <span class="pc-micon"><span class="fa-solid fa-refresh"></span></span>
+                    <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
+                        <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                     </button>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_kat_lab; ?>" data-kode="<?= $kode_pengantar;?>">
-                        <span class="pc-micon"><span class="fa-solid fa-plus-square"></span> Tambah Data
+                        <span class="pc-micon"><i class="ti ti-square-plus"></i> Tambah Data
                     </button>
                 </div>
             </div>
@@ -28,7 +28,6 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <script>
     function listData() {
@@ -37,6 +36,7 @@
         $.ajax({
             url: "<?= site_url('pelayanan/pengantar-lab/keterangan/list-data'); ?>",
             dataType: 'json',
+            cache: false,
             data:{
                  id_kat_lab:id_kat_lab,
                  kode_pengantar:kode_pengantar
@@ -73,7 +73,7 @@
                 },
                 complete: function() {
                     $('.btn-tambah').removeAttr('disable');
-                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                    $('.btn-tambah').html('<i class="ti ti-square-plus"></i> Tambah Data');
                 },
                 success: function(response) {
                     $(".view-modal").html(response.data).show();

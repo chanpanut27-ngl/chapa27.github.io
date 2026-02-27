@@ -8,11 +8,11 @@
             <div class="card-header p-2">
                 <div class="d-flex justify-content-end align-items-center gap-1">
                     <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
-                        <span class="pc-micon"><span class="fa-solid fa-refresh"><span></span>
+                        <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                     </button>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_kat_lab; ?>" data-kode="<?= $kode_pengantar;?>">
-                        <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
+                        <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
                     </button>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                 },
                 complete: function() {
                     $('.btn-tambah').removeAttr('disable');
-                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                    $('.btn-tambah').html('<i class="ti ti-square-plus"></i> Tambah Data');
                 },
                 success: function(response) {
                     $(".view-modal").html(response.data).show();

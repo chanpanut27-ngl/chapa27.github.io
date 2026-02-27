@@ -64,7 +64,7 @@
                     </div>
                     <div class="d-flex justify-content-end align-items-center">
                         <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-secondary btn-sm btn-rounded" title="Kembali">
-                            <span class="fa-solid fa-arrow-circle-left"></span> Kembali
+                            <span class="fa-solid fa-arrow-circle-left"></span>
                         </a>
                     </div>
                 </div>
