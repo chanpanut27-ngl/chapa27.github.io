@@ -16,10 +16,11 @@
                 <?php endforeach;?>
                 <div class="modal-body">
                     <?php
+                    
                     foreach ($masterLab as $lab) :
                          
                         foreach ($cek_lab as $cl) {
-                            if ($cl['id_lab'] == $lab['id']) {
+                            if (@$cl['id_lab'] == $lab['id']) {
                                 ?>
                                 <label for="<?= $lab['id'] ?>">
                                     <input type="checkbox" name="id_laboratorium[]" value="<?= $lab['id'] ?>" id="<?= $lab['id'] ?>" checked> <?= $lab['nama_lab']; ?>
@@ -29,12 +30,12 @@
                             } 
 
                         }
-                        if ($cl['id_lab'] != $lab['id']) {
+                        if (@$cl['id_lab'] != $lab['id']) {
                         ?>
-                                <label for="<?= $lab['id'] ?>">
-                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $lab['id'] ?>" id="<?= $lab['id'] ?>"> <?= $lab['nama_lab']; ?>
-                                </label><br>
-                                <?php
+                            <label for="<?= $lab['id'] ?>">
+                                <input type="checkbox" name="id_laboratorium[]" value="<?= $lab['id'] ?>" id="<?= $lab['id'] ?>"> <?= $lab['nama_lab']; ?>
+                            </label><br>
+                            <?php
                         }
 
                     endforeach;
