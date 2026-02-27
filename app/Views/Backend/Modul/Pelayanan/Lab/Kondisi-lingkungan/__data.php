@@ -1,36 +1,33 @@
-<table id="example" class="table table-hover table-bordered">
-    <?php if (!$items) {
-        ?>
-        <tbody>
-            <tr>
-                <td style="width: 30%;"><b>Kondisi lingkungan sekitar sampel</b></td>
-                <td>: </td>
-            </tr>
-            <tr>
-                <td style="width: 30%;"><b>Catatan abnormalitas</b></td>
-                <td>: </td>
-            </tr>
-        </tbody>
-        <?php
-    } else {?>
-    <?php foreach ($items as $row) : ?>
-    <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+<?php
+$array_result = [];
+$row = null;
+
+foreach ($items as $row) {
+    $array_result[] = $row;
+}
+
+if ($row) {
+   ?>
+   <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <i class="ti ti-edit"></i>
     </button>&nbsp;
     <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
        <i class="ti ti-trash"></i>
     </button>
-    <tbody id="myId-<?= $row['id']; ?>">
+   <?php
+}
+?>
+<table class="table table-hover table-bordered">
+    <tbody id="myId-<?= $row['id'] ?? null ?>">
         <tr>
             <td style="width: 30%;"><b>Kondisi lingkungan sekitar sampel</b></td>
-            <td>: <?= $row['kondisi_lingkungan_sekitar_sampel'] ?></td>
+            <td>: <?= $row['kondisi_lingkungan_sekitar_sampel'] ?? '' ?></td>
         </tr>
         <tr>
             <td style="width: 30%;"><b>Catatan abnormalitas</b></td>
-            <td>: <?= $row['catatan_abnormalitas'] ?></td>
+            <td>: <?= $row['catatan_abnormalitas'] ?? '' ?></td>
         </tr>
     </tbody>
-    <?php endforeach; } ?>
 </table>
 <script>
     function editData(id) {
@@ -86,7 +83,14 @@
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    listData();
+                                }
                             });
                             listData();
                         }

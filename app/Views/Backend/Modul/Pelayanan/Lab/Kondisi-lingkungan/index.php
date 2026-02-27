@@ -28,18 +28,16 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <script>
     function listData() {
-        var id_kat_lab = $('.btn-tambah').data("id");
-        var kode_pengantar = $('.btn-tambah').data('kode');
+
         $.ajax({
             url: "<?= site_url('pelayanan/pengantar-lab/kondisi-lingkungan/list-data'); ?>",
             dataType: 'json',
             data:{
-                 id_kat_lab:id_kat_lab,
-                 kode_pengantar:kode_pengantar
+                 id_kat_lab:'<?= $id_kat_lab ?>',
+                 kode_pengantar:'<?= $kode_pengantar ?>'
             },
             success: function(response) {
                 $(".view-data").html(response.data);
@@ -54,8 +52,6 @@
     $(document).ready(function() {
         listData();
 
-        var id_kat_lab = $('.btn-tambah').data("id");
-        var kode_pengantar = $('.btn-tambah').data('kode');
         $(".btn-tambah").click(function(e) {
             e.preventDefault();
             $.ajax({
@@ -63,8 +59,8 @@
                 dataType: 'json',
                 cache:false,
                 data:{
-                 id_kat_lab:id_kat_lab,
-                 kode_pengantar:kode_pengantar
+                 id_kat_lab:'<?= $id_kat_lab ?>',
+                 kode_pengantar:'<?= $kode_pengantar ?>'
                 },
                 beforeSend: function() {
                     $('.btn-tambah').attr('disable', 'disabled');

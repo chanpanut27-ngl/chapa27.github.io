@@ -58,38 +58,4 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                    $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
-                },
-                success: function(response) {
-                    Swal.fire({
-                        title: "Berhasil",
-                        text: response.sukses,
-                        icon: "success"
-                    });
-                    $("#exampleModal").modal('hide');
-                    listData();
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-    })
-</script>
+<script src="<?= base_url('assets/js/Pelayanan/@save_ket_plab.js') ?>"></script>

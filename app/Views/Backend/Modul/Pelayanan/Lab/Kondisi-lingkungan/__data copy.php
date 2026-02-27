@@ -1,30 +1,19 @@
 <table id="example" class="table table-hover table-bordered">
     <?php if (!$items) {
-       ?>
-       <tbody>
-        <tr>
-            <td style="width: 25%;"><b>Keterangan</b></td>
-            <td>: </td>
-        </tr>
-        <tr>
-            <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
-            <td>: </td>
-        </tr>
-         <tr>
-            <td><b>Sub kontrak</b></td>
-            <td>: </td>
-        </tr>
-        <tr>
-            <td><b>Kontrak di ulang</b></td>
-            <td>: </td>
-        </tr>
-        <tr>
-            <td><b>Permintaan khusus</b></td>
-            <td>: </td>
-        </tr>
-    </tbody>
-       <?php
-    } else { foreach ($items as $row) : ?>
+        ?>
+        <tbody>
+            <tr>
+                <td style="width: 30%;"><b>Kondisi lingkungan sekitar sampel</b></td>
+                <td>: </td>
+            </tr>
+            <tr>
+                <td style="width: 30%;"><b>Catatan abnormalitas</b></td>
+                <td>: </td>
+            </tr>
+        </tbody>
+        <?php
+    } else {?>
+    <?php foreach ($items as $row) : ?>
     <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <i class="ti ti-edit"></i>
     </button>&nbsp;
@@ -33,24 +22,12 @@
     </button>
     <tbody id="myId-<?= $row['id']; ?>">
         <tr>
-            <td><b>Keterangan</b></td>
-            <td>: <?= $row['keterangan'] ?></td>
+            <td style="width: 30%;"><b>Kondisi lingkungan sekitar sampel</b></td>
+            <td>: <?= $row['kondisi_lingkungan_sekitar_sampel'] ?></td>
         </tr>
         <tr>
-            <td style="width: 25%;"><b>Parameter tidak dapat di uji</b></td>
-            <td>: <?= $row['parameter_tidak_dapat_di_uji'] ?></td>
-        </tr>
-        <tr>
-            <td><b>Sub kontrak</b></td>
-            <td>: <?= $row['sub_kontrak'] ?></td>
-        </tr>
-        <tr>
-            <td><b>Kontrak di ulang</b></td>
-            <td>: <?= $row['kontrak_diulang'] ?></td>
-        </tr>
-        <tr>
-            <td><b>Permintaan khusus</b></td>
-            <td>: <?= $row['permintaan_khusus'] ?></td>
+            <td style="width: 30%;"><b>Catatan abnormalitas</b></td>
+            <td>: <?= $row['catatan_abnormalitas'] ?></td>
         </tr>
     </tbody>
     <?php endforeach; } ?>
@@ -59,7 +36,7 @@
     function editData(id) {
         $.ajax({
             type: 'get',
-            url: '<?= site_url('pelayanan/pengantar-lab/keterangan/edit-data/'); ?>' + id,
+            url: '<?= site_url('pelayanan/pengantar-lab/kondisi-lingkungan/edit-data/'); ?>' + id,
             dataType: 'json',
             cache: false,
             beforeSend: function() {
@@ -102,15 +79,21 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/pengantar-lab/keterangan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/pengantar-lab/kondisi-lingkungan/delete-data/'); ?>' + id,
                     dataType: 'json',
-                    cache: false,
                     success: function(response) {
                         if (response.sukses) {
                             Swal.fire({
                                 title: "Hapus Data !",
                                 text: response.sukses,
-                                icon: "success"
+                                icon: "success",
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    listData();
+                                }
                             });
                             listData();
                         }
