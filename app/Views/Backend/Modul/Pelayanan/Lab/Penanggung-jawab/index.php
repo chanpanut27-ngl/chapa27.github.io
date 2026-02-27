@@ -32,7 +32,6 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <!-- [Datepicker js] -->
 <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
 

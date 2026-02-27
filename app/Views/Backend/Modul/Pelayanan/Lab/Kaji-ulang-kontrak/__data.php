@@ -1,68 +1,49 @@
-<table id="example" class="table table-hover table-bordered">
-    <?php if (!$items) {
-        ?>
-        <tbody>
-            <tr>
-                <td style="width: 25%;"><b>Alat utama</b></td>
-                <td>: </td>
-            </tr>
-            <tr>
-                <td><b>Alat pendukung</b></td>
-                <td>: </td>
-            </tr>
-            <tr>
-                <td><b>Personil laboratorium</b></td>
-                <td>: </td>
-            </tr>
-            <tr>
-                <td><b>Metode pemeriksaan</b></td>
-                <td>: </td>
-            </tr>
-            <tr>
-                <td><b>Uji mutu (Quality control)</b></td>
-                <td>: </td>
-            </tr>
-            <tr>
-                <td><b>Reagensa dan media</b></td>
-                <td>: </td>
-            </tr>
-        </tbody>
-        <?php
-    } else {
-    foreach ($items as $row) : ?>
-    <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+<?php
+$array_result = [];
+$row = null;
+
+foreach ($items as $row) {
+    $array_result[] = $row;
+}
+
+if ($row) {
+   ?>
+   <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <i class="ti ti-edit"></i>
     </button>&nbsp;
     <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
        <i class="ti ti-trash"></i>
     </button>
-    <tbody id="myId-<?= $row['id']; ?>">
+   <?php
+}
+?>
+<table class="table table-hover table-bordered">
+    <tbody id="myId-<?= $row['id'] ?? null; ?>">
         <tr>
             <td style="width: 25%;"><b>Alat utama</b></td>
-            <td>: <?= $row['alat_utama'] ?></td>
+            <td>: <?= $row['alat_utama'] ?? '' ?></td>
         </tr>
          <tr>
             <td><b>Alat pendukung</b></td>
-            <td>: <?= $row['alat_pendukung'] ?></td>
+            <td>: <?= $row['alat_pendukung'] ?? '' ?></td>
         </tr>
         <tr>
             <td><b>Personil laboratorium</b></td>
-            <td>: <?= $row['personil_lab'] ?></td>
+            <td>: <?= $row['personil_lab'] ?? '' ?></td>
         </tr>
         <tr>
             <td><b>Metode pemeriksaan</b></td>
-            <td>: <?= $row['metode_pemeriksaan'] ?></td>
+            <td>: <?= $row['metode_pemeriksaan'] ?? '' ?></td>
         </tr>
         <tr>
             <td><b>Uji mutu (Quality control)</b></td>
-            <td>: <?= $row['uji_mutu'] ?></td>
+            <td>: <?= $row['uji_mutu'] ?? '' ?></td>
         </tr>
         <tr>
             <td><b>Reagensa dan media</b></td>
-            <td>: <?= $row['reagensa_dan_media'] ?></td>
+            <td>: <?= $row['reagensa_dan_media'] ?? '' ?></td>
         </tr>
     </tbody>
-    <?php endforeach; } ?>
 </table>
 <script>
     function editData(id) {
@@ -132,10 +113,4 @@
             }
         });
     }
-
-    $(document).ready(function() {
-        new DataTable('#example', {
-            responsive: true
-        });
-    })
 </script>
