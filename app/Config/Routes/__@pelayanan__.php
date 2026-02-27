@@ -53,7 +53,7 @@
 
     /* Pelayanan Resume Pengantar Lab */
     $routes->group('pelayanan/pengantar-lab/resume', function ($routes) {
-        $routes->get('(:any)', 'ResumePengantarLab::index/$1');
+        $routes->get('index/(:any)', 'ResumePengantarLab::index/$1');
         $routes->get('list-data', 'ResumePengantarLab::list');
     });
 

@@ -1,41 +1,67 @@
 
+<?php
+
+use App\Models\PengantarLabModel;
+use App\Models\PermintaanPelangganModel;
+
+$pengantar = new PengantarLabModel();
+$permintaan = new PermintaanPelangganModel();
+
+$model = $pengantar->where('kode_pengantar', $kode_pengantar)->first();
+$kode_pengantar = $model['kode_pengantar'];
+$id_pelanggan = $model['id_pelanggan'];
+$data_permintaan = $permintaan->where('id', $id_pelanggan)->first();
+$no_reg = $data_permintaan['no_reg'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" id="main-style-link" >
-    <title><?= strtoupper($kode_pengantar).'_Pengantar_Lab' ?></title>
+    <title><?= strtoupper($kode_pengantar).'.'.$no_reg.'_Pengantar_Lab' ?></title>
     <style media="print">
         #toolbarContainer, .no-print, button {
             display: none !important;
         }
+        @page {
+            size: landscape;
+            /* margin: top right bottom left */
+        }
+    </style>
+    <style>
+        .qr-code {
+        width: 100px;
+        height: 100px;
+        }
     </style>
     <script>
         // window.print();
+        
     </script>
 </head>
 <body>
 <?php
 
-    use App\Libraries\CustomLib;
-    use App\Models\KajiUlangKontrakPengantarModel;
-    use App\Models\KeteranganPengantarModel;
-    use App\Models\KondisiLingkunganPengantarModel;
-    use App\Models\PenanggungJawabPengantarModel;
-    use App\Models\SampelLingkunganModel;
-    use App\Models\SpesimenPenyakitModel;
+use App\Libraries\CustomLib;
+use App\Models\KajiUlangKontrakPengantarModel;
+use App\Models\KeteranganPengantarModel;
+use App\Models\KondisiLingkunganPengantarModel;
+use App\Models\PenanggungJawabPengantarModel;
+use App\Models\SampelLingkunganModel;
+use App\Models\SpesimenPenyakitModel;
+use chillerlan\QRCode\QRCode;
 
-    $kl_sampel = new KondisiLingkunganPengantarModel(); 
-    $spesimen_penyakit = new SpesimenPenyakitModel();
-    $keterangan = new KeteranganPengantarModel();
-    $kondisi_lingkungan = new KondisiLingkunganPengantarModel();
-    $kaji_ulang = new KajiUlangKontrakPengantarModel();
-    $penanggung_jawab = new PenanggungJawabPengantarModel();
+$kl_sampel = new KondisiLingkunganPengantarModel(); 
+$spesimen_penyakit = new SpesimenPenyakitModel();
+$keterangan = new KeteranganPengantarModel();
+$kondisi_lingkungan = new KondisiLingkunganPengantarModel();
+$kaji_ulang = new KajiUlangKontrakPengantarModel();
+$penanggung_jawab = new PenanggungJawabPengantarModel();
 
-    foreach ($data_pelanggan as $dp) {
-        $alamat = $dp['alamat'];
-    }
+foreach ($data_pelanggan as $dp) {
+    $alamat = $dp['alamat'];
+}
 ?>
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button class="btn btn-primary rounded btn-sm" onclick="window.print()" title="Cetak" style="text-align: right;">
@@ -160,26 +186,31 @@
             </div>
             <div style="page-break-after:always;"></div>
             <?php
+            $array_ket = [];
+            $ket = null;
+
             $r_keterangan = $keterangan->get_data($kode_pengantar, $kl['idkatlab']);
-            foreach ($r_keterangan as $row) :
+            foreach ($r_keterangan as $ket){
+                $array_ket[] = $ket;
+            }
             ?>
             <div class="col-md-6 mb-2">
                 <table style="border: 2px solid black; width:100%;">
                     <tbody>
                         <tr>
-                            <td class="p-1">Keterangan : <?= $row['keterangan'] ?></td>
+                            <td class="p-1">Keterangan : <?= $ket['keterangan'] ?? '' ?></td>
                         </tr>
                         <tr>
-                            <td class="p-1">Parameter yang tidak dapat di uji : <?= $row['parameter_tidak_dapat_di_uji'] ?></td>
+                            <td class="p-1">Parameter yang tidak dapat di uji : <?= $ket['parameter_tidak_dapat_di_uji'] ?? '' ?></td>
                         </tr>
                         <tr>
-                            <td class="p-1">Sub kontrak : <?= $row['sub_kontrak'] ?></td>
+                            <td class="p-1">Sub kontrak : <?= $ket['sub_kontrak'] ?? '' ?></td>
                         </tr>
                         <tr>
-                            <td class="p-1">Kontrak diulang : <?= $row['kontrak_diulang'] ?></td>
+                            <td class="p-1">Kontrak diulang : <?= $ket['kontrak_diulang'] ?? '' ?></td>
                         </tr>
                         <tr>
-                            <td class="p-1">Permintaan khusus : <?= $row['permintaan_khusus'] ?></td>
+                            <td class="p-1">Permintaan khusus : <?= $ket['permintaan_khusus'] ?? '' ?></td>
                         </tr>
                         <tr>
                             <td class="p-1">
@@ -196,98 +227,68 @@
                     Tidak Menerima Gratifikasi Dalam Bentuk Apapun
                 </h4>
             </div>
-            <?php endforeach;?>
             <?php
+            $array_ku = [];
+            $ku = null;
+
             $r_kaji_ulang = $kaji_ulang->get_data($kode_pengantar, $kl['idkatlab']);
-            foreach ($r_kaji_ulang as $row) :
+            foreach ($r_kaji_ulang as $row){
+                $array_ku[] = $ku;
+            }
             ?>
             <div class="col-md-6 mb-2">
             <table class="table-bordered" style="border: 2px solid black; width:100%;">
-                <tbody>
+                <thead>
                     <tr class="text-center">
                         <th><b>SUMBER DAYA</b></th>
                         <th><b>KONDISI</b></th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <td class="fw-bold p-1">Alat Utama</td>
-                        <td class="p-1">: <?= $row['alat_utama']; ?></td>
+                        <td class="p-1" width="40%;">Alat Utama</td>
+                        <td class="p-1">: <?= $ku['alat_utama'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="fw-bold p-1">Alat Pendukung</td>
-                        <td class="p-1">: <?= $row['alat_pendukung']; ?></td>
+                        <td class="p-1">Alat Pendukung</td>
+                        <td class="p-1">: <?= $ku['alat_pendukung'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="fw-bold p-1">Personil laboratorium</td>
-                        <td class="p-1">: <?= $row['personil_lab']; ?></td>
+                        <td class="p-1">Personil laboratorium</td>
+                        <td class="p-1">: <?= $ku['personil_lab'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="fw-bold p-1">Metode pemeriksaan</td>
-                        <td class="p-1">: <?= $row['metode_pemeriksaan']; ?></td>
+                        <td class="p-1">Metode pemeriksaan</td>
+                        <td class="p-1">: <?= $ku['metode_pemeriksaan'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="fw-bold p-1">Uji mutu (<i>Quality control</i>)</td>
-                        <td class="p-1">: <?= $row['uji_mutu']; ?></td>
+                        <td class="p-1">Uji mutu (<i>Quality control</i>)</td>
+                        <td class="p-1">: <?= $ku['uji_mutu'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="fw-bold p-1">Reagensa dan media</td>
-                        <td class="p-1">: <?= $row['reagensa_dan_media']; ?></td>
+                        <td class="p-1">Reagensa dan media</td>
+                        <td class="p-1">: <?= $ku['reagensa_dan_media'] ?? '' ?></td>
                     </tr>
                 </tbody>
             </table>
             </div>
-            <?php endforeach;?>
             <?php
-            if (!$r_kaji_ulang) {
-               ?>
-               <div class="col-md-6 mb-2">
-                    <table class="table-bordered" style="border: 2px solid black; width:100%;">
-                        <tbody>
-                            <tr class="text-center">
-                                <th style="width: 40%;"><b>SUMBER DAYA</b></th>
-                                <th><b>KONDISI</b></th>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold p-1">Alat Utama</td>
-                                <td class="p-1">: </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold p-1">Alat Pendukung</td>
-                                <td class="p-1">: </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold p-1">Personil laboratorium</td>
-                                <td class="p-1">: </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold p-1">Metode pemeriksaan</td>
-                                <td class="p-1">: </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold p-1">Uji mutu (<i>Quality control</i>)</td>
-                                <td class="p-1">: </td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold p-1">Reagensa dan media</td>
-                                <td class="p-1">: </td>
-                            </tr>
-                        </tbody>
-                    </table>
-               </div>
-               <?php
-            }
-           ?>
-            <?php
+            $array_pj = [];
+            $pj = null;
+
             $r_penanggung_jawab = $penanggung_jawab->get_data($kode_pengantar, $kl['idkatlab']);
-            foreach ($r_penanggung_jawab as $row) :
+            foreach ($r_penanggung_jawab as $pj){
+                $array_pj[] = $pj;
+            }
             ?>
             <div class="col-md-6 mb-2">
                 <table class="table-bordered" style="border: 2px solid black; width:100%;">
                     <tbody>
                         <tr class="text-center">
                             <?php
-                            $tanggal = $penanggung_jawab->konversi_tanggal($row['tgl_terima_sampel']);
+                            $tanggal = $penanggung_jawab->konversi_tanggal(@$pj['tgl_terima_sampel']);
                             ?>
-                            <th colspan="3" style="font-weight: initial;">Jakarta, <?= $tanggal ?></th>
+                            <th colspan="3" style="font-weight: initial;">Jakarta, <?= $tanggal == '01 Januari 1970' ? '' : '' ?></th>
                         </tr>
                         <tr>
                             <th class="fw-bold p-1" style="width: 5%;">Penanggung jawab</th>
@@ -296,18 +297,22 @@
                         </tr>
                         <tr>
                             <td class="p-1">Petugas sampling/pengambil/pembawa sampel</td>
-                            <td class="p-1">: <?= $row['nama_pjb'] ?></td>
-                            <td class="p-1">: <?= $row['no_telp_pjb'] ?></td>
+                            <td class="p-1">: <?= $pj['nama_pjb'] ?? '' ?></td>
+                            <td class="p-1">: <?= $pj['no_telp_pjb'] ?? '' ?></td>
                         </tr>
                         <tr>
                             <td class="p-1">Penerima sampel</td>
-                            <td class="p-1">: <?= $row['penerima_sampel'] ?></td>
-                            <td class="p-1">: <?= $row['no_telp_penerima'] ?></td>
+                            <td class="p-1">: <?= $pj['penerima_sampel'] ?? '' ?></td>
+                            <td class="p-1">: <?= $pj['no_telp_penerima'] ?? '' ?></td>
                         </tr>
                     </tbody>
                 </table>
+                 <?php
+                    $data = 'BBLKM_Jakarta/'.$kode_pengantar.$id_pelanggan.$no_reg;
+                    $qrcode = (new QRCode())->render($data);
+                    ?>
+                    <img src="<?= esc($qrcode) ?>" alt="QR Code" class="qr-code">
             </div>
-            <?php endforeach;?>
             <div style="page-break-after:always;"></div>
         </div>    
         <?php 

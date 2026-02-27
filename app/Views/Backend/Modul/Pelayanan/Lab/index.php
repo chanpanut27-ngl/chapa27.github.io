@@ -124,7 +124,7 @@
                                     endforeach;
                                 ?>
                                 <li class="nav-item">
-                                    <a class="nav-link navtabs" href="<?= base_url('pelayanan/pengantar-lab/resume/'.strtolower($kode_pengantar));?>">Resume</a>
+                                    <a class="nav-link navtabs" href="<?= base_url('pelayanan/pengantar-lab/resume/index/'.strtolower($kode_pengantar));?>">Resume</a>
                                 </li>
                             </ul>
                         <?php } ?>

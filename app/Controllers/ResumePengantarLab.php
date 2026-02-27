@@ -33,7 +33,7 @@ class ResumePengantarLab extends BaseController
         return view('Backend/Modul/Pelayanan/Lab/Resume/index', $data);
     }
 
-    public function list()
+    public function list($id = null)
     {
         if ($this->request->isAJAX()) {
             $kode_pengantar = $this->request->getVar('kode_pengantar');

@@ -17,6 +17,5 @@ class QrCodeGenerator extends BaseController
         
         // Pass the Data URI to the view
         return view('qr_view', ['qrCodeImage' => $qrcode, 'title' => 'qr-code']);
-       
     }
 }
