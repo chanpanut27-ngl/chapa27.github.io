@@ -45,7 +45,7 @@
                             </h2>
                             <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
                                 </div>
-                                <div class="accordion-body" style="border:1px solid;">
+                                <div class="accordion-body">
                                     <div class="show-pelanggan"></div>                                
                                 </div>
                             </div>

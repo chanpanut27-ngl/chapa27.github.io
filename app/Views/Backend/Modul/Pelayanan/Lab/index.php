@@ -21,12 +21,12 @@
         <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                    <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
                         <h4><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
                     </button>
                 </h2>
                 <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body" style="border:1px solid;">
+                    <div class="accordion-body">
                         <?php
 
                         use App\Models\LaboratoriumTujuanModel;
@@ -62,6 +62,11 @@
                         </div>   
                         <?php endforeach;?>
                     </div>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-secondary btn-sm btn-rounded" title="Kembali">
+                            <span class="fa-solid fa-arrow-circle-left"></span> Kembali
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -75,7 +80,6 @@
                                 <div class="alert alert-danger fw-bold" role="alert">
                                     Laboratorim tujuan belum di pilih !
                                 </div>
-                                <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-success btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span> Kembali</a>
                             <?php
                         }else{
                             

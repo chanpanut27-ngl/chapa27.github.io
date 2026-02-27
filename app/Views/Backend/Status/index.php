@@ -16,7 +16,7 @@
                             <input type="radio" name="status" value="Permintaan di Terima" id="1" checked> Permintaan di Terima
                         </label>&nbsp;&nbsp;
                         <label for="2">
-                            <input type="radio" name="status" value="Permintaan di Tolak" id="2" checked> Permintaan di Tolak
+                            <input type="radio" name="status" value="Permintaan di Tolak" id="2"> Permintaan di Tolak
                         </label>&nbsp;&nbsp;
                         <label for="3">
                             <input type="radio" name="status" value="Penawaran di Terima" id="3"> Penawaran di Terima

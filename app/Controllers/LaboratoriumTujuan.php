@@ -111,6 +111,7 @@ class LaboratoriumTujuan extends BaseController
     public function create()
     {
         if ($this->request->isAJAX()) {
+            $msg = '';
              $idLab = $this->request->getVar('id_laboratorium');
              $countJlhLab = count($idLab ?? []);
 
@@ -125,16 +126,18 @@ class LaboratoriumTujuan extends BaseController
                     $kode_pengantar = $this->request->getVar('kode_pengantar');
                     $cek_lab = $this->model->where('kode_pengantar', $kode_pengantar)
                     ->where('id_laboratorium', $idLab[$i])->find();
-                    
-                    if ($cek_lab > 0) {
-                        $this->model->where('kode_pengantar', $kode_pengantar)->where('id_laboratorium', $idLab[$i])->update($simpandata);
-                    }else{
+                    if (!$cek_lab) {
                         $this->model->save($simpandata);
-
-                        $msg = [
-                            'sukses' => 'Data berhasil disimpan'
-                        ];
+                        
+                    }else{
+                        $this->model->where('kode_pengantar', $kode_pengantar)->
+                        where('id_laboratorium', $idLab[$i])->
+                        set($simpandata)->update();
                     }
+                    $msg = [
+                        'sukses' => 'Data berhasil disimpan'
+                    ];
+                    
                 }
                 echo json_encode($msg);
         } else {
@@ -174,6 +177,20 @@ class LaboratoriumTujuan extends BaseController
      * @return ResponseInterface
      */
     public function delete($id = null)
+    {
+        if ($this->request->isAJAX()) {
+
+            $this->model->delete($id);
+            $msg = [
+                'sukses' => 'Data berhasil dihapus'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
+    public function delete1($id = null)
     {
         if ($this->request->isAJAX()) {
             $q = $this->model->find($id);
