@@ -4,11 +4,11 @@
 <div class="card">
     <div class="card-header p-2">
         <div class="d-flex justify-content-end align-items-center gap-1">
+            <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
+                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
+            </button>
             <button class="btn btn-info rounded btn-sm btnPrint" data-id="<?= $kode_pengantar ?>" onclick="openWin();" title="Lihat">
                 <span class="pc-micon"><i class="ti ti-clipboard"></i></span>
-            </button>
-             <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
-                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
             </button>
         </div>
     </div>

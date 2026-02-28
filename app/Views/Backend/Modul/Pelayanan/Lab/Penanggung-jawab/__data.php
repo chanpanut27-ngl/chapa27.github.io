@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\PenanggungJawabPengantarModel;
+$penanggung_jawab = new PenanggungJawabPengantarModel();
 
 $array_result = [];
 $row = null;
@@ -24,11 +25,12 @@ if ($row) {
     <thead>
         <tr>
             <th class="text-center" colspan="3">
-                <?php
-                $penanggung_jawab = new PenanggungJawabPengantarModel();
-                $tgl_terima_sampel = $penanggung_jawab->konversi_tanggal(@$row['tgl_terima_sampel']);
+                <?php 
+                $tglTerimaSampel = $row['tgl_terima_sampel'] ?? null;
+                $tanggal = $penanggung_jawab->konversi_tanggal($tglTerimaSampel);
                 ?>
-            <?= 'Jakarta, '.$tgl_terima_sampel;?></th>
+            Jakarta, <?= $tanggal != '01 Januari 1970' ? $tanggal.' '.date('H:i', strtotime($row['jam_terima_sampel'])) : '' ?>
+            </th>
         </tr>
         <tr>
             <th>Penanggung jawab</th>

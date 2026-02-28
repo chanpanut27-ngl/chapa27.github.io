@@ -283,18 +283,23 @@ foreach ($data_pelanggan as $dp) {
             ?>
             <div class="col-md-6 mb-2">
                 <table class="table-bordered" style="border: 2px solid black; width:100%;">
-                    <tbody>
+                    <thead>
                         <tr class="text-center">
-                            <?php
-                            $tanggal = $penanggung_jawab->konversi_tanggal(@$pj['tgl_terima_sampel']);
-                            ?>
-                            <th colspan="3" style="font-weight: initial;">Jakarta, <?= $tanggal == '01 Januari 1970' ? '' : '' ?></th>
+                            <?php 
+                                $tglTerimaSampel = $pj['tgl_terima_sampel'] ?? null;
+                                $tanggal = $penanggung_jawab->konversi_tanggal($tglTerimaSampel);
+                                ?>
+                            <th colspan="3">
+                                Jakarta, <?= $tanggal != '01 Januari 1970' ? $tanggal.' '.date('H:i', strtotime($pj['jam_terima_sampel'])) : '' ?>
+                            </th>
                         </tr>
                         <tr>
                             <th class="fw-bold p-1" style="width: 5%;">Penanggung jawab</th>
                             <th class="fw-bold p-1">Nama & Tanda tangan</th>
                             <th class="fw-bold p-1">No.Telepon</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td class="p-1">Petugas sampling/pengambil/pembawa sampel</td>
                             <td class="p-1">: <?= $pj['nama_pjb'] ?? '' ?></td>
