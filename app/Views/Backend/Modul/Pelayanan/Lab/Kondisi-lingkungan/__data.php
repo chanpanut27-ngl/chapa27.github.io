@@ -104,10 +104,4 @@ if ($row) {
             }
         });
     }
-
-    $(document).ready(function() {
-        new DataTable('#example', {
-            responsive: true
-        });
-    })
 </script>
