@@ -64,58 +64,13 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-
-       var dateToday = new Date();
-        $("#tgl-terima-sampel").datepicker(
-            { 
-                dateFormat: 'dd-mm-yy', 
-                defaultDate: "",  
-                inDate: dateToday
-            }
-        );
-        
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
-                },
-                success: function(response) {
-                    var err = response.error
-                    if (err) {
-                        if (err.nama_pjb) {
-                            $('#nama-petugas').addClass('is-invalid');
-                            $('.errorNamaPetugas').html(err.nama_pjb);
-                        } else {
-                            $('#nama-petugas').removeClass('is-invalid');
-                            $('.errorNamaPetugas').html('');
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success"
-                        });
-                        $("#exampleModal").modal('hide');
-                        listData();
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-    })
+    var dateToday = new Date();
+    $("#tgl-terima-sampel").datepicker(
+        { 
+            dateFormat: 'dd-mm-yy', 
+            defaultDate: "",  
+            inDate: dateToday
+        }
+    );
 </script>
+<script src="<?= base_url('assets/js/Pelayanan/@save_pj_plab.js') ?>"></script>

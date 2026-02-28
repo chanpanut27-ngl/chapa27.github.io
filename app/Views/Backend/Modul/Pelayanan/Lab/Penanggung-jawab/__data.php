@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\PenanggungJawabPengantarModel;
+
 $array_result = [];
 $row = null;
 
@@ -20,13 +23,17 @@ if ($row) {
 <table class="table table-hover table-bordered">
     <thead>
         <tr>
-            <th colspan="3" class="text-center">
-            <?= 'Jakarta, '.$konversi_tanggal.' '.date('H:i', strtotime(@$row['jam_terima_sampel'])) ?></th>
+            <th class="text-center" colspan="3">
+                <?php
+                $penanggung_jawab = new PenanggungJawabPengantarModel();
+                $tgl_terima_sampel = $penanggung_jawab->konversi_tanggal(@$row['tgl_terima_sampel']);
+                ?>
+            <?= 'Jakarta, '.$tgl_terima_sampel;?></th>
         </tr>
         <tr>
             <th>Penanggung jawab</th>
-            <th style="text-align: center;">Nama & Tanda tangan</th>
-            <th style="text-align: center;">No.Telepon</th>
+            <th class="text-center">Nama & Tanda tangan</th>
+            <th class="text-center">No.Telepon</th>
         </tr>
     </thead>
     <tbody id="myId-<?= $row['id'] ?? null ?>">

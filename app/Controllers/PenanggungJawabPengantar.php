@@ -14,7 +14,6 @@ class PenanggungJawabPengantar extends BaseController
      */
     protected $title;
     protected $model;
-    protected $validation;
 
     public function __construct()
     {
@@ -109,13 +108,38 @@ class PenanggungJawabPengantar extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'tgl_terima_sampel' => [
+                    'label' => 'Tanggal terima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'penerima_sampel' => [
+                    'label' => 'Penerima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'jam_terima_sampel' => [
+                    'label' => 'Jam terima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
+                
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama_pjb' => $this->validation->getError('nama_pjb')
+                        'nama_pjb' => $this->validation->getError('nama_pjb'),
+                        'tgl_terima_sampel' => $this->validation->getError('tgl_terima_sampel'),
+                        'penerima_sampel' => $this->validation->getError('penerima_sampel'),
+                        'jam_terima_sampel' => $this->validation->getError('jam_terima_sampel')
                     ]
                 ];
             } else {
@@ -181,12 +205,36 @@ class PenanggungJawabPengantar extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'tgl_terima_sampel' => [
+                    'label' => 'Tanggal terima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'penerima_sampel' => [
+                    'label' => 'Penerima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'jam_terima_sampel' => [
+                    'label' => 'Jam terima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama_pjb' => $this->validation->getError('nama_pjb')
+                        'nama_pjb' => $this->validation->getError('nama_pjb'),
+                        'tgl_terima_sampel' => $this->validation->getError('tgl_terima_sampel'),
+                        'penerima_sampel' => $this->validation->getError('penerima_sampel'),
+                        'jam_terima_sampel' => $this->validation->getError('jam_terima_sampel')
                     ]
                 ];
             } else {
