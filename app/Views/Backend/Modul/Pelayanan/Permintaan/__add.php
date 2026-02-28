@@ -47,7 +47,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tanggal" class="form-label h5">Tanggal</label>
-                        <input type="datetime-local" name="created_at" id="tanggal" class="form-control">
+                        <input type="datetime-local" name="created_at" id="tanggal" class="w-50 form-control">
                         <div class="invalid-feedback errorTanggal"></div>
                     </div>
                     <div class="mb-3 d-none">
