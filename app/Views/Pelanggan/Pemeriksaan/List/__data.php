@@ -21,7 +21,7 @@
                 <td><?= $row['jenis_sampel']; ?></td>
                 <td><?= $row['peraturan']; ?></td>
                 <td><?= $row['nama_lab']; ?></td>
-                <td><?= date('d-m-Y H:i', strtotime($row['tgl_entry'])); ?></td>
+                <td><?= date('d/m/Y H:i', strtotime($row['tgl_entry'])); ?></td>
                 
                 <td>
                     <div class="d-flex justify-content-start gap-1">

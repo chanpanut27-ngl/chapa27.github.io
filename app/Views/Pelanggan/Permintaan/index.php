@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="d-flex justify-content-end align-items-center gap-1">
+                        <div class="d-flex justify-content-end align-items-center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
                                 <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data

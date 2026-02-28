@@ -16,10 +16,10 @@
         ?>
             <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['no_reg'] ?></td>
-                <td><?= $row['kode_pelanggan'] ?></td>
+                <td class="text-center"><?= $row['no_reg'] ?></td>
+                <td class="text-center"><?= $row['kode_pelanggan'] ?></td>
                 <td><?= $row['nama_pengirim']; ?></td>
-                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
+                <td class="text-center"><?= date('d/m/Y H:i', strtotime($row['created_at'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-end">
                         <a href="<?= site_url('pelanggan/pelayanan/list-pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-primary btn-xs">Pemeriksaan</a>

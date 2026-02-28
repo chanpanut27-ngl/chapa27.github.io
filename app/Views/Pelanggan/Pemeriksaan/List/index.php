@@ -55,7 +55,7 @@
                             </button>
                             </h2>
                             <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body" style="border:1px solid;">
+                                <div class="accordion-body">
                                     <div class="row">
                                         <div class="col-sm-3"><b>No.Registrasi</b></div>
                                         <div class="col-sm-3">: <?= $items['no_reg'] ?></div>
@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header p-2">
                             <div class="d-flex justify-content-end align-items-center gap-1">
                                 <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPemeriksaanSampel(<?= $items['id']; ?>)" title="Jenis sampel">
                                 <i class="ti ti-clipboard"></i> Jenis sampel</button>
@@ -89,7 +89,7 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="card-header">
+                        <div class="card-header p-2">
                             <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         </div>
                         <div class="card-body">
@@ -124,6 +124,13 @@
             url: "<?= site_url('pelanggan/pelayanan/list-pemeriksaan/list-data'); ?>",
             dataType: 'json',
             cache: false,
+            cache: false,
+            beforeSend: function() {
+                $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.view-data').removeAttr('span');
+            },
             data:{id_pelanggan:id_pelanggan},
             success: function(response) {
                 $(".view-data").html(response.data);
