@@ -83,19 +83,5 @@
         </div>
     </div>
 </div>
-<script>
-    var dateToday = new Date();
-
-    
-    // $("#tanggal").datepicker(
-    //     { 
-    //         dateFormat: 'dd/mm/yy', 
-    //         defaultDate: "",  inDate: dateToday
-    //     }
-    // );
-    // $('#tanggal').datepicker({
-    //     EventTarget: $(this)
-    // });
-</script>
 <script src="<?= base_url('assets/js/Pelanggan/@save_pelanggan.js') ?>"></script>
 

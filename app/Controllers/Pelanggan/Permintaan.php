@@ -110,6 +110,13 @@ class Permintaan extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'tanggal' => [
+                    'label' => 'Tanggal permintaan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -117,7 +124,8 @@ class Permintaan extends BaseController
                 $msg = [
                     'error' => [
                         'nama_pengirim' => $this->validation->getError('nama_pengirim'),
-                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim')
+                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
+                        'created_at' => $this->validation->getError('tanggal')
                     ]
                 ];
             } else {
@@ -162,6 +170,13 @@ class Permintaan extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'tanggal' => [
+                    'label' => 'Tanggal permintaan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -169,7 +184,8 @@ class Permintaan extends BaseController
                 $msg = [
                     'error' => [
                         'nama_pengirim' => $this->validation->getError('nama_pengirim'),
-                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim')
+                        'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
+                        'created_at' => $this->validation->getError('tanggal')
                     ]
                 ];
             } else {

@@ -18,7 +18,7 @@
                         <div class="invalid-feedback errorNamaPengirim"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp-pengirim" class="form-label h5">No.Telp/Hp Pengirim</label>
+                        <label for="no-telp-pengirim" class="form-label h5">No.Telp/Hp pelanggan</label>
                         <input type="text" name="no_telp_pengirim" class="form-control" id="no-telp-pengirim" autocomplete="off">
                         <div class="invalid-feedback errorTelpPengirim"></div>
                     </div>
@@ -36,6 +36,11 @@
                                 Diambil oleh Petugas BBLKM Jakarta
                             </label>
                         </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label h5">Tanggal</label>
+                        <input type="datetime-local" name="created_at" id="tanggal" class="w-50 form-control">
+                        <div class="invalid-feedback errorTanggal"></div>
                     </div>
                 </div>
                 <div class="modal-footer">

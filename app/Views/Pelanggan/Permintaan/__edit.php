@@ -11,12 +11,12 @@
                 <?= form_hidden('id', $items['id'] ?? null) ?>
                  <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-pengirim" class="form-label h5">Nama pengirim</label>
+                        <label for="nama-pengirim" class="form-label h5">Nama pelanggan</label>
                         <input type="text" name="nama_pengirim" value="<?= $items['nama_pengirim'] ?>" class="form-control" id="nama-pengirim" autocomplete="off">
                         <div class="invalid-feedback errorNamaPengirim"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp-pengirim" class="form-label h5">No.Telp/Hp</label>
+                        <label for="no-telp-pengirim" class="form-label h5">No.Telp/Hp pelanggan</label>
                         <input type="text" name="no_telp_pengirim" value="<?= $items['no_telp_pengirim'] ?>" class="form-control" id="no-telp-pengirim" autocomplete="off">
                         <div class="invalid-feedback errorTelpPengirim"></div>
                     </div>
@@ -35,6 +35,11 @@
                             </label>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label h5">Tanggal</label>
+                        <input type="datetime-local" name="created_at" value="<?= $items['created_at'] ?>" id="tanggal" class="w-50 form-control">
+                        <div class="invalid-feedback errorTanggal"></div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
@@ -44,4 +49,4 @@
         </div>
     </div>
 </div>
-<script src="<?= base_url('assets/js/pelanggan/@update_permintaan.js') ?>"></script>
+<script src="<?= base_url('assets/js/Pelanggan/@update_permintaan.js') ?>"></script>

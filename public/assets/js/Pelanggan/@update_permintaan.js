@@ -34,6 +34,14 @@ $(document).ready(function () {
                             $('.errorTelpPengirim').html('');
                         }
 
+                        if (error.tanggal) {
+                            $('#tanggal').addClass('is-invalid');
+                            $('.errorTanggal').html(error.tanggal);
+                        } else {
+                            $('#tanggal').removeClass('is-invalid');
+                            $('.errorTanggal').html('');
+                        }      
+
                 } else {
                     
                     Swal.fire({

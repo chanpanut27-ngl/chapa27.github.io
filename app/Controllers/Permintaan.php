@@ -194,7 +194,7 @@ class Permintaan extends BaseController
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
                 'nama_pengirim' => [
-                    'label' => 'Nama pengirim',
+                    'label' => 'Nama pelanggan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
@@ -215,7 +215,7 @@ class Permintaan extends BaseController
                     ]
                 ],
                 'no_telp_pengirim' => [
-                    'label' => 'No.Telp/Hp pengirim',
+                    'label' => 'No.Telp/Hp pelanggan',
                     'rules' => 'required',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
