@@ -53,7 +53,7 @@ use App\Libraries\CustomLib;
                     <label for=""><i class="fa-solid fa-location-dot"></i> Jl.Bambu Apus Raya No.6 Blok C1 Jakarta Timur 13890<br>
                     <i class="ti ti-phone"></i> (021) 3871 2050 - (021) 3871 2051<br>
                     <i class="ti ti-globe"></i> www.bblkmjakarta.org</label><br>
-                    <label for="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No. Kode '.$nomor_form.'</label>';
+                    <label for="" class="fw-bold">No.Kode : LB.IV.7.1.1.3</label>
                 </p>
             </div>
         </div>

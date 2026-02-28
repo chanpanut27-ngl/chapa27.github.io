@@ -22,7 +22,7 @@
             <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td class="text-center">
                     <b><?= $no++; ?></b>
-                    <button type="button" class="btn btn-primary btn-sm rounded btn-sts-<?= $row['id']; ?>" onclick="statusLayanan(<?= $row['id']; ?>)" title="Status layanan">
+                    <button type="button" class="btn bg-teal-500 text-light btn-sm rounded btn-sts-<?= $row['id']; ?>" onclick="statusLayanan(<?= $row['id']; ?>)" title="Status layanan">
                         <i class="ti ti-circle-check"></i>
                     </button>
                 </td>

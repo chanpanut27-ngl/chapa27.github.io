@@ -31,7 +31,9 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <a href="<?= base_url('pelayanan/permintaan') ?>" class="btn btn-secondary btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                            <a href="<?= base_url('pelayanan/permintaan') ?>" class="btn bg-gray-400 btn-sm rounded" title="Kembali">
+                                <span class="fa-solid fa-arrow-circle-left"></span>
+                            </a>
                             <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
