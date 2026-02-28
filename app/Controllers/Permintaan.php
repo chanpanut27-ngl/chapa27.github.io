@@ -116,6 +116,13 @@ class Permintaan extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'tanggal' => [
+                    'label' => 'Tanggal permintaan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -126,6 +133,7 @@ class Permintaan extends BaseController
                         'instansi' => $this->validation->getError('instansi'),
                         'alamat' => $this->validation->getError('alamat'),
                         'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
+                        'created_at' => $this->validation->getError('tanggal'),
                     ]
                 ];
             } else {
@@ -137,6 +145,7 @@ class Permintaan extends BaseController
                     'alamat' => $this->request->getVar('alamat'),
                     'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
                     'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel'),
+                    'created_at' => $this->request->getVar('created_at')
                 ];
                 $this->model->insert($simpandata);
                 $msg = [
@@ -211,6 +220,13 @@ class Permintaan extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'tanggal' => [
+                    'label' => 'Tanggal permintaan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -221,6 +237,7 @@ class Permintaan extends BaseController
                         'instansi' => $this->validation->getError('instansi'),
                         'alamat' => $this->validation->getError('alamat'),
                         'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
+                        'created_at' => $this->validation->getError('tanggal'),
                     ]
                 ];
             } else {

@@ -58,7 +58,6 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <script>
     function listData() {
         $.ajax({

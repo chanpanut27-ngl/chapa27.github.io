@@ -46,6 +46,13 @@ $(document).ready(function () {
                             $('#no-telp-pengirim').removeClass('is-invalid');
                             $('.errorTelpPengirim').html('');
                         }
+                        if (error.tanggal) {
+                            $('#tanggal').addClass('is-invalid');
+                            $('.errorTanggal').html(error.tanggal);
+                        } else {
+                            $('#tanggal').removeClass('is-invalid');
+                            $('.errorTanggal').html('');
+                        }       
 
                         Swal.fire({
                             title: "Gagal",

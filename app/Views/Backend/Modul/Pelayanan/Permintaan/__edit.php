@@ -45,6 +45,11 @@
                             </label>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label h5">Tanggal</label>
+                        <input type="datetime-local" name="created_at" value="<?= $items['created_at'] ?>" id="tanggal" class="form-control">
+                        <div class="invalid-feedback errorTanggal"></div>
+                    </div>
                     <div class="mb-3 d-none">
                         <label for="petugas" class="form-label h5">Petugas ambil sampel/spesimen</label>
                         <input type="text" name="petugas_ambil_sampel" class="form-control" id="petugas" autocomplete="off">

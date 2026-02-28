@@ -28,7 +28,8 @@ class PermintaanPelangganModel extends Model
         'lokasi_ambil_sampel',
         'paraf',
         'keterangan_tambahan',
-        'is_active'
+        'is_active',
+        'created_at'
     ];
 
     protected bool $allowEmptyInserts = false;
