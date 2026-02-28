@@ -11,16 +11,45 @@
     </thead>
     <tbody>
         <?php
+        use App\Models\StatusLayananModel;
+
         $no = 1;
+        $status_layanan = new StatusLayananModel();
+        $sts = $status_layanan->findAll();
+        
         foreach ($items as $row) :
         ?>
             <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['no_reg'] ?></td>
+                <td>
+                    <?= $row['no_reg'] ?> <br>
+                    <?php
+                    foreach ($sts as $key) {
+                        if ($row['id'] == $key['id_pelanggan']) {
+                            $sts_ket = '';
+                            $bgs = '';
+                            if ($key['status'] == 'Permintaan di Terima') {
+                                $sts_ket = 1;
+                                $bgs = 'bg-success';
+                            } else if ($key['status'] == 'Permintaan di Tolak'){
+                                $sts_ket = 2;
+                                $bgs = 'bg-secondary';
+                            } else if ($key['status'] == 'Penawaran di Terima'){
+                                $sts_ket = 3;
+                                $bgs = 'bg-warning';
+                            } else {
+                                $sts_ket = 4;
+                                $bgs = 'bg-danger';
+                            } 
+                            echo '<span class="badge rounded-pill '.$bgs.'" title="'.$key['status'].'">'.$sts_ket.'</span>&nbsp;';
+                        }
+                    }
+                    ?>
+                </td>
                 <td><?= $row['kode_pelanggan'] ?></td>
                 <td><?= $row['nama_pengirim'] ?></td>
                 <td><?= $row['no_telp_pengirim'] ?></td>
-                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
+                <td class="text-center"><?= date('d/m/Y H:i', strtotime($row['created_at'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
@@ -36,6 +65,12 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+<p>
+    <h5><span class="badge rounded-pill bg-primary">Permintaan di Terima</span>
+    <span class="badge rounded-pill bg-secondary">Permintaan di Tolak</span>
+    <span class="badge rounded-pill bg-warning">Penawaran di Diterima</span>
+    <span class="badge rounded-pill bg-danger">Penawaran di Tolak</span></h5>
+</p>
 <script>
     function editData(id) {
         $.ajax({

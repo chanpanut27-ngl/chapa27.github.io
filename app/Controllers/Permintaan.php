@@ -43,6 +43,7 @@ class Permintaan extends BaseController
             $data = [
                 'items' => $this->model->where('is_active', 1)->orderBy('created_at', 'DESC')->findAll()
             ];
+            
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Permintaan/__data', $data)
             ];

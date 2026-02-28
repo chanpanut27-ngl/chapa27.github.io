@@ -1,9 +1,6 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-
-use App\Models\StatusLayananModel;
-
         $arrth = ['No', 'No.Registrasi', 'Kode pelanggan', 'Nama', 'No.Telp/Hp pengirim', 'Instansi', 'Tgl & jam permintaan', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
@@ -14,6 +11,7 @@ use App\Models\StatusLayananModel;
     </thead>
     <tbody>
         <?php
+        use App\Models\StatusLayananModel;
         $no = 1;
         $status_layanan = new StatusLayananModel();
         $sts = $status_layanan->findAll();
@@ -37,18 +35,18 @@ use App\Models\StatusLayananModel;
                             $bgs = '';
                             if ($key['status'] == 'Permintaan di Terima') {
                                 $sts_ket = 1;
-                                $bgs = 'text-bg-success';
+                                $bgs = 'bg-success';
                             } else if ($key['status'] == 'Permintaan di Tolak'){
                                 $sts_ket = 2;
-                                $bgs = 'text-bg-secondary';
+                                $bgs = 'bg-secondary';
                             } else if ($key['status'] == 'Penawaran di Terima'){
                                 $sts_ket = 3;
-                                $bgs = 'text-bg-warning';
+                                $bgs = 'bg-warning';
                             } else {
                                 $sts_ket = 4;
-                                $bgs = 'text-bg-danger';
+                                $bgs = 'bg-danger';
                             } 
-                            echo '<span class="badge '.$bgs.'" title="'.$key['status'].'">'.$sts_ket.'</span> &nbsp;';
+                            echo '<span class="badge rounded-pill '.$bgs.'" title="'.$key['status'].'">'.$sts_ket.'</span>&nbsp;';
                         }
                     }
                     ?>
@@ -57,7 +55,7 @@ use App\Models\StatusLayananModel;
                 <td><?= $row['nama_pengirim'] ?></td>
                 <td><?= $row['no_telp_pengirim'] ?></td>
                 <td><?= $row['instansi'] ?></td>
-                <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
+                <td class="text-center"><?= date('d/m/Y H:i', strtotime($row['created_at'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id']; ?>" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
@@ -76,10 +74,10 @@ use App\Models\StatusLayananModel;
     </tbody>
 </table>
 <p>
-    <h5><span class="badge text-bg-success rounded">Permintaan di Terima</span>
-    <span class="badge text-bg-secondary rounded">Permintaan di Tolak</span>
-    <span class="badge text-bg-warning rounded">Penawaran di Diterima</span>
-    <span class="badge text-bg-danger rounded">Penawaran di Tolak</span></h5>
+    <h5><span class="badge rounded-pill bg-primary">Permintaan di Terima</span>
+    <span class="badge rounded-pill bg-secondary">Permintaan di Tolak</span>
+    <span class="badge rounded-pill bg-warning">Penawaran di Diterima</span>
+    <span class="badge rounded-pill bg-danger">Penawaran di Tolak</span></h5>
 </p>
 
 <script>

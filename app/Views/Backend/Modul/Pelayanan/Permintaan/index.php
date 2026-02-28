@@ -2,6 +2,7 @@
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <?= $this->endSection(); ?>
+
 <?= $this->section('content'); ?>
 <div class="pc-container">
     <div class="pc-content">
@@ -58,7 +59,6 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
-
 <script>
     function listData() {
         $.ajax({

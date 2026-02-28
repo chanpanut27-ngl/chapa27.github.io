@@ -45,6 +45,11 @@
                             </label>
                         </div>
                     </div>
+                    <div class="mb-3">
+                        <label for="tanggal" class="form-label h5">Tanggal</label>
+                        <input type="text" name="tanggal" value="<?= date('d/m/Y') ?>" id="tanggal" class="form-control" autocomplete="off">
+                        <div class="invalid-feedback errorTanggal"></div>
+                    </div>
                     <div class="mb-3 d-none">
                         <label for="petugas" class="form-label h5">Petugas ambil sampel/spesimen</label>
                         <input type="text" name="petugas_ambil_sampel" class="form-control" id="petugas" autocomplete="off">
@@ -78,5 +83,18 @@
         </div>
     </div>
 </div>
+<script>
+    var dateToday = new Date();
+    // $("#tanggal").datepicker(
+    //     { 
+    //         dateFormat: 'dd/mm/yy', 
+    //         defaultDate: "",  inDate: dateToday
+    //     }
+    // );
+    // $('#tanggal').datepicker({
+    //     EventTarget: $(this)
+    // });
+    $('#tanggal').datepicker({ uiLibrary: 'bootstrap5' });
+</script>
 <script src="<?= base_url('assets/js/Pelanggan/@save_pelanggan.js') ?>"></script>
 
