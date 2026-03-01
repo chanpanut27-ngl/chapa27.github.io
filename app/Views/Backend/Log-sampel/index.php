@@ -12,7 +12,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Log sampel</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
@@ -32,10 +32,13 @@
                     <div class="card-body">
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link navtabs <?= current_url() == base_url('log-sampel/menu/penerimaan') ? 'active' : '' ?>" href="<?= base_url('log-sampel/menu/penerimaan') ?>">Penerimaan</a>
+                                <a class="nav-link navtabs <?= current_url() == base_url('log-sampel/penerimaan') ? 'active bg-primary text-light' : '' ?>" href="<?= base_url('log-sampel/penerimaan') ?>">Penerimaan</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link navtabs <?= current_url() == base_url('log-sampel/menu/penawaran') ? 'active' : '' ?>" href="<?= base_url('log-sampel/menu/penawaran') ?>">Penawaran</a>
+                                <a class="nav-link navtabs <?= current_url() == base_url('log-sampel/penawaran') ? 'active bg-warning text-light' : '' ?>" href="<?= base_url('log-sampel/penawaran') ?>">Penawaran</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link navtabs <?= current_url() == base_url('log-sampel/distribusi-sampel') ? 'active bg-info text-light' : '' ?>" href="<?= base_url('log-sampel/distribusi-sampel') ?>">Distribusi sampel</a>
                             </li>
                         </ul>
                         <div class="card-body">
@@ -57,5 +60,11 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
-
+<script>
+    $(document).ready(function() {
+        new DataTable('#example', {
+            responsive: true
+        });
+    })
+</script>
 <?= $this->endSection(); ?>

@@ -10,59 +10,44 @@ use CodeIgniter\HTTP\ResponseInterface;
 class LogSampel extends BaseController
 {
 
-    protected $title;
     protected $m_status_layanan;
 
     public function __construct()
     {
-        $this->title = 'Log sampel';
         $this->m_status_layanan = new StatusLayananModel();
-    }
-
-    public function index()
-    {
-        $data = [
-            'title' => 'Data ' . $this->title
-        ];
-        return view('Backend/Log-sampel/index', $data);
     }
 
     public function log_penerimaan()
     {
 
-        if ($this->request->isAJAX()) {
+        $data = [
+            'title' => 'Penerimaan sampel',
+            'items' => $this->m_status_layanan->get_data('Permintaan di Terima')
+        ];
 
-            $data = [
-                'title' => 'Penerimaan sampel',
-                'items' => $this->m_status_layanan->get_data('Permintaan di Terima')
-            ];
+        return view('Backend/Log-sampel/__penerimaan', $data);
 
-            $msg = [
-                'data' => view('Backend/Log-sampel/__penerimaan', $data)
-            ];
-
-            echo json_encode($msg);
-        } else {
-            exit('Not Process');
-        }
     }
 
-     public function log_penawaran()
+    public function log_penawaran()
     {
 
-        if ($this->request->isAJAX()) {
+        $data = [
+            'title' => 'Penawaran sampel',
+            'items' => $this->m_status_layanan->get_data('Penawaran di Terima')
+        ];
 
-            $data = [
-                'items' => $this->m_status_layanan->get_data('Penawaran Di Terima')
-            ];
+        return view('Backend/Log-sampel/__penawaran', $data);
+    }
 
-            $msg = [
-                'data' => view('Backend/Log-sampel/__penawaran', $data)
-            ];
+    public function log_distribusi_sampel()
+    {
 
-            echo json_encode($msg);
-        } else {
-            exit('Not Process');
-        }
+        $data = [
+            'title' => 'Penawaran sampel',
+            'items' => $this->m_status_layanan->get_data('Distribusi sampel')
+        ];
+
+        return view('Backend/Log-sampel/__distribusi__sampel', $data);
     }
 }

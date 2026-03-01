@@ -1,9 +1,10 @@
+<?= $this->extend('Backend/Log-sampel/index'); ?>
+
+<?= $this->section('content_log'); ?>
+
 <div class="table-responsive">
-    <table class="table table-hover" id="pc-dt-simple">
+    <table class="table table-hover" id="example">
         <thead>
-            <tr>
-                <th colspan="6">Permintaan</th>
-            </tr>
             <tr>
                 <th>#</th>
                 <th>Nama pelanggan</th>
@@ -33,7 +34,7 @@
                     </div>
                 </td>
                 <td><?= $row['instansi'] ?></td>
-                <td><span class="badge bg-light-success rounded-pill f-12"><?= $row['status'] ?></span> </td>
+                <td><span class="badge bg-light-info rounded-pill f-12"><?= $row['status'] ?></span> </td>
                 <td>
                     <div class="row">
                         <div class="col">
@@ -63,11 +64,8 @@
         </tbody>
     </table>
 </div>
-<script>
-    $(document).ready(function() {
-        new DataTable('#pc-dt-simple', {
-            responsive: true
-        });
-    })
-</script>
+
+</div>
+<?= $this->endSection(); ?>
+
 

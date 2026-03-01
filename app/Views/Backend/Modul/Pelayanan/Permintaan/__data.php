@@ -42,9 +42,15 @@
                             } else if ($key['status'] == 'Penawaran di Terima'){
                                 $sts_ket = 3;
                                 $bgs = 'bg-warning';
-                            } else {
+                            } else if ($key['status'] == 'Penawaran di Tolak'){
                                 $sts_ket = 4;
                                 $bgs = 'bg-danger';
+                            } else if ($key['status'] == 'Distribusi sampel'){
+                                $sts_ket = 5;
+                                $bgs = 'bg-info';
+                            } else {
+                                $sts_ket = 0;
+                                $bgs = '';
                             } 
                             echo '<span class="badge rounded-pill '.$bgs.'" title="'.$key['status'].'">'.$sts_ket.'</span>&nbsp;';
                         }
@@ -181,8 +187,6 @@
             }
         })
     }
-
-
 
     $(document).ready(function() {
         new DataTable('#example', {

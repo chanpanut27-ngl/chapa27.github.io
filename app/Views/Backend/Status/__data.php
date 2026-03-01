@@ -6,7 +6,7 @@
 <table id="example1" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Nama pengirim', 'Status', 'Keterangan', ''];
+        $arrth = ['No', 'Nama pelanggan', 'Status', 'Keterangan', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';

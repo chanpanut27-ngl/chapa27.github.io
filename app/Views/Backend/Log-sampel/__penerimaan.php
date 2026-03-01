@@ -3,15 +3,14 @@
 <?= $this->section('content_log'); ?>
 
 <div class="table-responsive">
-    <table class="table table-hover" id="pc-dt-simple">
+    <table class="table table-hover" id="example">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Nama pelanggan</th>
                 <th>Instansi</th>
                 <th>Status</th>
-                <th>Tanggal & User terima</th>
-                <th class="text-center">Actions</th>
+                <th>Tgl/jam & User terima</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +33,7 @@
                     </div>
                 </td>
                 <td><?= $row['instansi'] ?></td>
-                <td><span class="badge bg-light-success rounded-pill f-12"><?= $row['status'] ?></span> </td>
+                <td><span class="badge bg-light-primary rounded-pill f-12">Penerimaan di Terima</span> </td>
                 <td>
                     <div class="row">
                         <div class="col">
@@ -43,34 +42,12 @@
                         </div>
                     </div>
                 </td>
-                <td class="text-center">
-                    <ul class="list-inline me-auto mb-0">
-                        <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="View">
-                            <a href="#" class="avtar avtar-xs btn-link-secondary btn-pc-default" data-bs-toggle="modal"
-                            data-bs-target="#customer-modal">
-                            <i class="ti ti-eye f-18"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Edit">
-                            <a href="#" class="avtar avtar-xs btn-link-success btn-pc-default" data-bs-toggle="modal"
-                            data-bs-target="#customer-edit_add-modal">
-                            <i class="ti ti-edit-circle f-18"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </td>
             </tr>
             <?php endforeach;?>
         </tbody>
     </table>
 </div>
-<script>
-    $(document).ready(function() {
-        new DataTable('#pc-dt-simple', {
-            responsive: true
-        });
-    })
-</script>
+
 </div>
 <?= $this->endSection(); ?>
 

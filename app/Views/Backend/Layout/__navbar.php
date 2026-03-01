@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="<?= base_url('log-sampel'); ?>" class="pc-link">
+                    <a href="<?= base_url('log-sampel/penerimaan'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-line"></i></span>
                         <span class="pc-mtext">Log sampel</span>
                     </a>

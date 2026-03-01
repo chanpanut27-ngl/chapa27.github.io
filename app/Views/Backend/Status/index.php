@@ -10,20 +10,27 @@
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
                 <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="" class="form-label h5">Status : </label>&nbsp;
-                        <label for="1">
-                            <input type="radio" name="status" value="Permintaan di Terima" id="1" checked> Permintaan di Terima
-                        </label>&nbsp;&nbsp;
-                        <label for="2">
-                            <input type="radio" name="status" value="Permintaan di Tolak" id="2"> Permintaan di Tolak
-                        </label>&nbsp;&nbsp;
-                        <label for="3">
-                            <input type="radio" name="status" value="Penawaran di Terima" id="3"> Penawaran di Terima
-                        </label>&nbsp;&nbsp;
-                        <label for="4">
-                            <input type="radio" name="status" value="Penawaran di Tolak" id="4"> Penawaran di Tolak
-                        </label>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="" class="form-label h5">Status : </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <label for="1">
+                                <input type="radio" name="status" value="Permintaan di Terima" id="1"> Permintaan di Terima
+                            </label>&nbsp;&nbsp;
+                            <label for="2">
+                                <input type="radio" name="status" value="Permintaan di Tolak" id="2"> Permintaan di Tolak
+                            </label>&nbsp;&nbsp;
+                            <label for="3">
+                                <input type="radio" name="status" value="Penawaran di Terima" id="3"> Penawaran di Terima
+                            </label>&nbsp;&nbsp;
+                            <label for="4">
+                                <input type="radio" name="status" value="Penawaran di Tolak" id="4"> Penawaran di Tolak
+                            </label>&nbsp;&nbsp;
+                            <label for="5">
+                                <input type="radio" name="status" value="Distribusi sampel" id="5"> Distribusi sampel
+                            </label>&nbsp;&nbsp;
+                        </div>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label h5">Keterangan : </label>

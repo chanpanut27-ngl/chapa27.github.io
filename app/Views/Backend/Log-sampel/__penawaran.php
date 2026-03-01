@@ -2,14 +2,14 @@
 
 <?= $this->section('content_log'); ?>
 <div class="table-responsive">
-    <table class="table table-hover" id="pc-dt-simple">
+    <table class="table table-hover" id="example">
         <thead>
             <tr>
                 <th>#</th>
                 <th>Nama pelanggan</th>
                 <th>Instansi</th>
                 <th>Status</th>
-                <th>Tanggal & User terima</th>
+                <th>Tgl/jam & User terima</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
@@ -33,7 +33,7 @@
                     </div>
                 </td>
                 <td><?= $row['instansi'] ?></td>
-                <td><span class="badge bg-light-success rounded-pill f-12"><?= $row['status'] ?></span> </td>
+                <td><span class="badge bg-light-warning rounded-pill f-12"><?= $row['status'] ?></span> </td>
                 <td>
                     <div class="row">
                         <div class="col">
@@ -44,16 +44,10 @@
                 </td>
                 <td class="text-center">
                     <ul class="list-inline me-auto mb-0">
-                        <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="View">
-                            <a href="#" class="avtar avtar-xs btn-link-secondary btn-pc-default" data-bs-toggle="modal"
-                            data-bs-target="#customer-modal">
-                            <i class="ti ti-eye f-18"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Edit">
-                            <a href="#" class="avtar avtar-xs btn-link-success btn-pc-default" data-bs-toggle="modal"
-                            data-bs-target="#customer-edit_add-modal">
-                            <i class="ti ti-edit-circle f-18"></i>
+                        <li class="list-inline-item align-bottom">
+                            <a href="#" class="avtar avtar-xs btn-link-success btn-pc-default btn-sts-<?= $row['id_pelanggan']; ?>" onclick="statusLayanan(<?= $row['id_pelanggan']; ?>)" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            <i class="ti ti-pencil f-18"></i>
                             </a>
                         </li>
                     </ul>
@@ -64,10 +58,33 @@
     </table>
 </div>
 <script>
-    $(document).ready(function() {
-        new DataTable('#pc-dt-simple', {
-            responsive: true
-        });
-    })
+     function statusLayanan(id) 
+    {
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('pelayanan/status-layanan/index/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-sts-'+id).attr('disable', 'disabled');
+                $('.btn-sts-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-sts-'+id).removeAttr('disable');
+                $('.btn-sts-'+id).html('<i class="ti ti-pencil f-18"></i>');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+
 </script>
 <?= $this->endSection(); ?>
