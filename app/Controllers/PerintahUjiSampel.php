@@ -87,27 +87,21 @@ class PerintahUjiSampel extends BaseController
             $instalasi = $this->modelInstalasi->find($id_instalasi);
 
             // Penanggung jawab sampel
-            $penanggung_jawab = $this->modelPj->
-            where('kode_pengantar', $kode_pengantar)->first();
+            $penanggung_jawab = $this->modelPj->select('id_kat_lab, tgl_terima_sampel')
+            ->where('kode_pengantar', $kode_pengantar)
+            ->where('id_kat_lab', $id_kat_lab)->first();
 
-            if (!$penanggung_jawab) {
-                $msg = [
-                    'error' => 'Penanggung jawab sampel belum diisi'
-                ];
-                echo json_encode($msg);
-                exit;
-            }
-           
             // id pengantar lhu
             $id_pengantar_lab = $this->modelPengantarLhu->select('id')
             ->where('kode_pengantar', $kode_pengantar)->first();
+
             
-            if ($penanggung_jawab['id_kat_lab'] == 1) {
+            if (isset($penanggung_jawab['id_kat_lab']) == 1) {
                 $_data = $this->model->get_data_sampel_lingkungan($kode_pengantar);
             }else{
                 $_data = $this->model->get_data_spesimen_penyakit($kode_pengantar);
             }
-
+           
             $data = [
                 'title' => 'Tambah ' . $this->title . ' ('.$kode_pengantar.')',
                 'id_instalasi' => $id_instalasi,
@@ -118,9 +112,17 @@ class PerintahUjiSampel extends BaseController
                 'items' => $_data
             ];
 
-            $msg = [
-                'data' => view('Backend/Modul/Pelayanan/Perintah-uji/__add', $data)
-            ];
+            
+            if (isset($penanggung_jawab) == null) {
+                $msg = [
+                    'error' => 'Penanggung jawab di pengantar laboratorium belum diisi'
+                ];
+            } else {
+                $msg = [
+                    'data' => view('Backend/Modul/Pelayanan/Perintah-uji/__add', $data)
+                ];
+            }
+            
             echo json_encode($msg);
 
          } else {
@@ -138,7 +140,9 @@ class PerintahUjiSampel extends BaseController
     {
         if ($this->request->isAJAX()) 
         {
-            $this->db->transStart();
+             $db = \Config\Database::connect();
+
+            $db->transStart();
             $builder1 = $this->db->table('perintah_uji_sampel');
             // Perintah uji sampel
             $tb_uji_sampel = [
@@ -146,11 +150,11 @@ class PerintahUjiSampel extends BaseController
                 'id_instalasi' => $this->request->getVar('id_instalasi'),
                 'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                 'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
-                'tgl_kirim_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_kirim_sampel'))),
-                'tgl_terima_sampel_ke_kains_lab' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_kains_lab'))),
-                'tgl_selesai_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_selesai_sampel'))),
-                'tgl_terima_sampel_ke_analis_lab' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_analis_lab'))),
-                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_analis_lab'))),
+                'tgl_kirim_sampel' => $this->request->getVar('tgl_kirim_sampel'),
+                'tgl_terima_sampel_ke_kains_lab' => $this->request->getVar('tgl_terima_sampel_ke_kains_lab'),
+                'tgl_selesai_sampel' => $this->request->getVar('tgl_selesai_sampel'),
+                'tgl_terima_sampel_ke_analis_lab' => $this->request->getVar('tgl_terima_sampel_ke_analis_lab'),
+                'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel')
                 ];
             $builder1->insert($tb_uji_sampel);
 
@@ -172,15 +176,16 @@ class PerintahUjiSampel extends BaseController
                     $builder2->insert($map_data);
                 }
 
-            $this->db->transComplete();
-
-            if ($this->db->transStatus() == FALSE) {
-                $msg = [
-                    'error' => 'Data Gagal disimpan'
+            $db->transComplete();
+            $msg = '';
+            if ($db->transStatus() != FALSE) {
+                
+                 $msg = [
+                    'sukses' => 'Data berhasil disimpan'
                 ];
             } else {
-                $msg = [
-                    'sukses' => 'Data berhasil disimpan'
+               $msg = [
+                    'error' => 'Data Gagal disimpan'
                 ];
             }
             echo json_encode($msg);

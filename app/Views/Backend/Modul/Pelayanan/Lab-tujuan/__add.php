@@ -23,7 +23,7 @@
                             if (@$cl['id_lab'] == $lab['id']) {
                                 ?>
                                 <label for="<?= $lab['id'] ?>">
-                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $lab['id'] ?>" id="<?= $lab['id'] ?>" checked> <?= $lab['nama_lab']; ?>
+                                    <input type="checkbox" name="id_laboratorium[]" value="<?= $lab['id'] ?>" id="<?= $lab['id'] ?>" checked onclick="return false;"> <?= $lab['nama_lab']; ?>
                                 </label><br>
                                 <?php
                                 break;
@@ -50,68 +50,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        $(".form-data").submit(function(e) {
-            e.preventDefault();
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                data: $(this).serialize(),
-                dataType: 'json',
-                cache: false,
-                beforeSend: function() {
-                    $('.btn-simpan').attr('disable', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
-                    $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
-                },
-                complete: function() {
-                    $('.btn-simpan').removeAttr('disable');
-                    $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
-                },
-                success: function(response) {
-                    var err = response.error
-                    if (err) {
-                        if (err.nama_lab) {
-                            $('#nama-lab').addClass('is-invalid');
-                            $('.errorNamaLab').html(err.nama_lab);
-                        } else {
-                            $('#nama-lab').removeClass('is-invalid');
-                            $('.errorNamaLab').html('');
-                        }
-                        if (err.lantai) {
-                            $('#lantai').addClass('is-invalid');
-                            $('.errorLantai').html(err.lantai);
-                        } else {
-                            $('#lantai').removeClass('is-invalid');
-                            $('.errorLantai').html('');
-                        }
-
-                        if (err) {
-                            Swal.fire({
-                                title: "Gagal",
-                                text: response.error,
-                                icon: "error",
-                                timer: 3000
-                            });
-                        }
-                    } else {
-                        Swal.fire({
-                            title: "Berhasil",
-                            text: response.sukses,
-                            icon: "success",
-                            timer:3000
-                        });
-
-                        $("#exampleModal").modal('hide');
-                        listData();
-                    }
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                }
-            })
-        })
-    })
-</script>
+<script src="<?= base_url('assets/js/Pelayanan/@save_lab_tujuan.js') ?>"></script>

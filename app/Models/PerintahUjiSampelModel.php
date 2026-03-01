@@ -25,7 +25,6 @@ class PerintahUjiSampelModel extends Model
         'petugas_prola',
         'ka_ins_prola',
         'ka_ins_lab',
-        'analis_lab',
         'tgl_kirim_sampel',
         'tgl_terima_sampel_ke_kains_lab',
         'tgl_selesai_sampel',
@@ -108,7 +107,7 @@ class PerintahUjiSampelModel extends Model
         LEFT JOIN master_kategori_lab ON master_kategori_lab.id = master_laboratorium.id_kat_lab
         LEFT JOIN master_instalasi ON master_instalasi.kode_instalasi = master_laboratorium.kode_instalasi
         WHERE pengantar_lab.kode_pengantar IN (SELECT laboratorium_tujuan.kode_pengantar FROM laboratorium_tujuan) 
-        GROUP BY id_instalasi";    
+        GROUP BY pengantar_lab.kode_pengantar";    
         $query = $db->query($sql)->getResultArray();
         return $query;
     }

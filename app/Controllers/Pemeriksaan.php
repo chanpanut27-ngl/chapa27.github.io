@@ -38,11 +38,11 @@ class Pemeriksaan extends BaseController
 
     }
 
-    function acepted_permintaan($params)  
+    function acepted_penawaran($params)  
     {
         $acepted_permintaan = $this->status_layanan->
         where('id_pelanggan', $params)->
-        where('status', 'Permintaan di Terima')->first();
+        where('status', 'Penawaran di Terima')->first();
         return $acepted_permintaan;
     }
 
@@ -54,7 +54,7 @@ class Pemeriksaan extends BaseController
             'title' => 'Data ' . $this->title,
             'profil' => $this->m_profil->get_data(),
             'items' => $items,
-            'acepted_permintaan' => $this->acepted_permintaan($items['id'])
+            'acepted_penawaran' => $this->acepted_penawaran($items['id'])
         ];
         return view('Backend/Modul/Pelayanan/Pemeriksaan/index', $data);
     }
@@ -80,7 +80,7 @@ class Pemeriksaan extends BaseController
              
             $data = [
                 'items' => $pemeriksaan->get_data_list($id_pelanggan),
-                'acepted_permintaan' => $this->acepted_permintaan($id_pelanggan)
+                'acepted_penawaran' => $this->acepted_penawaran($id_pelanggan)
             ];
 
             $msg = [

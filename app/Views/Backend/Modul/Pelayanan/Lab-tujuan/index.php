@@ -101,10 +101,10 @@
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showLab(<?= $row['id_pelanggan']; ?>)" title="Laboratorium Pemeriksaan">
-                                <span class="fa-solid fa-clipboard"></span> Laboratorium Pemeriksaan
+                                <i class="ti ti-clipboard"></i> Laboratorium Pemeriksaan
                             </button>
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" onclick="addData(<?= $row['id_pengantar']; ?>)" title="Tambah Data">
-                                <span class="fa-solid fa-plus-square"></span> Tambah Data
+                                <i class="ti ti-square-plus"></i> Tambah Data
                             </button>
                         </div>
                     </div>
@@ -156,7 +156,7 @@
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Laboratorium Pemeriksaan');
+                $('.btn-show-lab').html('<i class="ti ti-circle-plus"></i> Laboratorium Pemeriksaan');
             },
             success: function(response) {
                 if (response.sukses) {
@@ -182,7 +182,7 @@
             },
             complete: function() {
                 $('.btn-tambah').removeAttr('disable');
-                $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                $('.btn-tambah').html('<i class="ti ti-square-plus"></i> Tambah Data');
             },
             success: function(response) {
                 if (response.sukses) {

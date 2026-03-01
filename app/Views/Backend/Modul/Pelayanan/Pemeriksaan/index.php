@@ -37,7 +37,7 @@
                             <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
-                            <button type="button" class="btn btn-danger <?= $acepted_permintaan ? 'd-none' : '' ?> btn-sm rounded delete-all-pemeriksaan" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
+                            <button type="button" class="btn btn-danger <?= $acepted_penawaran ? 'd-none' : '' ?> btn-sm rounded delete-all-pemeriksaan" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
                                 <i class="ti ti-undo"></i> Batal pemeriksaan
                             </button>
                         </div>
@@ -86,14 +86,14 @@
                                 </div>
                             </div>
                             <?php
-                            if ($acepted_permintaan) {
+                            if ($acepted_penawaran) {
                             ?>
-                            <div class="card-body p-1">
-                                <span class="badge square-pill bg-success fs-6">Permintaan di Terima</span>
-                            </div>
-                            <?php
-                    } 
-                    ?>
+                                <div class="card-body p-1">
+                                    <span class="badge square-pill bg-warning fs-6"><?= $acepted_penawaran['status'] ?></span>
+                                </div>
+                                <?php
+                            } 
+                            ?>
                         </div>
                     </div>
                     <div class="card">
@@ -102,7 +102,7 @@
                                 <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Jenis sampel">
                                 <i class="ti ti-clipboard"></i> Jenis sampel</button>
                                 <!-- Button trigger modal -->
-                                 <button type="button" class="btn btn-primary btn-sm rounded <?= $acepted_permintaan ? 'd-none' : '' ?> btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
+                                 <button type="button" class="btn btn-primary btn-sm rounded <?= $acepted_penawaran ? 'd-none' : '' ?> btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
                                     <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
                                 </button>
                             </div>

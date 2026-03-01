@@ -138,40 +138,6 @@
         });
     })
 
-    $(".btn-tambah").click(function(e) {
-        e.preventDefault();
-        var id_instalasi = $(this).data("id");
-        var kode_pengantar = $(this).data('kode');
-        var id_kat_lab = $(this).data('katlab');
-
-        $.ajax({
-            type: "get",
-            url: "<?= site_url('pelayanan/perintah-uji-sampel/add-data'); ?>",
-            dataType: 'json',
-            cache: false,
-            data:{
-                 id_instalasi:id_instalasi,
-                 id_kat_lab:id_kat_lab,
-                 kode_pengantar:kode_pengantar
-            },
-            beforeSend: function() {
-                $('.btn-tambah').attr('disable', 'disabled');
-                $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-            },
-            complete: function() {
-                $('.btn-tambah').removeAttr('disable');
-                $('.btn-tambah').html('<span class="fa-solid fa-plus-circle"></span>');
-            },
-            success: function(response) {
-                $(".view-modal").html(response.data).show();
-                $("#exampleModal").modal('show');
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-            }
-        })
-    })
-
     $(".btn-edit").click(function(e) {
         e.preventDefault();
         var id_instalasi = $(this).data("id");
@@ -206,8 +172,55 @@
             }
         })
     })
+
+     $(".btn-tambah").click(function(e) {
+        e.preventDefault();
+        var id_instalasi = $(this).data("id");
+        var kode_pengantar = $(this).data('kode');
+        var id_kat_lab = $(this).data('katlab');
+
+        $.ajax({
+            url: "<?= site_url('pelayanan/perintah-uji-sampel/add-data'); ?>",
+            dataType: 'json',
+            cache: false,
+            data:{
+                 id_instalasi:id_instalasi,
+                 id_kat_lab:id_kat_lab,
+                 kode_pengantar:kode_pengantar
+            },
+            beforeSend: function() {
+                $('.btn-tambah').attr('disable', 'disabled');
+                $('.btn-tambah').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-tambah').removeAttr('disable');
+                $('.btn-tambah').html('<span class="fa-solid fa-plus-circle"></span>');
+            },
+            success: function(response) {
+                var err = response.error;
+                if (err) {
+                         Swal.fire({
+                            title: "Gagal",
+                            text: response.error,
+                            icon: "error",
+                            timer: 2000,
+                            width: '400px',
+                            padding: '1em'
+                        });
+                } else {
+                    $(".view-modal").html(response.data).show();
+                    $("#exampleModal").modal('show');
+                }
+               
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        })
+    })
     
     $(document).ready(function() {
+
         new DataTable('#example', {
             responsive: true
         });

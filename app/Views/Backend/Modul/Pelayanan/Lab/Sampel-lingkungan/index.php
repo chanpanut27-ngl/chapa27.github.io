@@ -26,7 +26,7 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
                     <i class="ti ti-clipboard-list"></i> Laboratorium Pemeriksaan
                 </button>
                 <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_lab; ?>" data-kode="<?= $kode_pengantar;?>">
-                    <span class="pc-micon"><span class="fa-solid fa-plus-square"></span></span> Tambah Data
+                    <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
                 </button>
             </div>
         </div>
@@ -63,7 +63,7 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<i class="ti ti-clipboard-list"></i> Laboratorium Pemeriksaan');
+                $('.btn-show-lab').html('<i class="ti ti-clipboard"></i> Laboratorium Pemeriksaan');
             },
             success: function(response) {
                 if (response.sukses) {
@@ -147,7 +147,7 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
                 },
                 complete: function() {
                     $('.btn-tambah').removeAttr('disable');
-                    $('.btn-tambah').html('<span class="fa-solid fa-plus-square"></span> Tambah Data');
+                    $('.btn-tambah').html('<i class="ti ti-square-plus"></i> Tambah Data');
                 },
                 success: function(response) {
                     $(".view-modal").html(response.data).show();

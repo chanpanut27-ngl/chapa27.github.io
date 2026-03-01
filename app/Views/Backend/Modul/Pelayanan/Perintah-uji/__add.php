@@ -17,8 +17,7 @@
                             <h5>Tanggal penerimaan sampel</h5>
                         </div>
                         <div class="col-md-9 d-flex">
-                            :&nbsp;<h5><?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?></h5>
-                            <input type="hidden" name="tgl_terima_sampel" value="<?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control">
+                            <input type="date" readonly name="tgl_terima_sampel" value="<?= $tgl_terima_sampel['tgl_terima_sampel'] ?>" class="form-control bg-gray-300 fw-bold w-5">
                         </div>
                     </div>
                     <div class="row">
@@ -66,9 +65,9 @@
                                         <td><?= $row['kode_sampel']; ?></td>
                                         <td><?= $row['jenis_sampel']; ?><input type="hidden" name="id_jenis_sampel[]" value="<?= $row['id_jenis_sampel'] ?>"></td>
                                         <td><?= $row['peraturan']; ?></td>
-                                        <td><textarea name="parameter_uji" class="form-control"></textarea></td>
-                                        <td><textarea name="metode_uji" class="form-control"></textarea></td>
-                                        <td><textarea name="keterangan" class="form-control"></textarea></td>
+                                        <td><textarea name="parameter_uji[]" class="form-control"></textarea></td>
+                                        <td><textarea name="metode_uji[]" class="form-control"></textarea></td>
+                                        <td><textarea name="keterangan[]" class="form-control"></textarea></td>
                                     </tr>
                                     <?php endforeach;?>
                                 </tbody>

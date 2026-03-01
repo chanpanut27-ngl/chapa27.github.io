@@ -40,8 +40,10 @@ require __DIR__ . '/Routes/__@lab__tujuan.php';
 require __DIR__ . '/Routes/__@pelayanan__.php';
 /*________ Sampel lingkungan ________*/
 require __DIR__ . '/Routes/__@sampel__lingkungan.php';
-/*________ Sampel lingkungan ________*/
+/*________ Log sampel ________*/
 require __DIR__ . '/Routes/__@log__sampel.php';
+/*________ Perintah uji sampel ________*/
+require __DIR__ . '/Routes/__@perintah__uji.php';
 
 
 
