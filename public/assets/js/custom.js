@@ -34,4 +34,18 @@ $(document).ready(function () {
             }
         })
     })
+
+    $(".btn-refresh-log").click(function() {
+        $.ajax({
+            cache: false,
+            beforeSend: function() {
+                $('.btn-refresh-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            success: function() {
+                logPenerimaan();        
+                $('.btn-refresh-data').html('<i class="ti ti-refresh"></i>');
+            }
+        })
+    })
+
 })

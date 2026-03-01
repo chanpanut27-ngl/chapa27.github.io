@@ -119,7 +119,7 @@ class PermintaanPelangganModel extends Model
         $db = \Config\Database::connect();   
         $builder = $db->table('permintaan_pelanggan'); 
         $builder->join('status_layanan ss', 'ss.id_pelanggan = permintaan_pelanggan.id', 'left');
-        $builder->where('ss.status', 'Permintaan Di Terima');
+        $builder->where('ss.status', 'Permintaan di Terima');
         return $builder->get()->getResultArray();
     }
 

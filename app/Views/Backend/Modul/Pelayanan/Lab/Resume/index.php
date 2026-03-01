@@ -8,7 +8,7 @@
                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
             </button>
             <button class="btn btn-info rounded btn-sm btnPrint" data-id="<?= $kode_pengantar ?>" onclick="openWin();" title="Lihat">
-                <span class="pc-micon"><i class="ti ti-clipboard"></i></span>
+                <span class="pc-micon"><i class="ti ti-eye"></i></span>
             </button>
         </div>
     </div>

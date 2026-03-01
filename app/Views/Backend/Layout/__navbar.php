@@ -21,6 +21,12 @@
                         <span class="pc-mtext">Profil</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('log-sampel'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-line"></i></span>
+                        <span class="pc-mtext">Log sampel</span>
+                    </a>
+                </li>
                 <li class="pc-item pc-caption">
                     <label>Pelayanan</label>
                 </li>
