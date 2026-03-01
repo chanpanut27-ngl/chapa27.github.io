@@ -32,13 +32,13 @@
                     <div class="card-header p-2">
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <a href="<?= base_url('pelayanan/permintaan') ?>" class="btn bg-gray-400 btn-sm rounded" title="Kembali">
-                                <span class="fa-solid fa-arrow-circle-left"></span>
+                                <i class="ti ti-arrow-left-circle"></i>
                             </a>
                             <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
-                            <button type="button" class="btn btn-danger btn-sm rounded delete-all-pemeriksaan" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
-                                <span class="ti ti-undo"></i> Batal pemeriksaan
+                            <button type="button" class="btn btn-danger <?= $acepted_permintaan ? 'd-none' : '' ?> btn-sm rounded delete-all-pemeriksaan" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
+                                <i class="ti ti-undo"></i> Batal pemeriksaan
                             </button>
                         </div>
                     </div>
@@ -85,20 +85,29 @@
                                     </div>                                
                                 </div>
                             </div>
+                            <?php
+                            if ($acepted_permintaan) {
+                            ?>
+                            <div class="card-body p-1">
+                                <span class="badge square-pill bg-success fs-6">Permintaan di Terima</span>
+                            </div>
+                            <?php
+                    } 
+                    ?>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header p-2">
                             <div class="d-flex justify-content-end align-items-center gap-1">
                                 <button type="button" class="btn btn-info btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Jenis sampel">
                                 <i class="ti ti-clipboard"></i> Jenis sampel</button>
                                 <!-- Button trigger modal -->
-                                 <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
+                                 <button type="button" class="btn btn-primary btn-sm rounded <?= $acepted_permintaan ? 'd-none' : '' ?> btn-tambah" data-id="<?= $items['id'] ?>" data-noreg="<?= $items['no_reg'] ?>">
                                     <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
                                 </button>
                             </div>
                         </div>
-                        <div class="card-header">
+                        <div class="card-header p-2">
                             <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         </div>
                         <div class="card-body">

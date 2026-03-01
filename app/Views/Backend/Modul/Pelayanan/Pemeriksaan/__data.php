@@ -24,7 +24,8 @@
                 <td><?= date('d-m-Y H:i', strtotime($row['tgl_entry'])); ?></td>
                 
                 <td>
-                    <div class="d-flex justify-content-start">
+                    
+                    <div class="d-flex justify-content-start <?= $acepted_permintaan ? 'd-none' : '' ?> ">
                         <button type="button" class="btn btn-danger btn-sm rounded btn-delete-pemeriksaan" onclick="deleteData(<?= $row['id_permintaan_pemeriksaan'] ?>)" data-id="<?= $row['id_permintaan_pemeriksaan']; ?>" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>

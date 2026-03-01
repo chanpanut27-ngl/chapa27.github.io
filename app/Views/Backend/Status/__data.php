@@ -64,7 +64,8 @@
                                 icon: "success",
                                 timer: 2000,
                                 width: '400px',
-                                padding: '1em'
+                                padding: '1em',
+                                showConfirmButton: false
                             }).then((result) => {
                                 if (result.dismiss === Swal.DismissReason.timer) {
                                     listData();

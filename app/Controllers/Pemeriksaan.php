@@ -8,6 +8,7 @@ use App\Models\Pelanggan\ProfilPelangganModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\PermintaanPemeriksaanModel;
 use App\Models\PermintaanSampelModel;
+use App\Models\StatusLayananModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Pemeriksaan extends BaseController
@@ -23,6 +24,7 @@ class Pemeriksaan extends BaseController
     protected $m_permintaan;
     protected $m_lab;
     protected $m_permintaan_sampel;
+    protected $status_layanan;
     
 
     public function __construct()
@@ -32,15 +34,27 @@ class Pemeriksaan extends BaseController
         $this->m_profil = new ProfilPelangganModel();
         $this->m_lab = new LaboratoriumModel();
         $this->m_permintaan_sampel = new PermintaanSampelModel();
+        $this->status_layanan = new StatusLayananModel();
+
+    }
+
+    function acepted_permintaan($params)  
+    {
+        $acepted_permintaan = $this->status_layanan->
+        where('id_pelanggan', $params)->
+        where('status', 'Permintaan di Terima')->first();
+        return $acepted_permintaan;
     }
 
     public function index($id)
     {
-        
+        $items = $this->model->where('no_reg', $id)->first();
+
         $data = [
             'title' => 'Data ' . $this->title,
             'profil' => $this->m_profil->get_data(),
-            'items' => $this->model->where('no_reg', $id)->first()
+            'items' => $items,
+            'acepted_permintaan' => $this->acepted_permintaan($items['id'])
         ];
         return view('Backend/Modul/Pelayanan/Pemeriksaan/index', $data);
     }
@@ -65,7 +79,8 @@ class Pemeriksaan extends BaseController
             $id_pelanggan = $this->request->getVar('id_pelanggan');
              
             $data = [
-                'items' => $pemeriksaan->get_data_list($id_pelanggan)
+                'items' => $pemeriksaan->get_data_list($id_pelanggan),
+                'acepted_permintaan' => $this->acepted_permintaan($id_pelanggan)
             ];
 
             $msg = [

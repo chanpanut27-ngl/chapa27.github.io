@@ -31,7 +31,7 @@
 
                         use App\Models\LaboratoriumTujuanModel;
 
-                            foreach ($items as $row) :  
+                        foreach ($items as $row) :  
                                 $id_pelanggan = $row['id_pelanggan'];
                                 $kode_pengantar = $row['kode_pengantar'];
                         ?>
@@ -64,7 +64,7 @@
                     </div>
                     <div class="d-flex justify-content-end align-items-center">
                         <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn bg-gray-400 btn-sm rounded" title="Kembali">
-                            <span class="fa-solid fa-arrow-circle-left"></span>
+                            <i class="ti ti-arrow-left-circle"></i>
                         </a>
                     </div>
                 </div>
@@ -75,13 +75,25 @@
                 <div class="card">
                     <div class="card-body">
                         <?php 
-                        if (!$menu_lab) {
+                         use App\Models\StatusLayananModel;
+                         $status_layanan = new StatusLayananModel();
+                         $acepted_penawaran = $status_layanan->
+                         where('id_pelanggan', $id_pelanggan)->
+                         where('status', 'Penawaran di Terima')->first();
+                        
+                        if (!$acepted_penawaran) {
+                            ?>
+                                <div class="alert alert-danger fw-bold" role="alert">
+                                    Status Penawaran belum di Terima !
+                                </div>
+                            <?php
+                        } else if (!$menu_lab) {
                             ?>
                                 <div class="alert alert-danger fw-bold" role="alert">
                                     Laboratorim tujuan belum di pilih !
                                 </div>
                             <?php
-                        }else{
+                        } else {
                             
                         ?>
                             <ul class="nav nav-tabs">

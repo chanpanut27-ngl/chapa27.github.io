@@ -61,6 +61,32 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <script>
+    function statusLayanan(id) 
+    {
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('pelayanan/status-layanan/index/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-sts-'+id).attr('disable', 'disabled');
+                $('.btn-sts-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-sts-'+id).removeAttr('disable');
+                $('.btn-sts-'+id).html('<i class="ti ti-pencil f-18"></i>');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
     $(document).ready(function() {
         new DataTable('#example', {
             responsive: true

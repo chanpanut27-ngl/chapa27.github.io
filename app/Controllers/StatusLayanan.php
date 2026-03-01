@@ -88,34 +88,27 @@ class StatusLayanan extends BaseController
                     'keterangan' => $this->request->getVar('keterangan'),
                     'status' => $this->request->getVar('status')
                 ];
-                $cek_data = $this->model->where('status', $save['status'])->where('id_pelanggan', $save['id_pelanggan'])->find();
+                $cek_data = $this->model->where('status', $save['status'])->
+                where('id_pelanggan', $save['id_pelanggan'])->find();
+
                 // cek status di tolak
                 $denied = $this->model->
                 where('id_pelanggan', $save['id_pelanggan'])->
                 where('status', 'Permintaan di Tolak')->
                 orWhere('status', 'Penawaran di Tolak')->first();
-
-                $accept_penawaran = $this->model->
-                where('id_pelanggan', $save['id_pelanggan'])->findAll();
-
-                $array_penawaran = [];
-                foreach ($accept_penawaran as $key) {
-                    $array_penawaran[] = $key;
-                }
-
+   
                 if ($cek_data) {
                     $msg = [
                         'error' => 'Status sudah ada'
                     ];
+                    
                 } else if ($denied) {
                     $msg = [
                         'error' => 'Status Permintaan di Tolak atau Penawaran di Tolak'
                     ];
-                } else if ($key['status'] != 'Penawaran di Terima') {
-                    $msg = [
-                        'error' => 'Status Penawaran belum di Terima'
-                    ];
+
                 } else {
+                    
                     $this->model->save($save);
                     $msg = [
                         'sukses' => 'Data berhasil disimpan'

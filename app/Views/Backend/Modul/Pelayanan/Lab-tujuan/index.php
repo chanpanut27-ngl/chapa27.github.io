@@ -24,7 +24,9 @@
         <!-- [ Main Content ] start -->
         <div class="card-header p-2">
             <div class="d-flex justify-content-end align-items-center gap-1">
-                <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn btn-secondary btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn bg-gray-400 btn-sm rounded" title="Kembali">
+                    <i class="ti ti-arrow-left-circle"></i>
+                </a>
                 <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
                     <span class="pc-micon"><i class="ti ti-refresh"></i>
                 </button>
@@ -41,6 +43,7 @@
                     <div class="accordion-body">
                         <?php
                             foreach ($items as $row) :  
+                                $id_pelanggan = $row['id_pelanggan'];
                                 $kode_pengantar = $row['kode_pengantar'];
                         ?>
                         <input type="hidden" id="kode-pengantar" value="<?= $kode_pengantar; ?>">
@@ -77,6 +80,22 @@
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
+                    <?php
+                    use App\Models\StatusLayananModel;
+                         $status_layanan = new StatusLayananModel();
+                         $acepted_penawaran = $status_layanan->
+                         where('id_pelanggan', $id_pelanggan)->
+                         where('status', 'Penawaran di Terima')->first();
+                    if (!$acepted_penawaran) {
+                            ?>
+                            <div class="card-body">
+                                <div class="alert alert-danger fw-bold" role="alert">
+                                    Status Penawaran belum di Terima !
+                                </div>
+                            </div>
+                            <?php
+                    } else {
+                    ?>
                     <div class="card-header p-2">
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
@@ -92,6 +111,7 @@
                     <div class="card-body">
                         <div class="view-data"></div>
                     </div>
+                    <?php } ?>
                 </div>
             </div>
             <!-- [ sample-page ] end -->

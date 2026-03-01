@@ -45,16 +45,10 @@
                 </td>
                 <td class="text-center">
                     <ul class="list-inline me-auto mb-0">
-                        <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="View">
-                            <a href="#" class="avtar avtar-xs btn-link-secondary btn-pc-default" data-bs-toggle="modal"
-                            data-bs-target="#customer-modal">
-                            <i class="ti ti-eye f-18"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item align-bottom" data-bs-toggle="tooltip" title="Edit">
-                            <a href="#" class="avtar avtar-xs btn-link-success btn-pc-default" data-bs-toggle="modal"
-                            data-bs-target="#customer-edit_add-modal">
-                            <i class="ti ti-edit-circle f-18"></i>
+                        <li class="list-inline-item align-bottom">
+                            <a href="#" class="avtar avtar-xs btn-link-success btn-pc-default btn-sts-<?= $row['id_pelanggan']; ?>" onclick="statusLayanan(<?= $row['id_pelanggan']; ?>)" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            <i class="ti ti-pencil f-18"></i>
                             </a>
                         </li>
                     </ul>
