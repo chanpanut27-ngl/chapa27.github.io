@@ -3,9 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\PermintaanPelangganModel;
 use App\Models\StatusLayananModel;
-use CodeIgniter\HTTP\ResponseInterface;
 
 class LogSampel extends BaseController
 {
