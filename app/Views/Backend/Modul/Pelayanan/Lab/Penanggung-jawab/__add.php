@@ -44,7 +44,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl-terima-sampel" class="form-label h5">Tgl terima sampel</label>
-                        <input type="text" name="tgl_terima_sampel" class="form-control" id="tgl-terima-sampel" autocomplete="off">
+                        <input type="date" name="tgl_terima_sampel" class="form-control" id="tgl-terima-sampel" autocomplete="off">
                         <div class="invalid-feedback errorTglTerimaSampel"></div>
                     </div>
                     <div class="mb-3">
@@ -64,13 +64,13 @@
 </div>
 
 <script>
-    var dateToday = new Date();
-    $("#tgl-terima-sampel").datepicker(
-        { 
-            dateFormat: 'dd-mm-yy', 
-            defaultDate: "",  
-            inDate: dateToday
-        }
-    );
+    // var dateToday = new Date();
+    // $("#tgl-terima-sampel").datepicker(
+    //     { 
+    //         dateFormat: 'dd-mm-yy', 
+    //         defaultDate: "",  
+    //         inDate: dateToday
+    //     }
+    // );
 </script>
 <script src="<?= base_url('assets/js/Pelayanan/@save_pj_plab.js') ?>"></script>

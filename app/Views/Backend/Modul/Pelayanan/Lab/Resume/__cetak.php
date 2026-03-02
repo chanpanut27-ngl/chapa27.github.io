@@ -25,7 +25,8 @@ $no_reg = $data_permintaan['no_reg'];
             display: none !important;
         }
         @page {
-            size: landscape;
+            size: A4 landscape;
+            transform: scale(0.9);
             /* margin: top right bottom left */
         }
     </style>
