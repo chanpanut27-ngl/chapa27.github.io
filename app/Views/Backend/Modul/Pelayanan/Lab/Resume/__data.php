@@ -222,7 +222,7 @@ foreach ($data_pelanggan as $dp) {
                 <tbody>
                     <tr class="text-center">
                         <?php 
-                        $tanggal = $penanggung_jawab->konversi_tanggal($pj['tgl_terima_sampel'] );
+                        $tanggal = $penanggung_jawab->konversi_tanggal(@$pj['tgl_terima_sampel']);
                         ?>
                         <th colspan="3">
                             Jakarta, <?= $tanggal != '01 Januari 1970' ? $tanggal.' '.date('H:i', strtotime($pj['jam_terima_sampel'])) : '' ?>
