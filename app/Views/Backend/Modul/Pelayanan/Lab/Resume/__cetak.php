@@ -44,8 +44,8 @@ foreach ($data_pelanggan as $dp) {
             display: none !important;
         }
         .qr-code {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
         }
         @page {
             size: A4 landscape;
