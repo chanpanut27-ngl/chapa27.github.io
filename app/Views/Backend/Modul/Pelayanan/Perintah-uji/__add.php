@@ -92,7 +92,7 @@
                                             <h6>Tanggal Kirim Sampel</h6>
                                         </div>
                                         <div class="col">
-                                            <input type="date" name="tgl_kirim_sampel_dari_prola" id="tgl-kirim-sampel" class="form-control" autocomplete="off">
+                                            <input type="date" name="tgl_kirim_sampel_dari_prola" value="<?= $tgl_terima_sampel['tgl_terima_sampel'] ?>" id="tgl-kirim-sampel" class="form-control" autocomplete="off">
                                             <div class="invalid-feedback errorTglKirimSampel"></div>
                                         </div>
                                     </div>
@@ -125,6 +125,29 @@
                                         </div>
                                         <div class="col">
                                             <input type="date" name="tgl_selesai_sampel" id="tgl-selesai-sampel" class="form-control" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md">
+                            <div class="card">
+                                <div class="card-header p-2">
+                                    <h5 class="card-title text-center">Analis Laboratorium</h5>
+                                </div>
+                                <div class="card-body text-secondary">
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>Paraf</h6>
+                                        </div>
+                                        <div class="col"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>Tanggal Terima Sampel</h6>
+                                        </div>
+                                        <div class="col">
+                                            <input type="date" name="tgl_terima_sampel_ke_analis_lab" id="tgl-terima-sampel-ke-analis-lab" class="form-control" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>

@@ -114,7 +114,7 @@
                 </tr>
                 <tr>
                     <td class="p-1 w-0"><b>Tanggal Kirim sampel</b></td>
-                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_kirim_sampel'])) ?></td>
+                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_kirim_sampel_dari_prola'])) ?></td>
                 </tr>
             </table>
         </div>

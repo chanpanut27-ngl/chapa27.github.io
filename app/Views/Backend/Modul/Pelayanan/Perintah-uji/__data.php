@@ -19,7 +19,7 @@
         ->where('id_instalasi', $row['id_instalasi'])->first();
         ?>
         <input type="hidden" id="kp" value="<?= $row['kode_pengantar'] ?>">
-            <tr id="myId-<?= $row['id_instalasi']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['kode_pengantar'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_pengantar']; ?></td>
                 <td><?= $row['nama_instalasi']; ?></td>
@@ -88,7 +88,7 @@
         var kode_pengantar = $(this).data('kode');
         var id_instalasi = $(this).data('instalasi');
 
-       var myElement = $('#myId-' + id_instalasi);
+       var myElement = $('#myId-' + kode_pengantar);
         if (myElement.data('urut')) {
             myElement.addClass('bg bg-danger');
         }
@@ -161,7 +161,7 @@
             },
             complete: function() {
                 $('.btn-edit').removeAttr('disable');
-                $('.btn-edit').html('<span class="fa-solid fa-edit"></span>');
+                $('.btn-edit').html('<i class="ti ti-edit"></i>');
             },
             success: function(response) {
                 $(".view-modal").html(response.data).show();
@@ -194,7 +194,7 @@
             },
             complete: function() {
                 $('.btn-tambah').removeAttr('disable');
-                $('.btn-tambah').html('<span class="fa-solid fa-plus-circle"></span>');
+                $('.btn-tambah').html('<i class="ti ti-square-plus"></i>');
             },
             success: function(response) {
                 var err = response.error;

@@ -94,7 +94,7 @@
                                             <h6>Tanggal Kirim Sampel</h6>
                                         </div>
                                         <div class="col">
-                                            <input type="date" name="tgl_kirim_sampel" value="<?= $search['tgl_kirim_sampel_dari_prola'] ?>" id="tgl-kirim-sampel" class="form-control" autocomplete="off">
+                                            <input type="date" name="tgl_kirim_sampel_dari_prola" value="<?= $search['tgl_kirim_sampel_dari_prola'] ?>" id="tgl-kirim-sampel" class="form-control" autocomplete="off">
                                             <div class="invalid-feedback errorTglKirimSampel"></div>
                                         </div>
                                     </div>

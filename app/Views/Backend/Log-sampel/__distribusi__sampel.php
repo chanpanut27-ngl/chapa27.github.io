@@ -10,7 +10,7 @@
                 <th>Nama pelanggan</th>
                 <th>Instansi</th>
                 <th>Status</th>
-                <th>Tanggal & User terima</th>
+                <th>Tanggal & Nama Pj</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
