@@ -221,12 +221,11 @@ foreach ($data_pelanggan as $dp) {
             <table class="table-bordered" style="border: 2px solid black; width:100%;">
                 <tbody>
                     <tr class="text-center">
-                        <?php
-                        $tglTerimaSampel = $row['tgl_terima_sampel'] ?? null;
-                        $tanggal = $penanggung_jawab->konversi_tanggal($tglTerimaSampel);
+                        <?php 
+                        $tanggal = $penanggung_jawab->konversi_tanggal($pj['tgl_terima_sampel'] );
                         ?>
                         <th colspan="3">
-                            Jakarta, <?= $tanggal != '01 Januari 1970' ? $tanggal.' '.date('H:i', strtotime($row['jam_terima_sampel'])) : '' ?>
+                            Jakarta, <?= $tanggal != '01 Januari 1970' ? $tanggal.' '.date('H:i', strtotime($pj['jam_terima_sampel'])) : '' ?>
                         </th>
                     </tr>
                     <tr>

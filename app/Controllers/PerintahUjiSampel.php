@@ -136,7 +136,7 @@ class PerintahUjiSampel extends BaseController
      * @return ResponseInterface
      */
 
-    public function create() 
+    public function create1() 
     {
         if ($this->request->isAJAX()) 
         {
@@ -150,11 +150,12 @@ class PerintahUjiSampel extends BaseController
                 'id_instalasi' => $this->request->getVar('id_instalasi'),
                 'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                 'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
-                'tgl_kirim_sampel' => $this->request->getVar('tgl_kirim_sampel'),
-                'tgl_terima_sampel_ke_kains_lab' => $this->request->getVar('tgl_terima_sampel_ke_kains_lab'),
-                'tgl_selesai_sampel' => $this->request->getVar('tgl_selesai_sampel'),
-                'tgl_terima_sampel_ke_analis_lab' => $this->request->getVar('tgl_terima_sampel_ke_analis_lab'),
-                'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel')
+                'tgl_kirim_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_kirim_sampel'))),
+                'tgl_terima_sampel_ke_kains_lab' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_kains_lab'))),
+                'tgl_selesai_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_selesai_sampel'))),
+                'tgl_terima_sampel_ke_analis_lab' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_analis_lab'))),
+                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel'))),
+                'tgl_kirim_sampel_dari_prola' => date('Y-m-d', strtotime($this->request->getVar('tgl_kirim_sampel_dari_prola')))
                 ];
             $builder1->insert($tb_uji_sampel);
 
@@ -165,20 +166,25 @@ class PerintahUjiSampel extends BaseController
             $count = count($id_jenis_sampel ?? []);
             $id_map = $this->db->insertID();
 
+            $metode = $this->request->getVar('metode_uji');
+            $keterangan = $this->request->getVar('keterangan');
+            $parameter = $this->request->getVar('parameter_uji');
+
                 for ($i=0; $i < $count; $i++) { 
+
                     $map_data = [
                         'id_map' => $id_map,
                         'id_jenis_sampel' => $id_jenis_sampel[$i],
-                        'metode_uji' => $this->request->getVar('metode_uji'),
-                        'keterangan' => $this->request->getVar('keterangan'),
-                        'parameter_uji' => $this->request->getVar('parameter_uji'),
+                        'metode_uji' => $metode[$i],
+                        'keterangan' => $keterangan[$i],
+                        'parameter_uji' => $parameter[$i],
                     ];
+                    
                     $builder2->insert($map_data);
                 }
 
             $db->transComplete();
-            $msg = '';
-            if ($db->transStatus() != FALSE) {
+            if ($db->transStatus() == true) {
                 
                  $msg = [
                     'sukses' => 'Data berhasil disimpan'
@@ -193,6 +199,49 @@ class PerintahUjiSampel extends BaseController
         } else {
             exit('Not Process');
         }    
+    }
+
+    public function create()
+    {
+        if ($this->request->isAJAX()) 
+        {
+            $db = \Config\Database::connect();
+            $db->transStart();
+            $builder1 = $this->db->table('perintah_uji_sampel');
+            $perintah_uji = [
+                'id_pengantar_lab' => $this->request->getVar('id_pengantar_lab'),
+                'id_instalasi' => $this->request->getVar('id_instalasi'),
+                'kode_pengantar' => $this->request->getVar('kode_pengantar'),
+                'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
+                'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel')
+            ];
+            $builder1->insert($perintah_uji);
+
+            $builder2 = $this->db->table('map_perintah_uji_sampel');
+            $map = [
+                'id_map' => $this->db->insertID(),
+                'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                'parameter_uji' => $this->request->getVar('parameter_uji'),
+                'metode_uji' => $this->request->getVar('metode_uji'),
+                'keterangan' => $this->request->getVar('keterangan'),
+            ];
+            $builder2->insert($map);
+            
+            $db->transComplete();
+
+            if ($db->transStatus() == true) {
+               $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+               ];
+            } else {
+                $msg = [
+                    'error' => 'Data gagal disimpan'
+               ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
