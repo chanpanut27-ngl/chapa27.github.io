@@ -213,19 +213,27 @@ class PerintahUjiSampel extends BaseController
                 'id_instalasi' => $this->request->getVar('id_instalasi'),
                 'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                 'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
-                'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel')
+                'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel'),
+                'tgl_kirim_sampel_dari_prola' => $this->request->getVar('tgl_kirim_sampel_dari_prola'),
+                'tgl_terima_sampel_ke_kains_lab' => $this->request->getVar('tgl_terima_sampel_ke_kains_lab'),
+                'tgl_selesai_sampel' => $this->request->getVar('tgl_selesai_sampel')
             ];
             $builder1->insert($perintah_uji);
 
             $builder2 = $this->db->table('map_perintah_uji_sampel');
-            $map = [
-                'id_map' => $this->db->insertID(),
-                'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
-                'parameter_uji' => $this->request->getVar('parameter_uji'),
-                'metode_uji' => $this->request->getVar('metode_uji'),
-                'keterangan' => $this->request->getVar('keterangan'),
-            ];
-            $builder2->insert($map);
+            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+            $count = count($id_jenis_sampel ?? []);
+
+            for ($i=0; $i < $count; $i++) { 
+                 $map = [
+                    'id_map' => $this->db->insertID(),
+                    'id_jenis_sampel' => $id_jenis_sampel[$i],
+                    'parameter_uji' => $this->request->getVar('parameter_uji'),
+                    'metode_uji' => $this->request->getVar('metode_uji'),
+                    'keterangan' => $this->request->getVar('keterangan'),
+                ];
+                $builder2->insert($map);
+            }
             
             $db->transComplete();
 
@@ -512,19 +520,24 @@ class PerintahUjiSampel extends BaseController
             $db = \Config\Database::connect();
 
             $db->transStart();
-            $cek_data = $this->model->where('kode_pengantar', $kode_pengantar)
-            ->where('id_instalasi', $id_instalasi)->first();
-            $id_perintah_uji = $cek_data['id'];
 
-            $this->model->delete($id_perintah_uji);
+            $builder1 = $db->table('perintah_uji_sampel');
+            $builder1->where('kode_pengantar', $kode_pengantar);
+            $builder1->where('id_instalasi', $id_instalasi);
+            $q = $builder1->get()->getResultArray();
 
-            $builder = $db->table('map_perintah_uji_sampel');
-            $builder->where('id_map', $id_perintah_uji);
-            $builder->delete();
+            foreach ($q as $key) 
+            {
+                $id = $key['id'];
+                if ($q) {
+                    $this->model->delete($id);
+                    $this->modelMpu->where('id_map', $id)->delete();
+                }
+            }
 
             $db->transComplete();
 
-            if ($db->transStatus() === FALSE) {
+            if ($db->transStatus() === false) {
                 $msg = [
                     'error' => 'error'
                 ];
