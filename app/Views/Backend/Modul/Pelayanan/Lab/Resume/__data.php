@@ -24,36 +24,36 @@ foreach ($data_pelanggan as $dp) {
 ?>
 <div class="card-body"> 
         <?php 
-        $klss = '';
-        $ca = '';
-        foreach ($group_lab_tujuan as $kl) : 
-            $r = $kl_sampel->where('kode_pengantar', $kode_pengantar)->findAll();
-            foreach ($r as $x) {
-                if ($kl['idkatlab'] == $x['id_kat_lab']) {
-                    $klss = $x['kondisi_lingkungan_sekitar_sampel'];
-                    $ca = $x['catatan_abnormalitas'];
-                }
+    $klss = '';
+    $ca = '';
+    foreach ($group_lab_tujuan as $kl) : 
+        $r = $kl_sampel->where('kode_pengantar', $kode_pengantar)->findAll();
+        foreach ($r as $x) {
+            if ($kl['idkatlab'] == $x['id_kat_lab']) {
+                $klss = $x['kondisi_lingkungan_sekitar_sampel'];
+                $ca = $x['catatan_abnormalitas'];
             }
-            ?>
-    <h4 style="text-align: center;"><b>PENERIMAAN SAMPEL</b></h4><hr style="border: 1px solid;">
+        }
+        ?>
+    <h5 class="text-center fw-bold"><b>PENERIMAAN SAMPEL</b></h5>
     <div class="row">
-        <div class="col-md-12 mb-2">
+        <div class="col-md-12 mb-1">
             <table class="table-bordered" style="border: 1px solid black; width:100%;">
                 <tr>
-                    <td class="p-1 fw-bold" width="10%">Asal sampel</td>
-                    <td class="p-1" width="50%"><?= $dp['instansi']; ?></td>
-                    <td class="p-1 align-top" rowspan="3"><b>Kondisi lingkungan sampel : </b><?= $klss; ?></td>
+                    <td class="p-1 fw-bold" width="10%" style="font-size: 10pt;">Asal sampel</td>
+                    <td class="p-1" width="50%" style="font-size: 10pt;"><?= $dp['instansi']; ?></td>
+                    <td class="p-1 align-top" rowspan="3" style="font-size: 10pt;"><b>Kondisi lingkungan sampel : </b><?= $klss; ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1 fw-bold">Alamat</td>
-                    <td class="p-1"><?= $dp['alamat'] ?></td>
+                    <td class="p-1 fw-bold" style="font-size: 10pt;">Alamat</td>
+                    <td class="p-1" style="font-size: 10pt;"><?= $dp['alamat'] ?></td>
                 </tr>
                 <tr>
-                    <td class="align-top p-1" colspan="2"><b>Catatan abnormalitas : </b> <?= $ca; ?></td>
+                    <td class="p-1 fw-bold" colspan="2" style="font-size: 10pt;">Catatan abnormalitas : <?= $ca; ?></td>
                 </tr>
             </table>
         </div>
-        <div class="col-md-12 mb-2">
+        <div class="col-md-12 mb-1">
             <table class="table-bordered" style="border: 1px solid black; width:100%;">
                 <thead>
                     <?php
@@ -61,21 +61,21 @@ foreach ($data_pelanggan as $dp) {
                         if ($kl['idkatlab'] == $lab['id_kat_lab']) :
                     ?>
                     <tr>
-                        <td colspan="10" class="p-1 fw-bold">
+                        <td colspan="10" class="p-1 fw-bold" style="font-size: 10pt;">
                             <?= ucfirst($lab['nama_lab']);?>
                         </td>
                     </tr>
-                    <tr class="fw-bold text-center" style="font-size:12px;">
-                        <th>No.</th>
-                        <th width="10%">Kode sampel</th>
-                        <th>Jenis sampel</th>
-                        <th><?= $kl['idkatlab'] == '1' ? 'Lokasi pengambilan sampel' : 'Identitas sampel'; ?></th>
-                        <th>Tgl dan jam pengambilan sampel</th>
-                        <th>Peraturan baku mutu</th>
-                        <th>Metode pemeriksaan</th>
-                        <th>Volume/berat</th>
-                        <th>Jenis wadah</th>
-                        <th>jenis pengawet</th>
+                    <tr class="fw-bold text-center">
+                        <th class="p-1" style="font-size: 10pt;">No.</th>
+                        <th class="p-1" width="10%" style="font-size: 10pt;">Kode sampel</th>
+                        <th class="p-1" style="font-size: 10pt;">Jenis sampel</th>
+                        <th class="p-1" style="font-size: 10pt;"><?= $kl['idkatlab'] == '1' ? 'Lokasi pengambilan' : 'Identitas sampel'; ?></th>
+                        <th class="p-1" style="font-size: 10pt;">Tgl & jam pengambilan</th>
+                        <th class="p-1" style="font-size: 10pt;">Peraturan baku mutu</th>
+                        <th class="p-1" style="font-size: 10pt;">Metode pemeriksaan</th>
+                        <th class="p-1" style="font-size: 10pt;">Volume/berat</th>
+                        <th class="p-1" style="font-size: 10pt;">Jenis wadah</th>
+                        <th class="p-1" style="font-size: 10pt;">jenis pengawet</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -88,16 +88,16 @@ foreach ($data_pelanggan as $dp) {
                         $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel']));
                     ?>
                     <tr>
-                        <td class="p-1"><?= $index++ ?></td>
-                        <td class="p-1 text-center"><b><?= $row['kode_sampel']; ?></b></td>
-                        <td class="p-1"><?= $row['jenis_sampel']; ?></td>
-                        <td class="p-1"><?= $row['lokasi_pengambilan_sampel']; ?></td>
-                        <td class="p-1" style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
-                        <td class="p-1"><?= $row['peraturan']; ?></td>
-                        <td class="p-1"><?= $row['metode_pemeriksaan']; ?></td>
-                        <td class="p-1" style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
-                        <td class="p-1"><?= $row['jenis_wadah']; ?></td>
-                        <td class="p-1"><?= $row['jenis_pengawet']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $index++ ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><b><?= $row['kode_sampel']; ?></b></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_sampel']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['lokasi_pengambilan_sampel']; ?></td>
+                        <td class="p-1 text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['metode_pemeriksaan']; ?></td>
+                        <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['volume_atau_berat']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_wadah']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_pengawet']; ?></td>
                     </tr>
                     <?php  }
                     } else {
@@ -107,22 +107,21 @@ foreach ($data_pelanggan as $dp) {
                         $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_periksa_sampel'])).' '. date('H:i', strtotime($row['jam_periksa_sampel']));
                     ?>
                     <tr>
-                        <td class="p-1"><?= $index++ ?></td>
-                        <td class="p-1" style="text-align: center;"><b><?= $row['kode_sampel']; ?></b></td>
-                        <td class="p-1"><?= $row['jenis_sampel']; ?></td>
-                        <td class="p-1"><?= $row['identitas_sampel']; ?></td>
-                        <td class="p-1" style="text-align: center;"><?= @$tgl_jam_ambil_sampel;?></td>
-                        <td class="p-1"><?= $row['peraturan']; ?></td>
-                        <td class="p-1"><?= $row['metode_pemeriksaan']; ?></td>
-                        <td class="p-1" style="text-align: center;"><?= $row['volume_atau_berat']; ?></td>
-                        <td class="p-1"><?= $row['jenis_wadah']; ?></td>
-                        <td class="p-1"><?= $row['jenis_pengawet']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $index++ ?></td>
+                        <td class="p-1 text-center fw-bold" style="font-size: 9pt;"><?= $row['kode_sampel']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_sampel']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['identitas_sampel']; ?></td>
+                        <td class="p-1 text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['metode_pemeriksaan']; ?></td>
+                        <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['volume_atau_berat']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_wadah']; ?></td>
+                        <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_pengawet']; ?></td>
                     </tr>
                 <?php }} endif; endforeach;?>
                 </tbody>
             </table>
         </div>
-        <div style="page-break-after:always;"></div>
         <?php
         $array_ket = [];
         $ket = null;
@@ -132,36 +131,36 @@ foreach ($data_pelanggan as $dp) {
             $array_ket[] = $ket;
         }
         ?>
-        <div class="col-md-6 mb-2">
+        <div class="col-md-6 mb-1">
             <table style="border: 2px solid black; width:100%;">
                 <tbody>
                     <tr>
-                        <td class="p-1">Keterangan : <?= $ket['keterangan'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;">Keterangan : <?= $ket['keterangan'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="p-1">Parameter yang tidak dapat di uji : <?= $ket['parameter_tidak_dapat_di_uji'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;">Parameter yang tidak dapat di uji : <?= $ket['parameter_tidak_dapat_di_uji'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="p-1">Sub kontrak : <?= $row['sub_kontrak'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;">Sub kontrak : <?= $row['sub_kontrak'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="p-1">Kontrak diulang : <?= $row['kontrak_diulang'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;">Kontrak diulang : <?= $row['kontrak_diulang'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="p-1">Permintaan khusus : <?= $row['permintaan_khusus'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;">Permintaan khusus : <?= $row['permintaan_khusus'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="p-1 fw-bold">
+                        <td class="p-1 fw-bold" style="font-size: 10pt;">
                             <i>Kami tidak menjamin kualitas sampel yang tidak sesuai SOP/kriteria penerimaan sampel</i>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="col-md-6 mb-2" style="align-items: center;justify-content: center;display:flex;">
-            <h4 class="fw-bold text-center">
+        <div class="col-md-6 mb-1" style="align-items: center;justify-content: center;display:flex;">
+            <h5 class="fw-bold text-center">
                 Tidak Menerima Gratifikasi Dalam Bentuk Apapun
-            </h4>
+            </h5>
         </div>
         <?php
         $array_ku = [];
@@ -172,38 +171,38 @@ foreach ($data_pelanggan as $dp) {
             $array_ku[] = $ku;
         }
         ?>
-        <div class="col-md-6 mb-2">
+        <div class="col-md-6 mb-1">
         <table class="table-bordered" style="border: 2px solid black; width:100%;">
             <thead>
-                <tr class="text-center">
+                <tr class="text-center" style="font-size: 10pt;">
                     <th><b>SUMBER DAYA</b></th>
                     <th><b>KONDISI</b></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="p-1" width="40%;">Alat Utama</td>
-                    <td class="p-1">: <?= $ku['alat_utama'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;" width="40%;">Alat Utama</td>
+                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['alat_utama'] ?? '' ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1">Alat Pendukung</td>
-                    <td class="p-1">: <?= $ku['alat_pendukung'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;">Alat Pendukung</td>
+                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['alat_pendukung'] ?? '' ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1">Personil laboratorium</td>
-                    <td class="p-1">: <?= $ku['personil_lab'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;">Personil laboratorium</td>
+                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['personil_lab'] ?? '' ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1">Metode pemeriksaan</td>
-                    <td class="p-1">: <?= $ku['metode_pemeriksaan'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;">Metode pemeriksaan</td>
+                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['metode_pemeriksaan'] ?? '' ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1">Uji mutu (<i>Quality control</i>)</td>
-                    <td class="p-1">: <?= $ku['uji_mutu'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;">Uji mutu (<i>Quality control</i>)</td>
+                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['uji_mutu'] ?? '' ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1">Reagensa dan media</td>
-                    <td class="p-1">: <?= $ku['reagensa_dan_media'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;">Reagensa dan media</td>
+                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['reagensa_dan_media'] ?? '' ?></td>
                 </tr>
             </tbody>
         </table>
@@ -217,31 +216,31 @@ foreach ($data_pelanggan as $dp) {
            $array_pj[] = $pj;
         }
         ?>
-        <div class="col-md-6 mb-2">
+        <div class="col-md-6 mb-1">
             <table class="table-bordered" style="border: 2px solid black; width:100%;">
                 <tbody>
                     <tr class="text-center">
                         <?php 
                         $tanggal = $penanggung_jawab->konversi_tanggal(@$pj['tgl_terima_sampel']);
                         ?>
-                        <th colspan="3">
+                        <th colspan="3" style="font-size: 10pt;">
                             Jakarta, <?= $tanggal != '01 Januari 1970' ? $tanggal.' '.date('H:i', strtotime($pj['jam_terima_sampel'])) : '' ?>
                         </th>
                     </tr>
                     <tr>
-                        <th class="fw-bold p-1" style="width: 5%;">Penanggung jawab</th>
-                        <th class="fw-bold p-1">Nama & Tanda tangan</th>
-                        <th class="fw-bold p-1">No.Telepon</th>
+                        <th class="fw-bold p-1" style="font-size: 10pt; width:5%;">Penanggung jawab</th>
+                        <th class="fw-bold p-1" style="font-size: 10pt;">Nama & Tanda tangan</th>
+                        <th class="fw-bold p-1" style="font-size: 10pt;">No.Telepon</th>
                     </tr>
                     <tr>
-                        <td class="p-1">Petugas sampling/pengambil/pembawa sampel</td>
-                        <td class="p-1">: <?= $pj['nama_pjb'] ?? '' ?></td>
-                        <td class="p-1">: <?= $pj['no_telp_pjb'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;">Petugas sampling/pengambil/pembawa sampel</td>
+                        <td class="p-1" style="font-size: 10pt;">: <?= $pj['nama_pjb'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;">: <?= $pj['no_telp_pjb'] ?? '' ?></td>
                     </tr>
                     <tr>
-                        <td class="p-1">Penerima sampel</td>
-                        <td class="p-1">: <?= $pj['penerima_sampel'] ?? '' ?></td>
-                        <td class="p-1">: <?= $pj['no_telp_penerima'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;">Penerima sampel</td>
+                        <td class="p-1" style="font-size: 10pt;">: <?= $pj['penerima_sampel'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;">: <?= $pj['no_telp_penerima'] ?? '' ?></td>
                     </tr>
                 </tbody>
             </table>
