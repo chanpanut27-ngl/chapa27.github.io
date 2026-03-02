@@ -50,7 +50,8 @@ foreach ($data_pelanggan as $dp) {
         @page {
             size: A4 landscape;
             transform: scale(0.9);
-            margin-bottom: 1cm;
+            margin-bottom: 1mm;
+            margin-top: 0.5mm;
             /* margin: top right bottom left */
         }
     </style>
