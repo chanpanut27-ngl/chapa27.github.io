@@ -190,7 +190,7 @@ foreach ($data_pelanggan as $dp) {
             ?>
             <div style="page-break-before: auto;"></div>
             <div class="col-md-7 mb-1">
-                <table style="border: 2px solid black; width:100%;">
+                <table style="border: 1px solid black; width:100%;">
                     <tbody>
                         <tr>
                             <td style="font-size: 9pt;">Keterangan : <?= $ket['keterangan'] ?? '' ?></td>
@@ -230,7 +230,7 @@ foreach ($data_pelanggan as $dp) {
             ?>
             <div class="col-md-7 mb-1">
             <div class="text-center fw-bold" style="font-size: 10pt;"><?= strtoupper('kaji ulang permintaan, tender dan kontrak') ?></div>
-            <table class="table-bordered" style="border: 2px solid black; width:100%;">
+            <table class="table-bordered" style="border: 1px solid black; width:100%;">
                 <thead>
                     <tr class="text-center fw-bold">
                         <th class="fw-bold" style="font-size: 10pt;" width="5%">NO</th>
@@ -287,7 +287,7 @@ foreach ($data_pelanggan as $dp) {
             ?>
             <div class="col-md-5 mb-1">
                 <div class="text-center">Jakarta, <?= $tanggal != '01 Januari 1970' ? $tanggal.' '.date('H:i', strtotime($pj['jam_terima_sampel'])) : '' ?></div>
-                <table class="table-bordered" style="border: 2px solid black; width:100%;">
+                <table class="table-bordered" style="border: 1px solid black; width:100%;">
                     <thead>
                         <tr class="text-center">
                             <th class="fw-bold" style="width: 50%; font-size: 10pt;">Penanggung jawab</th>
