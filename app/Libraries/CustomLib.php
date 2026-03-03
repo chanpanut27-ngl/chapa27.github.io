@@ -12,7 +12,7 @@ class CustomLib
     public function logo_kopsurat()
     {
         $base_url = base_url('assets/images/logo.webp');
-        $data = '<img src='.$base_url.' class="img-fluid" alt="logo" style="height: 55px;">';
+        $data = '<img src='.$base_url.' class="img-fluid" alt="logo" style="height: 70px;">';
         return $data;
     }
 
