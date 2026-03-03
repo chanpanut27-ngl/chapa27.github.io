@@ -24,9 +24,8 @@ class CustomLib
             <b>Kesehatan Primer dan Komunitas</b> <br>
             BBLKM Jakarta</label>
             <label for="" style="font-size: 7pt;"><span class="fa-solid fa-location-dot"></span> Jl.Bambu Apus Raya No.6 Blok C1 Jakarta Timur 13890<br>
-            <span class="fa-solid fa-phone"></span> (021) 3871 2050 - (021) 3871 2051
-            <span class="fa-solid fa-globe"></span> www.bblkmjakarta.org</label><br>
-            <label style="font-size: 10pt;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No. Kode '.$nomor_form.'</label>';
+            <span class="fa-solid fa-phone"></span> 0812-9000-3610
+            <span class="fa-solid fa-globe"></span> www.bblkmjakarta.org</label><br>';
         return $data;
     }
 

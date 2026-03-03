@@ -92,8 +92,14 @@ foreach ($data_pelanggan as $dp) {
         </div>
         <!-- HEADER --> <!-- end -->
 
-        <h5 class="text-center fw-bold">PENERIMAAN SAMPEL</h5>
+        
         <div class="row">
+            <div class="col-md-10">
+                <h5 class="text-center fw-bold">PENERIMAAN SAMPEL</h5>
+            </div>
+            <div class="col-md-2">
+                <h6 class="text-center fw-bold">No. Kode LB IV 7.1.1.1</h6>
+            </div>
             <div class="col-md-12">
                 <table class="table-bordered" style="border: 1px solid black; width:100%;">
                     <tr>
@@ -213,7 +219,7 @@ foreach ($data_pelanggan as $dp) {
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-5 mb-2" style="align-items: center;justify-content: center; display:flex;">
+            <div class="col-md-5 mb-1" style="align-items: center; justify-content: center; vertical-align:top; margin-top: 1px;">
                 <h5 class="text-center">
                     <?= strtoupper('Tidak Menerima Gratifikasi Dalam Bentuk Apapun') ?><br><br>
                     <label>Waktu Pemeriksaan Sampel 14 Hari Kerja</label>
@@ -280,8 +286,7 @@ foreach ($data_pelanggan as $dp) {
             foreach ($r_penanggung_jawab as $pj){
                 $array_pj[] = $pj;
             }
-            ?>
-            <?php 
+
                 $tglTerimaSampel = $pj['tgl_terima_sampel'] ?? null;
                 $tanggal = $penanggung_jawab->konversi_tanggal($tglTerimaSampel);
             ?>
@@ -309,10 +314,34 @@ foreach ($data_pelanggan as $dp) {
                     </tbody>
                 </table>
                  <?php
-                    $data = 'BBLKM_Jakarta/'.$kode_pengantar.'/'.$no_reg;
-                    $qrcode = (new QRCode())->render($data);
+                    $qrdata = 'BBLKM_Jakarta/'.$kode_pengantar.'/'.$no_reg;
+                    $qrcode = (new QRCode())->render($qrdata);
                     ?>
                     <img src="<?= esc($qrcode) ?>" alt="QR Code" class="qr-code">
+
+                    <?php
+                     $image = \Config\Services::image();
+
+        // Path ke gambar utama
+        // $sourcePath = WRITEPATH . 'assets/images/logo.webp';
+        $sourcePath = WRITEPATH . 'public/assets/images/user-1.jpg';
+        
+        // Path font TrueType (ttf) wajib untuk teks
+        $fontPath = ROOTPATH . 'public/assets/roboto.ttf';
+
+        $image->withFile('assets/images/logo_.webp')
+              ->text('Hak Cipta 2026 ooo', [
+                  'color'          => '#ffffff',
+                  'opacity'        => 0.5,
+                  'withShadow'     => true,
+                  'shadowColor'    => '#000000',
+                  'hAlign'         => 'center',
+                  'vAlign'         => 'bottom',
+                  'fontSize'       => 20,
+                  'fontPath'       => $fontPath,
+              ])->save(); // Menimpa file asli
+        ?>
+
             </div>
             <!-- /// -->
         </div>    
