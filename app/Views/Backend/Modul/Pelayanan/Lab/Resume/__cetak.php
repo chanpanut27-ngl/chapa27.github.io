@@ -229,8 +229,8 @@ foreach ($data_pelanggan as $dp) {
             $array_ku = [];
             $ku = null;
 
-            $r_kaji_ulang = $kaji_ulang->get_data($kode_pengantar, $kl['idkatlab']);
-            foreach ($r_kaji_ulang as $row){
+            $kaji_ulang = $kaji_ulang->get_data($kode_pengantar, $kl['idkatlab']);
+            foreach ($kaji_ulang as $ku){
                 $array_ku[] = $ku;
             }
             ?>
