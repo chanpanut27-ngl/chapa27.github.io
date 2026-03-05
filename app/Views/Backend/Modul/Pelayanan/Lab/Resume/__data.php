@@ -49,7 +49,7 @@ foreach ($data_pelanggan as $dp) {
                     <td class="p-1" style="font-size: 10pt;"><?= $dp['alamat'] ?></td>
                 </tr>
                 <tr>
-                    <td class="p-1 fw-bold" colspan="2" style="font-size: 10pt;">Catatan abnormalitas : <?= $ca; ?></td>
+                    <td class="p-1" colspan="2" style="font-size: 10pt;"><b>Catatan abnormalitas</b> : <?= $ca; ?></td>
                 </tr>
             </table>
         </div>
@@ -75,7 +75,7 @@ foreach ($data_pelanggan as $dp) {
                         <th class="p-1" style="font-size: 10pt;">Metode Pemeriksaan</th>
                         <th class="p-1" style="font-size: 10pt;">Volume/Berat</th>
                         <th class="p-1" style="font-size: 10pt;">Jenis Wadah</th>
-                        <th class="p-1" style="font-size: 10pt;">Jenis Pengawet</th>
+                        <th class="p-1" style="font-size: 10pt; text-center">Jenis Pengawet</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,7 +94,7 @@ foreach ($data_pelanggan as $dp) {
                         <td class="p-1" style="font-size: 9pt;"><?= $row['lokasi_pengambilan_sampel']; ?></td>
                         <td class="p-1 text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
                         <td class="p-1" style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
-                        <td class="p-1" style="font-size: 9pt;"><?= $row['metode_pemeriksaan']; ?></td>
+                        <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['metode_pemeriksaan']; ?></td>
                         <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['volume_atau_berat']; ?></td>
                         <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_wadah']; ?></td>
                         <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_pengawet']; ?></td>
@@ -184,32 +184,32 @@ foreach ($data_pelanggan as $dp) {
                 <tr>
                     <td class="text-center" style="font-size: 10pt;">1</td>
                     <td class="p-1" style="font-size: 10pt;" width="40%;">Alat Utama</td>
-                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['alat_utama'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;"><?= $ku['alat_utama'] ?? '' ?></td>
                 </tr>
                 <tr>
                     <td class="text-center" style="font-size: 10pt;">2</td>
                     <td class="p-1" style="font-size: 10pt;">Alat Pendukung</td>
-                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['alat_pendukung'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;"><?= $ku['alat_pendukung'] ?? '' ?></td>
                 </tr>
                 <tr>
                     <td class="text-center" style="font-size: 10pt;">3</td>
                     <td class="p-1" style="font-size: 10pt;">Personil laboratorium</td>
-                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['personil_lab'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;"><?= $ku['personil_lab'] ?? '' ?></td>
                 </tr>
                 <tr>
                     <td class="text-center" style="font-size: 10pt;">4</td>
                     <td class="p-1" style="font-size: 10pt;">Metode pemeriksaan</td>
-                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['metode_pemeriksaan'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;"><?= $ku['metode_pemeriksaan'] ?? '' ?></td>
                 </tr>
                 <tr>
                     <td class="text-center" style="font-size: 10pt;">5</td>
                     <td class="p-1" style="font-size: 10pt;">Uji mutu (<i>Quality control</i>)</td>
-                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['uji_mutu'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;"><?= $ku['uji_mutu'] ?? '' ?></td>
                 </tr>
                 <tr>
                     <td class="text-center" style="font-size: 10pt;">6</td>
                     <td class="p-1" style="font-size: 10pt;">Reagensa dan media</td>
-                    <td class="p-1" style="font-size: 10pt;">: <?= $ku['reagensa_dan_media'] ?? '' ?></td>
+                    <td class="p-1" style="font-size: 10pt;"><?= $ku['reagensa_dan_media'] ?? '' ?></td>
                 </tr>
             </tbody>
         </table>
@@ -231,19 +231,19 @@ foreach ($data_pelanggan as $dp) {
             <table class="table-bordered" style="border: 2px solid black; width:100%;">
                 <tbody>
                     <tr>
-                        <th class="fw-bold p-1" style="font-size: 10pt; width:5%;">Penanggung jawab</th>
-                        <th class="fw-bold p-1" style="font-size: 10pt;">Nama & Tanda tangan</th>
+                        <th class="fw-bold p-1" style="font-size: 10pt; width:5%; text-align: center;">Penanggung jawab</th>
+                        <th class="fw-bold p-1" style="font-size: 10pt; text-align: center;">Nama & Tanda tangan</th>
                         <th class="fw-bold p-1" style="font-size: 10pt;">No.Telepon</th>
                     </tr>
                     <tr>
                         <td class="p-1" style="font-size: 10pt;">Petugas sampling/pengambil/pembawa sampel</td>
-                        <td class="p-1" style="font-size: 10pt;">: <?= $pj['nama_pjb'] ?? '' ?></td>
-                        <td class="p-1" style="font-size: 10pt;">: <?= $pj['no_telp_pjb'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;"><?= $pj['nama_pjb'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;"><?= $pj['no_telp_pjb'] ?? '' ?></td>
                     </tr>
                     <tr>
                         <td class="p-1" style="font-size: 10pt;">Penerima sampel</td>
-                        <td class="p-1" style="font-size: 10pt;">: <?= $pj['penerima_sampel'] ?? '' ?></td>
-                        <td class="p-1" style="font-size: 10pt;">: <?= $pj['no_telp_penerima'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;"><?= $pj['penerima_sampel'] ?? '' ?></td>
+                        <td class="p-1" style="font-size: 10pt;"><?= $pj['no_telp_penerima'] ?? '' ?></td>
                     </tr>
                 </tbody>
             </table>
