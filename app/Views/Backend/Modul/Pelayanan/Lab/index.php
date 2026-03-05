@@ -150,5 +150,9 @@
 </div>
 <div class="view-modal" style="display: none;"></div>
 <?= $this->endSection(); ?>
+<?= $this->section('bottomAssets'); ?>
+<script src="<?= base_url('assets/js/custom.js'); ?>"></script>
+<?= $this->endSection() ?>
+
 
 

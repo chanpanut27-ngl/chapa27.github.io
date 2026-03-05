@@ -228,7 +228,7 @@ foreach ($data_pelanggan as $dp) {
         ?>
         <div class="col-md-5 mb-1">
             <div class="text-center">Jakarta, <?= $tanggal != '01 Januari 1970' ? $tanggal.' '.date('H:i', strtotime($pj['jam_terima_sampel'])) : '' ?></div>
-            <table class="table-bordered" style="border: 2px solid black; width:100%;">
+            <table class="table-bordered" style="border: 1px solid black; width:100%;">
                 <tbody>
                     <tr>
                         <th class="fw-bold p-1" style="font-size: 10pt; width:5%; text-align: center;">Penanggung jawab</th>

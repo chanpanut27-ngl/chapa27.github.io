@@ -329,17 +329,18 @@ foreach ($data_pelanggan as $dp) {
         // Path font TrueType (ttf) wajib untuk teks
         $fontPath = ROOTPATH . 'public/assets/roboto.ttf';
 
-        $image->withFile('assets/images/logo_.webp')
-              ->text('Hak Cipta 2026 ooo', [
-                  'color'          => '#ffffff',
-                  'opacity'        => 0.5,
-                  'withShadow'     => true,
-                  'shadowColor'    => '#000000',
-                  'hAlign'         => 'center',
-                  'vAlign'         => 'bottom',
-                  'fontSize'       => 20,
-                  'fontPath'       => $fontPath,
-              ])->save(); // Menimpa file asli
+        // $image->withFile('assets/images/logo_.webp')
+        //       ->text('Hak Cipta 2026 ooo', [
+        //           'color'          => '#ffffff',
+        //           'opacity'        => 0.5,
+        //           'withShadow'     => true,
+        //           'shadowColor'    => '#000000',
+        //           'hAlign'         => 'center',
+        //           'vAlign'         => 'bottom',
+        //           'fontSize'       => 20,
+        //           'fontPath'       => $fontPath,
+        //       ])->save(); 
+              // Menimpa file asli
         ?>
 
             </div>
