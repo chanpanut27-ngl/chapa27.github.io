@@ -184,6 +184,12 @@
                         <span class="pc-mtext">Posisi Coolbox</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('coolbox/antrian-coolbox') ?>" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-mtext">Antrian Coolbox</span>
+                    </a>
+                </li>
                 <?php if ( in_groups('admin') ) : ?>
 
                 <li class="pc-item pc-caption">
