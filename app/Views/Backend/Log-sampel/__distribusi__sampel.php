@@ -26,6 +26,7 @@ use App\Models\SpesimenPenyakitModel;
 
             $no=1;
             foreach ($items as $row) :
+            $kode_pengantar = $row['kode_pengantar'];
             $id_pelanggan = $row['id_pelanggan'];
             $rest = $model->detail_lab($id_pelanggan);
             ?>
