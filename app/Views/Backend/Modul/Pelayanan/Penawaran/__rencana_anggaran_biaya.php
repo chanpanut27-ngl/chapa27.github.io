@@ -4,7 +4,7 @@ use App\Models\LaboratoriumTujuanModel;
 use App\Models\PermintaanSampelModel;
 
 $lab_tujuan = new LaboratoriumTujuanModel();
-$kode_pengantar = $items['kode_pengantar'];
+$kode_pengantar = $items['kode_pengantar'] ?? '';
 $a = $lab_tujuan->get_data($kode_pengantar);
 // $this->modelLabTujuan->get_data($kode_pengantar);
 ?>
