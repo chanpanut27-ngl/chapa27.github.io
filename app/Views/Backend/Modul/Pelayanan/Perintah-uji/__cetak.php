@@ -19,6 +19,12 @@
             /* margin: top right bottom left */
         }
     </style>
+    <style>
+        .qr-code {
+            width: 80px;
+            height: 80px;
+        }
+    </style>
     <script>
         // window.print();
     </script>
@@ -33,9 +39,12 @@
         <div class="col-md-12">
             <table style="width: 100%;">
                 <tr>
-                    <td class="align-top" style="width: 70%;">
+                    <td class="align-top" style="width: 60%;">
                         <?php
                         use App\Libraries\CustomLib;
+                        use App\Models\PengantarLabModel;
+                        use App\Models\PermintaanPelangganModel;
+
                         $custom_lib = new CustomLib();
                         echo $custom_lib->logo_kopsurat();
                         ?>
@@ -47,7 +56,7 @@
             </table>
         </div>
     </div>
-    <h4 style="text-align: center;"><b>SURAT PERINTAH UJI SAMPEL</b></h4>
+    <h4 style="text-align: center; margin-top:1px;"><b>SURAT PERINTAH UJI SAMPEL</b></h4>
     <div class="row">
         <div class="col-sm-12">
             <table>
@@ -157,6 +166,21 @@
                     <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_terima_sampel_ke_analis_lab'])) ?></td>
                 </tr>
             </table>
+            <?php
+                use chillerlan\QRCode\QRCode;
+                $pengantar_lab = new PengantarLabModel();
+                $permintaan = new PermintaanPelangganModel();
+
+                $plab = $pengantar_lab->where('kode_pengantar', $kode_pengantar)->first();
+                $id_pelanggan = $plab['id_pelanggan'];
+                $rest = $permintaan->where('id', $id_pelanggan)->first();
+
+
+                $qrdata = 'BBLKM_Jakarta/'.$kode_pengantar.'/'.$rest['no_reg'];
+                $qrcode = (new QRCode())->render($qrdata);
+            ?>
+            <img src="<?= esc($qrcode) ?>" alt="QR Code" class="qr-code">
+
         </div>
     </div>
     <script src="<?= base_url('assets/js/plugins/bootstrap.min.js'); ?>"></script>
