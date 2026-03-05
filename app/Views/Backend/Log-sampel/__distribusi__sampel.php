@@ -64,12 +64,6 @@ use App\Models\SpesimenPenyakitModel;
                                 <th class="p-1" style="font-size: 10pt;">Kode Sampel</th>
                                 <th class="p-1 text-center" style="font-size: 10pt;">Jenis Sampel</th>
                                 <th class="p-1" style="font-size: 10pt;"><?= $kl['idkatlab'] == '1' ? 'Lokasi pengambilan' : 'Identitas'; ?></th>
-                                <th class="p-1" style="font-size: 10pt;">Tgl & Jam Pengambilan Sampel</th>
-                                <th class="p-1" style="font-size: 10pt;">Peraturan/Baku Mutu</th>
-                                <th class="p-1" style="font-size: 10pt;">Metode Pemeriksaan</th>
-                                <th class="p-1" style="font-size: 10pt;">Volume/Berat</th>
-                                <th class="p-1" style="font-size: 10pt;">Jenis Wadah</th>
-                                <th class="p-1" style="font-size: 10pt; text-center">Jenis Pengawet</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -86,12 +80,6 @@ use App\Models\SpesimenPenyakitModel;
                                 <td class="p-1" style="font-size: 9pt;"><b><?= $row['kode_sampel']; ?></b></td>
                                 <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_sampel']; ?></td>
                                 <td class="p-1" style="font-size: 9pt;"><?= $row['lokasi_pengambilan_sampel']; ?></td>
-                                <td class="p-1 text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
-                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['metode_pemeriksaan']; ?></td>
-                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['volume_atau_berat']; ?></td>
-                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['jenis_wadah']; ?></td>
-                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['jenis_pengawet']; ?></td>
                             </tr>
                             <?php  }
                             } else {
