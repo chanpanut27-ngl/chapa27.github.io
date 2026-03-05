@@ -29,7 +29,7 @@
                     <div class="card-header p-2">
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title ?></h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-1">
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
                                 <a class="nav-link navtabs <?= current_url() == base_url('log-sampel/penerimaan') ? 'active bg-primary text-light' : '' ?>" href="<?= base_url('log-sampel/penerimaan') ?>">Penerimaan</a>
@@ -41,7 +41,7 @@
                                 <a class="nav-link navtabs <?= current_url() == base_url('log-sampel/distribusi-sampel') ? 'active bg-info text-light' : '' ?>" href="<?= base_url('log-sampel/distribusi-sampel') ?>">Distribusi sampel</a>
                             </li>
                         </ul>
-                        <div class="card-body">
+                        <div class="card-body p-1">
                             <?= $this->renderSection('content_log'); ?>
                         </div>
                     </div>

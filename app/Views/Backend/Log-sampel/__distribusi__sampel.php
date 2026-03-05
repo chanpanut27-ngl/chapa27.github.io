@@ -43,6 +43,7 @@
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <thead>
                             <?php
+                            $menu_lab = $this->modelLabTujuan->get_data($kode_pengantar);
                             foreach ($menu_lab as $lab) :
                                 if ($kl['idkatlab'] == $lab['id_kat_lab']) :
                             ?>
