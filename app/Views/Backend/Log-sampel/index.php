@@ -26,7 +26,7 @@
             <!-- [ sample-page ] start -->
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header p-2">
+                    <div class="card-header p-3">
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title ?></h4>
                     </div>
                     <div class="card-body p-1">
