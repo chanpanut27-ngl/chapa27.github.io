@@ -15,9 +15,9 @@ class MgdbAntrianCoolbox extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'id_coolbox' => [
-                'type'           => 'INT',
-                'constraint'     => 5
+            'kode_coolbox' => [
+                'type'           => 'CHAR',
+                'constraint'     => 20
             ],
             'no_antrian' => [
                 'type'           => 'VARCHAR',
@@ -28,6 +28,10 @@ class MgdbAntrianCoolbox extends Migration
             ],
             'jam_terima_sampel' => [
                 'type'           => 'TIME'
+            ],
+            'foto' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255'
             ],
             'created_at datetime default current_timestamp',
             'updated_at datetime default current_timestamp on update current_timestamp',
