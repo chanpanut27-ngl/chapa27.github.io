@@ -13,7 +13,12 @@ class AntrianCoolboxModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'kode_coolbox',
+        'tgl_terima_coolbox',
+        'jam_terima_coolbox',
+        'tahun'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

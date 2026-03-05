@@ -19,10 +19,10 @@ $(document).ready(function () {
                 if (error) {
                     
                         if (error.kode_coolbox) {
-                            $('#id-coolbox').addClass('is-invalid');
+                            $('#kode-coolbox').addClass('is-invalid');
                             $('.errorKodeCoolbox').html(error.kode_coolbox);
                         } else {
-                            $('#id-coolbox').removeClass('is-invalid');
+                            $('#kode-coolbox').removeClass('is-invalid');
                             $('.errorKodeCoolbox').html('');
                         }
                         if (error.tgl_terima_coolbox) {

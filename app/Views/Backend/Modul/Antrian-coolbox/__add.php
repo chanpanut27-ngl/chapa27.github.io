@@ -6,11 +6,11 @@
                 <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/instansi/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('coolbox/antrian-coolbox/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="nama-instansi" class="form-label h5">Kode coolbox</label>
+                        <label for="kode-coolbox" class="form-label h5">Kode coolbox</label>
                     </div>
                     <div class="mb-3">
                         <select name="kode_coolbox" class="form-select" id="kode-coolbox" aria-label="Default select example" style="width: 100%;">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl-terima-coolbox" class="form-label h5">Tanggal</label>
-                        <input type="date" name="tanggal_terima_coolbox" class="form-control" id="tgl-terima-coolbox" autocomplete="off">
+                        <input type="date" name="tgl_terima_coolbox" class="form-control" id="tgl-terima-coolbox" autocomplete="off">
                         <div class="invalid-feedback errorTglTerimaCoolbox"></div>
                     </div>
                     <div class="mb-3">
@@ -44,4 +44,4 @@
         </div>
     </div>
 </div>
-<script src="<?= base_url('assets/js/Master/@save_antrian_coolbox.js') ?>"></script>
+<script src="<?= base_url('assets/js/Coolbox/@save_antrian_coolbox.js') ?>"></script>

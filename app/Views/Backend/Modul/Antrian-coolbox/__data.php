@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Nomor antrian', 'Kode coolbox', 'Instansi', 'Tgl & Jam', ''];
+        $arrth = ['No', 'Nomor antrian', 'Kode coolbox', 'Tgl & Jam', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -18,7 +18,6 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['no_antrian'] ?></td>
                 <td><?= $row['kode_coolbox'] ?></td>
-                <td><?= $row['nama_instansi'] ?></td>
                 <td><?= $row['tgl_terima_coolbox'] ?> <?= $row['jam_terima_coolbox'] ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
@@ -80,7 +79,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('master-data/instansi/delete-data/'); ?>' + id,
+                    url: '<?= site_url('coolbox/antrian-coolbox/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {

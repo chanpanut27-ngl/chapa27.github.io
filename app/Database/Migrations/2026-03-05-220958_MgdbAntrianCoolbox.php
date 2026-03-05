@@ -23,11 +23,14 @@ class MgdbAntrianCoolbox extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => 100
             ],
-            'tgl_terima_sampel' => [
+            'tgl_terima_coolbox' => [
                 'type'           => 'DATE'
             ],
-            'jam_terima_sampel' => [
+            'jam_terima_coolbox' => [
                 'type'           => 'TIME'
+            ],
+            'tahun' => [
+                'type'           => 'YEAR'
             ],
             'foto' => [
                 'type'       => 'VARCHAR',
