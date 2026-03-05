@@ -91,7 +91,7 @@ class MapPerintahUjiSampelModel extends Model
         LEFT JOIN master_jenis_sampel ON master_jenis_sampel.id = map_perintah_uji_sampel.id_jenis_sampel
         LEFT JOIN master_peraturan ON master_peraturan.id = master_jenis_sampel.id_peraturan
         LEFT JOIN perintah_uji_sampel ON perintah_uji_sampel.id = map_perintah_uji_sampel.id_map
-        WHERE id_map = '".$param."'";    
+        WHERE id_map = '".$param."' GROUP BY id_jenis_sampel";    
         $query = $db->query($sql)->getResultArray();
         return $query;
     }

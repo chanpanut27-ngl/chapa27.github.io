@@ -313,9 +313,9 @@ foreach ($data_pelanggan as $dp) {
                         </tr>
                     </tbody>
                 </table>
-                 <?php
-                    $qrdata = 'BBLKM_Jakarta/'.$kode_pengantar.'/'.$no_reg;
-                    $qrcode = (new QRCode())->render($qrdata);
+                    <?php
+                        $qrdata = 'BBLKM_Jakarta/'.$kode_pengantar.'/'.$no_reg;
+                        $qrcode = (new QRCode())->render($qrdata);
                     ?>
                     <img src="<?= esc($qrcode) ?>" alt="QR Code" class="qr-code">
 

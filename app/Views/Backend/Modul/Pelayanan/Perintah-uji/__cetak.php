@@ -12,6 +12,12 @@
         #toolbarContainer, .no-print, button {
             display: none !important;
         }
+         @page {
+            size: A4 potrait;
+            transform: scale(0.9);
+            margin-bottom: 1mm;
+            /* margin: top right bottom left */
+        }
     </style>
     <script>
         // window.print();
@@ -41,9 +47,7 @@
             </table>
         </div>
     </div>
-    <h4 style="text-align: center;"><b>SURAT PERINTAH UJI SAMPEL</b><br>
-     _______________________________________________________________________________________________
-    </h4>
+    <h4 style="text-align: center;"><b>SURAT PERINTAH UJI SAMPEL</b></h4>
     <div class="row">
         <div class="col-sm-12">
             <table>
@@ -68,7 +72,7 @@
             </table>
             <table class="table-bordered" style="border: 1px solid black; width:100%;">
                 <tr class="text-center">
-                    <th><label for="">No</label></th>
+                    <th><label for="" class="text-center">No</label></th>
                     <th><label for="">Kode Sampel</label></th>
                     <th><label for="">Jenis Sampel</label></th>
                     <th><label for="">Peraturan</label></th>
@@ -78,7 +82,7 @@
                 </tr>
                 <?php $no=1; foreach ($items as $row) : ?>
                     <tr>
-                        <td class="p-1"><?= $no++; ?></td>
+                        <td class="p-1 text-center"><?= $no++; ?></td>
                         <td class="text-center"><?= $row['kode_sampel'] ?></td>
                         <td class="p-1"><?= $row['jenis_sampel'] ?><input type="hidden" name="id_jenis_sampel[]" value="<?= $row['id_jenis_sampel'] ?>"></td>
                         <td class="p-1"><?= $row['peraturan'] ?></td>

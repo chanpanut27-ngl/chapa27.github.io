@@ -8,16 +8,17 @@
             </div>
             <form action="<?= base_url('pelayanan/perintah-uji-sampel/create-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
-                <input type="text" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
-                <input type="text" name="id_pengantar_lab" value="<?= $id_pengantar_lab['id']; ?>">
-                <input type="text" name="id_instalasi" value="<?= $id_instalasi; ?>">
+                <input type="hidden" name="kode_pengantar" value="<?= $kode_pengantar; ?>">
+                <input type="hidden" name="id_pengantar_lab" value="<?= $id_pengantar_lab['id']; ?>">
+                <input type="hidden" name="id_instalasi" value="<?= $id_instalasi; ?>">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-3">
                             <h5>Tanggal penerimaan sampel</h5>
                         </div>
                         <div class="col-md-9 d-flex">
-                            <input type="date" readonly name="tgl_terima_sampel" value="<?= $tgl_terima_sampel['tgl_terima_sampel'] ?>" class="form-control bg-gray-300 fw-bold w-5">
+                            <h5><?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?></h5>
+                            <input type="hidden" readonly name="tgl_terima_sampel" value="<?= $tgl_terima_sampel['tgl_terima_sampel'] ?>" class="form-control bg-gray-300 fw-bold w-5">
                         </div>
                     </div>
                     <div class="row">
