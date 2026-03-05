@@ -16,7 +16,12 @@
         </thead>
         <tbody>
             <?php
-            use App\Models\PermintaanPemeriksaanModel;
+
+use App\Models\LaboratoriumTujuanModel;
+use App\Models\PermintaanPemeriksaanModel;
+use App\Models\SampelLingkunganModel;
+use App\Models\SpesimenPenyakitModel;
+
             $model = new PermintaanPemeriksaanModel();
 
             $no=1;
