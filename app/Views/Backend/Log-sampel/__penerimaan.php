@@ -35,7 +35,7 @@
                 <td>
                     <div class="row">
                         <div class="col">
-                            <h6 class="mb-0"><?= $row['created_at'] ?></h6>
+                            <h6 class="mb-0"><?= date('d/m/Y', strtotime($row['created_at'])) ?></h6>
                             <p class="text-muted f-12 mb-0"><?= $row['created_by'] ?></p>
                         </div>
                     </div>
