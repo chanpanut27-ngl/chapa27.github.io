@@ -88,7 +88,7 @@ foreach ($data_pelanggan as $dp) {
                         $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel']));
                     ?>
                     <tr>
-                        <td class="p-1" style="font-size: 9pt;"><?= $index++ ?></td>
+                        <td class="p-1 text-center" style="font-size: 9pt;"><?= $index++ ?></td>
                         <td class="p-1" style="font-size: 9pt;"><b><?= $row['kode_sampel']; ?></b></td>
                         <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_sampel']; ?></td>
                         <td class="p-1" style="font-size: 9pt;"><?= $row['lokasi_pengambilan_sampel']; ?></td>
@@ -96,8 +96,8 @@ foreach ($data_pelanggan as $dp) {
                         <td class="p-1" style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
                         <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['metode_pemeriksaan']; ?></td>
                         <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['volume_atau_berat']; ?></td>
-                        <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_wadah']; ?></td>
-                        <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_pengawet']; ?></td>
+                        <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['jenis_wadah']; ?></td>
+                        <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['jenis_pengawet']; ?></td>
                     </tr>
                     <?php  }
                     } else {

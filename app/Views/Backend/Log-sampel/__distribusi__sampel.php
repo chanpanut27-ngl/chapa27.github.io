@@ -40,16 +40,72 @@
                 </td>
                 <td><?= $row['instansi'] ?></td>
                 <td>
-                    <table class="table-bordered">
-                    <tbody>
-                        <?= var_dump($rest); ?>
-                        <?php foreach ($rest as $key) : ?>
-                        <tr>
-                            <td><?= $key['jenis_sampel'] ?></td>
-                            <td><?= $key['nama_lab'] ?></td>
-                        </tr>
-                        <?php endforeach;?>
-                    </tbody>
+                    <table class="table-bordered" style="border: 1px solid black; width:100%;">
+                        <thead>
+                            <?php
+                            foreach ($menu_lab as $lab) :
+                                if ($kl['idkatlab'] == $lab['id_kat_lab']) :
+                            ?>
+                            <tr>
+                                <td colspan="10" class="p-1 fw-bold" style="font-size: 10pt;">
+                                    <?= ucfirst($lab['nama_lab']);?>
+                                </td>
+                            </tr>
+                            <tr class="fw-bold text-center">
+                                <th class="p-1 text-center" style="font-size: 10pt;">No</th>
+                                <th class="p-1" style="font-size: 10pt;">Kode Sampel</th>
+                                <th class="p-1 text-center" style="font-size: 10pt;">Jenis Sampel</th>
+                                <th class="p-1" style="font-size: 10pt;"><?= $kl['idkatlab'] == '1' ? 'Lokasi pengambilan' : 'Identitas'; ?></th>
+                                <th class="p-1" style="font-size: 10pt;">Tgl & Jam Pengambilan Sampel</th>
+                                <th class="p-1" style="font-size: 10pt;">Peraturan/Baku Mutu</th>
+                                <th class="p-1" style="font-size: 10pt;">Metode Pemeriksaan</th>
+                                <th class="p-1" style="font-size: 10pt;">Volume/Berat</th>
+                                <th class="p-1" style="font-size: 10pt;">Jenis Wadah</th>
+                                <th class="p-1" style="font-size: 10pt; text-center">Jenis Pengawet</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                            $index = 1;
+                            if ($kl['idkatlab'] == 1) {
+                                $pemeriksaan = new SampelLingkunganModel();
+                                $r = $pemeriksaan->get_data($kode_pengantar, $lab['id_lab']);
+                                foreach ($r as $row) {
+                                $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_ambil_sampel'])).' '. date('H:i', strtotime($row['jam_ambil_sampel']));
+                            ?>
+                            <tr>
+                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $index++ ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><b><?= $row['kode_sampel']; ?></b></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_sampel']; ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['lokasi_pengambilan_sampel']; ?></td>
+                                <td class="p-1 text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
+                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['metode_pemeriksaan']; ?></td>
+                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['volume_atau_berat']; ?></td>
+                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['jenis_wadah']; ?></td>
+                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['jenis_pengawet']; ?></td>
+                            </tr>
+                            <?php  }
+                            } else {
+                                $pemeriksaan = new SpesimenPenyakitModel();
+                                $r = $pemeriksaan->get_data($kode_pengantar, $lab['id_lab']);
+                                foreach ($r as $row) {
+                                $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_periksa_sampel'])).' '. date('H:i', strtotime($row['jam_periksa_sampel']));
+                            ?>
+                            <tr>
+                                <td class="p-1" style="font-size: 9pt;"><?= $index++ ?></td>
+                                <td class="p-1 text-center fw-bold" style="font-size: 9pt;"><?= $row['kode_sampel']; ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_sampel']; ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['identitas_sampel']; ?></td>
+                                <td class="p-1 text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['metode_pemeriksaan']; ?></td>
+                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $row['volume_atau_berat']; ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_wadah']; ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_pengawet']; ?></td>
+                            </tr>
+                        <?php }} endif; endforeach;?>
+                        </tbody>
                     </table>
                 </td>
                 <td>
