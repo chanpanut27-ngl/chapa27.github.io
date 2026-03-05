@@ -156,7 +156,7 @@
             },
             complete: function() {
                 $('.btn-show-lab').removeAttr('disable');
-                $('.btn-show-lab').html('<i class="ti ti-circle-plus"></i> Laboratorium Pemeriksaan');
+                $('.btn-show-lab').html('<i class="ti ti-clipboard"></i> Laboratorium Pemeriksaan');
             },
             success: function(response) {
                 if (response.sukses) {

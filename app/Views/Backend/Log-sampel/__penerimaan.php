@@ -9,7 +9,6 @@
                 <th>#</th>
                 <th>Nama pelanggan</th>
                 <th>Instansi</th>
-                <th>Status</th>
                 <th>Tgl/jam & User terima</th>
             </tr>
         </thead>
@@ -33,7 +32,6 @@
                     </div>
                 </td>
                 <td><?= $row['instansi'] ?></td>
-                <td><span class="badge bg-light-primary rounded-pill f-12">Penerimaan di Terima</span> </td>
                 <td>
                     <div class="row">
                         <div class="col">

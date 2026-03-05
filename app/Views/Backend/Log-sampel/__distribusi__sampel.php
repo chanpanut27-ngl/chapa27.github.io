@@ -9,15 +9,20 @@
                 <th>#</th>
                 <th>Nama pelanggan</th>
                 <th>Instansi</th>
-                <th>Status</th>
+                <th>Jenis sampel & Lab. tujuan</th>
                 <th>Tanggal & Nama Pj</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
         <tbody>
             <?php
+            use App\Models\PermintaanPemeriksaanModel;
+            $model = new PermintaanPemeriksaanModel();
+
             $no=1;
             foreach ($items as $row) :
+            $id_pelanggan = $row['id_pelanggan'];
+            $rest = $model->detail_lab($id_pelanggan);
             ?>
             <tr>
                 <td><?= $no++ ?></td>
@@ -34,11 +39,23 @@
                     </div>
                 </td>
                 <td><?= $row['instansi'] ?></td>
-                <td><span class="badge bg-light-info rounded-pill f-12"><?= $row['status'] ?></span> </td>
+                <td>
+                    <table class="table-bordered">
+                    <tbody>
+                        <?= var_dump($rest); ?>
+                        <?php foreach ($rest as $key) : ?>
+                        <tr>
+                            <td><?= $key['jenis_sampel'] ?></td>
+                            <td><?= $key['nama_lab'] ?></td>
+                        </tr>
+                        <?php endforeach;?>
+                    </tbody>
+                    </table>
+                </td>
                 <td>
                     <div class="row">
                         <div class="col">
-                            <h6 class="mb-0"><?= $row['created_at'] ?></h6>
+                            <h6 class="mb-0"><?= date('d/m/Y', strtotime($row['created_at'])) ?></h6>
                             <p class="text-muted f-12 mb-0"><?= $row['created_by'] ?></p>
                         </div>
                     </div>

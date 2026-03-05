@@ -8,7 +8,6 @@
                 <th>#</th>
                 <th>Nama pelanggan</th>
                 <th>Instansi</th>
-                <th>Status</th>
                 <th>Tgl/jam & User terima</th>
                 <th class="text-center">Actions</th>
             </tr>
@@ -33,7 +32,6 @@
                     </div>
                 </td>
                 <td><?= $row['instansi'] ?></td>
-                <td><span class="badge bg-light-warning rounded-pill f-12"><?= $row['status'] ?></span> </td>
                 <td>
                     <div class="row">
                         <div class="col">
