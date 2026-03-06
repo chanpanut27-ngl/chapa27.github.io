@@ -63,8 +63,8 @@ class MgdbMasterPegawai extends Migration
                 'type'       => 'TEXT'
             ],
             'no_telp' => [
-                'type'       => 'CHAR',
-                'constraint' => '20',
+                'type'       => 'VARCHAR',
+                'constraint' => '150',
             ],
             'id_users' => [
                 'type'       => 'INT'
@@ -85,27 +85,23 @@ class MgdbMasterPegawai extends Migration
                 'type'  => 'BOOLEAN',
                 'default' => 1
             ],
-            'deleted' => [
-                'type'  => 'INT',
-                'default' => 0
-            ],
             'created_at datetime default current_timestamp',
-            'updated_at datetime default current_timestamp on update current_timestamp',
+            'updated_at datetime on update current_timestamp',
             'created_by'     => [
                 'type'       => 'VARCHAR',
-                'constraint' => '100'
+                'constraint' => '150'
             ],
             'updated_by'     => [
                 'type'       => 'VARCHAR',
-                'constraint' => '100'
+                'constraint' => '150'
             ],
             'deleted_at' => [
-                'type' => 'DATETIME'
+                'type' => 'DATETIME',
+                'null' => true
             ],
-            'deleted_at datetime default current_timestamp',
             'deleted_by'     => [
                 'type'       => 'VARCHAR',
-                'constraint' => '100'
+                'constraint' => '150'
             ]
          ]);
 

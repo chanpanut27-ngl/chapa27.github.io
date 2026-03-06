@@ -13,19 +13,25 @@ class AuthGroupsSeeder extends Seeder
                 'name' => 'admin',
                 'description'    => 'Site Administrator',
                 'created_at' => '2026-02-04 05:31:03',
-                'updated_at' => '2026-02-04 05:31:03',
+                'updated_at' => NULL,
+                'created_by' => 'prola',
+                'updated_by' => ''
             ],
             [
                 'name' => 'user',
                 'description'    => 'Site User',
                 'created_at' => '2026-02-04 05:31:03',
-                'updated_at' => '2026-02-04 05:31:03',
+                'updated_at' => NULL,
+                'created_by' => 'prola',
+                'updated_by' => ''
             ],
             [
                 'name' => 'pelanggan',
                 'description' => 'Site Pelanggan',
                 'created_at' => '2026-02-04 05:31:21',
-                'updated_at' => '2026-02-04 05:31:21',
+                'updated_at' => NULL,
+                'created_by' => 'prola',
+                'updated_by' => ''
             ]
         ];
 
