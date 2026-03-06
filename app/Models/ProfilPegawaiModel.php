@@ -66,10 +66,8 @@ class ProfilPegawaiModel extends Model
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
-       $myTime = new Time();
         if ($username) {
             $data['data']['updated_by'] = $username;
-            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }

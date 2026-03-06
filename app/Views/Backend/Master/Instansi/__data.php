@@ -63,7 +63,8 @@
     }
 
 
-    function deleteData(id) {
+    function deleteData(id) 
+    {
         var myElement = $('#myId-' + id);
         if (myElement.data('urut')) {
             myElement.addClass('bg bg-danger');

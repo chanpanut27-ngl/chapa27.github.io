@@ -8,6 +8,8 @@
     $routes->post('create-data', 'ProfilPegawai::create');
     $routes->post('update-data', 'ProfilPegawai::update');
     $routes->post('upload-foto', 'ProfilPegawai::do_upload');
+    $routes->delete('delete-data/(:num)', 'ProfilPegawai::delete/$1');
+
 });
 
 ?>
