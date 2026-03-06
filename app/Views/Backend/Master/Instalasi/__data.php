@@ -69,7 +69,7 @@
         }
         Swal.fire({
             title: "Yakin untuk menghapus data ?",
-            text: `No.urut : ` + myElement.data('urut'),
+            text: `No. : ` + myElement.data('urut'),
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",

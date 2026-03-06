@@ -88,7 +88,7 @@ $(document).ready(function () {
             },
             complete: function() {
                 $('.btn-ubah').removeAttr('disable');
-                $('.btn-ubah').html('<span class="fa-solid fa-edit"></span> Ubah');
+                $('.btn-ubah').html('<i class="ti ti-edit-circle"></i> Ubah');
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);

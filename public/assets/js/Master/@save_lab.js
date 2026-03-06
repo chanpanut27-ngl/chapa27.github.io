@@ -88,7 +88,7 @@ $(document).ready(function () {
             },
             complete: function() {
                 $('.btn-simpan').removeAttr('disable');
-                $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
+                $('.btn-simpan').html('<i class="ti ti-device-floppy"></i> Simpan');
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);

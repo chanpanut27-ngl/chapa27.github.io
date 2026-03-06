@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Kode Lab', 'Laboratorium', 'Lantai', 'Instalasi', 'Kategori', 'Is_active', ''];
+        $arrth = ['No', 'Kode laboratorium', 'Laboratorium', 'Instalasi', 'Lantai', 'Kategori', 'Is_active', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -18,16 +18,16 @@
                 <td><b><?= $no++; ?></b></td>
                 <td class="text-center"><?= $row['kode_lab'] ?></td>
                 <td><?= $row['nama_lab'] ?></td>
-                <td class="text-center"><?= $row['lantai']; ?></td>
                 <td><?= $row['nama_instalasi'] ?></td>
+                <td class="text-center"><?= $row['lantai']; ?></td>
                 <td><?= $row['kategori'] ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
-                            <i class="ti ti-edit"></i>
+                        <button type="button" class="btn btn-warning btn-sm border-0 rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
+                            <i class="ti ti-edit-circle"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm border-0 rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>
@@ -71,7 +71,7 @@
         }
         Swal.fire({
             title: "Yakin untuk menghapus data ?",
-            text: `No.urut : ` + myElement.data('urut'),
+            text: `No. : ` + myElement.data('urut'),
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",

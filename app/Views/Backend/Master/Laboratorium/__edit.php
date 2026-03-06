@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-edit-circle fs-2"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/laboratorium/update-data') ?>" class="form-data">
@@ -21,6 +21,16 @@
                         <div class="invalid-feedback errorNamaLab"></div>
                     </div>
                     <div class="mb-3">
+                        <label for="kode-instalasi" class="form-label h5">Instalasi</label>
+                        <select name="kode_instalasi" class="form-select" id="kode-instalasi" aria-label="Default select example">
+                            <option value="">-- pilih --</option>
+                            <?php foreach ($masterInstalasi as $key) : ?>
+                                <option value="<?= $key['kode_instalasi'] ?>" <?= $items['kode_instalasi'] == $key['kode_instalasi'] ? 'selected' : ''; ?>><?= $key['nama_instalasi'] ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorKodeInstalasi"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="lantai" class="form-label h5">Lantai</label>
                         <select name="lantai" class="form-select" id="lantai" aria-label="Default select example">
                             <option value="">-- Pilih --</option>
@@ -30,16 +40,6 @@
                             <option value="4" <?= $items['lantai'] == 4 ? 'selected' : ''; ?>>4</option>
                         </select>
                         <div class="invalid-feedback errorLantai"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="kode-instalasi" class="form-label h5">Instalasi</label>
-                        <select name="kode_instalasi" class="form-select" id="kode-instalasi" aria-label="Default select example">
-                            <option value="">-- pilih --</option>
-                            <?php foreach ($masterInstalasi as $key) : ?>
-                                <option value="<?= $key['kode_instalasi'] ?>" <?= $items['kode_instalasi'] == $key['kode_instalasi'] ? 'selected' : ''; ?>><?= $key['nama_instalasi'] ?></option>
-                            <?php endforeach;?>
-                        </select>
-                        <div class="invalid-feedback errorKodeInstalasi"></div>
                     </div>
                     <div class="mb-3">
                         <label for="kategori" class="form-label h5">Kategori</label>
@@ -69,8 +69,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fa-solid fa-edit"></span> Ubah</button>
-                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><i class="ti ti-edit-circle"></i> Ubah</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-x"></i> Tutup</button>
                 </div>
             </form>
         </div>
