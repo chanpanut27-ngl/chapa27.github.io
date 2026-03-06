@@ -33,9 +33,9 @@ foreach ($profil as $field) {
         <input type="text" name="no_telp" value="<?= $field['no_telp'] ?? '' ?>" class="form-control" id="no-telp" placeholder="Isi nomor telepon instansi ...">
         <div class="invalid-feedback errorNoTelp"></div>
     </div>
-    <div class="card-footer">
-        <button type="submit" class="btn bg-blue-400 btn-primary border-0 btn-sm rounded btn-ubah"><i class="ti ti-edit-circle"></i> Ubah</button>
-        <button type="reset" class="btn bg-red-400 btn-danger border-0 btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-refresh"></i> Batal</button>
+    <div class="card-footer p-2">
+        <button type="submit" class="btn btn-primary border-0 btn-md rounded btn-ubah"><i class="ti ti-edit-circle"></i> Ubah</button>
+        <button type="reset" class="btn btn-danger border-0 btn-md rounded" data-bs-dismiss="modal"><i class="ti ti-refresh"></i> Batal</button>
     </div>
 </form>
 

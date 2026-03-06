@@ -25,7 +25,7 @@
     <div class="card-footer p-2">
         <form action="<?= base_url('profil-pegawai/upload-foto') ?>" class="form-upload" enctpype="multipart/form-data">
             <input type="file" name="user_image" id="user-image" class="form-control" accept="image/png, image/jpg, image/jpeg">
-            <button type="submit" class="btn btn-sm bg-blue-400 btn-primary border-0 mt-2 rounded btn-upload">
+            <button type="submit" class="btn btn-md btn-primary border-0 mt-2 rounded btn-upload">
                 <i class="ti ti-edit-circle"></i> Ubah foto
             </button>
         </form>
