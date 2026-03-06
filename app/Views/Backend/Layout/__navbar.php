@@ -32,25 +32,25 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan/permintaan'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext">Permintaan</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan/penawaran'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext">Penawaran</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan/pengantar-lab'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext">Pengantar laboratorium</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan/perintah-uji-sampel'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext">Perintah uji sampel</span>
                     </a>
                 </li>
@@ -60,7 +60,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="#" class="pc-link">
                         <span class="pc-micon">
-                            <i class="ti ti-arrow-right"></i>
+                            <i class="ti ti-menu"></i>
                         </span>
                         <span class="pc-mtext">Peraturan</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
@@ -116,7 +116,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="#" class="pc-link">
                         <span class="pc-micon">
-                            <i class="ti ti-arrow-right"></i>
+                            <i class="ti ti-menu"></i>
                         </span>
                         <span class="pc-mtext">Formulir</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
@@ -152,7 +152,7 @@
                 <li class="pc-item pc-hasmenu">
                     <a href="#" class="pc-link">
                         <span class="pc-micon">
-                            <i class="ti ti-arrow-right"></i>
+                            <i class="ti ti-menu"></i>
                         </span>
                         <span class="pc-mtext">Booklet</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
@@ -180,13 +180,13 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('coolbox/posisi-coolbox') ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext">Posisi Coolbox</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('coolbox/antrian-coolbox') ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext">Antrian Coolbox</span>
                     </a>
                 </li>

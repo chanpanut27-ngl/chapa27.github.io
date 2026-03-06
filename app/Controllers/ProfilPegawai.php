@@ -269,14 +269,12 @@ class ProfilPegawai extends BaseController
             $foto = $this->request->getFile('user_image');
             $fileName = user()->username.'_'.str_replace(" ", "_", $foto->getRandomName());
             $uploadPath = FCPATH . 'Uploads/Foto/';
-            $fullname = $this->request->getVar('fullname');
 
             $id = ['id' => user_id()];
             $foto_lama = $this->m_users->find(user_id());
 
             $save = [
-                'user_image' => $fileName,
-                'fullname' => $fullname
+                'user_image' => $fileName
             ];
             
             $upload = $this->m_users->update($id, $save);
