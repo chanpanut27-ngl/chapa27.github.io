@@ -10,20 +10,20 @@
                 <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="kode-coolbox" class="form-label h5">Kode coolbox</label>
+                        <label for="id-coolbox" class="form-label h5">Kode coolbox</label>
                     </div>
                     <div class="mb-3">
-                        <select name="kode_coolbox" class="form-select" id="kode-coolbox" aria-label="Default select example" style="width: 100%;">
+                        <select name="id_coolbox" class="form-select" id="id-coolbox" aria-label="Default select example" style="width: 100%;">
                             <option value="">-- Pilih --</option>
                             <?php
-                            foreach ($kodeCoolbox as $row) :
+                            foreach ($masterCoolbox as $row) :
                             ?>
-                                <option value="<?= $row['kode_coolbox'] ?>"><?= $row['kode_coolbox'].'_'.$row['nama_instansi'] ?></option>
+                                <option value="<?= $row['id'] ?>"><?= $row['kode_coolbox'].'_'.$row['nama_instansi'] ?></option>
                             <?php
                             endforeach;
                             ?>
                         </select>
-                        <div class="invalid-feedback errorKodeCoolbox"></div>
+                        <div class="invalid-feedback errorIdCoolbox"></div>
                     </div>
                     <div class="mb-3">
                         <label for="tgl-terima-coolbox" class="form-label h5">Tanggal</label>

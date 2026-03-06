@@ -92,7 +92,7 @@ class AntrianCoolbox extends BaseController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'kodeCoolbox' => $this->m_coolbox->get_data()
+                'masterCoolbox' => $this->m_coolbox->get_data()
             ];
 
             $msg = [

@@ -14,7 +14,8 @@ class AntrianCoolboxModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'kode_coolbox',
+        'no_antrian',
+        'id_coolbox',
         'tgl_terima_coolbox',
         'jam_terima_coolbox',
         'tahun'

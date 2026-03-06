@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Nomor antrian', 'Kode coolbox', 'Tgl & Jam', ''];
+        $arrth = ['No', 'Nomor antrian', 'Kode coolbox', 'Instansi', 'Tanggal', 'Jam', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -18,7 +18,9 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['no_antrian'] ?></td>
                 <td><?= $row['kode_coolbox'] ?></td>
-                <td><?= $row['tgl_terima_coolbox'] ?> <?= $row['jam_terima_coolbox'] ?></td>
+                <td>Instansi</td>
+                <td><?= date('d/m/Y', strtotime($row['tgl_terima_coolbox'])) ?></td>
+                <td><?= date('H:i', strtotime($row['jam_terima_coolbox'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
