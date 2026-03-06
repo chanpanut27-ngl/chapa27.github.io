@@ -37,7 +37,7 @@ class AntrianCoolbox extends BaseController
 
         if ($this->request->isAJAX()) {
             $data = [
-                'items' => $this->model->findAll()
+                'items' => $this->model->get_data()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Antrian-coolbox/__data', $data)
@@ -113,7 +113,7 @@ class AntrianCoolbox extends BaseController
     {
         if ($this->request->isAJAX()) {
             $valid = $this->validate([
-                'kode_coolbox' => [
+                'id_coolbox' => [
                     'label' => 'Kode coolbox',
                     'rules' => 'required',
                     'errors' => [
@@ -139,7 +139,7 @@ class AntrianCoolbox extends BaseController
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'kode_coolbox' => $this->validation->getError('kode_coolbox'),
+                        'id_coolbox' => $this->validation->getError('id_coolbox'),
                         'tgl_terima_coolbox' => $this->validation->getError('tgl_terima_coolbox'),
                         'jam_terima_coolbox' => $this->validation->getError('jam_terima_coolbox')
                     ]
@@ -147,7 +147,7 @@ class AntrianCoolbox extends BaseController
             } else {
                 $simpandata = [
                     'no_antrian' => $this->generate_no_antrian(),
-                    'kode_coolbox' => $this->request->getVar('kode_coolbox'),
+                    'id_coolbox' => $this->request->getVar('id_coolbox'),
                     'tgl_terima_coolbox' => $this->request->getVar('tgl_terima_coolbox'),
                     'jam_terima_coolbox' => $this->request->getVar('jam_terima_coolbox'),
                     'tahun' => date('Y')

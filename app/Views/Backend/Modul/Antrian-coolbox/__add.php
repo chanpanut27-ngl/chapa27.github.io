@@ -18,7 +18,7 @@
                             <?php
                             foreach ($masterCoolbox as $row) :
                             ?>
-                                <option value="<?= $row['id'] ?>"><?= $row['kode_coolbox'].'_'.$row['nama_instansi'] ?></option>
+                                <option value="<?= $row['id_coolbox'] ?>"><?= $row['kode_coolbox'].'_'.$row['nama_instansi'] ?></option>
                             <?php
                             endforeach;
                             ?>

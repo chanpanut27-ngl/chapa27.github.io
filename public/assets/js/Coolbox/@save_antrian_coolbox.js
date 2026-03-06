@@ -18,12 +18,12 @@ $(document).ready(function () {
 
                 if (error) {
                     
-                        if (error.kode_coolbox) {
-                            $('#kode-coolbox').addClass('is-invalid');
-                            $('.errorKodeCoolbox').html(error.kode_coolbox);
+                        if (error.id_coolbox) {
+                            $('#id-coolbox').addClass('is-invalid');
+                            $('.errorIdCoolbox').html(error.id_coolbox);
                         } else {
-                            $('#kode-coolbox').removeClass('is-invalid');
-                            $('.errorKodeCoolbox').html('');
+                            $('#id-coolbox').removeClass('is-invalid');
+                            $('.errorIdCoolbox').html('');
                         }
                         if (error.tgl_terima_coolbox) {
                             $('#tgl-terima-coolbox').addClass('is-invalid');

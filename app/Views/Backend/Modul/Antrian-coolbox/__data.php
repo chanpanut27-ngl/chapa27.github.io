@@ -14,19 +14,16 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_coolbox'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['no_antrian'] ?></td>
                 <td><?= $row['kode_coolbox'] ?></td>
-                <td>Instansi</td>
+                <td><?= $row['nama_instansi'] ?></td>
                 <td><?= date('d/m/Y', strtotime($row['tgl_terima_coolbox'])) ?></td>
                 <td><?= date('H:i', strtotime($row['jam_terima_coolbox'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
-                            <i class="ti ti-edit"></i>
-                        </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_coolbox'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>

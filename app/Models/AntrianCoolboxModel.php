@@ -70,4 +70,15 @@ class AntrianCoolboxModel extends Model
         }
         return $data;
     }
+
+    public function get_data()
+    {
+        $builder = $this->db->table('antrian_coolbox ac');
+        $builder->select('ac.no_antrian,ac.tgl_terima_coolbox,ac.jam_terima_coolbox,ac.id_coolbox,mc.kode_coolbox,mi.nama_instansi');
+        $builder->join('master_coolbox mc', 'mc.id=ac.id_coolbox');
+        $builder->join('master_instansi mi', 'mi.id=mc.id_instansi');
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
 }
