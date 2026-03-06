@@ -136,6 +136,11 @@ class AntrianCoolbox extends BaseController
                 ]
             ]);
 
+            $id_coolbox = $this->request->getVar('id_coolbox');
+            $tgl_terima_coolbox = $this->request->getVar('tgl_terima_coolbox');
+
+            $antrian_coolbox = $this->model->cek_data($id_coolbox, $tgl_terima_coolbox);
+            
             if (!$valid) {
                 $msg = [
                     'error' => [
@@ -144,10 +149,14 @@ class AntrianCoolbox extends BaseController
                         'jam_terima_coolbox' => $this->validation->getError('jam_terima_coolbox')
                     ]
                 ];
+            } else if ($antrian_coolbox) {
+                $msg = [
+                    'error' => 'Data gagal disimpan'
+                ];
             } else {
                 $simpandata = [
                     'no_antrian' => $this->generate_no_antrian(),
-                    'id_coolbox' => $this->request->getVar('id_coolbox'),
+                    'id_coolbox' => $id_coolbox,
                     'tgl_terima_coolbox' => $this->request->getVar('tgl_terima_coolbox'),
                     'jam_terima_coolbox' => $this->request->getVar('jam_terima_coolbox'),
                     'tahun' => date('Y')

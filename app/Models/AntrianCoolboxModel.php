@@ -74,9 +74,20 @@ class AntrianCoolboxModel extends Model
     public function get_data()
     {
         $builder = $this->db->table('antrian_coolbox ac');
-        $builder->select('ac.no_antrian,ac.tgl_terima_coolbox,ac.jam_terima_coolbox,ac.id_coolbox,mc.kode_coolbox,mi.nama_instansi');
+        $builder->select('ac.no_antrian,ac.tgl_terima_coolbox,ac.jam_terima_coolbox,ac.id as idx, ac.id_coolbox,mc.kode_coolbox,mi.nama_instansi');
         $builder->join('master_coolbox mc', 'mc.id=ac.id_coolbox');
         $builder->join('master_instansi mi', 'mi.id=mc.id_instansi');
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
+    public function cek_data($id, $tanggal)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('antrian_coolbox');
+        $builder->select('*');
+        $builder->where('id_coolbox', $id);
+        $builder->where('tgl_terima_coolbox', $tanggal);
         $query = $builder->get()->getResultArray();
         return $query;
     }

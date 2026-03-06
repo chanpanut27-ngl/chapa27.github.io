@@ -14,7 +14,7 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id_coolbox'] ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['idx'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['no_antrian'] ?></td>
                 <td><?= $row['kode_coolbox'] ?></td>
@@ -23,7 +23,7 @@
                 <td><?= date('H:i', strtotime($row['jam_terima_coolbox'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_coolbox'] ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['idx'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>
@@ -33,33 +33,7 @@
     </tbody>
 </table>
 <script>
-    function editData(id) {
-        $.ajax({
-            type: 'get',
-            url: '<?= site_url('master-data/instansi/edit-data/'); ?>' + id,
-            dataType: 'json',
-            cache: false,
-            beforeSend: function() {
-                $('.btn-edit-'+id).attr('disable', 'disabled');
-                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
-            },
-            complete: function() {
-                $('.btn-edit-'+id).removeAttr('disable');
-                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
-            },
-            success: function(response) {
-                if (response.sukses) {
-                    $(".view-modal").html(response.sukses).show();
-                    $("#exampleModal").modal('show');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        })
-    }
-
-
+   
     function deleteData(id) {
         var myElement = $('#myId-' + id);
         if (myElement.data('urut')) {
