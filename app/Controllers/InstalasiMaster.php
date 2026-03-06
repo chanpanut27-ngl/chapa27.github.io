@@ -124,7 +124,8 @@ class InstalasiMaster extends BaseController
             } else {
                 $simpandata = [
                     'kode_instalasi' => $this->generate_kode_instalasi(),
-                    'nama_instalasi' => $this->request->getVar('nama_instalasi')
+                    'nama_instalasi' => $this->request->getVar('nama_instalasi'),
+                    'id_kat_lab' => $this->request->getVar('id_kat_lab')
                 ];
                 $this->model->save($simpandata);
                 $msg = [

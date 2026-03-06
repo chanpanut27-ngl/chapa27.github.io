@@ -81,10 +81,9 @@ class InstalasiModel extends Model
 
     public function get_data_all() 
     {
-        $db = \Config\Database::connect();
-        $builder = $db->table('master_instalasi');
+        $builder = $this->db->table('master_instalasi');
         $builder->select('master_instalasi.*, master_kategori_lab.kategori');
-        $builder->join('master_kategori_lab', 'master_kategori_lab.id = master_instalasi.id_kat_lab');
+        $builder->join('master_kategori_lab', 'master_kategori_lab.id = master_instalasi.id_kat_lab', 'left');
         $query = $builder->get();
         return $query->getResultArray();
     }
