@@ -38,53 +38,8 @@ foreach ($profil as $field) {
         <button type="reset" class="btn bg-red-400 btn-danger border-0 btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-refresh"></i> Batal</button>
     </div>
 </form>
-<button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $field['id'] ?? '' ?>)" title="Hapus data">
-                            <i class="ti ti-trash"></i>
-                        </button>
 
 <script>
-    function deleteData(id) 
-    {
-        Swal.fire({
-            title: "Yakin untuk menghapus data ?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Ya, Hapus!",
-            cancelButtonText: "Tidak",
-        }).then((result) => {
-            if (result.value) {
-                $.ajax({
-                    type: 'delete',
-                    url: '<?= site_url('profil-pegawai/delete-data/'); ?>' + id,
-                    dataType: 'json',
-                    success: function(response) {
-                        if (response.sukses) {
-                            Swal.fire({
-                                title: "Hapus Data !",
-                                text: response.sukses,
-                                icon: "success",
-                                timer: 2000,
-                                width: '400px',
-                                padding: '1em'
-                            }).then((result) => {
-                                if (result.dismiss === Swal.DismissReason.timer) {
-                                    listData();
-                                }
-                            });
-                            listData();
-                        }
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                    }
-                })
-            } else {
-                myElement.removeClass('bg bg-danger');
-            }
-        });
-    }
 
     $(".form-data").submit(function(e) {
         e.preventDefault();
@@ -156,4 +111,5 @@ foreach ($profil as $field) {
             }
         })
     })
+    
 </script>

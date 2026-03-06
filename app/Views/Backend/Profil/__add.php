@@ -29,7 +29,7 @@
         <div class="invalid-feedback errorNoTelp"></div>
     </div>
     <div class="card-footer">
-        <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
-        <button type="reset" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-refresh"></span> Batal</button>
+        <button type="submit" class="btn bg-blue-400 btn-primary btn-sm rounded btn-simpan"><i class="ti ti-save"></i> Simpan</button>
+        <button type="reset" class="btn bg-red-400 btn-danger border-0 btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-refresh"></i> Batal</button>
     </div>
 </form>
