@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Peraturan', 'Keterangan', 'Is_active', ''];
+        $arrth = ['#', 'Peraturan', 'Keterangan', 'Is_active', 'Actions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -46,7 +46,7 @@
             },
             complete: function() {
                 $('.btn-edit-'+id).removeAttr('disable');
-                $('.btn-edit-'+id).html('<i class="ti ti-edit-circle"></i>');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
             },
             success: function(response) {
                 if (response.sukses) {

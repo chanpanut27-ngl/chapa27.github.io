@@ -7,9 +7,9 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nama pelanggan</th>
+                <th>Pelanggan</th>
                 <th>Instansi</th>
-                <th>Tgl/jam & User terima</th>
+                <th>Tgl/jam & Penerima</th>
             </tr>
         </thead>
         <tbody>

@@ -7,10 +7,10 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Nama pelanggan</th>
+                <th>Pelanggan</th>
                 <th>Instansi</th>
                 <th>Jenis sampel & Lab. tujuan</th>
-                <th>Tanggal & Nama Pj</th>
+                <th>Tgl/Jam & Nama Pj</th>
                 <th class="text-center">Actions</th>
             </tr>
         </thead>
