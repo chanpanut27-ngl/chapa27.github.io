@@ -8,7 +8,7 @@ class MgdbMasterJenisSampel extends Migration
 {
     public function up()
     {
-         $this->forge->addField([
+        $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
@@ -32,8 +32,7 @@ class MgdbMasterJenisSampel extends Migration
                 'type'       => 'DECIMAL'
             ],
             'keterangan' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '225'
+                'type'       => 'TEXT'
             ],
             'id_lab' => [
                 'type'       => 'INT',
