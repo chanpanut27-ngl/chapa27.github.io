@@ -97,34 +97,6 @@ $rest_ = $pengantar_lhu->where('kode_pengantar', $kode_pengantar)->first();
         })
     }
 
-    // function showPermintaanSampel(id) 
-    // {
-        
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: '<?= site_url('pelanggan/permintaan-pemeriksaan/show-permintaan-sampel/'); ?>' + id,
-    //         dataType: 'json',
-    //         cache: false,
-    //         beforeSend: function() {
-    //             $('.btn-show-lab').attr('disable', 'disabled');
-    //             $('.btn-show-lab').html('<i class="fa fa-spin fa-spinner"></i>');
-    //         },
-    //         complete: function() {
-    //             $('.btn-show-lab').removeAttr('disable');
-    //             $('.btn-show-lab').html('<span class="fa-solid fa-clipboard"></span> Pemeriksaan sampel');
-    //         },
-    //         success: function(response) {
-    //             if (response.sukses) {
-    //                 $(".view-modal").html(response.sukses).show();
-    //                 $("#exampleModal").modal('show');
-    //             }
-    //         },
-    //         error: function(xhr, ajaxOptions, thrownError) {
-    //             alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-    //         }
-    //     })
-    // }
-
     $(document).ready(function() {
         listData();
 

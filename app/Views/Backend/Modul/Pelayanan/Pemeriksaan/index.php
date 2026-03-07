@@ -34,18 +34,18 @@
                             <a href="<?= base_url('pelayanan/permintaan') ?>" class="btn bg-gray-400 btn-sm rounded" title="Kembali">
                                 <i class="ti ti-arrow-left-circle"></i>
                             </a>
-                            <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
+                            <button type="button" class="btn btn-success border-0 btn-sm rounded btn-refresh-data">
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
                             <button type="button" class="btn btn-danger <?= $acepted_penawaran ? 'd-none' : '' ?> btn-sm rounded delete-all-pemeriksaan" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
-                                <i class="ti ti-undo"></i> Batal pemeriksaan
+                                <i class="ti ti-circle-minus"></i> Batal pemeriksaan
                             </button>
                         </div>
                     </div>
                     <div class="accordion accordion-flush accordion-color" id="accordionFlushExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                                <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                                <button class="accordion-button bg-green-100 p-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
                                     <h5><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h5>
                                 </button>
                             </h2>
