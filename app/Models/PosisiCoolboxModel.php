@@ -105,7 +105,6 @@ class PosisiCoolboxModel extends Model
         $builder->select('*');
         $builder->where('id_coolbox', $id);
         $builder->where('status', $status);
-        $builder->where('status !=', 3);
         $builder->where('tanggal', $tanggal);
         $query = $builder->get()->getResultArray();
         return $query;

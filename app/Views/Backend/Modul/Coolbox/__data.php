@@ -39,7 +39,6 @@
                         }else{
                             $img = '<i class="fa-solid fa-box"></i>';
                         }
-                        echo $img;
                         ?>
                     </a>
                 </td>
@@ -47,7 +46,7 @@
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-secondary rounded btn-sm" onclick="addFoto(<?= $row['idx']; ?>)" title="Input Foto">
-                            <i class="fa fa-image"></i>
+                            <i class="ti ti-picture-in-picture"></i>
                         </button>
                         <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
                             <i class="ti ti-edit"></i>
