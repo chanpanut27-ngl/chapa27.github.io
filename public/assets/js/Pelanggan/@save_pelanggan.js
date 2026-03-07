@@ -46,9 +46,9 @@ $(document).ready(function () {
                             $('#no-telp-pengirim').removeClass('is-invalid');
                             $('.errorTelpPengirim').html('');
                         }
-                        if (error.tanggal) {
+                        if (error.created_at) {
                             $('#tanggal').addClass('is-invalid');
-                            $('.errorTanggal').html(error.tanggal);
+                            $('.errorTanggal').html(error.created_at);
                         } else {
                             $('#tanggal').removeClass('is-invalid');
                             $('.errorTanggal').html('');

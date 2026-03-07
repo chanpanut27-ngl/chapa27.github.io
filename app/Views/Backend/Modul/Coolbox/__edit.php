@@ -38,12 +38,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="tanggal" class="form-label h5">Tanggal</label>
-                        <input type="date" name="tanggal" value="<?= $items['tanggal']; ?>" class="form-control" id="tanggal" autocomplete="off">
+                        <input type="date" name="tanggal" value="<?= $items['tanggal']; ?>" class="form-control w-50" id="tanggal" autocomplete="off">
                         <div class="invalid-feedback errorTanggal"></div>
                     </div>
                     <div class="mb-3">
                         <label for="jam" class="form-label h5">Jam</label>
-                        <input type="time" name="jam" value="<?= $items['jam']; ?>" class="form-control" id="jam" autocomplete="off">
+                        <input type="time" name="jam" value="<?= $items['jam']; ?>" class="form-control w-50" id="jam" autocomplete="off">
                     </div>
                     <div class="mb-3">
                         <label for="is-active" class="form-label h5">Is_active</label>

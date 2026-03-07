@@ -27,12 +27,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="tgl-terima-coolbox" class="form-label h5">Tanggal</label>
-                        <input type="date" name="tgl_terima_coolbox" class="form-control" id="tgl-terima-coolbox" autocomplete="off">
+                        <input type="date" name="tgl_terima_coolbox" class="form-control w-50" id="tgl-terima-coolbox" autocomplete="off">
                         <div class="invalid-feedback errorTglTerimaCoolbox"></div>
                     </div>
                     <div class="mb-3">
                         <label for="jam-terima-coolbox" class="form-label h5">Jam</label>
-                        <input type="time" name="jam_terima_coolbox" class="form-control" id="jam-terima-coolbox" autocomplete="off">
+                        <input type="time" name="jam_terima_coolbox" class="form-control w-50" id="jam-terima-coolbox" autocomplete="off">
                         <div class="invalid-feedback errorJamTerimaCoolbox"></div>
                     </div>
                 </div>

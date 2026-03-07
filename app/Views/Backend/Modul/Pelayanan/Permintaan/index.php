@@ -29,16 +29,16 @@
                     <div class="card-header p-2">
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center">
-                            <button type="button" class="btn btn-success btn-sm rounded btn-refresh" title="refresh">
-                                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
+                            <button type="button" class="btn btn-success border-0 btn-sm rounded btn-refresh" title="refresh">
+                                <i class="ti ti-refresh"></i>
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-end align-items-center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
-                                <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
+                            <button type="button" class="btn btn-primary btn-md rounded btn-tambah">
+                                <i class="ti ti-square-plus"></i> Tambah Data
                             </button>
                         </div>
                         <div class="view-data"></div>

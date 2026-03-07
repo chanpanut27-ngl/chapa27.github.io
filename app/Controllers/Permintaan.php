@@ -117,7 +117,7 @@ class Permintaan extends BaseController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'tanggal' => [
+                'created_at' => [
                     'label' => 'Tanggal permintaan',
                     'rules' => 'required',
                     'errors' => [
@@ -133,7 +133,7 @@ class Permintaan extends BaseController
                         'instansi' => $this->validation->getError('instansi'),
                         'alamat' => $this->validation->getError('alamat'),
                         'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
-                        'created_at' => $this->validation->getError('tanggal'),
+                        'created_at' => $this->validation->getError('created_at'),
                     ]
                 ];
             } else {
@@ -221,7 +221,7 @@ class Permintaan extends BaseController
                         'required' => '{field} tidak boleh kosong'
                     ]
                 ],
-                'tanggal' => [
+                'created_at' => [
                     'label' => 'Tanggal permintaan',
                     'rules' => 'required',
                     'errors' => [
@@ -237,7 +237,7 @@ class Permintaan extends BaseController
                         'instansi' => $this->validation->getError('instansi'),
                         'alamat' => $this->validation->getError('alamat'),
                         'no_telp_pengirim' => $this->validation->getError('no_telp_pengirim'),
-                        'created_at' => $this->validation->getError('tanggal'),
+                        'created_at' => $this->validation->getError('created_at'),
                     ]
                 ];
             } else {
@@ -247,7 +247,8 @@ class Permintaan extends BaseController
                     'instansi' => $this->request->getVar('instansi'),
                     'alamat' => $this->request->getVar('alamat'),
                     'no_telp_pengirim' => $this->request->getVar('no_telp_pengirim'),
-                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel')
+                    'spesimen_atau_sampel' => $this->request->getVar('spesimen_atau_sampel'),
+                    'created_at' => $this->request->getVar('created_at'),
                 ];
                 $this->model->save($save);
                 $msg = [
