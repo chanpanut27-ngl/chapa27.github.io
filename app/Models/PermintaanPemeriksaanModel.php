@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class PermintaanPemeriksaanModel extends Model
@@ -55,18 +54,15 @@ class PermintaanPemeriksaanModel extends Model
     {
         $username = user()->username;
         if ($username) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['created_at'] = date('Y-m-d H:i:s');
             $data['data']['created_by'] = $username;
         }
         return $data;
     }
-
+ 
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
         if ($username) {
-            // Tambahkan user_id ke data yang akan di-update
             $data['data']['updated_by'] = $username;
         }
         return $data;
