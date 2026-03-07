@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class CoolboxModel extends Model
@@ -62,10 +61,8 @@ class CoolboxModel extends Model
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
-       $myTime = new Time();
         if ($username) {
             $data['data']['updated_by'] = $username;
-            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
@@ -78,8 +75,7 @@ class CoolboxModel extends Model
             "master_coolbox.id AS id_coolbox, kode_coolbox,
             master_coolbox.is_active AS aktif_coolbox,
             master_coolbox.keterangan,
-            master_instansi.nama_instansi,
-            master_instansi.wilayah"
+            master_instansi.nama_instansi"
         );
         $model->join("master_instansi", "master_instansi.id = master_coolbox.id_instansi");
         $model->where('master_coolbox.is_active', 1);

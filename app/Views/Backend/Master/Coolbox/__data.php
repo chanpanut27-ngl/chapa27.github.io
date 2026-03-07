@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Wilayah', 'Keterangan', 'Is_active', ''];
+        $arrth = ['No', 'Kode coolbox', 'Instansi', 'Keterangan', 'Is_active', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -18,15 +18,14 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['kode_coolbox'] ?></td>
                 <td><?= $row['nama_instansi'] ?></td>
-                <td><?= $row['wilayah'] ?></td>
                 <td><?= $row['keterangan'] ?></td>
                 <td><?= $row['aktif_coolbox'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id_coolbox'] ?>" onclick="editData(<?= $row['id_coolbox'] ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning border-0 btn-sm rounded btn-edit-<?= $row['id_coolbox'] ?>" onclick="editData(<?= $row['id_coolbox'] ?>)" title="Edit data">
                             <i class="ti ti-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_coolbox'] ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id_coolbox'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>
@@ -48,7 +47,7 @@
             },
             complete: function() {
                 $('.btn-edit-'+id).removeAttr('disable');
-                $('.btn-edit-'+id).html('<span class="fa-solid fa-edit"></span>');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
             },
             success: function(response) {
                 if (response.sukses) {
