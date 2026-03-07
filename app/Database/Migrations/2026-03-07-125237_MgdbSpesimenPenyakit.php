@@ -4,11 +4,11 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbSampelLingkungan extends Migration
+class MgdbSpesimenPenyakit extends Migration
 {
     public function up()
     {
-          $this->forge->addField([
+        $this->forge->addField([
             'id' => [
                 'type'           => 'INT',
                 'constraint'     => 5,
@@ -24,14 +24,14 @@ class MgdbSampelLingkungan extends Migration
                 'constraint' => 5,
                 'unsigned'   => true
             ],
-            'lokasi_pengambilan_sampel' => [
+            'identitas_sampel' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '255'
             ],
-            'tgl_ambil_sampel' => [
+            'tgl_periksa_sampel' => [
                 'type'       => 'DATE'
             ],
-            'jam_ambil_sampel' => [
+            'jam_periksa_sampel' => [
                 'type'       => 'TIME',
             ],
             'metode_pemeriksaan' => [
@@ -86,11 +86,11 @@ class MgdbSampelLingkungan extends Migration
         $this->forge->addKey('id', true);
         $this->forge->addForeignKey('id_jenis_sampel', 'master_jenis_sampel', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('id_laboratorium', 'master_laboratorium', 'id', 'CASCADE', 'CASCADE');
-        $this->forge->createTable('pelayanan_sampel_lingkungan');
+        $this->forge->createTable('pelayanan_spesimen_penyakit');
     }
 
     public function down()
     {
-        $this->forge->dropTable('pelayanan_sampel_lingkungan');
+        $this->forge->dropTable('pelayanan_spesimen_penyakit');
     }
 }
