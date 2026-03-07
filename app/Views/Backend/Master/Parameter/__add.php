@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-square-plus fs-2"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/parameter/create-data') ?>" class="form-data">
@@ -68,8 +68,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
-                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><i class="ti ti-device-floppy"></i> Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-x"></i> Tutup</button>
                 </div>
             </form>
         </div>
@@ -95,7 +95,7 @@
                             <input type="number" name="harga_per_titik[]" id="harga-per-titik" class="form-control" required>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-danger btn-sm rounded delete-rows">-</button>
+                            <button type="button" class="btn btn-danger btn-sm rounded delete-rows"><i class="ti ti-minus"></i></button>
                         </td>
                     </tr>`;
         $(".form-multi-insert").append(html);

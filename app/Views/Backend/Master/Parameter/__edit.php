@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-edit"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-edit fs-2"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/parameter/update-data') ?>" class="form-data">
@@ -13,6 +13,9 @@
                     <div class="mb-3">
                         <label for="id-jenis-sampel" class="form-label h5">Jenis sampel</label>
                         <select name="id_jenis_sampel" class="form-select" id="id-jenis-sampel" style="width: 100%;" aria-label="Default select example">
+                            <?php foreach ($jenis_sampel as $row) : ?>
+                            <option value="<?= $row['id'] ?>"><?= $row['jenis_sampel'] ?></option>
+                            <?php endforeach;?>
                         </select>
                         <div class="invalid-feedback errorIdJenisSampel"></div>
                     </div>
@@ -33,11 +36,16 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><span class="fas fa-edit"></span> Ubah</button>
-                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><i class="ti ti-edit"></i> Ubah</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-x"></i> Tutup</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+     $('#id-jenis-sampel').select2({
+        dropdownParent: $('#exampleModal')
+    });
+</script>
 <script src="<?= base_url('assets/js/Master/@update_parameter.js') ?>"></script>

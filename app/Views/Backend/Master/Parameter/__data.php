@@ -14,10 +14,10 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id_parameter']; ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_parameter'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['parameter']; ?></td>
-                <td><?= $row['metode']; ?></td>
+                <td><?= $row['parameter'] ?></td>
+                <td><?= $row['metode'] ?></td>
                 <td style="text-align: right;"><?= number_to_currency($row['harga_per_titik'], 'IDR', 'ID', 0); ?></td>
                 <td><?= '('.$row['kode_sampel'].') '.$row['jenis_sampel']; ?></td>
                 <td><?= $row['keterangan']; ?></td>
@@ -25,10 +25,10 @@
                 <td><?= $row['active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded edit-data-<?= $row['id_parameter'] ?>" onclick="editData(<?= $row['id_parameter']; ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning border-0 btn-sm rounded edit-data-<?= $row['id_parameter'] ?>" onclick="editData(<?= $row['id_parameter']; ?>)" title="Edit data">
                             <i class="ti ti-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id_parameter']; ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id_parameter']; ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>

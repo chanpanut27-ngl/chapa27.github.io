@@ -153,10 +153,12 @@ class ParameterMaster extends BaseController
     public function edit($id = null)
     {
         if ($this->request->isAJAX()) {
-
+            $jenis_sampel = $this->m_jenis_sampel->find($id);
+            $id_lab = $jenis_sampel['id_lab'];
             $data = [
                 'title' => 'Edit ' . $this->title,
                 'items' => $this->model->find($id),
+                'jenis_sampel' => $this->m_jenis_sampel->where('id_lab', $id_lab)->findAll()
             ];
             $msg = [
                 'sukses' => view('Backend/Master/Parameter/__edit', $data)
@@ -216,7 +218,8 @@ class ParameterMaster extends BaseController
                         'id' => $this->request->getVar('id'),
                         'parameter' => $this->request->getVar('parameter'),
                         'metode' => $this->request->getVar('metode'),
-                        'harga_per_titik' => $this->request->getVar('harga_per_titik')
+                        'harga_per_titik' => $this->request->getVar('harga_per_titik'),
+                        'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel')
                     ];
                     $this->model->save($save);
                     $msg = [

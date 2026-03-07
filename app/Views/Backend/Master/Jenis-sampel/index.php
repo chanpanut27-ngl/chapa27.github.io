@@ -32,7 +32,7 @@
                     <div class="card-header p-2">
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center">
-                            <button type="button" class="btn btn-success btn-sm rounded btn-refresh" title="refresh">
+                            <button type="button" class="btn btn-success border-0 btn-sm rounded btn-refresh" title="refresh">
                                 <i class="ti ti-refresh"></i>
                             </button>
                         </div>

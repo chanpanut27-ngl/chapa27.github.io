@@ -83,7 +83,7 @@ class ParameterModel extends Model
      {
         $db = \Config\Database::connect();
         $builder = $db->table('master_jenis_sampel mjs');
-        $builder->select('kode_sampel, jenis_sampel, peraturan, parameter, metode, harga_per_titik, pp.id AS id_parameter, mjs.keterangan, pp.is_active AS active');
+        $builder->select('kode_sampel, jenis_sampel, peraturan, parameter, metode, harga_per_titik, id_lab, pp.id AS id_parameter, mjs.keterangan, pp.is_active AS active');
         $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan");
         $builder->join("master_parameter pp", "pp.id_jenis_sampel = mjs.id");
         $builder->orderBy("mjs.id", "ASC");
