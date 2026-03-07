@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class BiayaAkomodasiModel extends Model
@@ -13,7 +12,12 @@ class BiayaAkomodasiModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['uraian', 'transport', 'uang_harian', 'is_active'];
+    protected $allowedFields    = [
+        'uraian', 
+        'transport', 
+        'uang_harian', 
+        'is_active'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -57,10 +61,8 @@ class BiayaAkomodasiModel extends Model
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
-       $myTime = new Time();
         if ($username) {
             $data['data']['updated_by'] = $username;
-            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
