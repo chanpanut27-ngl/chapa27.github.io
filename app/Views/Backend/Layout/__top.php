@@ -31,6 +31,9 @@
     <!-- [topAssets] start -->
     <?= $this->renderSection('topAssets'); ?>
     <!-- [topAssets] end -->
+     <style>
+        html {scroll-behavior: smooth;}
+     </style>
 </head>
 <!-- [Head] end -->
 <!-- [Body] Start -->
