@@ -112,13 +112,21 @@ class InstalasiMaster extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'id_kat_lab' => [
+                    'label' => 'Kategori laboratorium',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama_instalasi' => $this->validation->getError('nama_instalasi')
+                        'nama_instalasi' => $this->validation->getError('nama_instalasi'),
+                        'id_kat_lab' => $this->validation->getError('id_kat_lab')
                     ]
                 ];
             } else {
@@ -180,13 +188,21 @@ class InstalasiMaster extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'id_kat_lab' => [
+                    'label' => 'Kategori laboratorium',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
             if (!$valid) {
                 $msg = [
                     'error' => [
-                        'nama_instalasi' => $this->validation->getError('nama_instalasi')
+                        'nama_instalasi' => $this->validation->getError('nama_instalasi'),
+                        'id_kat_lab' => $this->validation->getError('id_kat_lab')
                     ]
                 ];
             } else {

@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Kode instalasi', 'Nama instalasi', 'Kategori', 'Is_active', ''];
+        $arrth = ['#', 'Kode instalasi', 'Nama instalasi', 'Kategori', 'Is_active', 'Action'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -23,7 +23,7 @@
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning border-0 rounded btn-sm btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
-                            <i class="ti ti-edit-circle"></i>
+                            <i class="ti ti-edit"></i>
                         </button>
                         <button type="button" class="btn btn-danger border-0 rounded btn-sm" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>

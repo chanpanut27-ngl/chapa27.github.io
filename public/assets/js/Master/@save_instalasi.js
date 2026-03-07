@@ -26,6 +26,14 @@ $(document).ready(function () {
                             $('.errorNamaInstalasi').html('');
                         }
 
+                        if (error.id_kat_lab) {
+                            $('#id-kat-lab').addClass('is-invalid');
+                            $('.errorIdKatLab').html(error.id_kat_lab);
+                        } else {
+                            $('#id-kat-lab').removeClass('is-invalid');
+                            $('.errorIdKatLab').html('');
+                        }
+
                         Swal.fire({
                             title: "Gagal",
                             text: response.errorMessage,

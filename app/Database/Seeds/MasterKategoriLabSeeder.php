@@ -10,9 +10,7 @@ class MasterKategoriLabSeeder extends Seeder
     {
          $data = [
             [
-                'kategori' => 'Lab.Lingkungan',
-                'is_active' => 1,
-                'deleted' => 0,
+                'kategori' => 'Lab. Lingkungan',
                 'created_at' => '2026-02-04 05:31:03',
                 'updated_at' => '2026-02-04 05:31:03',
                 'created_by' => 'prola',
@@ -21,20 +19,7 @@ class MasterKategoriLabSeeder extends Seeder
                 'deleted_by' => null,
             ],
             [
-                'kategori' => 'Lab.Penyakit',
-                'is_active' => 1,
-                'deleted' => 0,
-                'created_at' => '2026-02-04 05:31:03',
-                'updated_at' => '2026-02-04 05:31:03',
-                'created_by' => 'prola',
-                'updated_by' => null,
-                'deleted_at' => null,
-                'deleted_by' => null,
-            ],
-            [
-                'kategori' => 'Lab.Kalibrasi',
-                'is_active' => 1,
-                'deleted' => 0,
+                'kategori' => 'Lab. Penyakit',
                 'created_at' => '2026-02-04 05:31:03',
                 'updated_at' => '2026-02-04 05:31:03',
                 'created_by' => 'prola',
@@ -44,7 +29,6 @@ class MasterKategoriLabSeeder extends Seeder
             ]
         ];
 
-        // Menggunakan Query Builder
         $this->db->table('master_kategori_lab')->insertBatch($data);
     }
 }
