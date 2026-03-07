@@ -31,7 +31,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="harga-per-titik" class="form-label h5">Harga per titik</label>
-                        <input type="text" name="harga_per_titik" value="<?= $items['harga_per_titik'] ?>" class="form-control" id="harga-per-titik">
+                        <input type="number" name="harga_per_titik" value="<?= $items['harga_per_titik'] ?>" class="form-control" id="harga-per-titik">
                         <div class="invalid-feedback errorHargaPertitik"></div>
                     </div>
                 </div>

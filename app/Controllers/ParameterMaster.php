@@ -121,21 +121,27 @@ class ParameterMaster extends BaseController
                     ]
                 ];
             } else {
+                $total = 0;
                 $parameter = $this->request->getVar('parameter');
                 $count = count($parameter ?? []);
                 for ($i=0; $i < $count; $i++) { 
-
+                    $harga_pertitik = $this->request->getVar('harga_per_titik')[$i];
+                    $total = $total + $harga_pertitik;
                     $save = [
                         'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
                         'parameter' => $parameter[$i],
                         'metode' => $this->request->getVar('metode')[$i],
-                        'harga_per_titik' => $this->request->getVar('harga_per_titik')[$i]
+                        'harga_per_titik' => $harga_pertitik
                     ];
                     $this->model->save($save);
                     $msg = [
                         'sukses' => 'Data berhasil disimpan'
                     ];
                 }
+                $builder = $this->db->table('master_jenis_sampel');
+                $builder->set('pnbp', $total);
+                $builder->where('id', $this->request->getVar('id_jenis_sampel'));
+                $builder->update();
             }
             echo json_encode($msg);
         } else {
@@ -153,7 +159,9 @@ class ParameterMaster extends BaseController
     public function edit($id = null)
     {
         if ($this->request->isAJAX()) {
-            $jenis_sampel = $this->m_jenis_sampel->find($id);
+            $parameter = $this->model->find($id);
+            $id_jenis_sampel = $parameter['id_jenis_sampel'];
+            $jenis_sampel = $this->m_jenis_sampel->find($id_jenis_sampel);
             $id_lab = $jenis_sampel['id_lab'];
             $data = [
                 'title' => 'Edit ' . $this->title,
@@ -214,13 +222,34 @@ class ParameterMaster extends BaseController
                     ]
                 ];
             } else {
+                    $id_parameter = $this->request->getVar('id');
+                    $harga_pertitik = $this->request->getVar('harga_per_titik');
+
                     $save = [
                         'id' => $this->request->getVar('id'),
                         'parameter' => $this->request->getVar('parameter'),
                         'metode' => $this->request->getVar('metode'),
-                        'harga_per_titik' => $this->request->getVar('harga_per_titik'),
+                        'harga_per_titik' => $harga_pertitik,
                         'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel')
                     ];
+                    $total = 1;
+                    $parameter = $this->model->find($id_parameter);
+                    $id_jenis_sampel = $parameter['id_jenis_sampel'];
+                    $jenis_sampel = $this->m_jenis_sampel->find($id_jenis_sampel);
+
+                    if ($harga_pertitik < $parameter['harga_per_titik']) {
+                        $total = $jenis_sampel['pnbp'] + ($harga_pertitik - $parameter['harga_per_titik']);
+                    } else if ($harga_pertitik > $parameter['harga_per_titik']) {
+                        $total = $jenis_sampel['pnbp'] + ($harga_pertitik - $parameter['harga_per_titik']);
+                    } else {
+                        $total = $jenis_sampel['pnbp'];
+                    }
+
+                    $builder = $this->db->table('master_jenis_sampel');
+                    $builder->set('pnbp', $total);
+                    $builder->where('id', $id_jenis_sampel);
+                    $builder->update();
+
                     $this->model->save($save);
                     $msg = [
                         'sukses' => 'Data berhasil diubah'

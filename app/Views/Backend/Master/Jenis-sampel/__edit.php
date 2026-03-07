@@ -35,14 +35,14 @@
                         <div class="invalid-feedback errorJenisSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="pnbp" class="form-label h5">PNBP (Rp)</label>
+                        <label for="pnbp" class="form-label h5">PNBP</label>
                         <input type="text" name="pnbp" value="<?= $items['pnbp']; ?>" class="form-control" id="pnbp" autocomplete="off">
                         <div class="invalid-feedback errorPnbp"></div>
                     </div>
                      <div class="mb-3">
                         <label for="keterangan" class="form-label h5">Keterangan</label>
-                        <input type="text" name="keterangan" value="<?= $items['keterangan']; ?>" class="form-control" id="keterangan" autocomplete="off">
-                        <div class="invalid-feedback errorPnbp"></div>
+                        <textarea name="keterangan" class="form-control" id="keterangan" rows="2"><?= $items['keterangan'] ?></textarea>
+                        <div class="invalid-feedback errorKeterangan"></div>
                     </div>
                     <div class="mb-3">
                         <label for="id-lab" class="form-label h5">Laboratorium</label>

@@ -47,6 +47,14 @@ $(document).ready(function () {
                             $('.errorIdLab').html('');
                         }
 
+                        if (error.keterangan) {
+                            $('#keterangan').addClass('is-invalid');
+                            $('.errorKeterangan').html(error.keterangan);
+                        } else {
+                            $('#keterangan').removeClass('is-invalid');
+                            $('.errorKeterangan').html('');
+                        }
+
                         Swal.fire({
                             title: "Gagal",
                             text: response.errorMessage,

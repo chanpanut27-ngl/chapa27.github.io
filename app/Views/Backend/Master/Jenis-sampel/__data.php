@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Jenis sampel', 'PNBP (Rp)', 'Peraturan', 'Keterangan', 'Laboratorium', 'Is_active', ''];
+        $arrth = ['#', 'Jenis sampel', 'Peraturan', 'Keterangan', 'PNBP', 'Laboratorium', 'Is_active', 'Actions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -17,9 +17,9 @@
             <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['jenis_sampel'] ?></td>
-                <td style="text-align: right;"><?= number_to_currency($row['pnbp'], 'IDR', 'ID', 0) ?></td>
                 <td><?= $row['peraturan'] ?></td>
                 <td><?= $row['ket_sampel'] ?></td>
+                <td class="text-end"><?= number_to_currency($row['pnbp'], 'IDR', 'ID', 0) ?></td>
                 <td><?= $row['nama_lab'] ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>

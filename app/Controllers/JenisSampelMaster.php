@@ -128,6 +128,13 @@ class JenisSampelMaster extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'keterangan' => [
+                    'label' => 'Keterangan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -137,7 +144,8 @@ class JenisSampelMaster extends BaseController
                         'id_peraturan' => $this->validation->getError('id_peraturan'),
                         'jenis_sampel' => $this->validation->getError('jenis_sampel'),
                         'pnbp' => $this->validation->getError('pnbp'),
-                        'id_lab' => $this->validation->getError('id_lab')
+                        'id_lab' => $this->validation->getError('id_lab'),
+                        'keterangan' => $this->validation->getError('keterangan')
                     ]
                 ];
             } else {
@@ -227,6 +235,13 @@ class JenisSampelMaster extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
+                ],
+                'keterangan' => [
+                    'label' => 'Keterangan sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
                 ]
             ]);
 
@@ -236,7 +251,8 @@ class JenisSampelMaster extends BaseController
                         'id_peraturan' => $this->validation->getError(field: 'id_peraturan'),
                         'jenis_sampel' => $this->validation->getError('jenis_sampel'),
                         'pnbp' => $this->validation->getError('pnbp'),
-                        'id_lab' => $this->validation->getError('id_lab')
+                        'id_lab' => $this->validation->getError('id_lab'),
+                        'keterangan' => $this->validation->getError('keterangan')
                     ]
                 ];
             } else {
