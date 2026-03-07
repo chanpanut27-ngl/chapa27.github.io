@@ -93,14 +93,14 @@ Uji Laboratorium <?= $items['instansi'] ?> <br>
                 Pengujian: Uji Duplo Metode Uji: Metode Membran Flter dengan media CCA/ISO 9308
             </td>
         </tr>
-        <?php
-        $total = 0;
-             $total = $total + $rows['jumlah_biaya'];
+        <?php 
+            $total = 0;
+            $total = $total + $rows['jumlah_biaya'];
         }
         ?>
         <tr>
             <td colspan="4" class="text-end"><b>Total Biaya Pengujian (PNBP) ( 1 x pengujian)</b></td>
-            <td><?= $total ?></td>
+            <td><?= $total ?? null ?></td>
         </tr>
     </tbody>
 </table>

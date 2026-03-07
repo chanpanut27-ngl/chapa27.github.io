@@ -56,7 +56,7 @@ class Penawaran extends BaseController
     {
          $data = [
             'title' => 'Data ' . $this->title,
-            'no_reg' => $id,
+            'no_reg' => $id
         ];
         return view('Backend/Modul/Pelayanan/Penawaran/__detail', $data);
     }
