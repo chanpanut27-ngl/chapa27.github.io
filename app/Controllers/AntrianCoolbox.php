@@ -51,19 +51,19 @@ class AntrianCoolbox extends BaseController
 
     public function generate_no_antrian() 
     {
-        $tahun = null;
+        $tahun = '';
         // cari tahun data terakhir 
         $query = $this->model->orderBy('id', 'DESC')->get();
         
         foreach ($query->getResultArray() as $row) {
-            $tahun = $row['tahun'];
+            $tahun = $row['created_at'];
         }
-        $nextYear = date('Y', strtotime($this->today));
+        $nextYear = date('Y', strtotime($this->today)) + 1;
         if ($tahun < $nextYear) {
-            $count = $this->model->where('tahun', $nextYear)->countAllResults();
+            $count = $this->model->where('created_at', $tahun)->countAllResults();
             $nomorUrut = $count + 1;
         }else{
-            $count = $this->model->where('tahun', $tahun)->countAllResults();
+            $count = $this->model->where('created_at', $nextYear)->countAllResults();
             $nomorUrut = $count + 1;
         }
         $nomorAntrian = 'A'. sprintf('%04d', $nomorUrut);
@@ -158,8 +158,7 @@ class AntrianCoolbox extends BaseController
                     'no_antrian' => $this->generate_no_antrian(),
                     'id_coolbox' => $id_coolbox,
                     'tgl_terima_coolbox' => $this->request->getVar('tgl_terima_coolbox'),
-                    'jam_terima_coolbox' => $this->request->getVar('jam_terima_coolbox'),
-                    'tahun' => date('Y')
+                    'jam_terima_coolbox' => $this->request->getVar('jam_terima_coolbox')
                 ];
                 $this->model->save($simpandata);
                 $msg = [
@@ -216,4 +215,23 @@ class AntrianCoolbox extends BaseController
             exit('Not Process');
         }
     }
+
+    public function cetak_label($param) 
+    {
+        $query = $this->model->cetak_label($param);
+        $kode_coolbox = '';
+        foreach ($query as $key) {
+            $kode_coolbox = $key['kode_coolbox'];
+        }
+
+        $data = [
+            'title' => 'Label Coolbox',
+            'kode_coolbox' => $kode_coolbox,
+            'items' => $query
+        ];
+            
+        return view('Backend/Modul/Antrian-coolbox/__cetak', $data);    
+    }
+
+
 }

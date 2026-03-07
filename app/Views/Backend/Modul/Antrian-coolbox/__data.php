@@ -26,6 +26,9 @@
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['idx'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
+                        <button class="btn btn-info rounded btn-sm" onclick="clickBtn(<?= $row['idx'];?>)" title="Lihat">
+                            <i class="ti ti-eye"></i>
+                        </button>
                     </div>
                 </td>
             </tr>
@@ -79,6 +82,16 @@
                 myElement.removeClass('bg bg-danger');
             }
         });
+    }
+
+    function clickBtn(id) {
+        var urls = 'coolbox/antrian-coolbox/cetak-label/'+id;
+        var WinPrint = window.open('<?= site_url() ?>'+urls, '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
     }
 
     $(document).ready(function() {

@@ -12,7 +12,8 @@ $routes->group('coolbox/posisi-coolbox', function ($routes) {
     $routes->post('upload-foto', 'PosisiCoolbox::upload_foto');
 });
 
-$routes->get('cetak/label-coolbox/(:any)', 'CoolboxMaster::cetak_label/$1');
+$routes->get('cetak/label/posisi-coolbox/(:num)', 'CoolboxMaster::cetak_label/$1');
+
 
 /* Antrian */
     $routes->group('coolbox/antrian-coolbox', function ($routes) {
@@ -21,6 +22,7 @@ $routes->get('cetak/label-coolbox/(:any)', 'CoolboxMaster::cetak_label/$1');
         $routes->get('add-data', 'AntrianCoolbox::new');
         $routes->post('create-data', 'AntrianCoolbox::create');
         $routes->get('edit-data/(:num)', 'AntrianCoolbox::edit/$1');
+        $routes->get('cetak-label/(:num)', 'AntrianCoolbox::cetak_label/$1');
         $routes->post('update-data', 'AntrianCoolbox::update');
         $routes->delete('delete-data/(:num)', 'AntrianCoolbox::delete/$1');
     });

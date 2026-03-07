@@ -250,4 +250,6 @@ class CoolboxMaster extends BaseController
             
         return view('Backend/Master/Coolbox/__cetak', $data);    
     }
+
+    
 }

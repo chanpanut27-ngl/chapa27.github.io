@@ -51,11 +51,11 @@
                         <button type="button" class="btn btn-warning btn-sm rounded" onclick="editData(<?= $row['idx']; ?>)" title="Edit data">
                             <i class="ti ti-edit"></i>
                         </button>
-                         <button class="btn btn-info rounded btn-sm" onclick="clickBtn(<?= $row['idx'];?>)" title="Lihat">
-                            <i class="ti ti-eye"></i>
-                        </button>
                         <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['idx']; ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
+                        </button>
+                        <button class="btn btn-info rounded btn-sm" onclick="clickBtn(<?= $row['idx'];?>)" title="Lihat">
+                            <i class="ti ti-eye"></i>
                         </button>
                     </div>
                 </td>
@@ -146,7 +146,7 @@
     }
 
     function clickBtn(id) {
-        var urls = 'cetak/label-coolbox/'+id;
+        var urls = 'cetak/label/posisi-coolbox/'+id;
         var WinPrint = window.open('<?= site_url() ?>'+urls, '', 'left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
         WinPrint.document.close();
