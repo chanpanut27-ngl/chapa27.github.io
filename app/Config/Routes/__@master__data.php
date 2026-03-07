@@ -178,7 +178,7 @@
         $routes->post('create-data', 'AuthGroupsPermissionsMaster::create');
         $routes->get('edit-data/(:num)', 'AuthGroupsPermissionsMaster::edit/$1');
         $routes->post('update-data', 'AuthGroupsPermissionsMaster::update');
-        $routes->get('delete-data', 'AuthGroupsPermissionsMaster::delete');
+        $routes->delete('delete-data/(:num)', 'AuthGroupsPermissionsMaster::delete/$1');
     });
 
     /* Auth Logins */

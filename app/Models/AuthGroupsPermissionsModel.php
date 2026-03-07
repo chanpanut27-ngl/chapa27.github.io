@@ -8,7 +8,7 @@ use CodeIgniter\Model;
 class AuthGroupsPermissionsModel extends Model
 {
     protected $table            = 'auth_groups_permissions';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_groups_permissions';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
@@ -58,7 +58,7 @@ class AuthGroupsPermissionsModel extends Model
     public function get_data()
     {
         $builder = $this->db->table('auth_groups_permissions');
-        $builder->select('group_id, permission_id, auth_groups.name AS name_group, auth_permissions.name AS name_permissions');
+        $builder->select('id_groups_permissions, group_id, permission_id, auth_groups.name AS name_group, auth_permissions.name AS name_permissions');
         $builder->join('auth_groups', 'auth_groups.id=auth_groups_permissions.group_id');
         $builder->join('auth_permissions', 'auth_permissions.id=auth_groups_permissions.permission_id');
         $query = $builder->get()->getResultArray();

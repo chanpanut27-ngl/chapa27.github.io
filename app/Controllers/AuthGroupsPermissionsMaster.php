@@ -144,7 +144,21 @@ class AuthGroupsPermissionsMaster extends BaseController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id),
+                'groupss' => $this->m_auth_groups->findAll(),
+                'permissions' => $this->m_auth_permissions->findAll(),
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Auth-groups-permissions/__edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -156,7 +170,46 @@ class AuthGroupsPermissionsMaster extends BaseController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'group_id' => [
+                    'label' => 'Group',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'permission_id' => [
+                    'label' => 'Permissions',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'group_id' => $this->validation->getError('group_id'),
+                        'permission_id' => $this->validation->getError('permission_id'),
+                    ]
+                ];
+            } else {
+                $save = [
+                    'id_groups_permissions' => $this->request->getVar('id'),
+                    'group_id' => $this->request->getVar('group_id'),
+                    'permission_id' => $this->request->getVar('permission_id')
+                ];
+                $this->model->save($save);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

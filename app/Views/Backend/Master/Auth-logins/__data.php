@@ -22,7 +22,7 @@
                 <td><?= $row['success'] != 1 ? '<span class="badge text-bg-danger">Failed</span>' : '<span class="badge text-bg-success">Success</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>
@@ -39,7 +39,7 @@
         }
         Swal.fire({
             title: "Yakin untuk menghapus data ?",
-            text: `No.urut : ` + myElement.data('urut'),
+            text: `No : ` + myElement.data('urut'),
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
