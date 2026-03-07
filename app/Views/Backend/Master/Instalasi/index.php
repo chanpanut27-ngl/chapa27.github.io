@@ -30,7 +30,7 @@
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-success border-0 btn-sm rounded btn-refresh" title="refresh">
-                                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
+                                <i class="ti ti-refresh"></i>
                             </button>
                             <a href="<?= site_url('export-excel-instalasi') ?>" class="btn btn-info btn-sm rounded btn-export-excel">
                                 <span class="pc-micon">Export excel</span>
@@ -41,7 +41,7 @@
                         <div class="d-flex justify-content-end align-items-center">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-md rounded btn-tambah">
-                                <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
+                                <i class="ti ti-square-plus"></i> Tambah Data
                             </button>
                         </div>
                         <div class="view-data"></div>

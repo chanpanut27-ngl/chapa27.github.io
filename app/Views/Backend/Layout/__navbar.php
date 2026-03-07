@@ -239,7 +239,7 @@
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/kategori-laboratorium') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
-                        <span class="pc-mtext"> Kategori laboratorium</span>
+                        <span class="pc-mtext"> Kategori Laboratorium</span>
                     </a>
                 </li>
                 <li class="pc-item">
@@ -263,7 +263,7 @@
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/jenis-sampel') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
-                        <span class="pc-mtext"> Jenis sampel</span>
+                        <span class="pc-mtext"> Jenis Sampel</span>
                     </a>
                 </li>
                 <li class="pc-item">
@@ -275,7 +275,7 @@
                 <li class="pc-item">
                     <a href="<?= base_url('master-data/biaya-akomodasi') ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-database"></i></span>
-                        <span class="pc-mtext"> Biaya akomodasi</span>
+                        <span class="pc-mtext"> Biaya Akomodasi</span>
                     </a>
                 </li>
                 <li class="pc-item">
