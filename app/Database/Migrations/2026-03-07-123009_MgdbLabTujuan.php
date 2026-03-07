@@ -18,12 +18,12 @@ class MgdbLabTujuan extends Migration
             'id_pelanggan' => [
                 'type'       => 'INT',
                 'constraint' => 5,
-                'unsigned'   => true,
+                'unsigned'       => true,
             ],
             'id_pengantar_lab' => [
                 'type'       => 'INT',
                 'constraint' => 5,
-                'unsigned'   => true,
+                'unsigned'       => true,
             ],
             'kode_pengantar' => [
                 'type'       => 'CHAR',
@@ -32,7 +32,7 @@ class MgdbLabTujuan extends Migration
             'id_laboratorium' => [
                 'type'       => 'INT',
                 'constraint' => 5,
-                'unsigned'   => true,
+                'unsigned'       => true,
             ],
             'is_active' => [
                 'type'  => 'BOOLEAN',
@@ -68,5 +68,6 @@ class MgdbLabTujuan extends Migration
     public function down()
     {
         $this->forge->dropTable('laboratorium_tujuan');
+        
     }
 }
