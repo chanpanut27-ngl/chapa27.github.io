@@ -145,7 +145,21 @@ class AuthGroupsUsersMaster extends BaseController
      */
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $save = [
+                'id_groups_users' => $this->request->getVar('id'),
+                'group_id' => $this->request->getVar('group_id'),
+                'user_id' => $this->request->getVar('user_id')
+            ];
+            $this->model->save($save);
+            $msg = [
+                'sukses' => 'Data berhasil diubah'
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

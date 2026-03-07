@@ -6,16 +6,15 @@
                 <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-edit fs-2"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('master-data/auth-groups-users/create-data') ?>" class="form-data">
+            <form action="<?= base_url('master-data/auth-groups-users/update-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
-            <?= var_dump($items) ?>
-                <input type="text" name="id_groups_users" value="<?= $items['id_groups_users'] ?>">
+                <input type="hidden" name="id" value="<?= $items['id_groups_users'] ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="group-id" class="form-label h5">Groups users</label>
                         <select class="form-select" name="group_id" aria-label="Default select example" id="group-id">
                             <?php foreach ($groups_users as $row) : ?>
-                             <option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+                             <option value="<?= $row['id'] ?>" <?= $items['group_id'] == $row['id'] ? 'selected' : '' ?>><?= $row['name'] ?></option>
                             <?php endforeach;?>
                         </select>
                         <div class="invalid-feedback errorGroupId"></div>
@@ -26,7 +25,7 @@
                     <div class="mb-3">
                         <select class="form-select" name="user_id" aria-label="Default select example" id="user-id" style="width: 100%;">
                             <?php foreach ($users as $row) : ?>
-                             <option value="<?= $row['id'] ?>"><?= $row['username'] ?></option>
+                             <option value="<?= $row['id'] ?>" <?= $items['user_id'] == $row['id'] ? 'selected' : '' ?>><?= $row['username'] ?></option>
                             <?php endforeach;?>
                         </select>
                         <div class="invalid-feedback errorUserId"></div>
