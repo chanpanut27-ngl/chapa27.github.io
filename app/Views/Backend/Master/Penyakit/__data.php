@@ -46,7 +46,7 @@
             },
             complete: function() {
                 $('.btn-edit-'+id).removeAttr('disable');
-                $('.btn-edit-'+id).html('<span class="fa-solid fa-edit"></span>');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
             },
             success: function(response) {
                 if (response.sukses) {
@@ -68,7 +68,7 @@
         }
         Swal.fire({
             title: "Yakin untuk menghapus data ?",
-            text: `No.urut : ` + myElement.data('urut'),
+            text: `No : ` + myElement.data('urut'),
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
