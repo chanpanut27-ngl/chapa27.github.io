@@ -37,13 +37,15 @@ use App\Models\StatusLayananModel;
                 <div class="card">
                     <div class="card-header p-2">
                         <div class="d-flex justify-content-end align-items-center gap-1">
-                            <a href="<?= base_url('pelayanan/permintaan') ?>" class="btn btn-secondary btn-sm btn-rounded" title="Kembali"><span class="fa-solid fa-arrow-circle-left"></span></a>
+                            <a href="<?= base_url('pelayanan/penawaran') ?>" class="btn bg-gray-400 btn-sm rounded" title="Kembali">
+                                <i class="ti ti-arrow-left-circle"></i>
+                            </a>
                         </div>
                     </div>
                     <div class="accordion accordion-flush accordion-color mb-2" id="accordionFlushExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                            <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                            <button class="accordion-button bg-green-100 p-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
                                 <h5><span class="pc-micon"><i class="ti ti-user"></i> Data Pelanggan</h5>
                             </button>
                             </h2>
@@ -58,7 +60,7 @@ use App\Models\StatusLayananModel;
                     <div class="accordion accordion-flush accordion-color mb-2" id="accordionSurat">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                            <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseOne">
+                            <button class="accordion-button bg-green-100 p-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseOne">
                                 <h5><span class="pc-micon"><i class="ti ti-file"></i> Surat permintaan</h5>
                             </button>
                             </h2>
@@ -72,7 +74,7 @@ use App\Models\StatusLayananModel;
                     <div class="accordion accordion-flush accordion-color" id="accordionPaktaIntegritas">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                            <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="true" aria-controls="flush-collapseThree">
+                            <button class="accordion-button bg-green-100 p-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="true" aria-controls="flush-collapseThree">
                                 <h5><span class="pc-micon"><i class="ti ti-file"></i> Pakta Integritas</h5>
                             </button>
                             </h2>
@@ -86,7 +88,7 @@ use App\Models\StatusLayananModel;
                     <div class="accordion accordion-flush accordion-color" id="accordionRencanaAnggaranBiaya">
                         <div class="accordion-item">
                             <h2 class="accordion-header">
-                            <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="true" aria-controls="flush-collapseFour">
+                            <button class="accordion-button bg-green-100 p-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="true" aria-controls="flush-collapseFour">
                                 <h5><span class="pc-micon"><i class="ti ti-file"></i> Rencana Anggaran Biaya</h5>
                             </button>
                             </h2>
