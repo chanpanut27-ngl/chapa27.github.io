@@ -17,7 +17,6 @@ class InstansiModel extends Model
         'nama_instansi', 
         'alamat', 
         'no_telp', 
-        'wilayah', 
         'is_active'
     ];
 

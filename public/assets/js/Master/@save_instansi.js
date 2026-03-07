@@ -41,14 +41,6 @@ $(document).ready(function () {
                             $('#no-telp').removeClass('is-invalid');
                             $('.errorNoTelp').html('');
                         }
-                        
-                        if (error.wilayah) {
-                            $('#wilayah').addClass('is-invalid');
-                            $('.errorWilayah').html(error.wilayah);
-                        } else {
-                            $('#wilayah').removeClass('is-invalid');
-                            $('.errorWilayah').html('');
-                        }
 
                         Swal.fire({
                             title: "Gagal",
@@ -62,6 +54,7 @@ $(document).ready(function () {
                                 listData();
                             }
                         });
+
                 } else {
                     
                     Swal.fire({

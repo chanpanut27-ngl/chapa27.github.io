@@ -41,14 +41,19 @@ $(document).ready(function () {
                             $('#no-telp').removeClass('is-invalid');
                             $('.errorNoTelp').html('');
                         }
-                        
-                        if (error.wilayah) {
-                            $('#wilayah').addClass('is-invalid');
-                            $('.errorWilayah').html(error.wilayah);
-                        } else {
-                            $('#wilayah').removeClass('is-invalid');
-                            $('.errorWilayah').html('');
-                        }
+
+                        Swal.fire({
+                            title: "Gagal",
+                            text: response.errorMessage,
+                            icon: "error",
+                            timer: 2000,
+                            width: '400px',
+                            padding: '1em'
+                        }).then((result) => {
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                listData();
+                            }
+                        });
 
                 } else {
                     

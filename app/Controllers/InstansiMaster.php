@@ -108,13 +108,6 @@ class InstansiMaster extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
-                ],
-                'wilayah' => [
-                    'label' => 'Wilayah',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
                 ]
             ]);
 
@@ -123,16 +116,14 @@ class InstansiMaster extends BaseController
                     'error' => [
                         'nama_instansi' => $this->validation->getError('nama_instansi'),
                         'alamat' => $this->validation->getError('alamat'),
-                        'no_telp' => $this->validation->getError('no_telp'),
-                        'wilayah' => $this->validation->getError('wilayah'),
+                        'no_telp' => $this->validation->getError('no_telp')
                     ]
                 ];
             } else {
                 $simpandata = [
                     'nama_instansi' => $this->request->getVar('nama_instansi'),
                     'alamat' => $this->request->getVar('alamat'),
-                    'no_telp' => $this->request->getVar('no_telp'),
-                    'wilayah' => $this->request->getVar('wilayah')
+                    'no_telp' => $this->request->getVar('no_telp')
                 ];
                 $this->model->save($simpandata);
                 $msg = [
@@ -200,13 +191,6 @@ class InstansiMaster extends BaseController
                     'errors' => [
                         'required' => '{field} tidak boleh kosong'
                     ]
-                ],
-                'wilayah' => [
-                    'label' => 'Wilayah',
-                    'rules' => 'required',
-                    'errors' => [
-                        'required' => '{field} tidak boleh kosong'
-                    ]
                 ]
             ]);
             if (!$valid) {
@@ -214,8 +198,7 @@ class InstansiMaster extends BaseController
                     'error' => [
                         'nama_instansi' => $this->validation->getError('nama_instansi'),
                         'alamat' => $this->validation->getError('alamat'),
-                        'no_telp' => $this->validation->getError('no_telp'),
-                        'wilayah' => $this->validation->getError('wilayah'),
+                        'no_telp' => $this->validation->getError('no_telp')
                     ]
                 ];
             } else {
@@ -224,7 +207,6 @@ class InstansiMaster extends BaseController
                     'nama_instansi' => $this->request->getVar('nama_instansi'),
                     'alamat' => $this->request->getVar('alamat'),
                     'no_telp' => $this->request->getVar('no_telp'),
-                    'wilayah' => $this->request->getVar('wilayah'),
                     'is_active' => $this->request->getVar('is_active')
                 ];
                 $this->model->save($simpandata);

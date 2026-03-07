@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Instansi', 'Alamat', 'No.Telp/Hp', 'Wilayah', 'Is_active', ''];
+        $arrth = ['No', 'Nama Instansi', 'Alamat', 'No.Telp/Hp', 'Is_active', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -19,7 +19,6 @@
                 <td><?= $row['nama_instansi'] ?></td>
                 <td><?= $row['alamat'] ?></td>
                 <td><?= $row['no_telp'] ?></td>
-                <td><?= $row['wilayah'] ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-dark rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
@@ -71,7 +70,7 @@
         }
         Swal.fire({
             title: "Yakin untuk menghapus data ?",
-            text: `No.urut : ` + myElement.data('urut'),
+            text: `No : ` + myElement.data('urut'),
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
