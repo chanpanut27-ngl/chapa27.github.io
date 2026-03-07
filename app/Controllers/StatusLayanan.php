@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\PermintaanPelangganModel;
 use App\Models\StatusLayananModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -14,11 +15,13 @@ class StatusLayanan extends BaseController
      */
     protected $title;
     protected $model;
+    protected $m_permintaan;
 
     public function __construct()
     {
         $this->title = 'Status Layanan';
         $this->model = new StatusLayananModel();
+        $this->m_permintaan = new PermintaanPelangganModel();
     }
     
     public function index($id = null)
@@ -27,7 +30,8 @@ class StatusLayanan extends BaseController
 
             $data = [
                 'title' => $this->title,
-                'id_pelanggan' => $id
+                'id_pelanggan' => $id,
+                'items' => $this->m_permintaan->find($id)
             ];
             $msg = [
                 'sukses' => view('Backend/Status/index', $data)

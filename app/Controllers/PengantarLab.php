@@ -38,19 +38,20 @@ class PengantarLab extends BaseController
 
     public function generate_kode_pengantar() 
     {
-        $tahun = null;
+
+        $tahun = '';
         // cari tahun data terakhir 
         $query = $this->model->orderBy('id', 'DESC')->get();
         
         foreach ($query->getResultArray() as $row) {
-            $tahun = $row['tahun'];
+            $tahun = $row['created_at'];
         }
-        $nextYear = date('Y', strtotime($this->today));
+        $nextYear = date('Y', strtotime($this->today)) + 1;
         if ($tahun < $nextYear) {
-            $count = $this->model->where('tahun', $nextYear)->countAllResults();
+            $count = $this->model->where('created_at', $tahun)->countAllResults();
             $nomorUrut = $count + 1;
         }else{
-            $count = $this->model->where('tahun', $tahun)->countAllResults();
+            $count = $this->model->where('created_at', $nextYear)->countAllResults();
             $nomorUrut = $count + 1;
         }
         $nomorAntrian = 'PL'. sprintf('%04d', $nomorUrut);

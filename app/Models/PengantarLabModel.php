@@ -16,8 +16,7 @@ class PengantarLabModel extends Model
     protected $allowedFields    = [
         'kode_pengantar',
         'id_pelanggan',
-        'tanggal',
-        'tahun'
+        'tanggal'
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -74,7 +73,7 @@ class PengantarLabModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lab');
-        $builder->select('pengantar_lab.id as id_pengantar,kode_pengantar,tanggal,tahun,pengantar_lab.is_active,permintaan_pelanggan.nama_pengirim,alamat,no_telp');
+        $builder->select('pengantar_lab.id as id_pengantar,kode_pengantar,tanggal,pengantar_lab.is_active,permintaan_pelanggan.nama_pengirim,alamat,no_telp');
         $builder->join("permintaan_pelanggan", "permintaan_pelanggan.id = pengantar_lab.id_pelanggan", "left");
         $query = $builder->get()->getResultArray();
         return $query;
@@ -84,7 +83,7 @@ class PengantarLabModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lab');
-        $builder->select('pengantar_lab.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,tahun,pengantar_lab.is_active,permintaan_pelanggan.nama_pengirim,alamat,no_telp');
+        $builder->select('pengantar_lab.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,pengantar_lab.is_active,permintaan_pelanggan.nama_pengirim,alamat,no_telp');
         $builder->join("permintaan_pelanggan", "permintaan_pelanggan.id = pengantar_lab.id_pelanggan");
         $builder->where('pengantar_lab.id', $params);
         $query = $builder->get()->getResultArray();
@@ -95,7 +94,7 @@ class PengantarLabModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lab');
-        $builder->select('pengantar_lab.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,tahun,pengantar_lab.is_active,
+        $builder->select('pengantar_lab.id as id_pengantar,id_pelanggan,kode_pengantar,tanggal,pengantar_lab.is_active,
         permintaan_pelanggan.no_reg,kode_pelanggan,nama_pengirim,instansi,alamat,no_telp,no_telp_pengirim');
         $builder->join("permintaan_pelanggan", "permintaan_pelanggan.id = pengantar_lab.id_pelanggan", "left");
         $builder->where('pengantar_lab.kode_pengantar', $params);
