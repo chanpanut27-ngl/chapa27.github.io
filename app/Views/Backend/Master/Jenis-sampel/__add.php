@@ -63,7 +63,7 @@
 </div>
 
 <script>
-     $('#id-peraturan').select2({
+    $('#id-peraturan').select2({
         dropdownParent: $('#exampleModal')
     });
 </script>

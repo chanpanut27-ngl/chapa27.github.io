@@ -3,17 +3,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel">
-                    <span class="fa-solid fa-plus-square"></span> <?= $title; ?>
-                </h4>
+                <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-square-plus fs-2"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('coolbox/posisi-coolbox/create-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
                 <div class="modal-body">
-                    <div class="mb-3">
+                    <div class="mb-2">
                         <label for="id-coolbox" class="form-label h5">Kode coolbox</label>
-                        <select name="id_coolbox" class="form-select" id="id-coolbox" aria-label="Default select example">
+                    </div>
+                    <div class="mb-3">
+                        <select name="id_coolbox" class="form-select" id="id-coolbox" aria-label="Default select example" style="width: 100%;">
                             <option value="">-- Pilih --</option>
                             <?php
                             foreach ($coolbox as $row) :
@@ -47,11 +47,16 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm btn-simpan rounded"><span class="fa-solid fa-save"></span> Simpan</button>
-                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm btn-simpan rounded"><i class="ti ti-device-floppy"></i> Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-x"></i> Tutup</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    $('#id-coolbox').select2({
+        dropdownParent: $('#exampleModal')
+    });
+</script>
 <script src="<?= base_url('assets/js/Coolbox/@save_posisi_coolbox.js') ?>"></script>
