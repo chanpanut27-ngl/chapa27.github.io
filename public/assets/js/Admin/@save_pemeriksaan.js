@@ -13,10 +13,6 @@ $(document).ready(function () {
                 $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
                 $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
             },
-            complete: function() {
-                $('.btn-simpan').removeAttr('disable');
-                $('.btn-simpan').html('<i class="fas fa-save"></i> Simpan');
-            },
             success: function(response) {
                 var error = response.error;
 
@@ -74,6 +70,10 @@ $(document).ready(function () {
                     $("#exampleModal").modal('hide');
                     listData();
                 }
+            },
+            complete: function() {
+                $('.btn-simpan').removeAttr('disable');
+                $('.btn-simpan').html('<i class="ti ti-device-floppy"></i> Simpan');
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
