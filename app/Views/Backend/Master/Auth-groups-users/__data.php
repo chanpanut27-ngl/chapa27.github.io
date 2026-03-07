@@ -14,14 +14,17 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr>
+            <tr id="myId-<?= $row['id_groups_users'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['username'] ?></td>
                 <td><?= $row['email'] ?></td>
                 <td><?= $row['name'] ?></td>
                 <td>
-                    <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-danger btn-sm rounded btn-hapus" data-user=<?= $row['user_id'] ?> data-group=<?= $row['group_id'] ?> title="Hapus data">
+                    <div class="d-flex justify-content-start gap-1">
+                        <button type="button" class="btn btn-warning border-0 btn-sm rounded btn-edit-<?= $row['id_groups_users'] ?>" onclick="editData(<?= $row['id_groups_users'] ?>)" title="Edit data">
+                            <i class="ti ti-edit"></i>
+                        </button>
+                        <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id_groups_users'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>
@@ -32,57 +35,80 @@
 </table>
 <script>
 
-    $(".btn-hapus").click(function (e) {
-        e.preventDefault();
-
-        var user_id = $(this).data('user');
-        var group_id = $(this).data('group');
-
-            Swal.fire({
-                title: "Yakin untuk menghapus data ?",
-                text: `User : ` + user_id + ` Group : ` + group_id,
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya, Hapus!",
-                cancelButtonText: "Tidak",
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        type: 'get',
-                        url: '<?= site_url('master-data/auth-groups-users/delete-data'); ?>',
-                        dataType: 'json',
-                        data : {
-                            user_id : user_id,
-                            group_id : group_id
-                        },
-                        success: function(response) {
-                            if (response.sukses) {
-                                Swal.fire({
-                                    title: "Hapus Data !",
-                                    text: response.sukses,
-                                    icon: "success",
-                                    timer: 2000,
-                                    width: '400px',
-                                    padding: '1em'
-                                }).then((result) => {
-                                    if (result.dismiss === Swal.DismissReason.timer) {
-                                    listData();
-                                    }
-                                });
-                                listData();
-                            }
-                        },
-                        error: function(xhr, ajaxOptions, thrownError) {
-                            alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-                        }
-                    })
-                } else {
-                    myElement.removeClass('bg bg-danger');
+    function editData(id) {
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('master-data/auth-groups-users/edit-data/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
                 }
-            });
-    })
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+    function deleteData(id) 
+    {
+        var myElement = $('#myId-' + id);
+        if (myElement.data('urut')) {
+            myElement.addClass('bg bg-danger');
+        }
+
+        Swal.fire({
+            title: "Yakin untuk menghapus data ?",
+            text: `No : ` + myElement.data('urut'),
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus!",
+            cancelButtonText: "Tidak",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: 'delete',
+                    url: '<?= site_url('master-data/auth-groups-users/delete-data/'); ?>' + id,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.sukses) {
+                            Swal.fire({
+                                title: "Hapus Data !",
+                                text: response.sukses,
+                                icon: "success",
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    listData();
+                                }
+                            });
+                            listData();
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                    }
+                })
+            } else {
+                myElement.removeClass('bg bg-danger');
+            }
+        });
+    }
 
     $(document).ready(function() {
         new DataTable('#example', {

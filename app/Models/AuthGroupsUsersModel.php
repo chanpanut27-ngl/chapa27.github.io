@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class AuthGroupsUsersModel extends Model
 {
     protected $table            = 'auth_groups_users';
-    protected $primaryKey       = 'id';
+    protected $primaryKey       = 'id_groups_users';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
@@ -36,7 +35,7 @@ class AuthGroupsUsersModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setInsertBy'];
     protected $afterInsert    = [];
     protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
@@ -45,13 +44,20 @@ class AuthGroupsUsersModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    protected function setInsertBy(array $data)
+    {
+        $username = user()->username;
+        if ($username) {
+            $data['data']['created_by'] = $username;
+        }
+        return $data;
+    }
+ 
     protected function setUpdatedBy(array $data)
     {
-       $userId = user()->username;
-       $myTime = new Time();
-        if ($userId) {
-            // Tambahkan user_id ke data yang akan di-update
-            $data['data']['updated_at'] = $myTime->toDateTimeString();
+       $username = user()->username;
+        if ($username) {
+            $data['data']['updated_by'] = $username;
         }
         return $data;
     }
@@ -60,7 +66,7 @@ class AuthGroupsUsersModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('auth_groups_users');
-        $builder->select('email, username, name, description, user_id, group_id');
+        $builder->select('id_groups_users, email, username, name, description, user_id, group_id');
         $builder->join('auth_groups', 'auth_groups.id=auth_groups_users.group_id');
         $builder->join('users', 'users.id=auth_groups_users.user_id');
         $query = $builder->get()->getResultArray();

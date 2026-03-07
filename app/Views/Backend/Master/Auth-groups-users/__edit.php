@@ -3,11 +3,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-edit fs-2"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('master-data/auth-groups-users/create-data') ?>" class="form-data">
                 <?= csrf_field(); ?>
+            <?= var_dump($items) ?>
+                <input type="text" name="id_groups_users" value="<?= $items['id_groups_users'] ?>">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="group-id" class="form-label h5">Groups users</label>
@@ -31,8 +33,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
-                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><i class="ti ti-edit"></i> Ubah</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-x"></i> Tutup</button>
                 </div>
             </form>
         </div>

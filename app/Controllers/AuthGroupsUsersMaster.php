@@ -74,7 +74,7 @@ class AuthGroupsUsersMaster extends BaseController
         if ($this->request->isAJAX()) {
             $data = [
                 'title' => 'Tambah ' . $this->title,
-                'groups' => $this->m_auth_groups->findAll(),
+                'groups_users' => $this->m_auth_groups->findAll(),
                 'users' => $this->m_users->findAll() 
             ];
             $msg = [
@@ -119,7 +119,21 @@ class AuthGroupsUsersMaster extends BaseController
      */
     public function edit($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->where('id_groups_users', $id)->first(),
+                'groups_users' => $this->m_auth_groups->findAll(),
+                'users' => $this->m_users->findAll() 
+            ];
+            $msg = [
+                'sukses' => view('Backend/Master/Auth-groups-users/__edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -145,18 +159,11 @@ class AuthGroupsUsersMaster extends BaseController
     {
         if ($this->request->isAJAX()) {
 
-            $user_id = $this->request->getVar('user_id');
-            $group_id = $this->request->getVar('group_id');
-
-            $builder = $this->db->table('auth_groups_users');
-            $builder->where('group_id', $group_id)->where('user_id', $user_id);
-            $builder->delete();
-
-             $msg = [
+            $this->model->delete($id);
+            $msg = [
                 'sukses' => 'Data berhasil dihapus'
             ];
             echo json_encode($msg);
-           
         } else {
             exit('Not Process');
         }

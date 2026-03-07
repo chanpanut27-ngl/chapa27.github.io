@@ -155,7 +155,7 @@
         $routes->post('create-data', 'AuthGroupsUsersMaster::create');
         $routes->get('edit-data/(:num)', 'AuthGroupsUsersMaster::edit/$1');
         $routes->post('update-data', 'AuthGroupsUsersMaster::update');
-        $routes->get('delete-data', 'AuthGroupsUsersMaster::delete');
+        $routes->delete('delete-data/(:num)', 'AuthGroupsUsersMaster::delete/$1');
     });
 
     /* Auth Permissions */

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class AuthGroupsModel extends Model
@@ -39,7 +38,7 @@ class AuthGroupsModel extends Model
 
     // Callbacks
     protected $allowCallbacks = true;
-    protected $beforeInsert   = [];
+    protected $beforeInsert   = ['setInsertBy'];
     protected $afterInsert    = [];
     protected $beforeUpdate   = ['setUpdatedBy'];
     protected $afterUpdate    = [];
@@ -48,12 +47,20 @@ class AuthGroupsModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    protected function setInsertBy(array $data)
+    {
+        $username = user()->username;
+        if ($username) {
+            $data['data']['created_by'] = $username;
+        }
+        return $data;
+    }
+ 
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
-       $myTime = new Time();
         if ($username) {
-            $data['data']['updated_at'] = $myTime->toDateTimeString();
+            $data['data']['updated_by'] = $username;
         }
         return $data;
     }
