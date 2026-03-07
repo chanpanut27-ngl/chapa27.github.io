@@ -60,7 +60,6 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 

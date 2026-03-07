@@ -52,7 +52,7 @@ $(document).ready(function () {
 
                         Swal.fire({
                             title: "Gagal",
-                            text: response.error,
+                            text: response.errorMessage,
                             icon: "error",
                             timer: 2000,
                             width: '400px',

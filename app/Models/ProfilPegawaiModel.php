@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class ProfilPegawaiModel extends Model

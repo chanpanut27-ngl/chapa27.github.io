@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 
 class ParameterModel extends Model
@@ -62,10 +61,8 @@ class ParameterModel extends Model
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
-       $myTime = new Time();
         if ($username) {
             $data['data']['updated_by'] = $username;
-            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
