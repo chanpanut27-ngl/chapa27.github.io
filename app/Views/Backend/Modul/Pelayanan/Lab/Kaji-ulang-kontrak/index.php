@@ -7,12 +7,12 @@
         <div class="card">
             <div class="card-header p-2">
                 <div class="d-flex justify-content-end align-items-center gap-1">
-                    <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
-                        <span class="pc-micon"><i class="ti ti-refresh"></i></span>
+                    <button type="button" class="btn btn-success border-0 btn-sm rounded btn-refresh-data">
+                        <i class="ti ti-refresh"></i>
                     </button>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-id="<?= $id_kat_lab; ?>" data-kode="<?= $kode_pengantar;?>">
-                        <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
+                        <i class="ti ti-square-plus"></i> Tambah Data
                     </button>
                 </div>
             </div>
