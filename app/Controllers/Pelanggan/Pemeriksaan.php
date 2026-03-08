@@ -154,7 +154,7 @@ class Pemeriksaan extends BaseController
         if ($this->request->isAJAX()) {
             $permintaan_sampel = new PermintaanSampelModel();
             $data = [
-                'title' => 'Jenis sampel',
+                'title' => 'Pemeriksaan sampel',
                 'id_pelanggan' => $id
             ];
             $msg = [
@@ -173,7 +173,6 @@ class Pemeriksaan extends BaseController
             $id_pelanggan = $this->request->getVar('id_pelanggan');
             $permintaan_sampel = new PermintaanSampelModel();
             $data = [
-                'title' => 'Jenis sampel',
                 'items' => $permintaan_sampel->get_data($id_pelanggan)
             ];
             $msg = [

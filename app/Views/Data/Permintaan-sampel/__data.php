@@ -1,4 +1,9 @@
 
+<style>
+    .swal2-container {
+    z-index: 99999 !important; /* Set angka sangat tinggi */
+}
+</style>
 <table id="examples" class="table table-bordered">
     <thead>
         <tr>
@@ -22,7 +27,7 @@
     
         foreach ($items as $row) :
     ?>
-        <tr>
+        <tr id="myIndex-<?= $row['id_permintaan_sampel'] ?>" data-urut=<?= $no; ?>>
             <td class="text-center"><?= $no++; ?></td>
             <td><?= $row['jenis_sampel'] ?></td>
             <td><?= $row['peraturan'] ?></td>
@@ -63,6 +68,78 @@
 <div class="view-modal" style="display: none;"></div>
 
 <script>
+    function editData(id) {
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('pemeriksaan/permintaan-sampel/edit-data/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modals").html(response.sukses).show();
+                    $("#permintaanSampelModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
+     function deleteData(id) {
+        var myElement = $('#myIndex-' + id);
+        if (myElement.data('urut')) {
+            myElement.addClass('bg bg-danger');
+        }
+        Swal.fire({
+            title: "Yakin untuk menghapus data ?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, Hapus!",
+            cancelButtonText: "Tidak",
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: 'get',
+                    url: '<?= site_url('pemeriksaan/permintaan-sampel/delete-data/'); ?>' + id,
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.sukses) {
+                            Swal.fire({
+                                title: "Hapus Data !",
+                                text: response.sukses,
+                                icon: "success",
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                   listData();
+                                }
+                            });
+                            listData();
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+                    }
+                })
+            } else {
+                myElement.removeClass('bg bg-danger');
+            }
+        });
+    }
+
     $(document).ready(function() {
          new DataTable('#examples', {
             responsive: true

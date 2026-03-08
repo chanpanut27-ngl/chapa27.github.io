@@ -15,32 +15,6 @@
 <div class="view-modals" style="display: none;"></div>
 
 <script>
-    function editData(id) {
-        $.ajax({
-            type: 'get',
-            url: '<?= site_url('pemeriksaan/permintaan-sampel/edit-data/'); ?>' + id,
-            dataType: 'json',
-            cache: false,
-            beforeSend: function() {
-                $('.btn-edit-'+id).attr('disable', 'disabled');
-                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
-            },
-            complete: function() {
-                $('.btn-edit-'+id).removeAttr('disable');
-                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
-            },
-            success: function(response) {
-                if (response.sukses) {
-                    $(".view-modals").html(response.sukses).show();
-                    $("#permintaanSampelModal").modal('show');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        })
-    }
-
 
     function listData() {
         $.ajax({

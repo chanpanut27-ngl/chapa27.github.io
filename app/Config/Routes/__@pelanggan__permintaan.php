@@ -23,6 +23,7 @@
     /* Permintaan Pemeriksaan Sampel */
     $routes->group('pemeriksaan/permintaan-sampel', function ($routes) {
        $routes->get('edit-data/(:num)', 'PermintaanSampel::edit/$1');
-       $routes->delete('delete-data/(:num)', 'PermintaanSampel::delete/$1');
+       $routes->post('update-data', 'PermintaanSampel::update');
+       $routes->get('delete-data/(:num)', 'PermintaanSampel::delete/$1');
     });
 ?>
