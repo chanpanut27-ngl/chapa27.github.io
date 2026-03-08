@@ -74,13 +74,13 @@
                         }
                     });
 
-                    // $("#exampleModal").modal('hide');
+                    $("#permintaanSampelModal").modal('hide');
                     listData();
                 }
             },
             complete: function() {
-                $('.btn-simpan').removeAttr('disable');
-                $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
+                $('.btn-ubah').removeAttr('disable');
+                $('.btn-ubah').html('<i class="ti ti-edit"></span> Ubah');
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);

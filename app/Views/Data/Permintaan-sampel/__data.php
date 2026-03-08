@@ -65,7 +65,6 @@
     <?php endforeach;?>
 </tbody>
 </table>
-<div class="view-modal" style="display: none;"></div>
 
 <script>
     function editData(id) {
@@ -94,7 +93,7 @@
         })
     }
 
-     function deleteData(id) {
+    function deleteData(id) {
         var myElement = $('#myIndex-' + id);
         if (myElement.data('urut')) {
             myElement.addClass('bg bg-danger');
@@ -125,8 +124,11 @@
                             }).then((result) => {
                                 if (result.dismiss === Swal.DismissReason.timer) {
                                    listData();
+                                   $(".btn-refresh-data").trigger('click');
                                 }
                             });
+                            //  $("#exampleModal").modal('hide');
+                    
                             listData();
                         }
                     },
@@ -141,7 +143,7 @@
     }
 
     $(document).ready(function() {
-         new DataTable('#examples', {
+        new DataTable('#examples', {
             responsive: true
         });
     })

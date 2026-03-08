@@ -4,10 +4,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-clipboard-list"></i> <?= $title; ?></h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btnClose btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="view-periksa-sampel"></div>
+                <div class="view-data-ps"></div>
             </div>
         </div>
     </div>
@@ -15,7 +15,6 @@
 <div class="view-modals" style="display: none;"></div>
 
 <script>
-
     function listData() {
         $.ajax({
             type: 'get',
@@ -24,19 +23,37 @@
             cache: false,
             data: {id_pelanggan:'<?= $id_pelanggan ?>'},
             beforeSend: function() {
-                $('.view-periksa-sampel').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                $('.view-data-ps').html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
             complete: function() {
-                $('.view-periksa-sampel').removeAttr('span');
+                $('.view-data-ps').removeAttr('span');
             },
             success: function(response) {
-                $(".view-periksa-sampel").html(response.data);
+                $(".view-data-ps").html(response.data);
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
             }
         })
     }
+
+    $(".btnClose").click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type:"GET",
+            url: "<?= site_url('pelayanan/pemeriksaan/list-data'); ?>",
+            dataType: 'json',
+            cache: false,
+            data:{id_pelanggan:'<?= $id_pelanggan ?>'},
+            success: function(response) {
+                $(".view-data").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    })
+
     $(document).ready(function() {
         listData();
     })
