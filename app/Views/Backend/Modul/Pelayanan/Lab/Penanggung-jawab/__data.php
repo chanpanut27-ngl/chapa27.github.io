@@ -12,10 +12,10 @@ foreach ($items as $row) {
 
 if ($row) {
    ?>
-   <button type="button" class="btn btn-warning btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
+   <button type="button" class="btn btn-warning border-0 btn-sm rounded btn-edit" onclick="editData(<?= $row['id']; ?>)" title="Edit data">
        <i class="ti ti-edit"></i>
     </button>&nbsp;
-    <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
+    <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
        <i class="ti ti-trash"></i>
     </button>
    <?php
