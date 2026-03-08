@@ -35,7 +35,7 @@
                             $bgs = '';
                             if ($key['status'] == 'Permintaan di Terima') {
                                 $sts_ket = 1;
-                                $bgs = 'bg-success';
+                                $bgs = 'bg-primary';
                             } else if ($key['status'] == 'Permintaan di Tolak'){
                                 $sts_ket = 2;
                                 $bgs = 'bg-secondary';

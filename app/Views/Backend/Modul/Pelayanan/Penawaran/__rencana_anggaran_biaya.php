@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\LaboratoriumModel;
 use App\Models\LaboratoriumTujuanModel;
 use App\Models\PermintaanSampelModel;
 
@@ -12,7 +13,7 @@ $a = $lab_tujuan->get_data($kode_pengantar);
         .kertas-surat {
             width: 210mm; /* Ukuran A4 */
             min-height: 297mm;
-            padding: 20mm;
+            padding: 10mm;
             background-color: white;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
@@ -48,59 +49,93 @@ $a = $lab_tujuan->get_data($kode_pengantar);
 <div class="kertas-surat">
     <!-- Kepala Surat (Kop) -->
     <div class="kop-surat">
-        <div class="text-end fw-bold fs-5">LB.IV.7.1.1.4</div>
-        <h4>RENCANA ANGGARAN BIAYA <br>
+        <div class="text-end fw-bold">LB.IV.7.1.1.4</div>
+        <h5>RENCANA ANGGARAN BIAYA <br>
 Uji Laboratorium <?= $items['instansi'] ?> <br>
 <?= $items['alamat'] ?>
-</h4>
+</h5>
     </div>
 
     <!-- Isi Surat -->
     <div class="isi-surat">
 <p><b>A. Biaya Pengujian Sampel Aktif</b></p>
-<table class="table table-bordered">
+<table class="table table-bordered" style="font-size: 10pt;">
     <thead style="border: 1px solid;">
         <tr>
             <th>No</th>
-            <th>Jenis sampel</th>
-            <th>∑ Smpl</th>
-            <th>Biaya Satuan (Rp)</th>
-            <th>Jumlah Biaya (Rp)</th>
-            <th>Keterangan</th>
+            <th>Laboratorium</th>
         </tr>
     </thead>
     <tbody style="border: 1px solid;">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
         <?php   
         $id_pelanggan = $items['id'];
         $permintaan_sampel = new PermintaanSampelModel();
-        $result = $permintaan_sampel->get_data($id_pelanggan);
+        $rest_ps = $permintaan_sampel->get_data($id_pelanggan);
+        $laboratorium = new LaboratoriumModel();
+        $rest_lab = $laboratorium->findAll();
+
+        use App\Models\ParameterModel;
+        $m_parameter = new ParameterModel();
+        $parameter = $m_parameter->get_data();
+
+        $arr = [];
+        foreach ($rest_ps as $key) {
+            $arr[] = $key['id_lab'];
+        }
+        $dataUnik = array_flip(array_flip($arr));
         $no = 1;
-        foreach ($result as $rows) {
-        ?>
-        <tr>
-            <td><?= $no++ ?></td>
-            <td><?= $rows['jenis_sampel'] ?></td>
-            <td class="text-center"><?= $rows['jumlah_sampel'] ?></td>
-            <td class="text-right"><?= $rows['pnbp'] ?></td>
-            <td><?= $rows['jumlah_biaya'] ?></td>
-            <td>
-                Pengujian: Uji Duplo Metode Uji: Metode Membran Flter dengan media CCA/ISO 9308
-            </td>
-        </tr>
-        <?php 
-            $total = 0;
-            $total = $total + $rows['jumlah_biaya'];
+        $total = 0;
+        foreach ($rest_lab as $row) {
+          foreach ($dataUnik as $r) {
+            if ($r == $row['id']) {
+                ?>
+                <tr>
+                    <td class="text-center"><?= $no++ ?></td>
+                    <td><?= $row['nama_lab']; ?></td>
+                    <td class="fw-bold">Jenis sampel</td>
+                    <td class="fw-bold">Jumlah sampel (∑)</td>
+                    <td class="fw-bold">Biaya Satuan (Rp)</td>
+                    <td class="fw-bold">Jumlah Biaya (Rp)</td>
+                    <td class="fw-bold">Keterangan</td>
+                </tr>
+                <?php
+                foreach ($rest_ps as $s) {
+                    $total = $total + $s['jumlah_biaya'];
+                    if ($r == $s['id_lab']) {
+                    ?>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td><b><?= $s['jenis_sampel'] ?></b><br><?= $s['peraturan'] ?></td>
+                        <td class="text-center"><?= $s['jumlah_sampel'] ?></td>
+                        <td class="text-end"><?= number_to_currency($s['pnbp'], 'IDR', 'ID', 0); ?></td>
+                        <td class="text-end"><?= number_to_currency($s['jumlah_biaya'], 'IDR', 'ID', 0); ?></td>
+                        <td>
+                            <?php
+                            $imp = '';
+                            $arr_parameter = [];
+                            foreach ($parameter as $key) {
+
+                                if ($s['id_jenis_sampel'] == $key['id_jenis_sampel']) 
+                                {
+                                    $arr_parameter[] = $key['parameter'];
+                                }
+
+                            }
+                            $imp = implode(', ', $arr_parameter);
+                            echo $imp;
+                            ?>
+                        </td>
+                    </tr>
+                    <?php
+                    }
+                }
+            }
+          }
         }
         ?>
         <tr>
-            <td colspan="4" class="text-end"><b>Total Biaya Pengujian (PNBP) ( 1 x pengujian)</b></td>
-            <td><?= $total ?? null ?></td>
+            <td colspan="5" class="fw-bold">Total Biaya Pengujian (PNBP) ( 1 x pengujian)</td>
+            <td class="fw-bold text-end"><?= number_to_currency($total, 'IDR', 'ID', 0); ?></td>
         </tr>
     </tbody>
 </table>
