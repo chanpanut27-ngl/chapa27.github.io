@@ -155,10 +155,29 @@ class Pemeriksaan extends BaseController
             $permintaan_sampel = new PermintaanSampelModel();
             $data = [
                 'title' => 'Jenis sampel',
-                'items' => $permintaan_sampel->get_data($id)
+                'id_pelanggan' => $id
             ];
             $msg = [
-                'sukses' => view('Data/__permintaan__sampel', $data)
+                'sukses' => view('Data/Permintaan-sampel/index', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }  
+    }
+
+    public function periksa_sampel() 
+    {
+        if ($this->request->isAJAX()) {
+            $id_pelanggan = $this->request->getVar('id_pelanggan');
+            $permintaan_sampel = new PermintaanSampelModel();
+            $data = [
+                'title' => 'Jenis sampel',
+                'items' => $permintaan_sampel->get_data($id_pelanggan)
+            ];
+            $msg = [
+                'data' => view('Data/Permintaan-sampel/__data', $data)
             ];
 
             echo json_encode($msg);

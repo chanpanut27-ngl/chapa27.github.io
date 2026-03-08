@@ -73,12 +73,18 @@ class PermintaanSampelModel extends Model
         $db = \Config\Database::connect();
         $sql = 'SELECT
                 ps.id AS id_permintaan_sampel,
+                id_jenis_sampel,
                 jenis_sampel,
                 jumlah_sampel,
                 pnbp,
+                peraturan,
+                nama_lab,
+                mjs.keterangan,
                 jumlah_sampel * pnbp AS jumlah_biaya
                 FROM permintaan_sampel ps
                 JOIN master_jenis_sampel mjs ON mjs.id = ps.id_jenis_sampel
+                JOIN master_peraturan mp ON mp.id = mjs.id_peraturan
+                JOIN master_laboratorium ml ON ml.id = mjs.id_lab
                 WHERE id_pelanggan = "'.$param.'"';
 
         $query = $db->query($sql);

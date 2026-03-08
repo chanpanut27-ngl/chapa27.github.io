@@ -25,7 +25,7 @@
                 <td>
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning btn-sm border-0 rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
-                            <i class="ti ti-edit-circle"></i>
+                            <i class="ti ti-edit"></i>
                         </button>
                         <button type="button" class="btn btn-danger btn-sm border-0 rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
