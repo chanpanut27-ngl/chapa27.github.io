@@ -10,27 +10,27 @@
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
                 <div class="modal-body">
-                    <div class="row mb-2 fw-bold">
+                    <div class="row mb-2">
                         <div class="col-sm">
-                            <label for="">No. registrasi : <?= $items['no_reg'] ?></label>
+                            <label for=""><b>No. registrasi :</b> <?= $items['no_reg'] ?></label>
                         </div>
                         <div class="col-sm text-end">
-                            <label for="">Kode pelanggan : <?= $items['kode_pelanggan'] ?></label>
+                            <label for=""><b>Kode pelanggan :</b> <?= $items['kode_pelanggan'] ?></label>
                         </div>
                     </div>
                     <div class="row mb-3 fw-bold">
                         <div class="col-sm">
-                            <label for="">Nama pelanggan : <?= $items['nama_pengirim'] ?></label>
+                            <label for=""><b>Nama pelanggan :</b> <?= $items['nama_pengirim'] ?></label>
                         </div>
                         <div class="col-sm text-end">
-                            <label for="">Instansi : <?= $items['instansi'] ?></label>
+                            <label for=""><b>Instansi :</b> <?= $items['instansi'] ?></label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">
-                            <label for="" class="form-label h5">Status : </label>
+                        <div class="col-sm-3">
+                            <label for="" class="form-label h5"><b>Status :</b> </label>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-9">
                             <label for="1">
                                 <input type="radio" name="status" value="Permintaan di Terima" id="1"> Permintaan di Terima
                             </label>&nbsp;&nbsp;

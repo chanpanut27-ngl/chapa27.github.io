@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Laboratorium tujuan', ''];
+        $arrth = ['#', 'Laboratorium tujuan', 'Actions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -19,7 +19,7 @@
                 <td><?= $row['nama_lab'] ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-danger rounded btn-sm" onclick="deleteData(<?= $row['id_lt'] ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger border-0 rounded btn-sm" onclick="deleteData(<?= $row['id_lt'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>
@@ -29,22 +29,6 @@
     </tbody>
 </table>
 <script>
-    function editData(id) {
-        $.ajax({
-            type: 'get',
-            url: '<?= site_url('laboratorium-tujuan/edit-data/'); ?>' + id,
-            dataType: 'json',
-            success: function(response) {
-                if (response.sukses) {
-                    $(".view-modal").html(response.sukses).show();
-                    $("#exampleModal").modal('show');
-                }
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        })
-    }
 
     function deleteData(id) {
         var myElement = $('#myId-' + id);

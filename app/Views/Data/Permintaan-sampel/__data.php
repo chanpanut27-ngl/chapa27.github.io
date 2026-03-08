@@ -11,7 +11,7 @@
             <th class="fw-bold text-center">Jenis sampel</th>
             <th class="fw-bold text-center">Peraturan</th>
             <th class="fw-bold text-center">Parameter</th>
-            <th class="fw-bold text-center">Lab. pemeriksaan</th>
+            <th class="fw-bold text-center">Laboratorium</th>
             <th class="fw-bold text-center">Jumlah sampel</th>
             <th class="fw-bold text-center">Harga</th>
             <th class="fw-bold text-center">Jumlah biaya</th>
@@ -24,7 +24,6 @@
         $no = 1; 
         $m_parameter = new ParameterModel();
         $parameter = $m_parameter->get_data();
-        var_dump($items);
         foreach ($items as $row) :
     ?>
         <tr id="myIndex-<?= $row['id_permintaan_sampel'] ?>" data-urut=<?= $no; ?>>

@@ -89,7 +89,7 @@
                             if ($acepted_penawaran) {
                             ?>
                                 <div class="card-body p-1">
-                                    <span class="badge square-pill bg-warning fs-6"><?= $acepted_penawaran['status'] ?></span>
+                                    <span class="badge square-pill bg-success fs-6"><?= $acepted_penawaran['status'] ?></span>
                                 </div>
                                 <?php
                             } 

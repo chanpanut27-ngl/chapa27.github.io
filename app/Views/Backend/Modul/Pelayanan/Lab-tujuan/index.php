@@ -27,15 +27,15 @@
                 <a href="<?= base_url('pelayanan/pengantar-lab') ?>" class="btn bg-gray-400 btn-sm rounded" title="Kembali">
                     <i class="ti ti-arrow-left-circle"></i>
                 </a>
-                <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
-                    <span class="pc-micon"><i class="ti ti-refresh"></i>
+                <button type="button" class="btn btn-success border-0 btn-sm rounded btn-refresh-data">
+                    <i class="ti ti-refresh"></i>
                 </button>
             </div>
         </div>
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
-                    <button class="accordion-button bg-green-100 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                    <button class="accordion-button bg-green-100 p-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
                         <h4 style="font-family: arial;"><span class="pc-micon"><span class="fa-solid fa-user"></span> Data Pelanggan</h4>
                     </button>
                 </h2>
@@ -126,7 +126,6 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 <script>
     function listData() {
