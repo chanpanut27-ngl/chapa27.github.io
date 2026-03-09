@@ -28,7 +28,10 @@
                 <td><?= $row['biaya_satuan'] ?></td>
                 <td><?= $jumlah_biaya; ?></td>
                 <td class="text-center">
-                    <div class="d-flex justify-content-start">
+                    <div class="d-flex justify-content-start gap-1">
+                        <button type="button" class="btn btn-warning border-0 btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
+                            <i class="ti ti-edit"></i>
+                        </button>
                         <button type="button" class="btn btn-danger border-0 rounded btn-sm" onclick="deleteBps(<?= $row['id'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
@@ -38,7 +41,36 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+<div class="view-bps-modal" style="display: none;"></div>
+
 <script>
+    
+    function editData(id) {
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('pelayanan/biaya-penyelenggara-sampling/edit-data/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-bps-modal").html(response.sukses).show();
+                    $("#bpsModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
     function deleteBps(id) {
         var myElement = $('#myIdBps-' + id);
         if (myElement.data('urut')) {
@@ -71,10 +103,10 @@
                                 showConfirmButton: false
                             }).then((result) => {
                                 if (result.dismiss === Swal.DismissReason.timer) {
-                                    listData();
+                                    listDataBps();
                                 }
                             });
-                            listData();
+                            listDataBps();
                         }
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
@@ -86,11 +118,12 @@
             }
         });
     }
-   
+
     $(document).ready(function() {
         new DataTable('#example1', {
-            responsive: true,
+            responsive: true
         });
     })
 
 </script>
+

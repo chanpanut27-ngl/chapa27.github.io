@@ -10,7 +10,7 @@
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
                 <div class="modal-body">
-                    <div class="row g-2 mb-3">
+                    <div class="row g-2 mb-3" style="padding-left: 50px;">
                         <div class="col-md-6">
                             <label for=""><b>No. registrasi :</b> <?= $items['no_reg'] ?></label>
                         </div>

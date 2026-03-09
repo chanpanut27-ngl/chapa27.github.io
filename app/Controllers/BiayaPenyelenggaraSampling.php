@@ -60,6 +60,27 @@ class BiayaPenyelenggaraSampling extends BaseController
         }
     }
 
+    public function edit($id = null)
+    {
+        if ($this->request->isAJAX()) {
+
+            $edit = $this->model->find($id);
+            $id_pelanggan = $edit['id_pelanggan'];
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'pelanggan' => $this->m_permintaan->find($id_pelanggan),
+                'items' => $edit,
+                'biaya_akomodasi' => $this->m_akomodasi->get_data()
+            ];
+            $msg = [
+                'sukses' => view('Backend/Bps/__edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
     public function create() 
     {
         if ($this->request->isAJAX()) {
@@ -109,6 +130,25 @@ class BiayaPenyelenggaraSampling extends BaseController
                     'sukses' => 'Data berhasil disimpan'
                 ];
             }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }    
+    }
+
+    public function update() 
+    {
+        if ($this->request->isAJAX()) {
+             $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'jumlah_orang' => $this->request->getVar('jumlah_orang'),
+                    'jumlah_hari' => $this->request->getVar('jumlah_hari'),
+                    'biaya_satuan' => $this->request->getVar('biaya_satuan')
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
             echo json_encode($msg);
         } else {
             exit('Not Process');

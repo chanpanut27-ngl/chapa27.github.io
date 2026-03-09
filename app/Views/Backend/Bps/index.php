@@ -12,7 +12,7 @@
                 <input type="hidden" name="no_reg" value="<?= $items['no_reg'] ?>">
                 <input type="hidden" name="kode_pelanggan" value="<?= $items['kode_pelanggan'] ?>">
                 <div class="modal-body">
-                    <div class="row g-2 mb-3">
+                    <div class="row g-2 mb-3" style="padding-left: 50px;">
                         <div class="col-md-6">
                             <label for=""><b>No. registrasi :</b> <?= $items['no_reg'] ?></label>
                         </div>
@@ -66,8 +66,9 @@
         </div>
     </div>
 </div>
+
 <script>
-    function listData() {
+    function listDataBps() {
         $.ajax({
             type: "get",
             url: "<?= site_url('pelayanan/biaya-penyelenggara-sampling/list-data'); ?>",
@@ -88,32 +89,34 @@
             }
         })
     }
-     $("#biaya-akomodasi").change( function (e) {
-        e.preventDefault();
-        var id_biaya_akomodasi = $(this).val();
-        $.ajax({
-            type: "post",
-            url: "<?= site_url('cari-biaya-akomodasi'); ?>",
-            dataType: 'json',
-            data: {id_biaya_akomodasi: id_biaya_akomodasi},
-            cache: false,
-            beforeSend: function() {
-                $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-            },
-            complete: function() {
-                $('.invalid-feedback').removeAttr('span');
-            },
-            success: function(response) {
-                $("#biaya-satuan").val(response.data);
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
-            }
-        })
-     })
+    
+    $("#biaya-akomodasi").change( function (e) {
+    e.preventDefault();
+    var id_biaya_akomodasi = $(this).val();
+    $.ajax({
+        type: "post",
+        url: "<?= site_url('cari-biaya-akomodasi'); ?>",
+        dataType: 'json',
+        data: {id_biaya_akomodasi: id_biaya_akomodasi},
+        cache: false,
+        beforeSend: function() {
+            $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+        },
+        complete: function() {
+            $('.invalid-feedback').removeAttr('span');
+        },
+        success: function(response) {
+            $("#biaya-satuan").val(response.data);
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+        }
+    })
+    })
 
     $(document).ready(function () {
-        listData();
+        listDataBps();
     })
 </script>
 <script src="<?= base_url('assets/js/Pelayanan/@save_bps.js') ?>"></script>
+

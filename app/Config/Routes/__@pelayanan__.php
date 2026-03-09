@@ -146,6 +146,8 @@
         $routes->get('index/(:num)', 'BiayaPenyelenggaraSampling::index/$1');
         $routes->get('list-data', 'BiayaPenyelenggaraSampling::list');
         $routes->post('create-data', 'BiayaPenyelenggaraSampling::create');
+        $routes->get('edit-data/(:num)', 'BiayaPenyelenggaraSampling::edit/$1');
+        $routes->post('update-data', 'BiayaPenyelenggaraSampling::update');
         $routes->delete('delete-data/(:num)', 'BiayaPenyelenggaraSampling::delete/$1');
         $routes->post('create-data', 'BiayaPenyelenggaraSampling::create/');
     });

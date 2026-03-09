@@ -61,7 +61,6 @@
         })
     }
 
-
     function deleteData(id) 
     {
         var myElement = $('#myId-' + id);
