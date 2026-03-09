@@ -25,9 +25,9 @@
                             <img src="<?= base_url('assets/images/user-1.jpg') ?>" alt="user-image" class="wid-40 rounded-circle">
                         </div>
                         <div class="col">
-                            <h6 class="mb-0"><?= $row['kode_pelanggan'] ?></h6>
                             <h6 class="mb-0"><?= $row['nama_pengirim'] ?></h6>
-                            <p class="text-muted f-12 mb-0"><?= $row['no_telp_pengirim'] ?></p>
+                            <p class="text-muted f-11 mb-0">No. Reg : <?= $row['no_reg'] ?></p>
+                            <p class="text-muted f-11 mb-0">Kode Pelanggan : <?= $row['kode_pelanggan'] ?></p>
                         </div>
                     </div>
                 </td>
@@ -35,7 +35,7 @@
                 <td>
                     <div class="row">
                         <div class="col">
-                            <h6 class="mb-0"><?= date('d/m/Y', strtotime($row['created_at'])) ?></h6>
+                            <h6 class="mb-0"><?= date('d/m/Y H:i', strtotime($row['created_at'])) ?></h6>
                             <p class="text-muted f-12 mb-0"><?= $row['created_by'] ?></p>
                         </div>
                     </div>
@@ -55,4 +55,6 @@
         </tbody>
     </table>
 </div>
+<div class="view-modal" style="display: none;"></div>
+
 <?= $this->endSection(); ?>

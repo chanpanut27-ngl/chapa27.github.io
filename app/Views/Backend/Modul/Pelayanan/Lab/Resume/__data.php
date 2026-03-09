@@ -131,7 +131,7 @@ foreach ($data_pelanggan as $dp) {
             $array_ket[] = $ket;
         }
         ?>
-        <div class="col-md-7 mb-1">
+        <div class="col-md-6 mb-1">
             <table style="border: 1px solid black; width:100%;">
                 <tbody>
                     <tr>
@@ -155,7 +155,7 @@ foreach ($data_pelanggan as $dp) {
                 </tbody>
             </table>
         </div>
-        <div class="col-md-5 mb-1" style="align-items: center;justify-content: center;display:flex;">
+        <div class="col-md-6 mb-1" style="align-items: center;justify-content: center;display:flex;">
            <h5 class="text-center">
                 <?= strtoupper('Tidak Menerima Gratifikasi Dalam Bentuk Apapun') ?><br><br>
                 <label>Waktu Pemeriksaan Sampel 14 Hari Kerja</label>
@@ -170,7 +170,7 @@ foreach ($data_pelanggan as $dp) {
             $array_ku[] = $ku;
         }
         ?>
-        <div class="col-md-7 mb-1">
+        <div class="col-md-6 mb-1">
         <div class="text-center fw-bold" style="font-size: 10pt;"><?= strtoupper('kaji ulang permintaan, tender dan kontrak') ?></div>
         <table class="table-bordered" style="border: 1px solid black; width:100%;">
             <thead>

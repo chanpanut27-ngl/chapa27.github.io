@@ -52,7 +52,6 @@
         <!-- [ Main Content ] end -->
     </div>
 </div>
-<div class="view-modal" style="display: none;"></div>
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
