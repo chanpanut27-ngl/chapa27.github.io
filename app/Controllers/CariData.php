@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\BiayaAkomodasiModel;
 use App\Models\JenisSampelModel;
 use App\Models\ParameterPemeriksaanModel;
 use App\Models\PeraturanModel;
@@ -15,6 +16,7 @@ class CariData extends BaseController
     protected $m_jenis_sampel;
     protected $m_peraturan;
     protected $m_parameter;
+    protected $m_biaya_akomodasi;
     
     public function __construct()
     {
@@ -22,7 +24,7 @@ class CariData extends BaseController
         $this->m_jenis_sampel = new JenisSampelModel();
         $this->m_peraturan = new PeraturanModel();
         $this->m_parameter = new ParameterPemeriksaanModel();
-        
+        $this->m_biaya_akomodasi = new BiayaAkomodasiModel();
     }
 
     public function cari_sampel()
@@ -116,6 +118,25 @@ class CariData extends BaseController
                 'metode' => $metode,
                 'volume' => $satuan,
                 'wadah'  => $wadah
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
+    }
+
+    public function cari_biaya_akomodasi()
+    {
+        if ($this->request->isAJAX()) {
+            $id_biaya_akomodasi = $this->request->getVar('id_biaya_akomodasi');
+           
+            $model = $this->m_biaya_akomodasi->find($id_biaya_akomodasi);
+
+            $uang_harian = $model['uang_harian'];
+            
+            $msg = [
+                'data' => $uang_harian
             ];
 
             echo json_encode($msg);

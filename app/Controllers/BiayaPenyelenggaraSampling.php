@@ -30,7 +30,8 @@ class BiayaPenyelenggaraSampling extends BaseController
             $data = [
                 'title' => $this->title,
                 'id_pelanggan' => $id,
-                'items' => $this->m_permintaan->find($id)
+                'items' => $this->m_permintaan->find($id),
+                'biaya_akomodasi' => $this->m_akomodasi->get_data()
             ];
             $msg = [
                 'sukses' => view('Backend/Bps/index', $data)

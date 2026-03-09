@@ -39,6 +39,18 @@
                         <div class="invalid-feedback errorJumlahHari"></div>
                     </div>
                     <div class="mb-3">
+                        <label for="biaya-akomodasi" class="form-label h5">Biaya akomodasi</label>
+                        <select class="form-select" id="biaya-akomodasi" aria-label="Default select example">
+                            <?php
+                            foreach ($biaya_akomodasi as $row) :
+                            ?>
+                            <option value="">-</option>
+                            <option value="<?= $row['id'] ?>"><?= $row['uraian'] ?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <div class="invalid-feedback errorBiayaAkomodasi"></div>
+                    </div>
+                    <div class="mb-3">
                         <label for="biaya-satuan" class="form-label h5">Biaya satuan</label>
                         <input type="number" name="biaya_satuan" class="form-control" id="biaya-satuan" autocomplete="off">
                         <div class="invalid-feedback errorBiayaSatuan"></div>
@@ -56,7 +68,7 @@
     </div>
 </div>
 <script>
-     function listData() {
+    function listData() {
         $.ajax({
             url: "<?= site_url('pelayanan/status-layanan/list-data'); ?>",
             dataType: 'json',
@@ -76,6 +88,29 @@
             }
         })
     }
+     $(document).on("click", "#biaya-akomodasi", function () {
+        var id_biaya_akomodasi = $(this).val();
+        $.ajax({
+            type: "post",
+            url: "<?= site_url('cari-biaya-akomodasi'); ?>",
+            dataType: 'json',
+            data: {id_biaya_akomodasi: id_biaya_akomodasi},
+            cache: false,
+            beforeSend: function() {
+                $('.invalid-feedback').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            success: function(response) {
+                $("#biaya-satuan").html(response.data);
+            },
+            complete: function() {
+                $('.invalid-feedback').removeAttr('span');
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+     })
+
     $(document).ready(function () {
         listData();
     })
