@@ -103,10 +103,10 @@
                                 showConfirmButton: false
                             }).then((result) => {
                                 if (result.dismiss === Swal.DismissReason.timer) {
-                                    listDataBps();
+                                    listData();
                                 }
                             });
-                            listDataBps();
+                            listData();
                         }
                     },
                     error: function(xhr, ajaxOptions, thrownError) {

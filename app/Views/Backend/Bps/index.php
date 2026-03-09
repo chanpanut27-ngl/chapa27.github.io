@@ -2,7 +2,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header p-3">
                 <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-square-plus fs-2"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -68,12 +68,12 @@
 </div>
 
 <script>
-    function listDataBps() {
+    function listData() {
         $.ajax({
             type: "get",
             url: "<?= site_url('pelayanan/biaya-penyelenggara-sampling/list-data'); ?>",
             dataType: 'json',
-            data: {id_pelanggan: <?= $id_pelanggan; ?>},
+            data: {id_pelanggan: '<?= $id_pelanggan ?>'},
             cache: false,
             beforeSend: function() {
                 $('.view-bps').html('<span class="fa-solid fa-spin fa-spinner"></span>');
@@ -115,7 +115,7 @@
     })
 
     $(document).ready(function () {
-        listDataBps();
+        listData();
     })
 </script>
 <script src="<?= base_url('assets/js/Pelayanan/@save_bps.js') ?>"></script>
