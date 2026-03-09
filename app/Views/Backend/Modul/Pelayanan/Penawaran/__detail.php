@@ -1,7 +1,3 @@
-<?php
-
-use App\Models\StatusLayananModel;
-?>
 <?= $this->extend('Backend/Layout/__main'); ?>
 <?= $this->section('topAssets'); ?>
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
@@ -13,7 +9,7 @@ use App\Models\StatusLayananModel;
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
-<div class="pc-container" data-id="<?= $no_reg; ?>">
+<div class="pc-container">
     <div class="pc-content">
         <!-- [ breadcrumb ] start -->
         <div class="page-header">
@@ -99,6 +95,20 @@ use App\Models\StatusLayananModel;
                             </div>
                         </div>
                     </div>
+                    <div class="accordion accordion-flush accordion-color" id="accordionBiayaPenyelenggaraan">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                            <button class="accordion-button bg-green-100 p-2 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="true" aria-controls="flush-collapseFour">
+                                <h5><span class="pc-micon"><i class="ti ti-file"></i> Biaya Penyelenggaraan</h5>
+                            </button>
+                            </h2>
+                            <div id="flush-collapseFive" class="accordion-collapse" data-bs-parent="#accordionBiayaPenyelenggaraan">
+                                <div class="accordion-body">
+                                    <div class="show-biaya-penyelenggaraan"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- [ sample-page ] end -->
@@ -120,13 +130,12 @@ use App\Models\StatusLayananModel;
 
 <script>
     function showDataSurat() {
-        var no_reg = $(".pc-container").data("id");
         $.ajax({
             type:"GET",
             url: "<?= site_url('pelayanan/penawaran/detail-surat'); ?>",
             dataType: 'json',
             cache: false,
-            data:{no_reg:no_reg},
+            data:{no_reg:'<?= $no_reg; ?>'},
             beforeSend: function() {
                 $('.show-surat').html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
@@ -149,7 +158,7 @@ use App\Models\StatusLayananModel;
             url: "<?= site_url('pelayanan/penawaran/detail-pakta-integritas'); ?>",
             dataType: 'json',
             cache: false,
-            data:{no_reg:no_reg},
+            data:{no_reg:'<?= $no_reg; ?>'},
             beforeSend: function() {
                 $('.show-pakta-integritas').html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
@@ -172,7 +181,7 @@ use App\Models\StatusLayananModel;
             url: "<?= site_url('pelayanan/penawaran/detail-pelanggan'); ?>",
             dataType: 'json',
             cache: false,
-            data:{no_reg:no_reg},
+            data:{no_reg:'<?= $no_reg; ?>'},
             beforeSend: function() {
                 $('.show-pelanggan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
@@ -195,7 +204,7 @@ use App\Models\StatusLayananModel;
             url: "<?= site_url('pelayanan/penawaran/detail-rencana-anggaran-biaya'); ?>",
             dataType: 'json',
             cache: false,
-            data:{no_reg:no_reg},
+            data:{no_reg:'<?= $no_reg; ?>'},
             beforeSend: function() {
                 $('.show-rencana-anggaran-biaya').html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
@@ -211,11 +220,35 @@ use App\Models\StatusLayananModel;
         })
     }
 
+    function showDataBiayaPenyelenggaraan() {
+        var no_reg = $(".pc-container").data("id");
+        $.ajax({
+            type:"GET",
+            url: "<?= site_url('pelayanan/penawaran/detail-biaya-penyelenggaraan'); ?>",
+            dataType: 'json',
+            cache: false,
+            data:{no_reg:'<?= $no_reg; ?>'},
+            beforeSend: function() {
+                $('.show-biaya-penyelenggaraan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.show-biaya-penyelenggaraan').removeAttr('span');
+            },
+            success: function(response) {
+                $(".show-biaya-penyelenggaraan").html(response.data);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
     $(document).ready(function() {
         showDataSurat();
         showDataPaktaIntegritas();
         showDataPelanggan();
         showDataRencanaAnggaranBiaya();
+        showDataBiayaPenyelenggaraan();
     })
 </script>
 <?= $this->endSection(); ?>

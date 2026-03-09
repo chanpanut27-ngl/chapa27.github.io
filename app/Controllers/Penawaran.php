@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\BiayaPenyelenggaraSamplingModel;
 use App\Models\PermintaanPelangganModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -14,11 +15,13 @@ class Penawaran extends BaseController
      */
     protected $title;
     protected $m_permintaan;
+    protected $m_biaya_penyelenggara;
 
     public function __construct()
     {
         $this->title = 'Penawaran';
         $this->m_permintaan = new PermintaanPelangganModel();
+        $this->m_biaya_penyelenggara = new BiayaPenyelenggaraSamplingModel();
     }
 
     public function index()
@@ -134,9 +137,21 @@ class Penawaran extends BaseController
         }
     }
 
-    public function new()
+    public function show_biaya_penyelenggaraan()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $no_reg = $this->request->getVar('no_reg');
+            $data = [
+                'items' => $this->m_biaya_penyelenggara->where('no_reg', $no_reg)->findAll()
+            ];
+            $msg = [
+                'data' => view('Backend/Modul/Pelayanan/Penawaran/__biaya_penyelenggara', $data)
+            ];
+
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
