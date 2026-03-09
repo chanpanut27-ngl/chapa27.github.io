@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'No.Registrasi', 'Kode pelanggan', 'Nama pelanggan', 'No.Telp/Hp pelanggan', 'Tgl & Jam permintaan', ''];
+        $arrth = ['#', 'No.Registrasi', 'Kode pelanggan', 'Nama pelanggan', 'No.Telp/Hp pelanggan', 'Tgl & Jam permintaan', 'Actions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -52,10 +52,10 @@
                 <td class="text-center"><?= date('d/m/Y H:i', strtotime($row['created_at'])) ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
-                        <button type="button" class="btn btn-warning btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
+                        <button type="button" class="btn btn-warning border-0 btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">
                             <i class="ti ti-edit"></i>
                         </button>
-                        <button type="button" class="btn btn-danger btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                         <a href="<?= site_url('pelanggan/pelayanan/list-pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-info btn-sm">Pemeriksaan</a>

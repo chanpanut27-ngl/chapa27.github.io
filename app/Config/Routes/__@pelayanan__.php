@@ -108,7 +108,7 @@
     });
 
 
-    /* Instalasi */
+    /* Status Layanan */
     $routes->group('pelayanan/status-layanan', function ($routes) {
         $routes->get('index/(:num)', 'StatusLayanan::index/$1');
         $routes->get('list-data', 'StatusLayanan::list');
@@ -138,6 +138,15 @@
         $routes->get('edit-data/(:num)', 'PenanggungJawabPengantar::edit/$1');
         $routes->post('update-data', 'PenanggungJawabPengantar::update');
         $routes->delete('delete-data/(:num)', 'PenanggungJawabPengantar::delete/$1');
+    });
+
+    
+    /* Biaya Penyelenggara Sampling */
+    $routes->group('pelayanan/biaya-penyelenggara-sampling', function ($routes) {
+        $routes->get('index/(:num)', 'BiayaPenyelenggaraSampling::index/$1');
+        $routes->get('list-data', 'BiayaPenyelenggaraSampling::list');
+        $routes->delete('delete-data/(:num)', 'BiayaPenyelenggaraSampling::delete/$1');
+        $routes->post('create-data', 'BiayaPenyelenggaraSampling::create/');
     });
     
     $routes->get('qrcode', 'QrCodeGenerator::generate');

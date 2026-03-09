@@ -87,6 +87,7 @@
             }
         })
     }
+    
     $(document).ready(function() {
         new DataTable('#example', {
             responsive: true
