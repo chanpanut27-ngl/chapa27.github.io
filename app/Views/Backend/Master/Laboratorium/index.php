@@ -36,8 +36,8 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-end align-items-center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-md rounded btn-tambah">
-                                <span class="pc-micon"><i class="ti ti-square-plus"></i></span> Tambah Data
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
+                                <i class="ti ti-square-plus"></i> Tambah Data
                             </button>
                         </div>
                         <div class="view-data"></div>
@@ -56,7 +56,6 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
-<script src="<?= base_url('assets/js/plugins/sweetalert2.all.min.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
 
 <script>

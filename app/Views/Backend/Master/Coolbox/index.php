@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-end align-items-center">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-md rounded btn-tambah">
+                            <button type="button" class="btn btn-primary btn-sm rounded btn-tambah">
                                 <i class="ti ti-square-plus"></i> Tambah Data
                             </button>
                         </div>
