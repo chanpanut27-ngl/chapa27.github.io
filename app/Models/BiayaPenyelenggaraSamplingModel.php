@@ -12,7 +12,14 @@ class BiayaPenyelenggaraSamplingModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        'id_pelanggan',
+        'no_reg',
+        'kode_pelanggan',
+        'jumlah_orang',
+        'jumlah_hari',
+        'biaya_satuan'
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;

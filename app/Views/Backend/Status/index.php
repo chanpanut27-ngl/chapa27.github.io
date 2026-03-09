@@ -10,27 +10,25 @@
                 <?= csrf_field(); ?>
                 <input type="hidden" name="id_pelanggan" value="<?= $id_pelanggan ?>">
                 <div class="modal-body">
-                    <div class="row mb-2">
-                        <div class="col-sm">
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-6">
                             <label for=""><b>No. registrasi :</b> <?= $items['no_reg'] ?></label>
                         </div>
-                        <div class="col-sm text-end">
+                        <div class="col-md-6">
                             <label for=""><b>Kode pelanggan :</b> <?= $items['kode_pelanggan'] ?></label>
                         </div>
-                    </div>
-                    <div class="row mb-3 fw-bold">
-                        <div class="col-sm">
+                        <div class="col-md-6">
                             <label for=""><b>Nama pelanggan :</b> <?= $items['nama_pengirim'] ?></label>
                         </div>
-                        <div class="col-sm text-end">
+                        <div class="col-md-6">
                             <label for=""><b>Instansi :</b> <?= $items['instansi'] ?></label>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <label for="" class="form-label h5"><b>Status :</b> </label>
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-3">
+                            <label for="" class="form-label h5">Status</label>
                         </div>
-                        <div class="col-sm-9">
+                        <div class="col-md-9">
                             <label for="1">
                                 <input type="radio" name="status" value="Permintaan di Terima" id="1"> Permintaan di Terima
                             </label>&nbsp;&nbsp;
@@ -45,14 +43,14 @@
                             </label>&nbsp;&nbsp;
                             <label for="5">
                                 <input type="radio" name="status" value="Distribusi sampel" id="5"> Distribusi sampel
-                            </label>&nbsp;&nbsp;
+                            </label>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label h5">Keterangan : </label>
-                    </div>
-                    <div class="mb-3">
-                        <textarea name="keterangan" id="" class="form-control"></textarea>
+                        <div class="col-md-3">
+                            <label for="" class="form-label h5">Keterangan</label>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea name="keterangan" id="" class="form-control"></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer p-1">

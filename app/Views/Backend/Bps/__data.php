@@ -6,7 +6,7 @@
 <table id="example1" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['#', 'Status', 'Keterangan', 'Actions'];
+        $arrth = ['#', 'Jumlah orang', 'Jumlah hari', 'Biaya satuan', 'Jumlah biaya', 'Actions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -17,15 +17,19 @@
     <tbody>
         <?php
         $no = 1;
+        $jumlah_biaya = 0;
         foreach ($items as $row) :
+            $jumlah_biaya = $row['jumlah_orang'] * $row['jumlah_hari'] * $row['biaya_satuan'];
         ?>
-            <tr id="myIdSts-<?= $row['id_status'] ?>" data-urut=<?= $no; ?>>
+            <tr id="myIdBps-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
-                <td><?= $row['status'] ?></td>
-                <td><?= $row['keterangan'] ?></td>
+                <td><?= $row['jumlah_orang'] ?></td>
+                <td><?= $row['jumlah_hari'] ?></td>
+                <td><?= $row['biaya_satuan'] ?></td>
+                <td><?= $jumlah_biaya; ?></td>
                 <td class="text-center">
                     <div class="d-flex justify-content-start">
-                        <button type="button" class="btn btn-danger rounded btn-sm" onclick="deleteStatus(<?= $row['id_status'] ?>)" title="Hapus data">
+                        <button type="button" class="btn btn-danger border-0 rounded btn-sm" onclick="deleteBps(<?= $row['id'] ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
                     </div>
@@ -35,8 +39,8 @@
     </tbody>
 </table>
 <script>
-    function deleteStatus(id) {
-        var myElement = $('#myIdSts-' + id);
+    function deleteBps(id) {
+        var myElement = $('#myIdBps-' + id);
         if (myElement.data('urut')) {
             myElement.addClass('bg bg-danger');
         }
@@ -53,7 +57,7 @@
             if (result.value) {
                 $.ajax({
                     type: 'delete',
-                    url: '<?= site_url('pelayanan/status-layanan/delete-data/'); ?>' + id,
+                    url: '<?= site_url('pelayanan/biaya-penyelenggara-sampling/delete-data/'); ?>' + id,
                     dataType: 'json',
                     success: function(response) {
                         if (response.sukses) {
@@ -68,7 +72,6 @@
                             }).then((result) => {
                                 if (result.dismiss === Swal.DismissReason.timer) {
                                     listData();
-                                    $(".btn-refresh").trigger('click');
                                 }
                             });
                             listData();

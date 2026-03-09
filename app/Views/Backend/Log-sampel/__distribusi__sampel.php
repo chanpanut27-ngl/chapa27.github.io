@@ -52,6 +52,7 @@ use App\Models\SpesimenPenyakitModel;
                             <?php
                             $labTujuan = new LaboratoriumTujuanModel();
                             $menu_lab = $labTujuan->get_data($kode_pengantar);
+                            var_dump($menu_lab);
                             foreach ($menu_lab as $lab) :
                                 if ($kl['idkatlab'] == $lab['id_kat_lab']) :
                             ?>
