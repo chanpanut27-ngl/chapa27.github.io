@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\Pelanggan\ProfilPelangganModel;
 use App\Models\PermintaanPelangganModel;
 use App\Models\PermintaanSampelModel;
+use App\Models\StatusLayananModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Pemeriksaan extends BaseController
@@ -171,9 +172,17 @@ class Pemeriksaan extends BaseController
     {
         if ($this->request->isAJAX()) {
             $id_pelanggan = $this->request->getVar('id_pelanggan');
+            
             $permintaan_sampel = new PermintaanSampelModel();
+            $status_layanan = new StatusLayananModel();
+
+            $acepted_penawaran = $status_layanan->
+            where('id_pelanggan', $id_pelanggan)->
+            where('status', 'Penawaran di Terima')->first();
+
             $data = [
-                'items' => $permintaan_sampel->get_data($id_pelanggan)
+                'items' => $permintaan_sampel->get_data($id_pelanggan),
+                'acepted_penawaran' => $acepted_penawaran
             ];
             $msg = [
                 'data' => view('Data/Permintaan-sampel/__data', $data)

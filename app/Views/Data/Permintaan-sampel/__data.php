@@ -24,6 +24,7 @@
         $no = 1; 
         $m_parameter = new ParameterModel();
         $parameter = $m_parameter->get_data();
+       
         foreach ($items as $row) :
     ?>
         <tr id="myIndex-<?= $row['id_permintaan_sampel'] ?>" data-urut=<?= $no; ?>>
@@ -51,7 +52,7 @@
             <td class="text-end"><?= number_to_currency($row['pnbp'], 'IDR', 'ID', 0); ?></td>
             <td class="text-end"><?= number_to_currency($row['jumlah_biaya'], 'IDR', 'ID', 0); ?></td>
             <td>
-                <div class="d-flex justify-content-start gap-1">
+                <div class="d-flex justify-content-start gap-1 <?= $acepted_penawaran ? 'd-none' : ''; ?>">
                     <button type="button" class="btn btn-warning border-0 btn-sm rounded btn-edit-<?= $row['id_permintaan_sampel'] ?>" onclick="editData(<?= $row['id_permintaan_sampel'] ?>)" title="Edit data">
                         <i class="ti ti-edit"></i>
                     </button>

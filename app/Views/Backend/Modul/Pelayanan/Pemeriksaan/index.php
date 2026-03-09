@@ -37,7 +37,7 @@
                             <button type="button" class="btn btn-success border-0 btn-sm rounded btn-refresh-data">
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
-                            <button type="button" class="btn btn-danger <?= $acepted_penawaran ? 'd-none' : '' ?> btn-sm rounded delete-all-pemeriksaan" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Hapus data">
+                            <button type="button" class="btn btn-danger <?= $acepted_penawaran ? 'd-none' : '' ?> btn-sm rounded delete-all-pemeriksaan" onclick="deleteAllDataPemeriksaan(<?= $items['id']; ?>)" title="Batal pemeriksaan">
                                 <i class="ti ti-circle-minus"></i> Batal pemeriksaan
                             </button>
                         </div>
