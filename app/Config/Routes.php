@@ -44,7 +44,8 @@ require __DIR__ . '/Routes/__@sampel__lingkungan.php';
 require __DIR__ . '/Routes/__@log__sampel.php';
 /*________ Perintah uji sampel ________*/
 require __DIR__ . '/Routes/__@perintah__uji.php';
-
+/*________ Qrcode ________*/
+require __DIR__ . '/Routes/__@qrcode__.php';
 
 
 

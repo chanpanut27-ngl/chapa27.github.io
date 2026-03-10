@@ -153,5 +153,4 @@
         $routes->post('create-data', 'BiayaPenyelenggaraSampling::create/');
     });
     
-    $routes->get('qrcode', 'QrCodeGenerator::generate');
     ?>
