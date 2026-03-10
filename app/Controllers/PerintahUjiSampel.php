@@ -151,7 +151,7 @@ class PerintahUjiSampel extends BaseController
                 'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel'),
                 'tgl_kirim_sampel_dari_prola' => $this->request->getVar('tgl_kirim_sampel_dari_prola'),
                 'tgl_terima_sampel_ke_kains_lab' => $this->request->getVar('tgl_terima_sampel_ke_kains_lab'),
-                'tgl_selesai_sampel' => $this->request->getVar('tgl_selesai_sampel'),
+                'tgl_selesai_sampel_ke_kains_lab' => $this->request->getVar('tgl_selesai_sampel_ke_kains_lab'),
                 'tgl_terima_sampel_ke_analis_lab' => $this->request->getVar('tgl_terima_sampel_ke_analis_lab')
             ];
             $builder1->insert($perintah_uji);
@@ -261,37 +261,32 @@ class PerintahUjiSampel extends BaseController
     {
          if ($this->request->isAJAX()) {
             $this->db->transStart();
-            // $builder1 = $this->db->table('perintah_uji_sampel');
-            // Perintah uji sampel
+
             $tb_uji_sampel = [
-                'id' => $this->request->getVar('id_perintah_uji'),
                 'id_pengantar_lab' => $this->request->getVar('id_pengantar_lab'),
                 'id_instalasi' => $this->request->getVar('id_instalasi'),
                 'kode_pengantar' => $this->request->getVar('kode_pengantar'),
                 'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
-                'tgl_kirim_sampel_dari_prola' => date('Y-m-d', strtotime($this->request->getVar('tgl_kirim_sampel_dari_prola'))),
-                'tgl_terima_sampel_ke_kains_lab' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_kains_lab'))),
-                'tgl_selesai_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_selesai_sampel'))),
-                'tgl_terima_sampel_ke_analis_lab' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel_ke_analis_lab'))),
-                'tgl_terima_sampel' => date('Y-m-d', strtotime($this->request->getVar('tgl_terima_sampel'))),
+                'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel'),
+                'tgl_kirim_sampel_dari_prola' => $this->request->getVar('tgl_kirim_sampel_dari_prola'),
+                'tgl_terima_sampel_ke_kains_lab' => $this->request->getVar('tgl_terima_sampel_ke_kains_lab'),
+                'tgl_selesai_sampel_ke_kains_lab' => $this->request->getVar('tgl_selesai_sampel_ke_kains_lab'),
+                'tgl_terima_sampel_ke_analis_lab' => $this->request->getVar('tgl_terima_sampel_ke_analis_lab')
             ];
             $this->model->save($tb_uji_sampel);
 
             // Maping perintah uji sampel
-
-            // $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
-            $idx = $this->request->getVar('idx');
-            $count = count($idx ?? []);
+            $index = $this->request->getVar('idx');
+            $count = count($index ?? []);
 
                 for ($i=0; $i < $count; $i++) { 
                     $map_data = [
-                        'id' => $idx[$i],
+                        'id' => $index[$i],
                         'metode_uji' => $this->request->getVar('metode_uji')[$i],
                         'keterangan' => $this->request->getVar('keterangan')[$i],
                         'parameter_uji' => $this->request->getVar('parameter_uji')[$i],
                     ];
                     
-                    // $this->modelMpu->where('id', $id[$i]);
                     $this->modelMpu->save($map_data);
                 }
                   

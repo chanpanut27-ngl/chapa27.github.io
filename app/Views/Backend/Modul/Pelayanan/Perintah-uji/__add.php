@@ -2,8 +2,8 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><span class="fa-solid fa-plus-square"></span> <?= $title; ?></h4>
+            <div class="modal-header p-3">
+                <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-square-plus fs-2"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="<?= base_url('pelayanan/perintah-uji-sampel/create-data') ?>" class="form-data">
@@ -17,7 +17,7 @@
                             <h5>Tanggal penerimaan sampel</h5>
                         </div>
                         <div class="col-md-9 d-flex">
-                            <h5><?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?></h5>
+                            <h5 style="font-weight: initial;"><?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?></h5>
                             <input type="hidden" readonly name="tgl_terima_sampel" value="<?= $tgl_terima_sampel['tgl_terima_sampel'] ?>" class="form-control bg-gray-300 fw-bold w-5">
                         </div>
                     </div>
@@ -93,8 +93,8 @@
                                             <h6>Tanggal Kirim Sampel</h6>
                                         </div>
                                         <div class="col">
-                                            <input type="date" name="tgl_kirim_sampel_dari_prola" value="<?= $tgl_terima_sampel['tgl_terima_sampel'] ?>" id="tgl-kirim-sampel" class="form-control" autocomplete="off">
-                                            <div class="invalid-feedback errorTglKirimSampel"></div>
+                                            <input type="date" name="tgl_kirim_sampel_dari_prola" value="<?= $tgl_terima_sampel['tgl_terima_sampel'] ?>" id="tgl-kirim-sampel-dari-prola" class="form-control" autocomplete="off">
+                                            <div class="invalid-feedback errorTglKirimSampelDariProla"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +125,7 @@
                                             <h6>Tanggal Selesai Sampel</h6>
                                         </div>
                                         <div class="col">
-                                            <input type="date" name="tgl_selesai_sampel" id="tgl-selesai-sampel" class="form-control" autocomplete="off">
+                                            <input type="date" name="tgl_selesai_sampel_ke_kains_lab" id="tgl-selesai-ssampel-ke-kains-lab" class="form-control" autocomplete="off">
                                         </div>
                                     </div>
                                 </div>

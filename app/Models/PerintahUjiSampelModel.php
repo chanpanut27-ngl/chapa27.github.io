@@ -20,7 +20,7 @@ class PerintahUjiSampelModel extends Model
         'tgl_terima_sampel',
         'tgl_kirim_sampel_dari_prola',
         'tgl_terima_sampel_ke_kains_lab',
-        'tgl_selesai_sampel',
+        'tgl_selesai_sampel_ke_kains_lab',
         'tgl_terima_sampel_ke_analis_lab',
         'kode_pengantar',
         'is_active'
