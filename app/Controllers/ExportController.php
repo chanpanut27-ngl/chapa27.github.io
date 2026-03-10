@@ -5,6 +5,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Models\InstalasiModel;
 use App\Models\JenisSampelModel;
 use App\Models\LaboratoriumModel;
+use App\Models\PeraturanModel;
 
 class ExportController extends BaseController {
 
@@ -21,7 +22,7 @@ class ExportController extends BaseController {
         header('Content-Disposition: attachment;filename="' . $fileName . '"');
         header('Cache-Control: max-age=0');
     }
-    
+
     public function xls_instalasi() 
     {
         
@@ -122,6 +123,40 @@ class ExportController extends BaseController {
         // Pengaturan Response untuk Download
         $writer = new Xlsx($this->spreadsheet);
         $fileName = 'Master_Jenis_sampel.xlsx';
+
+        $this->header($fileName);
+
+        $writer->save('php://output');
+        exit();
+    }
+
+    public function xls_peraturan() 
+    {
+       
+        $sheet = $this->spreadsheet->getActiveSheet();
+
+        // Isi header
+        $sheet->setCellValue('A1', 'ID');
+        $sheet->setCellValue('B1', 'Peraturan');
+        $sheet->setCellValue('C1', 'Keterangan');
+        $sheet->setCellValue('D1', 'Is_Active');
+
+        // Ambil data
+        $model = new PeraturanModel();
+        $data = $model->findAll();
+        $rows = 2;
+
+        foreach ($data as $row) {
+            $sheet->setCellValue('A' . $rows, $row['id']);
+            $sheet->setCellValue('B' . $rows, $row['peraturan']);
+            $sheet->setCellValue('C' . $rows, $row['keterangan']);
+            $sheet->setCellValue('D' . $rows, $row['is_active'] == 1 ? 'Aktif' : 'Tidak Aktif');
+            $rows++;
+        }
+       
+        // Pengaturan Response untuk Download
+        $writer = new Xlsx($this->spreadsheet);
+        $fileName = 'Master_peraturan.xlsx';
 
         $this->header($fileName);
 
