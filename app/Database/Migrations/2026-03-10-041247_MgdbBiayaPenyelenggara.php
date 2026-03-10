@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class MgdbBiayaPengambilanSampel extends Migration
+class MgdbBiayaPenyelenggara extends Migration
 {
     public function up()
     {
@@ -26,6 +26,10 @@ class MgdbBiayaPengambilanSampel extends Migration
             'kode_pelanggan' => [
                 'type'       => 'CHAR',
                 'constraint' => '20',
+            ],
+            'biaya_penyelenggara' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
             ],
             'jumlah_orang' => [
                 'type'       => 'INT',
@@ -69,6 +73,5 @@ class MgdbBiayaPengambilanSampel extends Migration
     public function down()
     {
         $this->forge->dropTable('biaya_penyelenggara');
-        
     }
 }
