@@ -3,7 +3,17 @@ namespace App\Controllers;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use App\Models\InstalasiModel;
+use App\Models\JenisSampelModel;
+use App\Models\LaboratoriumModel;
+
 class ExportController extends BaseController {
+
+    protected $spreadsheet;
+
+    public function __construct()
+    {
+         $this->spreadsheet = new Spreadsheet();
+    }
     
     public function header($fileName)
     {
@@ -11,41 +21,11 @@ class ExportController extends BaseController {
         header('Content-Disposition: attachment;filename="' . $fileName . '"');
         header('Cache-Control: max-age=0');
     }
-
-    public function export() 
-    {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-
-        // Isi header
-        $sheet->setCellValue('A1', 'ID');
-        $sheet->setCellValue('B1', 'Nama');
-        $sheet->setCellValue('C1', 'Alamat');
-
-        // Ambil data
-        // $model = new EmployeeModel();
-        // $data = $model->findAll();
-
-        // Data contoh
-        $sheet->setCellValue('A2', '1');
-        $sheet->setCellValue('B2', 'Budi');
-        $sheet->setCellValue('C2', 'Jakarta');
-
-        // Pengaturan Response untuk Download
-        $writer = new Xlsx($spreadsheet);
-        $fileName = 'Data_Pegawai.xlsx';
-
-        $this->header($fileName);
     
-        $writer->save('php://output');
-        exit();
-    }
-
-
     public function xls_instalasi() 
     {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
+        
+        $sheet = $this->spreadsheet->getActiveSheet();
 
         // Isi header
         $sheet->setCellValue('A1', 'ID');
@@ -65,15 +45,89 @@ class ExportController extends BaseController {
         }
        
         // Pengaturan Response untuk Download
-        $writer = new Xlsx($spreadsheet);
-        $fileName = 'Data_instalasi.xlsx';
+        $writer = new Xlsx($this->spreadsheet);
+        $fileName = 'Master_instalasi.xlsx';
 
-        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="' . $fileName . '"');
-        header('Cache-Control: max-age=0');
+        $this->header($fileName);
 
 
         $writer->save('php://output');
         exit();
     }
+
+    public function xls_laboratorium() 
+    {
+
+        $sheet = $this->spreadsheet->getActiveSheet();
+
+        // Isi header
+        $sheet->setCellValue('A1', 'ID');
+        $sheet->setCellValue('B1', 'Kode Laboratorium');
+        $sheet->setCellValue('C1', 'Laboratorium');
+        $sheet->setCellValue('D1', 'Instalasi');
+        $sheet->setCellValue('E1', 'Lantai');
+
+        // Ambil data
+        $model = new LaboratoriumModel();
+        $data = $model->get_data_all();
+        $rows = 2;
+
+        foreach ($data as $row) {
+            $sheet->setCellValue('A' . $rows, $row['id']);
+            $sheet->setCellValue('B' . $rows, $row['kode_lab']);
+            $sheet->setCellValue('C' . $rows, $row['nama_lab']);
+            $sheet->setCellValue('D' . $rows, $row['nama_instalasi']);
+            $sheet->setCellValue('E' . $rows, $row['lantai']);
+            $rows++;
+        }
+       
+        // Pengaturan Response untuk Download
+        $writer = new Xlsx($this->spreadsheet);
+        $fileName = 'Master_laboratorium.xlsx';
+
+        $this->header($fileName);
+
+        $writer->save('php://output');
+        exit();
+    }
+
+    public function xls_jenis_sampel() 
+    {
+       
+        $sheet = $this->spreadsheet->getActiveSheet();
+
+        // Isi header
+        $sheet->setCellValue('A1', 'ID');
+        $sheet->setCellValue('B1', 'Jenis Sampel');
+        $sheet->setCellValue('C1', 'Peraturan');
+        $sheet->setCellValue('D1', 'Keterangan');
+        $sheet->setCellValue('E1', 'PNBP');
+        $sheet->setCellValue('F1', 'Laboratorium');
+
+        // Ambil data
+        $model = new JenisSampelModel();
+        $data = $model->get_data_all();
+        $rows = 2;
+
+        foreach ($data as $row) {
+            $sheet->setCellValue('A' . $rows, $row['id']);
+            $sheet->setCellValue('B' . $rows, $row['jenis_sampel']);
+            $sheet->setCellValue('C' . $rows, $row['peraturan']);
+            $sheet->setCellValue('D' . $rows, $row['ket_sampel']);
+            $sheet->setCellValue('E' . $rows, $row['pnbp']);
+            $sheet->setCellValue('F' . $rows, $row['nama_lab']);
+            $rows++;
+        }
+       
+        // Pengaturan Response untuk Download
+        $writer = new Xlsx($this->spreadsheet);
+        $fileName = 'Master_Jenis_sampel.xlsx';
+
+        $this->header($fileName);
+
+        $writer->save('php://output');
+        exit();
+    }
+
+    
 }

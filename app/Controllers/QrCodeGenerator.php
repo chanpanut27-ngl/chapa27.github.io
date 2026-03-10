@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 use chillerlan\QRCode\QRCode;
-use chillerlan\QRCode\Output\QROutputInterface;
-use chillerlan\QRCode\QROptions;
 
 class QrCodeGenerator extends BaseController
 {

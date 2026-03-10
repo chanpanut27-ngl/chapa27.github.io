@@ -32,7 +32,7 @@
                             <button type="button" class="btn btn-success border-0 btn-sm rounded btn-refresh" title="refresh">
                                 <i class="ti ti-refresh"></i>
                             </button>
-                            <a href="<?= site_url('export-excel-instalasi') ?>" class="btn btn-info btn-sm rounded btn-export-excel">
+                            <a href="<?= site_url('export-excel/instalasi') ?>" class="btn btn-info btn-sm rounded btn-export-excel">
                                 <span class="pc-micon">Export excel</span>
                             </a>
                         </div>

@@ -27,10 +27,13 @@
                 <div class="card">
                     <div class="card-header p-2">
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
-                        <div class="d-flex justify-content-end align-items-center">
+                        <div class="d-flex justify-content-end align-items-center gap-1">
                             <button type="button" class="btn btn-success btn-sm border-0 rounded btn-refresh" title="refresh">
                                 <i class="ti ti-refresh"></i>
                             </button>
+                            <a href="<?= site_url('export-excel/laboratorium') ?>" class="btn btn-info btn-sm rounded btn-export-excel">
+                                <span class="pc-micon">Export excel</span>
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">
