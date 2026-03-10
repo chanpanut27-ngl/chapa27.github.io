@@ -16,6 +16,7 @@ class Admin extends BaseController
 
     public function index()
     {
+        
         $data['title'] = $this->title;
         return view('Backend/Layout/__home', $data);
     }
