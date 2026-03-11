@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['#', 'No.Registrasi', 'Kode pelanggan', 'Nama pelanggan', 'No.Telp/Hp pelanggan', 'Instansi', 'Tgl & jam permintaan', 'Actions'];
+        $arrth = ['#', 'No. Reg', 'Kode pelanggan', 'Nama pelanggan', 'No.Telp/Hp pelanggan', 'Instansi', 'Tgl & jam permintaan', 'Actions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -70,7 +70,7 @@
                         <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
-                        <a href="<?= base_url('pelayanan/pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-info rounded btn-sm" title="Pemeriksaan">
+                        <a href="<?= base_url('pelayanan/pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-info rounded btn-sm" title="Proses Pemeriksaan">
                             Pemeriksaan
                         </a>
                     </div>

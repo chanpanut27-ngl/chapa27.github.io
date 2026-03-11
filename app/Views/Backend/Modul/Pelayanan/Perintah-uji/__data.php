@@ -2,7 +2,7 @@
     <thead>
         <?php
         use App\Models\PerintahUjiSampelModel;
-        $arrth = ['No', 'Kode Pengantar', 'Instalasi', 'Tanggal', ''];
+        $arrth = ['#', 'No. Reg', 'Kode Pengantar', 'Instalasi', 'Tgl. pengantar', 'Actions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -21,6 +21,7 @@
         <input type="hidden" id="kp" value="<?= $row['kode_pengantar'] ?>">
             <tr id="myId-<?= $row['kode_pengantar'] ?>" data-urut=<?= $no; ?>>
                 <td><b><?= $no++; ?></b></td>
+                <td><?= $row['no_reg']; ?></td>
                 <td><?= $row['kode_pengantar']; ?></td>
                 <td><?= $row['nama_instalasi']; ?></td>
                 <td><?= date('d/m/Y', strtotime($row['tanggal'])) ?></td>
@@ -30,20 +31,20 @@
                         <?php
                         if ($fpush) {
                             ?>
-                            <button type="button" class="btn btn-warning btn-sm rounded btn-edit" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
-                                <span class="pc-micon"><i class="ti ti-edit"></i></span>
+                            <button type="button" class="btn btn-warning border-0 btn-sm rounded btn-edit" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
+                                <i class="ti ti-edit"></i>
                             </button>
-                            <button class="btn btn-info rounded btn-sm" onclick="return clickBtn('<?= strtolower($row['kode_pengantar']).'-'.$row['id_kat_lab'].'-'.$row['id_instalasi'] ?>')" title="Lihat">
-                                <span class="pc-micon"><i class="ti ti-clipboard"></i></span>
+                            <button class="btn btn-info border-0 rounded btn-sm" onclick="return clickBtn('<?= strtolower($row['kode_pengantar']).'-'.$row['id_kat_lab'].'-'.$row['id_instalasi'] ?>')" title="Cetak">
+                                <i class="ti ti-printer"></i>
                             </button>
-                            <button type="button" class="btn btn-danger btn-sm rounded btn-delete" data-kode="<?= $row['kode_pengantar'];?>" data-instalasi="<?= $row['id_instalasi'];?>" data-id="<?= $row['id_instalasi']; ?>">
-                                <span class="pc-micon"><i class="ti ti-trash"></i></span>
+                            <button type="button" class="btn btn-danger border-0 btn-sm rounded btn-delete" data-kode="<?= $row['kode_pengantar'];?>" data-instalasi="<?= $row['id_instalasi'];?>" data-id="<?= $row['id_instalasi']; ?>">
+                                <i class="ti ti-trash"></i>
                             </button>
                             <?php
                         } else {
                             ?>
                             <button type="button" class="btn btn-primary btn-sm rounded btn-tambah" data-kode="<?= $row['kode_pengantar'];?>" data-katlab="<?= $row['id_kat_lab'];?>" data-id="<?= $row['id_instalasi']; ?>">
-                                <span class="pc-micon"><i class="ti ti-square-plus"></i></span>
+                                <i class="ti ti-square-plus"></i>
                             </button>
                             <?php
                         }

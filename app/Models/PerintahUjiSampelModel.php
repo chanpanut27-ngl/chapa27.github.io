@@ -71,10 +71,8 @@ class PerintahUjiSampelModel extends Model
     protected function setUpdatedBy(array $data)
     {
        $username = user()->username;
-       $myTime = new Time();
         if ($username) {
             $data['data']['updated_by'] = $username;
-            $data['data']['updated_at'] = $myTime->toDateTimeString();
         }
         return $data;
     }
@@ -92,7 +90,8 @@ class PerintahUjiSampelModel extends Model
         master_instalasi.nama_instalasi,
         master_instalasi.id AS id_instalasi,
         master_instalasi.id_kat_lab,
-        laboratorium_tujuan.id_laboratorium
+        laboratorium_tujuan.id_laboratorium,
+        no_reg
         FROM pengantar_lab
         LEFT JOIN permintaan_pelanggan ON permintaan_pelanggan.id = pengantar_lab.id_pelanggan
         LEFT JOIN laboratorium_tujuan ON laboratorium_tujuan.id_pengantar_lab = pengantar_lab.id

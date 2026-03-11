@@ -140,7 +140,7 @@
                     <td class="p-1" colspan="2"><b>Paraf</b></td>
                 </tr>
                 <tr>
-                    <td class="text-center" colspan="2"><u><?= $search['ka_ins_lab'] ?></u></td>
+                    <td class="text-center" colspan="2"></td>
                 </tr>
                 <tr>
                     <td class="p-1 w-50"><b>Tanggal Terima sampel</b></td>
@@ -148,7 +148,7 @@
                 </tr>
                 <tr>
                     <td class="p-1"><b>Tanggal Selesai sampel</b></td>
-                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_selesai_sampel'])) ?></td>
+                    <td class="p-1">:<?= date('d-m-Y', strtotime($search['tgl_selesai_sampel_ke_kains_lab'])) ?></td>
                 </tr>
             </table>
         </div>

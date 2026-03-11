@@ -7,11 +7,11 @@
             <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
                 <i class="ti ti-refresh"></i>
             </button>
-            <button class="btn btn-info rounded btn-sm" onclick="btnPrint();" title="Lihat">
+            <button class="btn btn-info d-none rounded btn-sm" onclick="btnPrint();" title="Lihat">
                 <i class="ti ti-printer"></i>
             </button>
-            <button class="btn btn-info rounded btn-sm btnPrint" data-id="<?= $kode_pengantar ?>" onclick="openWin();" title="Lihat">
-                <i class="ti ti-eye"></i>
+            <button class="btn btn-info rounded btn-sm btnPrint" data-id="<?= $kode_pengantar ?>" onclick="openWin();" title="Cetak">
+                <i class="ti ti-printer"></i>
             </button>
         </div>
     </div>

@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-md-9 d-flex">
                             <h5 style="font-weight: initial;"><?= date('d-m-Y', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?></h5>
-                            <input type="hidden" readonly name="tgl_terima_sampel" value="<?= $tgl_terima_sampel['tgl_terima_sampel'] ?>" class="form-control bg-gray-300 fw-bold w-5">
+                            <input type="hidden" readonly name="tgl_terima_sampel" value="<?= date('Y-m-d', strtotime($tgl_terima_sampel['tgl_terima_sampel'])) ?>" class="form-control bg-gray-300 fw-bold w-5">
                         </div>
                     </div>
                     <div class="row">
@@ -118,6 +118,7 @@
                                         </div>
                                         <div class="col">
                                             <input type="date" name="tgl_terima_sampel_ke_kains_lab" id="tgl-terima-sampel-ke-kains-lab" class="form-control" autocomplete="off">
+                                            <div class="invalid-feedback errorTglTerimaSampelKeKainsLab"></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -125,7 +126,8 @@
                                             <h6>Tanggal Selesai Sampel</h6>
                                         </div>
                                         <div class="col">
-                                            <input type="date" name="tgl_selesai_sampel_ke_kains_lab" id="tgl-selesai-ssampel-ke-kains-lab" class="form-control" autocomplete="off">
+                                            <input type="date" name="tgl_selesai_sampel_ke_kains_lab" id="tgl-selesai-sampel-ke-kains-lab" class="form-control" autocomplete="off">
+                                            <div class="invalid-feedback errorTglSelesaiSampelKeKainsLab"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -149,6 +151,7 @@
                                         </div>
                                         <div class="col">
                                             <input type="date" name="tgl_terima_sampel_ke_analis_lab" id="tgl-terima-sampel-ke-analis-lab" class="form-control" autocomplete="off">
+                                            <div class="invalid-feedback errorTglTerimaSampelKeAnalisLab"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -157,8 +160,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><span class="fa-solid fa-save"></span> Simpan</button>
-                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><span class="fa-solid fa-close"></span> Tutup</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><i class="ti ti-device-floppy"></i> Simpan</button>
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-x"></i> Tutup</button>
                 </div>
             </form>
         </div>
@@ -184,6 +187,39 @@
                 var error = response.error;
 
                 if (error) {
+
+                        if (error.tgl_kirim_sampel_dari_prola) {
+                            $('#tgl-kirim-sampel-dari-prola').addClass('is-invalid');
+                            $('.errorTglKirimSampelDariProla').html(error.tgl_kirim_sampel_dari_prola);
+                        } else {
+                            $('#tgl-kirim-sampel-dari-prola').removeClass('is-invalid');
+                            $('.errorTglKirimSampelDariProla').html('');
+                        }
+
+                        if (error.tgl_terima_sampel_ke_kains_lab) {
+                            $('#tgl-terima-sampel-ke-kains-lab').addClass('is-invalid');
+                            $('.errorTglTerimaSampelKeKainsLab').html(error.tgl_terima_sampel_ke_kains_lab);
+                        } else {
+                            $('#tgl-terima-sampel-ke-kains-lab').removeClass('is-invalid');
+                            $('.errorTglTerimaSampelKeKainsLab').html('');
+                        }
+
+                        if (error.tgl_selesai_sampel_ke_kains_lab) {
+                            $('#tgl-selesai-sampel-ke-kains-lab').addClass('is-invalid');
+                            $('.errorTglSelesaiSampelKeKainsLab').html(error.tgl_selesai_sampel_ke_kains_lab);
+                        } else {
+                            $('#tgl-selesai-sampel-ke-kains-lab').removeClass('is-invalid');
+                            $('.errorTglSelesaiSampelKeKainsLab').html('');
+                        }
+
+                        if (error.tgl_terima_sampel_ke_analis_lab) {
+                            $('#tgl-terima-sampel-ke-analis-lab').addClass('is-invalid');
+                            $('.errorTglTerimaSampelKeAnalisLab').html(error.tgl_terima_sampel_ke_analis_lab);
+                        } else {
+                            $('#tgl-terima-sampel-ke-analis-lab').removeClass('is-invalid');
+                            $('.errorTglTerimaSampelKeAnalisLab').html('');
+                        }
+                        
                     
                         Swal.fire({
                             title: "Gagal",

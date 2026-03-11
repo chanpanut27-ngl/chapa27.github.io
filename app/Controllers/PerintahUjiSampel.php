@@ -140,47 +140,88 @@ class PerintahUjiSampel extends BaseController
     {
         if ($this->request->isAJAX()) 
         {
-            $db = \Config\Database::connect();
-            $db->transStart();
-            $builder1 = $this->db->table('perintah_uji_sampel');
-            $perintah_uji = [
-                'id_pengantar_lab' => $this->request->getVar('id_pengantar_lab'),
-                'id_instalasi' => $this->request->getVar('id_instalasi'),
-                'kode_pengantar' => $this->request->getVar('kode_pengantar'),
-                'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
-                'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel'),
-                'tgl_kirim_sampel_dari_prola' => $this->request->getVar('tgl_kirim_sampel_dari_prola'),
-                'tgl_terima_sampel_ke_kains_lab' => $this->request->getVar('tgl_terima_sampel_ke_kains_lab'),
-                'tgl_selesai_sampel_ke_kains_lab' => $this->request->getVar('tgl_selesai_sampel_ke_kains_lab'),
-                'tgl_terima_sampel_ke_analis_lab' => $this->request->getVar('tgl_terima_sampel_ke_analis_lab')
-            ];
-            $builder1->insert($perintah_uji);
+            $valid = $this->validate([
+                'tgl_kirim_sampel_dari_prola' => [
+                    'label' => 'Tanggal kirim sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_terima_sampel_ke_kains_lab' => [
+                    'label' => 'Tanggal terima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_selesai_sampel_ke_kains_lab' => [
+                    'label' => 'Tanggal selesai sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_terima_sampel_ke_analis_lab' => [
+                    'label' => 'Tanggal terima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+            ]);
 
-            $builder2 = $this->db->table('map_perintah_uji_sampel');
-            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
-            $count = count($id_jenis_sampel ?? []);
-
-            for ($i=0; $i < $count; $i++) { 
-                 $map = [
-                    'id_map' => $this->db->insertID(),
-                    'id_jenis_sampel' => $id_jenis_sampel[$i],
-                    'parameter_uji' => $this->request->getVar('parameter_uji'),
-                    'metode_uji' => $this->request->getVar('metode_uji'),
-                    'keterangan' => $this->request->getVar('keterangan'),
-                ];
-                $builder2->insert($map);
-            }
-            
-            $db->transComplete();
-
-            if ($db->transStatus() == true) {
-               $msg = [
-                    'sukses' => 'Data berhasil disimpan'
-               ];
-            } else {
+            if (!$valid) {
                 $msg = [
-                    'error' => 'Data gagal disimpan'
-               ];
+                    'error' => [
+                        'tgl_kirim_sampel_dari_prola' => $this->validation->getError('tgl_kirim_sampel_dari_prola'),
+                        'tgl_terima_sampel_ke_kains_lab' => $this->validation->getError('tgl_terima_sampel_ke_kains_lab'),
+                        'tgl_selesai_sampel_ke_kains_lab' => $this->validation->getError('tgl_selesai_sampel_ke_kains_lab'),
+                        'tgl_terima_sampel_ke_analis_lab' => $this->validation->getError('tgl_terima_sampel_ke_analis_lab')
+                    ]
+                ];
+            } else {
+                $this->db->transStart();
+                $builder1 = $this->db->table('perintah_uji_sampel');
+                $perintah_uji = [
+                    'id_pengantar_lab' => $this->request->getVar('id_pengantar_lab'),
+                    'id_instalasi' => $this->request->getVar('id_instalasi'),
+                    'kode_pengantar' => $this->request->getVar('kode_pengantar'),
+                    'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
+                    'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel'),
+                    'tgl_kirim_sampel_dari_prola' => $this->request->getVar('tgl_kirim_sampel_dari_prola'),
+                    'tgl_terima_sampel_ke_kains_lab' => $this->request->getVar('tgl_terima_sampel_ke_kains_lab'),
+                    'tgl_selesai_sampel_ke_kains_lab' => $this->request->getVar('tgl_selesai_sampel_ke_kains_lab'),
+                    'tgl_terima_sampel_ke_analis_lab' => $this->request->getVar('tgl_terima_sampel_ke_analis_lab')
+                ];
+                $builder1->insert($perintah_uji);
+
+                $builder2 = $this->db->table('map_perintah_uji_sampel');
+                $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+                $count = count($id_jenis_sampel ?? []);
+
+                for ($i=0; $i < $count; $i++) { 
+                    $map = [
+                        'id_map' => $this->db->insertID(),
+                        'id_jenis_sampel' => $id_jenis_sampel[$i],
+                        'parameter_uji' => $this->request->getVar('parameter_uji'),
+                        'metode_uji' => $this->request->getVar('metode_uji'),
+                        'keterangan' => $this->request->getVar('keterangan'),
+                    ];
+                    $builder2->insert($map);
+                }
+            
+                $this->db->transComplete();
+
+                if ($this->db->transStatus() == true) {
+                    $msg = [
+                            'sukses' => 'Data berhasil disimpan'
+                    ];
+                    } else {
+                        $msg = [
+                            'error' => 'Data gagal disimpan'
+                    ];
+                }
             }
             echo json_encode($msg);
         } else {
@@ -260,49 +301,91 @@ class PerintahUjiSampel extends BaseController
     public function update() 
     {
          if ($this->request->isAJAX()) {
-            $this->db->transStart();
+            $valid = $this->validate([
+                'tgl_kirim_sampel_dari_prola' => [
+                    'label' => 'Tanggal kirim sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_terima_sampel_ke_kains_lab' => [
+                    'label' => 'Tanggal terima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_selesai_sampel_ke_kains_lab' => [
+                    'label' => 'Tanggal selesai sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tgl_terima_sampel_ke_analis_lab' => [
+                    'label' => 'Tanggal terima sampel',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+            ]);
 
-            $tb_uji_sampel = [
-                'id_pengantar_lab' => $this->request->getVar('id_pengantar_lab'),
-                'id_instalasi' => $this->request->getVar('id_instalasi'),
-                'kode_pengantar' => $this->request->getVar('kode_pengantar'),
-                'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
-                'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel'),
-                'tgl_kirim_sampel_dari_prola' => $this->request->getVar('tgl_kirim_sampel_dari_prola'),
-                'tgl_terima_sampel_ke_kains_lab' => $this->request->getVar('tgl_terima_sampel_ke_kains_lab'),
-                'tgl_selesai_sampel_ke_kains_lab' => $this->request->getVar('tgl_selesai_sampel_ke_kains_lab'),
-                'tgl_terima_sampel_ke_analis_lab' => $this->request->getVar('tgl_terima_sampel_ke_analis_lab')
-            ];
-            $this->model->save($tb_uji_sampel);
-
-            // Maping perintah uji sampel
-            $index = $this->request->getVar('idx');
-            $count = count($index ?? []);
-
-                for ($i=0; $i < $count; $i++) { 
-                    $map_data = [
-                        'id' => $index[$i],
-                        'metode_uji' => $this->request->getVar('metode_uji')[$i],
-                        'keterangan' => $this->request->getVar('keterangan')[$i],
-                        'parameter_uji' => $this->request->getVar('parameter_uji')[$i],
-                    ];
-                    
-                    $this->modelMpu->save($map_data);
-                }
-                  
-
-            $this->db->transComplete();
-
-            if ($this->db->transStatus() == FALSE) {
+            if (!$valid) {
                 $msg = [
-                    'error' => 'Data Gagal diubah'
+                    'error' => [
+                        'tgl_kirim_sampel_dari_prola' => $this->validation->getError('tgl_kirim_sampel_dari_prola'),
+                        'tgl_terima_sampel_ke_kains_lab' => $this->validation->getError('tgl_terima_sampel_ke_kains_lab'),
+                        'tgl_selesai_sampel_ke_kains_lab' => $this->validation->getError('tgl_selesai_sampel_ke_kains_lab'),
+                        'tgl_terima_sampel_ke_analis_lab' => $this->validation->getError('tgl_terima_sampel_ke_analis_lab')
+                    ]
                 ];
             } else {
-                $msg = [
-                    'sukses' => 'Data berhasil diubah'
+                $this->db->transStart();
+
+                $tb_uji_sampel = [
+                    'id' => $this->request->getVar('id_perintah_uji'),
+                    'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel'),
+                    'sifat_pemeriksaan' => $this->request->getVar('sifat_pemeriksaan'),
+                    'tgl_terima_sampel' => $this->request->getVar('tgl_terima_sampel'),
+                    'tgl_kirim_sampel_dari_prola' => $this->request->getVar('tgl_kirim_sampel_dari_prola'),
+                    'tgl_terima_sampel_ke_kains_lab' => $this->request->getVar('tgl_terima_sampel_ke_kains_lab'),
+                    'tgl_selesai_sampel_ke_kains_lab' => $this->request->getVar('tgl_selesai_sampel_ke_kains_lab'),
+                    'tgl_terima_sampel_ke_analis_lab' => $this->request->getVar('tgl_terima_sampel_ke_analis_lab')
                 ];
+                
+                $this->model->save($tb_uji_sampel);
+
+                // Maping perintah uji sampel
+                $index = $this->request->getVar('idx');
+                $count = count($index ?? []);
+
+                    for ($i=0; $i < $count; $i++) { 
+                        $map_data = [
+                            'id' => $index[$i],
+                            'metode_uji' => $this->request->getVar('metode_uji')[$i],
+                            'keterangan' => $this->request->getVar('keterangan')[$i],
+                            'parameter_uji' => $this->request->getVar('parameter_uji')[$i],
+                        ];
+                        
+                        $this->modelMpu->save($map_data);
+                    }
+                    
+
+                $this->db->transComplete();
+
+                if ($this->db->transStatus() == FALSE) {
+                    $msg = [
+                        'error' => 'Data Gagal diubah'
+                    ];
+                } else {
+                    $msg = [
+                        'sukses' => 'Data berhasil diubah'
+                    ];
+                }
             }
-            echo json_encode($msg);
+                echo json_encode($msg);
          } else {
             exit('Not Process');
          }

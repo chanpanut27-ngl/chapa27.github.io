@@ -84,8 +84,7 @@ class MapPerintahUjiSampelModel extends Model
         master_peraturan.peraturan,
         map_perintah_uji_sampel.parameter_uji,
         map_perintah_uji_sampel.metode_uji,
-        map_perintah_uji_sampel.keterangan AS ket_sampel,
-        perintah_uji_sampel.analisis_lab
+        map_perintah_uji_sampel.keterangan AS ket_sampel
         FROM map_perintah_uji_sampel
         LEFT JOIN pelayanan_sampel_lingkungan ON pelayanan_sampel_lingkungan.id_jenis_sampel = map_perintah_uji_sampel.id_jenis_sampel
         LEFT JOIN master_jenis_sampel ON master_jenis_sampel.id = map_perintah_uji_sampel.id_jenis_sampel

@@ -32,8 +32,8 @@
                         <a href="<?= base_url('pelayanan/laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Lab tujuan">
                             <i class="ti ti-flask"></i>
                         </a>
-                        <a href="<?= base_url('pelayanan/pengantar-lab/proses/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-success rounded btn-sm" title="Proses">
-                            <i class="ti ti-arrow-right-circle"></i>
+                        <a href="<?= base_url('pelayanan/pengantar-lab/proses/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-info rounded btn-sm" title="Proses Pengantar">
+                            Pengantar
                         </a>
                     </div>
                 </td>

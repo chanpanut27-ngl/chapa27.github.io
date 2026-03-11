@@ -29,8 +29,8 @@
                 <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start">
-                        <a href="<?= base_url('pelayanan/penawaran/detail/'.$row['no_reg']) ?>" class="btn btn-info rounded btn-sm" title="Lihat penawaran">
-                            Lihat penawaran
+                        <a href="<?= base_url('pelayanan/penawaran/detail/'.$row['no_reg']) ?>" class="btn btn-info rounded btn-sm" title="Proses Penawaran">
+                            Penawaran
                         </a>
                     </div>
                 </td>
