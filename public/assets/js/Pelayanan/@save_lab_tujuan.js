@@ -13,6 +13,10 @@ $(document).ready(function () {
                 $('.btn-simpan').attr('disable', 'disabled');
                 $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
             },
+            complete: function() {
+                $('.btn-simpan').removeAttr('disable');
+                $('.btn-simpan').html('<i class="ti ti-device-floppy"></i> Simpan');
+            },
             success: function(response) {
 
                 Swal.fire({
@@ -30,11 +34,6 @@ $(document).ready(function () {
 
                 $("#exampleModal").modal('hide');
                 listData();
-            },
-            
-            complete: function() {
-                $('.btn-simpan').removeAttr('disable');
-                $('.btn-simpan').html('<i class="ti ti-device-floppy"></i> Simpan');
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);
