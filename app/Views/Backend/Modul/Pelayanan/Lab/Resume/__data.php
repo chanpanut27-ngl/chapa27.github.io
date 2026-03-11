@@ -75,7 +75,7 @@ foreach ($data_pelanggan as $dp) {
                         <th class="p-1" style="font-size: 10pt;">Metode Pemeriksaan</th>
                         <th class="p-1" style="font-size: 10pt;">Volume/Berat</th>
                         <th class="p-1" style="font-size: 10pt;">Jenis Wadah</th>
-                        <th class="p-1" style="font-size: 10pt; text-center">Jenis Pengawet</th>
+                        <th class="p-1" style="font-size: 10pt; text-align:center;">Jenis Pengawet</th>
                     </tr>
                 </thead>
                 <tbody>
