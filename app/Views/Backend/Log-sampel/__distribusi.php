@@ -43,6 +43,7 @@ use App\Models\SpesimenPenyakitModel;
                             <h6 class="mb-0"><?= $row['kode_pelanggan'] ?></h6>
                             <h6 class="mb-0"><?= $row['nama_pengirim'] ?></h6>
                             <p class="text-muted f-12 mb-0"><?= $row['no_telp_pengirim'] ?></p>
+                            <span class="badge rounded-pill bg-primary"><?= $row['status'] ?></span>
                         </div>
                     </div>
                 </td>
@@ -143,6 +144,8 @@ use App\Models\SpesimenPenyakitModel;
 </div>
 
 </div>
+<div class="view-modal" style="display: none;"></div>
+
 <?= $this->endSection(); ?>
 
 

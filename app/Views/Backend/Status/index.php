@@ -43,6 +43,9 @@
                             </label>&nbsp;&nbsp;
                             <label for="5">
                                 <input type="radio" name="status" value="Distribusi sampel" id="5"> Distribusi sampel
+                            </label>&nbsp;&nbsp;
+                            <label for="6">
+                                <input type="radio" name="status" value="Distribusi sampel Selesai" id="6"> Distribusi sampel selesai
                             </label>
                         </div>
                         <div class="col-md-3">
