@@ -59,6 +59,7 @@
 
     /* Cetak Resume Pengantar Lab */
     $routes->get('cetak/resume/(:any)', 'ResumePengantarLab::cetak/$1');
+    $routes->get('cetak-pdf/resume/(:any)', 'ResumePengantarLab::cetak_pdf/$1');
     $routes->get('cetak/perintah-uji/(:any)', 'PerintahUjiSampel::cetak/$1');
     $routes->get('cetak/label-coolbox/(:any)', 'CoolboxMaster::cetak_label/$1');
 

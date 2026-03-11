@@ -5,10 +5,13 @@
     <div class="card-header p-2">
         <div class="d-flex justify-content-end align-items-center gap-1">
             <button type="button" class="btn btn-success btn-sm rounded btn-refresh-data">
-                <span class="pc-micon"><i class="ti ti-refresh"></i></span>
+                <i class="ti ti-refresh"></i>
+            </button>
+            <button class="btn btn-info rounded btn-sm" onclick="btnPrint();" title="Lihat">
+                <i class="ti ti-printer"></i>
             </button>
             <button class="btn btn-info rounded btn-sm btnPrint" data-id="<?= $kode_pengantar ?>" onclick="openWin();" title="Lihat">
-                <span class="pc-micon"><i class="ti ti-eye"></i></span>
+                <i class="ti ti-eye"></i>
             </button>
         </div>
     </div>
@@ -44,6 +47,15 @@
     })
 </script>
 <script>
+    function btnPrint() {
+        var WinPrint = window.open('<?= base_url('cetak-pdf/resume/'.strtolower($kode_pengantar)) ?>', '', 'left=0,top=0,width=1500,height=1000,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+    }
+
     function openWin() {
         var WinPrint = window.open('<?= base_url('cetak/resume/'.strtolower($kode_pengantar)) ?>', '', 'left=0,top=0,width=1500,height=1000,toolbar=0,scrollbars=0,status=0');
         WinPrint.document.write(prtContent.innerHTML);
