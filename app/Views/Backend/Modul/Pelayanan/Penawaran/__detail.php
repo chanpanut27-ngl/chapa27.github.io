@@ -18,6 +18,7 @@
                     <div class="col-md-12">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript: void(0)">Pelayanan</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Penawaran</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
