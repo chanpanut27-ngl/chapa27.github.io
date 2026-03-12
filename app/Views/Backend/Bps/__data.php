@@ -25,8 +25,8 @@
                 <td><b><?= $no++; ?></b></td>
                 <td><?= $row['jumlah_orang'] ?></td>
                 <td><?= $row['jumlah_hari'] ?></td>
-                <td><?= $row['biaya_satuan'] ?></td>
-                <td><?= $jumlah_biaya; ?></td>
+                <td><?= number_to_currency($row['biaya_satuan'], 'IDR', 'ID', 0) ?></td>
+                <td><?= number_to_currency($jumlah_biaya, 'IDR', 'ID', 0) ?></td>
                 <td class="text-center">
                     <div class="d-flex justify-content-start gap-1">
                         <button type="button" class="btn btn-warning border-0 btn-sm rounded btn-edit-<?= $row['id'] ?>" onclick="editData(<?= $row['id'] ?>)" title="Edit data">

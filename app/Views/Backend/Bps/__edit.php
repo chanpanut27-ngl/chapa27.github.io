@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="edit-biaya-satuan" class="form-label h5">Biaya satuan</label>
-                            <input type="text" name="biaya_satuan" value="<?= $items['biaya_satuan'] ?>" class="form-control" id="edit-biaya-satuan" autocomplete="off">
+                            <input type="text" readonly name="biaya_satuan" value="<?= $items['biaya_satuan'] ?>" class="form-control" id="edit-biaya-satuan" autocomplete="off">
                             <div class="invalid-feedback errorBiayaSatuan"></div>
                         </div>
                     </div>
