@@ -7,15 +7,22 @@
     <?= link_tag('assets/css/style.css') ?>
     <?= link_tag('assets/fonts/tabler-icons.min.css'); ?>
     <?= link_tag('assets/fonts/fontawesome.css'); ?>
-
-
+    <style media="print">
+        #toolbarContainer, .no-print, button {
+            display: none !important;
+        }
+        .qr-code {
+            width: 70px;
+            height: 70px;
+        }
+    </style>
     <style>
         .kertas-surat {
             width: 210mm; /* Ukuran A4 */
             min-height: 297mm;
-            padding: 20mm;
+            padding: 5mm;
             background-color: white;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
         }
         .kop-surat {
             text-align: justify;
@@ -46,6 +53,11 @@
     </style>
 </head>
 <body>
+    <div class="d-flex justify-content-end align-items-center mt-1">
+        <button class="btn btn-primary rounded btn-sm" onclick="window.print()" title="Cetak" style="text-align: right;">
+            <span class="fa-solid fa-print"></span> Cetak
+        </button>
+    </div>
     <div class="kertas-surat">
         <div class="kop-surat">
             <div class="row">
@@ -123,12 +135,29 @@ d. <b>Tidak menerima gratifikasi dalam bentuk apapun</b>
 </p>
 <p>Atas perhatian dan kerjasama yang baik, disampaikan terima kasih</p>
 </div>
+
     <!-- Penutup & Tanda Tangan -->
     <div class="tanda-tangan">
-        Kepala Balai Besar Laboratorium <br>
-        Kesehatan Masyarakat Jakarta
-        <div class="nama-penanda">dr. Nida Rohmawati, MPH</div>
+        <div class="row">
+            <div class="col-md-8">
+Menyetujui <br>
+<?= $items['instansi'] ?>
+        <div class="nama-penanda">
+            (______________________)
+        </div>
+            </div>
+            <div class="col-md-4">
+                Jakarta, <br>
+Atasan langsung Bendahara Penerima<br>
+        <div class="nama-penanda">
+            ${nama_pengirim1} <br>
+            NIP. ${nip_pengirim1}
+        </div>
+            </div>
+        </div>
     </div>
+
+
 </div>
 <!-- fakta integritas -->
     <div class="kertas-surat">
@@ -301,32 +330,32 @@ use App\Models\PermintaanSampelModel;
         </tr>
     </tbody>
 </table>
-<p>
+<div class="row">
+    <div class="col-sm-12">
     <b>
-        *Dipungut sesuai Peraturan Menteri Keuangan Republik Indonesia Nomor 45 Tahun 2024
+*Dipungut sesuai Peraturan Menteri Keuangan Republik Indonesia Nomor 45 Tahun 2024
 tentang Jenis dan Tarif Atas Jenis Penerimaan Negara Bukan Pajak yang bersifat Volatil dan
 Kebutuhan Mendesak yang berlaku pada Kementerian Kesehatan 
     </b>
-</p>
-<p>
-<b>
+<b><br>
     *Pembayaran Penerimaan Negara Bukan Pajak (PNBP) ini dilakukan secara langsung oleh
 Wajib Bayar ke kas Negara melalui Bank/POS Persepsi maksimal 7 hari sejak billing dibuat
 </b>
-</p>
+    </div>
+</div>
 </div>
 
     <!-- Penutup & Tanda Tangan -->
     <div class="tanda-tangan">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-sm-8">
 Menyetujui <br>
 <?= $items['instansi'] ?>
         <div class="nama-penanda">
             (______________________)
         </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-sm-4">
                 Jakarta,        <br>
 Atasan langsung Bendahara Penerima<br>
         <div class="nama-penanda">
@@ -339,5 +368,63 @@ Atasan langsung Bendahara Penerima<br>
     
 </div>
 
+<div class="kertas-surat">
+    <!-- Isi Surat -->
+    <div class="isi-surat">
+    <p><b>B. Biaya Penyelenggaraan</b></p>
+    <p><b>1. Uang harian petugas</b></p>
+    <table class="table table-bordered" style="font-size: 10pt;">
+        <thead style="border: 1px solid;">
+            <tr>
+                <th>No</th>
+                <th>Biaya penyelenggaraan</th>
+                <th>∑ Orang</th>
+                <th>∑ Hari</th>
+                <th>Biaya Satuan (Rp)</th>
+                <th>Jumlah Biaya (Rp)</th>
+            </tr>
+        </thead>
+        <tbody style="border: 1px solid;">
+            <?php 
+            $no = 1; foreach ($bps as $row) :  
+                $jumlah_biaya = $row['jumlah_orang'] * $row['jumlah_hari'] * $row['biaya_satuan']
+            ?>
+                <tr>
+                    <td><?= $no++ ?></td>
+                    <td>Uang harian petugas sampling</td>
+                    <td class="text-center"><?= $row['jumlah_orang'] ?></td>
+                    <td class="text-center"><?= $row['jumlah_hari'] ?></td>
+                    <td class="text-center"><?= number_to_currency($row['biaya_satuan'], 'IDR', 'ID', 0) ?></td>
+                    <td class="text-center"><?= number_to_currency($jumlah_biaya, 'IDR', 'ID', 0) ?></td>
+                </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+    <b>*Biaya penyelenggaraan di bayarkan tunai (cash) atau transfer ke petugas penanggung jawab
+pada saat pelaksanaan <br>
+*Transport petugas ditanggung oleh konsumen (antar jemput) <br>
+*TIDAK MENERIMA GRATIFIKASI DALAM BENTUK APAPUN</b>
+<!-- Penutup & Tanda Tangan -->
+    <div class="tanda-tangan">
+        <div class="row">
+            <div class="col-sm-8">
+                <br><br><br>
+Kepala Balai Besar Laboratorium <br>
+Kesehatan Masyarakat Jakarta
+        <div class="nama-penanda">
+            dr. Nida Rohmawati, MPH <br>
+NIP. 197208182000122001
+        </div>
+            </div>
+            <div class="col-sm-4">
+                Ditandatangani di : Jakarta <br>
+Pada tanggal :   <br><br>
+<?= $pelanggan['instansi']; ?><br><br>
+        <div class="nama-penanda">_____________________</div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
 </body>
 </html>

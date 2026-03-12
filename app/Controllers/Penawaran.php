@@ -142,7 +142,8 @@ class Penawaran extends BaseController
         if ($this->request->isAJAX()) {
             $no_reg = $this->request->getVar('no_reg');
             $data = [
-                'items' => $this->m_biaya_penyelenggara->where('no_reg', $no_reg)->findAll()
+                'items' => $this->m_biaya_penyelenggara->where('no_reg', $no_reg)->findAll(),
+                'pelanggan' => $this->m_permintaan->where('no_reg', $no_reg)->first()
             ];
             $msg = [
                 'data' => view('Backend/Modul/Pelayanan/Penawaran/__biaya_penyelenggara', $data)
@@ -165,7 +166,9 @@ class Penawaran extends BaseController
         $data = [
             'title' => 'Cetak penawaran',
             'no_reg' => $id,
-            'items' => $this->m_permintaan->where('no_reg', $no_reg)->first()
+            'items' => $this->m_permintaan->where('no_reg', $no_reg)->first(),
+            'bps' => $this->m_biaya_penyelenggara->where('no_reg', $no_reg)->findAll(),
+            'pelanggan' => $this->m_permintaan->where('no_reg', $no_reg)->first()
         ];
         return view('Backend/Modul/Pelayanan/Penawaran/__cetak', $data);
     }

@@ -33,8 +33,6 @@
         .nama-penanda { margin-top: 70px; font-weight: bold; text-decoration: underline; }
     </style>
 </head>
-<body>
-
 <div class="kertas-surat">
     <!-- Isi Surat -->
     <div class="isi-surat">
@@ -67,5 +65,29 @@
             <?php endforeach;?>
         </tbody>
     </table>
+    <b>*Biaya penyelenggaraan di bayarkan tunai (cash) atau transfer ke petugas penanggung jawab
+pada saat pelaksanaan <br>
+*Transport petugas ditanggung oleh konsumen (antar jemput) <br>
+*TIDAK MENERIMA GRATIFIKASI DALAM BENTUK APAPUN</b>
+<!-- Penutup & Tanda Tangan -->
+    <div class="tanda-tangan">
+        <div class="row">
+            <div class="col-sm-8">
+                <br><br><br>
+Kepala Balai Besar Laboratorium <br>
+Kesehatan Masyarakat Jakarta
+        <div class="nama-penanda">
+            dr. Nida Rohmawati, MPH <br>
+NIP. 197208182000122001
+        </div>
+            </div>
+            <div class="col-sm-4">
+                Ditandatangani di : Jakarta <br>
+Pada tanggal :   <br><br>
+<?= $pelanggan['instansi']; ?><br><br>
+        <div class="nama-penanda">_____________________</div>
+            </div>
+        </div>
+    </div>
     </div>
 </div>
