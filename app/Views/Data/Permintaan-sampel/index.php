@@ -41,7 +41,7 @@
         e.preventDefault();
         $.ajax({
             type:"GET",
-            url: "<?= site_url('pelayanan/pemeriksaan/list-data'); ?>",
+            url: "<?= site_url('pelayanan/permintaan/pemeriksaan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{id_pelanggan:'<?= $id_pelanggan ?>'},

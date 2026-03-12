@@ -12,7 +12,7 @@
 
 
      /* Pemeriksaan */
-        $routes->group('pelayanan/pemeriksaan', function ($routes) {
+        $routes->group('pelayanan/permintaan/pemeriksaan', function ($routes) {
         $routes->get('index/(:any)', 'Pemeriksaan::index/$1');
         $routes->get('list-data', 'Pemeriksaan::list');
         $routes->get('add-data', 'Pemeriksaan::new');

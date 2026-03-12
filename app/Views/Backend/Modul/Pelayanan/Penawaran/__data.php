@@ -17,7 +17,7 @@
             <tr id="myId-<?= $row['id_pelanggan'] ?>" data-urut=<?= $no; ?>>
                 <td class="text-center">
                     <b><?= $no++; ?></b>
-                    <button type="button" class="btn bg-blue-500 text-light btn-sm rounded btn-bps-<?= $row['id_pelanggan']; ?>" onclick="biayaPygSampling(<?= $row['id_pelanggan']; ?>)" title="Biaya penyelenggara sampling">
+                    <button type="button" class="btn bg-blue-500 border-0 text-light btn-sm rounded btn-bps-<?= $row['id_pelanggan']; ?>" onclick="biayaPygSampling(<?= $row['id_pelanggan']; ?>)" title="Biaya penyelenggara sampling">
                         <i class="ti ti-pencil f-18"></i>
                     </button>
                 </td>
@@ -29,7 +29,7 @@
                 <td><?= date('d-m-Y H:i', strtotime($row['created_at'])); ?></td>
                 <td>
                     <div class="d-flex justify-content-start">
-                        <a href="<?= base_url('pelayanan/penawaran/detail/'.$row['no_reg']) ?>" class="btn btn-info rounded btn-sm" title="Proses Penawaran">
+                        <a href="<?= base_url('pelayanan/penawaran/detail/'.$row['no_reg']) ?>" class="btn btn-info border-0 rounded btn-sm" title="Proses Penawaran">
                             Penawaran
                         </a>
                     </div>

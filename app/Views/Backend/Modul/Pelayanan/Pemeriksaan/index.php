@@ -16,7 +16,7 @@
                     <div class="col-md-12">
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript: void(0)">Pelayanan</a></li>
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pemeriksaan</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Permintaan</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
@@ -139,7 +139,7 @@
         var id_pelanggan = $(".btn-tambah").data("id");
         $.ajax({
             type:"GET",
-            url: "<?= site_url('pelayanan/pemeriksaan/list-data'); ?>",
+            url: "<?= site_url('pelayanan/permintaan/pemeriksaan/list-data'); ?>",
             dataType: 'json',
             cache: false,
             data:{id_pelanggan:id_pelanggan},

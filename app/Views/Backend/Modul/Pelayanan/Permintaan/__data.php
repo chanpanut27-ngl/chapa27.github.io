@@ -22,8 +22,8 @@
             <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
                 <td class="text-center">
                     <b><?= $no++; ?></b>
-                    <button type="button" class="btn bg-teal-500 text-light btn-sm rounded btn-sts-<?= $row['id']; ?>" onclick="statusLayanan(<?= $row['id']; ?>)" title="Status layanan">
-                        <i class="ti ti-circle-check"></i>
+                    <button type="button" class="btn bg-teal-400 border-0 text-light btn-sm rounded btn-sts-<?= $row['id']; ?>" onclick="statusLayanan(<?= $row['id']; ?>)" title="Status layanan">
+                        <i class="ti ti-pencil"></i>
                     </button>
                 </td>
                 <td>
@@ -73,7 +73,7 @@
                         <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id']; ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
-                        <a href="<?= base_url('pelayanan/pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-info rounded btn-sm" title="Proses Pemeriksaan">
+                        <a href="<?= base_url('pelayanan/permintaan/pemeriksaan/index/'.$row['no_reg']) ?>" class="btn btn-info rounded btn-sm" title="Proses Pemeriksaan">
                             Pemeriksaan
                         </a>
                     </div>
