@@ -30,18 +30,11 @@
                     </div>
                     <img src="<?= base_url('assets/images/bblkm-jakarta.webp') ?>" style="height:220px;">
                     <div class="card-body">
-                    Jl. Bambu Apus Raya No.6, RT.12/RW.3, Bambu Apus, Kec. Cipayung, Kota Jakarta Timur, <br> 
-                                Daerah Khusus Ibukota Jakarta 13890 <br>
-
-                                Telp : (021) 8484912 Hunting <br>
-
-                                Call center : +62 812 9000 3610 <br>
-
-                                Faksimilie : (021) 22106603 <br>
-
-                                Email : labkesmasjakarta@gmail.com <br>
-
-                                Website : bblkmjakarta.org <br>
+                    Jl. Bambu Apus Raya No.6, RT.12/RW.3, Bambu Apus, Kec. Cipayung, Kota Jakarta Timur (13890), <br> 
+                    Telp : (021) 8484912, 
+                    Call center : 0812-9000-3610, 
+                    Email : labkesmasjakarta@gmail.com, 
+                    Website : bblkmjakarta.org
                     </div>
                 </div>
             </div>

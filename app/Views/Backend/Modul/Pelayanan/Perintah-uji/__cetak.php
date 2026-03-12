@@ -1,11 +1,19 @@
 
+<?php
+use App\Libraries\CustomLib;
+use App\Models\PengantarLabModel;
+use App\Models\PermintaanPelangganModel;
+$custom_lib = new CustomLib();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" id="main-style-link" >
-    <title><?= strtoupper($kode_pengantar).'_'.'Surat_Perintah_Uji_sampel';?></title>
+    <title><?= strtoupper($kode_pengantar).'_'.'Perintah_Uji_Sampel';?></title>
+    <?= link_tag('assets/css/custom.css'); ?>
+    <?= link_tag('assets/fonts/tabler-icons.min.css'); ?>
     
     <style media="print">
         /* Sembunyikan elemen dengan ID ci-logo dan kelas no-print saat mencetak */
@@ -36,25 +44,13 @@
         </button>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <table style="width: 100%;">
-                <tr>
-                    <td class="align-top" style="width: 60%;">
-                        <?php
-                        use App\Libraries\CustomLib;
-                        use App\Models\PengantarLabModel;
-                        use App\Models\PermintaanPelangganModel;
-
-                        $custom_lib = new CustomLib();
-                        echo $custom_lib->logo_kopsurat();
-                        ?>
-                    </td>
-                    <td>
-                        <?php echo $custom_lib->ket_kopsurat($nomor_form); ?>
-                    </td>
-                </tr>
-            </table>
+        <div class="col-sm-5">
+            <?php echo $custom_lib->logo_kopsurat();?>
         </div>
+        <div class="col-sm-7" style="padding-left: 65px;">
+            <?php echo $custom_lib->ket_kopsurat(); ?>
+        </div>
+        <div class="col-sm-12"></div>
     </div>
     <h4 style="text-align: center; margin-top:1px;"><b>SURAT PERINTAH UJI SAMPEL</b></h4>
     <div class="row">

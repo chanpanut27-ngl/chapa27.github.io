@@ -16,16 +16,16 @@ class CustomLib
         return $data;
     }
 
-    public function ket_kopsurat($nomor_form = null)
+    public function ket_kopsurat()
     {
-        $data = '<label for="" class="title-kemenkes">Kementerian Kesehatan </label><br>
-            <label for="" class="desc-kemenkes">
-            <b>Direktorat Jenderal</b>
-            <b>Kesehatan Primer dan Komunitas</b> <br>
-            BBLKM Jakarta</label>
-            <label for="" style="font-size: 7pt;"><span class="fa-solid fa-location-dot"></span> Jl.Bambu Apus Raya No.6 Blok C1 Jakarta Timur 13890<br>
-            <span class="fa-solid fa-phone"></span> 0812-9000-3610
-            <span class="fa-solid fa-globe"></span> www.bblkmjakarta.org</label><br>';
+        $data = '<p style="line-height: 13px;">
+                        <label for="" style="color:#00A69A; font-weight: bold;">Kementerian Kesehatan</label> <br>
+                        <b>Direktorat Jenderal Kesehatan Primer dan Komunitas</b><br>
+                        Balai Besar Laboratorium Kesehatan Masyarakat Jakarta <br>
+                        Jl.Bambu Apus Raya No.6 Blok C1 Jakarta Timur 13890 <br>
+                        <i class="ti ti-phone"></i>Telp : (021) 8484912, <i class="ti ti-phone"></i>Call center : 0812-9000-3610 <br>
+                        <i class="ti ti-mail"> Email : labkesmasjakarta@gmail.com </i> <br> <i class="ti ti-globe"></i>Web : www.bblkmjakarta.org
+                    </p>';
         return $data;
     }
 
