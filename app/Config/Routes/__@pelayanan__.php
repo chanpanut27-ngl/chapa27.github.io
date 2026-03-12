@@ -62,6 +62,8 @@
     $routes->get('cetak-pdf/resume/(:any)', 'ResumePengantarLab::cetak_pdf/$1');
     $routes->get('cetak/perintah-uji/(:any)', 'PerintahUjiSampel::cetak/$1');
     $routes->get('cetak/label-coolbox/(:any)', 'CoolboxMaster::cetak_label/$1');
+    $routes->get('cetak/penawaran/(:any)', 'Penawaran::cetak/$1');
+
 
     /* Pelayanan Kaji Ulang Kontrak Pengantar Lab */
     $routes->group('pelayanan/pengantar-lab/kaji-ulang-kontrak', function ($routes) {

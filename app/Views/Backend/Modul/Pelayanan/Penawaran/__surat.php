@@ -33,28 +33,30 @@
     }
     .nama-penanda { margin-top: 70px; font-weight: bold; text-decoration: underline; }
 </style>
-<?php
-use App\Libraries\CustomLib;
-?>
 <div class="kertas-surat">
     <!-- Kepala Surat (Kop) -->
     <div class="kop-surat">
         <div class="row">
-            <div class="col-md">
-                <img src="<?= base_url('assets/images/logo.webp') ?>" alt="" class="img-fluid" alt="logo" style="height: 55px;">
-            </div>
-            <div class="col-md">
-                <p>
-                    <label for="" style="color: #00A69A;">Kementerian Kesehatan</label><br>
-                    <b>Direktorat Jenderal</b><br>
-                    <b>Kesehatan Primer dan Komunitas</b><br>
-                    Balai Besar Laboratorium Kesehatan Masyarakat
-                    Jakarta <br>
-                    <label for=""><i class="fa-solid fa-location-dot"></i> Jl.Bambu Apus Raya No.6 Blok C1 Jakarta Timur 13890<br>
-                    <i class="ti ti-phone"></i> (021) 3871 2050 - (021) 3871 2051<br>
-                    <i class="ti ti-globe"></i> www.bblkmjakarta.org</label><br>
-                    <label for="" class="fw-bold">No.Kode : LB.IV.7.1.1.3</label>
-                </p>
+            <div class="row">
+                <div class="col-sm-6">
+                    <img src="<?= base_url('assets/images/logo.webp') ?>" alt="" class="img-fluid" alt="logo" style="height: 55px;">
+                </div>
+                <div class="col-sm-6">
+                    <p style="line-height: 12px;"><label for="" style="color:#00A69A; font-weight: bold;">Kementerian Kesehatan</label></p>
+                    <p style="line-height: 12px;">
+                        <b>Direktorat Jenderal Kesehatan Primer dan Komunitas</b>
+                        Balai Besar Laboratorium Kesehatan Masyarakat
+                        Jakarta
+                    </p>
+                    <p style="line-height: 12px;">
+                        Jl.Bambu Apus Raya No.6 Blok C1 Jakarta Timur 13890 <br>
+                        <i class="ti ti-phone"></i> (021) 3871 2050 - (021) 3871 2051 <br>
+                        <i class="ti ti-globe"></i> www.bblkmjakarta.org
+                    </p>
+                </div>
+                <div class="col-sm">
+                    <p for="" class="fw-bold text-end">No.Kode : LB.IV.7.1.1.3</p>
+                </div>
             </div>
         </div>
     </div>

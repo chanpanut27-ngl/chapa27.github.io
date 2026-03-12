@@ -159,9 +159,14 @@ class Penawaran extends BaseController
      *
      * @return ResponseInterface
      */
-    public function create()
+    public function cetak($id = null)
     {
-        //
+        
+        $data = [
+            'title' => 'Cetak penawaran',
+            'no_reg' => $id
+        ];
+        return view('Backend/Modul/Pelayanan/Penawaran/__cetak', $data);
     }
 
     /**

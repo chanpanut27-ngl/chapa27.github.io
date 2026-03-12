@@ -45,11 +45,13 @@
                                 <h5><span class="pc-micon"><i class="ti ti-user"></i> Data Pelanggan</h5>
                             </button>
                             </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample">
-                                </div>
+                            <div id="flush-collapseOne" class="accordion-collapse" data-bs-parent="#accordionFlushExample"></div>
                                 <div class="accordion-body">
                                     <div class="show-pelanggan"></div>                                
                                 </div>
+                                <button class="btn btn-info rounded btn-sm btnPrint ml-2" onclick="openWin();" title="Cetak">
+                                    <i class="ti ti-printer"></i> Cetak
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -242,6 +244,16 @@
             }
         })
     }
+
+    function openWin() {
+        var WinPrint = window.open('<?= base_url('cetak/penawaran/'.$no_reg) ?>', '', 'left=0,top=0,width=1500,height=1000,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+    }
+
 
     $(document).ready(function() {
         showDataSurat();
