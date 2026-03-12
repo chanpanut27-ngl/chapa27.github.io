@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['#', 'No.Reg', 'Kode pelanggan', 'Nama pelanggan', 'No.Telp/Hp pelanggan', 'Instansi', 'Tgl & jam permintaan', 'Actions'];
+        $arrth = ['#', 'No. Reg', 'Kode pelanggan', 'Nama pelanggan', 'No. Telp/Hp pelanggan', 'Instansi', 'Tgl & jam permintaan', 'Actions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -14,10 +14,10 @@
         $no = 1;
         foreach ($items as $row) :
         ?>
-            <tr id="myId-<?= $row['id'] ?>" data-urut=<?= $no; ?>>
+            <tr id="myId-<?= $row['id_pelanggan'] ?>" data-urut=<?= $no; ?>>
                 <td class="text-center">
                     <b><?= $no++; ?></b>
-                    <button type="button" class="btn bg-blue-500 text-light btn-sm rounded btn-bps-<?= $row['id']; ?>" onclick="biayaPygSampling(<?= $row['id']; ?>)" title="Biaya penyelenggara sampling">
+                    <button type="button" class="btn bg-blue-500 text-light btn-sm rounded btn-bps-<?= $row['id_pelanggan']; ?>" onclick="biayaPygSampling(<?= $row['id_pelanggan']; ?>)" title="Biaya penyelenggara sampling">
                         <i class="ti ti-pencil f-18"></i>
                     </button>
                 </td>
