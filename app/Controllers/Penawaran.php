@@ -161,10 +161,11 @@ class Penawaran extends BaseController
      */
     public function cetak($id = null)
     {
-        
+        $no_reg = $id;
         $data = [
             'title' => 'Cetak penawaran',
-            'no_reg' => $id
+            'no_reg' => $id,
+            'items' => $this->m_permintaan->where('no_reg', $no_reg)->first()
         ];
         return view('Backend/Modul/Pelayanan/Penawaran/__cetak', $data);
     }
