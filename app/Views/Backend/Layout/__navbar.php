@@ -1,4 +1,5 @@
  <!-- [ Sidebar Menu ] start -->
+<?php $uri = service('uri'); ?>
 <nav class="pc-sidebar">
     <div class="navbar-wrapper">
         <div class="m-header kemkes-color2">
@@ -17,7 +18,7 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('profil-pegawai'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-user"></i></span>
+                        <i class="ti ti-user"></i>
                         <span class="pc-mtext">Profil</span>
                     </a>
                 </li>
