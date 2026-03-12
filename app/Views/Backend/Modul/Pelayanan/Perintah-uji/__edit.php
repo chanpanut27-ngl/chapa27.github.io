@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-md-9 d-flex">
                             :&nbsp;<h5><?= date('d-m-Y', strtotime($search['tgl_terima_sampel'])) ?></h5>
-                        </div>
+                            <input type="hidden" name="tgl_terima_sampel" value="<?= $search['tgl_terima_sampel'] ?>">
                     </div>
                     <div class="row">
                         <div class="col-md-3">

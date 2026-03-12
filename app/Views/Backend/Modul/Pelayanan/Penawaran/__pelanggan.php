@@ -1,7 +1,7 @@
 <div class="row">
-    <div class="col-sm-3"><b>No.Registrasi</b></div>
+    <div class="col-sm-3"><b>No. Reg</b></div>
     <div class="col-sm-3">: <?= $items['no_reg'] ?></div>
-    <div class="col-sm-3"><b>No.Telp/Hp Pengirim</b></div>
+    <div class="col-sm-3"><b>No. Telp/Hp Pengirim</b></div>
     <div class="col-sm-3">: <?= $items['no_telp_pengirim'] ?></div>
 </div>
 <div class="row">

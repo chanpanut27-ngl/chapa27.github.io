@@ -37,7 +37,7 @@
                         ?>
                         <input type="hidden" id="id-pengantar" value="<?= $row['id_pengantar'] ?>">
                         <div class="row">
-                            <div class="col-sm-3 fw-bold">No.Registrasi</div>
+                            <div class="col-sm-3 fw-bold">No. Reg</div>
                             <div class="col-sm-3">: <?= $row['no_reg'] ?></div>
                             <div class="col-sm-2 fw-bold">Instansi</div>
                             <div class="col-sm-4">: <?= $row['instansi'] ?></div>
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-sm-3 fw-bold">Kode pelanggan</div>
                             <div class="col-sm-3">: <?= $row['kode_pelanggan'] ?></div>
-                            <div class="col-sm-2 fw-bold">No.Telp/Hp</div>
+                            <div class="col-sm-2 fw-bold">No. Telp/Hp</div>
                             <div class="col-sm-4">: <?= $row['no_telp'] ?></div>
                         </div>  
                         <div class="row">
