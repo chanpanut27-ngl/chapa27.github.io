@@ -45,11 +45,14 @@
                             } else if ($key['status'] == 'Penawaran di Tolak'){
                                 $sts_ket = 4;
                                 $bgs = 'bg-danger';
-                            } else if ($key['status'] == 'Distribusi sampel'){
+                            } else if ($key['status'] == 'Distribusi Sampel'){
                                 $sts_ket = 5;
                                 $bgs = 'bg-info';
+                            } else if ($key['status'] == 'Distribusi Sampel Selesai'){
+                                $sts_ket = 6;
+                                $bgs = 'bg-info';
                             } else {
-                                $sts_ket = 0;
+                                $sts_ket = '';
                                 $bgs = '';
                             } 
                             echo '<span class="badge rounded-pill '.$bgs.'" title="'.$key['status'].'">'.$sts_ket.'</span>&nbsp;';
@@ -80,10 +83,12 @@
     </tbody>
 </table>
 <p>
-    <h5><span class="badge rounded-pill bg-primary">Permintaan di Terima</span>
+    <h6><span class="badge rounded-pill bg-primary">Permintaan di Terima</span>
     <span class="badge rounded-pill bg-secondary">Permintaan di Tolak</span>
     <span class="badge rounded-pill bg-warning">Penawaran di Diterima</span>
-    <span class="badge rounded-pill bg-danger">Penawaran di Tolak</span></h5>
+    <span class="badge rounded-pill bg-danger">Penawaran di Tolak</span>
+    <span class="badge rounded-pill bg-info">Distribusi Sampel</span>
+    <span class="badge rounded-pill bg-info">Distribusi Sampel Selesai</span></h6>
 </p>
 
 <script>

@@ -164,7 +164,7 @@ Menyetujui <br>
         </div>
             </div>
             <div class="col-md-4">
-                Jakarta, Februari 2026<br>
+                Jakarta,        <br>
 Atasan langsung Bendahara Penerima<br>
         <div class="nama-penanda">
             ${nama_pengirim1} <br>

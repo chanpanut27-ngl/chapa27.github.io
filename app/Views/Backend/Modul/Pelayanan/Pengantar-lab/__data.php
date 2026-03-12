@@ -29,10 +29,10 @@
                        <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
-                        <a href="<?= base_url('pelayanan/laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Lab tujuan">
+                        <a href="<?= base_url('pelayanan/laboratorium-tujuan/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-primary rounded btn-sm" title="Laboratorium tujuan">
                             <i class="ti ti-flask"></i>
                         </a>
-                        <a href="<?= base_url('pelayanan/pengantar-lab/proses/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-info rounded btn-sm" title="Proses Pengantar">
+                        <a href="<?= base_url('pelayanan/pengantar-lab/proses/index/'.strtolower($row['kode_pengantar'])); ?>" class="btn btn-info rounded btn-sm" title="Proses pengantar">
                             Pengantar
                         </a>
                     </div>

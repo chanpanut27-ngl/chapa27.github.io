@@ -51,7 +51,7 @@ ANTI GRATIFIKASI DAN PELAYANAN PRIMA</h3>
 untuk pelaksanaan Sistem Integritas dalam pelayanan pada Labkesmas Jakarta.</p>
         
         <p>
-Kami pejabat / pegawai Labkesmas Jakarta dan RS Sumber Waras, bersama ini menyatakan
+Kami pejabat / pegawai Labkesmas Jakarta dan <?= $items['instansi'] ?>, bersama ini menyatakan
 hal-hal sebagai berikut :
 <ol>
   <li>
@@ -59,12 +59,12 @@ hal-hal sebagai berikut :
 dan Instalasi terkait di Labkesmas Jakarta ;
   </li>
   <li>
-    Labkesmas Jakarta memberikan pelayanan kepada RS Sumber Waras secara cepat,
+    Labkesmas Jakarta memberikan pelayanan kepada <?= $items['instansi'] ?> secara cepat,
 tepat, transparan dan akuntabel, dan tanpa memungut biaya (zero cost) selain tarif
 sesuai dengan PMK 45 Tahun 2024;
   </li>
   <li>
-RS Sumber Waras menunjukkan tempat pengambilan sampel sesuai RAB;
+<?= $items['instansi'] ?> menunjukkan tempat pengambilan sampel sesuai RAB;
   </li>
   <li>
 Pegawai Labkesmas Jakarta tidak menerima gratifikasi dalam bentuk apapun
@@ -92,7 +92,7 @@ NIP. 197208182000122001
             </div>
             <div class="col-md-4">
                 Ditandatangani di : Jakarta <br>
-Pada tanggal :   <?= date('Y') ?><br><br>
+Pada tanggal :   <br><br>
 <?= $items['instansi'] ?><br><br>
         <div class="nama-penanda">_____________________</div>
             </div>

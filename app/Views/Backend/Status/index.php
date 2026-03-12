@@ -42,10 +42,10 @@
                                 <input type="radio" name="status" value="Penawaran di Tolak" id="4"> Penawaran di Tolak
                             </label>&nbsp;&nbsp;
                             <label for="5">
-                                <input type="radio" name="status" value="Distribusi sampel" id="5"> Distribusi sampel
+                                <input type="radio" name="status" value="Distribusi Sampel" id="5"> Distribusi Sampel
                             </label>&nbsp;&nbsp;
                             <label for="6">
-                                <input type="radio" name="status" value="Distribusi sampel Selesai" id="6"> Distribusi sampel selesai
+                                <input type="radio" name="status" value="Distribusi Sampel Selesai" id="6"> Distribusi Sampel Selesai
                             </label>
                         </div>
                         <div class="col-md-3">

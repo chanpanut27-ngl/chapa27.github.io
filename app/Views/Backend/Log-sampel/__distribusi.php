@@ -37,13 +37,12 @@ use App\Models\SpesimenPenyakitModel;
                 <td>
                     <div class="row">
                         <div class="col-auto">
-                            <img src="<?= base_url('assets/images/user-1.jpg') ?>" alt="user-image" class="wid-40 rounded-circle">
+                            <img src="<?= base_url('assets/images/user-1.jpg') ?>" alt="user-image" class="wid-25 rounded-circle">
                         </div>
                         <div class="col">
-                            <h6 class="mb-0"><?= $row['kode_pelanggan'] ?></h6>
                             <h6 class="mb-0"><?= $row['nama_pengirim'] ?></h6>
-                            <p class="text-muted f-12 mb-0"><?= $row['no_telp_pengirim'] ?></p>
-                            <span class="badge rounded-pill bg-primary"><?= $row['status'] ?></span>
+                            <p class="text-muted f-11 mb-0">No. Reg : <?= $row['no_reg'] ?></p>
+                            <p class="text-muted f-11 mb-0">Kode Pelanggan : <?= $row['kode_pelanggan'] ?></p>
                         </div>
                     </div>
                 </td>

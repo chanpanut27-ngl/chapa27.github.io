@@ -146,8 +146,7 @@ class PengantarLab extends BaseController
                 $simpandata = [
                     'kode_pengantar' => $this->generate_kode_pengantar(),
                     'id_pelanggan' => $this->request->getVar('id_pelanggan'),
-                    'tanggal' => date('Y-m-d', strtotime($this->request->getVar('tanggal'))),
-                    'tahun' => date('Y', strtotime($this->today))
+                    'tanggal' => date('Y-m-d', strtotime($this->request->getVar('tanggal')))
                 ];
                 $this->model->insert($simpandata);
                 $msg = [

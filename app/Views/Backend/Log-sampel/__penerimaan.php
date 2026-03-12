@@ -22,7 +22,7 @@
                 <td>
                     <div class="row">
                         <div class="col-auto">
-                            <img src="<?= base_url('assets/images/user-1.jpg') ?>" alt="user-image" class="wid-40 rounded-circle">
+                            <img src="<?= base_url('assets/images/user-1.jpg') ?>" alt="user-image" class="wid-25 rounded-circle">
                         </div>
                         <div class="col">
                             <h6 class="mb-0"><?= $row['nama_pengirim'] ?></h6>

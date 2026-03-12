@@ -43,7 +43,7 @@ class LogSampel extends BaseController
         
         $data = [
             'title' => 'Distribusi sampel',
-            'items' => $this->m_status_layanan->get_data('Distribusi sampel')
+            'items' => $this->m_status_layanan->get_data('Distribusi Sampel')
         ];
 
         return view('Backend/Log-sampel/__distribusi', $data);

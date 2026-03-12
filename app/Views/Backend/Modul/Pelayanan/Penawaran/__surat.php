@@ -62,13 +62,11 @@ use App\Libraries\CustomLib;
     <!-- Tanggal & Perihal -->
     <div class="info-surat">
         <div>
-            Nomor : KL.01.02/X.4/370/2025 <br>
+            Nomor :  <br>
             Lampiran : 3 Lembar<br>
             Hal : <b>Pelaksanaan Sampling dan Uji Sampel</b>
         </div>
-        <div>
-            Jakarta, 24 Februari 2026
-        </div>
+        <div>Jakarta,             </div><div></div>
     </div>
 
     <!-- Alamat Tujuan -->
