@@ -17,7 +17,7 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('profil-pegawai'); ?>" class="pc-link">
-                        <i class="ti ti-user"></i>
+                        <span class="pc-micon"><i class="ti ti-user"></i></span>
                         <span class="pc-mtext">Profil</span>
                     </a>
                 </li>

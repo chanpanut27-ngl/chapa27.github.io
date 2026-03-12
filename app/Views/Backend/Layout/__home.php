@@ -25,7 +25,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h5>
-                            <span class="fa-solid fa-home"></span> BB Labkesmas JAKARTA Balai Besar Laboratorium Kesehatan Masyarakat Jakarta
+                            <i class="ti ti-home"></i> BBLKM Jakarta
                         </h5>
                     </div>
                     <img src="<?= base_url('assets/images/bblkm-jakarta.webp') ?>" style="height:220px;">
