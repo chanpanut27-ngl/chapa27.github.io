@@ -44,7 +44,7 @@
                 <div class="col-sm-6">
                     <p style="line-height: 12px;"><label for="" style="color:#00A69A; font-weight: bold;">Kementerian Kesehatan</label></p>
                     <p style="line-height: 12px;">
-                        <b>Direktorat Jenderal Kesehatan Primer dan Komunitas</b>
+                        <b>Direktorat Jenderal Kesehatan Primer dan Komunitas</b><br>
                         Balai Besar Laboratorium Kesehatan Masyarakat
                         Jakarta
                     </p>

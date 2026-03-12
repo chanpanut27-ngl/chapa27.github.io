@@ -39,8 +39,8 @@
         .tanda-tangan {
             margin-top: 50px;
             float: center;
-            text-align: right;
-            width: 200px;
+            text-align: left;
+            width: 100%;
         }
         .nama-penanda { margin-top: 70px; font-weight: bold; text-decoration: underline; }
     </style>
@@ -129,6 +129,215 @@ d. <b>Tidak menerima gratifikasi dalam bentuk apapun</b>
         Kesehatan Masyarakat Jakarta
         <div class="nama-penanda">dr. Nida Rohmawati, MPH</div>
     </div>
+</div>
+<!-- fakta integritas -->
+    <div class="kertas-surat">
+        <div class="kop-surat">
+            <div class="row">
+                <div class="col-sm-12 text-end"><h5>LB.IV.7.1.1.5</h5></div>
+                <div class="col-sm-12 text-center">
+                    <h4>PAKTA INTEGRITAS <br>
+                    ANTI GRATIFIKASI DAN PELAYANAN PRIMA</h4>
+                </div>
+            </div>
+        </div>
+        <!-- Isi Surat -->
+    <div class="isi-surat">
+        <p>Komitmen pejabat/pegawai Labkesmas Jakarta dan satuan kerja mitra Labkesmas Jakarta
+untuk pelaksanaan Sistem Integritas dalam pelayanan pada Labkesmas Jakarta.</p>
+        
+        <p>
+Kami pejabat / pegawai Labkesmas Jakarta dan <?= $items['instansi'] ?>, bersama ini menyatakan
+hal-hal sebagai berikut :
+<ol>
+  <li>
+    Pelayanan pemeriksaan sampel dilaksanakan oleh Tim Kerja Program dan Layanan
+dan Instalasi terkait di Labkesmas Jakarta ;
+  </li>
+  <li>
+    Labkesmas Jakarta memberikan pelayanan kepada <?= $items['instansi'] ?> secara cepat,
+tepat, transparan dan akuntabel, dan tanpa memungut biaya (zero cost) selain tarif
+sesuai dengan PMK 45 Tahun 2024;
+  </li>
+  <li>
+<?= $items['instansi'] ?> menunjukkan tempat pengambilan sampel sesuai RAB;
+  </li>
+  <li>
+Pegawai Labkesmas Jakarta tidak menerima gratifikasi dalam bentuk apapun
+  </li>
+</ol>
+        </p>
+        <p>
+            Demikian pernyataan janji ini Kami buat dengan sesungguhnya. Atas pelanggaran janji yang
+Kami nyatakan dalam Pakta Integritas ini, Kami bersedia dikenakan sanksi moral, sanksi
+administrasi sesuai dengan ketentuan Perundang-undangan yang berlaku.
+        </p>
     </div>
+
+    <!-- Penutup & Tanda Tangan -->
+    <div class="tanda-tangan">
+        <div class="row">
+            <div class="col-sm-8">
+                <br><br><br>
+Kepala Balai Besar Laboratorium <br>
+Kesehatan Masyarakat Jakarta
+        <div class="nama-penanda">
+            dr. Nida Rohmawati, MPH <br>
+NIP. 197208182000122001
+        </div>
+            </div>
+            <div class="col-sm-4">
+                Ditandatangani di : Jakarta <br>
+Pada tanggal :   <br><br>
+<?= $items['instansi'] ?><br><br>
+        <div class="nama-penanda">_____________________</div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<!-- rencana anggaran biaya  -->
+ <div class="kertas-surat">
+    <!-- Kepala Surat (Kop) -->
+    <div class="kop-surat">
+        <div class="row">
+            <div class="col-sm-12 fw-bold">
+                <p class="text-end">LB.IV.7.1.1.4</p>
+            </div>
+            <div class="col-sm-12 text-center fw-bold">
+                 <h5>RENCANA ANGGARAN BIAYA <br>
+                Uji Laboratorium <?= $items['instansi'] ?> <br>
+                    <label for="" style="font-size: 11pt; font-weight: initial;"><?= $items['alamat'] ?></label>
+                </h5>
+            </div>
+        </div>
+       
+    </div>
+
+    <!-- Isi Surat -->
+    <div class="isi-surat">
+<p><b>A. Biaya Pengujian Sampel Aktif</b></p>
+<table class="table table-bordered" style="font-size: 10pt;">
+    <thead style="border: 1px solid;">
+        <tr>
+            <th>No</th>
+            <th>Laboratorium</th>
+        </tr>
+    </thead>
+    <tbody style="border: 1px solid;">
+        <?php
+
+use App\Models\LaboratoriumModel;
+use App\Models\PermintaanSampelModel;
+
+        $id_pelanggan = $items['id'];
+        $permintaan_sampel = new PermintaanSampelModel();
+        $rest_ps = $permintaan_sampel->get_data($id_pelanggan);
+        $laboratorium = new LaboratoriumModel();
+        $rest_lab = $laboratorium->findAll();
+
+        use App\Models\ParameterModel;
+        $m_parameter = new ParameterModel();
+        $parameter = $m_parameter->get_data();
+
+        $arr = [];
+        foreach ($rest_ps as $key) {
+            $arr[] = $key['id_lab'];
+        }
+        $dataUnik = array_flip(array_flip($arr));
+        $no = 1;
+        $total = 0;
+        foreach ($rest_lab as $row) {
+          foreach ($dataUnik as $r) {
+            if ($r == $row['id']) {
+                ?>
+                <tr>
+                    <td class="text-center"><?= $no++ ?></td>
+                    <td><?= $row['nama_lab']; ?></td>
+                    <td class="fw-bold">Jenis sampel</td>
+                    <td class="fw-bold">Jumlah sampel (∑)</td>
+                    <td class="fw-bold">Biaya Satuan (Rp)</td>
+                    <td class="fw-bold">Jumlah Biaya (Rp)</td>
+                    <td class="fw-bold">Keterangan</td>
+                </tr>
+                <?php
+                foreach ($rest_ps as $s) {
+                    $total = $total + $s['jumlah_biaya'];
+                    if ($r == $s['id_lab']) {
+                    ?>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td><b><?= $s['jenis_sampel'] ?></b><br><?= $s['peraturan'] ?></td>
+                        <td class="text-center"><?= $s['jumlah_sampel'] ?></td>
+                        <td class="text-end"><?= number_to_currency($s['pnbp'], 'IDR', 'ID', 0); ?></td>
+                        <td class="text-end"><?= number_to_currency($s['jumlah_biaya'], 'IDR', 'ID', 0); ?></td>
+                        <td>
+                            <?php
+                            $imp = '';
+                            $arr_parameter = [];
+                            foreach ($parameter as $key) {
+
+                                if ($s['id_jenis_sampel'] == $key['id_jenis_sampel']) 
+                                {
+                                    $arr_parameter[] = $key['parameter'];
+                                }
+
+                            }
+                            $imp = implode(', ', $arr_parameter);
+                            echo $imp;
+                            ?>
+                        </td>
+                    </tr>
+                    <?php
+                    }
+                }
+            }
+          }
+        }
+        ?>
+        <tr>
+            <td colspan="5" class="fw-bold">Total Biaya Pengujian (PNBP) ( 1 x pengujian)</td>
+            <td class="fw-bold text-end"><?= number_to_currency($total, 'IDR', 'ID', 0); ?></td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    <b>
+        *Dipungut sesuai Peraturan Menteri Keuangan Republik Indonesia Nomor 45 Tahun 2024
+tentang Jenis dan Tarif Atas Jenis Penerimaan Negara Bukan Pajak yang bersifat Volatil dan
+Kebutuhan Mendesak yang berlaku pada Kementerian Kesehatan 
+    </b>
+</p>
+<p>
+<b>
+    *Pembayaran Penerimaan Negara Bukan Pajak (PNBP) ini dilakukan secara langsung oleh
+Wajib Bayar ke kas Negara melalui Bank/POS Persepsi maksimal 7 hari sejak billing dibuat
+</b>
+</p>
+</div>
+
+    <!-- Penutup & Tanda Tangan -->
+    <div class="tanda-tangan">
+        <div class="row">
+            <div class="col-md-8">
+Menyetujui <br>
+<?= $items['instansi'] ?>
+        <div class="nama-penanda">
+            (______________________)
+        </div>
+            </div>
+            <div class="col-md-4">
+                Jakarta,        <br>
+Atasan langsung Bendahara Penerima<br>
+        <div class="nama-penanda">
+            ${nama_pengirim1} <br>
+            NIP. ${nip_pengirim1}
+        </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
 </body>
 </html>
