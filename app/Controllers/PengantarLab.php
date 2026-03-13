@@ -30,7 +30,7 @@ class PengantarLab extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title,
+            'title' => $this->title,
             'items' => $this->m_lab_tujuan->findAll()
         ];
         return view('Backend/Modul/Pelayanan/Pengantar-lab/index', $data);

@@ -38,7 +38,7 @@ class PerintahUjiSampel extends BaseController
     {
 
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => $this->title
         ];
         return view('Backend/Modul/Pelayanan/Perintah-uji/index', $data);
     }
