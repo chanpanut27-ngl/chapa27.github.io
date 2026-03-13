@@ -35,6 +35,7 @@ abstract class BaseController extends Controller
     protected $today;
     protected $validation;
     protected $time;
+    protected $language;
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
@@ -47,10 +48,13 @@ abstract class BaseController extends Controller
 
         // Preload any models, libraries, etc, here.
         // $this->session = service('session');
+
         $this->db = \Config\Database::connect();
         $this->validation = \Config\Services::validation();
         $this->time = Time::now('Asia/Jakarta'); 
         $this->today = $this->time->toDateTimeString();
-
+        $this->language = \Config\Services::language();
+        $this->language->setlocale('WEB_LANG');
+        
     }
 }

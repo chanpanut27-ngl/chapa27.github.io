@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\UsersModel;
-use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class UsersMaster extends BaseController

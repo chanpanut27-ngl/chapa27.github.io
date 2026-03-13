@@ -120,7 +120,7 @@ class App extends BaseConfig
      *
      * @var list<string>
      */
-    public array $supportedLocales = ['en'];
+    public array $supportedLocales = ['id','en'];
 
     /**
      * --------------------------------------------------------------------------
@@ -207,4 +207,10 @@ class App extends BaseConfig
     public $cookiePrefix = ''; // Tambahkan ini jika belum ada
     public $cookieSameSite = 'Lax'; // Pastikan ini juga ada
     public $cookieSecure = false; // Ubah menjadi true jika menggunakan HTTPS
+
+    //Merubah $sessionDriver ke database
+    public $sessionDriver            = 'CodeIgniter\Session\Handlers\DatabaseHandler';
+
+    //Menyimpan sesi ke tabel ci_sessions
+    public $sessionSavePath          = 'ci_sessions';
 }
