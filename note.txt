@@ -3,3 +3,10 @@ database : bblkmjak_dbs_bblabkesChan
 https://prola.bblkmjakarta.org/
 
 Product by : Tim Kerja Prola
+
+Language
+<div class="menu">
+    <li class="menu-item hidden"><a href="<?=base_url('frontlang/id');?>">Indonesia</a></li>
+    <li class="menu-item hidden"><a href="<?=base_url('frontlang/en');?>">English</a></li>
+    <li class="menu-item hidden"><a href="<?=base_url('frontlang/id');?>">Perancis</a></li>
+</div>

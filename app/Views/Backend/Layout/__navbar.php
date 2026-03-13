@@ -3,16 +3,10 @@
     <div class="navbar-wrapper">
         <div class="m-header kemkes-color2">
             <a href="<?= base_url('/') ?>" class="b-brand text-primary">
-                <!-- ========   Change your logo from here   ============ -->
                 <img src="<?= base_url('assets/images/logo.webp') ?>" class="img-fluid logo" alt="logo">
             </a>
         </div>
         <div class="navbar-content">
-            <div class="menu">
-                <li class="menu-item hidden"><a href="<?=base_url('frontlang/id');?>">Indonesia</a></li>
-<li class="menu-item hidden"><a href="<?=base_url('frontlang/en');?>">English</a></li>
-<li class="menu-item hidden"><a href="<?=base_url('frontlang/id');?>">Perancis</a></li>
-            </div>
             <ul class="pc-navbar">
                 <li class="pc-item">
                     <a href="<?= base_url('/'); ?>" class="pc-link">
@@ -38,13 +32,13 @@
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan/permintaan'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-menu"></i></span>
-                        <span class="pc-mtext"><?= lang('Global.h1TitleRequest') ?></span>
+                        <span class="pc-mtext">Permintaan</span>
                     </a>
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelayanan/penawaran'); ?>" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-menu"></i></span>
-                        <span class="pc-mtext"><?= lang('Global.h1TitleOffering') ?></span>
+                        <span class="pc-mtext">Penawaran</span>
                     </a>
                 </li>
                 <li class="pc-item">
@@ -303,9 +297,7 @@
                 </li>
                 <?php endif; ?>
             </ul>
-            <div class="card text-center">
-                <!-- empty fill  -->
-            </div>
+            <div class="card text-center"></div>
         </div>
     </div>
 </nav>

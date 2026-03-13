@@ -73,6 +73,7 @@ class PermintaanSampelModel extends Model
         $db = \Config\Database::connect();
         $sql = 'SELECT
                 ps.id AS id_permintaan_sampel,
+                ps.id_pelanggan,
                 id_jenis_sampel,
                 jenis_sampel,
                 jumlah_sampel,

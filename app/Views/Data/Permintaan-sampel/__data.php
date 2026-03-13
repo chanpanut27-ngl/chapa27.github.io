@@ -21,19 +21,40 @@
     <tbody>
     <?php
         use App\Models\ParameterModel;
+        use App\Models\PermintaanPemeriksaanModel;
+
         $no = 1; 
         $m_parameter = new ParameterModel();
         $parameter = $m_parameter->get_data();
-       
+
+        $pp = new PermintaanPemeriksaanModel();
+        
         foreach ($items as $row) :
+        
+            $list = $pp->where('id_pelanggan', $row['id_pelanggan'])
+            ->where('id_jenis_sampel', $row['id_jenis_sampel'])
+            ->where('id_lab', $row['id_lab'])
+            ->findAll();
+
     ?>
         <tr id="myIndex-<?= $row['id_permintaan_sampel'] ?>" data-urut=<?= $no; ?>>
             <td class="text-center"><?= $no++; ?></td>
             <td><?= $row['jenis_sampel'] ?></td>
-            <td><?= $row['peraturan'] ?></td>
+            <td><?= $row['peraturan'] ?> id-lab : <?= $row['id_lab'] ?></td>
             <td>
                 <?php
-                $imp = '';
+                $pilih_parameter = []; 
+                foreach ($list as $r) {
+                   foreach ($parameter as $val) {
+                        if ($r['id_parameter'] == $val['id']) {
+                            $pilih_parameter[] = $val['parameter'];
+                        }
+                   }
+                }
+                echo implode(', ', $pilih_parameter);
+                ?>
+            </td>
+                <!-- $imp = '';
                 $arr_parameter = [];
                 foreach ($parameter as $key) {
 
@@ -43,9 +64,7 @@
                     }
 
                 }
-                $imp = implode(', ', $arr_parameter);
-                echo $imp;
-                ?>
+                echo implode(', ', $arr_parameter); -->
             </td>
             <td><?= $row['nama_lab'] ?></td>
             <td class="text-center"><?= $row['jumlah_sampel'] ?></td>

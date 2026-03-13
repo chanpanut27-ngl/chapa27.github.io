@@ -11,7 +11,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)">Pelayanan</a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>
@@ -28,7 +28,7 @@
                     <div class="card-header p-2">
                         <h4><span class="pc-micon"><i class="ti ti-list"></i> <?= $title; ?></h4>
                         <div class="d-flex justify-content-end align-items-center">
-                            <button type="button" class="btn btn-success btn-sm rounded btn-refresh" title="refresh">
+                            <button type="button" class="btn btn-success border-0 btn-sm rounded btn-refresh" title="refresh">
                                 <span class="pc-micon"><i class="ti ti-refresh"></i></span>
                             </button>
                         </div>

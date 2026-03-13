@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.css'); ?>">
 <!-- select2 -->
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
 <?= $this->endSection(); ?>
 
 <?= $this->section('content'); ?>
@@ -100,7 +99,7 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <div class="d-flex justify-content-end align-items-center gap-1">
-                                <button type="button" class="btn btn-info border-0 btn-sm rounded btn-show-lab" onclick="showPermintaanSampel(<?= $items['id']; ?>)" title="Pemeriksaan sampel">
+                                <button type="button" class="btn btn-info border-0 btn-sm rounded btn-show-lab" onclick="showPemeriksaanSampel(<?= $items['id']; ?>)" title="Pemeriksaan sampel">
                                     <i class="ti ti-clipboard"></i> Pemeriksaan sampel
                                 </button>
                                 <!-- Button trigger modal -->
@@ -131,7 +130,7 @@
 <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.js'); ?>"></script>
 <script src="<?= base_url('assets/js/plugins/dataTables.responsive.js'); ?>"></script>
 <script src="<?= base_url('assets/js/custom.js'); ?>"></script>
-<!-- [Datepicker js] -->
+<!-- [Select2 js] -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <script>
@@ -152,7 +151,7 @@
         })
     }
 
-    function showPermintaanSampel(id) {
+    function showPemeriksaanSampel(id) {
         
         $.ajax({
             type: 'GET',

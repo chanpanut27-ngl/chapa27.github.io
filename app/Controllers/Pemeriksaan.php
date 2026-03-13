@@ -51,7 +51,7 @@ class Pemeriksaan extends BaseController
         $items = $this->model->where('no_reg', $id)->first();
 
         $data = [
-            'title' => 'Data ' . $this->title,
+            'title' => $this->title,
             'profil' => $this->m_profil->get_data(),
             'items' => $items,
             'acepted_penawaran' => $this->acepted_penawaran($items['id'])

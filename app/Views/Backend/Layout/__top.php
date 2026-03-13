@@ -7,7 +7,7 @@
     <meta name="description" content="Application BBLKM Jakarta made using Bootstrap 5 design framework">
     <meta name="keywords" content="Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
     <meta name="author" content="Program Layanan BBLKM Jakarta">
-    <title><?=lang('Global.h1Title');?></title>
+    <title><?= $title ?></title>
     <!-- [Favicon] icon -->
     <?= link_tag(base_url('assets/images/favicon.ico'), 'shortcut icon', 'image/x-icon'); ?>
     <!-- [Google Font] Family -->
@@ -31,9 +31,6 @@
     <!-- [topAssets] start -->
     <?= $this->renderSection('topAssets'); ?>
     <!-- [topAssets] end -->
-     <style>
-        html {scroll-behavior: smooth;}
-     </style>
 </head>
 <!-- [Head] end -->
 <!-- [Body] Start -->

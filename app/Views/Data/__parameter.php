@@ -3,7 +3,7 @@
     <thead>
         <tr>
             <th style="width: 5%;">No</th>
-            <th style="width: 5%; text-align:center;"><input type="checkbox" id="selectAll" onclick="return toggle(this);" /> Pilih semua<br/></th>
+            <th style="width: 5%; text-align:center;"><label for="selectAll"><input type="checkbox" id="selectAll" onclick="return toggle(this);" /> Pilih semua</label></th>
             <th style="text-align: center;">Parameter</th>
             <th style="width: 15%; text-align:right;">Harga pertitik</th>
         </tr>

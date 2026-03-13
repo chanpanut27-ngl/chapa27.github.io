@@ -25,30 +25,14 @@
                 </li>
                 <li class="pc-item">
                     <a href="<?= base_url('pelanggan/pelayanan/permintaan'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext">Permintaan</span>
                     </a>
                 </li>
-                <!-- <li class="pc-item">
-                    <a href="<?= base_url('pelanggan/pelayanan/pemeriksaan'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
-                        <span class="pc-mtext">Pemeriksaan</span>
-                    </a>
-                </li> -->
                 <li class="pc-item">
                     <a href="<?= base_url('pelanggan/pelayanan/penawaran'); ?>" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext">Penawaran</span>
-                    </a>
-                </li>
-                <li class="pc-item d-none">
-                    <a href="<?= base_url('cetak-pdf/contoh-1'); ?>" class="pc-link">
-                        <span class="pc-micon">
-                            <svg class="pc-icon">
-                                <use xlink:href="#cetakpdf"></use>
-                            </svg>
-                        </span>
-                        <span class="pc-mtext"><span class="fa-solid fa-arrow-right"></span> Cetak pdf</span>
                     </a>
                 </li>
                 <li class="pc-item pc-caption">
@@ -56,7 +40,7 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext">Pelayanan</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
@@ -75,7 +59,7 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-arrow-right"></i></span>
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
                         <span class="pc-mtext" data-i18n="booklet">Booklet</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>

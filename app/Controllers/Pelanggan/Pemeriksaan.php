@@ -153,7 +153,6 @@ class Pemeriksaan extends BaseController
     public function detail_permintaan_sampel($id = null)
     {
         if ($this->request->isAJAX()) {
-            $permintaan_sampel = new PermintaanSampelModel();
             $data = [
                 'title' => 'Pemeriksaan sampel',
                 'id_pelanggan' => $id
