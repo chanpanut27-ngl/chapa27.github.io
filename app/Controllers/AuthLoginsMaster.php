@@ -24,7 +24,7 @@ class AuthLoginsMaster extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => $this->title
         ];
         return view('Backend/Master/Auth-logins/index', $data);
     }

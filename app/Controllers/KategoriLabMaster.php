@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\KategoriLabModel;
-use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class KategoriLabMaster extends BaseController
@@ -25,7 +24,7 @@ class KategoriLabMaster extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => $this->title
         ];
         return view('Backend/Master/Kategori-laboratorium/index', $data);
     }

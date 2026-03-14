@@ -30,7 +30,7 @@ class AuthGroupsUsersMaster extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => $this->title
         ];
         return view('Backend/Master/Auth-groups-users/index', $data);
     }
