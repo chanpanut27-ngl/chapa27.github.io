@@ -38,25 +38,63 @@ class PengantarLab extends BaseController
 
     public function generate_kode_pengantar() 
     {
-
         $tahun = '';
-        // cari tahun data terakhir 
+        $next_year = date('Y', strtotime($this->time)) + 1;
+        /* cari tahun data terakhir */
         $query = $this->model->orderBy('id', 'DESC')->get();
-        
         foreach ($query->getResultArray() as $row) {
-            $tahun = $row['created_at'];
+            $tahun = $row['tahun'];
         }
-        $nextYear = date('Y', strtotime($this->today)) + 1;
-        if ($tahun < $nextYear) {
-            $count = $this->model->where('created_at', $tahun)->countAllResults();
-            $nomorUrut = $count + 1;
-        }else{
-            $count = $this->model->where('created_at', $nextYear)->countAllResults();
-            $nomorUrut = $count + 1;
+        $total = $this->model->where('tahun', $tahun)->countAllResults();
+        if ($tahun < $next_year) {
+            $kodePengantar = 0 + $total;
         }
-        $nomorAntrian = 'PL'. sprintf('%04d', $nomorUrut);
-        return $nomorAntrian;
+        $kode = 'PL'. sprintf('%04d', $kodePengantar);
+        return $kode;
     }
+
+    public function generate_kode_pengantar1()
+    {
+        
+            $count = 0;
+            $char = '';
+            $nomorUrut = '';
+            $tahun = '';
+            $char = 'PL';
+            $kode_pengantar = '';
+            $current_year = date('Y', strtotime($this->time));
+
+            $last_data = $this->model->orderBy('id', 'DESC')->findAll();
+
+            foreach ($last_data as $row) {
+                $kode_pengantar = $row['kode_pengantar'];
+                $tahun = date('Y', strtotime($row['created_at']));
+            }
+
+            
+            if ($tahun=='') {
+                $noUrut = sprintf("%04s", 1);
+            }elseif ($tahun) {
+                $noUrut = sprintf("%04s", 0);
+            }
+
+            var_dump($noUrut);die;
+            
+
+
+            return $kodePengantar;
+    }
+
+    // public function create()
+    // {
+    //     if ($this->request->isAJAX()) {
+        
+                       
+    //     } else {
+
+    //     }
+    // }
+
 
     /**
      * Return the properties of a resource object.
