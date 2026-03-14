@@ -29,7 +29,7 @@ class PosisiCoolbox extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title,
+            'title' => $this->title,
         ];
         return view('Backend/Modul/Coolbox/index', $data);
     }
