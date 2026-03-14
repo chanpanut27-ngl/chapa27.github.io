@@ -24,7 +24,7 @@ class PenyakitMaster extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => $this->title
         ];
         return view('Backend/Master/Penyakit/index', $data);
     }

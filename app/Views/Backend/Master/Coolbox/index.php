@@ -14,7 +14,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript: void(0)">Master Data</a></li>
+                            <li class="breadcrumb-item"><a href="javascript: void(0)"><span class="badge rounded-pill bg-dark">Master Data</span></a></li>
                             <li class="breadcrumb-item"><a href="#"><?= $title; ?></a></li>
                         </ul>
                     </div>

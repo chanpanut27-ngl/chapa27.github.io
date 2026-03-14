@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Penyakit', 'Keterangan', 'Is_active', ''];
+        $arrth = ['#', 'Penyakit', 'Keterangan', 'Is_active', 'Actions'];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';

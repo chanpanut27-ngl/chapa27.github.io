@@ -34,7 +34,7 @@ class JenisSampelMaster extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Data ' . $this->title
+            'title' => $this->title
         ];
         return view('Backend/Master/Jenis-sampel/index', $data);
     }
