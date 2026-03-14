@@ -70,7 +70,7 @@ class PengantarLabModel extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table('pengantar_lab');
-        $builder->select('pengantar_lab.id as id_pengantar,kode_pengantar,tanggal,pengantar_lab.is_active,permintaan_pelanggan.nama_pengirim,alamat,no_telp');
+        $builder->select('pengantar_lab.id as id_pengantar,kode_pengantar,tanggal,pengantar_lab.is_active,permintaan_pelanggan.nama_pengirim,alamat,no_telp,no_telp_pengirim');
         $builder->join("permintaan_pelanggan", "permintaan_pelanggan.id = pengantar_lab.id_pelanggan", "left");
         $query = $builder->get()->getResultArray();
         return $query;

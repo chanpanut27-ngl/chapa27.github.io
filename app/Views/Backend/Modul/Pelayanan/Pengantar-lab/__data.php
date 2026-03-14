@@ -1,7 +1,7 @@
 <table id="example" class="table table-hover table-bordered">
     <thead>
         <?php
-        $arrth = ['No', 'Kode pengantar', 'Pelanggan', 'Alamat', 'No.Telp', 'Tanggal', 'Status', ''];
+        $arrth = ['No', 'Kode pengantar', 'Pelanggan', 'Alamat', 'No. Telp/Hp', 'Tanggal', 'Status', ''];
         echo '<tr>';
         foreach ($arrth as $th) :
             echo '<th>' . $th . '</th>';
@@ -21,7 +21,7 @@
                 <td><?= $row['kode_pengantar']; ?></td>
                 <td><?= $row['nama_pengirim']; ?></td>
                 <td><?= $row['alamat']; ?></td>
-                <td><?= $row['no_telp']; ?></td>
+                <td><?= $row['no_telp_pengirim']; ?></td>
                 <td><?= date('d/m/Y', strtotime($row['tanggal'])); ?></td>
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>

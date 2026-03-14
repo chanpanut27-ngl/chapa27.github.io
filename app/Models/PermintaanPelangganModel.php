@@ -78,36 +78,53 @@ class PermintaanPelangganModel extends Model
         }
         return $data;
     }
-    
+
     public function generate_no_reg() 
     {
+        $tahun = '';
+        $kodePengantar = '';
+        $char = 'P';
+        $current_year = date('Y', strtotime($this->time));
         $model = new PermintaanPelangganModel();
-        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
-        $count = $model->countAllResults();
-       
-        // Buat nomor urut baru
-        $nomorUrut = $count + 1;
 
-        // Format nomor antrian
-        $nomorAntrian = sprintf('%04d', $nomorUrut) . '.' . date('dmY');
-        
-        return $nomorAntrian;
+        /* cari tahun data terakhir */
+        $query = $model->orderBy('id', 'DESC')->get();
+        foreach ($query->getResultArray() as $row) {
+            $tahun = date('Y', strtotime($row['created_at']));
+        }
+        $total = $model->where('YEAR(created_at)', $tahun)->countAllResults();
+      
+        if ($tahun != $current_year) {
+            $kodePengantar = $total + 1;
+        } else {
+            $kodePengantar = 0 + 1;
+        }
+        $kode = sprintf('%04d', $kodePengantar).'.'.date('dmY');
+        return $kode;
     }
 
     public function generate_kode_pelanggan() 
     {
+        $tahun = '';
+        $kodePengantar = '';
+        $char = 'P';
+        $current_year = date('Y', strtotime($this->time));
         $model = new PermintaanPelangganModel();
 
-        // Hitung jumlah antrian yang sudah ada untuk tanggal hari ini
-        $count = $model->countAllResults();
-       
-        // Buat nomor urut baru
-        $nomorUrut = $count + 1;
-
-        // Format nomor antrian
-        $nomorAntrian = 'P' . sprintf('%04d', $nomorUrut);
-        
-        return $nomorAntrian;
+        /* cari tahun data terakhir */
+        $query = $model->orderBy('id', 'DESC')->get();
+        foreach ($query->getResultArray() as $row) {
+            $tahun = date('Y', strtotime($row['created_at']));
+        }
+        $total = $model->where('YEAR(created_at)', $tahun)->countAllResults();
+      
+        if ($tahun != $current_year) {
+            $kodePengantar = $total + 1;
+        } else {
+            $kodePengantar = 0 + 1;
+        }
+        $kode = $char . sprintf('%04d', $kodePengantar);
+        return $kode;
     }
 
     public function get_data() 
