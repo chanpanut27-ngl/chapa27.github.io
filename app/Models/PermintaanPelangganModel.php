@@ -97,7 +97,7 @@ class PermintaanPelangganModel extends Model
         if ($tahun != $current_year) {
             $kodePengantar = $total + 1;
         } else {
-            $kodePengantar = 0 + 1;
+            $kodePengantar = $total + 1;
         }
         $kode = sprintf('%04d', $kodePengantar).'.'.date('dmY');
         return $kode;
@@ -121,7 +121,7 @@ class PermintaanPelangganModel extends Model
         if ($tahun != $current_year) {
             $kodePengantar = $total + 1;
         } else {
-            $kodePengantar = 0 + 1;
+            $kodePengantar = $total + 1;
         }
         $kode = $char . sprintf('%04d', $kodePengantar);
         return $kode;

@@ -49,12 +49,11 @@ class PengantarLab extends BaseController
             $tahun = date('Y', strtotime($row['created_at']));
         }
         $total = $this->model->where('YEAR(created_at)', $tahun)->countAllResults();
-      
 
         if ($tahun != $current_year) {
             $kodePengantar = $total + 1;
         } else {
-            $kodePengantar = 0 + 1;
+            $kodePengantar = $total + 1;
         }
         $kode = $char . sprintf('%04d', $kodePengantar);
         return $kode;
@@ -137,6 +136,8 @@ class PengantarLab extends BaseController
                 ]
             ]);
 
+            
+
             if (!$valid) {
                 $msg = [
                     'error' => [
@@ -145,15 +146,25 @@ class PengantarLab extends BaseController
                     ]
                 ];
             } else {
+                $id_pelanggan = $this->request->getVar('id_pelanggan');
                 $simpandata = [
                     'kode_pengantar' => $this->generate_kode_pengantar(),
-                    'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                    'id_pelanggan' => $id_pelanggan,
                     'tanggal' => date('Y-m-d', strtotime($this->request->getVar('tanggal')))
                 ];
-                $this->model->insert($simpandata);
-                $msg = [
-                    'sukses' => 'Data berhasil disimpan'
-                ];
+
+                $cek_data = $this->model->where('id_pelanggan', $id_pelanggan)->first();
+                if ($cek_data != null) {
+                    $msg = [
+                        'error' => 'Data sudah ada'
+                    ];
+                } else {
+                    $this->model->save($simpandata);
+                    $msg = [
+                        'sukses' => 'Data berhasil disimpan'
+                    ];
+                }
+                
             }
             echo json_encode($msg);
         } else {
@@ -176,9 +187,65 @@ class PengantarLab extends BaseController
      *
      * @return ResponseInterface
      */
+    public function edit($id = null) 
+    {
+        if ($this->request->isAJAX()) {
+
+            $data = [
+                'title' => 'Edit ' . $this->title,
+                'items' => $this->model->find($id),
+                'permintaan' => $this->m_permintaan->where('is_active', 1)->findAll()
+            ];
+            $msg = [
+                'sukses' => view('Backend/Modul/Pelayanan/Pengantar-lab/__edit', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }    
+    }
     public function update($id = null)
     {
-        //
+        if ($this->request->isAJAX()) {
+            $valid = $this->validate([
+                'id_pelanggan' => [
+                    'label' => 'Pelanggan',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ],
+                'tanggal' => [
+                    'label' => 'Tanggal',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong'
+                    ]
+                ]
+            ]);
+
+            if (!$valid) {
+                $msg = [
+                    'error' => [
+                        'id_pelanggan' => $this->validation->getError('id_pelanggan'),
+                        'tanggal' => $this->validation->getError('tanggal')
+                    ]
+                ];
+            } else {
+                $simpandata = [
+                    'id' => $this->request->getVar('id'),
+                    'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                    'tanggal' => date('Y-m-d', strtotime($this->request->getVar('tanggal')))
+                ];
+                $this->model->save($simpandata);
+                $msg = [
+                    'sukses' => 'Data berhasil diubah'
+                ];
+            }
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**

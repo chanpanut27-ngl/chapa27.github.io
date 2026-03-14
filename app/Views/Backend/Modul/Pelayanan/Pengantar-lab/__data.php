@@ -26,6 +26,9 @@
                 <td><?= $row['is_active'] == 1 ? '<span class="badge bg-success rounded">Aktif</span>' : '<span class="badge bg-secondary rounded">Tidak aktif</span>'; ?></td>
                 <td>
                     <div class="d-flex justify-content-start gap-1">
+                        <button type="button" class="btn btn-warning border-0 btn-sm rounded btn-edit-<?= $row['id_pengantar'] ?>" onclick="editData(<?= $row['id_pengantar'] ?>)" title="Edit data">
+                            <i class="ti ti-edit"></i>
+                        </button>
                        <button type="button" class="btn btn-danger border-0 btn-sm rounded" onclick="deleteData(<?= $row['id_pengantar']; ?>)" title="Hapus data">
                             <i class="ti ti-trash"></i>
                         </button>
@@ -42,6 +45,32 @@
     </tbody>
 </table>
 <script>
+    function editData(id) {
+        $.ajax({
+            type: 'get',
+            url: '<?= site_url('pelayanan/pengantar-lab/edit-data/'); ?>' + id,
+            dataType: 'json',
+            cache: false,
+            beforeSend: function() {
+                $('.btn-edit-'+id).attr('disable', 'disabled');
+                $('.btn-edit-'+id).html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            },
+            complete: function() {
+                $('.btn-edit-'+id).removeAttr('disable');
+                $('.btn-edit-'+id).html('<i class="ti ti-edit"></i>');
+            },
+            success: function(response) {
+                if (response.sukses) {
+                    $(".view-modal").html(response.sukses).show();
+                    $("#exampleModal").modal('show');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
+            }
+        })
+    }
+
     function addLabTujuan(id) {
        $.ajax({
             type: 'get',

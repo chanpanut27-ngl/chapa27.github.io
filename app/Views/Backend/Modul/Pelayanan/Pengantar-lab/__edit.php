@@ -3,11 +3,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-square-plus fs-2"></i> <?= $title; ?></h4>
+                <h4 class="modal-title" id="exampleModalLabel"><i class="ti ti-edit fs-2"></i> <?= $title; ?></h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="<?= base_url('pelayanan/pengantar-lab/create-data'); ?>" class="form-data">
+            <form action="<?= base_url('pelayanan/pengantar-lab/update-data'); ?>" class="form-data">
                 <?= csrf_field(); ?>
+                <input type="hidden" name="id" value="<?= $items['id'] ?>">
+                <input type="hidden" name="kode_pengantar" value="<?= $items['kode_pengantar'] ?>">
                 <div class="modal-body">
                     <div class="mb-1">
                         <label for="pelanggan" class="form-label h5">Pelanggan</label>
@@ -18,19 +20,19 @@
                             <?php 
                             foreach ($permintaan as $row) :
                             ?>
-                            <option value="<?= $row['id'] ?>"><?= $row['no_reg']; ?> - <?= $row['nama_pengirim']; ?></option>
+                            <option value="<?= $row['id'] ?>" <?= $row['id'] == $items['id_pelanggan'] ? 'selected' : '' ?>><?= $row['no_reg']; ?> - <?= $row['nama_pengirim']; ?></option>
                             <?php endforeach;?>
                         </select>
                         <div class="invalid-feedback errorPelanggan"></div>
                     </div>
                     <div class="mb-3">
                         <label for="tanggal" class="form-label h5">Tanggal</label>
-                        <input type="text" name="tanggal" id="tanggal" class="form-control" autocomplete="off">
+                        <input type="text" name="tanggal" value="<?= date('d-m-Y', strtotime($items['tanggal'])) ?>" id="tanggal" class="form-control" autocomplete="off">
                         <div class="invalid-feedback errorTanggal"></div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-sm rounded btn-simpan"><i class="ti ti-device-floppy"></i> Simpan</button>
+                    <button type="submit" class="btn btn-primary btn-sm rounded btn-ubah"><i class="ti ti-edit"></i> Ubah</button>
                     <button type="button" class="btn btn-secondary btn-sm rounded" data-bs-dismiss="modal"><i class="ti ti-x"></i> Tutup</button>
                 </div>
             </form>
@@ -61,8 +63,8 @@
                 dataType: 'json',
                 cache: false,
                 beforeSend: function() {
-                    $('.btn-simpan').attr('disabled', 'disabled');
-                    $('.btn-simpan').html('<i class="fa fa-spin fa-spinner"></i>');
+                    $('.btn-ubah').attr('disabled', 'disabled');
+                    $('.btn-ubah').html('<i class="fa fa-spin fa-spinner"></i>');
                     $('.invalid-feedback').html('<i class="fa fa-spin fa-spinner"></i>');
                 },
                 success: function(response) {
@@ -82,16 +84,6 @@
                             $('#tanggal').removeClass('is-invalid');
                             $('.errorTanggal').html('');
                         }
-                        Swal.fire({
-                            title: "Gagal",
-                            text: response.error,
-                            icon: "error",
-                            timer: 2000,
-                            width: '400px',
-                            padding: '1em'
-                        })
-                        $("#exampleModal").modal('hide');
-
                     } else {
                         Swal.fire({
                             title: "Berhasil",
@@ -111,8 +103,8 @@
                     }
                 },
                 complete: function() {
-                    $('.btn-simpan').removeAttr('disabled');
-                    $('.btn-simpan').html('<i class="ti ti-device-floppy"></i> Simpan');
+                    $('.btn-ubah').removeAttr('disabled');
+                    $('.btn-ubah').html('<i class="ti ti-edit"></i> Ubah');
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     alert(xhr.status + ' ' + xhr.responseText + ' ' + thrownError);
