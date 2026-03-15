@@ -40,7 +40,6 @@ class LogSampel extends BaseController
 
     public function log_distribusi_sampel($id = null)
     {
-        
         $data = [
             'title' => 'Distribusi sampel',
             'items' => $this->m_status_layanan->get_data('Distribusi Sampel')

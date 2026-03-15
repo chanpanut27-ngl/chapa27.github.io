@@ -1,7 +1,17 @@
 <?= $this->extend('Backend/Log-sampel/index'); ?>
 
 <?= $this->section('content_log'); ?>
+<?php
 
+use App\Models\LaboratoriumTujuanModel;
+use App\Models\PengantarLabModel;
+use App\Models\SampelLingkunganModel;
+use App\Models\SpesimenPenyakitModel;
+
+$labtujuan = new LaboratoriumTujuanModel();
+$pengantar = new PengantarLabModel();
+
+?>
 <div class="table-responsive">
     <table class="table table-hover" id="example">
         <thead>
@@ -16,21 +26,13 @@
         </thead>
         <tbody>
             <?php
-
-use App\Models\LaboratoriumTujuanModel;
-use App\Models\PengantarLabModel;
-use App\Models\PermintaanPemeriksaanModel;
-use App\Models\SampelLingkunganModel;
-use App\Models\SpesimenPenyakitModel;
-
-            $model = new PermintaanPemeriksaanModel();
-
             $no=1;
+           
             foreach ($items as $row) :
-            $id_pelanggan = $row['id_pelanggan'];
-            $rest = $model->detail_lab($id_pelanggan);
-            $kode_pelanggan = $row['kode_pelanggan'];
-
+                $id_pelanggan = $row['id_pelanggan'];
+                $view_pengantar = $pengantar->where('id_pelanggan', $id_pelanggan)->first();
+                $kode_pengantar = $view_pengantar['kode_pengantar'];
+                $menu_lab = $labtujuan->get_data($kode_pengantar);
             ?>
             <tr>
                 <td><?= $no++ ?></td>
@@ -48,41 +50,33 @@ use App\Models\SpesimenPenyakitModel;
                 </td>
                 <td><?= $row['instansi'] ?></td>
                 <td>
-                     <?php
-                        $m_pengantar_lab = new PengantarLabModel();
-                            $rest_plab = $m_pengantar_lab->where('id_pelanggan', $id_pelanggan)->first();
-                            $kode_pengantar = $rest_plab['kode_pengantar'];
-                            $m_lab_tujuan = new LaboratoriumTujuanModel();
-
-                             $menu_lab = $m_lab_tujuan->get_data($kode_pengantar);
-                             $group_lab_tujuan = $m_lab_tujuan->get_data_by_group_kat_lab($kode_pengantar);
-                             foreach ($group_lab_tujuan as $kl) : 
-                            
-                        ?>
-
-                        <table class="table-bordered" style="border: 1px solid black; width:100%;">
+                    <?php
+                      $view_labtujuan = $labtujuan->get_data_by_group_kat_lab($kode_pengantar);
+                      foreach ($view_labtujuan as $kl) {
+                    ?>
+                    <table class="table-bordered" style="border: 1px solid black; width:100%;">
                         <thead>
                             <?php
+                            
                             foreach ($menu_lab as $lab) :
                                 if ($kl['idkatlab'] == $lab['id_kat_lab']) :
                             ?>
                             <tr>
-                                <td colspan="10" class="p-1 fw-bold" style="font-size: 9pt;">
+                                <td colspan="10" class="p-1 fw-bold" style="font-size: 10pt;">
                                     <?= ucfirst($lab['nama_lab']);?>
                                 </td>
                             </tr>
-                            <tr class="fw-bold text-center">
-                                <th class="p-1 text-center" style="font-size: 9pt;">No</th>
-                                <th class="p-1" style="font-size: 9pt;">Kode Sampel</th>
-                                <th class="p-1 text-center" style="font-size: 9pt;">Jenis Sampel</th>
-                                <th class="p-1" style="font-size: 9pt;"><?= $kl['idkatlab'] == '1' ? 'Lokasi pengambilan' : 'Identitas'; ?></th>
-                                <th class="p-1" style="font-size: 9pt; text-align:center;">Tgl & Jam Pengambilan Sampel</th>
+                            <tr class="fw-bold text-center" style="font-size: 9.5pt;">
+                                <th>No</th>
+                                <th>Kode Sampel</th>
+                                <th>Jenis Sampel</th>
+                                <th>Peraturan/Baku Mutu</th>
                             </tr>
                         </thead>
                         <tbody>
                         <?php
-                        $index = 1;
-                        if ($kl['idkatlab'] == 1) {
+                            $index = 1;
+                            if ($kl['idkatlab'] == 1) {
                                 $pemeriksaan = new SampelLingkunganModel();
                                 $r = $pemeriksaan->get_data($kode_pengantar, $lab['id_lab']);
                                 foreach ($r as $sl) {
@@ -90,33 +84,28 @@ use App\Models\SpesimenPenyakitModel;
                             ?>
                             <tr>
                                 <td class="p-1 text-center" style="font-size: 9pt;"><?= $index++ ?></td>
-                                <td class="p-1" style="font-size: 9pt; text-align:center;"><?= $sl['kode_sampel']; ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><b><?= $sl['kode_sampel']; ?></b></td>
                                 <td class="p-1" style="font-size: 9pt;"><?= $sl['jenis_sampel']; ?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $sl['lokasi_pengambilan_sampel']; ?></td>
-                                <td class="p-1 text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $sl['peraturan']; ?></td>
                             </tr>
                             <?php  }
                             } else {
                                 $pemeriksaan = new SpesimenPenyakitModel();
                                 $r = $pemeriksaan->get_data($kode_pengantar, $lab['id_lab']);
-                                foreach ($r as $sp) {
-                                $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($sp['tgl_periksa_sampel'])).' '. date('H:i', strtotime($sp['jam_periksa_sampel']));
+                                foreach ($r as $row) {
+                                $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_periksa_sampel'])).' '. date('H:i', strtotime($row['jam_periksa_sampel']));
                             ?>
                             <tr>
                                 <td class="p-1" style="font-size: 9pt;"><?= $index++ ?></td>
-                                <td class="p-1 text-center fw-bold" style="font-size: 9pt;"><?= $sp['kode_sampel']; ?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $sp['jenis_sampel']; ?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $sp['identitas_sampel']; ?></td>
+                                <td class="p-1 text-center fw-bold" style="font-size: 9pt;"><?= $row['kode_sampel']; ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_sampel']; ?></td>
                                 <td class="p-1 text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $sp['peraturan']; ?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $sp['metode_pemeriksaan']; ?></td>
-                                <td class="p-1 text-center" style="font-size: 9pt;"><?= $sp['volume_atau_berat']; ?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $sp['jenis_wadah']; ?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $sp['jenis_pengawet']; ?></td>
+                                <td class="p-1" style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
                             </tr>
-                        <?php }} endif; endforeach; endforeach;?>
-                    </tbody>
+                        <?php }} endif; endforeach;?>
+                        </tbody>
                     </table>
+                    <?php } ?>
                 </td>
                 <td>
                     <div class="row">
@@ -140,8 +129,6 @@ use App\Models\SpesimenPenyakitModel;
             <?php endforeach;?>
         </tbody>
     </table>
-</div>
-
 </div>
 <div class="view-modal" style="display: none;"></div>
 
