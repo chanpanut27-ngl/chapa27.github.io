@@ -53,6 +53,10 @@
     </style>
 </head>
 <body>
+    <?php
+    use App\Libraries\CustomLib;
+    $custom_lib = new CustomLib;
+    ?>
     <div class="d-flex justify-content-end align-items-center mt-1">
         <button class="btn btn-primary rounded btn-sm" onclick="window.print()" title="Cetak" style="text-align: right;">
             <i class="ti ti-printer"></i> Cetak
@@ -62,20 +66,10 @@
         <div class="kop-surat">
             <div class="row">
                 <div class="col-sm-6">
-                    <img src="<?= base_url('assets/images/logo.webp') ?>" alt="" class="img-fluid" alt="logo" style="height: 55px;">
+                    <?php echo $custom_lib->logo_kopsurat() ?>
                 </div>
                 <div class="col-sm-6">
-                    <p style="line-height: 12px;"><label for="" style="color:#00A69A; font-weight: bold;">Kementerian Kesehatan</label></p>
-                    <p style="line-height: 12px;">
-                        <b>Direktorat Jenderal Kesehatan Primer dan Komunitas</b>
-                        Balai Besar Laboratorium Kesehatan Masyarakat
-                        Jakarta
-                    </p>
-                    <p style="line-height: 12px;">
-                        Jl.Bambu Apus Raya No.6 Blok C1 Jakarta Timur 13890 <br>
-                        <i class="ti ti-phone"></i> (021) 3871 2050 - (021) 3871 2051 <br>
-                        <i class="ti ti-globe"></i> www.bblkmjakarta.org
-                    </p>
+                <?php echo $custom_lib->ket_kopsurat() ?>
                 </div>
                 <div class="col-sm">
                     <p for="" class="fw-bold text-end">No.Kode : LB.IV.7.1.1.3</p>
