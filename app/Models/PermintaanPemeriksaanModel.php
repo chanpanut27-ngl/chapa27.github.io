@@ -113,7 +113,7 @@ class PermintaanPemeriksaanModel extends Model
      public function get_parameter_lhu($noreg) 
     {
         $builder = $this->db->table('permintaan_pemeriksaan pp');
-        $builder->select('pp.id AS id_pp, pp.id_lab, parameter');
+        $builder->select('pp.id AS id_pp, pp.id_lab, id_pelanggan, no_reg, id_lab, pp.id_jenis_sampel, pp.id_parameter, parameter, metode');
         $builder->join("master_parameter mp", "mp.id = pp.id_parameter", "left");
         $builder->where('pp.no_reg', $noreg);
         $query = $builder->get()->getResultArray();

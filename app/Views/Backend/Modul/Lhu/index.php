@@ -27,7 +27,7 @@
                     <div class="card-header p-2">
                         <h4><span class="pc-micon"><i class="ti ti-search"></i> <?= $title; ?></h4>
                     </div>
-                    <form action="<?= base_url('pelayanan/lembar-hasil-uji/search-data'); ?>" class="form-data">
+                    <form action="<?= base_url('pelayanan/lembar-hasil-uji/search-data'); ?>" class="search-data">
                         <?= csrf_field(); ?>
                         <div class="card-body p-3">
                             <div class="row">
@@ -64,7 +64,7 @@
    
     $(document).ready(function() {
 
-        $(".form-data").submit(function (e) {
+        $(".search-data").submit(function (e) {
             e.preventDefault();
 
             $.ajax({
@@ -76,6 +76,8 @@
                 beforeSend: function() {
                     $('.btn-cari').attr('disable', 'disabled');
                     $('.btn-cari').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+                    $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+
                 },
                 success: function(response) {
                     var error = response.error;
@@ -104,6 +106,41 @@
 
         })
 
+         $(".form-data").submit(function (e) {
+            e.preventDefault();
+            alert('oke');
+
+            // $.ajax({
+            //     type: "POST",
+            //     url: $(this).attr('action'),
+            //     data: $(this).serialize(),
+            //     dataType: 'json',
+            //     cache: false,
+            //     beforeSend: function() {
+            //         $('.btn-simpan').attr('disable', 'disabled');
+            //         $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
+            //     },
+            //     success: function(response) {
+            //             Swal.fire({
+            //                 title: "Berhasil",
+            //                 text: response.sukses,
+            //                 icon: "success",
+            //                 timer: 2000,
+            //                 width: '400px',
+            //                 padding: '1em'
+            //             });
+            //     },
+            //     complete: function() {
+            //         $('.btn-simpan').removeAttr('disable');
+            //         $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
+            //     },
+            //     error: function(xhr, ajaxOptions, thrownError) {
+            //         alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);
+            //     }
+            // })
+
+        })
+        
     })
 </script>
 <?= $this->endSection(); ?>

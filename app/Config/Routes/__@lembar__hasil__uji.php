@@ -3,5 +3,6 @@
     $routes->group('pelayanan/lembar-hasil-uji', function ($routes) {
         $routes->get('', 'LembarHasilUji::index');
         $routes->post('search-data', 'LembarHasilUji::show');
+        $routes->post('create-data', 'LembarHasilUji::create');
     });
     ?>

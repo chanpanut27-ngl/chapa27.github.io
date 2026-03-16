@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\LembarHasilUjiModel;
 use App\Models\PermintaanPemeriksaanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -14,11 +15,14 @@ class LembarHasilUji extends BaseController
      */
     protected $title;
     protected $model;
+    protected $lhu;
 
     public function __construct()
     {
         $this->title = 'Lembar Hasil Uji';
         $this->model = new PermintaanPemeriksaanModel();
+        $this->lhu = new LembarHasilUjiModel();
+
     }
 
     public function index()
@@ -88,7 +92,45 @@ class LembarHasilUji extends BaseController
      */
     public function create()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $id_pp = $this->request->getVar('id_pp');
+            $count = count($id_pp ?? []); 
+            $id_pelanggan = $this->request->getVar('id_pelanggan');
+            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+            $id_parameter = $this->request->getVar('id_parameter');
+
+            for ($i=0; $i < $count; $i++) { 
+
+                $save = [
+                    'id_pelanggan' => $id_pelanggan,
+                    'no_reg' => $this->request->getVar('no_reg'),
+                    'id_lab' => $this->request->getVar('id_lab'),
+                    'id_jenis_sampel' => $id_jenis_sampel,
+                    'id_pemeriksaan' => $id_pp[$i],
+                    'id_parameter' => $id_parameter,
+                    'satuan' => $this->request->getVar('satuan'),
+                    'kadar_maksimum' => $this->request->getVar('kadar_maksimums'),
+                    'hasil_pengujian' => $this->request->getVar('hasil_pengujian'),
+                    'keterangan' => $this->request->getVar('keterangan'),
+                ];
+                
+                $_data_lhu = $this->lhu->
+                where('id_pelanggan', $id_pelanggan)->
+                where('id_jenis_sampel', $id_jenis_sampel)->
+                where('id_pemeriksaan', $id_pp[$i])->countAllResults();
+
+                if ($_data_lhu > 0) {
+                    $this->lhu->where('id_pelanggan', $id_pelanggan)->
+                    where('id_jenis_sampel', $id_jenis_sampel)->
+                    where('id_pemeriksaan', $id_pp[$i])->update($save);
+                } else {
+                    $this->lhu->insert($save);
+                }
+
+            }
+        } else {
+            exit('not process');
+        }
     }
 
     /**
