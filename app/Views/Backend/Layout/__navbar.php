@@ -53,6 +53,12 @@
                         <span class="pc-mtext">Perintah uji sampel</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="<?= base_url('pelayanan/lembar-hasil-uji'); ?>" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-menu"></i></span>
+                        <span class="pc-mtext">Lembar Hasil Uji (LHU)</span>
+                    </a>
+                </li>
                 <li class="pc-item pc-caption">
                     <label>File</label>
                 </li>

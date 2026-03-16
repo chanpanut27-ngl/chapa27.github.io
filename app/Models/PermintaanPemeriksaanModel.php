@@ -97,4 +97,27 @@ class PermintaanPemeriksaanModel extends Model
         return $query;
     }
 
+    // LHU
+    public function get_lab_lhu($noreg) 
+    {
+        $builder = $this->db->table('permintaan_pemeriksaan pp');
+        $builder->select('pp.id_lab, nama_lab, jenis_sampel');
+        $builder->join("master_laboratorium ml", "ml.id = pp.id_lab", "left");
+        $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");
+        $builder->where('pp.no_reg', $noreg);
+        $builder->groupBy('pp.id_lab');
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
+     public function get_parameter_lhu($noreg) 
+    {
+        $builder = $this->db->table('permintaan_pemeriksaan pp');
+        $builder->select('pp.id AS id_pp, pp.id_lab, parameter');
+        $builder->join("master_parameter mp", "mp.id = pp.id_parameter", "left");
+        $builder->where('pp.no_reg', $noreg);
+        $query = $builder->get()->getResultArray();
+        return $query;
+    }
+
 }
