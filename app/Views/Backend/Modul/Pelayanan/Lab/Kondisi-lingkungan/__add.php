@@ -24,7 +24,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="kondisi-lingkungan" class="form-label h5">Kondisi Lingkungan Sekitar Sampel</label>
-                        <textarea name="kondisi_lingkungan_sekitar_sampel" class="form-control" id="kondisi-lingkungan"></textarea>
+                        <textarea name="kondisi_lingkungan_sekitar_sampel" class="form-control" id="kondisi-lingkungan">Baik</textarea>
                         <div class="invalid-feedback errorKondisiLingkungan"></div>
                     </div>
                     <div class="mb-3">
