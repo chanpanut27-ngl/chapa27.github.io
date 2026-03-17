@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\JenisSampelModel;
 use App\Models\LembarHasilUjiModel;
 use App\Models\PermintaanPemeriksaanModel;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -60,8 +61,9 @@ class LembarHasilUji extends BaseController
                     ]
                 ];
             } else {
+                $mjs = new JenisSampelModel();
                     $data = [
-                        'nama_lab' => $this->model->get_lab_lhu($no_reg),
+                        'nama_lab' => $mjs->findAll(),
                         'items' => $this->model->get_parameter_lhu($no_reg)
                     ];
                     $msg = [

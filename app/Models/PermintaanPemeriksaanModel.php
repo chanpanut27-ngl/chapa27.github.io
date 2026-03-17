@@ -70,14 +70,12 @@ class PermintaanPemeriksaanModel extends Model
 
     public function get_data_list($id)
     {
-        $db = \Config\Database::connect();
-        $builder = $db->table('permintaan_pemeriksaan pp');
+        $builder = $this->db->table('permintaan_pemeriksaan pp');
         $builder->select('pp.id as id_permintaan_pemeriksaan, pp.id_jenis_sampel, pp.created_at as tgl_entry, nama_lab, jenis_sampel, parameter, harga_per_titik, mp.peraturan, mp.keterangan as ket_peraturan');
         $builder->join("master_laboratorium ml", "ml.id = pp.id_lab", "left");
         $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");
         $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan", "left");
-        $builder->join("master_parameter a", "a.id = pp.id_parameter", "left");
-        // $builder->join("permintaan_sampel ps", "ps.id_jenis_sampel = pp.id_jenis_sampel", "left");
+        $builder->join("master_parameter mpr", "mpr.id = pp.id_parameter", "left");
         $builder->where('pp.id_pelanggan', $id);
         $query = $builder->get()->getResultArray();
         return $query;
@@ -97,29 +95,16 @@ class PermintaanPemeriksaanModel extends Model
         return $query;
     }
 
-    // LHU
-    public function get_lab_lhu($noreg) 
-    {
-        $builder = $this->db->table('permintaan_pemeriksaan pp');
-        $builder->select('pp.id_lab, nama_lab, jenis_sampel');
-        $builder->join("master_laboratorium ml", "ml.id = pp.id_lab", "left");
-        $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");
-        $builder->where('pp.no_reg', $noreg);
-        $builder->groupBy('pp.id_lab');
-        $query = $builder->get()->getResultArray();
-        return $query;
-    }
-
     public function get_parameter_lhu($noreg) 
     {
         $builder = $this->db->table('permintaan_pemeriksaan pp');
-        $builder->select('pp.id AS id_pp, pp.id_lab, id_pelanggan, no_reg, id_lab, pp.id_jenis_sampel, pp.id_parameter, parameter, metode');
-        $builder->join("master_parameter mp", "mp.id = pp.id_parameter", "left");
+        $builder->select('pp.id AS id_pp, pp.id_lab, nama_lab, pp.id_parameter, parameter, pp.id_jenis_sampel, pp.id_pelanggan, pp.no_reg, jenis_sampel, metode');
+        $builder->join("master_parameter mpr", "mpr.id = pp.id_parameter", "left");
         $builder->join("master_laboratorium ml", "ml.id = pp.id_lab", "left");
+        $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");
+        $builder->join("master_peraturan mp", "mp.id = mjs.id_peraturan", "left");
         $builder->where('pp.no_reg', $noreg);
-        $builder->groupBy('pp.id_lab');
         $query = $builder->get()->getResultArray();
         return $query;
     }
-
 }

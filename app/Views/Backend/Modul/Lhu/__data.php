@@ -15,7 +15,7 @@
                     
         <?php
         $no = 1;
-        foreach ($nama_lab as $row) :
+        foreach ($items as $row) :
         ?>
             <tr class="bg-blue-200 fw-bold">
                 <td><b><?= $no++; ?></b></td>
@@ -39,7 +39,7 @@
                         <tbody>
                             <?php
                             foreach ($items as $lhu) :
-                                if ($row['id_lab'] == $lhu['id_lab']) :
+                                if ($row['id_jenis_sampel'] == $lhu['id_jenis_sampel']) :
                             ?>
                             <tr>
                                 <input type="text" name="id_pp[]" value="<?= $lhu['id_pp'] ?>">
