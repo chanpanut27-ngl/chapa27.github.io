@@ -10,7 +10,7 @@
         ?>
     </thead>
     <tbody>
-        <form action="<?= base_url('pelayanan/lembar-hasil-uji/create-data'); ?>" class="form-data">
+        <form action="<?= base_url('pelayanan/lembar-hasil-uji/create-data'); ?>" class="form-data-lhu">
         <?= csrf_field(); ?>
                     
         <?php
@@ -77,7 +77,7 @@
 <script>
 
      $(document).ready(function () {
-       $(".btn-simpan").click(function (e) {
+       $(".form-data-lhu").submit(function (e) {
         e.preventDefault();
         $.ajax({
                 type: "POST",

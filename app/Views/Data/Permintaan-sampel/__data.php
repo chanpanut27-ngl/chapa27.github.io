@@ -40,7 +40,7 @@
         <tr id="myIndex-<?= $row['id_permintaan_sampel'] ?>" data-urut=<?= $no; ?>>
             <td class="text-center"><?= $no++; ?></td>
             <td><?= $row['jenis_sampel'] ?></td>
-            <td><?= $row['peraturan'] ?> id-lab : <?= $row['id_lab'] ?></td>
+            <td><?= $row['peraturan'] ?></td>
             <td>
                 <?php
                 $pilih_parameter = []; 

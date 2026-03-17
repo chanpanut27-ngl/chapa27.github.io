@@ -126,8 +126,11 @@ class LembarHasilUji extends BaseController
                 } else {
                     $this->lhu->insert($save);
                 }
-
+                $msg = [
+                    'sukses' => 'Data berhasil disimpan'
+                ];
             }
+            echo json_encode($msg);
         } else {
             exit('not process');
         }
