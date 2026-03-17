@@ -15,14 +15,13 @@ class LembarHasilUjiModel extends Model
     protected $allowedFields    = [
         'id_pemeriksaan',
         'id_pelanggan',
-        'no_reg',
         'id_lab',
         'id_jenis_sampel',
         'id_parameter',
         'satuan',
         'kadar_maksimum',
         'hasil_pengujian',
-        'keterangan'
+        // 'keterangan'
     ];
 
     protected bool $allowEmptyInserts = false;

@@ -4,5 +4,6 @@
         $routes->get('', 'LembarHasilUji::index');
         $routes->post('search-data', 'LembarHasilUji::show');
         $routes->post('create-data', 'LembarHasilUji::create');
+        $routes->get('add-data', 'LembarHasilUji::new');
     });
     ?>

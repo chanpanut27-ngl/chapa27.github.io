@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        <label class="form-label fw-bold" for="no-reg">No Reg</label>
+                                        <label class="form-label fw-bold" for="no-reg">No. Reg</label>
                                         <input type="text" name="no_reg" class="form-control" id="no-reg" placeholder="Masukkan no.reg ...">
                                         <div class="invalid-feedback errorNoReg"></div>
                                     </div>
@@ -57,6 +57,7 @@
         <!-- [ Main Content ] end -->
     </div>
 </div>
+
 <?= $this->endSection(); ?>
 
 <?= $this->section('bottomAssets'); ?>
@@ -76,8 +77,6 @@
                 beforeSend: function() {
                     $('.btn-cari').attr('disable', 'disabled');
                     $('.btn-cari').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-                    $('.view-data').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-
                 },
                 success: function(response) {
                     var error = response.error;
@@ -91,11 +90,21 @@
                                 $('#no-reg').removeClass('is-invalid');
                                 $('.errorNoReg').html('');
                             }
+                            Swal.fire({
+                                title: "Gagal",
+                                text: response.error,
+                                icon: "error",
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            });
+                            
                     } else {
                         $(".view-data").html(response.data);
                     }
                 },
                 complete: function() {
+                    $('.view-data').removeAttr('span');
                     $('.btn-cari').removeAttr('disable');
                     $('.btn-cari').html('<i class="ti ti-search"></i> Cari');
                 },
@@ -105,42 +114,6 @@
             })
 
         })
-
-         $(".form-data").submit(function (e) {
-            e.preventDefault();
-            alert('oke');
-
-            // $.ajax({
-            //     type: "POST",
-            //     url: $(this).attr('action'),
-            //     data: $(this).serialize(),
-            //     dataType: 'json',
-            //     cache: false,
-            //     beforeSend: function() {
-            //         $('.btn-simpan').attr('disable', 'disabled');
-            //         $('.btn-simpan').html('<span class="fa-solid fa-spin fa-spinner"></span>');
-            //     },
-            //     success: function(response) {
-            //             Swal.fire({
-            //                 title: "Berhasil",
-            //                 text: response.sukses,
-            //                 icon: "success",
-            //                 timer: 2000,
-            //                 width: '400px',
-            //                 padding: '1em'
-            //             });
-            //     },
-            //     complete: function() {
-            //         $('.btn-simpan').removeAttr('disable');
-            //         $('.btn-simpan').html('<span class="fa-solid fa-save"></span> Simpan');
-            //     },
-            //     error: function(xhr, ajaxOptions, thrownError) {
-            //         alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError + "\n" + ajaxOptions);
-            //     }
-            // })
-
-        })
-        
     })
 </script>
 <?= $this->endSection(); ?>

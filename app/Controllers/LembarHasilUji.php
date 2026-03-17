@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\JenisSampelModel;
 use App\Models\LembarHasilUjiModel;
 use App\Models\PermintaanPemeriksaanModel;
+use App\Models\PermintaanSampelModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class LembarHasilUji extends BaseController
@@ -61,14 +61,21 @@ class LembarHasilUji extends BaseController
                     ]
                 ];
             } else {
-                $mjs = new JenisSampelModel();
+                    $pemeriksaan = $this->model->where('no_reg', $no_reg)->first();
+                    $id_pelanggan = $pemeriksaan['id_pelanggan'] ?? null;
+                    $permintaan_sampel = new PermintaanSampelModel();
                     $data = [
-                        'nama_lab' => $mjs->findAll(),
-                        'items' => $this->model->get_parameter_lhu($no_reg)
+                        'items' => $permintaan_sampel->get_data($id_pelanggan),
                     ];
-                    $msg = [
-                        'data' => view('Backend/Modul/Lhu/__data', $data)
-                    ];
+                    if ($pemeriksaan) {
+                        $msg = [
+                            'data' => view('Backend/Modul/Lhu/__data', $data)
+                        ];
+                    } else {
+                        $msg = [
+                            'error' => 'Data tidak di temukan'
+                        ];
+                    }
             }
 
             echo json_encode($msg);
@@ -84,7 +91,31 @@ class LembarHasilUji extends BaseController
      */
     public function new()
     {
-        //
+        if ($this->request->isAJAX()) {
+            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
+            $id_pelanggan = $this->request->getVar('id_pelanggan');
+
+            $this->model->select('permintaan_pemeriksaan.id as id_pp, id_parameter, parameter, id_lab, nama_lab');
+            $this->model->join('master_parameter mp', 'mp.id=permintaan_pemeriksaan.id_parameter');
+            $this->model->join('master_laboratorium ml', 'ml.id=permintaan_pemeriksaan.id_lab');
+            $this->model->where('permintaan_pemeriksaan.id_pelanggan', $id_pelanggan);
+            $this->model->where('permintaan_pemeriksaan.id_jenis_sampel', $id_jenis_sampel);
+            $query = $this->model->findAll();
+
+            $data = [
+                'title' => 'Isi hasil uji',
+                'items' => $query,
+                'id_pelanggan' => $id_pelanggan,
+                'id_jenis_sampel' => $id_jenis_sampel,
+            ];
+
+            $msg = [
+                'data' => view('Backend/Modul/Lhu/__add', $data)
+            ];
+            echo json_encode($msg);
+        } else {
+            exit('Not Process');
+        }
     }
 
     /**
@@ -95,44 +126,38 @@ class LembarHasilUji extends BaseController
     public function create()
     {
         if ($this->request->isAJAX()) {
-            $id_pp = $this->request->getVar('id_pp');
+            $msg = '';
+            $id_pp = $this->request->getVar('id_pemeriksaan');
             $count = count($id_pp ?? []); 
-            $id_pelanggan = $this->request->getVar('id_pelanggan');
-            $id_jenis_sampel = $this->request->getVar('id_jenis_sampel');
-            $id_parameter = $this->request->getVar('id_parameter');
 
+           
             for ($i=0; $i < $count; $i++) { 
-
                 $save = [
-                    'id_pelanggan' => $id_pelanggan,
-                    'no_reg' => $this->request->getVar('no_reg'),
-                    'id_lab' => $this->request->getVar('id_lab'),
-                    'id_jenis_sampel' => $id_jenis_sampel,
                     'id_pemeriksaan' => $id_pp[$i],
-                    'id_parameter' => $id_parameter,
-                    'satuan' => $this->request->getVar('satuan'),
-                    'kadar_maksimum' => $this->request->getVar('kadar_maksimums'),
-                    'hasil_pengujian' => $this->request->getVar('hasil_pengujian'),
-                    'keterangan' => $this->request->getVar('keterangan'),
+                    'id_pelanggan' => $this->request->getVar('id_pelanggan'),
+                    'id_lab' => $this->request->getVar('id_lab'),
+                    'id_jenis_sampel' => $this->request->getVar('id_jenis_sampel'),
+                    'id_parameter' => $this->request->getVar('id_parameter')[$i],
+                    'satuan' => $this->request->getVar('satuan')[$i],
+                    'kadar_maksimum' => $this->request->getVar('kadar_maksimum')[$i],
+                    'hasil_pengujian' => $this->request->getVar('hasil_pengujian')[$i],
+                    // 'keterangan' => $this->request->getVar('keterangan')[$i],
                 ];
-                
-                $_data_lhu = $this->lhu->
-                where('id_pelanggan', $id_pelanggan)->
-                where('id_jenis_sampel', $id_jenis_sampel)->
-                where('id_pemeriksaan', $id_pp[$i])->countAllResults();
 
-                if ($_data_lhu > 0) {
-                    $this->lhu->where('id_pelanggan', $id_pelanggan)->
-                    where('id_jenis_sampel', $id_jenis_sampel)->
-                    where('id_pemeriksaan', $id_pp[$i])->update($save);
+                $insert = $this->lhu->insert($save);
+                if ($insert) {
+                    $msg = [
+                        'sukses' => 'Data berhasil disimpan'
+                    ];
                 } else {
-                    $this->lhu->insert($save);
+                    $msg = [
+                        'error' => 'Data gagal disimpan'
+                    ];
                 }
-                $msg = [
-                    'sukses' => 'Data berhasil disimpan'
-                ];
             }
-            echo json_encode($msg);
+               
+          echo json_encode($msg);
+
         } else {
             exit('not process');
         }
