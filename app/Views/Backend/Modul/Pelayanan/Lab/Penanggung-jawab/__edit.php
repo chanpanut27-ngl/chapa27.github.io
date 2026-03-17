@@ -16,7 +16,7 @@
                         <div class="invalid-feedback errorNamaPetugas"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp-petugas" class="form-label h5">No.Telp petugas sampling</label>
+                        <label for="no-telp-petugas" class="form-label h5">No. Telp/Hp petugas sampling</label>
                         <input type="text" name="no_telp_pjb" value="<?= $items['no_telp_pjb'] ?>" class="form-control" id="no-telp-petugas">
                         <div class="invalid-feedback errorNoTelpPetugas"></div>
                     </div>
@@ -26,7 +26,7 @@
                         <div class="invalid-feedback errorPenerimaSampel"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="no-telp-penerima" class="form-label h5">No.Telp penerima sampel</label>
+                        <label for="no-telp-penerima" class="form-label h5">No. Telp/Hp penerima sampel</label>
                         <input type="text" name="no_telp_penerima" value="<?= $items['no_telp_penerima'] ?>" class="form-control" id="no-telp-penerima">
                         <div class="invalid-feedback errorTelpPenerima"></div>
                     </div>
@@ -49,15 +49,4 @@
         </div>
     </div>
 </div>
-
-<script>
-    var dateToday = new Date();
-
-    $("#tgl-terima-sampel").datepicker(
-        { 
-            dateFormat: 'dd-mm-yy', 
-            defaultDate: "",  inDate: dateToday
-        }
-    );
-</script>
 <script src="<?= base_url('assets/js/Pelayanan/@update_pj_plab.js') ?>"></script>

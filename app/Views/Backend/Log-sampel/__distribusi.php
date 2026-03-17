@@ -27,11 +27,10 @@ $pengantar = new PengantarLabModel();
         <tbody>
             <?php
             $no=1;
-           
             foreach ($items as $row) :
                 $id_pelanggan = $row['id_pelanggan'];
                 $view_pengantar = $pengantar->where('id_pelanggan', $id_pelanggan)->first();
-                $kode_pengantar = $view_pengantar['kode_pengantar'];
+                $kode_pengantar = $view_pengantar['kode_pengantar'] ?? '';
                 $menu_lab = $labtujuan->get_data($kode_pengantar);
             ?>
             <tr>
@@ -52,6 +51,12 @@ $pengantar = new PengantarLabModel();
                 <td>
                     <?php
                       $view_labtujuan = $labtujuan->get_data_by_group_kat_lab($kode_pengantar);
+                      if (!$view_labtujuan) {
+                         echo '<div class="alert alert-danger" role="alert">
+                                        <i class="ti ti-info-circle"></i> Pengantar lab belum di buat
+                                    </div>';
+                      } else {
+                     
                       foreach ($view_labtujuan as $kl) {
                     ?>
                     <table class="table-bordered" style="border: 1px solid black; width:100%;">
@@ -66,7 +71,7 @@ $pengantar = new PengantarLabModel();
                                     <?= ucfirst($lab['nama_lab']);?>
                                 </td>
                             </tr>
-                            <tr class="fw-bold text-center" style="font-size: 9.5pt;">
+                            <tr class="fw-bold text-center" style="font-size: 9pt;">
                                 <th>No</th>
                                 <th>Kode Sampel</th>
                                 <th>Jenis Sampel</th>
@@ -84,9 +89,9 @@ $pengantar = new PengantarLabModel();
                             ?>
                             <tr>
                                 <td class="p-1 text-center" style="font-size: 9pt;"><?= $index++ ?></td>
-                                <td class="p-1" style="font-size: 9pt;"><b><?= $sl['kode_sampel']; ?></b></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $sl['jenis_sampel']; ?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $sl['peraturan']; ?></td>
+                                <td style="font-size: 9pt;"><b><?= $sl['kode_sampel']; ?></b></td>
+                                <td style="font-size: 9pt;"><?= $sl['jenis_sampel']; ?></td>
+                                <td style="font-size: 9pt;"><?= $sl['peraturan']; ?></td>
                             </tr>
                             <?php  }
                             } else {
@@ -96,16 +101,16 @@ $pengantar = new PengantarLabModel();
                                 $tgl_jam_ambil_sampel = date('d/m/Y', strtotime($row['tgl_periksa_sampel'])).' '. date('H:i', strtotime($row['jam_periksa_sampel']));
                             ?>
                             <tr>
-                                <td class="p-1" style="font-size: 9pt;"><?= $index++ ?></td>
-                                <td class="p-1 text-center fw-bold" style="font-size: 9pt;"><?= $row['kode_sampel']; ?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $row['jenis_sampel']; ?></td>
-                                <td class="p-1 text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
-                                <td class="p-1" style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
+                                <td style="font-size: 9pt;"><?= $index++ ?></td>
+                                <td class="text-center fw-bold" style="font-size: 9pt;"><?= $row['kode_sampel']; ?></td>
+                                <td style="font-size: 9pt;"><?= $row['jenis_sampel']; ?></td>
+                                <td class="text-center" style="font-size: 9pt;"><?= @$tgl_jam_ambil_sampel;?></td>
+                                <td style="font-size: 9pt;"><?= $row['peraturan']; ?></td>
                             </tr>
                         <?php }} endif; endforeach;?>
                         </tbody>
                     </table>
-                    <?php } ?>
+                    <?php } } ?>
                 </td>
                 <td>
                     <div class="row">
@@ -116,7 +121,7 @@ $pengantar = new PengantarLabModel();
                     </div>
                 </td>
                 <td class="text-center">
-                    <ul class="list-inline me-auto mb-0">
+                    <ul class="list-inline <?= !$view_labtujuan ? 'd-none' : '' ?> me-auto mb-0">
                         <li class="list-inline-item align-bottom">
                             <a href="#" class="avtar avtar-xs btn-link-success btn-pc-default btn-sts-<?= $row['id_pelanggan']; ?>" onclick="statusLayanan(<?= $row['id_pelanggan']; ?>)" data-bs-toggle="modal"
                             data-bs-target="#exampleModal">

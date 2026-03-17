@@ -89,7 +89,9 @@
                             if ($acepted_penawaran) {
                             ?>
                                 <div class="card-body p-1">
-                                    <span class="badge square-pill bg-success fs-6"><?= $acepted_penawaran['status'] ?></span>
+                                    <div class="alert alert-primary" role="alert">
+                                        <i class="ti ti-info-circle"></i> Penawaran diterima
+                                    </div>
                                 </div>
                                 <?php
                             } 
