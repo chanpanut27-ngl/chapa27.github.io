@@ -83,8 +83,7 @@ class PermintaanPemeriksaanModel extends Model
 
     public function detail_lab($id)
     {
-        $db = \Config\Database::connect();
-        $builder = $db->table('permintaan_pemeriksaan pp');
+        $builder = $this->db->table('permintaan_pemeriksaan pp');
         $builder->select('nama_lab,jenis_sampel,peraturan, pp.id_pelanggan');
         $builder->join("master_laboratorium ml", "ml.id = pp.id_lab", "left");
         $builder->join("master_jenis_sampel mjs", "mjs.id = pp.id_jenis_sampel", "left");

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PermintaanPelangganModel;
+use App\Models\PermintaanPemeriksaanModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Permintaan extends BaseController
@@ -271,11 +272,18 @@ class Permintaan extends BaseController
     public function delete($id = null)
     {
         if ($this->request->isAJAX()) {
-
-            $this->model->delete($id);
-            $msg = [
-                'sukses' => 'Data berhasil di hapus'
-            ];
+            $pemeriksaan = new PermintaanPemeriksaanModel();
+            $cek_data = $pemeriksaan->where('id_pelanggan', $id)->first();
+            if ($cek_data) {
+                $msg = [
+                    'error' => 'Data tidak bisa di hapus'
+                ];
+            } else {
+                $this->model->delete($id);
+                $msg = [
+                    'sukses' => 'Data berhasil di hapus'
+                ];
+            }
             echo json_encode($msg);
         } else {
             exit('Not Process');

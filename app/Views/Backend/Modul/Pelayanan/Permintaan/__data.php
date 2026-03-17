@@ -154,6 +154,19 @@
                                 }
                             });
                             listData();
+                        } else {
+                            Swal.fire({
+                                title: "Hapus Data !",
+                                text: response.error,
+                                icon: "error",
+                                timer: 2000,
+                                width: '400px',
+                                padding: '1em'
+                            }).then((result) => {
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    listData();
+                                }
+                            });
                         }
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
